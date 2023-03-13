@@ -1,0 +1,16 @@
+{
+	"id":"aEP_MDDroneLaunch",
+	"type":"STAT_MOD",
+	"aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.aEP_MDDroneLaunchAI",
+	"statsScript":"data.shipsystems.scripts.aEP_MaodianDroneLaunch",
+
+	
+	"runScriptWhileIdle":true,  # this means unapply() never gets called	
+	"outOfUsesSound":"gun_out_of_ammo",
+	"aiHints":{
+	}
+}
+
+
+

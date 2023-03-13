@@ -1,0 +1,14 @@
+{
+	"id":"aEP_RQReload",
+	"type":"FAST_RELOAD",
+	#"aiType":"FAST_RELOAD",
+	"aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.aEP_RequanReloadAI",
+	"statsScript":"data.shipsystems.scripts.aEP_RequanReload",
+	#这里不留空，会自动把其他导弹一起装了
+	"weaponTypes":[],
+	"minFractionToReload":0.65,
+	
+	"useSound":"system_fast_missile_racks",
+	"outOfUsesSound":"gun_out_of_ammo",
+}

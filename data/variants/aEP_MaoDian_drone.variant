@@ -1,0 +1,43 @@
+{
+  "variantId": "aEP_MaoDian_drone",
+  "hullId": "aEP_MaoDian_drone",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0006": "aEP_empty"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "aEP_maodian_ads"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "aEP_maodian_ads"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "aEP_maodian_ads"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,40 @@
+{
+  "variantId": "aEP_ftr_bom_nuke",
+  "hullId": "aEP_ftr_bom_nuke",
+  "displayName": "",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_icp_gunship_gun",
+        "WS0002": "aEP_ftr_icp_gunship_gun",
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "aEP_ftr_bom_nuke_bomb"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,66 @@
+{
+  "id": "aEP_pompom_small",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_pompom_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "displayArcRadius": 600,
+  "turretSprite": "graphics/weapons/aEP_pompom_small/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_pompom_small/tr_brl.png",
+  "hardpointSprite": "graphics/weapons/aEP_pompom_small/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_pompom_small/hp_brl.png",
+  "visualRecoil": 2,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    10,
+    -7,
+    9,
+    -3,
+    9,
+    3,
+    10,
+    7
+  ],
+  "turretAngleOffsets": [
+    -0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    17,
+    -5,
+    18,
+    -2,
+    18,
+    2,
+    17,
+    5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "LINKED",
+  "separateRecoilForLinkedBarrels":"true",
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 16,
+    "spread": 6,
+    "particleSizeMin": 8,
+    "particleSizeRange": 12,
+    "particleDuration": 0.15,
+    "particleCount": 4,
+    "particleColor": [
+      255,
+      240,
+      165,
+      200
+    ]
+  },
+  "fireSoundTwo": "aEP_pompom_fire"
+}

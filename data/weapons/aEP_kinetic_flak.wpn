@@ -1,0 +1,41 @@
+{
+  "id": "aEP_kinetic_flak",
+  "specClass": "projectile",
+  "projectileSpecId":"aEP_KF_shot",
+  "type": "BALLISTIC",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak00.png",
+  "turretGunSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak_tr_barrel.png",
+  "hardpointSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak_hp00.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak_hp_barrel.png",
+  #"everyFrameEffect": "",
+  "visualRecoil":4.0,  # the gun sprites are only used if this is non-0
+  #"renderHints":[RENDER_BARREL_BELOW],
+  "numFrames":4,
+  "frameRate":8,
+  "turretOffsets": [25,2.5,25,-2.5],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [25,2.5,25,-2.5],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "autocharge":true, 
+  "interruptibleBurst":false,
+  "separateRecoilForLinkedBarrels":"true",
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 24,
+    "spread": 12,
+    "particleSizeMin": 40,
+    "particleSizeRange": 30,
+    "particleDuration": 0.13,
+    "particleCount": 6,
+    "particleColor": [225,255,205,200]},
+  "fireSoundTwo":"aEP_kinetic_flak_fire",	
+  
+  
+
+}

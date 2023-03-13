@@ -1,0 +1,50 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 11,
+    "fluxVents": 8,
+    "goalVariant": true,
+    "hullId": "aEP_ShangShengLiu",
+    "hullMods": [
+        "expanded_cargo_holds",
+        "efficiency_overhaul"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShangShengLiu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "mark9"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0014": "hveldriver",
+                "WS0015": "hveldriver"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0002": "vulcan",
+                "WS0005": "dualflak",
+                "WS0007": "dualflak",
+                "WS0016": "vulcan",
+                "WS0017": "vulcan"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_pompom_small",
+                "WS0004": "aEP_pompom_small"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_icp_gunship_wing"]
+}

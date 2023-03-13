@@ -1,0 +1,45 @@
+{
+    "displayName": "Siege",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_ShanHu",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShanHu_Siege",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "squall"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0004": "aEP_breakin_bay"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightdualac",
+                "WS0002": "lightdualac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "vulcan",
+                "WS0008": "flak"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_bom_nuke_wing",
+        "aEP_ftr_bom_nuke_wing",
+        "aEP_ftr_bom_nuke_wing",
+        "aEP_ftr_bom_nuke_wing"
+    ]
+}

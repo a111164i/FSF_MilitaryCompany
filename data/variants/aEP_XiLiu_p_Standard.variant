@@ -1,0 +1,37 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 6,
+    "fluxVents": 6,
+    "goalVariant": true,
+    "hullId": "aEP_XiLiu_p",
+    "hullMods": [
+        "missleracks",
+        "unstable_injector"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_XiLiu_p_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0005": "lightneedler",
+                "WS0006": "lightneedler"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "typhoon"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "vulcan",
+                "WS0009": "vulcan"
+            }
+        }
+    ]
+}

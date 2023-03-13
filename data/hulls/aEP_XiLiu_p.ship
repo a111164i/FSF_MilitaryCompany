@@ -1,0 +1,128 @@
+{
+  "hullName": "runningstream",
+  "hullId": "aEP_XiLiu_p",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_xiliu2.png",
+  "style": "aEP_FSF",
+  "height": 140,
+  "width": 80,
+  "center": [40, 61],
+  "collisionRadius": 84,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 83,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_MarkerDissipation"
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_marker",
+    "WS0008": "aEP_revo_missile"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0002",
+      "size": "MEDIUM",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 90,
+      "angle": 0,
+      "locations": [49.5, -0]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 25,
+      "angle": -0,
+      "locations": [-8, 17.5]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 25,
+      "angle": 0,
+      "locations": [-8, -17.5]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 180,
+      "locations": [-18.5, 0]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 180,
+      "locations": [-33.5, 0]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 0,
+      "locations": [20.5, 0]
+    },
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-27, -16]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-53, 16],
+      "length": 55.5,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 16,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-53, -18],
+      "length": 55.5,
+      "width": 16,
+      "angle": -180,
+      "contrailSize": 16,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-51, 8.5],
+      "length": 34,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 6,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-51, -8.5],
+      "length": 34,
+      "width": 6,
+      "angle": -180,
+      "contrailSize": 6,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -48, -23,
+    55.5, -19.5,
+    65.5, -9.5,
+    65.5, 6.5,
+    55.5, 19.5,
+    -48, 24
+  ]
+}

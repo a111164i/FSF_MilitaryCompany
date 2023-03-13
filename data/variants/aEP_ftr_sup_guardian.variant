@@ -1,0 +1,23 @@
+{
+  "variantId": "aEP_ftr_sup_guardian",
+  "hullId": "aEP_ftr_sup_guardian",
+  "displayName": "",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_sup_guardian_gun",
+        "WS0002": "aEP_ftr_sup_guardian_gun2"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

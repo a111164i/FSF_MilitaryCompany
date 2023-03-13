@@ -1,0 +1,58 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 7,
+    "fluxVents": 7,
+    "goalVariant": true,
+    "hullId": "aEP_YangJi",
+    "hullMods": [
+        "aEP_VanguardHull",
+        "aEP_RapidDissipate",
+        "heavyarmor"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_YangJi_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "lightac",
+                "WS0006": "lightac",
+                "WS0011": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "lightac",
+                "WS0007": "lightac",
+                "WS0012": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0003": "vulcan"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL01": "aEP_yangzhongji_gun",
+                "SIDEL04": "aEP_yangzhongji_gun",
+                "SIDER01": "aEP_yangzhongji_gun",
+                "SIDER04": "aEP_yangzhongji_gun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "dualflak"}
+        }
+    ]
+}

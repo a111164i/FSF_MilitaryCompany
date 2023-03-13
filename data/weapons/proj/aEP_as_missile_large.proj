@@ -1,0 +1,50 @@
+{
+	"id":"aEP_as_missile_large",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	"sprite":"graphics/weapons/aEP_as_large/missile.png",
+	"size":[20,40],	
+	"center":[10,20],
+	"collisionRadius":20,
+	"collisionClass":"MISSILE_NO_FF",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[250,200,200,200],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":300, # purely visual
+    #"maxFlightTime":3, #一般用不上
+	"flameoutTime":0.5,  # total time from flameout to full fadeout
+	"armingTime":2, # safe range count by time 
+	"noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)	
+	"fadeTime":0.1, # fadeout duration
+    "alwaysAccelerate":false,
+    "reduceDamageWhileFading":false,
+    "fizzleOnReachingWeaponRange":true,
+    #will use projectile range calculation that considers range threshold (from SO etc)
+    #"useProjectileRangeCalculation":false
+    #defaults to 0.5 (same as what was hardcoded before)
+    #"dudProbabilityOnFlameout":0.5
+	"engineSpec":{"turnAcc":90,
+				  "turnRate":60,
+				  "acc":150,
+				  "dec":50},
+	"engineSlots":[{"id":"ES1",
+                    "loc":[-15,0],
+                    "style":"CUSTOM",
+                    "styleSpec":{
+                                "mode":"PARTICLES", # PARTICLES or QUAD_STRIP, determines which params are used
+                                "engineColor":[255,125,25,200],
+                                "contrailParticleSizeMult":2,
+                                "contrailParticleDuration":10,
+                                "contrailParticleFinalSizeMult":4,
+                                "contrailMaxSpeedMult":0.5,
+                                "contrailAngularVelocityMult":0.5,
+                                "contrailColor":[50,50,50,50],
+                                "type":"SMOKE"},
+							    "width":30,
+							    "length":120.0,
+							    "angle":180.0},				 					
+				    ],
+
+				    
+				
+}

@@ -1,0 +1,233 @@
+{
+  "hullName": "ShenCeng",
+  "hullId": "aEP_ShenCeng",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/aEP_shenceng.png",
+  "style": "aEP_FSF",
+  "height": 211,
+  "width": 129,
+  "center": [64.5, 105.5],
+  "collisionRadius": 131,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 128,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_MarkerDissipation"
+  ],
+  "builtInWeapons": {
+    "ARMOR": "aEP_shenceng_armor",
+    "COVER": "aEP_shenceng_cover",
+    "FIGHTER": "aEP_shenceng_fighter",
+    "HOLD_1": "aEP_shenceng_hold",
+    "HOLD_2": "aEP_shenceng_hold2",
+    "TOWER": "aEP_HL_tower",
+    "WS0006": "aEP_marker"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": 90,
+      "locations": [-5.5, 58.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": 45,
+      "locations": [88.5, 22.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": -45,
+      "locations": [74.5, -40.5],
+      "renderOrderMod": 10
+    },
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -120,
+      "locations": [-80.5, -22.5]
+    },
+    {
+      "id": "WS0005",
+      "size": "LARGE",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-13.5, -12.5],
+      "renderOrderMod": 10
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        19.5, -7.5,
+        34.5, -7.5
+      ]
+    },
+    {
+      "id": "LB 2",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        19.5, -17.5,
+        34.5, -17.5
+      ]
+    },
+    {
+      "id": "LB 3",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        52.5, -18.5,
+        76, -18.5
+      ]
+    },
+    {
+      "id": "LB 4",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        52.5, -6.5,
+        76, -6.5
+      ]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-37.5, -40.5]
+    },
+    {
+      "id": "ARMOR",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [37.5, -52],
+      "renderOrderMod": 5
+    },
+    {
+      "id": "COVER",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [41.5, -35.5],
+      "renderOrderMod": 6
+    },
+    {
+      "id": "HOLD_1",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [42.5, -44]
+    },
+    {
+      "id": "HOLD_2",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [42, -53],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "FIGHTER",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [42, -48],
+      "renderOrderMod": 3
+    },
+    {
+      "id": "TOWER",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 180,
+      "locations": [101.5, -38.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-106, 18.5],
+      "length": 81,
+      "width": 24,
+      "angle": 180,
+      "contrailSize": 24,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-87.5, -42.5],
+      "length": 81,
+      "width": 24,
+      "angle": 180,
+      "contrailSize": 24,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -16.5, -63,
+    83, -63,
+    101, -44.5,
+    101, 8.5,
+    105, 27.5,
+    86.5, 47.5,
+    21.5, 47.5,
+    3.5, 49.5,
+    0, 57,
+    -11, 57,
+    -15, 49,
+    -55, 47,
+    -59, 50.5,
+    -83.5, 50.5,
+    -105.5, 29,
+    -105.5, 8.5,
+    -97.5, 6.5,
+    -89.5, -6.5,
+    -100.5, -18,
+    -100.5, -27.5,
+    -86.5, -39,
+    -86.5, -53,
+    -22.5, -56.5
+  ]
+}

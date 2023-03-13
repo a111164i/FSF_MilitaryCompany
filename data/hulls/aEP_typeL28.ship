@@ -1,0 +1,222 @@
+{
+  "hullName": "TypeL-28",
+  "hullId": "aEP_typeL28",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/aEP_typel028.png",
+  "style": "LOW_TECH",
+  "height": 300,
+  "width": 300,
+  "center": [141.5, 141.5],
+  "collisionRadius": 204.5,
+  "shieldCenter": [11.5, -1],
+  "shieldRadius": 189.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "missleracks",
+    "eccm",
+    "reduced_explosion",
+    "always_detaches"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": -90,
+      "locations": [-3.5, -65.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "LARGE",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 30,
+      "angle": -90,
+      "locations": [-14.5, -137.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "LARGE",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 30,
+      "angle": -90,
+      "locations": [-56.5, -136.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "MEDIUM",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [21.5, -116.5]
+    },
+    {
+      "id": "WS0005",
+      "size": "MEDIUM",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [55.5, -114.5]
+    },
+    {
+      "id": "WS0006",
+      "size": "MEDIUM",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [76.5, -104.5]
+    },
+    {
+      "id": "WS0007",
+      "size": "MEDIUM",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [98.5, -96.5]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [39.5, -119.5]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [129.5, -85.5]
+    },
+    {
+      "id": "WS0010",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": -90,
+      "locations": [115.5, -85.5]
+    },
+    {
+      "id": "WS0011",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 0,
+      "locations": [48, 6.5]
+    },
+    {
+      "id": "WS0012",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 235,
+      "angle": -25,
+      "locations": [105.5, -49.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-94, 136],
+      "length": 30,
+      "width": 10,
+      "angle": 90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-72.5, 136.5],
+      "length": 30,
+      "width": 10,
+      "angle": 90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-53.5, 136.5],
+      "length": 30,
+      "width": 10,
+      "angle": 90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-29.5, 134.5],
+      "length": 85,
+      "width": 23,
+      "angle": 90,
+      "contrailSize": 23,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [1.5, 127.5],
+      "length": 58.5,
+      "width": 19,
+      "angle": 90,
+      "contrailSize": 19,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [52.5, 57.5],
+      "length": 30,
+      "width": 10,
+      "angle": 90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [74, 57.5],
+      "length": 30,
+      "width": 10,
+      "angle": 90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [98.5, 15.5],
+      "length": 89,
+      "width": 18,
+      "angle": 90,
+      "contrailSize": 18,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [119, 9.5],
+      "length": 30,
+      "width": 10,
+      "angle": 90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    136.5, -80.5,
+    126.5, 5,
+    87.5, 13.5,
+    83.5, 53,
+    13, 73,
+    5.5, 128,
+    -118.5, 129,
+    -106.5, 72.5,
+    -115, 7.5,
+    -98.5, 7,
+    -80, -112.5,
+    -70, -138,
+    1, -138,
+    10, -121,
+    72, -109
+  ]
+}

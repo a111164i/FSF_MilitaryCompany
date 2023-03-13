@@ -1,0 +1,26 @@
+{
+	"id":"aEP_ftr_sup_guardian_gun_shot2",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"collisionClass":"RAY",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":120.0,
+	"width":8,
+	"fadeTime":0.3,
+
+	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"fringeColor":[201,197,230,250],
+	"coreColor":[195,185,245,220],
+	"glowColor":[255,250,250,68],
+	"glowRadius":12,
+	"hitGlowRadius":30,
+
+	"textureType":"SMOOTH",  # only needed for BEAM spawnType
+	#"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+	"textureScrollSpeed":-256.0,
+	"pixelsPerTexel":1,
+  "passThroughMissiles":false,
+	#"bulletSprite":"graphics/missiles/shell_small_yellow.png"
+
+}

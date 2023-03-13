@@ -1,0 +1,77 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 18,
+    "goalVariant": true,
+    "hullId": "aEP_DuiLiu",
+    "hullMods": [
+        "targetingunit",
+        "ballistic_rangefinder",
+        "aEP_ControledShield"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_DuiLiu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_duiliu_main"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0034": "railgun",
+                "WS0035": "railgun",
+                "WS0038": "railgun",
+                "WS0040": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "aEP_trauma_cannon",
+                "WS0010": "aEP_trauma_cannon",
+                "WS0020": "aEP_trauma_cannon",
+                "WS0021": "aEP_trauma_cannon"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0011": "aEP_high_speed_HE",
+                "WS0012": "aEP_high_speed_HE"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0022": "railgun",
+                "WS0023": "railgun",
+                "WS0036": "railgun",
+                "WS0037": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0015": "aEP_forcus_laser",
+                "WS0016": "aEP_forcus_laser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "dualflak",
+                "WS0008": "dualflak",
+                "WS0018": "dualflak"
+            }
+        }
+    ]
+}

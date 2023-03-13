@@ -1,0 +1,41 @@
+{
+  "hullName": "HaiLiang4",
+  "hullId": "aEP_HaiLiang4",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_hailiang4.png",
+  "style": "aEP_FSF",
+  "height": 400,
+  "width": 300,
+  "center": [150, 220],
+  "collisionRadius": 175.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 170.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "reduced_explosion",
+    "always_detaches",
+    "aEP_SelfRotate",
+    "hardenedshieldemitter",
+    "advancedshieldemitter"
+  ],
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    63.5, -17.5,
+    75.5, -23,
+    66, -45.5,
+    80.5, -49.5,
+    85, -42,
+    98, -42,
+    97.5, -27.5,
+    119.5, -10.5,
+    119.5, 10.5,
+    97.5, 27.5,
+    98, 42,
+    85, 42,
+    80.5, 49.5,
+    66, 45.5,
+    75.5, 23,
+    63.5, 17.5
+  ]
+}

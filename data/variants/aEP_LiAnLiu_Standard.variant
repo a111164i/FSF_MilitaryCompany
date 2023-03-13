@@ -1,0 +1,39 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 14,
+    "fluxVents": 14,
+    "goalVariant": true,
+    "hullId": "aEP_LiAnLiu",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "aEP_RapidDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_LiAnLiu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "aEP_trauma_cannon"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "heavyac",
+                "WS0003": "heavyac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "vulcan",
+                "WS0005": "vulcan",
+                "WS0008": "vulcan",
+                "WS0009": "vulcan"
+            }
+        }
+    ]
+}

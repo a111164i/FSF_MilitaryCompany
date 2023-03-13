@@ -1,0 +1,37 @@
+{
+  "variantId": "aEP_shenceng_drone",
+  "hullId": "aEP_shenceng_drone",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+     {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "aEP_empty"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_shenceng_drone_mine",
+        "WS0002": "aEP_shenceng_drone_mine"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "aEP_shenceng_drone_beam"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

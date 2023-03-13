@@ -1,0 +1,221 @@
+{
+  "hullName": "HotSpring",
+  "hullId": "aEP_ReQuan",
+  "hullSize": "CRUISER",
+  "spriteName": "graphics/ships/aEP_requan.png",
+  "style": "aEP_FSF",
+  "height": 220,
+  "width": 120,
+  "center": [60, 102],
+  "collisionRadius": 154.5,
+  "shieldCenter": [-6, -0],
+  "shieldRadius": 144.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_MarkerDissipation",
+    "aEP_MissilePlatform"
+  ],
+  "builtInWeapons": {
+    "WS0012": "aEP_raoliu_hull",
+    "WS0013": "aEP_marker",
+    "WS0016": "aEP_rq_missile"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "COMPOSITE",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [108, 10]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "COMPOSITE",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [91, 1]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -90,
+      "locations": [65, -45]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -90,
+      "locations": [39, -45]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -90,
+      "locations": [13, -45]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -90,
+      "locations": [-40, -45]
+    },
+    {
+      "id": "WS0007",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 0,
+      "locations": [67, -0]
+    },
+    {
+      "id": "WS0008",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-16, -0]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 180,
+      "locations": [-39, -0]
+    },
+    {
+      "id": "WS0010",
+      "size": "MEDIUM",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 90,
+      "angle": 90,
+      "locations": [13, 33]
+    },
+    {
+      "id": "WS0011",
+      "size": "MEDIUM",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 90,
+      "angle": 90,
+      "locations": [-39, 39]
+    },
+    {
+      "id": "WS0013",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-12, -43]
+    },
+    {
+      "id": "WS0012",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [33.5, 46],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "WS0014",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-21.5, -29]
+    },
+    {
+      "id": "WS0015",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-21.5, 29]
+    },
+    {
+      "id": "WS0016",
+      "size": "MEDIUM",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [4, 48.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-101, 36],
+      "length": 51.5,
+      "width": 17,
+      "angle": 180,
+      "contrailSize": 17,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-101, -36],
+      "length": 51.5,
+      "width": 17,
+      "angle": -180,
+      "contrailSize": 17,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-96, 5],
+      "length": 86.5,
+      "width": 11,
+      "angle": 180,
+      "contrailSize": 11,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-96, -5],
+      "length": 86.5,
+      "width": 11,
+      "angle": -180,
+      "contrailSize": 11,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    95, -24,
+    99.5, -4,
+    116, 5.5,
+    108.5, 33.5,
+    88, 49,
+    -24, 50,
+    -37.5, 55.5,
+    -98, 50,
+    -100, 28,
+    -86, 22,
+    -95, -0,
+    -84.5, -23.5,
+    -100, -28,
+    -98, -50,
+    72, -47
+  ]
+}

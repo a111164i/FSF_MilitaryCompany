@@ -1,0 +1,123 @@
+{
+ "graphics":{
+		"aEP_backgrounds":{
+			"background1":"graphics/aEP_background/background1.jpg",
+		},
+		"blueprint_packages":{
+      		"FSF_bp":"graphics/aEP_items/FSF_bp.png",
+      		"FSF_openbp":"graphics/aEP_items/FSF_openbp.png",
+     
+		},
+		"aEP_FX":{
+
+			"particle_smoke01":"graphics/aEP_FX/particle_smoke/particle_smoke01.png",
+			"particle_smoke02":"graphics/aEP_FX/particle_smoke/particle_smoke02.png",
+			"particle_smoke03":"graphics/aEP_FX/particle_smoke/particle_smoke03.png",
+
+			
+			"particle_smokeB01":"graphics/aEP_FX/particle_smoke_B/particle_smoke01.png",
+			"particle_smokeB02":"graphics/aEP_FX/particle_smoke_B/particle_smoke02.png",
+			"particle_smokeB03":"graphics/aEP_FX/particle_smoke_B/particle_smoke03.png",
+			
+			"thick_smoke01":"graphics/aEP_FX/thick_smoke/thick_smoke01.png",
+			"thick_smoke02":"graphics/aEP_FX/thick_smoke/thick_smoke02.png",
+			"thick_smoke03":"graphics/aEP_FX/thick_smoke/thick_smoke03.png",
+			"thick_smoke04":"graphics/aEP_FX/thick_smoke/thick_smoke04.png",
+			"thick_smoke05":"graphics/aEP_FX/thick_smoke/thick_smoke05.png",
+			"thick_smoke_all":"graphics/aEP_FX/thick_smoke/all.png",
+			"thick_smoke_all2":"graphics/aEP_FX/thick_smoke/all2.png",
+			
+			"trail_rough":"graphics/aEP_FX/trails/2.png",
+			"trail_rough_more":"graphics/aEP_FX/trails/1.png",
+			"trail_smoke":"graphics/aEP_FX/trails/3.png",
+			"trail_flame":"graphics/aEP_FX/trails/4.png",
+			"trail_smooth_with_bright_core":"graphics/aEP_FX/trails/5.png",
+			
+			
+			"ring":"graphics/aEP_FX/controledshieldring.png",
+			"half_ring":"graphics/aEP_FX/half_ring.png",
+			"shred":"graphics/weapons/aEP_large_kinetic_flak/shred.png",
+			"aEP_empty":"graphics/aEP_empty.png",
+
+			"noise":"graphics/aEP_FX/noise.png",
+			"noise02":"graphics/aEP_FX/noise02.png",
+		}, 
+		"fx":{
+			"aEP_trail_smoke":"graphics/aEP_FX/trails/3.png",
+			"aEP_trail_rough":"graphics/aEP_FX/trails/2.png",
+			"aEP_trail_rough_more":"graphics/aEP_FX/trails/1.png",
+			"aEP_trail_flame":"graphics/aEP_FX/trails/4.png",
+			"aEP_trail_smooth_with_bright_core":"graphics/aEP_FX/trails/5.png",
+			
+		},
+		"weapons":{
+			"EMP_pike_shot_inShield":"graphics/weapons/aEP_EMP_pike/aEP_EMP_pike_shot_inShield.png",
+			"EMP_pike_shot_inHull":"graphics/weapons/aEP_EMP_pike/aEP_EMP_pike_shot_inHull.png",
+			"EMP_pike_shot":"graphics/weapons/aEP_EMP_pike/aEP_EMP_pike_shot.png",
+			
+			"DL_pike_shot_inShield":"graphics/weapons/aEP_duiliu/shot_inShield.png",
+			"DL_pike_shot_inHull":"graphics/weapons/aEP_duiliu/shot_inHull.png",
+			"DL_pike_shot":"graphics/weapons/aEP_duiliu/shot.png",
+			
+			
+			"LBCG_flame":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame.png",
+			"LBCG_flame_core":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame_core.png",
+			"LBCG_flame2":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame2.png",
+			"LBCG_flame2_core":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame2_core.png",
+			
+			"small_shell":"graphics/weapons/small_shell.png",
+			"mid_shell":"graphics/weapons/mid_shell.png",
+			
+			"aEP_PD_f":"graphics/weapons/aEP_pingding/f.png",
+			"aEP_PD_b":"graphics/weapons/aEP_pingding/b.png",
+			"aEP_PD_br":"graphics/weapons/aEP_pingding/br.png",
+
+			"aEP_MD_empty_slot":"graphics/ships/aEP_maodian02.png"
+		}, 
+		"aEP_hullstyle":{
+			"aEP_shield_inner":"graphics/aEP_hullstyle/shield_inner.png",
+			"aEP_shield_outer":"graphics/aEP_hullstyle/shield_outer.png",
+		}, 
+		"aEP_ui":{
+ 			"multi_turret":"graphics/aEP_hullsys/multi_turret.png",
+ 			"controled_shield":"graphics/aEP_hullsys/controled_shield.png",
+ 			"marker_dissipation":"graphics/aEP_hullsys/marker_dissipation.png",
+			"heavy_fighter_carrier":"graphics/aEP_hullsys/aEP_heavy_fighter_carrier.png",
+ 		},
+ 		"aEP_portraits":{
+ 			"aEP_researcher":"graphics/aEP_portraits/1.png",
+ 		},
+ 		"aEP_icons":{
+ 			"AWM1":"graphics/aEP_icons/intels/1.png",
+ 		},
+ 		"aEP_campaign":{
+ 			"cruise_missile":"graphics/aEP_campaign/cruise_missile.png",
+			"cruise_missile_carrier_empty":"graphics/ships/aEP_shenceng_mk2.png",
+ 		},
+		"aEP_items":{
+			"none":"graphics/aEP_items/aEP_none.png",
+			"cruise_missile":"graphics/aEP_items/aEP_cruise_missile.png",
+			"cruise_missile2":"graphics/aEP_items/aEP_cruise_missile.png"
+		}
+	},
+
+
+	
+	"plugins":{
+		"a111164CampaignPlugin":"data.scripts.campaign.a111164CampaignPlugin",
+		"aEP_BuffEffect": "combat.plugin.aEP_BuffEffect",
+		"aEP_CombatEffectPlugin": "combat.plugin.aEP_CombatEffectPlugin",
+		#"aEP_RotateSlot": "data.scripts.plugins.aEP_RotateSlot"
+	},
+	
+	
+	
+	"designTypeColors":{
+		"FSF制造":[180,180,150,255],
+		"FSF设计":[180,180,150,255],
+		"FSF先进武器计划":[180,180,150,255],
+		"FSF胡乱改造":[255,120,100,255],
+		"FSF":[180,180,150,255],
+	},
+
+}

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="a111164_ExtendPack:jar">
+    <output-path>$PROJECT_DIR$/jars</output-path>
+    <root id="archive" name="a111164_ExtendPack.jar">
+      <element id="module-output" name="FSF_MilitaryCompany" />
+    </root>
+  </artifact>
+</component>

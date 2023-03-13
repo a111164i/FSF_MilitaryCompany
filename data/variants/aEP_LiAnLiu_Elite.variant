@@ -1,0 +1,38 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 0,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_LiAnLiu",
+    "hullMods": [
+        "aEP_RapidDissipate",
+        "heavyarmor"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_LiAnLiu_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_long_barrel_chaingun",
+                "WS0002": "aEP_long_barrel_chaingun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "railgun",
+                "WS0005": "railgun",
+                "WS0009": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "dualflak"}
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 33,
+    "goalVariant": true,
+    "hullId": "aEP_ShangShengLiu_mk3",
+    "hullMods": [
+        "efficiency_overhaul",
+        "auxiliary_fuel_tanks"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShangShengLiu_mk3_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0005": "vulcan",
+                "WS0006": "vulcan"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_pompom_small",
+                "WS0004": "aEP_pompom_small"
+            }
+        }
+    ]
+}

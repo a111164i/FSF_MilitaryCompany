@@ -1,0 +1,71 @@
+{
+  "hullName": "aEP_NeiBo_TR",
+  "hullId": "aEP_NeiBo_TR",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_neibo_tr01.png",
+  "style": "aEP_FSF",
+  "height": 90,
+  "width": 90,
+  "center": [45, 44.5],
+  "collisionRadius": 60,
+  "shieldCenter": [5, -0],
+  "shieldRadius": 58,
+  "viewOffset": 0,
+  "builtInMods": [
+    "reduced_explosion",
+    "never_detaches"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [15.5, 23],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -0,
+      "locations": [15.5, -23],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [23.5, 15]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [23.5, -15]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    -42, -15.5,
+    -25, -19.5,
+    -10.5, -34.5,
+    4.5, -34.5,
+    31.5, -19.5,
+    31.5, 19.5,
+    4.5, 34.5,
+    -10.5, 34.5,
+    -25, 19.5,
+    -42, 15.5
+  ]
+}

@@ -1,0 +1,7 @@
+name,id,planetary,decivRemove,script,desc,icon,order
+地下基地,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,在这颗星球的地下有着一座设施齐备的基地，其中储备的资源足够其在与外界切断联系后也能坚持数个循环。殖民地的最低稳定度不会低于1点,graphics/aEP_icons/UndergroundStorage.png,807956
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

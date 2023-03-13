@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="StarfarerLauncher" type="Application" factoryName="Application" activateToolWindowBeforeRun="false" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../jre" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="com.fs.starfarer.StarfarerLauncher" />
+    <module name="FSF_MilitaryCompany" />
+    <option name="VM_PARAMETERS" value=" -XX:CompilerThreadPriority=1 -XX:+CompilerThreadHintNoPreempt -Djava.library.path=native\\windows -Xms2048m -Xmx2048m -Xss2048k -classpath janino.jar;commons-compiler.jar;commons-compiler-jdk.jar;starfarer.api.jar;starfarer_obf.jar;jogg-0.0.7.jar;jorbis-0.0.15.jar;json.jar;lwjgl.jar;jinput.jar;log4j-1.2.9.jar;lwjgl_util.jar;fs.sound_obf.jar;fs.common_obf.jar;xstream-1.4.10.jar -Dcom.fs.starfarer.settings.paths.saves=..\\saves -Dcom.fs.starfarer.settings.paths.screenshots=..\\screenshots -Dcom.fs.starfarer.settings.paths.mods=..\\mods -Dcom.fs.starfarer.settings.paths.logs=. com.fs.starfarer.StarfarerLauncher" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../starsector-core" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="a111164_ExtendPack:jar" />
+      </option>
+    </method>
+  </configuration>
+</component>

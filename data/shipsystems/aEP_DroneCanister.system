@@ -1,0 +1,12 @@
+{
+	"id":"aEP_DroneCanister",
+	"type":"WEAPON",
+	"aiType":"CANISTER_FLAK",
+	#"aiScript":"data.shipsystems.scripts.ai.",
+	#"statsScript":"data.shipsystems.scripts.",
+
+	
+	"weaponDataId":"aEP_ftr_sup_tank_flak",
+	"outOfUsesSound":"gun_out_of_ammo",
+
+}

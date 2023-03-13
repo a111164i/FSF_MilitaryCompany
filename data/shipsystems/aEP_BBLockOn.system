@@ -1,0 +1,17 @@
+{
+	"id":"aEP_BBLockOn",
+	"type":"STAT_MOD",
+	"aiType":"ENTROPY_AMPLIFIER",
+	#"aiScript":"data.shipsystems.scripts.ai.",
+	"statsScript":"data.shipsystems.scripts.aEP_BBLockOn",
+	
+
+	
+
+	
+	"fadeActivationSoundOnChargedown":true,
+	"useSound":"system_entropy",
+	"loopSound":"system_entropy_loop",
+	"deactivateSound":"system_entropy_off",
+	"outOfUsesSound":"gun_out_of_ammo",
+}

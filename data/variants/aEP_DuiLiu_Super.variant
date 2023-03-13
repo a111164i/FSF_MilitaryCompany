@@ -1,0 +1,75 @@
+{
+    "displayName": "Super",
+    "fluxCapacitors": 0,
+    "fluxVents": 35,
+    "goalVariant": true,
+    "hullId": "aEP_DuiLiu",
+    "hullMods": [
+        "targetingunit",
+        "ballistic_rangefinder",
+        "aEP_SoftfluxDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_DuiLiu_Super",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_duiliu_main"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightag",
+                "WS0004": "lightag",
+                "WS0005": "lightag",
+                "WS0006": "lightag",
+                "WS0034": "lightag",
+                "WS0035": "lightag",
+                "WS0038": "lightag",
+                "WS0040": "lightag"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "aEP_long_barrel_chaingun",
+                "WS0008": "aEP_long_barrel_chaingun",
+                "WS0021": "aEP_long_barrel_chaingun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "aEP_kinetic_flak",
+                "WS0010": "aEP_kinetic_flak",
+                "WS0011": "aEP_kinetic_flak",
+                "WS0012": "aEP_kinetic_flak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0036": "lightag",
+                "WS0037": "lightag"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0015": "aEP_vulcan",
+                "WS0016": "aEP_vulcan",
+                "WS0018": "dualflak",
+                "WS0020": "dualflak",
+                "WS0022": "vulcan",
+                "WS0023": "vulcan"
+            }
+        }
+    ]
+}

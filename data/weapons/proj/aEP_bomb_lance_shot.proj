@@ -1,0 +1,46 @@
+{
+	"id":"aEP_bomb_lance_shot",
+	"specClass":"missile",	
+	"missileType":"BOMB",
+	"sprite":"graphics/weapons/aEP_FCL/lance.png",
+	"size":[12,200],	
+	"center":[6,190],
+	"collisionRadius":6,
+	"collisionClass":"MISSILE_NO_FF",
+	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[255,100,100,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":350, # purely visual
+	"explosionSpec":{"duration":0.1f, # not visual
+					 "radius":150,
+					 "coreRadius":75, # full damage within core radius
+					 "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+					 "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+					 "particleSizeMin":5.0,
+					 "particleSizeRange":3.0,
+					 "particleDuration":1,
+					 "particleCount":200,
+					 "particleColor":[255,155,155,255]},
+	#"maxFlightTime":3, #一般用不上
+	"flameoutTime":0.005,  # total time from flameout to full fadeout
+	#"armingTime":2, # safe range count by time 
+	#"noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)	
+	"fadeTime":0.001, # fadeout duration
+	#"alwaysAccelerate":false,
+    #"reduceDamageWhileFading":false,
+	#"fizzleOnReachingWeaponRange":true,
+	#will use projectile range calculation that considers range threshold (from SO etc)
+  	#"useProjectileRangeCalculation":false  
+  	#defaults to 0.5 (same as what was hardcoded before)
+  	#"dudProbabilityOnFlameout":0.5 
+	"engineSpec":{
+				"maxSpeed":0,
+				"turnAcc":0,
+				"turnRate":0,
+				"acc":0,
+				"dec":0},
+	"engineSlots":[ ],
+
+				    
+				
+}

@@ -1,0 +1,47 @@
+{
+  "id": "aEP_as_bay",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_as_missile",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_as_bay/tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_as_bay/hp.png",
+  "renderAboveAllWeapons": 0,
+  "turretOffsets": [
+    26,#y aixs
+    0,#x aixs
+  
+  ],
+  "turretAngleOffsets": [
+    0,
+  ],
+  "hardpointOffsets": [
+    26,
+    0,
+
+  ],
+  "hardpointAngleOffsets": [
+    0,
+
+  ],
+  "barrelMode": "LINKED",
+  "autocharge": true,
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 60,
+    "spread": 30,
+    "particleSizeMin": 8,
+    "particleSizeRange": 25,
+    "particleDuration": 1,
+    "particleCount": 18,
+    "particleColor": [
+      255,
+      120,
+      120,
+      100
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "aEP_as_missile_fire"
+}

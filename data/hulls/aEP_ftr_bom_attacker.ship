@@ -1,0 +1,56 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_bom_attacker",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/bom_attacker.png",
+  "style": "aEP_FSF",
+  "height": 43,
+  "width": 45,
+  "center": [22.5, 21.5],
+  "collisionRadius": 22.5,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 22,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [3.5, -1.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-10, 5.5],
+      "length": 12,
+      "width": 2,
+      "angle": 180,
+      "contrailSize": 2,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-10, -5.5],
+      "length": 12,
+      "width": 2,
+      "angle": -180,
+      "contrailSize": 2,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -6, -14,
+    0, -16,
+    6, -10,
+    6, 10,
+    0, 16,
+    -6, 14
+  ]
+}

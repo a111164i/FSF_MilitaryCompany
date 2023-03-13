@@ -1,0 +1,156 @@
+{
+  
+  #ShipSystems
+  "aEP_sonar": [
+    {"file": "sounds/weapons/aEP_BB_radar/sonar.ogg", "pitch": 1, "volume": 1},    
+  ],
+  "aEP_ShieldChargeUp": [
+    {"file": "sounds/shipsystems/ShieldChargeUp.ogg", "pitch": 1, "volume": 1},    
+  ],
+  "aEP_ExtremeOverloadEnd": [
+    {"file": "sounds/shipsystems/aEP_ExtremeOverloadEnd.ogg", "pitch": 1, "volume": 1.35},   
+  ],
+  "aEP_ExtremeOverloadStart": [
+    {"file": "sounds/shipsystems/aEP_ExtremeOverloadStart.ogg", "pitch": 1, "volume": 0.8},  
+  ],
+  "aEP_LoaderEnd": [
+    {"file": "sounds/shipsystems/aEP_LoaderEnd.ogg", "pitch": 1, "volume": 1},
+  ],
+  "aEP_LoaderLoop": [
+    {"file": "sounds/shipsystems/aEP_NBJetFlying.ogg", "pitch": 0.25, "volume": 1.2},
+  ],
+  "aEP_DroneDash": [
+    {"file": "sounds/shipsystems/aEP_DroneDash.ogg", "pitch": 1, "volume": 0.75},
+  ],
+  "aEP_NBJetFlying": [
+    {"file": "sounds/shipsystems/aEP_NBJetFlying.ogg", "pitch": 1, "volume": 1},
+  ],
+  "aEP_DamperTankerOnUse": [
+    {"file": "sounds/shipsystems/aEP_DamperTankerOnUse.ogg", "pitch": 0.7, "volume": 1.25},
+  ],
+  "aEP_DamperBoostOnUse": [
+    {"file": "sounds/shipsystems/aEP_DamperBoostOnUse.ogg", "pitch": 0.75, "volume": 0.3},
+  ],
+  
+  
+  #weapons
+  "aEP_high_speed_HE_fire": [
+    {"file": "sounds/weapons/aEP_high_speed_HE/high_speed_HE_fire.ogg", "pitch": 1, "volume": 0.8},
+   
+  ],
+  "aEP_high_speed_HE_flak": [
+    {"file": "sounds/weapons/aEP_high_speed_HE/high_speed_HE_flak.ogg", "pitch": 1, "volume": 0.75},
+    
+  ],
+  "aEP_kinetic_beam": [
+    {"file": "sounds/weapons/aEP_kinetic_beam/kinetic_beam.ogg", "pitch": 1, "volume": 0.8},  
+  ],
+  "aEP_EMP_pike_fire": [
+  	{"file": "sounds/weapons/aEP_EMP_pike/EMP_pike_fire.ogg", "pitch": 0.7, "volume": 0.35},
+  ],
+  "aEP_long_barrel_chaingun_fire": [
+  	{"file": "sounds/weapons/aEP_long_barrel_chaingun/chaingun_fire.ogg", "pitch": 0.9, "volume": 0.5},
+  	{"file": "sounds/weapons/aEP_long_barrel_chaingun/chaingun_fire.ogg", "pitch": 1.1, "volume": 0.5},
+  	{"file": "sounds/weapons/aEP_long_barrel_chaingun/chaingun_fire.ogg", "pitch": 1.3, "volume": 0.5},
+  	{"file": "sounds/weapons/aEP_long_barrel_chaingun/chaingun_fire.ogg", "pitch": 0.7, "volume": 0.5},
+  ],
+  "aEP_needler_fire": [
+  	{"file": "sounds/weapons/aEP_needler/fire.ogg", "pitch": 1.2, "volume": 0.3},
+  	{"file": "sounds/weapons/aEP_needler/fire.ogg", "pitch": 1.05, "volume": 0.3},
+  	{"file": "sounds/weapons/aEP_needler/fire.ogg", "pitch": 0.95, "volume": 0.3},
+  	{"file": "sounds/weapons/aEP_needler/fire.ogg", "pitch": 0.8, "volume": 0.3}
+  ],
+  "aEP_kinetic_flak_fire": [
+  	{"file": "sounds/weapons/aEP_kinetic_flak/kinetic_flak_fire.ogg", "pitch": 1, "volume": 0.8},
+  ],
+  "aEP_large_kinetic_flak_fire": [
+  	{"file": "sounds/weapons/aEP_kinetic_flak/aEP_large_kinetic_flak_fire.ogg", "pitch": 1, "volume": 0.6},
+  ],
+  "aEP_kinetic_flak_hit01": [
+  	{"file": "sounds/weapons/aEP_kinetic_flak/aEP_kinetic_flak_hit01.ogg", "pitch": 1, "volume": 0.8},
+  ],
+  "aEP_kinetic_flak_hit02": [
+  	{"file": "sounds/weapons/aEP_kinetic_flak/aEP_kinetic_flak_hit02.ogg", "pitch": 1, "volume": 0.8},
+  ],
+  "aEP_aa_missile_fire": [
+  	{"file": "sounds/weapons/aEP_aa_missile/fire.ogg", "pitch": 1, "volume": 0.15},
+  ],
+  "aEP_as_missile_fire": [
+  	{"file": "sounds/weapons/aEP_as_missile/fire.ogg", "pitch": 1, "volume": 0.7},
+  ],
+  "aEP_as_missile_fly": [
+  	{"file": "sounds/weapons/aEP_as_missile/fly.ogg", "pitch": 1, "volume": 0.85},
+  ],
+  "aEP_RW_fire": [
+  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire.ogg", "pitch": 1, "volume": 3},
+  ],
+  "aEP_RW_fire2": [
+  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire2.ogg", "pitch": 1, "volume": 0.8},
+  ],
+  "aEP_RW_hit": [
+  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire3.ogg", "pitch": 1, "volume": 1.2},
+  ],
+   "aEP_pompom_fire": [
+  	{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 0.95, "volume": 0.35},
+		{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 1.05, "volume": 0.35},
+  ],
+  "aEP_DL_fire": [
+  	{"file": "sounds/weapons/aEP_duiliu/fire.ogg", "pitch": 0.95, "volume": 1.25},	
+  ],
+  "aEP_DL_charge": [
+  	{"file": "sounds/weapons/aEP_duiliu/charge.ogg", "pitch": 0.95, "volume": 0.75},	
+  ],
+  "aEP_blackstar":[
+    {"file":"sounds/weapons/aEP_neibo/rf422_blackstar.ogg","pitch":1.0, "volume":0.65},
+	],
+  "aEP_blackstar_fire":[
+    {"file":"sounds/weapons/aEP_neibo/rf422_blackstar_fire.ogg","pitch":1.0, "volume":0.7},
+	],	
+  "aEP_harpoon_large_fire": [
+  	{"file": "sounds/weapons/aEP_harpoon_large/fire.ogg", "pitch": 1, "volume": 1},	
+  ],
+  
+  #hullmods
+  "aEP_ExhaustIntro": [
+  	{"file": "sounds/hullmods/aEP_ExhaustIntro.ogg", "pitch": 1, "volume": 0.75},
+  
+  ],
+  "aEP_ExhaustLoop": [
+  	{"file": "sounds/hullmods/aEP_ExhaustLoop.ogg", "pitch": 1, "volume": 0.75},
+  
+  ],
+  
+	"music":{
+		#BGMs
+		"aEP_fsf_friendly": [
+			{"file": "fsf_friendly_bgm.ogg", "source":"sounds/bgm", "volume": 0.5},
+
+		],
+		"aEP_fsf_enemy": [
+			{"file": "fsf_enemy_bgm.ogg", "source":"sounds/bgm", "volume": 0.5},
+
+		],
+		 "aEP_fsf_neutral": [
+			{"file": "fsf_neutral_bgm.ogg", "source":"sounds/bgm", "volume": 0.5},
+
+		],
+		
+		#fleet BGMs
+		"aEP_fsf_friendly_fleet": [
+			{"file": "fsf_friendly_fleet.ogg", "source":"sounds/bgm", "volume": 0.5},
+
+		],
+		"aEP_fsf_enemy_fleet": [
+			{"file": "fsf_enemy_fleet.ogg", "source":"sounds/bgm", "volume": 0.7},
+
+		],
+		"aEP_fsf_neutral_fleet": [
+			{"file": "fsf_neutral_bgm.ogg", "source":"sounds/bgm", "volume": 0.5},
+		],
+	}
+  
+}
+
+
+
+

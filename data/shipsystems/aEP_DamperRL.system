@@ -1,0 +1,46 @@
+{
+	"id":"aEP_DamperRL",
+	"type":"STAT_MOD",
+	"aiType":"DAMPER_FIELD",
+	#"aiType":"PHASE_CLOAK",
+	
+	
+	"jitterColor":[255,165,90,65],
+	"jitterCopies":1,
+	"jitterMinRange":0,
+	"jitterRange":0,
+
+
+	"jitterUnderColor":[255,165,90,175],
+	"jitterUnderCopies":12,
+	"jitterUnderMinRange":1,
+	"jitterUnderRange":2,
+	"jitterUnderRangeRadiusFraction":0,
+	
+	#"statsScript":"com.fs.starfarer.api.impl.combat.DamperFieldStats",
+	"statsScript":"data.shipsystems.scripts.aEP_DamperBoost",
+	#"statsScript":"data.shipsystems.scripts.FortressShieldStats",
+	
+
+	
+		
+	"weaponGlowColor":[255,165,90,60],
+	"weaponTypes":[ENERGY, BALLISTIC],
+	
+	#"engineGlowColor":[255,90,255,255],
+	
+	"soundFilterType":"LOWPASS",
+	"soundFilterGain":0.75,
+	"soundFilterGainHF":0.25,
+
+	"fadeActivationSoundOnChargedown":true,
+	"useSound":"aEP_DamperBoostOnUse",
+	"loopSound":"system_damper_loop",
+	"deactivateSound":"system_damper_off",
+	"outOfUsesSound":"gun_out_of_ammo",
+	"aiHints":{
+	}
+}
+
+
+

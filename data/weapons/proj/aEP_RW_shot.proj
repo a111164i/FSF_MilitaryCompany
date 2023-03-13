@@ -1,0 +1,20 @@
+{
+	"id":"aEP_RW_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"length":1.0,
+	"hitGlowRadius":50,
+	"width":8.0,
+	"fadeTime":0.1,
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"coreColor":[240,240,200,255],
+	"glowColor":[240,200,200,75],
+	"glowRadius":50,
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"passThroughMissiles":true,
+	"bulletSprite":"graphics/weapons/aEP_zhuanzhu_cannon/proj.png"
+}

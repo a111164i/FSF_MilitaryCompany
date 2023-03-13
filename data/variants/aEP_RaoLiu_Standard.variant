@@ -1,0 +1,39 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 2,
+    "fluxVents": 8,
+    "goalVariant": true,
+    "hullId": "aEP_RaoLiu",
+    "hullMods": [
+        "heavyarmor",
+        "aEP_VanguardHull"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_RaoLiu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "railgun",
+                "WS0002": "railgun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_pompom_small"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_pompom_small"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "vulcan"}
+        }
+    ]
+}

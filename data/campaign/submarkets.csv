@@ -1,0 +1,2 @@
+id,name,faction,desc,script,icon,order
+aEP_FSFMarket,FSF销售中心,aEP_FSF,FSF公司的销售中心，向星系中拥有良好名誉的舰长出售各式武器装备,data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799

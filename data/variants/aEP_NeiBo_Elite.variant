@@ -1,0 +1,66 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 5,
+    "fluxVents": 40,
+    "goalVariant": true,
+    "hullId": "aEP_NeiBo",
+    "hullMods": [
+        "ballistic_rangefinder",
+        "targetingunit",
+        "solar_shielding"
+    ],
+    "modules": [
+        {"TR_MOD": "aEP_NeiBo_TR_Standard"},
+        {"ARMOR": "aEP_NeiBo_ARMOR_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_NeiBo_Elite",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightac",
+                "WS0004": "lightac",
+                "WS0015": "lightac",
+                "WS0022": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "COVER_MAIN": "aEP_neibo_main",
+                "WS0016": "aEP_large_long_barrel_chaingun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightac",
+                "WS0002": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "aEP_vulcan",
+                "WS0010": "aEP_vulcan",
+                "WS0011": "aEP_vulcan",
+                "WS0012": "aEP_vulcan",
+                "WS0017": "dualflak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "aEP_forcus_laser",
+                "WS0006": "aEP_forcus_laser"
+            }
+        }
+    ]
+}

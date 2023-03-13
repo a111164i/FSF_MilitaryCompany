@@ -1,0 +1,23 @@
+{
+	"id":"aEP_empty",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionRadius":2,
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FF",
+	"bulletSprite":"graphics/aEP_empty.png",	
+	"length":0,
+	"width":0,
+	"fadeTime":0.2,
+	#"fringeColor":[255,125,125,255],
+	#"coreColor":[255,200,200,150],
+	"fringeColor":[255,255,255,100],
+	"coreColor":[255,255,255,100],
+	"glowRadius":0,
+	"hitGlowRadius":12,	
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	#"passThroughMissiles":true,
+
+}
+			

@@ -1,0 +1,30 @@
+{
+  "id": "aEP_NC_missile3",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_NC_missile3",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "turretSprite": "",
+  "hardpointSprite": "",
+  "turretOffsets": [
+    0,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "unaffectedByProjectileSpeedBonuses":true,
+	"barrelMode":"ALTERNATING",
+	#"renderHints":[RENDER_LOADED_MISSILES],
+	"interruptibleBurst":false,
+	"animationType":"GLOW",
+	"autocharge":true,
+	"fireSoundTwo":"",
+}

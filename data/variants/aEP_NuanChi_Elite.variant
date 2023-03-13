@@ -1,0 +1,56 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 3,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_NuanChi",
+    "hullMods": ["targetingunit"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_NuanChi_Elite",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0018": "aEP_as_large",
+                "WS0019": "aEP_as_large"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_as_bay",
+                "WS0003": "aEP_as_bay",
+                "WS0004": "aEP_as_bay",
+                "WS0005": "aEP_as_bay"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0036": "aEP_NC_missile"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0006": "heavyneedler",
+                "WS0009": "heavyneedler",
+                "WS0012": "heavyneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "vulcan",
+                "WS0008": "vulcan",
+                "WS0010": "vulcan",
+                "WS0011": "vulcan",
+                "WS0013": "vulcan"
+            }
+        }
+    ]
+}

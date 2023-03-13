@@ -1,0 +1,67 @@
+{
+    "displayName": "Burst",
+    "fluxCapacitors": 16,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_BiaoBing",
+    "hullMods": [
+        "magazines",
+        "hardenedshieldemitter",
+        "stabilizedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_BiaoBing_Burst",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0021": "aEP_BB_radar"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "hurricane",
+                "WS0008": "hurricane"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0009": "sabotpod",
+                "WS0010": "sabotpod"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0011": "autopulse"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "ionpulser",
+                "WS0002": "ionpulser",
+                "WS0003": "ionpulser",
+                "WS0004": "ionpulser",
+                "WS0005": "ionpulser",
+                "WS0006": "ionpulser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0012": "pdburst",
+                "WS0013": "pdburst",
+                "WS0014": "pdburst",
+                "WS0015": "pdburst",
+                "WS0016": "pdlaser",
+                "WS0019": "pdlaser"
+            }
+        }
+    ]
+}

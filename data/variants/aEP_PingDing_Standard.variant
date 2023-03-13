@@ -1,0 +1,42 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 6,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_PingDing",
+    "hullMods": [
+        "targetingunit",
+        "solar_shielding",
+        "aEP_SoftfluxDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_PingDing_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_pingding_main"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "gauss"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "hveldriver"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "vulcan",
+                "WS0004": "vulcan",
+                "WS0007": "vulcan",
+                "WS0008": "vulcan"
+            }
+        }
+    ]
+}

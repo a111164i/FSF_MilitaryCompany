@@ -1,0 +1,24 @@
+{
+	"id":"aEP_duiliu_main_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",	
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",		
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",		
+  "bulletSprite":"graphics/weapons/aEP_duiliu/shot.png",
+	"fadeTime":0.1,
+	"length": 50,
+	"width": 10,
+	"fringeColor":[200,200,200,255],# fringe color of shot sprite
+	"coreColor":[200,200,200,255], # core color of shot sprite
+	"glowColor":[250,250,250,250],
+	"glowRadius":0,
+	"hitGlowRadius":300,	
+	"textureScrollSpeed":64,
+	"pixelsPerTexel":5,
+	"passThroughMissiles":true,
+
+	
+}
+			

@@ -1,0 +1,110 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_bom_nuke",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/bom_nuke.png",
+  "style": "aEP_FSF",
+  "height": 50,
+  "width": 80,
+  "center": [40, 21],
+  "collisionRadius": 43,
+  "shieldCenter": [-3, -0],
+  "shieldRadius": 39.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+    "aEP_FighterArmor"
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_ftr_icp_gunship_gun",
+    "WS0002": "aEP_ftr_icp_gunship_gun",
+    "WS0004": "aEP_ftr_bom_nuke_bomb"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": -180,
+      "locations": [2.5, 19]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": 180,
+      "locations": [2.5, -19]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 60,
+      "angle": 0,
+      "locations": [-6, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-10, 27.5],
+      "length": 20.5,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 5,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-10, -27.5],
+      "length": 20.5,
+      "width": 5,
+      "angle": -180,
+      "contrailSize": 5,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-8, 22],
+      "length": 15,
+      "width": 3,
+      "angle": 180,
+      "contrailSize": 3,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-8, -22],
+      "length": 15,
+      "width": 3,
+      "angle": -180,
+      "contrailSize": 3,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-13, 11],
+      "length": 33.5,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 8,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-13, -11],
+      "length": 33.5,
+      "width": 8,
+      "angle": -180,
+      "contrailSize": 8,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -4, -34.5,
+    14.5, -20,
+    14.5, 20,
+    -4, 34.5
+  ]
+}

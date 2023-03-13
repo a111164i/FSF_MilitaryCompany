@@ -1,0 +1,13 @@
+{
+	"id":"aEP_FighterLaunch",
+	"type":"STAT_MOD",
+	#"aiType":"WEAPON_BOOST",
+	"aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.aEP_FighterLaunchAI",
+	"statsScript":"data.shipsystems.scripts.aEP_FighterLaunch",
+   
+	"runScriptWhileIdle":true,  # this means unapply() never gets called	
+	"useSound":"gun_out_of_ammo",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+}

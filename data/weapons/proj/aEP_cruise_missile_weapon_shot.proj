@@ -1,0 +1,40 @@
+{
+	"id":"aEP_cruise_missile_weapon_shot",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	"sprite":"",
+	"size":[120,200],	
+	"center":[60,100],
+	"collisionRadius":0,
+	"collisionClass":"NONE",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[80,40,40,200],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":100, # purely visual
+	"engineSpec":{"turnAcc":900,
+				  "turnRate":450,
+				  "acc":1200,
+				  "dec":2000},
+	"engineSlots":[{"id":"ES1",
+					"loc":[-7,0],				
+					"style":"CUSTOM",
+					"styleSpec":{
+                                "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+                                "engineColor":[200,200,200,160],
+                                "contrailDuration":0.3,
+                                "contrailWidthMult":1.5,
+                                "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+                                "contrailMinSeg":5, # min segment length, in pixels
+                                "contrailMaxSpeedMult":0.5f,
+                                "contrailAngularVelocityMult":0.5f,
+                                "contrailColor":[140,60,60,250],
+                                "glowSizeMult":2.5,
+                                "glowAlternateColor":[140,60,60,240],
+                                "type":"SMOKE"},
+                                "width":3,
+                                "length":8,
+                                "angle":180.0},
+				    ],
+
+				    
+				
+}

@@ -1,0 +1,49 @@
+{
+  "id": "aEP_breakin_bay",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_breakin_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 1000,
+  "turretSprite": "graphics/weapons/aEP_breakin_hammer/aEP_breakin_bay_turret_base.png",
+  "hardpointSprite": "graphics/weapons/aEP_breakin_hammer/aEP_breakin_bay_hardpoint_base.png",
+  "renderAboveAllWeapons": 0,
+  "renderHints": [
+    RENDER_LOADED_MISSILES
+  ],
+  "turretOffsets": [
+    -1,
+    5
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    6,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 12,
+    "cloudParticleCount": 10,
+    "cloudDuration": 2.5,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 8,
+    "blowbackDuration": 2,
+    "blowbackLength": 18,
+    "blowbackSpread": 10,
+    "particleColor": [
+      105,
+      105,
+      105,
+      105
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "reaper_fire"
+}

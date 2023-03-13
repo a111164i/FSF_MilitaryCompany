@@ -1,0 +1,85 @@
+{
+	"id":"aEP_NC_missile",
+	"specClass":"missile",	
+	"missileType":"MIRV",
+	"sprite":"graphics/weapons/aEP_slow_missile/missile.png",
+	"size":[14,50],	
+	"center":[7,25],
+	"collisionRadius":35,
+	"collisionClass":"MISSILE_NO_FF",
+	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[40,40,150,200],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":450, # purely visual
+	"engineSpec":{"turnAcc":160,
+                        "turnRate":80,
+                        "acc":100,
+                        "dec":100},
+	"engineSlots":[{"id":"ES1",
+                        "loc":[-25,-3],
+                        "style":"CUSTOM",
+                        "styleSpec":{
+                                "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+                                "engineColor":[40,40,150,200],
+                                "contrailDuration":1,
+                                "contrailWidthMult":2,
+                                "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+                                "contrailMinSeg":5, # min segment length, in pixels
+                                "contrailMaxSpeedMult":0.5f,
+                                "contrailAngularVelocityMult":0.5f,
+                                "contrailColor":[40,40,150,195],
+                                "type":"SMOKE"},
+                        "width":5,
+                        "length":25.0,
+                        "angle":180.0},	
+
+                        {"id":"ES2",
+                        "loc":[-25,3],
+                        "style":"CUSTOM",
+                        "styleSpec":{
+                                "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+                                "engineColor":[40,40,150,200],
+                                "contrailDuration":1.5,
+                                "contrailWidthMult":1,
+                                "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+                                "contrailMinSeg":5, # min segment length, in pixels
+                                "contrailMaxSpeedMult":0.5f,
+                                "contrailAngularVelocityMult":0.5f,
+                                "contrailColor":[40,40,150,195],
+                                "type":"SMOKE"},
+                        "width":5,
+                        "length":25.0,
+                        "angle":180.0},
+        ],
+
+        "behaviorSpec":{"behavior":"MIRV",
+                        "splitRange":300,
+                        "minTimeToSplit":2,
+                        "canSplitEarly":false,
+                        "splitSound":"hurricane_mirv_split",
+                        "hitpoints":1000,
+                        "numShots":1,
+                        "damage":1000,
+                        "impact":100,
+                        "emp":12000,
+                        "damageType":ENERGY,
+                        "arc":0,
+                        "arcOffset":0,
+                        "evenSpread":true,
+                        "spreadSpeed":0,
+                        "spreadSpeedRange":0,
+                        "projectileSpec":"aEP_NC_missile2",
+                        #"emptySpec":"type_1_mirv_empty",
+                        "smokeSpec":{
+                                "particleSizeMin":30.0,
+                                "particleSizeRange":30.0,
+                                "cloudParticleCount":0,
+                                "cloudDuration":1.0,
+                                "cloudRadius":20.0,
+                                "blowbackParticleCount":0,
+                                "blowbackDuration":0,
+                                "blowbackLength":0,
+                                "blowbackSpread":0,
+                                "particleColor":[175,100,50,200]}
+        }		
+				
+}

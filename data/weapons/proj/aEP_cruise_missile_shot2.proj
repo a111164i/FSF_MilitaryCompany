@@ -1,0 +1,22 @@
+{
+	"id":"aEP_cruise_missile_shot2",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+  	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"length":80.0,
+	"hitGlowRadius":300,
+	"width":20.0,
+	"fadeTime":0.1,
+	"passThroughMissiles":true,	
+	#"onHitEffect":"",
+	"fringeColor":[250,100,170,105],
+	"coreColor":[250,100,170,175],
+	"glowColor":[250,100,170,175],
+	"glowRadius":100,
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"",
+
+	
+}

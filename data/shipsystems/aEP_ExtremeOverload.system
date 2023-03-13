@@ -1,0 +1,13 @@
+{
+	"id":"aEP_ExtremeOverload",
+	"type":"STAT_MOD",
+	"aiType":"WEAPON_BOOST",
+	#"aiScript":"data.shipsystems.scripts.ai.aEP_ExtremeOverloadAI",
+	"statsScript":"data.shipsystems.scripts.aEP_ExtremeOverloadScript",
+
+ 
+	"fadeActivationSoundOnChargedown":true,
+	
+	"useSound":"aEP_ExtremeOverloadStart",
+	"deactivateSound":"aEP_ExtremeOverloadEnd",
+}

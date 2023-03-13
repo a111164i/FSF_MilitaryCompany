@@ -1,0 +1,122 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_icp_gunship",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/icp_gunship.png",
+  "style": "aEP_FSF",
+  "height": 50,
+  "width": 60,
+  "center": [30, 25],
+  "collisionRadius": 31,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 29.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+    "aEP_FighterArmor",
+    "turretgyros"
+  ],
+  "builtInWeapons": {
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 250,
+      "angle": 135,
+      "locations": [-13, 11]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 250,
+      "angle": -135,
+      "locations": [-13, -11]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 250,
+      "angle": 45,
+      "locations": [11, 11.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 180,
+      "locations": [-7, -0]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-1, -0],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 250,
+      "angle": -45,
+      "locations": [11, -11.5]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [0, -0],
+      "renderOrderMod": 1
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-16.5, 5.5],
+      "length": 19,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 8,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-16.5, -5.5],
+      "length": 19,
+      "width": 8,
+      "angle": -180,
+      "contrailSize": 8,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-18.5, -0],
+      "length": 11.5,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 6,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -14, -14,
+    13, -14,
+    13, 14,
+    -14, 14
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "hullName": "LengShe2",
+  "hullId": "aEP_LengShe2",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_lengshe2.png",
+  "style": "aEP_FSF",
+  "height": 52,
+  "width": 66,
+  "center": [33, -56.5],
+  "collisionRadius": 124.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 123,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_Module",
+    "always_detaches",
+    "hardenedshieldemitter",
+    "advancedshieldemitter"
+  ],
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    79, -4.5,
+    71, -14.5,
+    82, -14.5,
+    77, -32.5,
+    95, -26.5,
+    95, -19.5,
+    90, -16,
+    90, 16,
+    95, 19.5,
+    95, 26.5,
+    77, 32.5,
+    82, 14.5,
+    71, 14.5,
+    79, 4.5
+  ]
+}

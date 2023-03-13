@@ -1,0 +1,38 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 4,
+    "fluxVents": 13,
+    "goalVariant": true,
+    "hullId": "aEP_PuBu",
+    "hullMods": [
+        "expanded_deck_crew",
+        "recovery_shuttles"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_PuBu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_EMP_pike"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_vulcan",
+                "WS0002": "aEP_vulcan",
+                "WS0003": "aEP_vulcan",
+                "WS0004": "aEP_vulcan"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing"
+    ]
+}

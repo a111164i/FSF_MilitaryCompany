@@ -1,0 +1,42 @@
+{
+  "id": "aEP_duiliu_main",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_duiliu_main_shot",
+  "type": "BALLISTIC",
+  #"type": "BUILT_IN",
+  "size": "LARGE",
+  "turretSprite": "graphics/weapons/aEP_duiliu/main00.png",
+  "turretGunSprite": "graphics/weapons/aEP_duiliu/br.png",
+  "turretGlowSprite":"graphics/weapons/aEP_duiliu/glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_duiliu/main00.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_duiliu/br.png",
+  "hardpointGlowSprite":"graphics/weapons/aEP_duiliu/glow.png",
+  "everyFrameEffect":"data.scripts.weapons.aEP_DuiliuMainGunEffect",
+  "alwaysAnimate":"true",
+  "glowColor":[255,120,120,255],
+  "visualRecoil": 20,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    10.5,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    20,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "GLOW",
+  "numFrames": 10,
+  "frameRate": 20,
+  "autocharge": true,
+  "fireSoundOne": "aEP_DL_charge",
+  "fireSoundTwo": "aEP_DL_fire"
+}

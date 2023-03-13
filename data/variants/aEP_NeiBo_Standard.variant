@@ -1,0 +1,77 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 25,
+    "goalVariant": true,
+    "hullId": "aEP_NeiBo",
+    "hullMods": [
+        "targetingunit",
+        "ballistic_rangefinder"
+    ],
+    "modules": [
+        {"TR_MOD": "aEP_NeiBo_TR_Standard"},
+        {"ARMOR": "aEP_NeiBo_ARMOR_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_NeiBo_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "railgun",
+                "WS0004": "railgun",
+                "WS0015": "railgun",
+                "WS0022": "railgun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0018": "aEP_hive_small",
+                "WS0019": "aEP_hive_small",
+                "WS0020": "aEP_hive_small",
+                "WS0021": "aEP_hive_small"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"COVER_MAIN": "aEP_neibo_main"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0016": "aEP_supress_needle_large"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "aEP_forcus_laser",
+                "WS0006": "aEP_forcus_laser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "railgun",
+                "WS0002": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "vulcan",
+                "WS0010": "vulcan",
+                "WS0011": "vulcan",
+                "WS0012": "vulcan",
+                "WS0017": "dualflak"
+            }
+        }
+    ]
+}

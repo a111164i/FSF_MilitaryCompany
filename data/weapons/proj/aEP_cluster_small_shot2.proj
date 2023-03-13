@@ -1,0 +1,26 @@
+{
+	"id":"aEP_cluster_small_shot2",
+	"specClass":"missile",
+	"missileType":"BOMB_WITH_SLOW",
+	"sprite":"graphics/weapons/aEP_harpoon_large/bomblet.png",
+	"size":[9,11],	
+	"center":[4.5,5.5],
+	"collisionRadius":5,
+	"collisionClass":"MISSILE_FF",
+	"glowColor":[255,187,140,65],
+	"glowRadius":20,
+	"explosionColor":[255,225,50,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":100, # purely visual
+	"armingTime":0.1,	
+	"explosionSpec":{"duration":0.01f, # not visual
+					 "radius":75,
+					 "coreRadius":25, # full damage within core radius
+					 "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+					 "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS},				  
+	"engineSpec":{
+		"maxSpeed":200,
+		"turnAcc":0,
+		"turnRate":0,
+		"acc":400,
+		"dec":400}
+}

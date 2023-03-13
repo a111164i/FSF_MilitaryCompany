@@ -1,0 +1,46 @@
+{
+  "id": "aEP_type28_cannon",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_type28_cannon_shot",
+  "type": "BALLISTIC",
+  "size": "LARGE",
+  "turretSprite": "graphics/weapons/aEP_type28_cannon/hp.png",
+  "turretGunSprite": "graphics/weapons/aEP_type28_cannon/hpbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_type28_cannon/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_type28_cannon/hpbr.png",
+  "visualRecoil": 20,
+  "turretOffsets": [
+    89.5,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    136,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "MUZZLE_FLASH",
+  "renderHints":[RENDER_BARREL_BELOW],
+  "interruptibleBurst": true,
+  "autocharge": true,
+  "muzzleFlashSpec": {
+    "length": 60,
+    "spread": 30,
+    "particleSizeMin": 20,
+    "particleSizeRange":50,
+    "particleDuration": 0.5,
+    "particleCount": 15,
+    "particleColor": [
+      250,
+      100,
+      100,
+      255
+    ]
+  },
+  "fireSoundTwo":"hellbore_fire",
+}

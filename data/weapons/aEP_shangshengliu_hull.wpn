@@ -1,0 +1,33 @@
+{
+  "id":"aEP_shangshengliu_hull",
+  "specClass": "projectile",
+  "projectileSpecId":"aEP_FCL_shot",
+  "type": "DECORATIVE",
+  "size": "MEDIUM",
+  "showDamageWhenDecorative":true,
+	"renderBelowAllWeapons":false,
+	#"renderAboveAllWeapons": 0,
+	"alwaysAnimate":"false",
+	#"renderHints":["RENDER_ADDITIVE"],
+  "turretSprite": "graphics/weapons/aEP_shangshengliu/hull.png",
+  "hardpointSprite": "graphics/weapons/aEP_shangshengliu/hull.png",
+  "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
+  #"numFrames":8,	
+	#"frameRate":16,
+  "turretOffsets": [
+   0,
+   0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "NONE",
+ }

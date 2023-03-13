@@ -1,0 +1,30 @@
+{
+	"id":"aEP_DroneGuard",
+	"type":"ENGINE_MOD",
+	"aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.aEP_DroneGuardAI",
+	"statsScript":"data.shipsystems.scripts.aEP_DroneGuard",
+	
+	"engineGlowColor":[255,60,60,255],
+	"engineGlowContrailColor":[255,100,100,25],
+	"engineGlowLengthMult":5,
+	"engineGlowWidthMult":3,
+	"engineGlowGlowMult":3,
+	
+	"flameoutOnImpactChance":0,
+
+	"clampTurnRateAfter":true,
+	"clampMaxSpeedAfter":true,
+	#"alwaysAccelerate":true,
+
+	"useSound":"aEP_DroneDash",
+	"loopSound":"system_burn_drive_loop",
+	"deactivateSound":"system_burn_drive_deactivate",
+	"outOfUsesSound":"engine_disabled",
+	
+	"aiHints":{
+		"activeSpeedIncrease":50,
+		"burstMovementPotential":0,
+		"averageSpeedIncrease":50,
+	}
+}

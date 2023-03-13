@@ -1,0 +1,10 @@
+id,name,cost mult,build time,income,upkeep,downgrade,upgrade,tags,data,image,plugin,desc,order
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+aEP_starfortress,星际要塞 - FSF,200,180,,5,battlestation_mid,,"station, starfortress, unraidable, structure","{
+radius:70,
+variant:aEP_FSFOrbitalStation3,
+fleetName:Star Fortress
+}",graphics/icons/industry/battlestation.png,com.fs.starfarer.api.impl.campaign.econ.impl.OrbitalStation,"FSF特制的行星要塞，内部结构和武器配置已经反复优化，最好不要去惹它。
+
+它的存在将阻止任何轰炸行动的发生.",2060

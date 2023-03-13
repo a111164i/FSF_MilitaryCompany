@@ -1,0 +1,53 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 4,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_XiLiu",
+    "hullMods": [
+        "aEP_TargetSystem",
+        "targetingunit",
+        "aEP_SoftfluxDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_XiLiu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_forcus_laser"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "vulcan"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0008": "aEP_pompom_small"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "lightneedler"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "lightac",
+                "L02": "lightac"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "R01": "lightac",
+                "R02": "lightac"
+            }
+        }
+    ]
+}

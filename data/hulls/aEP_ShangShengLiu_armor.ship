@@ -1,0 +1,28 @@
+{
+  "hullName": "armor",
+  "hullId": "aEP_ShangShengLiu_armor",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_shangshengLiu_mk2_armor.png",
+  "style": "aEP_FSF",
+  "height": 26,
+  "width": 50,
+  "center": [25, 13],
+  "collisionRadius": 33,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 31,
+  "viewOffset": 0,
+  "builtInMods": [
+    "reduced_explosion",
+    "always_detaches"
+  ],
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    -12.5, -24.5,
+    4.5, -24.5,
+    12.5, -16.5,
+    12.5, 16.5,
+    4.5, 24.5,
+    -12.5, 24.5
+  ]
+}

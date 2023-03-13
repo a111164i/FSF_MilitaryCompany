@@ -1,0 +1,89 @@
+{
+  "hullName": "shenceng_drone",
+  "hullId": "aEP_shenceng_drone",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/weapons/aEP_shenceng/fighter01.png",
+  "style": "aEP_FSF",
+  "height": 44,
+  "width": 44,
+  "center": [22, 21.5],
+  "collisionRadius": 25.5,
+  "shieldCenter": [0, -0.5],
+  "shieldRadius": 24.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "insulatedengine",
+    "autorepair",
+    "armoredweapons"
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_shenceng_drone_mine",
+    "WS0002": "aEP_shenceng_drone_mine",
+    "WS0003": "aEP_shenceng_drone_beam",
+    "WS0004": "aEP_empty"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [5.5, 6]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [5.5, -6]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-0.5, -0]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-5.5, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-9.5, 5.5],
+      "length": 40,
+      "width": 15,
+      "angle": 180,
+      "contrailSize": 16,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-9.5, -6],
+      "length": 40,
+      "width": 15,
+      "angle": -180,
+      "contrailSize": 16,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -8, -6.5,
+    0, -16.5,
+    7, -8.5,
+    7, 7.5,
+    0, 15.5,
+    -8, 5.5
+  ]
+}

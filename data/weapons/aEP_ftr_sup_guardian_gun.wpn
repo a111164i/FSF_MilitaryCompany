@@ -1,0 +1,49 @@
+{
+  "id": "aEP_ftr_sup_guardian_gun",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_ftr_sup_guardian_gun_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+
+  "turretSprite": "",
+  "turretGunSprite": "",
+  #"turretGlowSprite":"",
+
+  "hardpointSprite": "",
+  "hardpointGunSprite": "",
+  #"hardpointGlowSprite":"",
+
+  #"everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  #"glowColor":[200,200,255,255], # for glow sprite
+  #"alwaysAnimate":"false",
+  #"numFrames":8,
+  #"frameRate":16,
+
+  "renderHints":[RENDER_BARREL_BELOW], # RENDER_ADDITIVE, RENDER_LOADED_MISSILES_UNLESS_HIDDEN, RENDER_BARREL_BELOW, RENDER_LOADED_MISSILES, SUSPEND_RECOIL
+  "turretOffsets":[0, 0], # [height, width]
+  "turretAngleOffsets":[0],
+  "hardpointOffsets":[0, 0],
+  "hardpointAngleOffsets":[0],
+
+
+  "barrelMode":"ALTERNATING", # ALTERNATING, LINKED, ALTERNATING_BURST, DUAL
+  "animationType": "MUZZLE_FLASH", #GLOW, GLOW_AND_FLASH, MUZZLE_FLASH, SMOKE.
+  "interruptibleBurst": false,
+  "autocharge": true,
+  #"separateRecoilForLinkedBarrels":false,
+  #"unaffectedByProjectileSpeedBonuses":false,
+  "muzzleFlashSpec": {
+    "length": 10,
+    "spread": 5,
+    "particleSizeMin": 15,
+    "particleSizeRange": 10,
+    "particleDuration": 0.3,
+    "particleCount": 2,
+    "particleColor": [255,240,155,255]
+  },
+  #"noImpactSounds":false,
+  #"noShieldImpactSounds":false,
+  #"noNonShieldImpactSounds":false,
+  #"fireSoundOne":"", # played when charing, can't leave empty.
+  #"fireSoundTwo":"", # played when projectile fired
+}

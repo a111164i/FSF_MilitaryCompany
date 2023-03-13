@@ -1,0 +1,177 @@
+{
+  "hullName": "TypeR-28",
+  "hullId": "aEP_typeR28",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/aEP_typer028.png",
+  "style": "LOW_TECH",
+  "height": 300,
+  "width": 300,
+  "center": [142, 141.5],
+  "collisionRadius": 201,
+  "shieldCenter": [9.5, -4.5],
+  "shieldRadius": 188,
+  "viewOffset": 0,
+   "builtInMods": [
+      "automated",
+			"reduced_explosion",
+			"targetingunit",
+      "ballistic_rangefinder",
+      "armoredweapons",
+			"always_detaches",
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "LARGE",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 150,
+      "locations": [-73.5, 97]
+    },
+    {
+      "id": "WS0002",
+      "size": "LARGE",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 30,
+      "locations": [-23.5, 88]
+    },
+    {
+      "id": "WS0003",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": -100,
+      "locations": [-53.5, 65]
+    },
+    {
+      "id": "WS0004",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [4.5, 100]
+    },
+    {
+      "id": "WS0005",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [38.5, 98]
+    },
+    {
+      "id": "WS0006",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [59.5, 88]
+    },
+    {
+      "id": "WS0007",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [81.5, 80]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [22.5, 103]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [112.5, 69]
+    },
+    {
+      "id": "WS0010",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 45,
+      "angle": 90,
+      "locations": [98.5, 69]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [88, -25],
+      "length": 30,
+      "width": 10,
+      "angle": -90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [67.5, -31],
+      "length": 66,
+      "width": 20,
+      "angle": -90,
+      "contrailSize": 20,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [43, -73],
+      "length": 46.5,
+      "width": 16,
+      "angle": -90,
+      "contrailSize": 16,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [22, -73],
+      "length": 46.5,
+      "width": 16,
+      "angle": -90,
+      "contrailSize": 16,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-29, -143],
+      "length": 30,
+      "width": 10,
+      "angle": -90,
+      "contrailSize": 30,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    -88.5, 122.5,
+    -18.5, 116.5,
+    117.5, 67.5,
+    119.5, 21.5,
+    98.5, 15,
+    96, -21.5,
+    56, -29,
+    52.5, -69,
+    12.5, -70,
+    -15.5, -91.5,
+    -20.5, -141,
+    -42.5, -140.5,
+    -70, -27,
+    -63, 36.5,
+    -95.5, 47.5,
+    -96, 64.5,
+    -103.5, 64.5,
+    -97, 96,
+    -89.5, 97
+  ]
+}

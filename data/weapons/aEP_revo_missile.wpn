@@ -1,0 +1,48 @@
+{
+  "id": "aEP_revo_missile",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_revo_missile",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_revo_missile/00.png",
+  "hardpointSprite":  "graphics/weapons/aEP_revo_missile/00.png",
+  "renderAboveAllWeapons": 0,
+  "numFrames":6,	
+	"frameRate":24,
+  "turretOffsets": [
+    2,
+    1.5,
+  ],
+  "turretAngleOffsets": [
+    0,
+  ],
+  "hardpointOffsets": [
+    8,
+    1.5,
+  ],
+  "hardpointAngleOffsets": [
+    0,
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 0,
+    "particleSizeRange": 16,
+    "cloudParticleCount": 1,
+    "cloudDuration": 2,
+    "cloudRadius": 30,
+    "blowbackParticleCount": 6,
+    "blowbackDuration": 0.5,
+    "blowbackLength": 16,
+    "blowbackSpread": 10,
+    "particleColor": [
+      100,
+      100,
+      100,
+      30
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "harpoon_fire"
+}

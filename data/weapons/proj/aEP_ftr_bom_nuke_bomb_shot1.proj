@@ -1,0 +1,25 @@
+{
+	"id":"aEP_ftr_bom_nuke_bomb_shot1",
+	"specClass":"missile",	
+	"missileType":"BOMB",
+	"sprite":"graphics/weapons/aEP_fighter_nuke/proj00.png",
+	"glowSprite":"",
+	"glowRadius":150,
+	"glowColor":[255,5,5,75],
+	"size":[20,36],	
+	"center":[10,18],
+	"collisionRadius":18,
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"armingTime":0,
+	"collisionClass":"MISSILE_NO_FF",
+	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"fadeTime":0.1, # fadeout duration
+	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"explosionColor":[0,0,0,0],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":0, # purely visual
+	"engineSpec":{"turnAcc":0,
+				  "turnRate":0,
+				  "acc":0,
+				  "dec":0},
+}

@@ -1,0 +1,29 @@
+{
+  "variantId": "aEP_typeA28_variant",
+  "hullId": "aEP_typeA28",
+  "displayName": "New Variant",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "vulcan"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

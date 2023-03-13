@@ -1,0 +1,28 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 10,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_HaiLiang",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "reinforcedhull"
+    ],
+    "modules": [
+        {"MD01": "aEP_HaiLiang3_Standard"},
+        {"MD03": "aEP_HaiLiang4_Standard"},
+        {"MD02": "aEP_HaiLiang4_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_HaiLiang_Standard",
+    "weaponGroups": [{
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+            "WS0005": "dualflak",
+            "WS0006": "dualflak"
+        }
+    }],
+    "wings": []
+}

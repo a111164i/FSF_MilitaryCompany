@@ -1,0 +1,21 @@
+{
+	"id":"aEP_ftr_bom_attacker_gun_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"length": 10,
+	"width": 8,
+	"hitGlowRadius": 65,
+	"fadeTime":0.1,
+	"fringeColor":[255,165,30,135],
+	"coreColor":[255,255,255,200],
+	"glowColor":[255,165,30,75],
+	"glowRadius":30,
+	"textureType":"ROUGH",  # now also used for "BALLISTIC_AS_BEAM", if specified
+	#"textureType":["graphics/fx/emp_arcs.png","graphics/fx/emp_arcs.png"],
+	"textureScrollSpeed":-256,
+	"pixelsPerTexel":1.0,
+	"bulletSprite":"graphics/missiles/shell_hellbore.png",
+	"passThroughMissiles":false,
+}

@@ -1,0 +1,38 @@
+{
+  "id": "aEP_MD_drone_missile",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_MD_drone_missile",
+  "type": "SYSTEM",
+  "size": "LARGE",
+  "turretSprite": "graphics/ships/aEP_maodian00.png",
+  "hardpointSprite": "graphics/ships/aEP_maodian00.png",
+  "numFrames":2,	
+	"frameRate":0,
+  "turretOffsets": [
+    0,0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    0,0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+    "smokeSpec":{"particleSizeMin":40.0,
+                 "particleSizeRange":20.0,
+                 "cloudParticleCount":16,
+                 "cloudDuration":2,
+                 "cloudRadius":20.0;
+                 "blowbackParticleCount":6,
+                 "blowbackDuration":0.5,
+                 "blowbackLength":20.0,
+                 "blowbackSpread":6.0,
+                 "particleColor":[250,250,250,30]},
+  #"renderHints":[RENDER_LOADED_MISSILES],
+  "autocharge":true, 
+  #"fireSoundTwo": ""
+}

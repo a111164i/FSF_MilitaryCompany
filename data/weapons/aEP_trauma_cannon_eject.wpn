@@ -1,0 +1,19 @@
+{
+	"id":"aEP_trauma_cannon_eject",
+ #	"everyFrameEffect":"",
+	"specClass":"projectile",
+	"type":"SYSTEM",
+	"size":"SMALL",
+	"turretSprite":"",
+	"hardpointSprite":"",
+	"hardpointOffsets":[0, 0],
+	"turretOffsets":[0, 0],
+	"hardpointAngleOffsets":[0],
+	"turretAngleOffsets":[0],
+	"barrelMode":"ALTERNATING",
+	"renderHints":[RENDER_LOADED_MISSILES],	
+	"interruptibleBurst":false,
+	"animationType":"NONE",
+	"projectileSpecId":"aEP_trauma_cannon_ammo",
+	"fireSoundTwo":""
+}

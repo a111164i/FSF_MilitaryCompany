@@ -1,0 +1,234 @@
+{
+	id:"aEP_FSF",
+	"color":[180,180,150,255],
+	"displayName":"FSF军事公司",
+	"displayNameWithArticle":"FSF军事公司",
+	"displayNameLong":"FSF军事公司",
+	"displayNameLongWithArticle":"FSF军事公司",
+	"entityNamePrefix":"FSF",
+	"personNamePrefix":"",
+	"personNamePrefixAOrAn":"an",
+	"displayNameIsOrAre":"are",
+	"logo":"graphics/aEP_factions/FSF.png",
+	"crest":"graphics/aEP_factions/crest_FSF.png",
+	"shipNamePrefix":"FSF",
+	"showInIntelTab":true,
+	"shipNameSources":{
+		"GREEK":0,
+		"CELTIC":2,
+		"SPACE":4,
+		"GENERAL":1,
+	},
+	"names":{
+		"modern":1,
+		"world":1,
+		"future":1,
+		"myth":1,
+	},
+	# variantOverrides restricts hulls to listed variants and adjusts their probability
+	# multiplier for how often hulls show up in the faction's fleets
+	"hullFrequency":{
+		"tags":{"FSF_bp":1,	
+		},
+		"hulls":{
+			"aEP_YouJiYan":0.75,
+			"aEP_YouJiYan_mk2":0.75,
+			"aEP_ShangShengLiu":0.75,
+			"aEP_ShangShengLiu_mk3":0.75,
+		},
+	},
+	# ships the faction gets access to when importing S&W out-of-faction
+	# 注意更新以后要重写开档才生效，生成势力的时候读一次
+	"shipsWhenImporting":{
+		"tags":["base_bp", "midline_bp"],
+		"hulls":[
+		],
+	},
+	"knownShips":{
+		"tags":["base_bp","FSF_bp"],
+		"hulls":[	
+		],
+	},
+	# listing ships here will make the faction mostly use them even if other hulls become available
+	"priorityShips":{
+		"tags":["FSF_bp"],
+		"hulls":[
+				
+		],
+	},
+	"knownFighters":{
+		"tags":["base_bp", "FSF_bp"],
+		"fighters":[
+		],
+	},
+	"priorityFighters":{
+		"tags":[],
+		"fighters":[
+		],
+	},
+	"knownWeapons":{
+		"tags":["base_bp", "independent","midline_bp", "FSF_bp"],
+		"weapons":[
+			"lightneedler",
+			"railgun",
+			"vulcan",
+			"lightdualac",
+
+			"flak",
+			"dualflak",
+
+			"autopulse",
+			"gauss",
+
+			"hurricane",
+			"squall",
+			"locust",
+		
+		],
+	},
+	"priorityWeapons":{
+		"tags":["FSF_bp"],
+		"weapons":[
+			"vulcan",
+			"dualflak",
+			"flak",
+			"lightac",
+			"sabot"
+		],
+	},
+	"knownHullMods":{
+		"tags":["base_bp", "independent", "FSF"],
+		"hullMods":[
+			"advancedshieldemitter", # accelerated
+			"turretgyros",
+			"armoredweapons",
+			"augmentedengines",
+			"autorepair",
+			"converted_hangar",
+			"eccm",
+			"ecm",
+			"expanded_deck_crew",
+			"magazines",
+			"missleracks",
+			"extendedshieldemitter",
+			"frontemitter",
+			"frontshield",  # makeshift
+			"hardenedshieldemitter",
+			"heavyarmor",
+			"insulatedengine",
+			"targetingunit",
+			"nav_relay",
+			"adaptiveshields", # omni
+			"operations_center",
+			"recovery_shuttles",
+			"fluxbreakers",
+			"stabilizedshieldemitter",
+			"surveying_equipment",
+			"hiressensors",
+			"efficiency_overhaul",
+			"ballistic_rangefinder",
+		],
+	},
+	"factionDoctrine":{
+		"warships":4,
+		"carriers":3,
+		"phaseShips":0,
+		
+		"officerQuality":2,
+		"shipQuality":2,
+		"numShips":3,
+		
+		"shipSize":4,
+		
+		"aggression":2,
+		
+		"combatFreighterProbability":0.25, 	# instead of some portion of the freighters in a fleet
+		"combatFreighterCombatUseFraction":0,	# as part of the normal combat lineup
+		"combatFreighterCombatUseFractionWhenPriority":0,   # as part of normal combat lineup, when marked as priority ship
+		"autofitRandomizeProbability":0.2,
+
+		"commanderSkillsShuffleProbability":0.5,
+		"commanderSkills":[
+			"officer_management",
+			"coordinated_maneuvers",
+			"fighter_doctrine",
+			"electronic_warfare",
+		],
+	},
+	"illegalCommodities":[
+		"drugs",
+		"organs",
+		"ai_cores",	
+	],
+	"music":{
+			"theme":"aEP_fsf_neutral",
+			"market_neutral":"aEP_fsf_neutral",
+			"market_hostile":"aEP_fsf_enemy",
+			"market_friendly":"aEP_fsf_friendly",
+			"encounter_neutral":"aEP_fsf_neutral_fleet",
+			"encounter_hostile":"aEP_fsf_enemy_fleet",
+			"encounter_friendly":"aEP_fsf_friendly_fleet"
+	},	
+	"portraits":{
+		"standard_male":[	
+			"graphics/portraits/portrait_mercenary03.png",
+			"graphics/portraits/portrait43.png",
+			"graphics/portraits/portrait44.png",			
+			"graphics/portraits/portrait45.png",
+			"graphics/aEP_portraits/2.png"
+		],
+		"standard_female":[
+			"graphics/portraits/portrait_mercenary05.png",
+			"graphics/portraits/portrait27.png",
+			"graphics/portraits/portrait42.png",
+			"graphics/portraits/portrait46.png",
+			"graphics/portraits/portrait_league07.png"
+		],
+	},
+	"custom":{
+		"allowsTransponderOffTrade":false,
+		"offersCommissions":false,
+		"engagesInHostilities":true,
+		"postsNoBounties":false,
+		"buysAICores":true,
+		"AICoreValueMult":1.5,
+		"AICoreRepMult":1.5,
+		"buysSurveyData":true,
+		"hostilityImpactOnGrowth":false,
+		"caresAboutAtrocities":true,
+		"punitiveExpeditionData":{
+					"vsCompetitors":false,
+					"vsFreePort":false,
+					"canBombard":false,
+					"territorial":true,
+		},
+	},	
+	"ranks":{
+		"ranks":{
+			"factionLeader":{"name":"现任董事会代表"},
+			"aEP_director":{"name":"主管"},
+			"aEP_employee":{"name":"员工"},
+			"aEP_manager":{"name":"管理"},
+		},
+		"posts":{
+			"factionLeader":{"name":"现任董事会代表"},
+			"patrolCommander":{"name":"巡逻队指挥官"},
+			"fleetCommander":{"name":"舰队指挥官"},
+			"baseCommander":{"name":"基地负责人"},
+			"aEP_consultant":{"name":"业务员"},
+			"aEP_researcher":{"name":"科学家"},
+		},
+	},
+	
+	"fleetTypeNames":{
+		"trade": "大型商贸舰队",
+		"smallTrader": "小型商贸舰队",
+		"tradeLiner": "行商",
+		"patrolSmall": "巡逻队",
+		"patrolMedium": "空间站护卫队",
+		"patrolLarge": "快速反应舰队",
+		"inspectionFleet": "评测局",
+	  	"taskForce": "任务舰队",
+	},
+ 
+},	

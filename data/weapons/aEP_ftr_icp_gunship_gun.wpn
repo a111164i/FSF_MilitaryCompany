@@ -1,0 +1,46 @@
+{
+  "id": "aEP_ftr_icp_gunship_gun",
+  "specClass": "projectile",
+  "projectileSpecId": "vulcan_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/gun2.png",
+  "hardpointSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/gun2.png",
+  "renderAboveAllWeapons": 0,
+  "turretOffsets": [
+    5,
+    1.5,
+    5,
+    -1.5
+  ],
+  "turretAngleOffsets": [
+    0,
+    -0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "MUZZLE_FLASH",
+  "interruptibleBurst": true,
+  "autocharge": true,
+  "muzzleFlashSpec": {
+    "length": 15,
+    "spread": 5,
+    "particleSizeMin": 5,
+    "particleSizeRange": 5,
+    "particleDuration": 0.3,
+    "particleCount": 2,
+    "particleColor": [
+      255,
+      255,
+      255,
+      255
+    ]
+  },
+  "textureType": ROUGH
+}

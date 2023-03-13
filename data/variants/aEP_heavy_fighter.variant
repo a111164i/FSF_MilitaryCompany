@@ -1,0 +1,23 @@
+{
+  "variantId": "aEP_ftr_ftr_hvfighter",
+  "hullId": "aEP_ftr_ftr_hvfighter",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_ftr_hvfighter_gun",
+        "WS0002": "aEP_ftr_ftr_hvfighter_gun"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

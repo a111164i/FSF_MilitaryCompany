@@ -1,0 +1,69 @@
+{
+  "id": "aEP_ftr_icp_gunship_beam",
+  "specClass": "beam",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "turretSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/cannon.png",
+  "hardpointSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/cannon.png",
+  "glowColor": [
+    100,
+    100,
+    250,
+    200
+  ],
+  "hitGlowRadius": 20,
+  "turretOffsets": [
+    8,
+    2,
+    8,
+    -2,
+    8,
+    -6,
+    8,
+    6,
+    8,
+    -4,
+    8,
+    4
+  ],
+  "turretAngleOffsets": [
+    0,
+    -0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "fringeColor": [
+    100,
+    100,
+    250,
+    220
+  ],
+  "coreColor": [
+    240,
+    240,
+    240,
+    255
+  ],
+  "width": 6,
+  "textureType": ROUGH,
+  "textureScrollSpeed": 64,
+  "pixelsPerTexel": 1,
+  "pierceSet": [
+    PROJECTILE_FF,
+    PROJECTILE_NO_FF,
+    PROJECTILE_FIGHTER
+  ],
+  "fireSoundOne": "laser_intro",
+  "fireSoundTwo": "pd_laser_loop"
+}

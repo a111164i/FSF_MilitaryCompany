@@ -1,0 +1,23 @@
+{
+    "hullFrequency":{
+        "hulls":{
+
+    
+        },
+    },
+    "knownShips":{
+        "hulls":[
+      		"aEP_XiLiu_p",
+            "aEP_ShangShengLiu_mk2",
+        ],
+    },
+    "knownWeapons":{
+			"tags":[],
+			"weapons":[	
+                "aEP_trauma_cannon",
+                "aEP_breakin_hammer",	
+			],
+		},
+
+  
+},

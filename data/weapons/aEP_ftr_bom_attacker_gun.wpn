@@ -1,0 +1,42 @@
+{
+  "id": "aEP_ftr_bom_attacker_gun",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_ftr_bom_attacker_gun_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_attacker_drone/wp.png",
+  "turretGunSprite": "graphics/weapons/aEP_attacker_drone/br.png",
+  "hardpointSprite": "graphics/weapons/aEP_attacker_drone/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_attacker_drone/br.png",
+  "visualRecoil": 4,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    14.5,
+    -0.5
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    20,
+    -0.5
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 16,
+    "spread": 5,
+    "particleSizeMin": 15,
+    "particleSizeRange": 10,
+    "particleDuration": 0.2,
+    "particleCount": 10,
+    "particleColor": [
+      255,165,30,75
+    ]
+  }
+}

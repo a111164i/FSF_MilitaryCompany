@@ -1,0 +1,55 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 0,
+    "fluxVents": 15,
+    "goalVariant": true,
+    "hullId": "aEP_YangJi",
+    "hullMods": [
+        "aEP_TargetSystem",
+        "targetingunit",
+        "ballistic_rangefinder"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_YangJi_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_EMP_pike"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL04": "aEP_yangzhongji_gun",
+                "SIDER04": "aEP_yangzhongji_gun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL01": "aEP_yangzhongji_gun",
+                "SIDER01": "aEP_yangzhongji_gun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "railgun",
+                "WS0007": "railgun",
+                "WS0012": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0003": "vulcan"
+            }
+        }
+    ]
+}

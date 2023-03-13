@@ -1,0 +1,34 @@
+{
+  "id": "aEP_cruise_missile_weapon",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_cruise_missile_weapon_shot",
+  "type": "MISSILE",
+  "size": "LARGE",
+  #展示武器数据的时候用的炮塔贴图，装在船上用挂载点不显示贴图
+  "turretSprite": "graphics/weapons/aEP_CM_weapon/aEP_CM00.png",
+  "hardpointSprite": "graphics/weapons/aEP_CM_weapon/aEP_CM00.png",
+  "everyFrameEffect": "data.hullmods.aEP_CruiseMissileCarrier",
+  "numFrames":3,
+  "frameRate":0,
+  #"renderHints": [
+  #  RENDER_LOADED_MISSILES
+  #],
+  "turretOffsets": [
+    0,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "NONE",
+  "autocharge": false,
+  "fireSoundTwo": "aEP_as_missile_fire"
+}

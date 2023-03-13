@@ -1,0 +1,65 @@
+{
+  "id":"aEP_BB_radar",
+  "specClass": "beam",
+  "type": "ENERGY",
+  "size": "LARGE",
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "turretSprite": "graphics/weapons/aEP_BB_radar/BB_radar.png",
+  "turretGlowSprite": "graphics/weapons/aEP_BB_radar/BB_radar_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_BB_radar/BB_radar.png",
+  "hardpointGlowSprite": "graphics/weapons/aEP_BB_radar/BB_radar_glow.png",
+  "renderAboveAllWeapons": 0,
+  "everyFrameEffect":"data.scripts.weapons.aEP_BBRadarEffect",
+  "glowColor": [
+    100,
+    100,
+    100,
+    250
+  ],
+  "hitGlowRadius": 0,
+  "turretOffsets": [
+    10,-50,
+    10,-25,
+    10,0,
+    10,25,
+    10,50
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    10,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "beamFireOnlyOnFullCharge": false,
+  "fringeColor": [
+    50,
+    50,
+    250,
+    20
+  ],
+  "coreColor": [
+    100,
+    100,
+    100,
+    45
+  ],
+  "width": 100,
+  "textureType": ROUGH,
+  "textureScrollSpeed": 292,
+  "pixelsPerTexel": 5,
+  "pierceSet": [
+    PROJECTILE_FF,
+    PROJECTILE_NO_FF,
+    PROJECTILE_FIGHTER,
+    MISSILE_FF,
+    MISSILE_NO_FF
+  ],
+  "autocharge":true, 
+  #"fireSoundOne": "aEP_sonar",
+  "fireSoundTwo": "aEP_sonar"
+}

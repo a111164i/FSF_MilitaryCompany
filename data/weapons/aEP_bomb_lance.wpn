@@ -1,0 +1,22 @@
+{
+	"id":"aEP_bomb_lance",
+	"specClass":"projectile",
+	"type":"BALLISTIC",
+	"size":"SMALL",
+	"turretSprite":"",
+	"hardpointSprite":"",
+	"everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"hardpointOffsets":[190, 0],
+	"turretOffsets":[190, 0],
+	"hardpointAngleOffsets":[0],
+	"turretAngleOffsets":[0],
+	"barrelMode":"LINKED",
+	"renderHints":[RENDER_LOADED_MISSILES],
+	"interruptibleBurst":false,
+	"displayArcRadius":190,
+	"animationType":"NONE",
+	"projectileSpecId":"aEP_bomb_lance_shot",
+	"fireSoundTwo":"reaper_fire",
+}
+
+

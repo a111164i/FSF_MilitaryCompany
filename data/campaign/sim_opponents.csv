@@ -1,0 +1,22 @@
+variant id
+#capital
+aEP_DuiLiu_Super
+aEP_NuanChi_Standard
+aEP_NeiBo_Standard
+aEP_BiaoBing_Standard
+aEP_decomposer_Standard
+#cruise
+aEP_ShanHu_Standard
+aEP_PuBu_Standard
+aEP_HaiLiang_Defense
+aEP_ZhongLiu_Standard
+aEP_ReQuan_Standard
+#destroyer
+aEP_CengLiu_Elite
+aEP_LiAnLiu_Elite
+aEP_YangJi_Standard
+aEP_ShenCeng_Standard
+#frigate
+aEP_FanChongLi_Mixed
+aEP_XiLiu_Standard
+aEP_RaoLiu_Standard

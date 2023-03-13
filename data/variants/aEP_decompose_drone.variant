@@ -1,0 +1,29 @@
+{
+  "variantId": "aEP_decompose_drone",
+  "hullId": "aEP_decompose_drone",
+  "displayName": " ",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+ 	"weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_empty",        
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {  
+                "WS0001": "aEP_tearing_beam_fighter",               
+            }
+        },
+          ],
+  "modules": [],
+  "wings": []
+}

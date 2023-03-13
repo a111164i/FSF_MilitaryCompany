@@ -1,0 +1,119 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_sup_tank",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/sup_tank.png",
+  "style": "aEP_FSF",
+  "height": 42,
+  "width": 39,
+  "center": [20, 21],
+  "collisionRadius": 27,
+  "shieldCenter": [0, 0.5],
+  "shieldRadius": 26,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [3, -0]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -30,
+      "locations": [4, -3]
+    },
+    {
+      "id": "FLAK01",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HARDPOINT",
+      "arc": 180,
+      "angle": 135,
+      "locations": [-8.5, 7.5]
+    },
+    {
+      "id": "FLAK02",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HARDPOINT",
+      "arc": 180,
+      "angle": -135,
+      "locations": [-8.5, -7.5]
+    },
+    {
+      "id": "FLAK03",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HARDPOINT",
+      "arc": 180,
+      "angle": 45,
+      "locations": [7.5, 7.5]
+    },
+    {
+      "id": "FLAK04",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HARDPOINT",
+      "arc": 180,
+      "angle": -45,
+      "locations": [7.5, -7.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 30,
+      "locations": [4, 3]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-12, 10.5],
+      "length": 9.899495,
+      "width": 4.242641,
+      "angle": 135,
+      "contrailSize": 4.242641,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-12, -10.5],
+      "length": 9.899495,
+      "width": 4.242641,
+      "angle": -135,
+      "contrailSize": 4.242641,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [4, 10.5],
+      "length": 9.899495,
+      "width": 4.242641,
+      "angle": 135,
+      "contrailSize": 4.242641,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [4, -10.5],
+      "length": 9.899495,
+      "width": 4.242641,
+      "angle": -135,
+      "contrailSize": 4.242641,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -8.5, -6.5,
+    8.5, -6.5,
+    8.5, 7.5,
+    -8.5, 7.5
+  ]
+}

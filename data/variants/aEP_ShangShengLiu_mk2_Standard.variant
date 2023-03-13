@@ -1,0 +1,72 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 33,
+    "goalVariant": true,
+    "hullId": "aEP_ShangShengLiu_mk2",
+    "hullMods": [
+        "targetingunit",
+        "hardenedshieldemitter",
+        "armoredweapons",
+    ],
+    "modules": [
+        {"M01": "aEP_ShangShengLiu_armor_Standard"},
+        {"M02": "aEP_ShangShengLiu_armor_Standard"},
+        {"M03": "aEP_ShangShengLiu_armor_Standard"},
+        {"M04": "aEP_ShangShengLiu_armor_Standard"},
+        {"M05": "aEP_ShangShengLiu_armor_Standard"},
+        {"M06": "aEP_ShangShengLiu_armor_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShangShengLiu_mk2_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0008": "hephag"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "lightac",
+                "L02": "lightac",
+                "L03": "lightac",
+                "L04": "lightac",
+                "L05": "lightac",
+                "L06": "lightac",
+                "R01": "lightac",
+                "R02": "lightac",
+                "R03": "lightac",
+                "R04": "lightac",
+                "R05": "lightac",
+                "R06": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L07": "aEP_trauma_cannon",
+                "L08": "aEP_trauma_cannon",
+                "L09": "aEP_trauma_cannon",
+                "R07": "aEP_trauma_cannon",
+                "R08": "aEP_trauma_cannon",
+                "R09": "aEP_trauma_cannon"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0002": "vulcan",
+                "WS0003": "vulcan",
+                "WS0004": "vulcan",
+                "WS0005": "flak",
+                "WS0007": "flak"
+            }
+        }
+    ]
+}

@@ -1,0 +1,259 @@
+{
+  "hullName": "RaoLiu",
+  "hullId": "aEP_RaoLiu",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_raoliu.png",
+  "style": "aEP_FSF",
+  "height": 120,
+  "width": 90,
+  "center": [45, 55.5],
+  "collisionRadius": 65,
+  "shieldCenter": [4.5, 0],
+  "shieldRadius": 58.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_MarkerDissipation"
+  ],
+  "builtInWeapons": {
+    "RL_DECO01": "aEP_raoliu_armor",
+    "RL_DECO02": "aEP_raoliu_armor",
+    "RL_DECO03": "aEP_raoliu_armor",
+    "RL_DECO04": "aEP_raoliu_armor",
+    "RL_DECO07": "aEP_raoliu_hull",
+    "RL_DECO08": "aEP_raoliu_hull",
+    "RL_DECO09": "aEP_raoliu_bridge",
+    "RL_DECO10": "aEP_raoliu_armor_dark",
+    "RL_DECO11": "aEP_raoliu_armor_dark",
+    "RL_DECO12": "aEP_raoliu_armor_dark",
+    "RL_DECO13": "aEP_raoliu_armor_dark",
+    "RL_DECO14": "aEP_raoliu_hull",
+    "RL_DECO15": "aEP_raoliu_hull",
+    "WS0007": "aEP_marker"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 0,
+      "locations": [37.5, 5],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 30,
+      "locations": [5.5, 12],
+      "renderOrderMod": 3
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 170,
+      "angle": 95,
+      "locations": [-9.5, 22],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 180,
+      "locations": [-24.5, -0],
+      "renderOrderMod": 4
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -100,
+      "locations": [-14.5, -22],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [5.5, -8]
+    },
+    {
+      "id": "RL_DECO08",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-7, 31]
+    },
+    {
+      "id": "RL_DECO09",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-13, -0]
+    },
+    {
+      "id": "RL_DECO07",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-7, -31]
+    },
+    {
+      "id": "RL_DECO02",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [31, -19],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "RL_DECO01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [31, 18.5],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "RL_DECO04",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-7, 33],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "RL_DECO03",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-7, -33],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "RL_DECO11",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-7, 28.5]
+    },
+    {
+      "id": "RL_DECO10",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-7, -28.5]
+    },
+    {
+      "id": "RL_DECO12",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [31, 14]
+    },
+    {
+      "id": "RL_DECO13",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": -90,
+      "locations": [31, -14.5]
+    },
+    {
+      "id": "RL_DECO14",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [31, 16.5]
+    },
+    {
+      "id": "RL_DECO15",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [31, -16.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-42.5, -12],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-42.5, 12],
+      "length": 30,
+      "width": 10,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-48.5, -0],
+      "length": 50,
+      "width": 17,
+      "angle": 180,
+      "contrailSize": 17,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -46, -9,
+    -32.5, -15,
+    -29.5, -24,
+    -17, -40,
+    -1.5, -40,
+    20.5, -21.5,
+    43.5, -22.5,
+    53.5, -14.5,
+    53.5, 14.5,
+    43.5, 22.5,
+    20.5, 21.5,
+    -1.5, 40,
+    -17, 40,
+    -29.5, 24,
+    -32.5, 15,
+    -46, 9
+  ]
+}

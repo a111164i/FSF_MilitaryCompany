@@ -1,0 +1,34 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 0,
+    "fluxVents": 3,
+    "goalVariant": true,
+    "hullId": "aEP_YouJiYan",
+    "hullMods": ["heavyarmor"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_YouJiYan_Def",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0028": "railgun"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_forcus_laser"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "aEP_pompom_small"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "vulcan"}
+        }
+    ],
+    "wings": ["aEP_ftr_icp_gunship_wing"]
+}

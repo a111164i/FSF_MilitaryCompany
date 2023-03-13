@@ -1,0 +1,48 @@
+{
+  "id": "aEP_cluster_small",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_cluster_small_shot",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "displayArcRadius": 3000,
+  "turretSprite": "graphics/weapons/aEP_harpoon_large/small_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_harpoon_large/small_hp.png",
+  "renderHints": [
+    RENDER_LOADED_MISSILES
+  ],
+  "turretOffsets": [
+    3,
+    4.5
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    8,
+    4.5
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 12,
+    "cloudParticleCount": 8,
+    "cloudDuration": 2.5,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 8,
+    "blowbackDuration": 2,
+    "blowbackLength": 18,
+    "blowbackSpread": 10,
+    "particleColor": [
+      240,
+      245,
+      255,
+      105
+    ]
+  },
+  "fireSoundTwo": "aEP_harpoon_large_fire"
+}

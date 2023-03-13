@@ -1,0 +1,8 @@
+name,id,demand class,base price,price variability,utility,decay,origin,tags,stack size,cargo space,icon,sound id,sound id drop,order,economyTier,econUnit,iconWidthMult
+残余零件,aEP_remain_part,crew,75,0,1,0,,nonecon,2000,0,graphics/aEP_items/aEP_remain_part.png,ui_cargo_metals,ui_cargo_metals_drop,124,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,

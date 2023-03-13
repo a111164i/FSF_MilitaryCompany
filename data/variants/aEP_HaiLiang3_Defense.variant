@@ -1,0 +1,43 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 0,
+    "fluxVents": 15,
+    "goalVariant": true,
+    "hullId": "aEP_HaiLiang3",
+    "hullMods": [
+        "aEP_SoftfluxDissipate",
+        "aEP_HotLoader"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_HaiLiang3_Defense",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_large_kinetic_flak"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "aEP_as_bay",
+                "WS0008": "aEP_as_bay"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_large_kinetic_flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "flak",
+                "WS0005": "flak"
+            }
+        }
+    ],
+    "wings": ["xyphos_wing"]
+}

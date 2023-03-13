@@ -1,0 +1,77 @@
+{
+  "hullName": "DecomposeDronev",
+  "hullId": "aEP_decompose_drone",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_decompose_drone.png",
+  "style": "aEP_FSF",
+  "height": 50,
+  "width": 50,
+  "center": [25, 22],
+  "collisionRadius": 19,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 22,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_tearing_beam_fighter",
+    "WS0002": "aEP_empty"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [7, -0]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 360,
+      "angle": 0,
+      "locations": [4, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-8.5, 11.5],
+      "length": 12,
+      "width": 4,
+      "angle": 180,
+      "contrailSize": 4,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-8.5, -11.5],
+      "length": 12,
+      "width": 4,
+      "angle": 180,
+      "contrailSize": 4,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-7.5, -0],
+      "length": 16,
+      "width": 4,
+      "angle": 180,
+      "contrailSize": 4,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -8.5, -14.5,
+    2, -18,
+    14, -6.5,
+    14, 6.5,
+    2, 18,
+    -8.5, 14.5
+  ]
+}

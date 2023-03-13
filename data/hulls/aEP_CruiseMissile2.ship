@@ -1,0 +1,49 @@
+{
+  "hullName": "CruiseMissile",
+  "hullId": "aEP_CruiseMissile2",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
+  "style": "aEP_FSF",
+  "height": 200,
+  "width": 80,
+  "center": [40, 101],
+  "collisionRadius": 96,
+  "shieldCenter": [-0.5, 0],
+  "shieldRadius": 93,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_CruiseMissile2"
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_empty"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-15.5, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-77.5, -0],
+      "length": 127.5,
+      "width": 49,
+      "angle": 180,
+      "contrailSize": 49,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -75.5, -16.5,
+    44.5, -16.5,
+    86.5, -4.5,
+    86.5, 4.5,
+    44.5, 16.5,
+    -75.5, 16.5
+  ]
+}

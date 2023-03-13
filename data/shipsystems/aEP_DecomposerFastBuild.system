@@ -1,0 +1,12 @@
+{
+	"id":"aEP_DecomposerFastBuild",
+	"type":"STAT_MOD",
+	#"aiType":"RESERVE_DEPLOYMENT",
+	"aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.aEP_DecomposerFastBuildAI",
+	"statsScript":"data.shipsystems.scripts.aEP_DecomposerFastBuildScript",
+
+	
+	"useSound":"system_fast_missile_racks",
+	"deactivateSound":"aEP_ExtremeOverloadEnd",
+}

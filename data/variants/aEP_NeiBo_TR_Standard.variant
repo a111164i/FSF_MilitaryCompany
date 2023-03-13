@@ -1,0 +1,21 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_NeiBo_TR",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_NeiBo_TR_Standard",
+    "weaponGroups": [{
+        "autofire": false,
+        "mode": "ALTERNATING",
+        "weapons": {
+            "WS0001": "railgun",
+            "WS0002": "railgun",
+            "WS0003": "railgun",
+            "WS0004": "railgun"
+        }
+    }]
+}

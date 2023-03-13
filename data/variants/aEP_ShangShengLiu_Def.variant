@@ -1,0 +1,50 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 0,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_ShangShengLiu",
+    "hullMods": [
+        "targetingunit",
+        "armoredweapons"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShangShengLiu_Def",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "hellbore"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "heavyac",
+                "WS0007": "heavyac",
+                "WS0014": "heavyac",
+                "WS0015": "heavyac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_pompom_small",
+                "WS0004": "aEP_pompom_small"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0002": "vulcan",
+                "WS0016": "vulcan",
+                "WS0017": "vulcan"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_icp_gunship_wing"]
+}

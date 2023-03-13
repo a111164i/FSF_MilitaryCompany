@@ -1,0 +1,66 @@
+{
+  "id": "aEP_yangji_flak",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_yangji_flak",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "displayArcRadius": 600,
+  "turretSprite": "",
+  "turretGunSprite": "",
+  "hardpointSprite": "",
+  "hardpointGunSprite": "",
+  "visualRecoil": 2,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    10,
+    -7,
+    9,
+    -3,
+    9,
+    3,
+    10,
+    7
+  ],
+  "turretAngleOffsets": [
+    -0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    17,
+    -5,
+    18,
+    -2,
+    18,
+    2,
+    17,
+    5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "LINKED",
+  "separateRecoilForLinkedBarrels":"true",
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 8,
+    "spread": 6,
+    "particleSizeMin": 6,
+    "particleSizeRange": 6,
+    "particleDuration": 0.1,
+    "particleCount": 4,
+    "particleColor": [
+      255,
+      240,
+      165,
+      200
+    ]
+  },
+  "fireSoundTwo": "aEP_pompom_fire"
+}

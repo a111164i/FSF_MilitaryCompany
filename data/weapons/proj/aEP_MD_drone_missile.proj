@@ -1,0 +1,20 @@
+{
+	"id":"aEP_MD_drone_missile",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	"sprite":"",
+	"size":[70,70],	
+	"center":[35,35],
+	"collisionRadius":1,
+	"collisionClass":"NONE",
+	#"onHitEffect":"",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",	
+	"explosionColor":[0,0,0,0],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":0, # purely visual
+	"engineSpec":{"turnAcc":0,
+				  "turnRate":0,
+				  "acc":0,
+				  "dec":0},
+	"engineSlots":[],
+	}				    
+}

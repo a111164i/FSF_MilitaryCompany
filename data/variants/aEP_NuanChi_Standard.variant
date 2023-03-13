@@ -1,0 +1,64 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 4,
+    "goalVariant": true,
+    "hullId": "aEP_NuanChi",
+    "hullMods": [
+        "heavyarmor",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_NuanChi_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0018": "hurricane",
+                "WS0019": "hurricane"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "harpoonpod",
+                "WS0003": "harpoonpod",
+                "WS0004": "harpoonpod",
+                "WS0005": "harpoonpod",
+                "WS0014": "harpoon",
+                "WS0015": "harpoon",
+                "WS0016": "harpoon",
+                "WS0017": "harpoon",
+                "WS0020": "harpoon",
+                "WS0021": "harpoon"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0036": "aEP_NC_missile"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_vulcan",
+                "WS0008": "aEP_vulcan",
+                "WS0010": "aEP_vulcan",
+                "WS0011": "aEP_vulcan",
+                "WS0013": "aEP_vulcan"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0006": "flak",
+                "WS0009": "flak"
+            }
+        }
+    ]
+}

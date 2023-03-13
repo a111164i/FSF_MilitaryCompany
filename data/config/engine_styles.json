@@ -1,0 +1,61 @@
+{
+	"FSF_MAIN_OLD":{
+		"engineColor":[245,165,75,245],
+		"contrailParticleSizeMult":2,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":3,
+		"contrailMaxSpeedMult":0.5,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,60],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"SMOKE"# GLOW or SMOKE
+	},
+	"FSF_MAIN":{
+		"glowSprite":"graphics/aEP_hullstyle/engineglow32s.png", # glow
+		"glowOutline":"graphics/aEP_hullstyle/engineflame32.png", # flame
+		"omegaMode":true,
+		"glowSizeMult":1,
+		"glowAlternateColor":[255,101,42,245],
+
+
+		"engineColor":[245,165,75,245],
+		"contrailParticleSizeMult":2,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":3,
+		"contrailMaxSpeedMult":0.5,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,60],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"SMOKE", # GLOW or SMOKE
+	},
+	"FSF_MAIN_CLEAN":{
+		"glowSprite":"graphics/aEP_hullstyle/engineglow32s.png", # glow
+		"glowOutline":"graphics/aEP_hullstyle/engineflame32.png", # flame
+		"omegaMode":true,
+		"glowSizeMult":1,
+		"glowAlternateColor":[255,101,42,245],
+
+
+		"engineColor":[245,165,75,245],
+		"contrailParticleSizeMult":0,
+		"contrailParticleDuration":0,
+		"contrailParticleFinalSizeMult":0,
+		"contrailMaxSpeedMult":0,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,60],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"SMOKE", # GLOW or SMOKE
+	},
+
+	"FSF_THRUSTER":{
+		"engineColor":[255,145,75,0],
+		"contrailParticleSizeMult":4,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":2.5,
+		"contrailMaxSpeedMult":0.5,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,25],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"GLOW" # GLOW or SMOKE
+	},
+}

@@ -1,0 +1,56 @@
+{
+  "id": "aEP_hive_small",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_hive_missile_warhead",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_hive_small/hive_small_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_hive_small/hive_small_hp.png",
+  "renderAboveAllWeapons": 0,
+  "renderHints": [
+    RENDER_LOADED_MISSILES
+  ],
+  "turretOffsets": [
+    2,
+    1.5,
+    0,
+    -1.5
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+  ],
+  "hardpointOffsets": [
+    4,
+    1.5,
+    4,
+    -1.5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+ 
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 16,
+    "cloudParticleCount": 1,
+    "cloudDuration": 1,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 1,
+    "blowbackDuration": 2,
+    "blowbackLength": 30,
+    "blowbackSpread": 10,
+    "particleColor": [
+      100,
+      100,
+      100,
+      80
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "harpoon_fire"
+}

@@ -1,0 +1,31 @@
+{
+	"industries":{
+		"spaceport":{
+			"plugin":"exerelin.campaign.intel.groundbattle.plugins.SpaceportPlugin",
+			"icon":"graphics/icons/markets/spaceport.png",
+		},
+
+	},
+	
+	"conditions":{
+	},
+	
+	"abilities":{
+		
+	},
+	
+	#"items":{
+	#	# TODO
+	#	"drone_replicator":{
+	#		"troopCounts":{
+	#			"militia":0.5,
+	#			"marines":0.5,
+	#			"heavy":0.25,
+	#		},
+	#	},
+	#},
+	
+	"natoAlphabet":[
+	
+	],
+}

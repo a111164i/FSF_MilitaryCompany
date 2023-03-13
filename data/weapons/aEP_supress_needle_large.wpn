@@ -1,0 +1,63 @@
+{
+  "id": "aEP_supress_needle_large",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_needle_shot",
+  "type": "BALLISTIC",
+  "size": "LARGE",
+  "turretSprite": "graphics/weapons/aEP_suppress_needle_large/tr.png",
+  "turretGlowSprite": "graphics/weapons/aEP_suppress_needle_large/tr_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_suppress_needle_large/hp.png",
+  "hardpointGlowSprite": "graphics/weapons/aEP_suppress_needle_large/hp_glow.png",
+  "renderAboveAllWeapons": 0,
+  "turretOffsets": [
+    8,
+    -14.5,
+    8,
+    14.5,
+    0,
+    -8.5,
+    0,
+    8.5
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    13.5,
+    -14.5,
+    13.5,
+    14.5,
+    5.5,
+    -8.5,
+    5.5,
+    8.5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "GLOW_AND_FLASH",
+  "muzzleFlashSpec": {
+    "length": 20,
+    "spread": 5,
+    "particleSizeMin": 5,
+    "particleSizeRange": 10,
+    "particleDuration": 0.25,
+    "particleCount": 4,
+    "particleColor": [
+      200,
+      200,
+      200,
+      175
+    ]
+  },
+  "glowColor":[200,200,200,225],
+  "textureType": ROUGH,
+  "fireSoundTwo": "aEP_needler_fire"
+}

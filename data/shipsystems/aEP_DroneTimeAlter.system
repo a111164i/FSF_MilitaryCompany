@@ -1,0 +1,23 @@
+{
+	"id":"aEP_DroneTimeAlter",
+	"type":"STAT_MOD",
+	#"aiType":"TEMPORAL_SHELL",
+	"aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.aEP_DroneTimeAlterAI",
+	"statsScript":"data.shipsystems.scripts.aEP_DroneTimeAlter",
+
+	"clampTurnRateAfter":true,
+	"clampMaxSpeedAfter":true,
+	#"alwaysAccelerate":true,
+
+	"useSound":"aEP_DroneDash",
+	"loopSound":"system_burn_drive_loop",
+	"deactivateSound":"system_burn_drive_deactivate",
+	"outOfUsesSound":"engine_disabled",
+	
+	"aiHints":{
+		"activeSpeedIncrease":100,
+		"burstMovementPotential":0,
+		"averageSpeedMult":2,
+	}
+}

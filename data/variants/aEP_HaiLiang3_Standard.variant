@@ -1,0 +1,50 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_HaiLiang3",
+    "hullMods": ["aEP_SoftfluxDissipate"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_HaiLiang3_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_supress_needle_large"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "aEP_hive_bay",
+                "WS0008": "aEP_hive_bay"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_supress_needle_large"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_trauma_cannon",
+                "WS0005": "aEP_trauma_cannon"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_trauma_cannon",
+                "WS0002": "aEP_trauma_cannon"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_defense_drone_wing"
+    ]
+}

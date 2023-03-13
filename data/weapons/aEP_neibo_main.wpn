@@ -1,0 +1,46 @@
+{
+  "id": "aEP_neibo_main",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_neibo_main_shot",
+  "type": "BALLISTIC",
+  "size": "LARGE",
+  "everyFrameEffect": "data.scripts.weapons.aEP_NeiBoAnimation",
+  "turretSprite": "graphics/weapons/aEP_neibo/gun00.png",
+  "hardpointSprite": "graphics/weapons/aEP_neibo/gun00.png",
+  "turretOffsets": [
+    69.5,
+    2.5,
+    69.5,
+    -2.5
+  ],
+  "turretAngleOffsets": [
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    107,
+    2.5,
+    107,
+    -2.5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0
+  ],
+ 	"numFrames":5,	
+	"frameRate":60,
+  #"separateRecoilForLinkedBarrels":true,
+  "barrelMode":"ALTERNATING", # or LINKED.  whether barrels fire at the same time or alternate.
+	"animationType":"GLOW_AND_FLASH",
+	"interruptibleBurst":true,
+	"glowColor":[255,50,50,140],
+	"muzzleFlashSpec":{"length":40.0,
+					   "spread":15.0,
+					   "particleSizeMin":15.0,
+					   "particleSizeRange":20.0,
+					   "particleDuration":0.12,
+					   "particleCount":10,
+					   "particleColor":[255,50,50,180]},		
+  "fireSoundOne":"aEP_blackstar_fire",
+	"fireSoundTwo":"aEP_blackstar",
+}

@@ -1,0 +1,24 @@
+{
+	"id":"aEP_KF_shred",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionRadius":1,
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FF",
+	"bulletSprite":"graphics/weapons/aEP_large_kinetic_flak/shred.png",	
+	#"onHitEffect":"data.scripts.weapons.aEP_ChaingunOnHitEffect",	
+	"length":2,
+	"width":2,
+	"fadeTime":0.1,
+	#"fringeColor":[255,125,125,255],
+	#"coreColor":[255,200,200,150],
+	"fringeColor":[255,255,255,1],
+	"coreColor":[255,255,255,255],
+	"glowRadius":0,
+	"hitGlowRadius":10,	
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	#"passThroughMissiles":true,
+
+}
+			

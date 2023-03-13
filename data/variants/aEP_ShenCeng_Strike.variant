@@ -1,0 +1,31 @@
+{
+    "displayName": "Strike",
+    "fluxCapacitors": 3,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_ShenCeng",
+    "hullMods": ["hardenedshieldemitter"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShenCeng_Strike",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "railgun",
+                "WS0005": "hurricane"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0002": "vulcan",
+                "WS0004": "vulcan"
+            }
+        }
+    ],
+    "wings": ["longbow_wing"]
+}

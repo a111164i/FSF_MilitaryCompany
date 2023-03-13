@@ -1,0 +1,19 @@
+{
+	"id":"aEP_RW_shot2",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"collisionClass":"RAY",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":45.0,
+	"width":7,
+	"fadeTime":0.3,
+	#"onHitEffect":"",
+	"fringeColor":[200,200,200,255],
+	"coreColor":[255,100,100,255],
+	"glowColor":[250,100,100,75],
+	"glowRadius":100,
+	"hitGlowRadius":200,	
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/shell_gauss_cannon.png"	
+}

@@ -1,0 +1,14 @@
+{
+	"id":"aEP_ArmorShield",
+	"type":"PHASE_CLOAK",
+	"aiType":"PHASE_CLOAK",
+
+	"fadeActivationSoundOnChargedown":false,
+	"statsScript":"data.shipsystems.scripts.aEP_ArmorShield",
+	#"statsScript":"com.fs.starfarer.api.impl.combat.PhaseCloakStats",
+	
+	
+}
+
+
+

@@ -1,0 +1,53 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 18,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_decomposer",
+    "hullMods": ["targetingunit"],
+    "permaMods": [],
+    "variantId": "aEP_decomposer_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "aEP_hive_bay",
+                "WS0005": "aEP_hive_bay",
+                "WS0006": "aEP_hive_bay"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_kinetic_flak",
+                "WS0002": "aEP_kinetic_flak",
+                "WS0003": "aEP_kinetic_flak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0008": "taclaser",
+                "WS0009": "taclaser",
+                "WS0012": "taclaser",
+                "WS0013": "taclaser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0015": "vulcan",
+                "WS0016": "vulcan"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+    ]
+}

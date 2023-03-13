@@ -1,0 +1,63 @@
+{
+  "hullName": "TypeA-28",
+  "hullId": "aEP_typeA28",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_typea028.png",
+  "style": "LOW_TECH",
+  "height": 109,
+  "width": 156,
+  "center": [77.5, -23.5],
+  "collisionRadius": 368,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 366.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "aEP_Type28Shield",
+    "reduced_explosion",
+    "always_detaches"
+  ],
+  "builtInWeapons": {
+    "WS0001": "vulcan",
+    "WS0002": "vulcan"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 90,
+      "locations": [94.5, 67.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -90,
+      "locations": [94.5, -68.5]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    49.5, -15.5,
+    39.5, -48,
+    53, -77,
+    83, -48,
+    86, -76.5,
+    98.5, -75.5,
+    106.5, -41.5,
+    129.5, -17.5,
+    129.5, 16.5,
+    106.5, 40.5,
+    98.5, 74.5,
+    86, 75.5,
+    83, 47,
+    53, 76,
+    39.5, 47,
+    49.5, 14.5
+  ]
+}

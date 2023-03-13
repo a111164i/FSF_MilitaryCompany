@@ -1,0 +1,56 @@
+{
+    "displayName": "New Variant",
+    "fluxCapacitors": 0,
+    "fluxVents": 50,
+    "goalVariant": true,
+    "hullId": "aEP_typeR28",
+    "hullMods": [
+        "solar_shielding",
+        "fluxbreakers",
+        "autorepair",
+        "turretgyros"
+    ],
+    "permaMods": [
+        "solar_shielding",
+        "fluxbreakers",
+        "autorepair"
+    ],
+    "sMods": [],
+    "variantId": "aEP_typeR28_variant",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "heavyneedler",
+                "WS0008": "railgun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0009": "heatseeker",
+                "WS0010": "heatseeker"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "heavyac",
+                "WS0005": "heavyac",
+                "WS0006": "heavyac",
+                "WS0007": "heavyac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "devastator",
+                "WS0002": "devastator"
+            }
+        }
+    ]
+}

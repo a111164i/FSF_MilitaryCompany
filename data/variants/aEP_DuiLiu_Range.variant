@@ -1,0 +1,57 @@
+{
+    "displayName": "Range",
+    "fluxCapacitors": 22,
+    "fluxVents": 40,
+    "goalVariant": true,
+    "hullId": "aEP_DuiLiu",
+    "hullMods": [
+        "aEP_ControledShield",
+        "targetingunit",
+        "aEP_SoftfluxDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_DuiLiu_Range",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_duiliu_main"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "aEP_EMP_pike",
+                "WS0008": "aEP_EMP_pike",
+                "WS0009": "hveldriver",
+                "WS0010": "hveldriver",
+                "WS0011": "hveldriver",
+                "WS0012": "hveldriver",
+                "WS0020": "heavymauler",
+                "WS0021": "heavymauler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0015": "vulcan",
+                "WS0016": "vulcan",
+                "WS0018": "dualflak",
+                "WS0022": "vulcan",
+                "WS0023": "vulcan",
+                "WS0036": "vulcan",
+                "WS0037": "vulcan"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0019": "aEP_pompom_small",
+                "WS0032": "aEP_pompom_small"
+            }
+        }
+    ]
+}

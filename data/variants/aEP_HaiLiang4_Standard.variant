@@ -1,0 +1,14 @@
+{
+  "variantId": "aEP_HaiLiang4_Standard",
+  "hullId": "aEP_HaiLiang4",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [],
+  "wings": []
+}

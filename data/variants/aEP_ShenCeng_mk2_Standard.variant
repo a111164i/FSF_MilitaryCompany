@@ -1,0 +1,21 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 5,
+    "fluxVents": 3,
+    "goalVariant": true,
+    "hullId": "aEP_ShenCeng_mk2",
+    "hullMods": ["reinforcedhull"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ShenCeng_mk2_Standard",
+    "weaponGroups": [{
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+            "WS0001": "vulcan",
+            "WS0002": "vulcan",
+            "WS0003": "vulcan",
+            "WS0004": "vulcan"
+        }
+    }]
+}

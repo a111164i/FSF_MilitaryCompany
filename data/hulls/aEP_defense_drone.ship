@@ -1,0 +1,103 @@
+{
+  "hullName": "Defense Drone",
+  "hullId": "aEP_defense_drone",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_defense_drone.png",
+  "style": "aEP_FSF",
+  "height": 40,
+  "width": 80,
+  "center": [40, 20.5],
+  "collisionRadius": 35.5,
+  "shieldCenter": [-8, -0],
+  "shieldRadius": 46.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+  ],
+  "builtInWeapons": {
+    "WS0003": "aEP_defense_drone_hatch",
+    "WS0005": "aEP_empty"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 124,
+      "angle": 0,
+      "locations": [-0.5, 20.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 124,
+      "angle": -0,
+      "locations": [-0.5, -19.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [9.5, -0]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HIDDEN",
+      "arc": 90,
+      "angle": 0,
+      "locations": [12.5, -0]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [1, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-11, 30.5],
+      "length": 8.132303,
+      "width": 5.046049,
+      "angle": 157,
+      "contrailSize": 5.046049,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-11, -30.5],
+      "length": 8.132303,
+      "width": 5.046049,
+      "angle": -157,
+      "contrailSize": 5.046049,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-11.5, -0],
+      "length": 10.5,
+      "width": 6,
+      "angle": -180,
+      "contrailSize": 6,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -11.5, -31,
+    11.5, -31,
+    11.5, -31.5,
+    11.5, 32,
+    -11.5, 32
+  ]
+}

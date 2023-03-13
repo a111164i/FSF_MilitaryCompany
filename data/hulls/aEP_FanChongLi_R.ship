@@ -1,0 +1,27 @@
+{
+  "hullName": "",
+  "hullId": "aEP_FanChongLi_R",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_fanchongli_mk2_r.png",
+  "style": "aEP_FSF",
+  "height": 140,
+  "width": 30,
+  "center": [13, 18],
+  "collisionRadius": 109,
+  "shieldCenter": [52, -2],
+  "shieldRadius": 0,
+  "viewOffset": 0,
+  "builtInMods": [
+    "reduced_explosion",
+    "always_detaches",
+    "aEP_Structure"
+  ],
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    -3.5, 4.5,
+    1.5, -7.5,
+    99.5, -6.5,
+    106.5, -2.5
+  ]
+}

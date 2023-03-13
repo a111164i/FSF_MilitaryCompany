@@ -1,0 +1,22 @@
+{
+  "variantId": "aEP_ftr_bom_attacker",
+  "hullId": "aEP_ftr_bom_attacker",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_bom_attacker_gun"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

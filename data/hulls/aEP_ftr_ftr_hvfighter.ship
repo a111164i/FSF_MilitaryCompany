@@ -1,0 +1,76 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_ftr_hvfighter",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/ftr_hvfighter.png",
+  "style": "aEP_FSF",
+  "height": 42,
+  "width": 39,
+  "center": [19.5, 21],
+  "collisionRadius": 22,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 21.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+      "aEP_FighterArmor",
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_ftr_ftr_hvfighter_gun",
+    "WS0002": "aEP_ftr_ftr_hvfighter_gun"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [14, 5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [14, -5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-19, 0],
+      "length": 27,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 6,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-14.5, 7],
+      "length": 17,
+      "width": 4,
+      "angle": 180,
+      "contrailSize": 4,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [-14.5, -7],
+      "length": 17,
+      "width": 4,
+      "angle": -180,
+      "contrailSize": 4,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -13.5, -10,
+    14.5, -6,
+    14.5, 6,
+    -13.5, 10
+  ]
+}

@@ -1,0 +1,20 @@
+{
+	"id":"aEP_high_speed_HE_shot2",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",	
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"bulletSprite":"graphics/weapons/aEP_high_speed_HE/high_speed_HE_shot.png",
+	"hitGlowRadius": 50,
+	"fadeTime":0.1,
+	"length": 4,
+	"width": 2,
+    "fringeColor":[255,165,30,175],# fringe color of shot sprite
+	"coreColor":[255,255,255,200], # core color of shot sprite
+	"glowColor":[255,165,30,75],
+	"glowRadius":25,
+	"textureScrollSpeed":64,
+	"pixelsPerTexel":5,
+	"passThroughMissiles":false,
+}

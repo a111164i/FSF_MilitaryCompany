@@ -1,0 +1,22 @@
+{
+	"id":"aEP_FCL_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",	
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+     #"onHitEffect":"data.scripts.weapons.aEP_FCLOnHitEffect",
+	"bulletSprite":"graphics/weapons/aEP_breakin_hammer/aEP_breakin_hammer_proj.png",
+	"hitGlowRadius": 25,
+	"fadeTime":0.01,
+	"length": 24,
+	"width": 14,
+	"fringeColor":[250,250,250,255],# fringe color of shot sprite
+	"coreColor":[250,250,250,255], # core color of shot sprite
+	"glowColor":[160,210,160,255],
+	"glowRadius":1,
+	"textureScrollSpeed":64,
+	"pixelsPerTexel":5,
+	"passThroughMissiles":true,
+				  
+}
+			

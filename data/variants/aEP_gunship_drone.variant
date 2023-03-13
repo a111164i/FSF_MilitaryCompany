@@ -1,0 +1,57 @@
+{
+  "variantId": "aEP_ftr_icp_gunship",
+  "hullId": "aEP_ftr_icp_gunship",
+  "displayName": "",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "autorepair",
+    "armoredweapons",
+    "fluxbreakers"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "aEP_ftr_icp_gunship_gun",
+        "WS0005": "aEP_ftr_icp_gunship_gun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_icp_gunship_gun",
+        "WS0002": "aEP_ftr_icp_gunship_gun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "aEP_ftr_icp_gunship_beam"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

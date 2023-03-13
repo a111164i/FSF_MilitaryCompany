@@ -1,0 +1,149 @@
+{
+  # should be a copy of "combatSmall", minus variants that are annoying to fight in low numbers
+  # for example, no Hyperions or fast beam-based kiting loadouts, or ships with damper field
+  "combatSmallForSmallFleet": {
+    "aEP_XiLiu_p_Standard": 10,
+    "aEP_XiLiu_Standard": 10,
+    "aEP_FanChongLi_Mixed": 5,
+    "aEP_RaoLiu_PD":4,
+    "aEP_RaoLiu_Standard":6
+  },
+  "combatSmall": {
+    "aEP_FanChongLi_Mixed": 10,
+    "aEP_XiLiu_p_Standard": 10,
+    "aEP_XiLiu_Standard": 5,
+    "aEP_RaoLiu_PD": 5,
+    "aEP_RaoLiu_Standard":5,
+  },
+  "combatMedium": {
+    "aEP_CengLiu_Standard":4,
+    "aEP_CengLiu_Elite":3,
+    "aEP_LiAnLiu_Standard": 3,
+    "aEP_LiAnLiu_AntiSmall": 2,
+    "aEP_LiAnLiu_Elite": 5,
+    "aEP_YangJi_Standard":10
+  },
+  "combatLarge": {
+    "aEP_HaiLiang_Standard": 4,
+    "aEP_HaiLiang_Defense": 6,
+    "aEP_ZhongLiu_Standard": 3,
+    "aEP_ZhongLiu_Assault": 3,
+    "aEP_ZhongLiu_Broadside": 3,
+    "aEP_ReQuan_Standard": 7,
+    "aEP_ReQuan_Assault": 3,
+    "aEP_PingDing_Standard": 5,
+  },
+  "combatCapital": {
+    "aEP_BiaoBing_Standard": 2,
+    "aEP_BiaoBing_Burst": 1,
+    "aEP_DuiLiu_Standard": 4,
+    "aEP_DuiLiu_Range":3,
+    "aEP_DuiLiu_Super": 3,
+    "aEP_NuanChi_Standard": 4,
+    "aEP_NuanChi_Support": 4,
+    "aEP_NuanChi_Elite": 3,
+    "aEP_NeiBo_Standard": 6,
+    "aEP_NeiBo_Elite": 4,
+    "aEP_ShangShengLiu_mk2_Standard":3,
+  },
+  # hybrid ships with good combat and cargo capacity
+  "combatFreighterSmall": {
+  },
+  "combatFreighterMedium": {
+    "aEP_YouJiYan_Def": 5,
+    "aEP_YouJiYan_mk2_Def": 3,
+  },
+  "combatFreighterLarge": {
+    "aEP_decomposer_Standard": 5,
+    "aEP_ShangShengLiu_Def": 5,
+  },
+  "civilianRandom": {
+  },
+  # carriers
+  "carrierSmall": {
+  },
+  "carrierMedium": {
+    "aEP_ShenCeng_Standard": 5,
+    "aEP_ShenCeng_Strike": 5,
+  },
+  "carrierLarge": {
+    "aEP_ShanHu_Standard":4,
+    "aEP_ShanHu_Attack":3,
+    "aEP_ShanHu_Siege":3,
+    "aEP_decomposer_Standard": 10,
+    "aEP_PuBu_Elite": 4,
+    "aEP_PuBu_Standard": 6,
+  },
+  # phase ships
+  "phaseSmall": {
+  
+  },
+  "phaseMedium": {
+  },
+  "phaseLarge": {
+  },
+  "phaseCapital": {
+  },
+
+
+  # freighters and such
+  "freighterSmall": {
+    "fallback":{"freighterMedium":0.5},
+    "fallback2":{"freighterLarge":0.25},
+  },
+  "freighterMedium": {
+    "aEP_YouJiYan_Standard": 10,
+    "fallback":{"freighterSmall":1},
+    "fallback2":{"freighterLarge":0.5},
+  },
+  "freighterLarge": {
+    "aEP_ShangShengLiu_Standard":5,
+    "fallback":{"freighterMedium":1},
+    "fallback2":{"freighterSmall":1},
+  },
+  "tankerSmall": {
+    "fallback":{"tankerMedium":0.5},
+    "fallback2":{"tankerLarge":0.25},
+  },
+  "tankerMedium": {
+    "aEP_YouJiYan_mk2_Standard": 10,
+    "fallback":{"tankerSmall":1},
+    "fallback2":{"tankerLarge":0.5},
+  },
+  "tankerLarge": {
+    "aEP_ShangShengLiu_mk3_Standard":10,
+    "fallback":{"tankerSmall":1},
+    "fallback2":{"tankerMedium":1},
+  },
+  "personnelSmall": {
+  },
+  "personnelMedium": {
+  },
+  "personnelLarge":{
+
+  },
+  "linerSmall": {
+
+  },
+  "linerMedium": {
+
+  },
+  "linerLarge": {
+
+  },
+  # utility ships
+  "tug": {
+
+  },
+  "crig": {
+  },
+  "utility": {
+
+  },
+  "orbitalStationLowTech": {
+  #
+  },
+  "battlestationLowTech": {
+  #
+  },
+}

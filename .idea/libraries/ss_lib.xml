@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="ss_lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../MagicLib/jars/MagicLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LazyLib/jars/LazyLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../GraphicsLib/jars/Graphics.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/log4j-1.2.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/lwjgl_util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/starfarer.api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/starfarer_obf.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../LazyLib/javadoc.zip!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../LazyLib/jars/LazyLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../starsector-core/starfarer.api.zip!/" />
+      <root url="file://$PROJECT_DIR$/../../starsector-core" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../starsector-core" recursive="false" type="SOURCES" />
+  </library>
+</component>

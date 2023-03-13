@@ -1,0 +1,17 @@
+{
+  "id": "a111164_ExtendPack",
+  "name": "FSF军事公司[a111164_ExtendPack]",
+  "author": "a111164 && 北冰洋大海豹",
+  "version": "3.18",
+  "description": "使用公司激进的设计，用压倒性的投射量摧毁敌人",
+  "gameVersion": "0.95.1a-RC6",
+  "jars": [
+    "jars/a111164_ExtendPack.jar"
+  ],
+  "dependencies": [
+    {"id": "lw_lazylib", "name": "LazyLib"},
+    {"id": "MagicLib", "name": "MagicLib"},
+    {"id": "shaderLib", "name": "GraphicsLib"}
+  ],
+  "modPlugin": "data.scripts.a111164ModPlugin"
+}

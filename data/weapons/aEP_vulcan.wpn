@@ -1,0 +1,48 @@
+{
+  "id": "aEP_vulcan",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_vulcan_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_vulcan/tr00.png",
+  "turretUnderSprite": "graphics/weapons/aEP_vulcan/base.png",
+  "hardpointSprite": "graphics/weapons/aEP_vulcan/hp00.png",
+  "visualRecoil": 2,
+  "numFrames":4,
+  "frameRate":40,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    13,
+    0
+  ],
+  "turretAngleOffsets": [
+    -0
+  ],
+  "hardpointOffsets": [
+    12,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 16,
+    "spread": 6,
+    "particleSizeMin": 8,
+    "particleSizeRange": 12,
+    "particleDuration": 0.15,
+    "particleCount": 4,
+    "particleColor": [
+      255,
+      240,
+      165,
+      200
+    ]
+  },
+  "fireSoundTwo": "vulcan_cannon_fire"
+}

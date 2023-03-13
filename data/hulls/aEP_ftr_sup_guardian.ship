@@ -1,0 +1,94 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_sup_guardian",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/sup_guardian.png",
+  "style": "aEP_FSF",
+  "height": 50,
+  "width": 50,
+  "center": [25, 25],
+  "collisionRadius": 46,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 45.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "insulatedengine",
+    "autorepair"
+  ],
+  "builtInWeapons": {
+    "WING_L": "aEP_guardian_drone_cover_l",
+    "WING_R": "aEP_guardian_drone_cover_r",
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [3, 9.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": -0,
+      "locations": [3, -9.5]
+    },
+    {
+      "id": "WING_L",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": -5,
+      "locations": [-19.5, 8.5]
+    },
+    {
+      "id": "WING_R",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 5,
+      "locations": [-19.5, -8.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-17.5, 5.5],
+      "length": 22,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 6,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-17.5, -5.5],
+      "length": 22,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 6,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-19, -0],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -14.5, -6.5,
+    -6.5, -17.5,
+    5.5, -8.5,
+    5.5, 8.5,
+    -6.5, 17.5,
+    -14.5, 6.5
+  ]
+}

@@ -1,0 +1,64 @@
+{
+    "displayName": "Support",
+    "fluxCapacitors": 0,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_NuanChi",
+    "hullMods": [
+        "heavyarmor",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_NuanChi_Support",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0018": "aEP_harpoon_large",
+                "WS0019": "aEP_harpoon_large"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_hive_bay",
+                "WS0003": "aEP_hive_bay",
+                "WS0004": "aEP_hive_bay",
+                "WS0005": "aEP_hive_bay",
+                "WS0014": "aEP_hive_small",
+                "WS0015": "aEP_hive_small",
+                "WS0016": "aEP_hive_small",
+                "WS0017": "aEP_hive_small",
+                "WS0020": "aEP_hive_small",
+                "WS0021": "aEP_hive_small"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0036": "aEP_NC_missile"}
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0006": "flak",
+                "WS0009": "flak",
+                "WS0012": "flak"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_vulcan",
+                "WS0008": "aEP_vulcan",
+                "WS0011": "aEP_vulcan",
+                "WS0013": "aEP_vulcan"
+            }
+        }
+    ]
+}

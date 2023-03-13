@@ -1,0 +1,35 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 1,
+    "fluxVents": 15,
+    "goalVariant": true,
+    "hullId": "aEP_PuBu",
+    "hullMods": ["expanded_deck_crew"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_PuBu_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_EMP_pike"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_vulcan",
+                "WS0002": "aEP_vulcan",
+                "WS0003": "aEP_vulcan",
+                "WS0004": "aEP_vulcan"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing"
+    ]
+}

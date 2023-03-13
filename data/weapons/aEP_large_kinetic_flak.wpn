@@ -1,0 +1,59 @@
+{
+  "id": "aEP_large_kinetic_flak",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_KF_large_shot",
+  "type": "BALLISTIC",
+  "size": "LARGE",
+  "turretSprite": "graphics/weapons/aEP_large_kinetic_flak/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_large_kinetic_flak/tr_br.png",
+  "turretUnderSprite": "graphics/weapons/aEP_large_kinetic_flak/base.png",
+  "hardpointSprite": "graphics/weapons/aEP_large_kinetic_flak/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_large_kinetic_flak/hp_br.png",
+  "visualRecoil": 6,
+  "renderHints":[RENDER_BARREL_BELOW],
+  "turretOffsets": [
+    32,
+    -14.5,
+    34,
+    -9.5,
+    34,
+    9.5,
+    32,
+    14.5
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    27.5,
+    -14.5,
+    29.5,
+    -9.5,
+    29.5,
+    9.5,
+    27.5,
+    14.5
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "DUAL",
+  "animationType": "MUZZLE_FLASH",
+  "autocharge": true,
+  "separateRecoilForLinkedBarrels":"false",
+  "muzzleFlashSpec": {
+    "length": 45,
+    "spread": 16,
+    "particleSizeMin": 50,
+    "particleSizeRange": 25,
+    "particleDuration": 0.1,
+    "particleCount": 8,
+    "particleColor": [
+      225,
+      255,
+      205,
+      200
+    ]
+  },
+  "fireSoundTwo": "aEP_kinetic_flak_hit01"
+}

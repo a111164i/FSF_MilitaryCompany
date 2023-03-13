@@ -1,0 +1,22 @@
+{
+	"id":"aEP_neibo_main_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	#"onFireEffect":"aEP_SplitAfterFire",
+	#"onHitEffect":"data.scripts.weapons.aEP_RWOnHit",
+	#"collisionRadius":15,
+	"length":60,
+	"width":6,
+	"fadeTime":0.1,
+	"fringeColor":[240,220,170,150],
+	"coreColor":[245,52,52,255],
+	"glowColor":[255,165,30,75],
+	"glowRadius":12,
+	"hitGlowRadius":20,	
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/shell_small_yellow.png",
+
+}

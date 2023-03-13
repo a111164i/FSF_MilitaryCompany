@@ -1,0 +1,37 @@
+{
+	"id":"aEP_FuelBurn",
+	"type":"ENGINE_MOD",
+	#"aiType":"CUSTOM",
+	"aiType":"BURN_DRIVE_TOGGLE",
+	#"aiScript":"data.shipsystems.scripts.ai.aEP_ApproachThrusterAI",
+	"statsScript":"data.shipsystems.scripts.aEP_FuelBurn",
+   
+	#"runScriptWhileIdle":true,  # this means unapply() never gets called	
+	
+	
+	"engineGlowColor":[255,60,60,255],
+	"engineGlowContrailColor":[255,100,100,25],
+	"engineGlowLengthMult":5,
+	"engineGlowWidthMult":3,
+	"engineGlowGlowMult":3,
+	
+	"flameoutOnImpactChance":0.5,
+
+	"clampTurnRateAfter":true,
+	"clampMaxSpeedAfter":true,
+	"alwaysAccelerate":true,
+
+	
+	
+	"useSound":"system_burn_drive_activate",
+	"loopSound":"system_burn_drive_loop",
+	"deactivateSound":"system_burn_drive_deactivate",
+	"outOfUsesSound":"engine_disabled",
+	
+		
+	"aiHints":{
+		"activeSpeedIncrease":120,
+		"burstMovementPotential":800,
+		"averageSpeedIncrease":120,
+	}
+}

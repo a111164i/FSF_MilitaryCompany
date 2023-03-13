@@ -1,0 +1,65 @@
+{
+  "id": "aEP_hive_bay",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_hive_missile_warhead",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_hive_bay/hive_bay_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_hive_bay/hive_bay_hp.png",
+  "renderAboveAllWeapons": 0,
+  "turretOffsets": [
+    13.5,
+    6.5,
+    13.5,
+    2.5,
+    13.5,
+    -2.5,
+    13.5,
+    -6.5
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    18,
+    6.5,
+    18,
+    2.5,
+    18,
+    -2.5,
+    18,
+    -6.5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 16,
+    "cloudParticleCount": 4,
+    "cloudDuration": 1,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 1,
+    "blowbackDuration": 2,
+    "blowbackLength": 30,
+    "blowbackSpread": 10,
+    "particleColor": [
+      100,
+      100,
+      100,
+      80
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "harpoon_fire"
+}

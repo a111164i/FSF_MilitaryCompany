@@ -1,0 +1,60 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 16,
+    "fluxVents": 50,
+    "goalVariant": true,
+    "hullId": "aEP_BiaoBing",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "fluxdistributor",
+        "stabilizedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_BiaoBing_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "squall"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0009": "sabotpod",
+                "WS0010": "sabotpod"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0008": "plasma",
+                "WS0011": "plasma",
+                "WS0021": "aEP_BB_radar",
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "pulselaser",
+                "WS0004": "pulselaser",
+                "WS0006": "pulselaser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0012": "pdburst",
+                "WS0013": "pdlaser",
+                "WS0014": "pdburst",
+                "WS0016": "pdburst",
+                "WS0019": "pdlaser",
+                "WS0020": "pdlaser"
+            }
+        }
+    ]
+}

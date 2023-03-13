@@ -1,0 +1,14 @@
+{
+  "variantId": "aEP_NeiBo_ARMOR_Standard",
+  "hullId": "aEP_NeiBo_ARMOR",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [],
+  "wings": []
+}
