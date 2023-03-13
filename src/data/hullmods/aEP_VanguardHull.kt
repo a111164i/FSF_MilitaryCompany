@@ -91,8 +91,11 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
         null
       )
       damage.modifier.modifyFlat(id, -convertToMult)
-      //aEP_Tool.addDebugText(damage.getDamage()+"_"+toReduce);
-      if (aEP_MarkerDissipation.getBufferLevel(ship) >= 1f) ship.fluxTracker.decreaseFlux(getFluxReduce(damage, toReduce / reduceAmount * FLUX_REDUCE_PER_HIT))
+
+      //如果舰船预热完全，根据税前伤害减少幅能
+      if (aEP_MarkerDissipation.getBufferLevel(ship) >= 1f){
+        ship.fluxTracker.decreaseFlux(getFluxReduce(damage, toReduce / reduceAmount * FLUX_REDUCE_PER_HIT))
+      }
       return id
     }
 
