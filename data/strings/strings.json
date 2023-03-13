@@ -2,6 +2,8 @@
 	"aEP":{
 		"manufacturer":"FSF制造",
 		"only_on_FSF":"只能安装在FSF的舰船上",
+		"not_capital":"不能安装在主力舰上",
+		"not_cruiser":"不能安装在巡洋舰上",
 		"effect":"效果",
 		"no_link":"目前没有任何联动效果",
 		"not_compatible":"不兼容",
@@ -26,8 +28,11 @@
 		"zero_flux_speed_reduce":"零幅能加速减少",
 		
 		"extra":"额外",
-		"weapon_range_up":"武器射程提升",
-		"shield_absorb_down":"护盾伤害吸收率降低",
+		"weapon_range_up":"附近友军为主力舰时，武器射程提升",
+		"weapon_range_up2":"附近友军为巡洋舰时，武器射程提升",
+		"weapon_range_up3":"附近友军为驱逐舰时，武器射程提升",
+		"weapon_range_up4":"附近友军为护卫舰时，武器射程提升",
+		"max_speed_down":"最大速度降低",
 		"shield_damge_taken_reduce":"护盾承受伤害减少",
 		"ammo_regen_speed_up":"弹药恢复速度再提升",
 		"HotLoader_desc02":"当本舰的战术系统激活时，弹药恢复速度再提升{%s}",

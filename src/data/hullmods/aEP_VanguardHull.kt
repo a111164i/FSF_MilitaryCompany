@@ -72,16 +72,14 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       //会null的
       param?: return null
-
-      if (MathUtils.getRandomNumberInRange(0f, 1f) > REDUCE_PERCENT) return null
       if (shieldHit) return null
-      val damageAmount = damage.damage
-      var toReduce = Math.min(reduceAmount, damageAmount - 1)
+      if (MathUtils.getRandomNumberInRange(0f, 1f) >= REDUCE_PERCENT) return null
+      var toReduce = reduceAmount
       //对于激光，每秒伤害被分为10段，这里这里认为每4次tick等同一个弹丸，每次减伤为正常的0.25倍，
-      if (param is BeamAPI) {
-        toReduce *= BEAM_PER_HIT_REDUCE_COMPROMISE
-      }
-      val convertToMult = toReduce / Math.max(damageAmount, 1f)
+      if (param is BeamAPI) toReduce *= BEAM_PER_HIT_REDUCE_COMPROMISE
+      //不可减到0伤害，故为-1
+      toReduce = Math.min(toReduce, damage.damage - 1)
+
       //这个flat是修改的mult
       Global.getCombatEngine().addFloatingDamageText(
         point,
@@ -90,11 +88,11 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
         target,
         null
       )
-      damage.modifier.modifyFlat(id, -convertToMult)
+      damage.modifier.modifyFlat(id, -toReduce)
 
-      //如果舰船预热完全，根据税前伤害减少幅能
+      //如果舰船预热完全，每次生效都会减少幅能
       if (aEP_MarkerDissipation.getBufferLevel(ship) >= 1f){
-        ship.fluxTracker.decreaseFlux(getFluxReduce(damage, toReduce / reduceAmount * FLUX_REDUCE_PER_HIT))
+        ship.fluxTracker.decreaseFlux(FLUX_REDUCE_PER_HIT)
       }
       return id
     }

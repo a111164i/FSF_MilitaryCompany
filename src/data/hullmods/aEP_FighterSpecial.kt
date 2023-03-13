@@ -1078,6 +1078,7 @@ class aEP_FlyingTank : aEP_BaseHullMod(){
 
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    ship?:return
     if(!ship.hasListenerOfClass(RangeListener::class.java)) ship.addListener(RangeListener(ship))
   }
 

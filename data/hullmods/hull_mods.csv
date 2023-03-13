@@ -18,7 +18,11 @@ Type28护盾发生器,aEP_Type28Shield,0,unknown,,,,0,,TRUE,,0,0,0,0,data.hullmo
 
 当舰船不拥有护盾或者护盾被系统禁用时，不提供加成。",,graphics/aEP_hullmods/aEP_softflux_dissipate.png
 高压寄存器,aEP_RapidDissipate,1,FSF设计,,FSF,,10000,,,,1,1,2,3,data.hullmods.aEP_RapidDissipate,为舰船换装只能在高压环境下运行的幅能寄存器，在零幅能水平时舰船每一点幅能改造点数会减少{%s}的幅散，但随着幅能水平上升效果逐渐反转.,,graphics/aEP_hullmods/aEP_fast_dissipate.png
-线列目标定位,aEP_TargetSystem,1,FSF设计,,FSF,,10000,,,,4,5,9,12,data.hullmods.aEP_TargetSystem,高性能的弹道雷达能进一步的提升武器射程，但对电网的压力也降低了护盾系统的工作效率。根据舰体大小增加舰船射程百分比{%s/%s/%s/%s}，护盾伤害吸收率也降低。,,graphics/aEP_hullmods/aEP_target_system.png
+线列目标定位,aEP_TargetSystem,1,FSF设计,,FSF,,10000,,,,4,5,9,12,data.hullmods.aEP_TargetSystem,"利用附近友军舰船的测距仪传输数据进行索敌，当附近存在主力舰级别的友方舰船时，根据自身舰体级别，最多增加本体射程的百分之{%s/%s/%s/%s}
+
+为了传输数据也本体极速也会降低{%s/%s/%s/%s}。
+
+当附近不存在友军舰船时不享受任何射程加成，也不再降低极速",,graphics/aEP_hullmods/aEP_target_system.png
 先锋外壳,aEP_VanguardHull,1,FSF设计,,FSF,,15000,,,,8,12,18,20,data.hullmods.aEP_VanguardHull,对船壳硬度的强化尽管在面对大口径武器时其作用被证明是微乎其微，但能显著提升对于少量多次攻击的抗性，且舰船始终可在战后修复。不兼容于强化舱壁,,graphics/aEP_hullmods/aEP_vanguard_hull.png
 ,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
