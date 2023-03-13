@@ -25,7 +25,7 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
   companion object {
     const val REDUCE_PERCENT = 0.70f
     const val FLUX_REDUCE_PER_HIT = 4f
-    const val BEAM_PER_HIT_REDUCE_COMPROMISE = 0.1f
+    const val BEAM_PER_HIT_REDUCE_COMPROMISE = 0.25f
     private val REDUCE_AMOUNT = HashMap<HullSize, Float>()
 
     init {
@@ -77,8 +77,9 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
       if (shieldHit) return null
       val damageAmount = damage.damage
       var toReduce = Math.min(reduceAmount, damageAmount - 1)
+      //对于激光，每秒伤害被分为10段，这里这里认为每4次tick等同一个弹丸，每次减伤为正常的0.25倍，
       if (param is BeamAPI) {
-        toReduce /= 4f
+        toReduce *= BEAM_PER_HIT_REDUCE_COMPROMISE
       }
       val convertToMult = toReduce / Math.max(damageAmount, 1f)
       //这个flat是修改的mult
