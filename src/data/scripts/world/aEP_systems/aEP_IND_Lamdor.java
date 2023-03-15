@@ -17,8 +17,10 @@ import org.lwjgl.util.vector.Vector2f;
 import java.awt.*;
 import java.util.Random;
 
-public class aEP_IND_Lamdor implements SectorGeneratorPlugin
-{
+public class aEP_IND_Lamdor implements SectorGeneratorPlugin {
+
+  public static String SHENDU_SPEC_ID = "aEP_des_shendu";
+
   @Override
   public void generate(SectorAPI sector) {
     StarSystemAPI system = sector.createStarSystem("Lamdor");
@@ -149,8 +151,7 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
 
     //在边缘生成2个随机的先进航母
     //创造一个的残骸实体，并绑上打捞参数
-    DerelictShipEntityPlugin.DerelictShipData params = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData("aEP_ShenCeng_mk2_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
-    params.ship.shipName = "Shenceng Prototype";
+    DerelictShipEntityPlugin.DerelictShipData params = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
     params.ship.nameAlwaysKnown = true;
     params.durationDays = 999999999f;
     params.ship.addDmods = true;
@@ -165,9 +166,8 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
 
     //创造一份特殊舰船打捞数据
     ShipRecoverySpecial.ShipRecoverySpecialData specialData = new ShipRecoverySpecial.ShipRecoverySpecialData("abandoned");
-    ShipRecoverySpecial.PerShipData perData = new ShipRecoverySpecial.PerShipData("aEP_ShenCeng_mk2_Standard", ShipRecoverySpecial.ShipCondition.WRECKED);
+    ShipRecoverySpecial.PerShipData perData = new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED);
     perData.addDmods = true;
-    perData.shipName = "Shence";
     perData.condition = ShipRecoverySpecial.ShipCondition.AVERAGE;
     perData.nameAlwaysKnown = true;
     specialData.addShip(perData);
@@ -176,7 +176,8 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
     Misc.setSalvageSpecial(ship, specialData);
 
 
-    DerelictShipEntityPlugin.DerelictShipData params2 = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData("aEP_ShenCeng_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
+    //创造第二个残骸实体
+    DerelictShipEntityPlugin.DerelictShipData params2 = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
     params2.ship.nameAlwaysKnown = true;
     params2.durationDays = 999999999f;
     params2.ship.addDmods = true;
@@ -189,9 +190,9 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
             600f);
     ship2.setDiscoverable(true);
 
-    //创造一份特殊舰船打捞数据
+    //创造第二份特殊舰船打捞数据
     ShipRecoverySpecial.ShipRecoverySpecialData specialData2 = new ShipRecoverySpecial.ShipRecoverySpecialData("abandoned");
-    ShipRecoverySpecial.PerShipData perData2 = new ShipRecoverySpecial.PerShipData("aEP_ShenCeng_Standard", ShipRecoverySpecial.ShipCondition.AVERAGE);
+    ShipRecoverySpecial.PerShipData perData2 = new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.AVERAGE);
     perData2.addDmods = true;
     perData2.condition = ShipRecoverySpecial.ShipCondition.AVERAGE;
     perData2.nameAlwaysKnown = true;

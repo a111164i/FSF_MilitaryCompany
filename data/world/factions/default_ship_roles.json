@@ -51,8 +51,8 @@
   "combatFreighterSmall": {
   },
   "combatFreighterMedium": {
-    "aEP_YouJiYan_Def": 5,
-    "aEP_YouJiYan_mk2_Def": 3,
+    "aEP_des_youjiyan_Def": 5,
+    "aEP_des_youjiyan_mk2_Def": 3,
   },
   "combatFreighterLarge": {
     "aEP_decomposer_Standard": 5,
@@ -64,8 +64,8 @@
   "carrierSmall": {
   },
   "carrierMedium": {
-    "aEP_ShenCeng_Standard": 5,
-    "aEP_ShenCeng_Strike": 5,
+    "aEP_des_shendu_Standard": 5,
+    "aEP_des_shendu_Strike": 5,
   },
   "carrierLarge": {
     "aEP_ShanHu_Standard":4,
@@ -93,7 +93,7 @@
     "fallback2":{"freighterLarge":0.25},
   },
   "freighterMedium": {
-    "aEP_YouJiYan_Standard": 10,
+    "aEP_des_youjiyan_Standard": 10,
     "fallback":{"freighterSmall":1},
     "fallback2":{"freighterLarge":0.5},
   },
@@ -107,7 +107,7 @@
     "fallback2":{"tankerLarge":0.25},
   },
   "tankerMedium": {
-    "aEP_YouJiYan_mk2_Standard": 10,
+    "aEP_des_youjiyan_mk2_Standard": 10,
     "fallback":{"tankerSmall":1},
     "fallback2":{"tankerLarge":0.5},
   },

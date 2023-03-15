@@ -3,11 +3,11 @@
     "fluxCapacitors": 0,
     "fluxVents": 3,
     "goalVariant": true,
-    "hullId": "aEP_YouJiYan",
+    "hullId": "aEP_des_youjiyan",
     "hullMods": ["heavyarmor"],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_YouJiYan_Def",
+    "variantId": "aEP_des_youjiyan_Def",
     "weaponGroups": [
         {
             "autofire": false,

@@ -43,6 +43,8 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   String ruleId;
   java.util.Map<java.lang.String, MemoryAPI> memoryMap;
 
+  public static final String MISSILE_CARRIER_SPEC_ID = "aEP_des_shendu_mk2";
+
   /**
    * @param params commodityId, check threshold, moreOrLess.
    */
@@ -464,7 +466,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   boolean shouldGive3() {
     CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
     for (FleetMemberAPI member : fleet.getFleetData().getMembersListWithFightersCopy()) {
-      if (member.getHullSpec().getHullId().contains("aEP_ShenCeng_mk2")) {
+      if (member.getHullSpec().getHullId().contains(MISSILE_CARRIER_SPEC_ID)) {
         return true;
       }
     }
@@ -477,7 +479,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
 
     //找到特殊的任务舰，替换成一艘瀑布级
     for (FleetMemberAPI member : fleet.getFleetData().getMembersListWithFightersCopy()) {
-      if (member.getHullSpec().getHullId().contains("aEP_ShenCeng_mk2")) {
+      if (member.getHullSpec().getHullId().contains(MISSILE_CARRIER_SPEC_ID)) {
         toReplace = member;
         break;
       }

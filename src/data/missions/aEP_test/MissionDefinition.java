@@ -59,10 +59,10 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //驱逐
     api.addToFleet(FleetSide.PLAYER, "aEP_des_lianliu_Standard", FleetMemberType.SHIP, "FSF ship 12", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_cengliu_Standard", FleetMemberType.SHIP, "FSF ship 12", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_YangJi_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_YouJiYan_Def", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_YouJiYan_mk2_Def", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShenCeng_Standard", FleetMemberType.SHIP, "FSF ship 15", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_yangji_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_youjiyan_Def", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_youjiyan_mk2_Def", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_Standard", FleetMemberType.SHIP, "FSF ship 15", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_yonglang_mk2_Standard", FleetMemberType.SHIP, "FSF ship 01", false);
 
 
@@ -75,7 +75,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     //特殊
     api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship 01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShenCeng_mk2_Standard", FleetMemberType.SHIP, "FSF ship 01", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_mk2_Standard", FleetMemberType.SHIP, "FSF ship 01", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_LengShe_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
 

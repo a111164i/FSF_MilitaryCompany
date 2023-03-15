@@ -3,11 +3,11 @@
     "fluxCapacitors": 5,
     "fluxVents": 3,
     "goalVariant": true,
-    "hullId": "aEP_ShenCeng_mk2",
+    "hullId": "aEP_des_shendu_mk2",
     "hullMods": ["reinforcedhull"],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_ShenCeng_mk2_Standard",
+    "variantId": "aEP_des_shendu_mk2_Standard",
     "weaponGroups": [{
         "autofire": true,
         "mode": "LINKED",

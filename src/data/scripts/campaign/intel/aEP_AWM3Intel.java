@@ -35,6 +35,7 @@ import java.awt.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static com.fs.starfarer.api.impl.campaign.rulecmd.aEP_AdvanceWeaponMission.MISSILE_CARRIER_SPEC_ID;
 import static combat.util.aEP_DataTool.txt;
 import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S1_ITEM_ID;
 
@@ -216,7 +217,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     }
 
     //添加特殊舰作为旗舰
-    FleetMemberAPI flagship = targetFleet.getFleetData().addFleetMember("aEP_ShenCeng_mk2_Standard");
+    FleetMemberAPI flagship = targetFleet.getFleetData().addFleetMember(MISSILE_CARRIER_SPEC_ID +"_Standard");
     flagship.getVariant().addPermaMod("reinforcedhull", true);
     flagship.setId(shipName);
     targetFleet.getFleetData().setFlagship(flagship);
@@ -297,8 +298,8 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     if (isGone && didGenShip == 0) {
 
       //创造一个的残骸实体，并绑上打捞参数
-      DerelictShipEntityPlugin.DerelictShipData params = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData("aEP_ShenCeng_mk2_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
-      params.ship.shipName = "Shenceng Prototype";
+      DerelictShipEntityPlugin.DerelictShipData params = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData(MISSILE_CARRIER_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
+      params.ship.shipName = "Prototype";
       params.ship.nameAlwaysKnown = true;
       params.durationDays = 999999999f;
       params.ship.addDmods = true;
@@ -311,9 +312,9 @@ public class aEP_AWM3Intel extends aEP_BaseMission
 
       //创造一份特殊舰船打捞数据
       ShipRecoverySpecial.ShipRecoverySpecialData params2 = new ShipRecoverySpecial.ShipRecoverySpecialData("Prototype");
-      ShipRecoverySpecial.PerShipData data = new ShipRecoverySpecial.PerShipData("aEP_ShenCeng_mk2_Standard", ShipRecoverySpecial.ShipCondition.AVERAGE);
+      ShipRecoverySpecial.PerShipData data = new ShipRecoverySpecial.PerShipData(MISSILE_CARRIER_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.AVERAGE);
       data.addDmods = true;
-      data.shipName = "Shenceng Prototype";
+      data.shipName = "Prototype";
       data.condition = ShipRecoverySpecial.ShipCondition.AVERAGE;
       data.nameAlwaysKnown = true;
       params2.addShip(data);
@@ -464,7 +465,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     @Override
     public boolean isDone() {
       for (FleetMemberAPI member : token.getMembersWithFightersCopy()) {
-        if (member.getVariant().getHullSpec().getHullId().contains("aEP_ShenCeng_mk2")) {
+        if (member.getVariant().getHullSpec().getHullId().contains(MISSILE_CARRIER_SPEC_ID)) {
           return false;
         }
       }
