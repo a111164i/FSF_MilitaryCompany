@@ -1,0 +1,21 @@
+{
+	"id":"aEP_cru_pubu_main_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"collisionClass":"RAY_FIGHTER",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":120.0,
+	"width":40,
+	"fadeTime":0.05,
+	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"fringeColor":[250,200,200,15],
+	"coreColor":[250,250,250,15],
+	"glowColor":[255,200,200,15],
+	"glowRadius":50,
+	"hitGlowRadius":80,	
+	#"textureType":"SMOOTH",  # only needed for BEAM spawnType
+	"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+	"textureScrollSpeed":-256.0,
+	"pixelsPerTexel":0.25
+}

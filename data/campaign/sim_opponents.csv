@@ -6,11 +6,11 @@ aEP_NeiBo_Standard
 aEP_BiaoBing_Standard
 aEP_decomposer_Standard
 #cruise
-aEP_ShanHu_Standard
-aEP_PuBu_Standard
-aEP_HaiLiang_Defense
-aEP_ZhongLiu_Standard
-aEP_ReQuan_Standard
+aEP_cru_shanhu_Standard
+aEP_cru_pubu_Standard
+aEP_cru_hailiang_Defense
+aEP_cru_zhongliu_Standard
+aEP_cru_requan_Standard
 #destroyer
 aEP_des_cengliu_Elite
 aEP_des_lianliu_Elite

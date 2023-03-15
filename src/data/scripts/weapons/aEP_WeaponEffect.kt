@@ -1789,7 +1789,7 @@ class aEP_chaingun_shotAP : Effect(){
 }
 
 //深度遥控战机磁吸炸弹
-class aEP_shenceng_drone_mine : Effect(){
+class aEP_ftr_ut_shendu_mine_shot : Effect(){
   companion object{
     const val MAGNETIC_ATTRACTION_RANGE = 600f
     const val MAGNETIC_ATTRACTION_ACCELERATION = 1000f
@@ -1838,7 +1838,7 @@ class aEP_shenceng_drone_mine : Effect(){
 }
 
 //crossout铲车头，长矛，喷火
-class aEP_FCL_mk2_cover : EveryFrame(){
+class aEP_fga_yonglang_mk2_cover : EveryFrame(){
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
     weapon.ship?:return
     for(m in weapon.ship.childModulesCopy){
@@ -1938,7 +1938,7 @@ class aEP_flamer_shot : Effect(){
 }
 
 //平定主炮
-class aEP_pingding_main :EveryFrame(){
+class aEP_cru_pingding_main :EveryFrame(){
   val frontL1 = Global.getSettings().getSprite("weapons","aEP_PD_b")
   val frontL2 = Global.getSettings().getSprite("weapons","aEP_PD_f")
   val frontR1 = Global.getSettings().getSprite("weapons","aEP_PD_b")
@@ -1948,7 +1948,7 @@ class aEP_pingding_main :EveryFrame(){
   val backR1 = Global.getSettings().getSprite("weapons","aEP_PD_b")
   val backR2 = Global.getSettings().getSprite("weapons","aEP_PD_f")
   val br = Global.getSettings().getSprite("weapons","aEP_PD_br")
-  val id = "aEP_pingding_main"
+  val id = "aEP_cru_pingding_main"
 
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
     val useLevel = MathUtils.clamp(weapon.chargeLevel * 2f,0f,1f)
@@ -2071,7 +2071,7 @@ class aEP_pingding_main :EveryFrame(){
     }
   }
 }
-class aEP_pingding_main_shot : Effect(){
+class aEP_cru_pingding_main_shot : Effect(){
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     val color = Color(240, 240, 240, 255)
@@ -2467,7 +2467,7 @@ class aEP_pingding_main_shot : Effect(){
 }
 
 //防空弹幕分裂
-class aEP_yangji_flak_shot : Effect() {
+class aEP_des_yangji_flak_shot : Effect() {
 
   var num = 1
   var speedVariant = 20

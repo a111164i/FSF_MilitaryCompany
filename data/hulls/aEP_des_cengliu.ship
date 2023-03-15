@@ -16,11 +16,11 @@
     "targetingunit"
   ],
   "builtInWeapons": {
-    "WS0007": "aEP_cengliu_cover",
+    "WS0007": "aEP_des_cengliu_cover",
     "WS0008": "aEP_marker",
     "WS0009": "aEP_marker",
-    "WS0015": "aEP_cengliu_cover_R",
-    "WS0016": "aEP_cengliu_cover_L"
+    "WS0015": "aEP_des_cengliu_cover_r",
+    "WS0016": "aEP_des_cengliu_cover_l"
   },
   "weaponSlots": [
     {

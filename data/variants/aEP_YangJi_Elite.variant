@@ -18,22 +18,7 @@
             "mode": "LINKED",
             "weapons": {"WS0002": "aEP_EMP_pike"}
         },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "SIDEL04": "aEP_yangzhongji_gun",
-                "SIDER04": "aEP_yangzhongji_gun"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "SIDEL01": "aEP_yangzhongji_gun",
-                "SIDER01": "aEP_yangzhongji_gun"
-            }
-        },
+
         {
             "autofire": true,
             "mode": "LINKED",

@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_shenceng_drone",
-  "hullId": "aEP_shenceng_drone",
+  "variantId": "aEP_ftr_ut_shendu",
+  "hullId": "aEP_ftr_ut_shendu",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,
@@ -20,15 +20,15 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_shenceng_drone_mine",
-        "WS0002": "aEP_shenceng_drone_mine"
+        "WS0001": "aEP_ftr_ut_shendu_mine",
+        "WS0002": "aEP_ftr_ut_shendu_mine"
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0003": "aEP_shenceng_drone_beam"
+        "WS0003": "aEP_ftr_ut_shendu_beam"
       }
     }
   ],

@@ -57,15 +57,15 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
       FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.66f
       FLUX_DECREASE_PERCENT["aEP_des_cengliu"] = 0.5f
-      FLUX_DECREASE_PERCENT["aEP_ZhongLiu"] = 0.33f
+      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.33f
 
       FLUX_RETURN_SPEED["aEP_fga_xiliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_des_cengliu"] = 0.8f
-      FLUX_RETURN_SPEED["aEP_ZhongLiu"] = 0.8f
+      FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.8f
 
       WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 200f
       WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 200f
-      WEAPON_ROF_PERCENT_BONUS["aEP_ZhongLiu"] = 200f
+      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 200f
     }
   }
 

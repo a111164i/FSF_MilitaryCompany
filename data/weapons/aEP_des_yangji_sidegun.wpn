@@ -1,0 +1,45 @@
+{
+  "id": "aEP_des_yangji_sidegun",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_des_yangji_sidegun_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_yangji/gun.png",
+  "turretGunSprite": "graphics/weapons/aEP_yangji/barrel.png",
+  "hardpointSprite": "",
+  "hardpointGunSprite": "",
+  "visualRecoil": 12,
+  "renderHints":[RENDER_BARREL_BELOW],
+  "turretOffsets": [
+    17.5,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "MUZZLE_FLASH",
+  "autocharge": true,
+  "muzzleFlashSpec": {
+    "length": 20,
+    "spread": 10,
+    "particleSizeMin": 15,
+    "particleSizeRange": 10,
+    "particleDuration": 0.5,
+    "particleCount": 20,
+    "particleColor": [
+      255,
+      165,
+      90,
+      250
+    ]
+  },
+  "fireSoundTwo":"autocannon_fire",
+}

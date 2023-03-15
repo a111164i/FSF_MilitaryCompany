@@ -3,11 +3,11 @@
     "fluxCapacitors": 7,
     "fluxVents": 8,
     "goalVariant": true,
-    "hullId": "aEP_ShanHu",
+    "hullId": "aEP_cru_shanhu",
     "hullMods": [],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_ShanHu_Standard",
+    "variantId": "aEP_cru_shanhu_Standard",
     "weaponGroups": [
         {
             "autofire": false,

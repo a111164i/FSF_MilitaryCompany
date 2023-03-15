@@ -43,8 +43,8 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //在这加自己的船，用装配文件的ID，后面是船名，true和false是“是否是旗舰”的设定
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
-    api.addToFleet(FleetSide.PLAYER, "aEP_HaiLiang_Standard", FleetMemberType.SHIP, "Lamdor Defender", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ZhongLiu_Standard", FleetMemberType.SHIP, "Ship Shredder", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP, "Lamdor Defender", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_zhongliu_Standard", FleetMemberType.SHIP, "Ship Shredder", true);
 
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配
@@ -132,7 +132,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
           //移除海量的系统使用次数
           for (ShipAPI s : Global.getCombatEngine().getShips()) {
-            if (s.getHullSpec().getHullId().equals("aEP_HaiLiang")) {
+            if (s.getHullSpec().getHullId().equals("aEP_cru_hailiang")) {
               s.getSystem().setAmmo(0);
             }
           }

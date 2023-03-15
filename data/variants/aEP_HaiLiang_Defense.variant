@@ -3,19 +3,19 @@
     "fluxCapacitors": 0,
     "fluxVents": 9,
     "goalVariant": true,
-    "hullId": "aEP_HaiLiang",
+    "hullId": "aEP_cru_hailiang",
     "hullMods": [
         "heavyarmor",
         "hardenedshieldemitter"
     ],
     "modules": [
-        {"MD01": "aEP_HaiLiang3_Defense"},
-        {"MD03": "aEP_HaiLiang4_Standard"},
-        {"MD02": "aEP_HaiLiang4_Standard"}
+        {"MD01": "aEP_cru_hailiang3_Defense"},
+        {"MD03": "aEP_cru_hailiang4_Standard"},
+        {"MD02": "aEP_cru_hailiang4_Standard"}
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_HaiLiang_Defense",
+    "variantId": "aEP_cru_hailiang_Defense",
     "weaponGroups": [
         {
             "autofire": true,

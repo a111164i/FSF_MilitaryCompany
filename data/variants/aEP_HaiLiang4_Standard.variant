@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_HaiLiang4_Standard",
-  "hullId": "aEP_HaiLiang4",
+  "variantId": "aEP_cru_hailiang4_Standard",
+  "hullId": "aEP_cru_hailiang4",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,

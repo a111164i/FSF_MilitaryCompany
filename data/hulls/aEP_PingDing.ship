@@ -1,6 +1,6 @@
 {
-  "hullName": "PingDing",
-  "hullId": "aEP_PingDing",
+  "hullName": "",
+  "hullId": "aEP_cru_pingding",
   "hullSize": "CRUISER",
   "spriteName": "graphics/ships/aEP_pingding.png",
   "style": "aEP_FSF",
@@ -16,7 +16,7 @@
     "ground_support"
   ],
   "builtInWeapons": {
-    "MAIN": "aEP_pingding_main",
+    "MAIN": "aEP_cru_pingding_main",
     "WS0001": "aEP_marker",
     "WS0005": "aEP_thruster",
     "WS0009": "aEP_thruster",

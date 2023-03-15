@@ -1,0 +1,81 @@
+{
+  "id": "aEP_cru_requan_missile",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_cru_requan_missile_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_requan/weapon.png",
+  "hardpointSprite": "graphics/weapons/aEP_requan/weapon.png",
+  "turretOffsets": [
+    2.5,
+    15,
+    2.5,
+    10,
+    2.5,
+    5,
+    2.5,
+    0,
+    2.5,
+    -5,
+    2.5,
+    -10,
+    2.5,
+    -15
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    4,
+    15,
+    4,
+    10,
+    4,
+    5,
+    4,
+    0,
+    4,
+    -5,
+    4,
+    -10,
+    4,
+    -15
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 16,
+    "cloudParticleCount": 4,
+    "cloudDuration": 1,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 1,
+    "blowbackDuration": 2,
+    "blowbackLength": 30,
+    "blowbackSpread": 10,
+    "particleColor": [
+      100,
+      100,
+      100,
+      80
+    ]
+  },
+  "fireSoundTwo": "harpoon_fire"
+}

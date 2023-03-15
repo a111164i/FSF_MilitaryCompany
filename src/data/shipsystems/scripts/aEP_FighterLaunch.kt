@@ -433,7 +433,7 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
 
       //生成proj
       proj = Global.getCombatEngine().spawnProjectile(
-        ship, null,"aEP_pubu_shot",
+        ship, null,"aEP_cru_pubu_main",
         findLaunchPoint(ship),ship.facing,null) as DamagingProjectileAPI
 
       fighter.mutableStats.maxSpeed.modifyFlat(id, max_speed_flat_bonus)

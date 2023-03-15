@@ -22,7 +22,7 @@ import java.sql.RowIdLifetime
 class aEP_AntiPhaseDrone : BaseShipSystemScript() {
 
   companion object{
-    const val WING_SPEC_ID = "aEP_shenceng_drone_wing"
+    const val WING_SPEC_ID = "aEP_ftr_ut_shendu_wing"
 
     const val FIGHTER_LIFETIME = 24f
     const val MAX_DISTANCE = 1600f

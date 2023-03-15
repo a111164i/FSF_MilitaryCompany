@@ -138,7 +138,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_ZhongLiu_Broadside");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Broadside");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -152,7 +152,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_ZhongLiu_Broadside");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Broadside");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -166,7 +166,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_ZhongLiu_Standard");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Standard");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -180,7 +180,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_PuBu_Standard");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_pubu_Standard");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -191,7 +191,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_ShanHu_Standard");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_shanhu_Standard");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -203,7 +203,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_ShanHu_Attack");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_shanhu_Attack");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);

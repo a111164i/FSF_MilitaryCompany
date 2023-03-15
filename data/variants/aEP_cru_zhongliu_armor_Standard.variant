@@ -1,0 +1,14 @@
+{
+  "variantId": "aEP_cru_zhongliu_armor_Standard",
+  "hullId": "aEP_cru_zhongliu_armor",
+  "displayName": "Armor",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [],
+  "wings": []
+}

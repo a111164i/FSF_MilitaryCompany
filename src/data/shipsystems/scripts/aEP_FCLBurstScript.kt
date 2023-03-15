@@ -41,6 +41,9 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
     const val MAX_SPEED_PERCENT_BONUS = 120f
     const val ACC_MULT_PUNISH = 0.5f
     const val ON_FIRE_SPEED_MULT_PUNISH = 0.25f
+
+    const val WEAPON_ID = "aEP_fga_yonglang_main"
+    const val WEAPON_GLOW_ID = "aEP_fga_yonglang_glow"
   }
 
   var smokeTimer = IntervalUtil(0.05f, 0.05f)
@@ -55,13 +58,13 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
     for (weapon in ship.allWeapons) {
       if (!weapon.slot.id.contains("FCL_DECO")) continue
       val toSpawn = getExtendedLocationFromPoint(weapon.location, weapon.currAngle, 24f)
-      if (weapon.spec.weaponId == "aEP_FCL") {
+      if (weapon.spec.weaponId == WEAPON_ID) {
         if (ship.system.effectLevel >= 1f) {
           //将开火武器数量＋1
           weaponNum += 1
           val pro = engine.spawnProjectile(
             ship, weapon,
-            "aEP_FCL",
+            WEAPON_ID,
             toSpawn,
             weapon.currAngle,
             ship!!.velocity
@@ -88,7 +91,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
       val anima = weapon.effectPlugin as aEP_DecoAnimation
       //glow to 1 at instant when fire
       if (weaponNum > 0) {
-        if (weapon.spec.weaponId == "aEP_FCL_glow") anima.setGlowEffectiveLevel(1f)
+        if (weapon.spec.weaponId == WEAPON_GLOW_ID) anima.setGlowEffectiveLevel(1f)
       }
       //move forward when charging up
       if (state == ShipSystemStatsScript.State.IN) {
@@ -100,7 +103,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
 
           //热炮管拖烟
           smokeTimer.advance(amount)
-          if (smokeTimer.intervalElapsed() && weapon.spec.weaponId == "aEP_FCL") {
+          if (smokeTimer.intervalElapsed() && weapon.spec.weaponId == WEAPON_ID) {
             Global.getCombatEngine().addNebulaParticle(toSpawn, Vector2f(0f,0f),
               40f,2f,
               0.1f,0.4f,2f,
@@ -111,11 +114,11 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
           stats.maxSpeed.modifyPercent(id, MAX_SPEED_PERCENT_BONUS)
           stats.acceleration.modifyMult(id, ACC_MULT_PUNISH)
           //调整发光贴图
-          if (weapon.spec.weaponId == "aEP_FCL_glow") anima.setGlowToLevel((effectLevel - 0.5f) * 2f)
+          if (weapon.spec.weaponId == WEAPON_GLOW_ID) anima.setGlowToLevel((effectLevel - 0.5f) * 2f)
 
         } else {
           anima.setMoveToLevel(0f)
-          if (weapon.spec.weaponId == "aEP_FCL_glow") anima.setGlowToLevel(0f)
+          if (weapon.spec.weaponId == WEAPON_GLOW_ID) anima.setGlowToLevel(0f)
         }
       }
     }

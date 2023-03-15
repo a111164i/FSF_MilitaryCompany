@@ -1,0 +1,55 @@
+{
+  "id": "aEP_ftr_ut_shendu_beam",
+  "specClass": "beam",
+  "type": "ENERGY",
+  "size": "SMALL",
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "turretSprite": "",
+  "hardpointSprite": "",
+  "barrelMode":"ALTERNATING",
+  "glowColor": [
+    100,
+    100,
+    250,
+    250
+  ],
+  "hitGlowRadius": 75,
+  "turretOffsets": [
+   8,16,
+   -8,16
+  ],
+  "turretAngleOffsets": [
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    16,8,
+    16,-8,
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0
+  ],
+  "fringeColor": [
+    250,
+    150,
+    223,
+    220
+  ],
+  "coreColor": [
+    240,
+    210,
+    175,
+    255
+  ],
+  "width": 10,
+  "textureType":["graphics/weapons/aEP_kinetic_beam/kinetic_beam_fringe.png","graphics/weapons/aEP_kinetic_beam/kinetic_beam_core.png"],#fringe, core
+  "textureScrollSpeed": 278,
+  "pixelsPerTexel": 3,
+  "pierceSet": [
+
+  ],
+  "fireSoundOne": "laser_intro",
+  "fireSoundTwo": "pd_laser_loop"
+}

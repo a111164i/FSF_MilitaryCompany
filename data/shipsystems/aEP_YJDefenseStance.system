@@ -6,7 +6,7 @@
 	#"statsScript":"data.shipsystems.scripts.aEP_YJDefenseStance",
 
 	
-	"weaponDataId":"aEP_yangji_flak",
+	"weaponDataId":"aEP_des_yangji_flak",
 	"outOfUsesSound":"gun_out_of_ammo",
 
 }

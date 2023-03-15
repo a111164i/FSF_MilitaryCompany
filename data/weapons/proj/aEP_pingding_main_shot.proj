@@ -1,5 +1,5 @@
 {
-	"id":"aEP_pingding_main_shot",
+	"id":"aEP_cru_pingding_main_shot",
 	"specClass":"missile",
 	"missileType":"ROCKET",
     "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",

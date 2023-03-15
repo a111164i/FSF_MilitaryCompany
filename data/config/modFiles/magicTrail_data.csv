@@ -38,5 +38,5 @@ aEP_ftr_ftr_hvfighter_gun_trail,aEP_ftr_ftr_hvfighter_gun_shot,base_trail_fuzzy,
 aEP_ftr_sup_tank_main_trail,aEP_ftr_sup_tank_main_shot,base_trail_mild,20,0.1,0.7,0.5,4,6,"[182,122,71]","[176,176,172]",0.35,256,-256,0,0,0,0,0,true,true,false,90,0,0,0,16,0,true,true
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #瀑布战机弹射,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-aEP_pubu_shot_trail,aEP_pubu_shot,aEP_trail_smooth_with_bright_core,12,0.1,0.1,0.3,80,40,"[255,150,150]","[255,255,255]",0.1,128,64,TRUE,0,0,0,0,true,false,false,64,64,0,0,0,0,true,true
-aEP_pubu_shot_trail2,aEP_pubu_shot,aEP_trail_smooth_with_bright_core,12,0,0.1,0,80,160,"[255,120,120]","[255,255,255]",0.4,128,64,TRUE,0,0,0,0,true,false,false,64,64,0,0,0,0,true,true
+aEP_cru_pubu_main_trail,aEP_cru_pubu_main_shot,aEP_trail_smooth_with_bright_core,12,0.1,0.1,0.3,80,40,"[255,150,150]","[255,255,255]",0.1,128,64,TRUE,0,0,0,0,true,false,false,64,64,0,0,0,0,true,true
+aEP_cru_pubu_main_trail2,aEP_cru_pubu_main_shot,aEP_trail_smooth_with_bright_core,12,0,0.1,0,80,160,"[255,120,120]","[255,255,255]",0.4,128,64,TRUE,0,0,0,0,true,false,false,64,64,0,0,0,0,true,true

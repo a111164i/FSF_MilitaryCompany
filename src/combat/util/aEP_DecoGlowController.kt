@@ -16,13 +16,13 @@ class aEP_DecoGlowController(var weapon: WeaponAPI) {
     init {
       //jitter range, speed, 第四位0代表初始亮度为0
       //在这速度是正的，越大变化越快
-      mag["aEP_FCL_glow"] = GlowData(2f, 2f, Color(250, 250, 250, 250), 0f)
+      mag["aEP_fga_yonglang_glow"] = GlowData(2f, 2f, Color(250, 250, 250, 250), 0f)
       mag["aEP_duiliu_limiter_glow"] = GlowData(4f, 0.5f, Color(250, 250, 250, 250), 0f)
       mag["aEP_duiliu_main_glow"] = GlowData(2f, 1f, Color(250, 250, 250, 250), 0f)
       //把发光贴图不做白是因为jitter时使用的是武器原色
       mag["aEP_ftr_ut_maodian_glow"] = GlowData(2f, 4f, Color(250, 20, 250, 250), 0f)
-      mag["aEP_pubu_pod"] = GlowData(0f, 0f, Color(255, 255, 255, 255), 1f)
-      mag["aEP_pubu_glow"] = GlowData(1f, 4f, Color(255, 255, 255, 255), 0f)
+      mag["aEP_cru_pubu_pod"] = GlowData(0f, 0f, Color(255, 255, 255, 255), 1f)
+      mag["aEP_cru_pubu_glow"] = GlowData(1f, 4f, Color(255, 255, 255, 255), 0f)
     }
   }
 

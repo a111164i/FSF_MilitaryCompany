@@ -15,13 +15,13 @@
     "aEP_MarkerDissipation"
   ],
   "builtInWeapons": {
-    "FCL_DECO01": "aEP_FCL_scaffold",
-    "FCL_DECO02": "aEP_FCL_glow",
-    "FCL_DECO03": "aEP_FCL",
-    "FCL_DECO04": "aEP_FCL_scaffold",
-    "FCL_DECO05": "aEP_FCL_glow",
-    "FCL_DECO06": "aEP_FCL",
-    "FCL_DECO07": "aEP_FCL_cover",
+    "FCL_DECO01": "aEP_fga_yonglang_scaffold",
+    "FCL_DECO02": "aEP_fga_yonglang_glow",
+    "FCL_DECO03": "aEP_fga_yonglang_main",
+    "FCL_DECO04": "aEP_fga_yonglang_scaffold",
+    "FCL_DECO05": "aEP_fga_yonglang_glow",
+    "FCL_DECO06": "aEP_fga_yonglang_main",
+    "FCL_DECO07": "aEP_fga_yonglang_cover",
     "WS0008": "aEP_marker"
   },
   "weaponSlots": [

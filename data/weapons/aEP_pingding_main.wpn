@@ -1,7 +1,7 @@
 {
-  "id": "aEP_pingding_main",
+  "id": "aEP_cru_pingding_main",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_pingding_main_shot",
+  "projectileSpecId": "aEP_cru_pingding_main_shot",
   "type": "BALLISTIC",
   #"type": "BUILT_IN",
   "size": "LARGE",

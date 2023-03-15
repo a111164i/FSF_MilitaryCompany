@@ -30,8 +30,8 @@ public class aEP_PickReward extends BaseCommandPlugin
     ship_bp.put("aEP_DuiLiu", 200f);
     ship_bp.put("aEP_NeiBo", 240f);
 
-    ship_bp.put("aEP_ShanHu", 200f);
-    ship_bp.put("aEP_ReQuan", 180f);
+    ship_bp.put("aEP_cru_shanhu", 200f);
+    ship_bp.put("aEP_cru_requan", 180f);
 
     ship_bp.put("aEP_des_cengliu", 120f);
 

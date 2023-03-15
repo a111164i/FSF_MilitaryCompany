@@ -3,14 +3,14 @@
     "fluxCapacitors": 0,
     "fluxVents": 15,
     "goalVariant": true,
-    "hullId": "aEP_HaiLiang3",
+    "hullId": "aEP_cru_hailiang3",
     "hullMods": [
         "aEP_SoftfluxDissipate",
         "aEP_HotLoader"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_HaiLiang3_Defense",
+    "variantId": "aEP_cru_hailiang3_Defense",
     "weaponGroups": [
         {
             "autofire": true,

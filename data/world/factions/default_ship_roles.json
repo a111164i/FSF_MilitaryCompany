@@ -24,15 +24,15 @@
     "aEP_des_yangji_Standard":10
   },
   "combatLarge": {
-    "aEP_HaiLiang_Standard": 4,
-    "aEP_HaiLiang_Defense": 6,
-    "aEP_ZhongLiu_Standard": 3,
-    "aEP_ZhongLiu_Assault": 3,
-    "aEP_ZhongLiu_Broadside": 3,
-    "aEP_ReQuan_Standard": 7,
-    "aEP_ReQuan_Assault": 3,
-    "aEP_PingDing_Standard": 5,
-    "aEP_PingDing_Elite": 5,
+    "aEP_cru_hailiang_Standard": 4,
+    "aEP_cru_hailiang_Defense": 6,
+    "aEP_cru_zhongliu_Standard": 3,
+    "aEP_cru_zhongliu_Assault": 3,
+    "aEP_cru_zhongliu_Broadside": 3,
+    "aEP_cru_requan_Standard": 7,
+    "aEP_cru_requan_Assault": 3,
+    "aEP_cru_pingding_Standard": 5,
+    "aEP_cru_pingding_Elite": 5,
   },
   "combatCapital": {
     "aEP_BiaoBing_Standard": 2,
@@ -68,12 +68,12 @@
     "aEP_des_shendu_Strike": 5,
   },
   "carrierLarge": {
-    "aEP_ShanHu_Standard":4,
-    "aEP_ShanHu_Attack":3,
-    "aEP_ShanHu_Siege":3,
+    "aEP_cru_shanhu_Standard":4,
+    "aEP_cru_shanhu_Attack":3,
+    "aEP_cru_shanhu_Siege":3,
     "aEP_decomposer_Standard": 10,
-    "aEP_PuBu_Elite": 4,
-    "aEP_PuBu_Standard": 6,
+    "aEP_cru_pubu_Elite": 4,
+    "aEP_cru_pubu_Standard": 6,
   },
   # phase ships
   "phaseSmall": {

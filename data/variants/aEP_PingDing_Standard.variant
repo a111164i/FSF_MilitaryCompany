@@ -3,7 +3,7 @@
     "fluxCapacitors": 6,
     "fluxVents": 30,
     "goalVariant": true,
-    "hullId": "aEP_PingDing",
+    "hullId": "aEP_cru_pingding",
     "hullMods": [
         "targetingunit",
         "solar_shielding",
@@ -11,12 +11,12 @@
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_PingDing_Standard",
+    "variantId": "aEP_cru_pingding_Standard",
     "weaponGroups": [
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"MAIN": "aEP_pingding_main"}
+            "weapons": {"MAIN": "aEP_cru_pingding_main"}
         },
         {
             "autofire": true,

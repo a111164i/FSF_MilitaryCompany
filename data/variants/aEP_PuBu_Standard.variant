@@ -3,14 +3,14 @@
     "fluxCapacitors": 4,
     "fluxVents": 13,
     "goalVariant": true,
-    "hullId": "aEP_PuBu",
+    "hullId": "aEP_cru_pubu",
     "hullMods": [
         "expanded_deck_crew",
         "recovery_shuttles"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_PuBu_Standard",
+    "variantId": "aEP_cru_pubu_Standard",
     "weaponGroups": [
         {
             "autofire": true,

@@ -1,46 +1,48 @@
-package data.shipsystems.scripts;
+package data.shipsystems.scripts
 
-import com.fs.starfarer.api.combat.MutableShipStatsAPI;
-import com.fs.starfarer.api.combat.ShipAPI;
-import com.fs.starfarer.api.combat.WeaponAPI;
-import com.fs.starfarer.api.impl.combat.BaseShipSystemScript;
-import combat.plugin.aEP_CombatEffectPlugin;
-import combat.util.aEP_Tool;
+import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
+import combat.util.aEP_Tool.Util.isNormalWeaponType
+import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
+import com.fs.starfarer.api.combat.MutableShipStatsAPI
+import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import com.fs.starfarer.api.combat.ShipAPI
+import combat.plugin.aEP_CombatEffectPlugin
+import data.shipsystems.scripts.aEP_NCReloadScript.RefresherOrb
+import com.fs.starfarer.api.combat.WeaponAPI
+import combat.util.aEP_Tool
+import data.shipsystems.scripts.aEP_RequanReload
 
-public class aEP_RequanReload extends BaseShipSystemScript
-{
-  boolean didVisual = false;
-  private static final float COOLDOWN_REDUCE = 5f;
-
-  @Override
-  public void apply(MutableShipStatsAPI stats, String id, State state, float effectLevel) {
-    ShipAPI ship = (ShipAPI) stats.getEntity();
-    if (ship == null) return;
+class aEP_RequanReload : BaseShipSystemScript() {
+  var didVisual = false
+  override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
+    val ship = stats.entity as ShipAPI ?: return
 
     //使用的一瞬间启用特效
-    if(!didVisual){
-      aEP_CombatEffectPlugin.Mod.addEffect(new aEP_NCReloadScript.RefresherOrb(ship));
-      didVisual = true;
+    if (!didVisual) {
+      addEffect(RefresherOrb(ship))
+      didVisual = true
     }
 
     //effectLevel == 1f 时运行一次
-    if (effectLevel < 1f) return;
-    for (WeaponAPI w : ship.getAllWeapons()) {
+    if (effectLevel < 1f) return
+    for (w in ship.allWeapons) {
       //少量减少内置导弹cd
-      if (w.getSlot().getWeaponType() != WeaponAPI.WeaponType.BUILT_IN) {
-        if(aEP_Tool.Util.isNormalWeaponType(w,true) && w.getSpec().getType() == WeaponAPI.WeaponType.MISSILE){
-          w.setRemainingCooldownTo(w.getCooldownRemaining()-Math.min(COOLDOWN_REDUCE, w.getCooldownRemaining()));
+      if (w.slot.weaponType != WeaponAPI.WeaponType.BUILT_IN) {
+        if (isNormalWeaponType(w, true) && w.spec.type == WeaponAPI.WeaponType.MISSILE) {
+          w.setRemainingCooldownTo(w.cooldownRemaining - Math.min(COOLDOWN_REDUCE, w.cooldownRemaining))
         }
-      }else { //回复系统导弹
-        w.beginSelectionFlash();
-        w.getAmmoTracker().setAmmo(Math.min(w.getAmmo() + w.getSpec().getBurstSize(), w.getMaxAmmo()));
+      } else { //回复系统导弹
+        w.beginSelectionFlash()
+        w.ammoTracker.ammo = Math.min(w.ammo + w.spec.burstSize, w.maxAmmo)
       }
     }
-
   }
 
-  @Override
-  public void unapply(MutableShipStatsAPI stats, String id) {
-    didVisual = false;
+  override fun unapply(stats: MutableShipStatsAPI, id: String) {
+    didVisual = false
+  }
+
+  companion object {
+    private const val COOLDOWN_REDUCE = 5f
   }
 }

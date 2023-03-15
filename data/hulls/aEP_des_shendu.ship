@@ -15,11 +15,11 @@
     "aEP_MarkerDissipation"
   ],
   "builtInWeapons": {
-    "ARMOR": "aEP_shenceng_armor",
-    "COVER": "aEP_shenceng_cover",
-    "FIGHTER": "aEP_shenceng_fighter",
-    "HOLD_1": "aEP_shenceng_hold",
-    "HOLD_2": "aEP_shenceng_hold2",
+    "ARMOR": "aEP_des_shendu_armor",
+    "COVER": "aEP_des_shendu_cover",
+    "FIGHTER": "aEP_des_shendu_fighter",
+    "HOLD_1": "aEP_des_shendu_hold",
+    "HOLD_2": "aEP_des_shendu_hold2",
     "TOWER": "aEP_HL_tower",
     "WS0006": "aEP_marker"
   },

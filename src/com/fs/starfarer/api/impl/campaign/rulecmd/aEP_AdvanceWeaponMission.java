@@ -489,7 +489,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
         fleet.getFleetData().removeOfficer(toReplace.getCaptain());
       }
       fleet.getFleetData().removeFleetMember(toReplace);
-      fleet.getFleetData().addFleetMember("aEP_PuBu_Elite");
+      fleet.getFleetData().addFleetMember("aEP_cru_pubu_Elite");
     }
     fleet.forceSync();
 
