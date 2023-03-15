@@ -17,7 +17,7 @@ public class a111164ModPlugin extends BaseModPlugin
 {
   public static final String RepairDrone_ID = "aEP_repairing_drone";
   public static final String DecomposeDrone_ID = "aEP_decompose_drone";
-  public static final String DefenseDrone_ID = "aEP_defense_drone";
+  public static final String DefenseDrone_ID = "aEP_ftr_sup_shield";
   public static final String BB_Radar_ID = "aEP_BB_radar";
   public static final String TearingBeam_ID = "aEP_tearing_beam";
   public static final String TearingBeamFighter_ID = "aEP_tearing_beam_fighter";

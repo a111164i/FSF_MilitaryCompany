@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_defense_drone",
-  "hullId": "aEP_defense_drone",
+  "variantId": "aEP_ftr_sup_shield",
+  "hullId": "aEP_ftr_sup_shield",
   "displayName": "",
   "goalVariant": false,
   "fluxCapacitors": 0,
@@ -13,15 +13,15 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_defense_drone_gun",
-        "WS0002": "aEP_defense_drone_gun",
+        "WS0001": "aEP_ftr_sup_shield_gun",
+        "WS0002": "aEP_ftr_sup_shield_gun",
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0004": "aEP_defense_drone_gun"
+        "WS0004": "aEP_ftr_sup_shield_gun"
       }
     },
     {

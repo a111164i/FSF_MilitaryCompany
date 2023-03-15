@@ -1,5 +1,5 @@
 {
-  "id":"aEP_guardian_drone_cover_r",
+  "id":"aEP_ftr_sup_guardian_cover_r",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",

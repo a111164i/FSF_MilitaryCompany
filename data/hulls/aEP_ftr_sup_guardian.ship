@@ -16,8 +16,8 @@
     "autorepair"
   ],
   "builtInWeapons": {
-    "WING_L": "aEP_guardian_drone_cover_l",
-    "WING_R": "aEP_guardian_drone_cover_r",
+    "WING_L": "aEP_ftr_sup_guardian_cover_l",
+    "WING_R": "aEP_ftr_sup_guardian_cover_r",
   },
   "weaponSlots": [
     {

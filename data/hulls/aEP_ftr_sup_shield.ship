@@ -1,8 +1,8 @@
 {
-  "hullName": "Defense Drone",
-  "hullId": "aEP_defense_drone",
+  "hullName": "",
+  "hullId": "aEP_ftr_sup_shield",
   "hullSize": "FIGHTER",
-  "spriteName": "graphics/ships/aEP_defense_drone.png",
+  "spriteName": "graphics/ships/aEP_fighters/sup_shield.png",
   "style": "aEP_FSF",
   "height": 40,
   "width": 80,
@@ -17,7 +17,7 @@
     "armoredweapons",
   ],
   "builtInWeapons": {
-    "WS0003": "aEP_defense_drone_hatch",
+    "WS0003": "aEP_ftr_sup_shield_hatch",
     "WS0005": "aEP_empty"
   },
   "weaponSlots": [

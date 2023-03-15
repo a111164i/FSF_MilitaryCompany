@@ -18,7 +18,7 @@
   "builtInWings": [
     "aEP_repairing_drone2_wing",
     "aEP_decompose_drone2_wing",
-    "aEP_defense_drone2_wing"
+    "aEP_ftr_sup_shield_wing2"
   ],
   "builtInWeapons": {
     "WS0017": "aEP_marker",

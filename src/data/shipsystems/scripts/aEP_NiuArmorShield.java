@@ -24,7 +24,7 @@ import static java.lang.Math.PI;
 import static java.lang.Math.cbrt;
 import static org.lwjgl.opengl.GL11.*;
 
-public class aEP_ArmorShield extends BaseShipSystemScript
+public class aEP_NiuArmorShield extends BaseShipSystemScript
 {
   static final Color ACTIVE_COLOR = new Color(255, 165, 90, 240);
   static final Color GLOW_COLOR = new Color(200, 200, 200);
@@ -64,7 +64,7 @@ public class aEP_ArmorShield extends BaseShipSystemScript
       if (Global.getCombatEngine().getPlayerShip() == ship) {
         Global.getCombatEngine().maintainStatusForPlayerShip(this.getClass().getSimpleName(),//key
           "graphics/aEP_hullsys/marker_dissipation.png",//sprite name,full, must be registed in setting first
-          Global.getSettings().getShipSystemSpec("aEP_ArmorShield").getName(),//title
+          Global.getSettings().getShipSystemSpec("aEP_NiuArmorShield").getName(),//title
           txt("ArmorShield01") + ": " + String.format("%.1f", DAMAGE_ABSORB * 100) + txt("ArmorShield02"),//data
           false);//is debuff
       }
@@ -120,7 +120,7 @@ public class aEP_ArmorShield extends BaseShipSystemScript
         return null;
       }
 
-      String id = "aEP_ArmorShield";
+      String id = "aEP_NiuArmorShield";
       if (damage.getType() == DamageType.HIGH_EXPLOSIVE) {
         damage.getModifier().modifyMult(id, (1 - absorbMult * effectiveLevel));
         ship.getFluxTracker().increaseFlux(damage.getDamage() * 1f * absorbMult * effectiveLevel * ABSORB_MULT, true);

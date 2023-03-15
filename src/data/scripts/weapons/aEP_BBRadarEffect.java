@@ -101,7 +101,7 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
   static class Buff extends aEP_Buff {
     ShipAPI target;
     Buff(ShipAPI target){
-      setBuffType("aEP_BBRadarEffect");
+      setBuffType(id);
       setEntity(target);
       setLifeTime(0.5f);
       setMaxStack(1f);

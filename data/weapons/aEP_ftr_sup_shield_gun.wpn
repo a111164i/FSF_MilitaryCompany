@@ -1,5 +1,5 @@
 {
-  "id": "aEP_defense_drone_gun",
+  "id": "aEP_ftr_sup_shield_gun",
   "specClass": "projectile",
   "projectileSpecId": "vulcan_shot",
   "type": "BALLISTIC",

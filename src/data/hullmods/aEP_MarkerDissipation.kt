@@ -107,7 +107,6 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     }
 
     override fun reportDamageApplied(source: Any?, target: CombatEntityAPI, result: ApplyDamageResultAPI) {
-      damage ?: return
       //反向消除由于受到伤害导致的预热缓冲区变化
       if ((param is BeamAPI && damage?.isForceHardFlux == false) || damage?.isSoftFlux == true) {
         fluxData.setLastFrameData(fluxData.last + result.damageToShields)

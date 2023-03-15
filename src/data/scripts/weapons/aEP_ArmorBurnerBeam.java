@@ -70,7 +70,6 @@ public class aEP_ArmorBurnerBeam implements BeamEffectPlugin
 
     //source 是伤害源，比如ShipAPI或者AsteroidAPI
     //每遭受一次伤害，先 modifyDamageTaken才会 report
-    //每遭受一次伤害，都存入result
     //发生在伤害已经施加在船体之后
     @Override
     public void reportDamageApplied(Object source, CombatEntityAPI target, ApplyDamageResultAPI result) {

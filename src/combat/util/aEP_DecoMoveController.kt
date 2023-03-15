@@ -40,8 +40,8 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_shenceng_hold"] = arrayOf(20f, 10f, 2f,10f)
       mag["aEP_shenceng_hold2"] = arrayOf(28f, 10f, 2f,10f)
       mag["aEP_shenceng_fighter"] = arrayOf(-34f, 10f, 2f,10f)
-      mag["aEP_guardian_drone_cover_l"] = arrayOf(-6f, 4f, 12f,4f)
-      mag["aEP_guardian_drone_cover_r"] = arrayOf(-6f, 4f, -12f,4f)
+      mag["aEP_ftr_sup_guardian_cover_l"] = arrayOf(-6f, 4f, 12f,4f)
+      mag["aEP_ftr_sup_guardian_cover_r"] = arrayOf(-6f, 4f, -12f,4f)
     }
   }
 

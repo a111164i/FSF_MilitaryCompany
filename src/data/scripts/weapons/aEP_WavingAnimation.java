@@ -16,7 +16,6 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
   private static final float ACC = 15f;
   private static final float WAVING_ANGLE = 45f;
   private static final float WAVING_INTERVAL = 3.5f;
-  private static final float WAVING_SPEED = 10f;
   private ShipAPI ship;
   private WeaponAPI w;
   private float amount;
@@ -43,7 +42,6 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
       return;
     }
 
-
     float shipVelocityAngle = aEP_Tool.angleAdd(aEP_Tool.velocity2Speed(ship.getVelocity()).x, 180f);
     arcAngle = aEP_Tool.angleAdd(w.getArcFacing(), ship.getFacing());
     float currAngle = weapon.getCurrAngle();
@@ -52,7 +50,6 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
     if (aEP_Tool.velocity2Speed(ship.getVelocity()).y <= 0) {
       toAngle = arcAngle;
     }
-
 
     //clamp
     // getShortest > 0 == toAngle is at right side of arcAngle
@@ -64,34 +61,17 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
       toAngle = aEP_Tool.angleAdd(arcAngle, -weapon.getArc() / 2f);
     }
 
-    //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(),toAngle + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
-
-
     //should wave check
     if (Math.abs(MathUtils.getShortestRotation(currAngle, toAngle)) <= WAVING_ANGLE / 2f + 2f) {
-
-      //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(),toAngle + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
       waveControlLer.wave(amount);
       return;
-      //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(),toAngle + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
-
-    }
-    else {
+    } else {
       waveControlLer.clear(amount);
     }
 
-
     moveToAngle(toAngle);
-    //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(),angleAdd(arcAngle,- weapon.getArc()/2f) + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
-    //float angle = VectorUtils.getAngle(ship.getLocation(),ship.getMouseTarget());
-    //moveToAngle(angle);
-
-
     //we turn weapon here;
     w.setCurrAngle(weapon.getCurrAngle() + turnRate * amount);
-
-    //Global.getCombatEngine().addFloatingText(getExtendedLocationFromPoint(ship.getLocation(), ship.getFacing(), 50f),  toAngle+ "", 20f ,new Color (0, 100, 200, 240),ship, 0.25f, 120f);
-
 
   }
 
@@ -102,118 +82,69 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
     float maxTurnRate = MAX_SPEED * amount;
     float accTurnRate = ACC * amount;
     float decTurnRate = ACC * amount;
-    float trueMult = 1 / amount;
+    float trueMult = 1f / amount;
 
-
-    //get which side to turn and how much to turn, minus = you are in the left side
     if (w.getArc() >= 360) {
       angleDist = MathUtils.getShortestRotation(angleNow, toAngle);
-    }
-    else {
-      // getShortest > 0 == toAngle is at right side of arcAngle
+    } else {
       float toAngleDist = MathUtils.getShortestRotation(arcAngle, toAngle);
       float nowAngleDist = MathUtils.getShortestRotation(arcAngle, w.getCurrAngle());
       angleDist = toAngleDist - nowAngleDist;
-      //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(),angleDist + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
-
 
     }
-
-
-    //Global.getCombatEngine().addFloatingText(getExtendedLocationFromPoint(ship.getLocation(), ship.getFacing(), 50f), turnRateNow + "turnRate", 20f ,new Color (0, 100, 200, 240),ship, 0.25f, 120f);
 
     boolean turnRight = false;//true == should turn right, false == should turn left
     turnRight = angleDist < 0;
 
-    //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(), turnRight + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
-
-
     float angleDistBeforeStop = (turnRateNow / 2) * (turnRateNow / (accTurnRate * trueMult)) - 1;
     if (turnRight) {
-      if (turnRateNow > 0)//want to turn right but is turning to left, turnRateNow > 0
-      {
-        if (turnRateNow >= decTurnRate)//stop turning left, till turnRateNow is 0
-        {
+      if (turnRateNow > 0) {
+        if (turnRateNow >= decTurnRate) {
           turnRate = (turnRateNow - decTurnRate);
-        }
-        else {
+        } else {
           turnRate = 0f;
         }
-
-        //((ShipAPI)ship).giveCommand(ShipCommand.TURN_RIGHT,null,0);
       }
-      else//want to turn right and is turning right, turnRateNow < 0
-      {
-
-        if (Math.abs(angleDist) >= angleDistBeforeStop)//accelerate till maxTurnRate
-        {
-          //((ShipAPI)ship).giveCommand(ShipCommand.TURN_RIGHT,null,0);
-
+      else {
+        if (Math.abs(angleDist) >= angleDistBeforeStop) {
           if (Math.abs(turnRateNow) <= (maxTurnRate * trueMult)) {
             turnRate = (turnRateNow - accTurnRate);
-          }
-          else {
+          } else {
             turnRate = (-maxTurnRate * trueMult);
           }
-
         }
         else {
-          //((ShipAPI)ship).giveCommand(ShipCommand.TURN_LEFT,null,0);
-
-          if (Math.abs(turnRateNow) >= decTurnRate)//decelerate till 0
-          {
+          if (Math.abs(turnRateNow) >= decTurnRate){
             turnRate = (turnRateNow + decTurnRate);
-          }
-          else {
+          } else {
             turnRate = (0);
           }
-
         }
 
       }
     }
-    else//to turn left
-    {
-      if (turnRateNow < 0)//want to turn left but is turning to right, turnRateNow < 0
-      {
-        //((ShipAPI)ship).giveCommand(ShipCommand.TURN_LEFT,null,0);
-
-
-        if (Math.abs(turnRateNow) >= decTurnRate)//stop turning right, till turnRateNow is 0
-        {
+    else {
+      if (turnRateNow < 0) {
+        if (Math.abs(turnRateNow) >= decTurnRate) {
           turnRate = (turnRateNow + decTurnRate);
-        }
-        else {
+        } else {
           turnRate = (0);
         }
-
-
       }
-      else//want to turn left and is turning left, turnTateNow > 0
-      {
-
-        if (Math.abs(angleDist) > angleDistBeforeStop)//accelerate till maxTurnRate
-        {
-          //((ShipAPI)ship).giveCommand(ShipCommand.TURN_LEFT,null,0);
+      else {
+        if (Math.abs(angleDist) > angleDistBeforeStop) {
           if (turnRateNow <= maxTurnRate * trueMult) {
             turnRate = (turnRateNow + accTurnRate);
-          }
-          else {
+          } else {
             turnRate = (maxTurnRate * trueMult);
           }
-
-
         }
         else {
-          //((ShipAPI)ship).giveCommand(ShipCommand.TURN_RIGHT,null,0);
-          if (turnRateNow >= decTurnRate)//decelerate till 0
-          {
+          if (turnRateNow >= decTurnRate) {
             turnRate = (turnRateNow - decTurnRate);
-          }
-          else {
+          } else {
             turnRate = (0);
           }
-
         }
       }
     }
@@ -221,17 +152,14 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
 
   }
 
-  private class waveControlLer
-  {
+  private class waveControlLer {
     boolean waveToLeft = true;
     float interval;
     float timer = 0f;
 
     waveControlLer() {
       interval = MathUtils.getRandomNumberInRange(0, WAVING_INTERVAL);
-
     }
-
 
     private void wave(float amount) {
       timer = timer + amount;
@@ -239,15 +167,11 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
       if (timer > (WAVING_INTERVAL * 3 + interval * 2) / 4f) {
         timer = 0f;
         waveToLeft = !waveToLeft;
-
-        for (Vector2f loc : aEP_Tool.Util.getWeaponOffsetInAbsoluteCoo(w)) {
-          //spawnRepairingSpark(loc,new Color(240,210,50,100));
-        }
       }
+
       if (waveToLeft) {
         angle = aEP_Tool.angleAdd(toAngle, WAVING_ANGLE / 2f);
-      }
-      else {
+      } else {
         angle = aEP_Tool.angleAdd(toAngle, -WAVING_ANGLE / 2f);
       }
 
@@ -259,14 +183,7 @@ public class aEP_WavingAnimation implements EveryFrameWeaponEffectPlugin
         angle = aEP_Tool.angleAdd(arcAngle, w.getArc() / 2f);
       }
 
-
       moveToAngle(angle);
-      //engine.addFloatingText(engine.getPlayerShip().getMouseTarget(),arcAngle + "",20f,new Color(100,100,100,100),engine.getPlayerShip(),1f,2f);
-
-
-      //float angle = VectorUtils.getAngle(ship.getLocation(),ship.getMouseTarget());
-      //moveToAngle(angle);
-
 
       //we turn weapon here;
       w.setCurrAngle(w.getCurrAngle() + turnRate * amount);
