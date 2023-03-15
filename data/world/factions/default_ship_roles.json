@@ -5,15 +5,15 @@
     "aEP_XiLiu_p_Standard": 10,
     "aEP_XiLiu_Standard": 10,
     "aEP_FanChongLi_Mixed": 5,
-    "aEP_RaoLiu_PD":4,
-    "aEP_RaoLiu_Standard":6
+    "aEP_fga_raoliu_PD":4,
+    "aEP_fga_raoliu_Standard":6
   },
   "combatSmall": {
     "aEP_FanChongLi_Mixed": 10,
     "aEP_XiLiu_p_Standard": 10,
     "aEP_XiLiu_Standard": 5,
-    "aEP_RaoLiu_PD": 5,
-    "aEP_RaoLiu_Standard":5,
+    "aEP_fga_raoliu_PD": 5,
+    "aEP_fga_raoliu_Standard":5,
   },
   "combatMedium": {
     "aEP_CengLiu_Standard":4,
@@ -45,7 +45,7 @@
     "aEP_NuanChi_Elite": 3,
     "aEP_NeiBo_Standard": 6,
     "aEP_NeiBo_Elite": 4,
-    "aEP_ShangShengLiu_mk2_Standard":3,
+    "aEP_ShangShengLiu_mk3_Standard":3,
   },
   # hybrid ships with good combat and cargo capacity
   "combatFreighterSmall": {
@@ -112,7 +112,7 @@
     "fallback2":{"tankerLarge":0.5},
   },
   "tankerLarge": {
-    "aEP_ShangShengLiu_mk3_Standard":10,
+    "aEP_ShangShengLiu_mk2_Standard":5,
     "fallback":{"tankerSmall":1},
     "fallback2":{"tankerMedium":1},
   },

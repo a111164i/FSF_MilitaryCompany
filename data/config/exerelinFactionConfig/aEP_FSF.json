@@ -51,10 +51,10 @@
         ["aEP_FanChongLi_Mixed"]
     ],
     "startShipsCombatSmall":[
-        ["aEP_XiLiu_Standard","aEP_FanChongLi_Mixed","aEP_RaoLiu_Standard"],
+        ["aEP_XiLiu_Standard","aEP_FanChongLi_Mixed","aEP_cov_RaoLiu_Standard"],
     ],
     "startShipsCarrierLarge":[
-      ["aEP_ShenCeng_Strike", "aEP_ShenCeng_Standard", "aEP_RaoLiu_PD"],
+      ["aEP_ShenCeng_Strike", "aEP_ShenCeng_Standard", "aEP_cov_RaoLiu_PD"],
     ],
    	
 

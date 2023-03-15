@@ -1,8 +1,8 @@
 {
-  "hullName": "MaoDian",
-  "hullId": "aEP_MaoDian_drone",
+  "hullName": "",
+  "hullId": "aEP_ftr_ut_maodian",
   "hullSize": "FIGHTER",
-  "spriteName": "graphics/ships/aEP_maodian02.png",
+  "spriteName": "graphics/ships/aEP_fighters/ut_maodian01.png",
   "style": "aEP_FSF",
   "height": 70,
   "width": 70,
@@ -15,11 +15,11 @@
     "aEP_MaoDianShield"
   ],
   "builtInWeapons": {
-    "WS0001": "aEP_maodian_cover",
-    "WS0002": "aEP_maodian_glow",
-    "WS0003": "aEP_maodian_ads",
-    "WS0004": "aEP_maodian_ads",
-    "WS0005": "aEP_maodian_ads",
+    "WS0001": "aEP_ftr_ut_maodian_cover",
+    "WS0002": "aEP_ftr_ut_maodian_glow",
+    "WS0003": "aEP_ftr_ut_maodian_ads",
+    "WS0004": "aEP_ftr_ut_maodian_ads",
+    "WS0005": "aEP_ftr_ut_maodian_ads",
     "WS0006": "aEP_empty"
   },
   "weaponSlots": [

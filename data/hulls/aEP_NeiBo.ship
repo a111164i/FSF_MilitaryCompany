@@ -19,7 +19,7 @@
     "COVER_MAIN": "aEP_neibo_main",
     "WS0007": "aEP_marker",
     "WS0008": "aEP_marker",
-    "WS0023": "aEP_neibo_cover"
+    #"WS0023": "aEP_neibo_cover"
   },
   "weaponSlots": [
     {

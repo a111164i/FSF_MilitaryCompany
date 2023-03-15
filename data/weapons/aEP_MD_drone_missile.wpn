@@ -4,8 +4,8 @@
   "projectileSpecId": "aEP_MD_drone_missile",
   "type": "SYSTEM",
   "size": "LARGE",
-  "turretSprite": "graphics/ships/aEP_maodian00.png",
-  "hardpointSprite": "graphics/ships/aEP_maodian00.png",
+  "turretSprite": "graphics/ships/aEP_fighters/ut_maodian00.png",
+  "hardpointSprite": "graphics/ships/aEP_fighters/ut_maodian00.png",
   "numFrames":2,	
 	"frameRate":0,
   "turretOffsets": [

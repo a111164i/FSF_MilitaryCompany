@@ -3,7 +3,7 @@
     "fluxCapacitors": 6,
     "fluxVents": 5,
     "goalVariant": true,
-    "hullId": "aEP_RaoLiu",
+    "hullId": "aEP_fga_raoliu",
     "hullMods": [
         "heavyarmor",
         "aEP_VanguardHull",
@@ -11,7 +11,7 @@
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_RaoLiu_PD",
+    "variantId": "aEP_fga_raoliu_PD",
     "weaponGroups": [
         {
             "autofire": true,

@@ -31,6 +31,7 @@ import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import combat.util.aEP_Tool.Util.spawnCompositeSmoke
 import combat.util.aEP_Tool.Util.spawnSingleCompositeSmoke
 import combat.util.aEP_Tool.Util.speed2Velocity
+import data.scripts.a111164ModPlugin.MaoDianDrone_ID
 import data.scripts.ai.aEP_MaoDianDroneAI
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.Companion.LOADING_MAP
@@ -52,7 +53,7 @@ import java.awt.Color
 
 /**
  * 注意，EveryFrameWeaponEffectPlugin其实和 onHit，onFire共用一个类
- * 在EveryFrameWeaponEffectPlugin中写入onHit， onFire方法，即使不在弹丸中声明，也会调用对应方法
+ * 在 EveryFrameWeaponEffectPlugin中写入onHit， onFire方法，即使不在弹丸中声明，也会调用对应方法
  * */
 class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosionEffect, BeamEffectPluginWithReset, EveryFrameWeaponEffectPlugin {
   var effect: Effect? = null
@@ -93,6 +94,7 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
     effect?.onExplosion(explosion, projectile, weaponId)
   }
 
+  //onHit/onFire/onExplosion 是可以共享的，多个不同同种武器的effect变量会指向存在customData里面的同一个类(单列模式)
   private fun getEffect(projectile: DamagingProjectileAPI): Effect? {
     //类缓存，查找过一次的类放进 map，减少调用 forName的次数
     val cache: MutableMap<String?,Effect?> = (Global.getCombatEngine().customData["aEP_WeaponEffect"] as MutableMap<String?,Effect?>?)?: HashMap()
@@ -121,7 +123,7 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
     return effect
   }
 
-  // everyFrameWeaponPlugin
+  // everyFrameWeaponPlugin 不可以多个武器共享，每个武器everyFrame变量指向的都要是一个独立的类
   override fun advance(amount: Float, engine: CombatEngineAPI?, weapon: WeaponAPI?) {
     //只尝试读取一次
     if(everyFrame == null && !didCheckClass) {
@@ -144,8 +146,25 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
     }
   }
 
-  // beamEffectPlugin
+  // beamEffectPlugin 同上
   override fun advance(amount: Float, engine: CombatEngineAPI?, beam: BeamAPI?) {
+    //只尝试读取一次
+    if(beamEffect == null && !didCheckBeamEffect) {
+      didCheckBeamEffect = true
+      try {
+        val e = Class.forName(aEP_WeaponEffect::class.java.getPackage().name + "." + beam?.weapon?.spec?.weaponId?:"")
+        beamEffect = e.newInstance() as BeamEffectPluginWithReset
+        Global.getLogger(this.javaClass).info("WeaponEveryFrameEffectLoaded :" +e.name)
+      } catch (e: ClassNotFoundException) {
+        e.printStackTrace()
+      } catch (e: InstantiationException) {
+        e.printStackTrace()
+      } catch (e: IllegalAccessException) {
+        e.printStackTrace()
+      }
+    }
+
+
     if(beamEffect != null && beam != null){
       beamEffect?.advance(amount,engine,beam)
     }
@@ -1558,7 +1577,7 @@ class aEP_maodian_drone_missile : Effect(){
     engine?.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages = true
     //生成无人机
     val drone = engine?.getFleetManager(projectile.owner?:100)?.spawnShipOrWing(
-      "aEP_MaoDian_drone",
+      MaoDianDrone_ID,
       projectile.location?: VECTOR2F_ZERO,
       projectile.facing
     )
@@ -1568,7 +1587,7 @@ class aEP_maodian_drone_missile : Effect(){
     //旋转雷达
     if(drone != null){
       for(w in drone.allWeapons){
-        if(w.spec.weaponId == "aEP_maodian_radar"){
+        if(w.spec.weaponId == "aEP_ftr_ut_maodian_radar"){
           w.currAngle = ship.facing
         }
       }

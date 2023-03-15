@@ -1,5 +1,5 @@
 {
-  "id":"aEP_maodian_cover",
+  "id":"aEP_ftr_ut_maodian_cover",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",
@@ -9,8 +9,8 @@
 	#"renderAboveAllWeapons": 0,
 	"alwaysAnimate":"false",
 	#"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/ships/aEP_maodian00.png",
-  "hardpointSprite": "graphics/ships/aEP_maodian00.png",
+  "turretSprite": "graphics/ships/aEP_fighters/ut_maodian01.png",
+  "hardpointSprite": "graphics/ships/aEP_fighters/ut_maodian01.png",
   #"everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
   #"numFrames":8,	
 	#"frameRate":16,

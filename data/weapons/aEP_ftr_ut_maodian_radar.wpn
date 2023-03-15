@@ -1,5 +1,5 @@
 {
-  "id":"aEP_maodian_radar",
+  "id":"aEP_ftr_ut_maodian_radar",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",

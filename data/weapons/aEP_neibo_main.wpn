@@ -4,7 +4,7 @@
   "projectileSpecId": "aEP_neibo_main_shot",
   "type": "BALLISTIC",
   "size": "LARGE",
-  "everyFrameEffect": "data.scripts.weapons.aEP_NeiBoAnimation",
+  "everyFrameEffect": "data.scripts.weapons.aEP_NeiBoMainAnimation",
   "turretSprite": "graphics/weapons/aEP_neibo/gun00.png",
   "hardpointSprite": "graphics/weapons/aEP_neibo/gun00.png",
   "turretOffsets": [

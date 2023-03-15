@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_MaoDian_drone",
-  "hullId": "aEP_MaoDian_drone",
+  "variantId": "aEP_ftr_ut_maodian",
+  "hullId": "aEP_ftr_ut_maodian",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,
@@ -20,21 +20,21 @@
       "autofire": true,
       "mode": "LINKED",
       "weapons": {
-        "WS0004": "aEP_maodian_ads"
+        "WS0004": "aEP_ftr_ut_maodian_ads"
       }
     },
     {
       "autofire": true,
       "mode": "LINKED",
       "weapons": {
-        "WS0005": "aEP_maodian_ads"
+        "WS0005": "aEP_ftr_ut_maodian_ads"
       }
     },
     {
       "autofire": true,
       "mode": "LINKED",
       "weapons": {
-        "WS0003": "aEP_maodian_ads"
+        "WS0003": "aEP_ftr_ut_maodian_ads"
       }
     }
   ],

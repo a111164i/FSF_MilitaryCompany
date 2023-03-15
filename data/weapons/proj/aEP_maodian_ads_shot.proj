@@ -1,5 +1,5 @@
 {
-	"id":"aEP_maodian_ads_shot",
+	"id":"aEP_ftr_ut_maodian_ads_shot",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC",
 	"collisionClass":"PROJECTILE_FF",

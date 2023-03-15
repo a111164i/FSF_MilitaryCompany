@@ -7,7 +7,7 @@ import com.fs.starfarer.api.combat.listeners.*;
 import combat.util.aEP_Tool;
 import org.lwjgl.util.vector.Vector2f;
 
-public class aEP_ArmorBurnerBeam implements BeamEffectPlugin
+public class aEP_NiuArmorBurnerBeam implements BeamEffectPlugin
 {
   static final float PURE_DAMAGE_PERCENT = 0.5f;
 

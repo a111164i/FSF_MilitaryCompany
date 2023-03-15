@@ -17,28 +17,28 @@ class aEP_DamperBoost : BaseShipSystemScript() {
   companion object{
     val ROF_MAG = HashMap<String,Float>()
     init {
-      ROF_MAG["aEP_RaoLiu"] = 50f;
+      ROF_MAG["aEP_cov_RaoLiu"] = 50f;
       ROF_MAG["aEP_YouJiYan"] = 50f;
       ROF_MAG["aEP_YouJiYan_mk2"] = 50f;
       ROF_MAG["aEP_LiAnLiu"] = 50f;
     }
     val EFFECT_ARMOR_FLAT_BONUS = HashMap<String,Float>()
     init {
-      EFFECT_ARMOR_FLAT_BONUS["aEP_RaoLiu"] = 200f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_YouJiYan"] = 100f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_YouJiYan_mk2"] = 100f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_fga_raoliu"] = 200f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_YouJiYan"] = 200f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_YouJiYan_mk2"] = 200f;
       EFFECT_ARMOR_FLAT_BONUS["aEP_LiAnLiu"] = 200f;
     }
     val EFFECT_ARMOR_PERCENT_BONUS = HashMap<String,Float>()
     init {
-      EFFECT_ARMOR_PERCENT_BONUS["aEP_RaoLiu"] = 50f;
+      EFFECT_ARMOR_PERCENT_BONUS["aEP_fga_raoliu"] = 50f;
       EFFECT_ARMOR_PERCENT_BONUS["aEP_YouJiYan"] = 50f;
       EFFECT_ARMOR_PERCENT_BONUS["aEP_YouJiYan_mk2"] = 50f;
       EFFECT_ARMOR_PERCENT_BONUS["aEP_LiAnLiu"] = 50f;
     }
     val ARMOR_DAMAGE_TAKEN_MULT = HashMap<String,Float>()
     init {
-      ARMOR_DAMAGE_TAKEN_MULT["aEP_RaoLiu"] = 0.5f;
+      ARMOR_DAMAGE_TAKEN_MULT["aEP_fga_raoliu"] = 0.5f;
       ARMOR_DAMAGE_TAKEN_MULT["aEP_YouJiYan"] = 0.5f;
       ARMOR_DAMAGE_TAKEN_MULT["aEP_YouJiYan_mk2"] = 0.5f;
       ARMOR_DAMAGE_TAKEN_MULT["aEP_LiAnLiu"] = 0.5f;

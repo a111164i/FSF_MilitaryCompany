@@ -5,50 +5,39 @@ import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
+import com.fs.starfarer.campaign.ui.marketinfo.m;
+import com.fs.starfarer.ui.N;
 import combat.util.aEP_Tool;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class aEP_NeiBoAnimation implements EveryFrameWeaponEffectPlugin
+public class aEP_NeiBoMainAnimation implements EveryFrameWeaponEffectPlugin
 {
 
   Map<Integer, WeaponAPI> toMove = new LinkedHashMap<>();
-  String id = "aEP_NeiBoAnimation";
-  WeaponAPI cover = null;
+  String id = "aEP_NeiBoMainAnimation";
+  String COVER_ID = "aEP_ftr_ut_maodian_cover";
 
   @Override
   public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
 
-    boolean moduleAlive = false;
     if (weapon.getShip() == null || engine.isPaused()) return;
     ShipAPI ship = weapon.getShip();
     for (ShipAPI m : ship.getChildModulesCopy()) {
       if (m.getStationSlot() == null || !m.isAlive()) continue;
       if (m.getStationSlot().getId().contains("TR_MOD")){
         m.setFacing(weapon.getCurrAngle());
-        moduleAlive = true;
       }
     }
 
-    if(cover == weapon) {
-      cover.getAnimation().setFrame(1);
-      return;
+    for (WeaponAPI w : ship.getAllWeapons()){
+      if(!w.getSlot().isDecorative()) continue;
+      if(w.getSpec().getWeaponId().equals(COVER_ID)){
+        w.setCurrAngle(weapon.getCurrAngle());
+      }
     }
 
-    if(cover == null){
-      for(WeaponAPI w : ship.getAllWeapons()){
-        if(w.getSpec().getWeaponId().equals("aEP_neibo_cover")){
-          cover = w;
-        }
-      }
-    }else {
-      cover.getAnimation().setFrame(1);
-      cover.setCurrAngle(weapon.getCurrAngle());
-      if(!moduleAlive){
-        cover.getAnimation().setFrame(0);
-      }
-    }
 
 
     //Global.getLogger(this.getClass()).info("TRMOD"+ship.getChildModulesCopy().size());

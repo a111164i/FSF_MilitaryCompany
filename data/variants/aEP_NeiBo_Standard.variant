@@ -9,8 +9,8 @@
         "ballistic_rangefinder"
     ],
     "modules": [
-        {"TR_MOD": "aEP_NeiBo_TR_Standard"},
-        {"ARMOR": "aEP_NeiBo_ARMOR_Standard"}
+        {"TR_MOD": "aEP_NeiBo_turret_Standard"},
+        {"ARMOR": "aEP_NeiBo_armor_Standard"}
     ],
     "permaMods": [],
     "sMods": [],

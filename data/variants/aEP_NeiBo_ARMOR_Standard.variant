@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_NeiBo_ARMOR_Standard",
-  "hullId": "aEP_NeiBo_ARMOR",
+  "variantId": "aEP_NeiBo_armor_Standard",
+  "hullId": "aEP_NeiBo_armor",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,

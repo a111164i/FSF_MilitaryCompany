@@ -43,10 +43,10 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //api.addToFleet(FleetSide.PLAYER, "harbinger_Strike", FleetMemberType.SHIP, "TTS Invisible Hand", true, CrewXPLevel.VETERAN);
     api.addToFleet(FleetSide.PLAYER, "aEP_LiAnLiu_Standard", FleetMemberType.SHIP, "FSF ship", true);
     api.addToFleet(FleetSide.PLAYER, "aEP_LiAnLiu_Elite", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_RaoLiu_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_RaoLiu_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_RaoLiu_Standard", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_RaoLiu_Standard", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
 
     //api.defeatOnShipLoss("FSF ship 01");
 

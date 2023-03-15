@@ -1,8 +1,8 @@
 {
-  "hullName": "aEP_NeiBo_TR",
-  "hullId": "aEP_NeiBo_TR",
+  "hullName": "",
+  "hullId": "aEP_NeiBo_turret",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_neibo_tr01.png",
+  "spriteName": "graphics/ships/aEP_neibo_tr.png",
   "style": "aEP_FSF",
   "height": 90,
   "width": 90,

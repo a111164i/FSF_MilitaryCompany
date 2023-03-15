@@ -220,7 +220,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
   val id = "aEP_MaoDianShield"
   val TIME_TO_EXTEND = 1f
   //ship文件里的护盾半径也要改，否则护盾中心在屏幕外的时候不会渲染护盾
-  val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_MaoDian_drone").shieldSpec.radius
+  val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian_drone").shieldSpec.radius
   val MAX_MOVE_TIME = 15f
   val FLUX_INCREASE = 100f
   val RADAR_SPEED = -90f
@@ -271,7 +271,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
         shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
         ship.fluxTracker.increaseFlux((FLUX_INCREASE+ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
         for(w in ship.allWeapons){
-          if(w.spec.weaponId == "aEP_maodian_glow"){
+          if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow"){
             //注意一下这3个存进去的类并不是初始化的时候就一起初始化的
             (w.effectPlugin as aEP_DecoAnimation).decoGlowController.toLevel = 1f
           }
@@ -283,7 +283,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
           ship.fluxTracker.increaseFlux((ship.fluxTracker.maxFlux * 0.2f + ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
         }
         for(w in ship.allWeapons){
-          if(w.spec.weaponId == "aEP_maodian_glow") {
+          if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow") {
             //注意一下这3个存进去的类并不是初始化的时候就一起初始化的，在开战第一帧call会报空
             (w.effectPlugin as aEP_DecoAnimation)?.decoGlowController?.toLevel = 0f
           }
@@ -292,7 +292,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
 
       //旋转雷达
       for(w in ship.allWeapons){
-        if(w.spec.weaponId == "aEP_maodian_radar"){
+        if(w.spec.weaponId == "aEP_ftr_ut_maodian_radar"){
           w.currAngle = (w.currAngle + amount * RADAR_SPEED)
         }
       }

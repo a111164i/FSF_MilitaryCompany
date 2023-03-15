@@ -1,8 +1,8 @@
 {
   "hullName": "ARMOR",
-  "hullId": "aEP_NeiBo_ARMOR",
+  "hullId": "aEP_NeiBo_armor",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_neibo_armor01.png",
+  "spriteName": "graphics/ships/aEP_neibo_armor.png",
   "style": "aEP_FSF",
   "height": 70,
   "width": 90,

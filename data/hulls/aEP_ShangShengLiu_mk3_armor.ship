@@ -1,8 +1,8 @@
 {
-  "hullName": "armor",
-  "hullId": "aEP_ShangShengLiu_armor",
+  "hullName": "",
+  "hullId": "aEP_ShangShengLiu_mk3_armor",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_shangshengLiu_mk2_armor.png",
+  "spriteName": "graphics/ships/aEP_shangshengLiu_mk3_armor.png",
   "style": "aEP_FSF",
   "height": 26,
   "width": 50,
