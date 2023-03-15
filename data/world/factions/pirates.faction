@@ -7,8 +7,8 @@
     },
     "knownShips":{
         "hulls":[
-      		"aEP_XiLiu_p",
-            "aEP_ShangShengLiu_mk3",
+      		"aEP_fga_xiliu_mk2",
+          "aEP_ShangShengLiu_mk3",
         ],
     },
     "knownWeapons":{

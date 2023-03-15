@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_FanChongLi_mk2_Standard",
-  "hullId": "aEP_FanChongLi_mk2",
+  "variantId": "aEP_des_yonglang_mk2_Standard",
+  "hullId": "aEP_des_yonglang_mk2",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,
@@ -22,13 +22,13 @@
   ],
   "modules": [
     {
-      "L": "aEP_FanChongLi_L_Standard"
+      "L": "aEP_des_yonglang_mk2_l_Standard"
     },
     {
-      "R": "aEP_FanChongLi_R_Standard"
+      "R": "aEP_des_yonglang_mk2_r_Standard"
     },
     {
-      "M": "aEP_FanChongLi_M_Standard"
+      "M": "aEP_des_yonglang_mk2_l_Standard"
     }
   ],
   "wings": []

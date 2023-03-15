@@ -3,14 +3,14 @@
     "fluxCapacitors": 0,
     "fluxVents": 10,
     "goalVariant": true,
-    "hullId": "aEP_LiAnLiu",
+    "hullId": "aEP_des_lianliu",
     "hullMods": [
         "aEP_RapidDissipate",
         "heavyarmor"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_LiAnLiu_Elite",
+    "variantId": "aEP_des_lianliu_Elite",
     "weaponGroups": [
         {
             "autofire": true,

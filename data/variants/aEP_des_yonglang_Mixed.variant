@@ -3,10 +3,10 @@
     "fluxCapacitors": 10,
     "fluxVents": 0,
     "goalVariant": true,
-    "hullId": "aEP_FanChongLi",
+    "hullId": "aEP_fga_yonglang",
     "hullMods": ["aEP_ControledShield"],
     "permaMods": [],
-    "variantId": "aEP_FanChongLi_Mixed",
+    "variantId": "aEP_fga_yonglang_Mixed",
     "weaponGroups": [
         {
             "autofire": false,

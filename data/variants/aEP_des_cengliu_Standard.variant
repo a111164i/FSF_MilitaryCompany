@@ -1,30 +1,37 @@
 {
-    "displayName": "Elite",
+    "displayName": "Standard",
     "fluxCapacitors": 0,
-    "fluxVents": 8,
+    "fluxVents": 20,
     "goalVariant": true,
-    "hullId": "aEP_CengLiu",
-    "hullMods": [
-        "aEP_HotLoader",
-        "aEP_TargetSystem"
-    ],
+    "hullId": "aEP_des_cengliu",
+    "hullMods": [],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_CengLiu_Elite",
+    "variantId": "aEP_des_cengliu_Standard",
     "weaponGroups": [
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_kinetic_flak",
-                "WS0002": "aEP_kinetic_flak",
-                "WS0005": "aEP_kinetic_flak"
+                "WS0003": "aEP_trauma_cannon",
+                "WS0005": "aEP_trauma_cannon"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_EMP_pike"}
+            "weapons": {
+                "WS0001": "heavyac",
+                "WS0002": "heavyac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0013": "lightac",
+                "WS0014": "lightac"
+            }
         },
         {
             "autofire": true,

@@ -2,26 +2,26 @@
   # should be a copy of "combatSmall", minus variants that are annoying to fight in low numbers
   # for example, no Hyperions or fast beam-based kiting loadouts, or ships with damper field
   "combatSmallForSmallFleet": {
-    "aEP_XiLiu_p_Standard": 10,
+    "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 10,
-    "aEP_FanChongLi_Mixed": 5,
+    "aEP_fga_yonglang_Mixed": 5,
     "aEP_fga_raoliu_PD":4,
     "aEP_fga_raoliu_Standard":6
   },
   "combatSmall": {
-    "aEP_FanChongLi_Mixed": 10,
-    "aEP_XiLiu_p_Standard": 10,
+    "aEP_fga_yonglang_Mixed": 10,
+    "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 5,
     "aEP_fga_raoliu_PD": 5,
     "aEP_fga_raoliu_Standard":5,
   },
   "combatMedium": {
-    "aEP_CengLiu_Standard":4,
-    "aEP_CengLiu_Elite":3,
-    "aEP_LiAnLiu_Standard": 3,
-    "aEP_LiAnLiu_AntiSmall": 2,
-    "aEP_LiAnLiu_Elite": 5,
-    "aEP_YangJi_Standard":10
+    "aEP_des_cengliu_Standard":4,
+    "aEP_des_cengliu_Elite":3,
+    "aEP_des_lianliu_Standard": 3,
+    "aEP_des_lianliu_AntiSmall": 2,
+    "aEP_des_lianliu_Elite": 5,
+    "aEP_des_yangji_Standard":10
   },
   "combatLarge": {
     "aEP_HaiLiang_Standard": 4,

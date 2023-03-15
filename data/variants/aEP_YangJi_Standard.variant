@@ -3,7 +3,7 @@
     "fluxCapacitors": 7,
     "fluxVents": 7,
     "goalVariant": true,
-    "hullId": "aEP_YangJi",
+    "hullId": "aEP_des_yangji",
     "hullMods": [
         "aEP_VanguardHull",
         "aEP_RapidDissipate",
@@ -11,7 +11,7 @@
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_YangJi_Standard",
+    "variantId": "aEP_des_yangji_Standard",
     "weaponGroups": [
         {
             "autofire": true,

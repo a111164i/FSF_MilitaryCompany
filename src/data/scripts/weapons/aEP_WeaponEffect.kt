@@ -1844,7 +1844,7 @@ class aEP_FCL_mk2_cover : EveryFrame(){
     for(m in weapon.ship.childModulesCopy){
       m?: continue
       //注意，模块死亡脱离以后，stationSlot会改为null
-      if(m.hullSpec.hullId.equals("aEP_FanChongLi_M")){
+      if(m.hullSpec.hullId.equals("aEP_des_yonglang_mk2_m")){
         weapon.animation.frame = 0
         if(m.isAlive){
           weapon.animation.frame = 1

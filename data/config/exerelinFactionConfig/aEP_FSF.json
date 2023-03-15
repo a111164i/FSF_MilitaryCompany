@@ -48,10 +48,10 @@
     "defenceFleetName":"Protect Fleet",	
     
     "startShipsSolo":[
-        ["aEP_FanChongLi_Mixed"]
+        ["aEP_fga_yonglang_Mixed"]
     ],
     "startShipsCombatSmall":[
-        ["aEP_fga_xiliu_Standard","aEP_FanChongLi_Mixed","aEP_cov_RaoLiu_Standard"],
+        ["aEP_fga_xiliu_Standard","aEP_fga_yonglang_Mixed","aEP_cov_RaoLiu_Standard"],
     ],
     "startShipsCarrierLarge":[
       ["aEP_ShenCeng_Strike", "aEP_ShenCeng_Standard", "aEP_cov_RaoLiu_PD"],
