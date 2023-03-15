@@ -1,7 +1,7 @@
 {
   "id": "aEP_yangji_flak",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_yangji_flak",
+  "projectileSpecId": "aEP_yangji_flak_shot",
   "type": "BALLISTIC",
   "size": "SMALL",
   "displayArcRadius": 600,

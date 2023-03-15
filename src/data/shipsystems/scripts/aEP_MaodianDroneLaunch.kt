@@ -33,7 +33,7 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
     if(effectLevel >= 1){
       Global.getCombatEngine().spawnMuzzleFlashOrSmoke(ship,weapon.slot,weapon.spec,0,weapon.currAngle)
       val proj = Global.getCombatEngine().spawnProjectile(ship,weapon,weapon.spec.weaponId,weapon.location,weapon.currAngle,ship.velocity)
-      aEP_maodian_drone_missile().onFire(proj as DamagingProjectileAPI?,weapon,Global.getCombatEngine(),weapon.spec.weaponId)
+      aEP_maodian_drone_missile().onFire(proj as DamagingProjectileAPI,weapon,Global.getCombatEngine(),weapon.spec.weaponId)
     }
   }
 

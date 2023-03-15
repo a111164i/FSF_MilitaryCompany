@@ -46,8 +46,8 @@ class aEP_RepairBeam : BeamEffectPlugin {
       var didSpark = false
       while (toRepair > 0f){
         //find the lowest armor grid
-        for (x in 0..xSize - 1) {
-          for (y in 0..ySize - 1) {
+        for (x in 0 until xSize) {
+          for (y in 0 until ySize) {
             val armorNow = ship.armorGrid.getArmorValue(x, y)
             val armorLevel = armorNow / cellMaxArmor
             if (armorLevel <= minArmorLevel) {
@@ -85,9 +85,8 @@ class aEP_RepairBeam : BeamEffectPlugin {
                 Vector2f(randomX, randomY),  //random initial speed
                 30f,  //size
                 1f,  //brightness
-                0.8f,  //duration
-                repairing
-              ) //color
+                1f,  //duration
+                repairing) //color
             }
             didSpark = true
           }

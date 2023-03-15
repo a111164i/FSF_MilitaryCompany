@@ -15,7 +15,7 @@
 	"showInIntelTab":true,
 	"shipNameSources":{
 		"GREEK":0,
-		"CELTIC":2,
+		"CELTIC":0,
 		"SPACE":4,
 		"GENERAL":1,
 	},
@@ -28,13 +28,17 @@
 	# variantOverrides restricts hulls to listed variants and adjusts their probability
 	# multiplier for how often hulls show up in the faction's fleets
 	"hullFrequency":{
-		"tags":{"FSF_bp":1,	
+		"tags":{
+			"FSF_bp":1,	
+			"FSF_openbp":1,
+			"FSF_rarebp":1,
+			"FSF_advancebp":0.5,
 		},
 		"hulls":{
 			"aEP_YouJiYan":0.75,
 			"aEP_YouJiYan_mk2":0.75,
 			"aEP_ShangShengLiu":0.75,
-			"aEP_ShangShengLiu_mk3":0.75,
+			"aEP_ShangShengLiu_mk2":0.75,
 		},
 	},
 	# ships the faction gets access to when importing S&W out-of-faction
@@ -62,12 +66,12 @@
 		],
 	},
 	"priorityFighters":{
-		"tags":[],
+		"tags":["FSF_bp"],
 		"fighters":[
 		],
 	},
 	"knownWeapons":{
-		"tags":["base_bp", "independent","midline_bp", "FSF_bp"],
+		"tags":["base_bp", "independent", "midline_bp", "FSF_bp"],
 		"weapons":[
 			"lightneedler",
 			"railgun",

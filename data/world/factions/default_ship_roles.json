@@ -32,6 +32,7 @@
     "aEP_ReQuan_Standard": 7,
     "aEP_ReQuan_Assault": 3,
     "aEP_PingDing_Standard": 5,
+    "aEP_PingDing_Elite": 5,
   },
   "combatCapital": {
     "aEP_BiaoBing_Standard": 2,

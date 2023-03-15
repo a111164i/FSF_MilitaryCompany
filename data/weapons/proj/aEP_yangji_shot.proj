@@ -4,7 +4,7 @@
 	"spawnType":"BALLISTIC",
 	"collisionClass":"PROJECTILE_NO_FF",
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
-	#"onFireEffect":"data.scripts.weapons.aEP_SplitAfterFire",
+	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	#"onHitEffect":"data.scripts.weapons",
 	#"collisionRadius":15,
 	"length":18,
