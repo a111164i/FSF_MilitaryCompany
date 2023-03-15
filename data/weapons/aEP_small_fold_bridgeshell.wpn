@@ -1,5 +1,5 @@
 {
-  "id":"aEP_raoliu_armor",
+  "id":"aEP_small_fold_bridgeshell",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",
@@ -9,8 +9,8 @@
 	#"renderAboveAllWeapons": 0,
 	"alwaysAnimate":"false",
 	#"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/weapons/aEP_raoliu/armor.png",
-  "hardpointSprite": "graphics/weapons/aEP_raoliu/armor.png",
+  "turretSprite": "graphics/weapons/aEP_fga_raoliu/bridge.png",
+  "hardpointSprite": "graphics/weapons/aEP_fga_raoliu/bridge.png",
   "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
   #"numFrames":8,	
 	#"frameRate":16,

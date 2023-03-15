@@ -3,14 +3,14 @@
     "fluxCapacitors": 8,
     "fluxVents": 8,
     "goalVariant": true,
-    "hullId": "aEP_XiLiu",
+    "hullId": "aEP_fga_xiliu",
     "hullMods": [
         "aEP_RapidDissipate",
         "aEP_VanguardHull"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_XiLiu_Elite",
+    "variantId": "aEP_fga_xiliu_Elite",
     "weaponGroups": [
         {
             "autofire": true,

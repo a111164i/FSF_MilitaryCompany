@@ -3,25 +3,15 @@
 	"type":"STAT_MOD",
 	"aiType":"DAMPER_FIELD",
 	#"aiType":"PHASE_CLOAK",
-	
-	
-	"jitterColor":[255,165,90,65],
-	"jitterCopies":1,
-	"jitterMinRange":0,
-	"jitterRange":0,
 
 
-	"jitterUnderColor":[255,165,90,175],
+	"jitterUnderColor":[255,165,90,235],
 	"jitterUnderCopies":12,
-	"jitterUnderMinRange":1,
+	"jitterUnderMinRange":2,
 	"jitterUnderRange":2,
 	"jitterUnderRangeRadiusFraction":0,
 	
-	#"statsScript":"com.fs.starfarer.api.impl.combat.DamperFieldStats",
 	"statsScript":"data.shipsystems.scripts.aEP_DamperBoost",
-	#"statsScript":"data.shipsystems.scripts.FortressShieldStats",
-	
-
 	
 		
 	"weaponGlowColor":[255,165,90,60],

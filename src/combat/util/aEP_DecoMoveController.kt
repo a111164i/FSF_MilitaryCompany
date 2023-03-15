@@ -6,6 +6,10 @@ import combat.util.aEP_DecoMoveController
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.FastTrig
 import data.scripts.util.MagicAnim
+import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_ARMOR
+import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_BELOW
+import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_BRIDGE_SHELL
+import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_HULL
 
 class aEP_DecoMoveController(var weapon: WeaponAPI) {
   companion object {
@@ -18,10 +22,6 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_FCL_scaffold"] = arrayOf(4f, 2f,  0f,0f)
       mag["aEP_FCL_glow"] = arrayOf(12f, 2f,  0f,0f)
       mag["aEP_FCL_cover"] = arrayOf(-3f, 2f,  0f,0f)
-      mag["aEP_raoliu_armor"] = arrayOf(5f, 2f,  0f,0f)
-      mag["aEP_raoliu_hull"] = arrayOf(0f, 2f,  0f,0f)
-      mag["aEP_raoliu_armor_dark"] = arrayOf(5f, 2f,  0f,0f)
-      mag["aEP_raoliu_bridge"] = arrayOf(8f, 2f,  0f,0f)
       mag["aEP_duiliu_armor_L"] = arrayOf(20f, 0.5f,  0f,0f)
       mag["aEP_duiliu_armor_R"] = arrayOf(20f, 0.5f,  0f,0f)
       mag["aEP_duiliu_armor_L3"] = arrayOf(15f, 0.5f,  0f,0f)

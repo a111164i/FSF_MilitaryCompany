@@ -17,25 +17,28 @@
   ],
   "builtInWeapons": {
     "WS0010": "aEP_marker",
-    "WS0011": "aEP_raoliu_hull",
-    "WS0012": "aEP_raoliu_hull",
-    "WS0013": "aEP_raoliu_hull",
-    "WS0014": "aEP_raoliu_hull",
-    "WS0015": "aEP_raoliu_hull",
-    "WS0016": "aEP_raoliu_hull",
-    "WS0017": "aEP_raoliu_armor",
-    "WS0018": "aEP_raoliu_armor",
-    "WS0019": "aEP_raoliu_armor_dark",
-    "WS0020": "aEP_raoliu_armor_dark",
-    "WS0021": "aEP_raoliu_armor",
-    "WS0022": "aEP_raoliu_armor",
-    "WS0023": "aEP_raoliu_armor_dark",
-    "WS0024": "aEP_raoliu_armor_dark",
-    "WS0025": "aEP_raoliu_armor",
-    "WS0026": "aEP_raoliu_armor",
-    "WS0027": "aEP_raoliu_armor_dark",
-    "WS0028": "aEP_raoliu_armor_dark",
-    "WS0029": "aEP_raoliu_bridge"
+    "WS0011": "aEP_small_fold_hull",
+    "WS0012": "aEP_small_fold_hull",
+    "WS0013": "aEP_small_fold_hull",
+    "WS0014": "aEP_small_fold_hull",
+    "WS0015": "aEP_small_fold_hull",
+    "WS0016": "aEP_small_fold_hull",
+
+    "WS0017": "aEP_small_fold_armor",
+    "WS0018": "aEP_small_fold_armor",
+    "WS0021": "aEP_small_fold_armor",
+    "WS0022": "aEP_small_fold_armor",
+    "WS0025": "aEP_small_fold_armor",
+    "WS0026": "aEP_small_fold_armor",
+
+    "WS0019": "aEP_small_fold_below",
+    "WS0020": "aEP_small_fold_below",
+    "WS0023": "aEP_small_fold_below",
+    "WS0024": "aEP_small_fold_below",
+    "WS0027": "aEP_small_fold_below",
+    "WS0028": "aEP_small_fold_below",
+
+    "WS0029": "aEP_small_fold_bridgeshell"
   },
   "weaponSlots": [
     {

@@ -11,7 +11,6 @@ public class aEP_RepairAnimation implements EveryFrameWeaponEffectPlugin
 
   private static final int NUM_OF_FRAMES = 10;
   private static final float FRAME_PER_SEC = 30;
-  private final boolean runOnce = false;
   private AnimationAPI anime;
   private float controlTime = 0;
   //private Color color;

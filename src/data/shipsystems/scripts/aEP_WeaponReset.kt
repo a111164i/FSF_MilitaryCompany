@@ -55,15 +55,15 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       timeRange[WeaponSize.MEDIUM] = 0.4f
       timeRange[WeaponSize.SMALL] = 0.3f
 
-      FLUX_DECREASE_PERCENT["aEP_XiLiu"] = 0.66f
+      FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.66f
       FLUX_DECREASE_PERCENT["aEP_CengLiu"] = 0.5f
       FLUX_DECREASE_PERCENT["aEP_ZhongLiu"] = 0.33f
 
-      FLUX_RETURN_SPEED["aEP_XiLiu"] = 0.8f
+      FLUX_RETURN_SPEED["aEP_fga_xiliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_CengLiu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_ZhongLiu"] = 0.8f
 
-      WEAPON_ROF_PERCENT_BONUS["aEP_XiLiu"] = 200f
+      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 200f
       WEAPON_ROF_PERCENT_BONUS["aEP_CengLiu"] = 200f
       WEAPON_ROF_PERCENT_BONUS["aEP_ZhongLiu"] = 200f
     }

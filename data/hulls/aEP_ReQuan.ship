@@ -16,7 +16,6 @@
     "aEP_MissilePlatform"
   ],
   "builtInWeapons": {
-    "WS0012": "aEP_raoliu_hull",
     "WS0013": "aEP_marker",
     "WS0016": "aEP_rq_missile"
   },

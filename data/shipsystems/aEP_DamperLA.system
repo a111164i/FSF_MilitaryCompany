@@ -3,24 +3,17 @@
 	"type":"STAT_MOD",
 	"aiType":"WEAPON_BOOST",
 	#"aiType":"PHASE_CLOAK",
-	
-	
-	"jitterColor":[255,165,90,65],
-	"jitterCopies":1,
-	"jitterMinRange":0,
-	"jitterRange":0,
 
 
 	"jitterUnderColor":[255,165,90,175],
 	"jitterUnderCopies":12,
-	"jitterUnderMinRange":1,
+	"jitterUnderMinRange":2,
 	"jitterUnderRange":3,
 	"jitterUnderRangeRadiusFraction":0,
 
 	"statsScript":"data.shipsystems.scripts.aEP_DamperBoost",
 	
 
-	
 	"weaponGlowColor":[255,165,90,60],
 	"weaponTypes":[ENERGY, BALLISTIC],
 	
@@ -29,7 +22,6 @@
 	"soundFilterType":"LOWPASS",
 	"soundFilterGain":0.75,
 	"soundFilterGainHF":0.25,
-
 
 	"fadeActivationSoundOnChargedown":true,
 	"useSound":"aEP_DamperBoostOnUse",

@@ -3,7 +3,7 @@
   # for example, no Hyperions or fast beam-based kiting loadouts, or ships with damper field
   "combatSmallForSmallFleet": {
     "aEP_XiLiu_p_Standard": 10,
-    "aEP_XiLiu_Standard": 10,
+    "aEP_fga_xiliu_Standard": 10,
     "aEP_FanChongLi_Mixed": 5,
     "aEP_fga_raoliu_PD":4,
     "aEP_fga_raoliu_Standard":6
@@ -11,7 +11,7 @@
   "combatSmall": {
     "aEP_FanChongLi_Mixed": 10,
     "aEP_XiLiu_p_Standard": 10,
-    "aEP_XiLiu_Standard": 5,
+    "aEP_fga_xiliu_Standard": 5,
     "aEP_fga_raoliu_PD": 5,
     "aEP_fga_raoliu_Standard":5,
   },

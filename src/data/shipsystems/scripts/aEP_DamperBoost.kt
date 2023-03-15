@@ -11,13 +11,14 @@ import org.lazywizard.lazylib.MathUtils
 import data.shipsystems.scripts.aEP_DamperBoost
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import combat.util.aEP_DataTool
+import combat.util.aEP_DecoMoveController
 import java.awt.Color
 
 class aEP_DamperBoost : BaseShipSystemScript() {
   companion object{
     val ROF_MAG = HashMap<String,Float>()
     init {
-      ROF_MAG["aEP_cov_RaoLiu"] = 50f;
+      ROF_MAG["aEP_fga_raoliu"] = 50f;
       ROF_MAG["aEP_YouJiYan"] = 50f;
       ROF_MAG["aEP_YouJiYan_mk2"] = 50f;
       ROF_MAG["aEP_LiAnLiu"] = 50f;
@@ -43,6 +44,14 @@ class aEP_DamperBoost : BaseShipSystemScript() {
       ARMOR_DAMAGE_TAKEN_MULT["aEP_YouJiYan_mk2"] = 0.5f;
       ARMOR_DAMAGE_TAKEN_MULT["aEP_LiAnLiu"] = 0.5f;
     }
+
+    const val SMALL_FOLD_BRIDGE_SHELL = "aEP_small_fold_bridgeshell"
+    const val SMALL_FOLD_ARMOR = "aEP_small_fold_armor"
+    const val SMALL_FOLD_HULL = "aEP_small_fold_hull"
+    const val SMALL_FOLD_BELOW = "aEP_small_fold_below"
+
+    val DAMPER_JITTER_COLOR = Color (255,165,90,65)
+
   }
 
 
@@ -56,32 +65,42 @@ class aEP_DamperBoost : BaseShipSystemScript() {
       if (!w.slot.isDecorative) continue
       if(w.effectPlugin !is aEP_DecoAnimation) continue
       val anima = w.effectPlugin as aEP_DecoAnimation
-      //extend out
+
+      //0-0.5时暗面伸出，亮面隐形
       if (convertedLevel < 0.5f) {
         val level = MathUtils.clamp(convertedLevel * 2f, 0f, 1f)
-        if (w.spec.weaponId == "aEP_raoliu_armor" || w.spec.weaponId == "aEP_shangshengliu_armor") {
-          w.sprite.color = Color(0, 0, 0, 0)
-          anima.setMoveToLevel(level)
+        if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == "aEP_shangshengliu_armor") {
+          w.animation.frame = 0
+          anima.decoMoveController.range = 5f
+          anima.decoMoveController.speed = 2f
+          anima.decoMoveController.effectiveLevel = level
         }
-        if (w.spec.weaponId == "aEP_raoliu_armor_dark" || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
-          w.sprite.color = Color(255, 255, 255)
-          anima.setMoveToLevel(level)
+        if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+          w.animation.frame = 1
+          anima.decoMoveController.range = 5f
+          anima.decoMoveController.speed = 2f
+          anima.decoMoveController.effectiveLevel = level
         }
-        if (w.spec.weaponId == "aEP_raoliu_hull") {
-          anima.setMoveToLevel(level)
-        }
+
+      //0.5-1时亮面回缩，暗面隐形，同时盖上舰桥装甲
       } else {
         val level = MathUtils.clamp(2f - convertedLevel * 2f, 0f, 1f)
-        if (w.spec.weaponId == "aEP_raoliu_armor" || w.spec.weaponId == "aEP_shangshengliu_armor") {
-          val black = (255 * effectLevel).toInt()
-          w.sprite.color = Color(black, black, black)
-          anima.setMoveToLevel(level)
+        if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == "aEP_shangshengliu_armor") {
+          w.animation.frame = 1
+          anima.decoMoveController.range = 5f
+          anima.decoMoveController.speed = 2f
+          anima.decoMoveController.effectiveLevel = level
         }
-        if (w.spec.weaponId == "aEP_raoliu_armor_dark" || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
-          anima.setMoveToLevel(level)
+        if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+          w.animation.frame = 0
+          anima.decoMoveController.range = 5f
+          anima.decoMoveController.speed = 2f
+          anima.decoMoveController.effectiveLevel = level
         }
+
+        ship.setJitter(this,DAMPER_JITTER_COLOR,1f-level,1,0f)
       }
-      if (w.spec.weaponId == "aEP_raoliu_bridge") anima.setMoveToLevel(effectLevel)
+      if (w.spec.weaponId == SMALL_FOLD_BRIDGE_SHELL) anima.setMoveToLevel(effectLevel)
     }
 
     //modify here
@@ -90,37 +109,38 @@ class aEP_DamperBoost : BaseShipSystemScript() {
     val armorFlat = EFFECT_ARMOR_FLAT_BONUS[ship.hullSpec.hullId]?: 0f
     val armorPercent = (EFFECT_ARMOR_PERCENT_BONUS[ship.hullSpec.hullId]?: 0f)
     val toAdd = armorFlat + (ship.hullSpec?.armorRating?:0f) * (armorPercent/100f)
+
     stats.effectiveArmorBonus.modifyFlat(id, toAdd * effectLevel)
     stats.ballisticRoFMult.modifyPercent(id,RofPercent * effectLevel)
     stats.energyRoFMult.modifyPercent(id, RofPercent * effectLevel)
+
     stats.armorDamageTakenMult.modifyMult(id, damageTakenMult)
     stats.hullDamageTakenMult.modifyMult(id, damageTakenMult)
   }
 
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
     ship = (stats.entity?:return) as ShipAPI
+
     stats.effectiveArmorBonus.unmodify(id)
-    stats.armorDamageTakenMult.unmodify(id)
-    stats.hullDamageTakenMult.unmodify(id)
     stats.ballisticRoFMult.unmodify(id)
     stats.energyRoFMult.unmodify(id)
+
+    stats.armorDamageTakenMult.unmodify(id)
+    stats.hullDamageTakenMult.unmodify(id)
 
     for (w in ship.allWeapons) {
       if (!w.slot.isDecorative) continue
       if(w.effectPlugin !is aEP_DecoAnimation) continue
       val anima = w.effectPlugin as aEP_DecoAnimation
-      if (w.spec.weaponId == "aEP_raoliu_armor" || w.spec.weaponId == "aEP_shangshengliu_armor") {
-        w.sprite.color = Color(0, 0, 0, 0)
+      if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == "aEP_shangshengliu_armor") {
+        w.animation.frame = 0
         anima.setMoveToLevel(0f)
       }
-      if (w.spec.weaponId == "aEP_raoliu_armor_dark" || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
-        w.sprite.color = Color(0, 0, 0, 0)
+      if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+        w.animation.frame = 0
         anima.setMoveToLevel(0f)
       }
-      if (w.spec.weaponId == "aEP_raoliu_hull") {
-        anima.setMoveToLevel(0f)
-      }
-      if (w.spec.weaponId == "aEP_raoliu_bridge") anima.setMoveToLevel(0f)
+      if (w.spec.weaponId == SMALL_FOLD_BRIDGE_SHELL) anima.setMoveToLevel(0f)
     }
   }
 
