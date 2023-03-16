@@ -4,7 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import data.scripts.weapons.aEP_maodian_drone_missile
+import data.scripts.weapons.aEP_cru_maodian_missile
 import javax.swing.plaf.ColorUIResource
 
 class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
@@ -21,9 +21,9 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
       if(!w.spec.weaponId.equals("aEP_cru_maodian_missile")) continue
       weapon = w
       if(state != ShipSystemStatsScript.State.IDLE && state != ShipSystemStatsScript.State.IN){
-        weapon.animation.frame = 1
-      }else{
         weapon.animation.frame = 0
+      }else{
+        weapon.animation.frame = 1
       }
     }
 
@@ -33,7 +33,7 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
     if(effectLevel >= 1){
       Global.getCombatEngine().spawnMuzzleFlashOrSmoke(ship,weapon.slot,weapon.spec,0,weapon.currAngle)
       val proj = Global.getCombatEngine().spawnProjectile(ship,weapon,weapon.spec.weaponId,weapon.location,weapon.currAngle,ship.velocity)
-      aEP_maodian_drone_missile().onFire(proj as DamagingProjectileAPI,weapon,Global.getCombatEngine(),weapon.spec.weaponId)
+      aEP_cru_maodian_missile().onFire(proj as DamagingProjectileAPI,weapon,Global.getCombatEngine(),weapon.spec.weaponId)
     }
   }
 
