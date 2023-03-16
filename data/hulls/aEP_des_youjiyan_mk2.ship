@@ -37,10 +37,10 @@
     "RL_DECO0021": "aEP_small_fold_below",
     "RL_DECO0023": "aEP_small_fold_below",
 
-    "WS0004": "aEP_youjiyan_hull",
-    "WS0005": "aEP_youjiyan_hull",
-    "WS0006": "aEP_youjiyan_hull",
-    "WS0007": "aEP_youjiyan_hull",
+    "WS0004": "aEP_des_youjiyan_hull",
+    "WS0005": "aEP_des_youjiyan_hull",
+    "WS0006": "aEP_des_youjiyan_hull",
+    "WS0007": "aEP_des_youjiyan_hull",
   },
   "weaponSlots": [
     {

@@ -25,10 +25,10 @@
     "RL_DECO0018": "aEP_small_fold_armor",
     "RL_DECO0019": "aEP_small_fold_armor",
 
-    "WS0004": "aEP_youjiyan_hull",
-    "WS0005": "aEP_youjiyan_hull",
-    "WS0006": "aEP_youjiyan_hull",
-    "WS0007": "aEP_youjiyan_hull",
+    "WS0004": "aEP_des_youjiyan_hull",
+    "WS0005": "aEP_des_youjiyan_hull",
+    "WS0006": "aEP_des_youjiyan_hull",
+    "WS0007": "aEP_des_youjiyan_hull",
 
     "RL_DECO0004": "aEP_small_fold_below",
     "RL_DECO0006": "aEP_small_fold_below",
