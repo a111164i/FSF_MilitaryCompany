@@ -3,24 +3,24 @@
     "fluxCapacitors": 0,
     "fluxVents": 33,
     "goalVariant": true,
-    "hullId": "aEP_ShangShengLiu_mk3",
+    "hullId": "aEP_cap_shangshengliu_mk3",
     "hullMods": [
         "targetingunit",
         "hardenedshieldemitter",
         "armoredweapons",
     ],
     "modules": [
-        {"M01": "aEP_ShangShengLiu_mk3_armor_Standard"},
-        {"M02": "aEP_ShangShengLiu_mk3_armor_Standard"},
-        {"M03": "aEP_ShangShengLiu_mk3_armor_Standard"},
+        {"M01": "aEP_cap_shangshengliu_mk3_armor_Standard"},
+        {"M02": "aEP_cap_shangshengliu_mk3_armor_Standard"},
+        {"M03": "aEP_cap_shangshengliu_mk3_armor_Standard"},
 
-        {"M04": "aEP_ShangShengLiu_mk3_armor_Standard"},
-        {"M05": "aEP_ShangShengLiu_mk3_armor_Standard"},
-        {"M06": "aEP_ShangShengLiu_mk3_armor_Standard"}
+        {"M04": "aEP_cap_shangshengliu_mk3_armor_Standard"},
+        {"M05": "aEP_cap_shangshengliu_mk3_armor_Standard"},
+        {"M06": "aEP_cap_shangshengliu_mk3_armor_Standard"}
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_ShangShengLiu_mk3_Standard",
+    "variantId": "aEP_cap_shangshengliu_mk3_Standard",
     "weaponGroups": [
         {
             "autofire": true,

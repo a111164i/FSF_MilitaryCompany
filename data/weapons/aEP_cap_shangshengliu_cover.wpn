@@ -1,5 +1,5 @@
 {
-  "id":"aEP_shangshengliu_side_slot_cover",
+  "id":"aEP_cap_shangshengliu_cover",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",
@@ -9,9 +9,9 @@
 	#"renderAboveAllWeapons": 0,
 	"alwaysAnimate":"false",
 	#"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/weapons/aEP_shangshengliu/side_slot_cover.png",
-  "hardpointSprite": "graphics/weapons/aEP_shangshengliu/side_slot_cover.png",
-  "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
+  "turretSprite": "graphics/weapons/aEP_shangshengliu/cover.png",
+  "hardpointSprite": "graphics/weapons/aEP_shangshengliu/cover.png",
+  #"everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
   #"numFrames":8,	
 	#"frameRate":16,
   "turretOffsets": [

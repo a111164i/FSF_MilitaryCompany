@@ -38,14 +38,14 @@ public class MissionDefinition implements MissionDefinitionPlugin
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
     //主力
-    api.addToFleet(FleetSide.PLAYER, "aEP_decomposer_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_BiaoBing_Burst", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_decomposer_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_biaobing_Burst", FleetMemberType.SHIP, "FSF ship", true);
     api.addToFleet(FleetSide.PLAYER, "aEP_cap_duiliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
     api.addToFleet(FleetSide.PLAYER, "aEP_cap_nuanchi_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cap_neibo_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_mk3_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_shangshengliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_shangshengliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_shangshengliu_mk3_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
     //巡洋
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP, "FSF ship", false);

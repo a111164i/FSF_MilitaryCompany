@@ -3,14 +3,14 @@
     "fluxCapacitors": 0,
     "fluxVents": 30,
     "goalVariant": true,
-    "hullId": "aEP_ShangShengLiu",
+    "hullId": "aEP_cap_shangshengliu",
     "hullMods": [
         "targetingunit",
         "armoredweapons"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_ShangShengLiu_Def",
+    "variantId": "aEP_cap_shangshengliu_Def",
     "weaponGroups": [
         {
             "autofire": true,

@@ -1,6 +1,6 @@
 {
   "hullName": "Decomposer",
-  "hullId": "aEP_decomposer",
+  "hullId": "aEP_cap_decomposer",
   "hullSize": "CAPITAL_SHIP",
   "spriteName": "graphics/ships/aEP_decomposer_Proto.png",
   "style": "aEP_FSF",

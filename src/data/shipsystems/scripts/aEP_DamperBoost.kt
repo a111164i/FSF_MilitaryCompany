@@ -47,8 +47,10 @@ class aEP_DamperBoost : BaseShipSystemScript() {
 
     const val SMALL_FOLD_BRIDGE_SHELL = "aEP_small_fold_bridgeshell"
     const val SMALL_FOLD_ARMOR = "aEP_small_fold_armor"
-    const val SMALL_FOLD_HULL = "aEP_small_fold_hull"
     const val SMALL_FOLD_BELOW = "aEP_small_fold_below"
+
+    const val LARGE_FOLD_ARMOR = "aEP_cap_shangshengliu_armor"
+    const val LARGE_FOLD_BELOW = "aEP_cap_shangshengliu_armor_dark"
 
     val DAMPER_JITTER_COLOR = Color (255,165,90,65)
 
@@ -69,13 +71,13 @@ class aEP_DamperBoost : BaseShipSystemScript() {
       //0-0.5时暗面伸出，亮面隐形
       if (convertedLevel < 0.5f) {
         val level = MathUtils.clamp(convertedLevel * 2f, 0f, 1f)
-        if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == "aEP_shangshengliu_armor") {
+        if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == LARGE_FOLD_ARMOR) {
           w.animation.frame = 0
           anima.decoMoveController.range = 5f
           anima.decoMoveController.speed = 2f
           anima.decoMoveController.effectiveLevel = level
         }
-        if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+        if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == LARGE_FOLD_BELOW) {
           w.animation.frame = 1
           anima.decoMoveController.range = 5f
           anima.decoMoveController.speed = 2f
@@ -85,13 +87,13 @@ class aEP_DamperBoost : BaseShipSystemScript() {
       //0.5-1时亮面回缩，暗面隐形，同时盖上舰桥装甲
       } else {
         val level = MathUtils.clamp(2f - convertedLevel * 2f, 0f, 1f)
-        if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == "aEP_shangshengliu_armor") {
+        if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == LARGE_FOLD_ARMOR) {
           w.animation.frame = 1
           anima.decoMoveController.range = 5f
           anima.decoMoveController.speed = 2f
           anima.decoMoveController.effectiveLevel = level
         }
-        if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+        if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == LARGE_FOLD_BELOW) {
           w.animation.frame = 0
           anima.decoMoveController.range = 5f
           anima.decoMoveController.speed = 2f
@@ -132,11 +134,11 @@ class aEP_DamperBoost : BaseShipSystemScript() {
       if (!w.slot.isDecorative) continue
       if(w.effectPlugin !is aEP_DecoAnimation) continue
       val anima = w.effectPlugin as aEP_DecoAnimation
-      if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == "aEP_shangshengliu_armor") {
+      if (w.spec.weaponId == SMALL_FOLD_ARMOR || w.spec.weaponId == LARGE_FOLD_ARMOR) {
         w.animation.frame = 0
         anima.setMoveToLevel(0f)
       }
-      if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+      if (w.spec.weaponId == SMALL_FOLD_BELOW || w.spec.weaponId == LARGE_FOLD_BELOW) {
         w.animation.frame = 0
         anima.setMoveToLevel(0f)
       }

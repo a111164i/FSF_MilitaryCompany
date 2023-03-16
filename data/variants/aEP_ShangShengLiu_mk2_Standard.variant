@@ -3,14 +3,14 @@
     "fluxCapacitors": 0,
     "fluxVents": 33,
     "goalVariant": true,
-    "hullId": "aEP_ShangShengLiu_mk2",
+    "hullId": "aEP_cap_shangshengliu_mk2",
     "hullMods": [
         "efficiency_overhaul",
         "auxiliary_fuel_tanks"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_ShangShengLiu_mk2_Standard",
+    "variantId": "aEP_cap_shangshengliu_mk2_Standard",
     "weaponGroups": [
         {
             "autofire": true,

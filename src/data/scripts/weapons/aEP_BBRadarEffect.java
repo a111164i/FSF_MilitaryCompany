@@ -15,6 +15,8 @@ import org.lazywizard.lazylib.combat.WeaponUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import static data.scripts.a111164ModPlugin.BB_Radar_ID;
+
 public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
 {
 
@@ -56,7 +58,7 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
     @Override
     public float getWeaponRangePercentMod(ShipAPI ship, WeaponAPI weapon) {
 
-      if (weapon.getSpec().getWeaponId().equals("aEP_BB_radar")) {
+      if (weapon.getSpec().getWeaponId().equals(BB_Radar_ID)) {
         radar = weapon;
         hittingTarget = null;
         for (BeamAPI beam : Global.getCombatEngine().getBeams()) {

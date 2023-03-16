@@ -1,6 +1,6 @@
 {
   "hullName": "ShangShengLiu",
-  "hullId": "aEP_ShangShengLiu_mk3",
+  "hullId": "aEP_cap_shangshengliu_mk3",
   "hullSize": "CAPITAL_SHIP",
   "spriteName": "graphics/ships/aEP_shangshengliu_mk3.png",
   "style": "aEP_FSF",
@@ -16,12 +16,12 @@
     "ballistic_rangefinder"
   ],
   "builtInWeapons": {
-    "WS0006": "aEP_shangshengliu_cover",
-    "WS0009": "aEP_shangshengliu_cover",
-    "WS0010": "aEP_shangshengliu_cover",
-    "WS0011": "aEP_shangshengliu_cover",
-    "WS0012": "aEP_shangshengliu_cover",
-    "WS0013": "aEP_shangshengliu_cover"
+    "WS0006": "aEP_cap_shangshengliu_cover",
+    "WS0009": "aEP_cap_shangshengliu_cover",
+    "WS0010": "aEP_cap_shangshengliu_cover",
+    "WS0011": "aEP_cap_shangshengliu_cover",
+    "WS0012": "aEP_cap_shangshengliu_cover",
+    "WS0013": "aEP_cap_shangshengliu_cover"
   },
   "weaponSlots": [
     {

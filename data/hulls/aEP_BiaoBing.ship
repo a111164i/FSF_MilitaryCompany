@@ -1,6 +1,6 @@
 {
-  "hullName": "ExampleUnit",
-  "hullId": "aEP_BiaoBing",
+  "hullName": "",
+  "hullId": "aEP_cap_biaobing",
   "hullSize": "CAPITAL_SHIP",
   "spriteName": "graphics/ships/aEP_biaobing.png",
   "style": "HIGH_TECH",
@@ -15,7 +15,7 @@
 		"aEP_BBAdjustRange",
   ],
   "builtInWeapons": {
-    "WS0021": "aEP_BB_radar"
+    "WS0021": "aEP_cap_biaobing_radar"
   },
   "weaponSlots": [
     {

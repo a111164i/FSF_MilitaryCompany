@@ -2,8 +2,8 @@
     "knownShips":{      
       "tags":[],
       "hulls":[
-			"aEP_BiaoBing",
-			"aEP_decomposer",
+			"aEP_cap_biaobing",
+			"aEP_cap_decomposer",
 			"aEP_des_lianliu",
 			"aEP_fga_yonglang",
 			"aEP_fga_raoliu",

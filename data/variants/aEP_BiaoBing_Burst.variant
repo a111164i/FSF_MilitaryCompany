@@ -3,7 +3,7 @@
     "fluxCapacitors": 16,
     "fluxVents": 30,
     "goalVariant": true,
-    "hullId": "aEP_BiaoBing",
+    "hullId": "aEP_cap_biaobing",
     "hullMods": [
         "magazines",
         "hardenedshieldemitter",
@@ -11,12 +11,12 @@
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_BiaoBing_Burst",
+    "variantId": "aEP_cap_biaobing_Burst",
     "weaponGroups": [
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0021": "aEP_BB_radar"}
+            "weapons": {"WS0021": "aEP_cap_biaobing_radar"}
         },
         {
             "autofire": false,

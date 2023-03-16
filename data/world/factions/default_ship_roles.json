@@ -35,8 +35,8 @@
     "aEP_cru_pingding_Elite": 5,
   },
   "combatCapital": {
-    "aEP_BiaoBing_Standard": 2,
-    "aEP_BiaoBing_Burst": 1,
+    "aEP_cap_biaobing_Standard": 2,
+    "aEP_cap_biaobing_Burst": 1,
     "aEP_cap_duiliu_Standard": 4,
     "aEP_cap_duiliu_Range":3,
     "aEP_cap_duiliu_Super": 3,
@@ -45,7 +45,7 @@
     "aEP_cap_nuanchi_Elite": 3,
     "aEP_cap_neibo_Standard": 6,
     "aEP_cap_neibo_Elite": 4,
-    "aEP_ShangShengLiu_mk3_Standard":3,
+    "aEP_cap_shangshengliu_mk3_Standard":3,
   },
   # hybrid ships with good combat and cargo capacity
   "combatFreighterSmall": {
@@ -55,8 +55,8 @@
     "aEP_des_youjiyan_mk2_Def": 3,
   },
   "combatFreighterLarge": {
-    "aEP_decomposer_Standard": 5,
-    "aEP_ShangShengLiu_Def": 5,
+    "aEP_cap_decomposer_Standard": 5,
+    "aEP_cap_shangshengliu_Def": 5,
   },
   "civilianRandom": {
   },
@@ -71,7 +71,7 @@
     "aEP_cru_shanhu_Standard":4,
     "aEP_cru_shanhu_Attack":3,
     "aEP_cru_shanhu_Siege":3,
-    "aEP_decomposer_Standard": 10,
+    "aEP_cap_decomposer_Standard": 10,
     "aEP_cru_pubu_Elite": 4,
     "aEP_cru_pubu_Standard": 6,
   },
@@ -98,7 +98,7 @@
     "fallback2":{"freighterLarge":0.5},
   },
   "freighterLarge": {
-    "aEP_ShangShengLiu_Standard":5,
+    "aEP_cap_shangshengliu_Standard":5,
     "fallback":{"freighterMedium":1},
     "fallback2":{"freighterSmall":1},
   },
@@ -112,7 +112,7 @@
     "fallback2":{"tankerLarge":0.5},
   },
   "tankerLarge": {
-    "aEP_ShangShengLiu_mk2_Standard":5,
+    "aEP_cap_shangshengliu_mk2_Standard":5,
     "fallback":{"tankerSmall":1},
     "fallback2":{"tankerMedium":1},
   },

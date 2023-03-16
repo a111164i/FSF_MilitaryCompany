@@ -3,14 +3,14 @@
     "fluxCapacitors": 11,
     "fluxVents": 8,
     "goalVariant": true,
-    "hullId": "aEP_ShangShengLiu",
+    "hullId": "aEP_cap_shangshengliu",
     "hullMods": [
         "expanded_cargo_holds",
         "efficiency_overhaul"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_ShangShengLiu_Standard",
+    "variantId": "aEP_cap_shangshengliu_Standard",
     "weaponGroups": [
         {
             "autofire": true,

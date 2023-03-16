@@ -8,8 +8,6 @@ import org.lazywizard.lazylib.FastTrig
 import data.scripts.util.MagicAnim
 import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_ARMOR
 import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_BELOW
-import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_BRIDGE_SHELL
-import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_HULL
 
 class aEP_DecoMoveController(var weapon: WeaponAPI) {
   companion object {
@@ -31,11 +29,11 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_cap_duiliu_gun_cover"] = arrayOf(-30f, 0.5f,  0f,0f)
       mag["aEP_cru_hailiang_holder_l"] = arrayOf(6f, 0.5f,  0f,0f)
       mag["aEP_cru_hailiang_holder_r"] = arrayOf(6f, 0.5f,  0f,0f)
-      mag["aEP_shangshengliu_armor"] = arrayOf(8f, 1.3f,  0f,0f)
-      mag["aEP_shangshengliu_armor_dark"] = arrayOf(8f, 1.3f,  0f,0f)
-      mag["aEP_shangshengliu_hull"] = arrayOf(0f, 2f,  0f,0f)
-      mag["aEP_shangshengliu_top"] = arrayOf(9f, 2f,  0f,0f)
-      mag["aEP_shangshengliu_bottom"] = arrayOf(21f, 1f,  0f,0f)
+      mag["aEP_cap_shangshengliu_armor"] = arrayOf(8f, 1.3f,  0f,0f)
+      mag["aEP_cap_shangshengliu_armor_dark"] = arrayOf(8f, 1.3f,  0f,0f)
+      mag["aEP_cap_shangshengliu_hull"] = arrayOf(0f, 2f,  0f,0f)
+      mag["aEP_cap_shangshengliu_top"] = arrayOf(9f, 2f,  0f,0f)
+      mag["aEP_cap_shangshengliu_bottom"] = arrayOf(21f, 1f,  0f,0f)
       mag["aEP_des_shendu_armor"] = arrayOf(-42f, 10f, 2f,10f)
       mag["aEP_des_shendu_hold"] = arrayOf(20f, 10f, 2f,10f)
       mag["aEP_des_shendu_hold2"] = arrayOf(28f, 10f, 2f,10f)
