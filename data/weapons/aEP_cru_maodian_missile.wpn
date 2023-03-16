@@ -1,7 +1,7 @@
 {
-  "id": "aEP_MD_drone_missile",
+  "id": "aEP_cru_maodian_missile",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_MD_drone_missile",
+  "projectileSpecId": "aEP_cru_maodian_missile_shot",
   "type": "SYSTEM",
   "size": "LARGE",
   "turretSprite": "graphics/ships/aEP_fighters/ut_maodian00.png",

@@ -18,7 +18,7 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
     //检测系统是否就绪，如果否就不显示模拟无人机的导弹
     var weapon : WeaponAPI? = null
     for(w in ship.allWeapons){
-      if(!w.spec.weaponId.equals("aEP_MD_drone_missile")) continue
+      if(!w.spec.weaponId.equals("aEP_cru_maodian_missile")) continue
       weapon = w
       if(state != ShipSystemStatsScript.State.IDLE && state != ShipSystemStatsScript.State.IN){
         weapon.animation.frame = 1

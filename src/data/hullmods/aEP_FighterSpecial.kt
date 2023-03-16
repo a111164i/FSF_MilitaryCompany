@@ -220,7 +220,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
   val id = "aEP_MaoDianShield"
   val TIME_TO_EXTEND = 1f
   //ship文件里的护盾半径也要改，否则护盾中心在屏幕外的时候不会渲染护盾
-  val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian_drone").shieldSpec.radius
+  val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian").shieldSpec.radius
   val MAX_MOVE_TIME = 15f
   val FLUX_INCREASE = 100f
   val RADAR_SPEED = -90f

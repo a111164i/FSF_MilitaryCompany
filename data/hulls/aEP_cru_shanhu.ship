@@ -18,7 +18,7 @@
   "builtInWeapons": {
     "WS0009": "aEP_marker",
     "WS0010": "aEP_marker",
-    "WS0011": "aEP_MD_drone_missile"
+    "WS0011": "aEP_cru_maodian_missile"
   },
   "weaponSlots": [
     {

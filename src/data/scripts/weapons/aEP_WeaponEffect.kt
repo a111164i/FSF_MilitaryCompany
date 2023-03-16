@@ -1565,7 +1565,7 @@ class aEP_KF_large_shot : Effect(){
 }
 
 //锚点无人机模拟导弹
-class aEP_maodian_drone_missile : Effect(){
+class aEP_cru_maodian_missile : Effect(){
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     projectile?.weapon?.ship?: return
     //无论如何都先移除proj
