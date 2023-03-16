@@ -1,6 +1,6 @@
 {
 	"specClass":"beam",
-	"id":"aEP_tearing_beam_fighter",
+	"id":"aEP_ftr_ut_decompose_beam",
 	"type":"ENERGY",
 	"size":"SMALL",
 	"collisionClass":"RAY",

@@ -1,6 +1,6 @@
 {
-  "hullName": "NeiBo",
-  "hullId": "aEP_NeiBo",
+  "hullName": "",
+  "hullId": "aEP_cap_neibo",
   "hullSize": "CAPITAL_SHIP",
   "spriteName": "graphics/ships/aEP_neibo.png",
   "style": "aEP_FSF",
@@ -16,7 +16,7 @@
     "aEP_ModuleTargeting"
   ],
   "builtInWeapons": {
-    "COVER_MAIN": "aEP_neibo_main",
+    "COVER_MAIN": "aEP_cap_neibo_main",
     "WS0007": "aEP_marker",
     "WS0008": "aEP_marker",
     #"WS0023": "aEP_neibo_cover"

@@ -86,7 +86,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     smokeTracker.advance(amount);
     if (smokeTracker.intervalElapsed()) {
       for (WeaponAPI w : ship.getAllWeapons()) {
-        if (w.getId().contains("aEP_duiliu_limiter_glow")) {
+        if (w.getId().contains("aEP_cap_duiliu_limiter_glow")) {
           float angle = w.getCurrAngle();
           aEP_MovingSmoke smoke = new aEP_MovingSmoke(w.getLocation());
           smoke.setInitVel(aEP_Tool.Util.speed2Velocity(angle, 10));

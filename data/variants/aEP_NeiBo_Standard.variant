@@ -3,18 +3,18 @@
     "fluxCapacitors": 0,
     "fluxVents": 25,
     "goalVariant": true,
-    "hullId": "aEP_NeiBo",
+    "hullId": "aEP_cap_neibo",
     "hullMods": [
         "targetingunit",
         "ballistic_rangefinder"
     ],
     "modules": [
-        {"TR_MOD": "aEP_NeiBo_turret_Standard"},
-        {"ARMOR": "aEP_NeiBo_armor_Standard"}
+        {"TR_MOD": "aEP_cap_neibo_turret_Standard"},
+        {"ARMOR": "aEP_cap_neibo_armor_Standard"}
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_NeiBo_Standard",
+    "variantId": "aEP_cap_neibo_Standard",
     "weaponGroups": [
         {
             "autofire": false,
@@ -39,7 +39,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"COVER_MAIN": "aEP_neibo_main"}
+            "weapons": {"COVER_MAIN": "aEP_cap_neibo_main"}
         },
         {
             "autofire": true,

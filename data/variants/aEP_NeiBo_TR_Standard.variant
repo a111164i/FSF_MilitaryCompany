@@ -3,11 +3,11 @@
     "fluxCapacitors": 0,
     "fluxVents": 2,
     "goalVariant": true,
-    "hullId": "aEP_NeiBo_turret",
+    "hullId": "aEP_cap_neibo_turret",
     "hullMods": [],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_NeiBo_turret_Standard",
+    "variantId": "aEP_cap_neibo_turret_Standard",
     "weaponGroups": [{
         "autofire": false,
         "mode": "ALTERNATING",

@@ -20,7 +20,7 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {  
-                "WS0001": "aEP_tearing_beam_fighter",               
+                "WS0001": "aEP_ftr_ut_decompose_beam",
             }
         },
           ],

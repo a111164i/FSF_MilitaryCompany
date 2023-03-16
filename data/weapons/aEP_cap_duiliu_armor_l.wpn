@@ -1,19 +1,19 @@
 {
-  "id":"aEP_duiliu_limiter_glow",
-  "type": "DECORATIVE",
+  "id":"aEP_cap_duiliu_armor_l",
   "specClass":"projectile",
-  "projectileSpecId":"vulcan_shot",
+  "projectileSpecId":"aEP_FCL_shot",
+  "type": "DECORATIVE",
   "size": "SMALL",
-  #"showDamageWhenDecorative":false,
-	"renderBelowAllWeapons":true,
+  "showDamageWhenDecorative":true,
+	#"renderBelowAllWeapons":true,
 	#"renderAboveAllWeapons": 0,
 	"alwaysAnimate":"false",
-	"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/weapons/aEP_duiliu/limiterglow00.png",
-  "hardpointSprite": "graphics/weapons/aEP_duiliu/limiterglow00.png",
+	#"renderHints":["RENDER_ADDITIVE"],
+  "turretSprite": "graphics/weapons/aEP_duiliu/armorl.png",
+  "hardpointSprite": "graphics/weapons/aEP_duiliu/armorl.png",
   "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
-  "numFrames":2,	
-	"frameRate":0,
+  #"numFrames":8,	
+	#"frameRate":16,
   "turretOffsets": [
    0,
    0
@@ -30,5 +30,4 @@
   ],
   "barrelMode": "ALTERNATING",
   "animationType": "NONE",
-  
  }

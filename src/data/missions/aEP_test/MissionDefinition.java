@@ -40,9 +40,9 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //主力
     api.addToFleet(FleetSide.PLAYER, "aEP_decomposer_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_BiaoBing_Burst", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_DuiLiu_Standard", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_NuanChi_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_NeiBo_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_duiliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_nuanchi_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_neibo_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_mk3_Standard", FleetMemberType.SHIP, "FSF ship", false);

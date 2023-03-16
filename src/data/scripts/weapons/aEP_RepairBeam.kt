@@ -6,7 +6,6 @@ import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.BeamAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import org.lwjgl.util.vector.Vector2f
-import data.scripts.weapons.aEP_RepairBeam
 import combat.util.aEP_Tool
 import data.hullmods.aEP_FlyingTank
 import java.awt.Color

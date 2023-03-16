@@ -1,5 +1,5 @@
 {
-  "id":"aEP_duiliu_main_glow",
+  "id":"aEP_cap_duiliu_limiter_glow",
   "type": "DECORATIVE",
   "specClass":"projectile",
   "projectileSpecId":"vulcan_shot",
@@ -9,8 +9,8 @@
 	#"renderAboveAllWeapons": 0,
 	"alwaysAnimate":"false",
 	"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/weapons/aEP_duiliu/railglow00.png",
-  "hardpointSprite": "graphics/weapons/aEP_duiliu/railglow00.png",
+  "turretSprite": "graphics/weapons/aEP_duiliu/limiterglow00.png",
+  "hardpointSprite": "graphics/weapons/aEP_duiliu/limiterglow00.png",
   "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
   "numFrames":2,	
 	"frameRate":0,

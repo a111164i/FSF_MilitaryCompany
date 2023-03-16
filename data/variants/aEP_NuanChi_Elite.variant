@@ -3,11 +3,11 @@
     "fluxCapacitors": 3,
     "fluxVents": 30,
     "goalVariant": true,
-    "hullId": "aEP_NuanChi",
+    "hullId": "aEP_cap_nuanchi",
     "hullMods": ["targetingunit"],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_NuanChi_Elite",
+    "variantId": "aEP_cap_nuanchi_Elite",
     "weaponGroups": [
         {
             "autofire": false,
@@ -30,7 +30,7 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0036": "aEP_NC_missile"}
+            "weapons": {"WS0036": "aEP_cap_nuanchi_missile"}
         },
         {
             "autofire": false,

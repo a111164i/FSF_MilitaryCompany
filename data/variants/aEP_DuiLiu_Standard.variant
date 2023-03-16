@@ -3,7 +3,7 @@
     "fluxCapacitors": 0,
     "fluxVents": 18,
     "goalVariant": true,
-    "hullId": "aEP_DuiLiu",
+    "hullId": "aEP_cap_duiliu",
     "hullMods": [
         "targetingunit",
         "ballistic_rangefinder",
@@ -11,12 +11,12 @@
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_DuiLiu_Standard",
+    "variantId": "aEP_cap_duiliu_Standard",
     "weaponGroups": [
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"MAIN": "aEP_duiliu_main"}
+            "weapons": {"MAIN": "aEP_cap_duiliu_main"}
         },
         {
             "autofire": false,

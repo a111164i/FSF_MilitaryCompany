@@ -1,7 +1,7 @@
 {
-  "id": "aEP_NC_missile",
+  "id": "aEP_cap_nuanchi_missile",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_NC_missile",
+  "projectileSpecId": "aEP_cap_nuanchi_missile_shot",
   "type": "MISSILE",
   "size": "LARGE",
   "turretSprite": "graphics/weapons/aEP_slow_missile/hp.png",

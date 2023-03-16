@@ -35,7 +35,7 @@ public class aEP_SystemAnimation implements EveryFrameWeaponEffectPlugin
     timer = timer + amount;
 
     switch (id) {
-      case "aEP_NC_pool":
+      case "aEP_cap_nuanchi_reloaddeco":
         if (effectLevel > 0.5f) {
           loopOnce();
 

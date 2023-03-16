@@ -13,8 +13,8 @@ import java.util.Map;
 public class aEP_RadarAnimation implements EveryFrameWeaponEffectPlugin {
   static Map<String, Float> ROTATE_RATE = new HashMap<>();
   static {
-    ROTATE_RATE.put("aEP_duiliu_radar",-60f);
-    ROTATE_RATE.put("aEP_nuanchi_radar",-180f);
+    ROTATE_RATE.put("aEP_cap_duiliu_radar",-60f);
+    ROTATE_RATE.put("aEP_cap_nuanchi_radar",-180f);
   }
 
   public float usingRate = -999f;

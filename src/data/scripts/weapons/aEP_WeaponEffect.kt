@@ -529,7 +529,7 @@ class aEP_breakin_shot : Effect(){
 }
 
 //异象导弹
-class aEP_NC_missile2 : Effect(){
+class aEP_cap_nuanchi_missile_shot2 : Effect(){
   companion object{
     const val EMP_CLOUD_RADIUS = 200f
     const val EMP_CLOUD_END_RADIUS_MULT = 3f
@@ -796,7 +796,7 @@ class aEP_high_speed_HE_shot : Effect(){
 }
 
 //对流 温跃层主炮 无光层加速器
-class aEP_duiliu_main_shot : Effect(){
+class aEP_cap_duiliu_main_shot : Effect(){
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     //create bright spark at center
     engine!!.addSmoothParticle(

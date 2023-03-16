@@ -1,7 +1,7 @@
 {
-  "id": "aEP_duiliu_main",
+  "id": "aEP_cap_duiliu_main",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_duiliu_main_shot",
+  "projectileSpecId": "aEP_cap_duiliu_main_shot",
   "type": "BALLISTIC",
   #"type": "BUILT_IN",
   "size": "LARGE",

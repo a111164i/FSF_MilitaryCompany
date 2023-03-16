@@ -13,8 +13,8 @@ class aEP_DecoRevoController(var weapon: WeaponAPI) {
 
     init {
       //+ = turn left, - = turn right
-      mag["aEP_duiliu_armor_L3"] = arrayOf(0f, 70f, 0.5f)
-      mag["aEP_duiliu_armor_R3"] = arrayOf(0f, -70f, 0.5f)
+      mag["aEP_cap_duiliu_armor_l3"] = arrayOf(0f, 70f, 0.5f)
+      mag["aEP_cap_duiliu_armor_l3"] = arrayOf(0f, -70f, 0.5f)
       mag["aEP_ftr_sup_guardian_cover_l"] = arrayOf(-5f, 75f, 4f)
       mag["aEP_ftr_sup_guardian_cover_r"] = arrayOf(5f, -75f, 4f)
     }

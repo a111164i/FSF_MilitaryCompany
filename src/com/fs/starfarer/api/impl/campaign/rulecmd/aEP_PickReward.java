@@ -26,9 +26,9 @@ public class aEP_PickReward extends BaseCommandPlugin
   public static List<String> itemToBuy = new ArrayList<>();
 
   static {
-    ship_bp.put("aEP_NuanChi", 300f);
-    ship_bp.put("aEP_DuiLiu", 200f);
-    ship_bp.put("aEP_NeiBo", 240f);
+    ship_bp.put("aEP_cap_nuanchi", 300f);
+    ship_bp.put("aEP_cap_duiliu", 240f);
+    ship_bp.put("aEP_cap_neibo", 240f);
 
     ship_bp.put("aEP_cru_shanhu", 200f);
     ship_bp.put("aEP_cru_requan", 180f);

@@ -1,5 +1,5 @@
 {
-	"id":"aEP_duiliu_main_shot",
+	"id":"aEP_cap_duiliu_main_shot",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC",	
 	"collisionClass":"PROJECTILE_FF",

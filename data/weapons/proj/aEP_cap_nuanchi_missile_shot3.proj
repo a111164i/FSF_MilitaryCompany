@@ -1,18 +1,18 @@
 {
-	"id":"aEP_NC_missile3",
+	"id":"aEP_cap_nuanchi_missile_shot3",
 	"specClass":"missile",	
-    "missileType":"ROCKET",
-    "sprite":"",
-    "glowSprite":"",
-    "glowColor":[255,50,50,127],
-    "glowRadius":0,
-   	"size":[20,20],
-   	"center":[10,10],
-    "collisionRadius":30,
-    "collisionClass":"NONE",
-    "collisionClassAfterFlameout":"NONE",
-   	"explosionColor":[255,100,255,255],  # purely visual, will get a white additively blended core on top of this color
-   	"explosionRadius":200, # purely visual
+	"missileType":"ROCKET",
+	"sprite":"",
+	"glowSprite":"",
+	"glowColor":[255,50,50,127],
+	"glowRadius":0,
+	"size":[20,20],
+	"center":[10,10],
+	"collisionRadius":30,
+	"collisionClass":"NONE",
+	"collisionClassAfterFlameout":"NONE",
+	"explosionColor":[255,100,255,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":200, # purely visual
 #	"explosionSpec":{"duration":0.1f, # not visual
 #					 "radius":175,
 #					 "coreRadius":75, # full damage within core radius

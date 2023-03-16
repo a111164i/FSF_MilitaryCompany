@@ -1,5 +1,5 @@
 {
-	"id":"aEP_NC_missile",
+	"id":"aEP_cap_nuanchi_missile_shot",
 	"specClass":"missile",	
 	"missileType":"MIRV",
 	"sprite":"graphics/weapons/aEP_slow_missile/missile.png",
@@ -67,7 +67,7 @@
                         "evenSpread":true,
                         "spreadSpeed":0,
                         "spreadSpeedRange":0,
-                        "projectileSpec":"aEP_NC_missile2",
+                        "projectileSpec":"aEP_cap_nuanchi_missile_shot2",
                         #"emptySpec":"type_1_mirv_empty",
                         "smokeSpec":{
                                 "particleSizeMin":30.0,

@@ -1,20 +1,20 @@
 {
-	"id":"aEP_NC_missile2",
-	"specClass":"missile",	
-	"missileType":"ROCKET",
-	"sprite":"graphics/weapons/aEP_slow_missile/missile.png",
-	"size":[14,50],	
-	"center":[7,25],
-	"collisionRadius":35,
-	"collisionClass":"MISSILE_NO_FF",
-	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"explosionColor":[40,40,150,255],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":450, # purely visual
-    "maxFlightTime":3.5,
-	"flameoutTime":0.5,  # total time from flameout to full fadeout
-	#"armingTime":1, # safe range count by time 
-	"noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)	
-	"fadeTime":0.1, # fadeout duration
+        "id":"aEP_cap_nuanchi_missile_shot2",
+        "specClass":"missile",	
+        "missileType":"ROCKET",
+        "sprite":"graphics/weapons/aEP_slow_missile/missile.png",
+        "size":[14,50],	
+        "center":[7,25],
+        "collisionRadius":35,
+        "collisionClass":"MISSILE_NO_FF",
+        "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+        "explosionColor":[40,40,150,255],  # purely visual, will get a white additively blended core on top of this color
+        "explosionRadius":450, # purely visual
+        "maxFlightTime":3.5,
+        "flameoutTime":0.5,  # total time from flameout to full fadeout
+        #"armingTime":1, # safe range count by time 
+        "noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)	
+        "fadeTime":0.1, # fadeout duration
     "alwaysAccelerate":true,
     #"reduceDamageWhileFading":false,
     #"fizzleOnReachingWeaponRange":true,

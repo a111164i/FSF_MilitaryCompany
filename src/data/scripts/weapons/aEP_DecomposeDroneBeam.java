@@ -20,8 +20,7 @@ public class aEP_DecomposeDroneBeam implements BeamEffectPlugin
   private static final Map<String, Float> FRAGMENTATION_CORE_DAMAGE = new HashMap();
 
   static {
-    FRAGMENTATION_CORE_DAMAGE.put("aEP_tearing_beam", 1200f);
-    FRAGMENTATION_CORE_DAMAGE.put("aEP_tearing_beam_fighter", 500f);
+    FRAGMENTATION_CORE_DAMAGE.put("aEP_ftr_ut_decompose_beam", 500f);
   }
 
   private int timer = 0;

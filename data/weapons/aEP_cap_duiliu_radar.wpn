@@ -1,5 +1,5 @@
 {
-  "id":"aEP_duiliu_radar",
+  "id":"aEP_cap_duiliu_radar",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",

@@ -1,6 +1,6 @@
 {
-  "hullName": "WarmPool",
-  "hullId": "aEP_NuanChi",
+  "hullName": "",
+  "hullId": "aEP_cap_nuanchi",
   "hullSize": "CAPITAL_SHIP",
   "spriteName": "graphics/ships/aEP_nuanchi.png",
   "style": "aEP_FSF",
@@ -16,18 +16,17 @@
     "aEP_MissilePlatform"
   ],
   "builtInWeapons": {
-    "WS0007": "aEP_nuanchi_side_cover",
     "WS0022": "aEP_marker",
     "WS0023": "aEP_marker",
     "WS0024": "aEP_marker",
     "WS0025": "aEP_marker",
-    "WS0026": "aEP_nuanchi_radar",
+    "WS0026": "aEP_cap_nuanchi_radar",
     "WS0027": "aEP_blinker_green",
-    "WS0028": "aEP_NC_pool",
+    "WS0028": "aEP_cap_nuanchi_reloaddeco",
     "WS0029": "aEP_blinker_green",
     "WS0030": "aEP_blinker_green",
     "WS0031": "aEP_blinker_green",
-    "WS0036": "aEP_NC_missile"
+    "WS0036": "aEP_cap_nuanchi_missile"
   },
   "weaponSlots": [
     {

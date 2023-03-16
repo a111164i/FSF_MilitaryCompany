@@ -1,16 +1,16 @@
 {
-  "id":"aEP_duiliu_gun_cover_L",
+  "id":"aEP_cap_duiliu_armor_r3",
   "specClass": "projectile",
   "projectileSpecId":"aEP_FCL_shot",
   "type": "DECORATIVE",
-  "size": "LARGE",
+  "size": "SMALL",
   "showDamageWhenDecorative":true,
-	"renderBelowAllWeapons":true,
+	#"renderBelowAllWeapons":true,
 	#"renderAboveAllWeapons": 0,
 	"alwaysAnimate":"false",
 	#"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/weapons/aEP_duiliu/limitercoverl.png",
-  "hardpointSprite": "graphics/weapons/aEP_duiliu/limitercoverl.png",
+  "turretSprite": "graphics/weapons/aEP_duiliu/armorr.png",
+  "hardpointSprite": "graphics/weapons/aEP_duiliu/armorr.png",
   "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
   #"numFrames":8,	
 	#"frameRate":16,
@@ -19,7 +19,7 @@
    0
   ],
   "turretAngleOffsets": [
-    0
+    90
   ],
   "hardpointOffsets": [
     0,

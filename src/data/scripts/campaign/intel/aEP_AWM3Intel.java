@@ -79,7 +79,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
 
     //手动添加敌人
     {
-      FleetMemberAPI s = targetFleet.getFleetData().addFleetMember("aEP_NuanChi_Elite");
+      FleetMemberAPI s = targetFleet.getFleetData().addFleetMember("aEP_cap_nuanchi_Elite");
       PersonAPI p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -94,7 +94,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_NuanChi_Elite");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cap_nuanchi_Elite");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -108,7 +108,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_NuanChi_Support");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cap_nuanchi_Support");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
@@ -122,7 +122,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_DuiLiu_Super");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cap_duiliu_Super");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);

@@ -1,7 +1,7 @@
 {
-  "id": "aEP_NC_missile3",
+  "id": "aEP_cap_nuanchi_missile3",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_NC_missile3",
+  "projectileSpecId": "aEP_cap_nuanchi_missile_shot3",
   "type": "MISSILE",
   "size": "SMALL",
   "turretSprite": "",

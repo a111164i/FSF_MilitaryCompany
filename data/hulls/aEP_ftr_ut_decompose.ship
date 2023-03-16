@@ -17,14 +17,13 @@
     "armoredweapons",
   ],
   "builtInWeapons": {
-    "WS0001": "aEP_tearing_beam_fighter",
     "WS0002": "aEP_empty"
   },
   "weaponSlots": [
     {
       "id": "WS0001",
       "size": "SMALL",
-      "type": "BUILT_IN",
+      "type": "UNIVERSAL",
       "mount": "TURRET",
       "arc": 360,
       "angle": 0,

@@ -13,7 +13,7 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_repairbeam_fighter"
+        "WS0001": "aEP_ftr_ut_repair_beam"
       }
     }
   ],
