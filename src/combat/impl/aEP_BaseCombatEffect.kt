@@ -125,8 +125,8 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
   override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
     if(!layers.contains(layer)) return
-    val screenDist = Math.max(viewport.convertWorldHeightToScreenHeight(radius),viewport.convertWorldWidthToScreenWidth(radius))
-    if(!viewport.isNearViewport(loc,screenDist * 1.5f))return
+    val screenDist = radius * viewport.viewMult
+    if(!viewport.isNearViewport(loc,screenDist * 1.1f))return
     renderImpl(layer,viewport)
   }
 

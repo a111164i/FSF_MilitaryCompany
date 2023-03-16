@@ -6,8 +6,6 @@ import combat.util.aEP_DecoMoveController
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.FastTrig
 import data.scripts.util.MagicAnim
-import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_ARMOR
-import data.shipsystems.scripts.aEP_DamperBoost.Companion.SMALL_FOLD_BELOW
 
 class aEP_DecoMoveController(var weapon: WeaponAPI) {
   companion object {
@@ -16,19 +14,19 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
 
     init {
       //移动距离，移动时间(每秒移动多少effectiveLevel)，侧向移动距离，侧向移动速度
-      mag["aEP_fga_yonglang_main"] = arrayOf(12f, 2f,  0f,0f)
-      mag["aEP_fga_yonglang_scaffold"] = arrayOf(4f, 2f,  0f,0f)
-      mag["aEP_fga_yonglang_glow"] = arrayOf(12f, 2f,  0f,0f)
-      mag["aEP_fga_yonglang_cover"] = arrayOf(-3f, 2f,  0f,0f)
+      mag["aEP_fga_yonglang_main"] = arrayOf(12f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_scaffold"] = arrayOf(4f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_glow"] = arrayOf(12f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_cover"] = arrayOf(-3f, 3f,  0f,0f)
       mag["aEP_cap_duiliu_armor_l"] = arrayOf(20f, 0.5f,  0f,0f)
       mag["aEP_cap_duiliu_armor_r"] = arrayOf(20f, 0.5f,  0f,0f)
-      mag["aEP_cap_duiliu_armor_l3"] = arrayOf(15f, 0.5f,  0f,0f)
-      mag["aEP_cap_duiliu_armor_r3"] = arrayOf(15f, 0.5f,  0f,0f)
+      mag["aEP_cap_duiliu_armor_l3"] = arrayOf(5f, 0.5f, -10f, 0.5f)
+      mag["aEP_cap_duiliu_armor_r3"] = arrayOf(5f, 0.5f, 10f, 0.5f)
       mag["aEP_cap_duiliu_limiter"] = arrayOf(18f, 1f,  0f,0f)
       mag["aEP_cap_duiliu_limiter_glow"] = arrayOf(18f, 1f,  0f,0f)
       mag["aEP_cap_duiliu_gun_cover"] = arrayOf(-30f, 0.5f,  0f,0f)
-      mag["aEP_cru_hailiang_holder_l"] = arrayOf(6f, 0.5f,  0f,0f)
-      mag["aEP_cru_hailiang_holder_r"] = arrayOf(6f, 0.5f,  0f,0f)
+      mag["aEP_cru_hailiang_holder_l"] = arrayOf(6f, 1.33f,  -6f, 1.33f)
+      mag["aEP_cru_hailiang_holder_r"] = arrayOf(6f, 1.33f,  6f, 1.33f)
       mag["aEP_cap_shangshengliu_armor"] = arrayOf(8f, 1.3f,  0f,0f)
       mag["aEP_cap_shangshengliu_armor_dark"] = arrayOf(8f, 1.3f,  0f,0f)
       mag["aEP_cap_shangshengliu_hull"] = arrayOf(0f, 2f,  0f,0f)

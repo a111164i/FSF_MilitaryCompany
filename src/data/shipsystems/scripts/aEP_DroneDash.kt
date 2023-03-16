@@ -22,7 +22,9 @@ import java.awt.Color
 
 class aEP_DroneDash : BaseShipSystemScript() {
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
-    val ship = stats.entity as ShipAPI ?: return
+    //stats的entity有可能为null
+    val ship = (stats?.entity?: return)as ShipAPI
+
     val amount = Global.getCombatEngine().elapsedInLastFrame * stats.timeMult.modifiedValue
     stats.maxSpeed.modifyFlat(id, Math.max(effectLevel, 0.5f) * MAX_SPEED_BONUS)
     stats.acceleration.modifyFlat(id, MAX_SPEED_BONUS * 2f)
@@ -93,14 +95,16 @@ class aEP_DroneDash : BaseShipSystemScript() {
   }
 
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
+    //stats的entity有可能为null
+    val ship = (stats?.entity?: return)as ShipAPI
+
     stats.maxSpeed.unmodify(id)
     stats.acceleration.unmodify(id)
     stats.deceleration.unmodify(id)
     stats.engineDamageTakenMult.unmodify(id)
     stats.armorDamageTakenMult.unmodify(id)
     stats.hullDamageTakenMult.unmodify(id)
-    val ship = stats.entity as ShipAPI
-    if (ship != null) addThisBuff(ship, aEP_ExtraTurnRate(ship))
+    addThisBuff(ship, aEP_ExtraTurnRate(ship))
   }
 
   internal inner class aEP_ExtraTurnRate(ship: ShipAPI) : aEP_Buff() {

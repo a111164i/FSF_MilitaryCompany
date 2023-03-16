@@ -41,7 +41,7 @@ public class aEP_SystemAnimation implements EveryFrameWeaponEffectPlugin
 
         }
         break;
-      case "aEP_HL_tower":
+      case "aEP_antenna_binker":
         upAndDown(effectLevel > 0.5f);
         break;
     }

@@ -139,7 +139,7 @@
       "arc": 0,
       "angle": 0,
       "locations": [-56.5, 42.5],
-      "renderOrderMod": 19
+      "renderOrderMod": 18
     },
     {
       "id": "OL02",
@@ -149,7 +149,7 @@
       "arc": 0,
       "angle": -0,
       "locations": [-56.5, -42.5],
-      "renderOrderMod": 19
+      "renderOrderMod": 18
     },
     {
       "id": "MD01",

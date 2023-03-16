@@ -5,7 +5,7 @@
 	"sprite":"graphics/weapons/aEP_slow_missile/missile.png",
 	"size":[14,50],	
 	"center":[7,25],
-	"collisionRadius":35,
+	"collisionRadius":30,
 	"collisionClass":"MISSILE_NO_FF",
 	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"explosionColor":[40,40,150,200],  # purely visual, will get a white additively blended core on top of this color

@@ -1,22 +1,66 @@
 {
-	"id":"aEP_FCL_shot",
-	"specClass":"projectile",
-	"spawnType":"BALLISTIC",	
-	"collisionClass":"PROJECTILE_FF",
-	"collisionClassByFighter":"PROJECTILE_FIGHTER",
-     #"onHitEffect":"data.scripts.weapons.aEP_FCLOnHitEffect",
-	"bulletSprite":"graphics/weapons/aEP_breakin_hammer/aEP_breakin_hammer_proj.png",
-	"hitGlowRadius": 25,
-	"fadeTime":0.01,
-	"length": 24,
-	"width": 14,
-	"fringeColor":[250,250,250,255],# fringe color of shot sprite
-	"coreColor":[250,250,250,255], # core color of shot sprite
-	"glowColor":[160,210,160,255],
-	"glowRadius":1,
-	"textureScrollSpeed":64,
-	"pixelsPerTexel":5,
+	"id":"aEP_fga_yonglang_main_shot",
+ 	"specClass":"missile",
+  "missileType":"ROCKET",
+  "collisionClass":"PROJECTILE_FF",
+  "collisionClassByFighter":"PROJECTILE_FIGHTER",
+  "collisionRadius":20,
+  "sprite":"graphics/weapons/aEP_FCL/proj.png",
+  "size":[11,7],
+  "center":[5.5,4],
+
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "glowColor":[160,160,238,75], # 发光的颜色
+  "glowRadius":100,
+  "explosionColor":[100,100,100,25],  # purely visual, will get a white additively blended core on top of this color
+  "explosionRadius":160, # purely visual
+  "explosionSpec":{"duration":0.1f, # not visual
+			             "radius":120,
+			             "coreRadius":60, # full damage within core radius
+			             "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+			             "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+			             "particleSizeMin":5.0,
+			             "particleSizeRange":3.0,
+			             "particleDuration":1,
+			             "particleCount":100,
+			             "particleColor":[160,160,238,215]},
+  "armingTime":0.1, # safe range count by time
+  "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)
+  "fadeTime":0, # fadeout duration
+  "flameoutTime":0.2,# 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+  "alwaysAccelerate":true,
+  "reduceDamageWhileFading":false,
+  "useProjectileRangeCalculation":true,
 	"passThroughMissiles":true,
+	"engineSpec":{"turnAcc":0,
+    				  "turnRate":0,
+    				  "acc":1000,
+    				  "dec":1000},
+	"engineSlots":[{"id":"ES1",
+                  "loc":[-5, 0],
+                  "style":"CUSTOM",
+                  "styleSpec":{
+                    "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+                    "engineColor":[241,145,123,155],
+                    "contrailDuration":0.6,
+                    "contrailWidthMult":1,
+                    "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+                    "contrailMinSeg":5, # min segment length, in pixels
+                    "contrailMaxSpeedMult":0f,
+                    "contrailAngularVelocityMult":0.5f,
+                    "contrailSpawnDistMult":0f, # how far away from engine it starts
+                    "contrailColor":[150,150,80,50],
+                    "glowSizeMult":0.5,
+                    #"glowAlternateColor":[241,145,123,155],
+                    "type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+                  },
+                  "width":10.0,
+                  "length":100.0,
+                  "angle":180.0,
+                }
+
+  ]
+
 				  
 }
 			

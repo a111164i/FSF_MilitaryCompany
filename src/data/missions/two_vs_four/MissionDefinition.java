@@ -103,7 +103,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
         //布置战场
         if (!didOnce && !Global.getCombatEngine().getCombatUI().isShowingDeploymentDialog()) {
           //如果一个也没部署，跳过
-          if(Global.getCombatEngine().getFleetManager(0).getReservesCopy().size()>=2) return;
+          //if(Global.getCombatEngine().getFleetManager(0).getReservesCopy().size()>=2) return;
           didOnce = true;
 
           //如果没有完全部署
@@ -133,7 +133,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
           //移除海量的系统使用次数
           for (ShipAPI s : Global.getCombatEngine().getShips()) {
             if (s.getHullSpec().getHullId().equals("aEP_cru_hailiang")) {
-              s.getSystem().setAmmo(0);
+              s.getSystem().setAmmo(1);
             }
           }
            ;

@@ -25,6 +25,7 @@ import data.shipsystems.scripts.aEP_FCLBurstScript
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import combat.impl.aEP_BaseCombatEffect
+import combat.util.aEP_ID
 import java.awt.Color
 
 class aEP_FCLBurstScript : BaseShipSystemScript() {
@@ -38,7 +39,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
 
     const val FULL_DAMAGE_RANGE = 400f
 
-    const val MAX_SPEED_PERCENT_BONUS = 120f
+    const val MAX_SPEED_PERCENT_BONUS = 100f
     const val ACC_MULT_PUNISH = 0.5f
     const val ON_FIRE_SPEED_MULT_PUNISH = 0.25f
 
@@ -67,9 +68,9 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
             WEAPON_ID,
             toSpawn,
             weapon.currAngle,
-            ship!!.velocity
+            ship.velocity
           )
-          addEffect(Blink(pro as DamagingProjectileAPI))
+          //addEffect(Blink(pro as DamagingProjectileAPI))
           engine.addSmoothParticle(
             toSpawn,  //Vector2f loc,
             Vector2f(0f, 0f),  //Vector2f vel,
@@ -78,11 +79,18 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
             0.4f,  //float duration,
             Color(200, 200, 200, 250)
           ) //java.awt.Color
+
+          Global.getCombatEngine().addSmoothParticle(
+            toSpawn,
+            aEP_ID.VECTOR2F_ZERO,
+            300f,1f,0.33f,0.15f,
+            Color.white)
+
           Global.getSoundPlayer().playSound(
             "heavy_mortar_fire",
             1f, 1.2f,  // pitch,volume
-            ship!!.location,  //location
-            ship!!.velocity
+            ship.location,  //location
+            ship.velocity
           ) //velocity
         }
       }

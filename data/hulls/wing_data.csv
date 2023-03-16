@@ -6,7 +6,7 @@ aEP_ftr_ut_decompose_wing,aEP_ftr_ut_decompose,"no_drop,no_sell,auto_fighter",10
 aEP_ftr_ut_decompose_wing3,aEP_ftr_ut_decompose,"no_drop,no_sell,auto_fighter",10,0,0,0,V,4000,0,,2,SUPPORT,拆解无人机,18,0,,,,,,,,,,,,,
 aEP_ftr_ut_decompose_wing2,aEP_ftr_ut_decompose,"no_drop,no_sell,auto_fighter",10,0,0,0,V,4000,0,,4,SUPPORT,拆解无人机,18,0,,,,,,,,,,,,,
 aEP_ftr_sup_shield_wing2,aEP_ftr_sup_shield,"no_drop,no_sell, auto_fighter",10,0,0,30,V,0,0,,6,SUPPORT,组盾无人机,24,0,,,,,,,,,,,,,
-aEP_ftr_ut_shendu_wing,aEP_ftr_ut_shendu,"no_drop,no_sell,auto_fighter, independent_of_carrier",10,0,0,30,CLAW,4000,200,400,1,FIGHTER,布雷无人机,24,0,,,,,,,,,,,,,
+aEP_ftr_ut_shendu_wing,aEP_ftr_ut_shendu,"no_drop,no_sell,auto_fighter rapid_reform, leader_no_swarm, wingmen_no_swarm, match_leader_facing, independent_of_carrier",10,0,0,30,CLAW,4000,200,400,1,FIGHTER,布雷无人机,24,0,,,,,,,,,,,,,
 aEP_ftr_sup_guardian2_wing,aEP_ftr_sup_guardian2,"no_drop,no_sell,auto_fighter,leader_no_swarm,wingmen_no_swarm",10,0,0,20,CLAW,0,500,,5,SUPPORT,近卫截击机,12,0,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #市场出售的战机,,,,,,,,,,,,,,,,,,,,,,,,,,,,

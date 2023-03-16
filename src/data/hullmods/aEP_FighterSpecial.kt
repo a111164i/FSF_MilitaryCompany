@@ -11,28 +11,25 @@ import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_DAMAGE_MULT
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_RADIUS_MULT
+import com.fs.starfarer.api.impl.combat.PhaseCloakStats.SHIP_ALPHA_MULT
 import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.loading.HullModSpecAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.util.IntervalTracker
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.angleAdd
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.limitToTop
 import data.scripts.util.MagicAnim
 import data.scripts.util.MagicLensFlare
 import data.scripts.util.MagicRender
 import data.scripts.weapons.aEP_DecoAnimation
-import data.scripts.weapons.aEP_RepairBeam
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import java.util.*
 
 class aEP_FighterSpecial: HullModEffect {
 
@@ -1050,10 +1047,41 @@ class aEP_Module : aEP_BaseHullMod() {
     const val DAMAGE_MULT = 0.001f
     const val DAMAGE_RANGE_MULT = 0.25f
   }
+  var id: String = "aEP_Module"
+  override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, id: String) {
+    this.id = id
+    stats?:return
+    stats.dynamic.getStat(EXPLOSION_DAMAGE_MULT)?.modifyMult(id, DAMAGE_MULT)
+    stats.dynamic.getStat(EXPLOSION_RADIUS_MULT)?.modifyMult(id, DAMAGE_RANGE_MULT)
 
-  override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, id: String?) {
-    stats?.dynamic?.getStat(EXPLOSION_DAMAGE_MULT)?.modifyMult(id, DAMAGE_MULT)
-    stats?.dynamic?.getStat(EXPLOSION_RADIUS_MULT)?.modifyMult(id, DAMAGE_RANGE_MULT)
+    stats.ventRateMult.modifyMult(id,0f)
+  }
+
+  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+    super.advanceInCombat(ship, amount)
+
+    ship.isPhased = false
+    ship.extraAlphaMult = 1f
+    ship.setApplyExtraAlphaToEngines(true)
+    if(ship.parentStation != null){
+      val parent = ship.parentStation
+      val stats = ship.mutableStats
+      val parentStats = parent.mutableStats
+      if(parent.isPhased){
+        ship.setApplyExtraAlphaToEngines(true)
+        ship.extraAlphaMult = 1f - (1f - SHIP_ALPHA_MULT)
+        ship.isPhased = true
+
+        if(ship.shield != null){
+          ship.shield.toggleOff()
+        }
+
+        //禁止自动开火，禁止手动开火
+        ship.isHoldFireOneFrame = true
+        ship.blockCommandForOneFrame(ShipCommand.FIRE)
+      }
+    }
+
   }
 }
 

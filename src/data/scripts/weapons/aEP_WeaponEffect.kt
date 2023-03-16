@@ -2493,4 +2493,71 @@ class aEP_des_yangji_flak_shot : Effect() {
   }
 }
 
+//反冲力
+class aEP_fga_yonglang_main_shot : Effect(){
+  override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
+  }
+
+  override fun onHit(projectile: DamagingProjectileAPI?, target: CombatEntityAPI?, point: Vector2f?, shieldHit: Boolean, damageResult: ApplyDamageResultAPI?, engine: CombatEngineAPI?, weaponId: String?) {
+    val MAX_OVERLOAD_TIME = 2f
+
+    point?: return
+    projectile?: return
+    val vel = Vector2f(0f, 0f)
+    if (target !is ShipAPI) return
+    if (shieldHit) {
+      engine!!.applyDamage(
+        target,  //target
+        point,  // where to apply damage
+        projectile.damage.fluxComponent,  // amount of damage
+        DamageType.KINETIC,  // damage type
+        0f,  // amount of EMP damage (none)
+        false,  // does this bypass shields? (no)
+        true,  // does this deal soft flux? (no)
+        projectile.source
+      )
+      if (target.fluxTracker.isOverloaded) {
+        target.fluxTracker.setOverloadDuration(MAX_OVERLOAD_TIME)
+      }
+    }
+
+    val sizeMult = 0.5f
+    var wave = WaveDistortion(point, vel)
+    wave.size = 200f * sizeMult
+    wave.intensity = 50f
+    wave.fadeInSize(0.75f)
+
+    wave.setLifetime(0f)
+    DistortionShader.addDistortion(wave)
+
+    wave = WaveDistortion(point, vel)
+    wave.size = 200f * sizeMult
+    wave.intensity = 20f
+    wave.fadeInSize(1f)
+    wave.setLifetime(0f)
+    DistortionShader.addDistortion(wave)
+
+
+    val color = Color(240, 240, 240, 240)
+    val size =  Vector2f(450f, 900f)
+    val sizeChange = Vector2f(8f, 24f)
+    size.scale(sizeMult)
+    sizeChange.scale(sizeMult)
+    val ring = aEP_MovingSprite(point,
+      Vector2f(0f, 0f),
+      0f,
+      VectorUtils.getAngle(point, target.getLocation()),
+      0f,
+      0f,
+      1f,
+      size,
+      sizeChange,
+      "aEP_FX.ring",
+      color)
+    addEffect(ring)
+  }
+
+
+
+}
 

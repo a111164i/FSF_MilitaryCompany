@@ -223,11 +223,13 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
         }
         if (weapon.getSlot().getId().contains("03")) {
           ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToLevel(effectLevel);
-          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(to);
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToSideLevel(effectLevel);
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(effectLevel);
         }
         if (weapon.getSlot().getId().contains("06")) {
           ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToLevel(effectLevel);
-          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(to);
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToSideLevel(effectLevel );
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(effectLevel);
         }
       }
       if (weapon.getSlot().getId().contains("LM")) {

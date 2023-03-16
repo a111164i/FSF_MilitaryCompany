@@ -2,19 +2,19 @@
 	"id":"aEP_breakin_shot",
 	"specClass":"missile",
 	"missileType":"ROCKET",
-    "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"sprite":"graphics/weapons/aEP_breakin_hammer/aEP_breakin_hammer_proj.png",
 	"size":[14,23],	
 	"center":[7,11],
 	"collisionRadius":20,
 	"collisionClass":"MISSILE_FF",
 	"flameoutTime":1,  # total time from flameout to full fadeout
-    "armingTime":1.2, # safe range count by time
-    "noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)
-    "fadeTime":0.1, # fadeout duration
-    "alwaysAccelerate":true,
-    "reduceDamageWhileFading":true,
-    #"useProjectileRangeCalculation":true,
+  "armingTime":1.2, # safe range count by time
+  "noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)
+  "fadeTime":0.1, # fadeout duration
+  "alwaysAccelerate":true,
+  "reduceDamageWhileFading":true,
+  #"useProjectileRangeCalculation":true,
 	#"explosionColor":[100,100,100,25],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":160, # purely visual
 	"explosionSpec":{"duration":0.1f, # not visual
@@ -32,73 +32,71 @@
 				  "acc":500,
 				  "dec":0},
 	"engineSlots":[{"id":"ES1",
-					"loc":[-11, 0],  
-				   "style":"CUSTOM",
-					"styleSpec":{
-						"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-						"engineColor":[150,150,100,255],
-						"contrailDuration":1,
-						"contrailWidthMult":2.5,
-						"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
-						"contrailMinSeg":5, # min segment length, in pixels
-						"contrailMaxSpeedMult":0f,
-						"contrailAngularVelocityMult":0.5f,
-						"contrailSpawnDistMult":0f, # how far away from engine it starts
-						"contrailColor":[150,150,80,50],
-						"glowSizeMult":2.5,
-						"glowAlternateColor":[100,100,100,255],
-						"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode		
-					},
-					
-				    "width":10.0,
-				    "length":180.0,
-				    "angle":180.0},
+									"loc":[-11, 0],
+									"style":"CUSTOM",
+									"styleSpec":{
+										"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+										"engineColor":[150,150,100,255],
+										"contrailDuration":1,
+										"contrailWidthMult":2.5,
+										"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+										"contrailMinSeg":5, # min segment length, in pixels
+										"contrailMaxSpeedMult":0f,
+										"contrailAngularVelocityMult":0.5f,
+										"contrailSpawnDistMult":0f, # how far away from engine it starts
+										"contrailColor":[150,150,80,50],
+										"glowSizeMult":2.5,
+										"glowAlternateColor":[100,100,100,255],
+										"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+									},
+							    "width":10.0,
+							    "length":180.0,
+							    "angle":180.0},
 				    
-				   {"id":"sideL",
-					"loc":[-11, 0],  
-				   "style":"CUSTOM",
-					"styleSpec":{
-						"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-						"engineColor":[150,150,100,255],
-						"contrailDuration":0,
-						"contrailWidthMult":1.5,
-						"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
-						"contrailMinSeg":5, # min segment length, in pixels
-						"contrailMaxSpeedMult":0f,
-						"contrailAngularVelocityMult":0.5f,
-						"contrailSpawnDistMult":0f, # how far away from engine it starts
-						"contrailColor":[150,150,80,0],
-						"glowSizeMult":0,
-						"glowAlternateColor":[100,100,100,0],
-						"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
-					},
-					
-				    "width":8.0,
-				    "length":75.0,
-				    "angle":225.0},
+							   {"id":"sideL",
+									"loc":[-11, 0],
+								   "style":"CUSTOM",
+									"styleSpec":{
+										"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+										"engineColor":[150,150,100,255],
+										"contrailDuration":0,
+										"contrailWidthMult":1.5,
+										"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+										"contrailMinSeg":5, # min segment length, in pixels
+										"contrailMaxSpeedMult":0f,
+										"contrailAngularVelocityMult":0.5f,
+										"contrailSpawnDistMult":0f, # how far away from engine it starts
+										"contrailColor":[150,150,80,0],
+										"glowSizeMult":0,
+										"glowAlternateColor":[100,100,100,0],
+										"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+									},
+
+							    "width":8.0,
+							    "length":75.0,
+							    "angle":225.0},
 				    
-				   {"id":"sideR",
-					"loc":[-11, 0],  
-				   "style":"CUSTOM",
-					"styleSpec":{
-						"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-						"engineColor":[150,150,100,255],
-						"contrailDuration":0,
-						"contrailWidthMult":1.5,
-						"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
-						"contrailMinSeg":5, # min segment length, in pixels
-						"contrailMaxSpeedMult":0f,
-						"contrailAngularVelocityMult":0.5f,
-						"contrailSpawnDistMult":0f, # how far away from engine it starts
-						"contrailColor":[150,150,80,0],
-						"glowSizeMult":0,
-						"glowAlternateColor":[100,100,100,0],
-						"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
-					},
-					
-				    "width":8.0,
-				    "length":75.0,
-				    "angle":135.0},
-				   ]
+							   {"id":"sideR",
+									"loc":[-11, 0],
+							    "style":"CUSTOM",
+									"styleSpec":{
+										"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+										"engineColor":[150,150,100,255],
+										"contrailDuration":0,
+										"contrailWidthMult":1.5,
+										"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+										"contrailMinSeg":5, # min segment length, in pixels
+										"contrailMaxSpeedMult":0f,
+										"contrailAngularVelocityMult":0.5f,
+										"contrailSpawnDistMult":0f, # how far away from engine it starts
+										"contrailColor":[150,150,80,0],
+										"glowSizeMult":0,
+										"glowAlternateColor":[100,100,100,0],
+										"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+									},
+							    "width":8.0,
+							    "length":75.0,
+							    "angle":135.0},
+							   ]
 }
 			

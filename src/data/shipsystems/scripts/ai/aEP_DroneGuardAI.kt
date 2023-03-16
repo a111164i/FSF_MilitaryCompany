@@ -16,7 +16,7 @@ class aEP_DroneGuardAI:aEP_BaseSystemAI() {
   companion object{
     const val ALERT_TIME = 0.9f
     const val ID = "aEP_DroneGuardAI"
-    const val THRESHOLD = 999f
+    const val THRESHOLD = 749f
     const val BLINK_TIME_BEFORE_HIT = 0.4f
   }
 

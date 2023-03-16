@@ -1,7 +1,7 @@
 {
   "id":"aEP_fga_yonglang_main",
   "specClass": "projectile",
-  "projectileSpecId":"aEP_FCL_shot",
+  "projectileSpecId":"aEP_fga_yonglang_main_shot",
   "type": "SYSTEM",
   "size": "SMALL",
   "showDamageWhenDecorative":false,

@@ -20,7 +20,7 @@
     "FIGHTER": "aEP_des_shendu_fighter",
     "HOLD_1": "aEP_des_shendu_hold",
     "HOLD_2": "aEP_des_shendu_hold2",
-    "TOWER": "aEP_HL_tower",
+    "TOWER": "aEP_antenna_binker",
     "WS0006": "aEP_marker"
   },
   "weaponSlots": [

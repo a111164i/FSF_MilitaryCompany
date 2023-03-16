@@ -6,7 +6,7 @@
 	#"aiScript":"data.shipsystems.scripts.ai.aEP_ApproachThrusterAI",
 	"statsScript":"data.shipsystems.scripts.aEP_ApproachThrusterScript",
    
-	"runScriptWhileIdle":true,  # this means unapply() never gets called	
+	"runScriptWhileIdle":false,  # this means unapply() never gets called
 	
 	
 	"engineGlowColor":[255,60,60,255],

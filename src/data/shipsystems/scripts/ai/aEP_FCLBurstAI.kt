@@ -1,74 +1,54 @@
-package data.shipsystems.scripts.ai;
+package data.shipsystems.scripts.ai
 
-import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.util.IntervalUtil;
-import combat.util.aEP_Tool;
-import org.lazywizard.lazylib.CollisionUtils;
-import org.lazywizard.lazylib.MathUtils;
-import org.lwjgl.util.vector.Vector2f;
+import com.fs.starfarer.api.Global
+import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
+import com.fs.starfarer.api.combat.ShipSystemAIScript
+import com.fs.starfarer.api.combat.CombatEngineAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
+import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipwideAIFlags
+import com.fs.starfarer.api.util.IntervalUtil
+import org.lwjgl.util.vector.Vector2f
+import data.shipsystems.scripts.aEP_FCLBurstScript
+import org.lazywizard.lazylib.CollisionUtils
+import combat.util.aEP_Tool
+import org.lazywizard.lazylib.MathUtils
 
-import static data.shipsystems.scripts.aEP_FCLBurstScript.FULL_DAMAGE_RANGE;
-import static data.shipsystems.scripts.aEP_FCLBurstScript.MIN_DAMAGE_PERCENT;
+class aEP_FCLBurstAI : aEP_BaseSystemAI() {
 
-public class aEP_FCLBurstAI implements ShipSystemAIScript
-{
-  CombatEngineAPI engine;
-  ShipSystemAPI system;
-  ShipAPI ship;
-  ShipwideAIFlags flags;
-  IntervalUtil think = new IntervalUtil(0.1f, 0.1f);
-  float willing = 0;
-
-  @Override
-  public void init(ShipAPI ship, ShipSystemAPI system, ShipwideAIFlags flags, CombatEngineAPI engine) {
-    this.ship = ship;
-    this.system = system;
-    this.engine = engine;
-    this.flags = flags;
+  override fun initImpl() {
+    thinkTracker.setInterval(0.33f,0.33f)
   }
 
+  override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
+    target?:return
+    thinkTracker.advance(amount)
+    if (!thinkTracker.intervalElapsed()) return
 
-  @Override
-  public void advance(float amount, Vector2f missileDangerDir, Vector2f collisionDangerDir, ShipAPI target) {
-    if (engine.isPaused() || target == null || target.getAIFlags() == null || target.isFighter()) {
-      return;
+    var willing = 0f
+    val weaponRange = Global.getSettings().getWeaponSpec(aEP_FCLBurstScript.WEAPON_ID).maxRange - 100f
+    val hitPoint = CollisionUtils.getCollides(ship.location, getExtendedLocationFromPoint(ship.location, ship.facing, weaponRange), target.location, target.collisionRadius)
+      ?: return
+
+
+    if (ship.fluxTracker.fluxLevel > 0.7f) return
+
+    willing += 70f *  (0.7f - ship.fluxLevel)/0.7f
+
+    if (system.ammo > 2) willing += 20f
+    if (system.ammo > 1) willing += 20f
+
+    val targetRestFlux = target.maxFlux - ship.currFlux
+    if(targetRestFlux <  5000f){
+      willing += 50f * (5000f-targetRestFlux)/5000f
     }
+    if (flags.hasFlag(ShipwideAIFlags.AIFlags.PURSUING)) willing -= 25f
 
-    think.advance(amount);
-    willing = 0;
-    if (!think.intervalElapsed()) return;
+    willing *= MathUtils.getRandomNumberInRange(0.75f, 1.25f)
 
-
-    float maxWillingRange = Global.getSettings().getWeaponSpec("aEP_FCL").getMaxRange();
-    Vector2f hitPoint = CollisionUtils.getCollisionPoint(ship.getLocation(), aEP_Tool.getExtendedLocationFromPoint(ship.getLocation(), ship.getFacing(), maxWillingRange), target);
-    if (hitPoint != null) {
-      float dist = MathUtils.getDistance(hitPoint, ship.getLocation());
-      float maxDist = maxWillingRange;
-      float effectiveLevel = 1f;
-      if (dist > FULL_DAMAGE_RANGE) effectiveLevel = 1f - (dist - FULL_DAMAGE_RANGE) / (maxDist - FULL_DAMAGE_RANGE);
-      //保底伤害
-      effectiveLevel = MathUtils.clamp(effectiveLevel, MIN_DAMAGE_PERCENT,1f);
-      willing += 150f*effectiveLevel;
-    }
-
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.NEEDS_HELP)) willing += 25f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.BACKING_OFF)) willing += 50f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.HAS_INCOMING_DAMAGE)) willing += 15f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.BACK_OFF)) willing += 50f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.IN_CRITICAL_DPS_DANGER)) willing += 30f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.DO_NOT_USE_FLUX)) willing += 25f;
-
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.BACK_OFF_MIN_RANGE)) willing -= 30f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.MAINTAINING_STRIKE_RANGE)) willing -= 60f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.PURSUING)) willing -= 70f;
-    if (flags.hasFlag(ShipwideAIFlags.AIFlags.MANEUVER_TARGET)) willing -= 25f;
-
-
-    //aEP_Tool.addDebugText(willing+"");
-    willing *= MathUtils.getRandomNumberInRange(0.8f, 1.2f);
-    if (willing >= 130f && hitPoint != null) {
-      ship.useSystem();
+    shouldActive = false
+    if (willing >= 100f) {
+      shouldActive = true
     }
   }
 
