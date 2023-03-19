@@ -83,7 +83,7 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
     }
   }
 
-  override fun getDescriptionParam(index: Int, hullSize: HullSize, ship: ShipAPI): String {
+  override fun getDescriptionParam(index: Int, hullSize: HullSize, ship: ShipAPI?): String {
     return ""
   }
 

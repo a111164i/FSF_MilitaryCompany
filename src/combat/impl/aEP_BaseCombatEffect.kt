@@ -1,5 +1,6 @@
 package combat.impl
 
+import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
@@ -133,4 +134,6 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   open fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI){
 
   }
+
+
 }

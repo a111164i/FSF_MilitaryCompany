@@ -25,7 +25,7 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin {
   public void generate(SectorAPI sector) {
     StarSystemAPI system = sector.createStarSystem("Lamdor");
     system.getLocation().set(3650f, -22480f);
-    system.setLightColor(new Color(255, 160, 120, 100));// light color in entire system, affects all entities
+    system.setLightColor(new Color(255, 210, 160));// 不可以有透明度，不是叠加而是覆盖
     LocationAPI hyper = Global.getSector().getHyperspace();
     system.setBackgroundTextureFilename("graphics/backgrounds/background4.jpg");
 
@@ -81,8 +81,6 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin {
     IND_HomePlanet.setMarket(M02);
     //这把市场粘到星球上
     IND_HomePlanet.setFaction(M02.getFactionId());
-
-
     Global.getSector().getEconomy().addMarket(M02, true);// marketAPI, isJunkAround
 
 
@@ -94,7 +92,7 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin {
       -35, //Starting angle in orbit, i.e. 0 = to the right of the star
       120, // Planet radius, pixels at default zoom
       2800, //Orbit radius, pixels at default zoom
-      240);//Days it takes to complete an orbit. 1 day = 10 seconds.
+      360);//Days it takes to complete an orbit. 1 day = 10 seconds.
 
 
     //add station 2 for planet 2
@@ -102,7 +100,7 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin {
       null,// name
       "aEP_IND_Piratestation",// type id in planets.json
       "pirates");//faction id
-    IND_PirateStation.setCircularOrbit(IND_PiratePlanet, 0, 300, 30);//which to orbit, starting angle, radius, orbit days
+    IND_PirateStation.setCircularOrbitPointingDown(IND_PiratePlanet, 0, 300, 30);//which to orbit, starting angle, radius, orbit days
 
     //add market for station2
     MarketAPI M01 = Global.getFactory().createMarket("IND_PirateStation", IND_PirateStation.getName(), 3);//id, name, size

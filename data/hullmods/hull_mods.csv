@@ -13,11 +13,9 @@ Type28护盾发生器,aEP_Type28Shield,0,unknown,,,,0,,TRUE,,0,0,0,0,data.hullmo
 ,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
 受控护盾,aEP_ControledShield,1,FSF设计,,FSF,,20000,,,,5,10,15,25,data.hullmods.aEP_ControledShield,强化的护盾控制系统使得目标定位系统可以捕捉远距离炮弹的轨迹，自动其在击中护盾的前一刻硬化护盾。越大的舰体需要更多距离反应。根据舰体大小对{%s/%s/%s/%s}距离外飞来的弹丸，护盾仅承受{%s}的伤害。,,graphics/aEP_hullmods/aEP_controled_shield.png
-热填弹系统,aEP_HotLoader,1,FSF设计,,FSF,,20000,,,,3,5,7,10,data.hullmods.aEP_HotLoader,FSF设计的先进填弹辅助设备，高效回收武器未利用的能量进行填弹工作以提升弹药不足时的火力，武器弹药不满时以正常装填速度的{%s}加速装填。但其独特的装弹器也不兼容常规的扩展弹仓,,graphics/aEP_hullmods/aEP_hot_loader.png
-先进幅散,aEP_SoftfluxDissipate,1,FSF设计,,FSF,,10000,,,,1,1,2,3,data.hullmods.aEP_SoftfluxDissipate,"为舰船换装针对软幅能特性优化过的排放系统，在零硬幅能水平时舰船每一点幅能改造点数会获得每秒{%s}的额外幅散，但随着硬幅能水平上升效果逐渐反转.
-
-当舰船不拥有护盾或者护盾被系统禁用时，不提供加成。",,graphics/aEP_hullmods/aEP_softflux_dissipate.png
-高压寄存器,aEP_RapidDissipate,1,FSF设计,,FSF,,10000,,,,1,1,2,3,data.hullmods.aEP_RapidDissipate,为舰船换装只能在高压环境下运行的幅能寄存器，在零幅能水平时舰船每一点幅能改造点数会减少{%s}的幅散，但随着幅能水平上升效果逐渐反转.,,graphics/aEP_hullmods/aEP_fast_dissipate.png
+热填弹系统,aEP_HotLoader,1,FSF设计,,FSF,,20000,,,,3,5,7,10,data.hullmods.aEP_HotLoader,FSF设计的先进填弹辅助设备，高效回收武器开火时的后座能量，能极大提升弹匣武器的持续输出能力。但其独特的装弹器也不兼容常规的扩展弹仓,,graphics/aEP_hullmods/aEP_hot_loader.png
+先进幅散,aEP_SoftfluxDissipate,1,FSF设计,,FSF,,10000,,,,1,1,2,3,data.hullmods.aEP_SoftfluxDissipate,为舰船换装在低压环境下运行的设计，通过减少冗余设计而增加常态下的幅能系统表现，在无需使用护盾承受伤害的情况下可以获得巨量的幅能耗散以供武器使用。当前舰船硬幅能水平越低时，额外幅散越多,,graphics/aEP_hullmods/aEP_softflux_dissipate.png
+舰体幅散,aEP_RapidDissipate,1,FSF设计,,FSF,,10000,,,,5,10,15,25,data.hullmods.aEP_RapidDissipate,为舰船换装能在高压环境下运行的设计，通过合理利用装甲缝隙将分布式寄存器遍布全船，装甲出现损毁时也变相增加了交换面积。每当舰体承受伤害时，会降低相当于伤害量一定比例的幅能，当前幅能水平越高时，转换比例越高.,,graphics/aEP_hullmods/aEP_fast_dissipate.png
 线列目标定位,aEP_TargetSystem,1,FSF设计,,FSF,,10000,,,,4,5,9,12,data.hullmods.aEP_TargetSystem,"利用附近友军舰船的测距仪传输数据进行索敌，当附近存在主力舰级别的友方舰船时，根据自身舰体级别，最多增加本体射程的百分之{%s/%s/%s/%s}
 
 为了传输数据也本体极速也会降低{%s/%s/%s/%s}。

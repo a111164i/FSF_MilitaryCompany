@@ -40,7 +40,7 @@ class aEP_TargetSystem : BaseHullMod() {
     if(!ship.hasListenerOfClass(RangeListener::class.java)) ship.addListener(RangeListener(ship))
   }
 
-  override fun getDescriptionParam(index: Int, hullSize: HullSize, ship: ShipAPI): String? {
+  override fun getDescriptionParam(index: Int, hullSize: HullSize?, ship: ShipAPI?): String? {
     if (index == 0) return String.format("%.0f", BONUS[HullSize.FRIGATE]?.get(3)?:0f)
     else if (index == 1) return String.format("%.0f", BONUS[HullSize.DESTROYER]?.get(3)?:0f)
     else if (index == 2) return String.format("%.0f", BONUS[HullSize.CRUISER]?.get(3)?:0f)
@@ -52,11 +52,11 @@ class aEP_TargetSystem : BaseHullMod() {
     else return null
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI, isForModSpec: Boolean): Boolean {
+  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return true
   }
 
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI, width: Float, isForModSpec: Boolean) {
+  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     //tooltip.addGrid( 5 * 5f + 10f);
 

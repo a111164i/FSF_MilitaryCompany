@@ -1,5 +1,5 @@
 {
-	id:"aEP_FSF",
+	id:"aEP_FSF_adv",
 	"color":[180,180,150,255],
 	"displayName":"FSF军事公司",
 	"displayNameWithArticle":"FSF军事公司",
@@ -12,7 +12,7 @@
 	"logo":"graphics/aEP_factions/FSF.png",
 	"crest":"graphics/aEP_factions/crest_FSF.png",
 	"shipNamePrefix":"FSF",
-	"showInIntelTab":true,
+	"showInIntelTab":false,
 	"shipNameSources":{
 		"GREEK":0,
 		"CELTIC":0,
@@ -25,17 +25,16 @@
 		"future":1,
 		"myth":1,
 	},
-	# variantOverrides restricts hulls to listed variants and adjusts their probabilityz
+	# variantOverrides restricts hulls to listed variants and adjusts their probability
 	# multiplier for how often hulls show up in the faction's fleets
 	"hullFrequency":{
 		"tags":{
-			"FSF_advancebp": 0.2
 		},
 		"hulls":{
-			"aEP_des_youjiyan":0.75,
-			"aEP_des_youjiyan_mk2":0.75,
-			"aEP_cap_shangshengliu":0.75,
-			"aEP_cap_shangshengliu_mk2":0.75,
+			"aEP_des_youjiyan":0.25,
+			"aEP_des_youjiyan_mk2":0.25,
+			"aEP_cap_shangshengliu":0.25,
+			"aEP_cap_shangshengliu_mk2":0.25,
 		},
 	},
 	# ships the faction gets access to when importing S&W out-of-faction
@@ -52,7 +51,7 @@
 	},
 	# listing ships here will make the faction mostly use them even if other hulls become available
 	"priorityShips":{
-		"tags":["FSF_openbp","FSF_rarebp","FSF_advancebp"],
+		"tags":["FSF_bp"],
 		"hulls":[
 				
 		],
@@ -138,25 +137,30 @@
 		"carriers":3,
 		"phaseShips":0,
 		
-		"officerQuality":2,
-		"shipQuality":2,
+		"officerQuality":4,
+		"shipQuality":4,
 		"numShips":3,
 		
 		"shipSize":4,
 		
-		"aggression":2,
+		"aggression":1,
 		
 		"combatFreighterProbability":0.25, 	# instead of some portion of the freighters in a fleet
 		"combatFreighterCombatUseFraction":0,	# as part of the normal combat lineup
 		"combatFreighterCombatUseFractionWhenPriority":0,   # as part of normal combat lineup, when marked as priority ship
-		"autofitRandomizeProbability":0.25,
+		"autofitRandomizeProbability":0.2,
 
-		"commanderSkillsShuffleProbability":0.5,
+		"commanderSkillsShuffleProbability":0,
 		"commanderSkills":[
-			"officer_management",
+			"crew_training",
+			"officer_training",
 			"coordinated_maneuvers",
-			"fighter_doctrine",
 			"electronic_warfare",
+			"carrier_group",
+			"flux_regulation",
+			"officer_management",
+			"fighter_doctrine",
+			"fighter_uplink",
 		],
 	},
 	"illegalCommodities":[

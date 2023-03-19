@@ -10,7 +10,7 @@
 		"when_soft_up":"预热完成时",
 		"when_soft_not_up":"尚未完全预热时",
 		"flux_gen_reduce":"武器幅能产生减少",
-		"flux_diss":"幅能耗散",
+
 		"hard_diss":"硬幅能耗散",
 		"hard_convert":"硬幅能转换",
 		"overload_time_reduce":"过载时间减少",
@@ -123,9 +123,6 @@
 		"HaveToBeWith":"舰船必须拥有",
 		"NeedToBalance:":"需要平衡：",
 
-		"aEP_RapidDissipate01":"将{%s}舰体承受的装甲减伤前的伤害转换为硬幅能耗散",
-		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散",
-
 		"aEP_LADamper01":"装甲计算值增加: ",
 		"aEP_LADamper02":"武器射速增加: ",
 
@@ -179,5 +176,12 @@
 		"aEP_AttackCarrier02":"当本舰战机存量极低且幅能少于{%s}时，发动锻炉立刻补满所有损失的战机，本能力具有{%s}秒的冷却并产生大量幅能",
 		"aEP_AttackCarrier03":"锻炉冷却中",
 		"aEP_AttackCarrier04":"冷却剩余: %s",
+
+		"aEP_SoftfluxDissipate01":"幅能耗散增加: ",
+		"aEP_SoftfluxDissipate02":"每一点耗散通道除了正常加成，还会额外获得{%s}的浮动加成，这些加成随着舰船硬幅能水平上升而逐渐减少到{%s}",
+		"aEP_SoftfluxDissipate03":"每一点耗散通道的正常加成减少{%s}",
+
+		"aEP_RapidDissipate01":"根据当前幅能水平，每次舰体受到伤害时，耗散掉最多等同于伤害量的{%s}的幅能",
+		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散"
 	}
 }

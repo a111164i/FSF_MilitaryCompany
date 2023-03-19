@@ -6,34 +6,38 @@
     "aEP_fga_xiliu_Standard": 10,
     "aEP_fga_yonglang_Mixed": 5,
     "aEP_fga_raoliu_PD":4,
-    "aEP_fga_raoliu_Standard":6
-  },
+    "aEP_fga_raoliu_Standard":6,
+
+},
   "combatSmall": {
     "aEP_fga_yonglang_Mixed": 10,
     "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 5,
     "aEP_fga_raoliu_PD": 5,
     "aEP_fga_raoliu_Standard":5,
-  },
+
+},
   "combatMedium": {
     "aEP_des_cengliu_Standard":4,
     "aEP_des_cengliu_Elite":3,
     "aEP_des_lianliu_Standard": 3,
     "aEP_des_lianliu_AntiSmall": 2,
     "aEP_des_lianliu_Elite": 5,
-    "aEP_des_yangji_Standard":10
+    "aEP_des_yangji_Standard":10,
+
   },
   "combatLarge": {
     "aEP_cru_hailiang_Standard": 4,
     "aEP_cru_hailiang_Defense": 6,
-    "aEP_cru_zhongliu_Standard": 3,
-    "aEP_cru_zhongliu_Assault": 3,
-    "aEP_cru_zhongliu_Broadside": 3,
+    "aEP_cru_zhongliu_Standard": 4,
+    "aEP_cru_zhongliu_Assault": 4,
+    "aEP_cru_zhongliu_Broadside": 4,
     "aEP_cru_requan_Standard": 7,
     "aEP_cru_requan_Assault": 3,
-    "aEP_cru_pingding_Standard": 5,
-    "aEP_cru_pingding_Elite": 5,
-  },
+    "aEP_cru_pingding_Standard": 2,
+    "aEP_cru_pingding_Elite": 3,
+
+},
   "combatCapital": {
     "aEP_cap_biaobing_Standard": 2,
     "aEP_cap_biaobing_Burst": 1,
@@ -46,6 +50,7 @@
     "aEP_cap_neibo_Standard": 6,
     "aEP_cap_neibo_Elite": 4,
     "aEP_cap_shangshengliu_mk3_Standard":3,
+
   },
   # hybrid ships with good combat and cargo capacity
   "combatFreighterSmall": {
@@ -62,19 +67,21 @@
   },
   # carriers
   "carrierSmall": {
+    "fallback":{"carrierMedium":0.5},
+    "fallback2":{"carrierLarge":0.25},
   },
   "carrierMedium": {
     "aEP_des_shendu_Standard": 5,
     "aEP_des_shendu_Strike": 5,
-  },
+},
   "carrierLarge": {
     "aEP_cru_shanhu_Standard":4,
     "aEP_cru_shanhu_Attack":3,
     "aEP_cru_shanhu_Siege":3,
     "aEP_cap_decomposer_Standard": 10,
-    "aEP_cru_pubu_Elite": 4,
-    "aEP_cru_pubu_Standard": 6,
-  },
+    "aEP_cru_pubu_Elite": 2,
+    "aEP_cru_pubu_Standard": 4,
+},
   # phase ships
   "phaseSmall": {
   
@@ -89,32 +96,26 @@
 
   # freighters and such
   "freighterSmall": {
-    "fallback":{"freighterMedium":0.5},
-    "fallback2":{"freighterLarge":0.25},
+
   },
   "freighterMedium": {
     "aEP_des_youjiyan_Standard": 10,
-    "fallback":{"freighterSmall":1},
-    "fallback2":{"freighterLarge":0.5},
+
   },
   "freighterLarge": {
     "aEP_cap_shangshengliu_Standard":5,
-    "fallback":{"freighterMedium":1},
-    "fallback2":{"freighterSmall":1},
+
   },
   "tankerSmall": {
-    "fallback":{"tankerMedium":0.5},
-    "fallback2":{"tankerLarge":0.25},
+
   },
   "tankerMedium": {
     "aEP_des_youjiyan_mk2_Standard": 10,
-    "fallback":{"tankerSmall":1},
-    "fallback2":{"tankerLarge":0.5},
+
   },
   "tankerLarge": {
     "aEP_cap_shangshengliu_mk2_Standard":5,
-    "fallback":{"tankerSmall":1},
-    "fallback2":{"tankerMedium":1},
+
   },
   "personnelSmall": {
   },

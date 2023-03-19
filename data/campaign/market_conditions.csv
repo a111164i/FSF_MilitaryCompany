@@ -1,7 +1,7 @@
 name,id,planetary,decivRemove,script,desc,icon,order
-地下基地,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,在这颗星球的地下有着一座设施齐备的基地，其中储备的资源足够其在与外界切断联系后也能坚持数个循环。殖民地的最低稳定度不会低于1点,graphics/aEP_icons/UndergroundStorage.png,807956
-,,,,,,,
-,,,,,,,
-,,,,,,,
+地下基地,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,在这颗星球的地下有着一座设施齐备的基地，其中储备的资源足够其在与外界切断联系后也能坚持数个循环。殖民地的最低稳定度不会低于{1}点,graphics/aEP_icons/UndergroundStorage.png,
+军事驻地,aEP_MilitaryZone,,TRUE,data.scripts.campaign.econ.environment.aEP_MilitaryZone,军队驻地，消除殖民地所有设施对{毒品}{奢侈品}{人体器官}的需求，增加{采矿业}的产出，同时增加最大工业设施数量{2} ,graphics/aEP_icons/UndergroundStorage.png,
+生态培养,aEP_SpaceFarm,,TRUE,data.scripts.campaign.econ.environment.aEP_SpaceFarm,大规模的内循环生态圈，只要输入能量和无机物就能产出工业所需的各种有机化合物，根据殖民地规模产生一定单位的{食物}{有机物}供应,graphics/aEP_icons/hydroponics.png,
+灭绝病毒,aEP_ExtinctiveVirus,,TRUE,data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus,生态圈内充满了对人类极度致命的微生物，所有的作业都必须在完全密闭的环境内进行。极大降低所有设施的产出,graphics/aEP_icons/xenoplague.png,
 ,,,,,,,
 ,,,,,,,

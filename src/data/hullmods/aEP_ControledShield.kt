@@ -12,7 +12,7 @@ import java.awt.Color
 class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
   companion object {
     private val mag: MutableMap<HullSize, Float> = HashMap()
-    private const val REDUCE_MULT = 0.70f
+    private const val REDUCE_MULT = 0.75f
     private const val UPKEEP_PUNISH = 2f
     private val SHIELD_COLOR = Color(240, 5, 240, 160)
     private const val COLOR_RECOVER_INTERVAL = 0.05f //by seconds

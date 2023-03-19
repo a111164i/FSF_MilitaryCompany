@@ -533,8 +533,9 @@ class aEP_cap_nuanchi_missile_shot2 : Effect(){
   companion object{
     const val EMP_CLOUD_RADIUS = 200f
     const val EMP_CLOUD_END_RADIUS_MULT = 3f
+    const val EMP_PER_HIT = 500f //一秒电四次
 
-    const val EMP_PER_HIT = 500f
+    const val EMP_WARHEAD_WEAPON_ID = "aEP_cap_nuanchi_missile3"
 
     val CLOUD_COLOR = Color(99,79,233,96)
     val ARC_COLOR = Color(102,143,197,87)
@@ -627,7 +628,7 @@ class aEP_cap_nuanchi_missile_shot2 : Effect(){
     for( i in 0 until 8 ){
       val angle = i * 45f
       val loc = aEP_Tool.getExtendedLocationFromPoint(projectile.location,angle, EMP_CLOUD_RADIUS/2f)
-      val cloudEntity = engine?.spawnProjectile(projectile.source,projectile.weapon,"aEP_NC_missile3",loc,angle,null) as MissileAPI
+      val cloudEntity = engine?.spawnProjectile(projectile.source,projectile.weapon,EMP_WARHEAD_WEAPON_ID,loc,angle,null) as MissileAPI
       cloudEntity.source = projectile.source
       aEP_CombatEffectPlugin.addEffect(EmpArcCloud(cloudEntity as MissileAPI,4f))
     }

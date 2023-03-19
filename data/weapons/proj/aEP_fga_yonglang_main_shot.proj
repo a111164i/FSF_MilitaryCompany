@@ -41,20 +41,20 @@
                   "style":"CUSTOM",
                   "styleSpec":{
                     "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-                    "engineColor":[241,145,123,155],
-                    "contrailDuration":0.6,
+                    "engineColor":[241,65,23,255],
+                    "contrailDuration":2,
                     "contrailWidthMult":1,
                     "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
                     "contrailMinSeg":5, # min segment length, in pixels
                     "contrailMaxSpeedMult":0f,
                     "contrailAngularVelocityMult":0.5f,
                     "contrailSpawnDistMult":0f, # how far away from engine it starts
-                    "contrailColor":[150,150,80,50],
+                    "contrailColor":[150,150,80,172],
                     "glowSizeMult":0.5,
-                    #"glowAlternateColor":[241,145,123,155],
+                    "glowAlternateColor":[241,145,123,155],
                     "type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
                   },
-                  "width":10.0,
+                  "width":14.0,
                   "length":100.0,
                   "angle":180.0,
                 }

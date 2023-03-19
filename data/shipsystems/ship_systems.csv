@@ -2,7 +2,7 @@ name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #主力舰,,,,,,,,,,,,,,,,,,,,,,,,,,,
 目标锁定,aEP_BBLockOn,400,0.05,0.05,,,,,,,0.5,4,1,15,,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png
-"""决战""超载系统",aEP_ExtremeOverload,,,,,,,,,,3.5,1.5,0,15,,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png
+"""决战""超载系统",aEP_ExtremeOverload,,,,,,,,2,0.05,3.5,1.5,0,1,,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png
 """再刷新""供弹系统",aEP_NCReload,,,,1000,1.5,0.15,,2,0.05,1,,1,2,,,,,,,,,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png
 """起源""速造系统",aEP_DecomposerFastBuild,,,,500,1,0.1,,,,1,,3,28,,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png
 """漂移""突击系统",aEP_NBFiringJet,,,,,0.05,0.05,,3,0.0833,0.4,,1.6,0.5,,,,,,,,,,TRUE,,,graphics/icons/hullsys/drone_pd_high.png
@@ -27,7 +27,7 @@ name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #护卫,,,,,,,,,,,,,,,,,,,,,,,,,,,
 武器重振系统,aEP_WeaponResetXL,,,,,,,,2,0.0625,0.5,4,0.3,0.1,,,,,,,,,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png
-反冲力火炮,aEP_FCLBurst,,,,,5,0.5,,3,0.05,0.5,0,1.5,1,,,,,,,,,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png
+反冲力火炮,aEP_FCLBurst,,,,,2,0.5,,3,0.05,0.5,0,1.5,1,,,,,,,,,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png
 阻尼供弹,aEP_DamperRL,,,,,,,,3,0.05,1,3,1,1,,,,,,,,,TRUE,TRUE,,uses_damper_ai,graphics/icons/hullsys/ammo_feeder.png
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,

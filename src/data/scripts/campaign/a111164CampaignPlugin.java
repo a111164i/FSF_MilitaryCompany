@@ -7,7 +7,12 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
+import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
+import data.scripts.campaign.econ.environment.aEP_MilitaryZone;
+import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
+
+import static data.scripts.world.aEP_systems.aEP_FSF_DWR43.MINING_PLANET_MARKET_ID;
 
 
 public class a111164CampaignPlugin implements EveryFrameScript
@@ -32,10 +37,8 @@ public class a111164CampaignPlugin implements EveryFrameScript
 
     //run per 0.1 day
     dayTimer = dayTimer + Global.getSector().getClock().convertToDays(amount);
-    if (dayTimer < 0.1f) {
-      return;
-    }
-    dayTimer = dayTimer - 0.1f;
+    if (dayTimer < 1) return;
+    dayTimer = dayTimer - 1f;
 
 
     //check and create persons
@@ -49,6 +52,15 @@ public class a111164CampaignPlugin implements EveryFrameScript
       if (id.equals("aEP_FSF_DefStation")) {
         checkResearcher(market);
       }
+
+      if (id.equals(aEP_FSF_DWR43.MINING_PLANET_MARKET_ID)) {
+        checkCondition(market);
+      }
+
+      if (id.equals(aEP_FSF_DWR43.FACTORY_STATION_MARKET_ID)) {
+        checkCondition(market);
+      }
+
     }
 
   }
@@ -128,6 +140,13 @@ public class a111164CampaignPlugin implements EveryFrameScript
 
     }
 
+  }
+
+  void checkCondition(MarketAPI market) {
+    market.removeCondition(aEP_MilitaryZone.ID);
+    if (market.getFaction().getId().equals(aEP_ID.FACTION_ID_FSF)) {
+      market.addCondition(aEP_MilitaryZone.ID);
+    }
   }
 
   public static class CustomEvent {

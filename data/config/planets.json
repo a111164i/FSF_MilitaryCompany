@@ -21,7 +21,6 @@
 		"starCoronaSizeMult":5.12, # required, multiplier for star's radius
 		"doNotShowInCombat":false
 	},
-  
 	"aEP_FSF_Homeplanet":{
 		"name":"冰冻",
 		"aOrAn":"",
@@ -38,7 +37,6 @@
 		"isStar":false,
 		"lightPosition":[12,-2,-3], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
-	
 	"aEP_FSF_Companyplanet":{
 		"name":"荒芜",
 		"tilt":-27, # left-right (>0 tilts to the left)
@@ -56,7 +54,7 @@
 	},
 	
 	"aEP_IND_Homestar":{
-		"name":"Red Dwarf",
+		"name":"红矮星",
 		"tilt":-10, # left-right (>0 tilts to the left)
 		"pitch":0, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -89,7 +87,6 @@
 		"isStar":false,
 		"lightPosition":[12,-2,-3], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
-	
 	"aEP_IND_Pirateplanet":{
 		"name":"荒芜",
 		"tilt":-27, # left-right (>0 tilts to the left)
@@ -101,10 +98,64 @@
 		"atmosphereColor":[100,140,160,155],
 		"texture":"graphics/planets/barren00.jpg",
 		"icon":"graphics/warroom/icon_planet.png",
-		"iconColor":[102,103,106,255],
+		"iconColor":[120,125,130,255],
 		"isStar":false,
 		"lightPosition":[-2,-8,10], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
+	"aEP_FSF_Earthstar":{
+		"name":"蓝巨星",
+		"tilt":0, # left-right (>0 tilts to the left)
+		"pitch":0, # towards-away from the viewer (>0 pitches towards)
+		"rotation":-3, # degrees/second
+		"planetColor":[255,255,255,255],
+		"atmosphereThickness":0.25, # as fraction of radius.  Set to 0 for no atmosphere
+		"atmosphereThicknessMin":10, #  minimum thickness in pixels
+		"atmosphereColor":[127,190,255,255],
+		"texture":"graphics/planets/star_blue.jpg",
+		"icon":"graphics/warroom/icon_star.png",
+		"iconColor":[127,190,255,255],
+		"starCoronaSprite":"graphics/fx/star_halo.png", # optional, defaults to really bright particle
+		"starCoronaColor":[127,190,255,60], # optional, defaults to white
+		"starCoronaSizeMult":5.12, # required, multiplier for star's radius
+		"isStar":true,
+		"lightPosition":[0,0,10], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
+	},
+	"aEP_FSF_Stationplanet":{
+		"name":"沙漠-剧毒",
+		"tilt":30, # left-right (>0 tilts to the left)
+		"pitch":0, # towards-away from the viewer (>0 pitches towards)
+		"rotation":-3, # degrees/second
+		"planetColor":[255,255,255,255],
+		"atmosphereThickness":0.2, # as fraction of radius.  Set to 0 for no atmosphere
+		"atmosphereThicknessMin":10, #  minimum thickness in pixels
+		"atmosphereColor":[235,215,195,255],
+		"texture":"graphics/planets/desert.jpg",
+		"icon":"graphics/warroom/icon_planet.png",
+		"iconColor":[200,170,145,255],
+		"isStar":false,
+		"lightPosition":[-2,2,7], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
+		"cloudTexture":"graphics/planets/clouds_banded01.png", # omit for no cloud layer
+		"cloudColor":[235,135,195,185],
+		"cloudRotation":-10, # degrees/second, optional
+	},
+	"aEP_FSF_Earth":{
+		"name":"异常类地",
+		"tilt":-25, # left-right (>0 tilts to the left)
+		"pitch":-20, # towards-away from the viewer (>0 pitches towards)
+		"rotation":-3, # degrees/second
+		"planetColor":[255,255,255,255],
+		"atmosphereThickness":0.15, # as fraction of radius.  Set to 0 for no atmosphere
+		"atmosphereThicknessMin":40, #  minimum thickness in pixels
+		"atmosphereColor":[90,140,205,150],
+		"texture":"graphics/planets/terran_eccentric.jpg",
+		"icon":"graphics/warroom/icon_planet.png",
+		"iconColor":[140,170,220,255],
+		"isStar":false,
+		"lightPosition":[1,-3,8], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
+		"cloudTexture":"graphics/planets/clouds_banded01.png", # omit for no cloud layer
+		"cloudColor":[190,200,220,240],
+		"cloudRotation":9, # degrees/second, optional
+	}
 }
 
 

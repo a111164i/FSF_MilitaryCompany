@@ -1,34 +1,49 @@
 package data.hullmods
 
 import com.fs.starfarer.api.Global
-import combat.util.aEP_Tool.Util.limitToTop
-import data.hullmods.aEP_BaseHullMod
+import com.fs.starfarer.api.combat.BeamAPI
+import com.fs.starfarer.api.combat.CombatEntityAPI
+import com.fs.starfarer.api.combat.DamageAPI
 import com.fs.starfarer.api.combat.ShipAPI
-import data.hullmods.aEP_MarkerDissipation
-import data.hullmods.aEP_MarkerDissipation.FluxRecorder
-import combat.util.aEP_DataTool.floatDataRecorder
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
-import com.fs.starfarer.api.ui.TooltipMakerAPI
-import combat.util.aEP_DataTool
-import data.hullmods.aEP_HotLoader
+import com.fs.starfarer.api.combat.listeners.AdvanceableListener
+import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI
 import com.fs.starfarer.api.combat.listeners.DamageListener
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
-import com.fs.starfarer.api.combat.listeners.AdvanceableListener
-import com.fs.starfarer.api.combat.DamageAPI
-import combat.util.aEP_Tool
-import org.lazywizard.lazylib.MathUtils
-import com.fs.starfarer.api.combat.CombatEntityAPI
-import org.lwjgl.util.vector.Vector2f
-import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI
-import com.fs.starfarer.api.combat.BeamAPI
 import com.fs.starfarer.api.ui.Alignment
+import com.fs.starfarer.api.ui.TooltipMakerAPI
+import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
+import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.floatDataRecorder
+import data.scripts.weapons.aEP_TeslaBeam
+import org.lazywizard.lazylib.MathUtils
+import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
 class aEP_MarkerDissipation : aEP_BaseHullMod() {
 
+  companion object {
+    const val BUFFER_AREA = 0.1f // 幅能容量的百分之多少
+    const val DECREASE_SPEED = 0.5f // 幅能耗散的百分之多少
+
+    const val OVERLOAD_TIME_DECREASE = 0.25f
+    const val MAX_OVERLOAD_TIME = 7f
+    private const val ID = "aEP_MarkerDissipation"
+    @JvmStatic
+    fun getBufferLevel(ship: ShipAPI?): Float {
+      if (ship == null || !ship.isAlive || ship.isHulk || !ship.variant.hasHullMod(ID)) return 0f
+      val fluxData = (ship.customData["$ID _ ${ship.id}"] ?: return 0f) as floatDataRecorder
+      val buffer = fluxData.total
+      val maxFlux = ship.fluxTracker.maxFlux
+      val bufferLevel = buffer / ((maxFlux+1) * BUFFER_AREA)
+      //次方会让曲线更快下降
+      return MathUtils.clamp(  bufferLevel * bufferLevel * 2f, 0f, 1f)
+    }
+  }
+
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     //减少过载时间
-    ship.mutableStats.overloadTimeMod.modifyMult(id, 1f - OVERLOAD_TIME_DECREASE)
+    ship.mutableStats.overloadTimeMod.modifyMult(ID, 1f - OVERLOAD_TIME_DECREASE)
     //修改护盾贴图
     if (ship.shield != null) {
       //set shield inner, outer ring
@@ -38,11 +53,14 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
         Global.getSettings().getSpriteName("aEP_hullstyle", "aEP_shield_outer")
       )
     }
-    if (!ship.hasListenerOfClass(FluxRecorder::class.java)) {
+
+    //当希望customData进行初始化时，条件一定要是customData.contains()，有的时候舰船生成到一半，custom此时还没有创建
+    if (!ship.customData.containsKey("$ID _ ${ship.id}")) {
       val fluxData = floatDataRecorder()
-      Global.getCombatEngine().customData[ship.id + "" + id] = fluxData
+      ship.setCustomData("$ID _ ${ship.id}",fluxData)
       ship.addListener(FluxRecorder(ship, fluxData))
     }
+
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
@@ -50,6 +68,7 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     if (ship.fluxTracker.isOverloaded && ship.fluxTracker.overloadTimeRemaining > MAX_OVERLOAD_TIME) {
       ship.fluxTracker.setOverloadDuration(MAX_OVERLOAD_TIME)
     }
+
   }
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize): String? {
@@ -80,18 +99,18 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
       fluxData.addRenewData(softFlux)
 
       //持续消减buff区
-      fluxData.total = limitToTop(fluxData.total - totalDiss * DECREASE_SPEED * amount, maxFlux * BUFFER_AREA, 0f)
+      fluxData.total = MathUtils.clamp(fluxData.total - totalDiss * DECREASE_SPEED * amount, 0f,maxFlux * BUFFER_AREA)
       val buffer = fluxData.total
 
       //过载立刻清空预热状态
       if (ship.fluxTracker.isOverloadedOrVenting) fluxData.total = 0f
-      var bufferLevel = limitToTop(buffer / (maxFlux * BUFFER_AREA), 1f, 0f)
+      var bufferLevel = MathUtils.clamp(buffer / (maxFlux * BUFFER_AREA), 0f, 1f)
       bufferLevel = MathUtils.clamp(bufferLevel * 2f, 0f, 1f)
       if (Global.getCombatEngine().playerShip === ship) {
         Global.getCombatEngine().maintainStatusForPlayerShip(
           this.javaClass.simpleName,  //key
           "graphics/aEP_hullsys/marker_dissipation.png",  //sprite name,full, must be registed in setting first
-          Global.getSettings().getHullModSpec(id).displayName,  //title
+          Global.getSettings().getHullModSpec(ID).displayName,  //title
           aEP_DataTool.txt("MD_des01") + (bufferLevel * 100).toInt() + "%",  //data
           false
         ) //is debuff
@@ -115,22 +134,4 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     }
   }
 
-  companion object {
-    const val BUFFER_AREA = 0.1f //
-    const val OVERLOAD_TIME_DECREASE = 0.25f
-    const val DECREASE_SPEED = 0.5f //
-    const val MAX_OVERLOAD_TIME = 7f
-    private const val id = "aEP_MarkerDissipation"
-    @JvmStatic
-    fun getBufferLevel(ship: ShipAPI?): Float {
-      if (ship == null || !ship.isAlive || ship.isHulk || !ship.variant.hasHullMod("aEP_MarkerDissipation")) return 0f
-      val fluxData = Global.getCombatEngine().customData[ship.id + "_" + id] as floatDataRecorder?
-        ?: return 0f
-      val buffer = fluxData.total
-      val maxFlux = ship.fluxTracker.maxFlux
-      val bufferLevel = limitToTop(buffer / (maxFlux * BUFFER_AREA), 1f, 0f)
-      //三次方会让曲线更快下降
-      return MathUtils.clamp(bufferLevel * bufferLevel * bufferLevel * 2f, 0f, 1f)
-    }
-  }
 }

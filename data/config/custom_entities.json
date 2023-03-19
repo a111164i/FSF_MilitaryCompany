@@ -17,8 +17,9 @@
 		"useLightColor":true,
 		"showInCampaign":true,
 		"showIconOnMap":true,
-		"showNameOnMap":false,
-		"scaleNameWithZoom":true,
+		"showNameOnMap":true,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
 		"tags":["station"],
 		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
@@ -39,8 +40,9 @@
 		"useLightColor":true,
 		"showInCampaign":true,
 		"showIconOnMap":true,
-		"showNameOnMap":false,
-		"scaleNameWithZoom":true,
+		"showNameOnMap":true,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
 		"tags":["station"],
 		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
@@ -61,20 +63,30 @@
 		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin",
 	},
 	"aEP_FSF_SpaceFactory":{
-		"defaultName":"FSF 立方工厂", # used if name=null in addCustomEntity()
-		"nameInText":"FSF 立方工厂",
-		"shortName":"FSF 立方工厂",
-		"icon":"graphics/icons/relay.png",
-		"iconWidth":24,
-		"iconHeight":24,
-		"sprite":"graphics/ships/com_relay.png",
-		"spriteWidth":89,
-		"spriteHeight":48,
-		"customDescriptionId":"aEP_FSF_Relay",
-		"interactionImage":"graphics/illustrations/comm_relay.jpg",
-		"tags":["comm_relay", "neutrino_high", "objective"],
+		"defaultName":"FSF 军备工厂", # used if name=null in addCustomEntity()
+		"nameInText":"FSF 军备工厂",
+		"shortName":"FSF 军备工厂",
+		"defaultRadius":150, # used if radius<0 in addCustomEntity()
+		"customDescriptionId":"aEP_SpaceFactory",
+		"interactionImage":"graphics/illustrations/coronal_tap.jpg",
+		"icon":"graphics/icons/station3.png",
+		"iconWidth":32,
+		"iconHeight":32,
+		"sprite":"graphics/stations/coronal_shunt2.png",
+		"spriteWidth":240,
+		"spriteHeight":240,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":true,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"tags":["station", "neutrino_high", "protects_from_corona_in_battle", "not_random_mission_target"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin",
+		"renderCircleIndicator":true,
+		"renderCircleIndicatorSelectionFlash":true,
+		#"pluginClass":"com.fs.starfarer.api.impl.campaign.BaseCustomEntityPlugin",
 	},
 	# 必须hullspecId相同
 	"aEP_CruiseMissile":{
@@ -118,7 +130,7 @@
 		"showNameOnMap":false,
 		"customDescriptionId":"aEP_FSF_CruiseMissile",
 		"interactionImage":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
-		"tags":["neutrino"],
+		"tags":["neutrino_high"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
 		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin",
 	},
@@ -140,7 +152,7 @@
 		"showNameOnMap":false,
 		"scaleNameWithZoom":false,
 		"scaleIconWithZoom":true,
-		"tags":["station"],
+		"tags":["neutrino_high"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 

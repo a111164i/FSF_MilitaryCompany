@@ -21,23 +21,24 @@ class aEP_FCLBurstAI : aEP_BaseSystemAI() {
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
+    shouldActive = false
     target?:return
-    thinkTracker.advance(amount)
-    if (!thinkTracker.intervalElapsed()) return
 
     var willing = 0f
-    val weaponRange = Global.getSettings().getWeaponSpec(aEP_FCLBurstScript.WEAPON_ID).maxRange - 100f
+    val weaponRange = Global.getSettings().getWeaponSpec(aEP_FCLBurstScript.WEAPON_ID).maxRange - 150f
     val hitPoint = CollisionUtils.getCollides(ship.location, getExtendedLocationFromPoint(ship.location, ship.facing, weaponRange), target.location, target.collisionRadius)
       ?: return
 
+    //幅能不够用就直接滚了
+    if(ship.maxFlux < 2000f || ship.maxFlux - ship.currFlux < 2000f) return
+    val fluxLevelBelowThreshold = MathUtils.clamp(ship.currFlux/(ship.maxFlux - 2000f),0f,1f)
 
-    if (ship.fluxTracker.fluxLevel > 0.7f) return
-
-    willing += 70f *  (0.7f - ship.fluxLevel)/0.7f
+    willing += 70f *  fluxLevelBelowThreshold
 
     if (system.ammo > 2) willing += 20f
     if (system.ammo > 1) willing += 20f
 
+    //对手即将过载，更想用了
     val targetRestFlux = target.maxFlux - ship.currFlux
     if(targetRestFlux <  5000f){
       willing += 50f * (5000f-targetRestFlux)/5000f
@@ -45,8 +46,7 @@ class aEP_FCLBurstAI : aEP_BaseSystemAI() {
     if (flags.hasFlag(ShipwideAIFlags.AIFlags.PURSUING)) willing -= 25f
 
     willing *= MathUtils.getRandomNumberInRange(0.75f, 1.25f)
-
-    shouldActive = false
+    aEP_Tool.addDebugLog(willing.toString())
     if (willing >= 100f) {
       shouldActive = true
     }

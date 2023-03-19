@@ -37,6 +37,7 @@ class aEP_DroneGuardAI:aEP_BaseSystemAI() {
       val proj = proj as DamagingProjectileAPI
       //排除无效的拦截对象，比如伤害太低的弹丸，或者已经是友军拦截对象的弹丸
       if(proj.customData.containsKey(ID)) continue
+      //modifier基础值是1
       var damageAmount = proj.damage.modifier.modifiedValue * proj.damage.damage
       when(proj.damage.type){
         DamageType.ENERGY-> damageAmount  /= 1.2f

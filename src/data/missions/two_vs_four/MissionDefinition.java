@@ -84,8 +84,8 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addPlanet(0f, 0f, 600f, "aEP_IND_Homeplanet", 15f, true);
 
     //加入特殊的每帧效果
-    api.addPlugin(new BaseEveryFrameCombatPlugin()
-    {
+    api.addPlugin(new BaseEveryFrameCombatPlugin() {
+
       boolean didOnce = false;
       final boolean setFlag = false;
 

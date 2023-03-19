@@ -9,7 +9,7 @@
   "turretUnderSprite": "graphics/weapons/aEP_large_kinetic_flak/base.png",
   "hardpointSprite": "graphics/weapons/aEP_large_kinetic_flak/hp.png",
   "hardpointGunSprite": "graphics/weapons/aEP_large_kinetic_flak/hp_br.png",
-  "visualRecoil": 6,
+  "visualRecoil": 8,
   "renderHints":[RENDER_BARREL_BELOW],
   "turretOffsets": [
     32,

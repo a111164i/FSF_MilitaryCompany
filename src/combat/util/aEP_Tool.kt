@@ -1623,6 +1623,7 @@ class aEP_ID{
   companion object{
     val VECTOR2F_ZERO = Vector2f(0f,0f)
     const val FACTION_ID_FSF = "aEP_FSF"
+    const val FACTION_ID_FSF_ADV = "aEP_FSF_adv"
     const val CONFIRM = "Confirm"
     const val CANCEL = "Cancel"
     const val RETURN = "Return"

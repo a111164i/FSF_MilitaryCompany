@@ -35,9 +35,9 @@ import static java.lang.Math.PI;
 
 public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
 {
-  static final float MAX_ROF_BUFF = 3f;
+  static final float ROF_BONUS = 2f;
   static final float FLUX_PERCENT_TO_OVERLOAD_TIME = 0.1f;//how many percent accumulated flux of total flux convert to 1 second overload
-  static final float MAX_OVERLOAD_TIME = 6f;
+  static final float MAX_OVERLOAD_TIME = 10f;
   static final float WEAPON_COST_REDUCE_MULT = 0.5f;
   static final float FLUX_DISS_RUDUCE_MULT = 0.25f;
 
@@ -128,8 +128,8 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     openDeco(ship, effectLevel);
 
     //施加buff
-    stats.getBallisticRoFMult().modifyFlat(id, chargeLevel * MAX_ROF_BUFF);
-    stats.getBallisticAmmoRegenMult().modifyMult(id,chargeLevel* MAX_ROF_BUFF);
+    stats.getBallisticRoFMult().modifyFlat(id, chargeLevel * ROF_BONUS);
+    stats.getBallisticAmmoRegenMult().modifyMult(id,chargeLevel* ROF_BONUS);
     stats.getBallisticWeaponFluxCostMod().modifyMult(id, 1f - effectLevel * WEAPON_COST_REDUCE_MULT);
     stats.getFluxDissipation().modifyMult(id, 1f - effectLevel * FLUX_DISS_RUDUCE_MULT);
 
@@ -194,7 +194,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
       return new StatusData(txt("ExtremeOverload02") + ": " + ((int) (overloadTime * 100f)) / 100f, true);
     } else if (index == 2) {
       float chargeLevel = 1f - (1f-effectLevel) * (1f-effectLevel);
-      return new StatusData(txt("ExtremeOverload03") + ": " +(int)(chargeLevel * MAX_ROF_BUFF * 100) +"%", false);
+      return new StatusData(txt("ExtremeOverload03") + ": " +(int)(chargeLevel * ROF_BONUS * 100) +"%", false);
     }else if (index == 3) {
       return new StatusData(txt("ExtremeOverload04") + ": " +(int)(effectLevel * WEAPON_COST_REDUCE_MULT * 100) +"%", false);
     }else if (index == 4) {
@@ -346,6 +346,10 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
       //禁止自动开火，禁止手动开火，完事
       ship.setHoldFireOneFrame(true);
       ship.blockCommandForOneFrame(ShipCommand.FIRE);
+
+      if(ship.getSystem() != null && ship.getSystem().isActive()){
+        setShouldEnd(true);
+      }
     }
 
     @Override

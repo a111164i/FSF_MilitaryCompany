@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketConditionAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.impl.campaign.ids.Terrain;
 import com.fs.starfarer.api.impl.campaign.procgen.NebulaEditor;
 import com.fs.starfarer.api.impl.campaign.terrain.HyperspaceTerrainPlugin;
@@ -20,7 +21,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
   public void generate(SectorAPI sector) {
     StarSystemAPI system = sector.createStarSystem("Heng");
     system.getLocation().set(4350f, -20240f);
-    system.setLightColor(new Color(255, 210, 200));// light color in entire system, affects all entities
+    system.setLightColor(new Color(255, 166, 181));//不可以有透明度，不是叠加而是覆盖
     LocationAPI hyper = Global.getSector().getHyperspace();
     system.setBackgroundTextureFilename("graphics/aEP_background/background1.jpg");
 
@@ -73,6 +74,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
       "aEP_FSF");//faction id
     //设置实体的运动轨道
     FSF_DefStation.setCircularOrbit(FSF_CompanyPlanet, 0, 450, 30);//which to orbit, starting angle, radius, orbit days
+
     //创造市场，绑在上面创建的实体上
     MarketAPI FSF_DefMarket = Global.getFactory().createMarket("aEP_FSF_DefStation", FSF_DefStation.getName(), 4);//id, name, size
     FSF_DefMarket.setPrimaryEntity(FSF_DefStation);
@@ -111,7 +113,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
     FSF_SaleMarket.addIndustry("waystation");
     FSF_SaleMarket.addIndustry("patrolhq");
     FSF_SaleMarket.addIndustry("lightindustry");
-    FSF_SaleMarket.addIndustry("orbitalworks", new ArrayList(Arrays.asList("pristine_nanoforge")));
+    FSF_SaleMarket.addIndustry("orbitalworks", new ArrayList(Arrays.asList(Items.CORRUPTED_NANOFORGE)));
     FSF_SaleMarket.addIndustry("starfortress_mid");
     FSF_SaleMarket.addSubmarket("open_market");
     FSF_SaleMarket.addSubmarket("generic_military");
@@ -131,9 +133,11 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
       "aEP_FSF");//faction id
     FSF_Relay.setCircularOrbit(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
 
-	     /*SectorEntityToken focus, java.lang.String category, java.lang.String key, float bandWidthInTexture, int bandIndex, java.awt.Color color,
-						    float bandWidthInEngine, float middleRadius, float orbitDays, java.lang.String terrainId, java.lang.String optionalName
-		 */
+
+
+     /*SectorEntityToken focus, java.lang.String category, java.lang.String key, float bandWidthInTexture, int bandIndex, java.awt.Color color,
+                        float bandWidthInEngine, float middleRadius, float orbitDays, java.lang.String terrainId, java.lang.String optionalName
+     */
     system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 0, Color.white, 256f, 7000, 80f);
     system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 0, Color.white, 256f, 7000, 140f);
     system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 1, Color.white, 256f, 7000, 160f, Terrain.RING, "Cloud Ring");
@@ -157,7 +161,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
 
   //from Tart scripts
   //Clean nearby Nebula(nearby system)
-  private void cleanup(StarSystemAPI system) {
+  public static void cleanup(StarSystemAPI system) {
     HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
     NebulaEditor editor = new NebulaEditor(plugin);
     float minRadius = plugin.getTileSize() * 2f;
