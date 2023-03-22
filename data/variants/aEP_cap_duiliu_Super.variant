@@ -36,9 +36,9 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0007": "aEP_long_barrel_chaingun",
-                "WS0008": "aEP_long_barrel_chaingun",
-                "WS0021": "aEP_long_barrel_chaingun"
+                "WS0007": "aEP_b_m_mb32",
+                "WS0008": "aEP_b_m_mb32",
+                "WS0021": "aEP_b_m_mb32"
             }
         },
         {

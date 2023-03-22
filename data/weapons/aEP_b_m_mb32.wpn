@@ -1,7 +1,7 @@
 {
-  "id": "aEP_long_barrel_chaingun",
+  "id": "aEP_b_m_mb32",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_chaingun_shot",
+  "projectileSpecId": "aEP_b_m_mb32_shot",
   "type": "BALLISTIC",
   "size": "MEDIUM",
   "turretSprite": "graphics/weapons/aEP_long_barrel_chaingun/tr.png",
@@ -13,40 +13,50 @@
     RENDER_BARREL_BELOW
   ],
   "turretOffsets": [
+    15,
+    2,
+    15,
+    -2,
     17,
-    3,
+    5,
     17,
-    -3
+    -5,
   ],
   "turretAngleOffsets": [
     0,
-    0
+    0,
   ],
   "hardpointOffsets": [
+    16,
+    2,
+    16,
+    -2,
     18,
-    3,
+    5,
     18,
-    -3
+    -5,z
   ],
   "hardpointAngleOffsets": [
     0,
-    0
+    0,
+
   ],
+  "separateRecoilForLinkedBarrels":true,
   "barrelMode": "LINKED",
   "animationType": "MUZZLE_FLASH",
-    "muzzleFlashSpec": {
-      "length": 16,
-      "spread": 4,
-      "particleSizeMin": 8,
-      "particleSizeRange": 12,
-      "particleDuration": 0.15,
-      "particleCount": 4,
-      "particleColor": [
-        255,
-        240,
-        165,
-        240
-      ]
-    },
+  "muzzleFlashSpec": {
+    "length": 16,
+    "spread": 4,
+    "particleSizeMin": 8,
+    "particleSizeRange": 12,
+    "particleDuration": 0.15,
+    "particleCount": 4,
+    "particleColor": [
+      255,
+      240,
+      165,
+      240
+    ]
+  },
   "fireSoundTwo": "aEP_long_barrel_chaingun_fire"
 }

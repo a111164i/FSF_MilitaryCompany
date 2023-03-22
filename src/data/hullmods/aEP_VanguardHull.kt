@@ -70,8 +70,6 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
     var id = "aEP_VanguardDamageTaken"
     var reduceAmount = 0f
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
-      //会null的
-      param?: return null
       if (shieldHit) return null
       if (MathUtils.getRandomNumberInRange(0f, 1f) >= REDUCE_PERCENT) return null
       var toReduce = reduceAmount

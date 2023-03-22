@@ -21,7 +21,7 @@ import kotlin.math.round
 class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
 
   companion object {
-    const val DAMAGE_CONVERTED = 1f
+    const val DAMAGE_CONVERTED = 0.75f
     var ID = "aEP_RapidDissipate"
     val FLOAT_TEXT_COLOR = Color(20,100,240) //每次受击都new一个颜色类有点废性能
   }

@@ -848,7 +848,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
           detectPoint,
           Vector2f(60f,60f),
           timeEclipsed*60f, Color(255,0,0,225),false)
-        for (s in AIUtils.getNearbyEnemies(ship,2000f)) {
+        for (s in AIUtils.getNearbyEnemies(ship,1000f)) {
           if (s.owner != ship.owner && !s.isFighter && !s.isDrone && !s.isShuttlePod) {
             if (CollisionUtils.getCollisionPoint(ship.location,detectPoint,s) == null) continue
             state = this@ExplodeListener.Exploding(ship)

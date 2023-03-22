@@ -37,7 +37,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "aEP_pompom_small"}
+            "weapons": {"WS0006": "aEP_b_s_pom"}
         },
         {
             "autofire": false,

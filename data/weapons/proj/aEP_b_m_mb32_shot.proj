@@ -1,0 +1,46 @@
+{
+		"id":"aEP_b_m_mb32_shot",
+  	"specClass":"projectile",
+    "spawnType":"BALLISTIC",
+    "collisionClass":"PROJECTILE_FF",
+    "collisionClassByFighter":"PROJECTILE_FIGHTER",
+    "length":36.0,
+    "width":4.0,
+    "fadeTime":0.4,
+
+    #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+    #"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+    "fringeColor":[240,120,100,140], # 默认拖尾颜色
+    "coreColor":[255,200,200,220], # 弹体颜色
+    "glowColor":[0,0,0,0], # 发光的颜色
+    "glowRadius":0,
+    "hitGlowRadius":10,
+
+    #"textureType":"SMOOTH",  # only needed for BEAM spawnType
+    #"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+    #"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+    "textureScrollSpeed":64.0,
+    "pixelsPerTexel":5.0,
+    "passThroughMissiles":false,
+    "bulletSprite":"graphics/missiles/shell_small_yellow.png",
+
+
+    "behaviorSpec":{"behavior":"PROXIMITY_FUSE",
+            "shotRangeVariance":0.5,
+            "probOfVariance":0.5,
+            "range":0,
+            "explosionSpec":{"duration":0.0001f,
+                     "radius":0,
+                     "coreRadius":0, # full damage within core radius - at least equal to proximity fuse range
+                     "collisionClass":PROJECTILE_FF,
+                     "collisionClassByFighter":PROJECTILE_FIGHTER,
+                     "particleSizeMin":7.0,
+                     "particleSizeRange":4.0,
+                     "particleDuration":0.5,
+                     "particleCount":0,
+                     "particleColor":[255,225,125,255],
+                     "explosionColor":[255,225,125,125],
+                     #"sound":"devastator_explosion"
+            },
+    }
+}

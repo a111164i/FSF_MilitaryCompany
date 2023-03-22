@@ -35,14 +35,14 @@ class aEP_MilitaryZone : BaseMarketConditionPlugin() {
     if(reapplyTracker.intervalElapsed()) apply(modId)
   }
 
-  override fun apply(id: String) {
-    super.apply(id)
+  override fun apply(ids: String) {
+    super.apply(ID)
     market?:return
     //可能为null，如果没有人占领这个市场
     val faction: FactionAPI? = market.faction
 
     if(faction?.id != aEP_ID.FACTION_ID_FSF){
-      unapply(id)
+      unapply(ID)
       return
     }
 
@@ -51,7 +51,7 @@ class aEP_MilitaryZone : BaseMarketConditionPlugin() {
     val reduceDrug = DRUG_REDUCE
     val reduceOrgan = ORGAN_REDUCE
     //先清空之前修改的值
-    unapply(id)
+    unapply(ID)
     modifiedCom.clear()
 
     for(ind in market.industries){
@@ -83,37 +83,15 @@ class aEP_MilitaryZone : BaseMarketConditionPlugin() {
             if(!modifiedCom.contains(dem.commodityId) ) modifiedCom.add(dem.commodityId)
           }
         }
-
-        //增加产量
-        for (sup in ind.allSupply){
-          if (sup.commodityId == Commodities.ORE) {
-            ind.supply(modId,Commodities.ORE, ORE_SUPPLY, name)
-            if(!modifiedCom.contains(sup.commodityId) ) modifiedCom.add(sup.commodityId)
-          }
-          if (sup.commodityId == Commodities.RARE_ORE) {
-            ind.supply(modId,Commodities.RARE_ORE, RARE_ORE_SUPPLY, name)
-            if(!modifiedCom.contains(sup.commodityId) ) modifiedCom.add(sup.commodityId)
-          }
-          if (sup.commodityId == Commodities.VOLATILES) {
-            ind.supply(modId,Commodities.VOLATILES, VOLATILE_SUPPLY, name)
-            if(!modifiedCom.contains(sup.commodityId) ) modifiedCom.add(sup.commodityId)
-          }
-          if (sup.commodityId == Commodities.ORGANICS) {
-            ind.supply(modId,Commodities.ORGANICS, ORGANIC_SUPPLY, name)
-            if(!modifiedCom.contains(sup.commodityId) ) modifiedCom.add(sup.commodityId)
-          }
-        }
       }
-
-
-
     }
 
     //增加最大工业设施数量
-    market.stats.dynamic.getMod(Stats.MAX_INDUSTRIES).modifyFlat(id, MAX_IND_BONUS)
+    market.stats.dynamic.getMod(Stats.MAX_INDUSTRIES).modifyFlat(ID, MAX_IND_BONUS)
   }
 
-  override fun unapply(id: String) {
+  override fun unapply(ids: String) {
+    market.stats.dynamic.getMod(Stats.MAX_INDUSTRIES).unmodify(ID)
     for(ind in market.industries){
       for(dem in ind.allDemand){
         dem.quantity.unmodify(modId)

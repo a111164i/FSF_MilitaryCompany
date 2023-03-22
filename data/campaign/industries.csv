@@ -1,4 +1,4 @@
 id,name,cost mult,build time,income,upkeep,downgrade,upgrade,tags,data,image,plugin,desc,order
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
-aEP_AdvanceHq,精英测试部门,90,60,,6,,,"military, unraidable, tactical_bombardment, structure",,graphics/icons/industry/lions_guard.png,data.scripts.campaign.econ.industries.aEP_AdvanceHqPlugin,很难去猜测为什么FSF会在近期进行大量的军备扩建，但只有通过背景调查，拥有数年服役经验且成绩优秀的军官才能进入这个部门，外界对此的认知仅限严苛的入选条件和对工作内容高度保密。公司这种短时间内不惜资源的军备扩张普遍被认为在为即将发生的混乱做准备,
+aEP_AdvanceHq,精英设计部,90,60,,6,,,"military, unraidable, tactical_bombardment, structure",,graphics/aEP_icons/industry/design_department.png,data.scripts.campaign.econ.industries.aEP_AdvanceHqPlugin,很难去猜测为什么FSF会在近期进行大量的军备扩建，但只有通过背景调查，拥有数年服役经验且成绩优秀的军官才能进入这个部门，外界对此的认知仅限严苛的入选条件和对工作内容高度保密。公司这种短时间内不惜资源的军备扩张普遍被认为在为即将发生的混乱做准备,

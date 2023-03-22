@@ -169,7 +169,7 @@
 		"aEP_CruiseMissileLoadIntel05":"装填进度: {%s} ",
 			
 		"aEP_Market00":"这是卖场",
-		"aEP_Market01":"我们这里对你有一些不好的记录 (require FSF-中立)",
+		"aEP_Market01":"要求与FSF关系高于: {%s}",
 
 		"aEP_AttackCarrier00":"战机联队作战半径提升: {%s}",
 		"aEP_AttackCarrier01":"处于母舰{%s}范围内，基础极速低于{%s}的战机联队提供速度加成: ",

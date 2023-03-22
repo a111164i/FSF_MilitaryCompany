@@ -1,5 +1,6 @@
 package com.fs.starfarer.api.impl.campaign.rulecmd;
 
+import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
@@ -17,11 +18,14 @@ import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import combat.util.aEP_DataTool;
+import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
 import data.scripts.campaign.intel.aEP_AWM1Intel;
 import data.scripts.campaign.intel.aEP_AWM2Intel;
 import data.scripts.campaign.intel.aEP_AWM3Intel;
 import data.scripts.campaign.intel.aEP_BaseMission;
+import data.scripts.campaign.submarkets.aEP_FSFMarketPlugin;
+import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -113,9 +117,11 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
           return giveShip3();
         case "addContact3":
           return addContact3();
-
+        case "shouldStart4":
+          return shouldStart4();
+        case "start4":
+          return start4();
       }
-
     }
     return false;
   }
@@ -507,6 +513,42 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     ContactIntel intel = new ContactIntel(person, market);
     Global.getSector().getIntelManager().addIntel(intel, false, dialog.getTextPanel());
     return true;
+  }
+
+  boolean shouldStart4() {
+    FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    boolean has = false;
+    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
+      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation") && Global.getSector().getPlayerFaction().getRelationship(aEP_ID.FACTION_ID_FSF) > 0.9f) {
+        for (PersonAPI person : market.getPeopleCopy()) {
+          if (person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) {
+            dialog.getInteractionTarget().setActivePerson(person);
+            has = true;
+            break;
+          }
+        }
+      }
+    }
+
+    boolean levelIsEnough = Global.getSector().getPlayerPerson().getStats().getLevel() >= 10;
+    return has && levelIsEnough;
+  }
+
+  boolean start4() {
+    FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+
+    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
+      if(market.getId().equals(aEP_FSF_DWR43.FACTORY_STATION_MARKET_ID)){
+        market.addSubmarket(aEP_FSFMarketPlugin.ID);
+       for(EveryFrameScript script : market.getStarSystem().getScripts() ){
+         if(script instanceof aEP_FSF_DWR43.DiscoverSector){
+           ((aEP_FSF_DWR43.DiscoverSector) script).setShouldEnd(true);
+         }
+       }
+      }
+    }
+
+    return false;
   }
 }
 

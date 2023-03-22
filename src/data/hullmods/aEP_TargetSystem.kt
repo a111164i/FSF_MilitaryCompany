@@ -26,7 +26,7 @@ class aEP_TargetSystem : BaseHullMod() {
     }
 
     init {
-      PUNISH[HullSize.FRIGATE] = 45f
+      PUNISH[HullSize.FRIGATE] = 40f
       PUNISH[HullSize.DESTROYER] = 25f
       PUNISH[HullSize.CRUISER] = 10f
       PUNISH[HullSize.CAPITAL_SHIP] = 5f

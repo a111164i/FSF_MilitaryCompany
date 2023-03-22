@@ -51,6 +51,7 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin {
       val intel = aEP_CruiseMissileLoadIntel()
       intel.faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
       intel.getIntelTags(null).add(aEP_ID.FACTION_ID_FSF)
+      intel.isImportant = true
       //放进intel
       Global.getSector().intelManager.addIntel(intel)
       //放进everyframe，否则advance方法不调用
@@ -124,7 +125,6 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin {
       }
     }
     val simWeapon = (toFind as WeaponAPI)?: return
-
 
     //战斗开始时运行一次，根据是否在生涯判断要不要移除弹药
     if (ship.fullTimeDeployed == 0f) {

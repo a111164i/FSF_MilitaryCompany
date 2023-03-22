@@ -72,7 +72,7 @@ public class aEP_CruiseMissile extends BaseSpecialItemPlugin
 
     //改过了，现在不需要消耗从仓库里的，在装填时已经扣了一个
     //任何情况都补一个回来
-    Global.getSector().getPlayerFleet().getCargo().addSpecial(new SpecialItemData(aEP_CruiseMissileCarrier.SPECIAL_ITEM_ID, null), 1);
+    Global.getSector().getPlayerFleet().getCargo().addSpecial(new SpecialItemData(this.itemId, null), 1);
 
     if (!useOne) {
       //Global.getSector().getPlayerFleet().getCargo().addSpecial(new SpecialItemData(aEP_CruiseMissileCarrier.SPECIAL_ITEM_ID, null), 1);

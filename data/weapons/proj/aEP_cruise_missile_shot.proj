@@ -18,6 +18,7 @@
 	"bulletSprite":"",
 	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
 					"shotRangeVariance":1,
+					"probOfVariance":1,
 					"range":0,
 					"explosionSpec":{"duration":0.5f,
 									 "radius":300,

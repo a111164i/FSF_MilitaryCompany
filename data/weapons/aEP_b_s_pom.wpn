@@ -1,7 +1,7 @@
 {
-  "id": "aEP_pompom_small",
+  "id": "aEP_b_s_pom",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_pompom_shot",
+  "projectileSpecId": "aEP_b_s_pom_shot",
   "type": "BALLISTIC",
   "size": "SMALL",
   "displayArcRadius": 600,

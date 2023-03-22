@@ -122,21 +122,6 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cap_duiliu_Super");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.BALLISTIC_MASTERY, 2);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-      p.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES, 1);
-      p.getStats().setSkillLevel(Skills.FIELD_MODULATION, 2);
-      p.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-      s.getVariant().addPermaMod("ecm", true);
 
       s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Broadside");
       p = faction.createRandomPerson();
@@ -180,16 +165,6 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_pubu_Standard");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 1);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
 
       s = targetFleet.getFleetData().addFleetMember("aEP_cru_shanhu_Standard");
       p = faction.createRandomPerson();
@@ -225,7 +200,6 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     loading.setFleetMember(flagship.getId());
     loading.setLoadedNum(1);
     Global.getSector().addScript(loading);
-
 
     targetFleet.getFlagship().setShipName("AWM Testing Obj CMC02");
     targetFleet.setFaction("pirates");
@@ -448,8 +422,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
   }
 
 
-  class EntityWantToMissileAttackPlayer implements EveryFrameScript
-  {
+  class EntityWantToMissileAttackPlayer implements EveryFrameScript {
     CampaignFleetAPI token;
     //by day
     float launchInterval = 0f;

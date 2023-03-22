@@ -1,0 +1,45 @@
+{
+	"id":"aEP_b_s_pom_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_NO_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"collisionRadius":1,
+	"length":8,
+	"width":4,
+  "fadeTime":0.2,
+
+  #"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"fringeColor":[240,140,117,120],
+	"coreColor":[240,200,207,120],
+  "glowColor":[240,140,117,15],
+  "glowRadius":5,
+  "hitGlowRadius":10,
+
+  #"textureType":"SMOOTH",  # only needed for BEAM spawnType
+  #"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+  #"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+  #"textureScrollSpeed":-256.0,
+  #"pixelsPerTexel":1,
+  "passThroughMissiles":false,
+	"bulletSprite":"graphics/missiles/shell_small_yellow.png",
+	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
+	      "shotRangeVariance":0.2,
+        "probOfVariance":1,
+				"range":15,
+				#"vsMissileRange":100,
+				"explosionSpec":{"duration":0.1f,
+								 "radius":20,
+								 "coreRadius":15, # full damage within core radius - also equal to proximity fuse range
+								 "collisionClass":PROJECTILE_NO_FF,
+								 "collisionClassByFighter":PROJECTILE_FIGHTER,
+								 "particleSizeMin":10,
+								 "particleSizeRange":15,
+								 "particleDuration":0.25f,
+								 "particleCount":1,
+								 "particleColor":[240,120,100,90],
+								 "sound":""
+				},
+		}
+}

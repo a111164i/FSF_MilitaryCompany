@@ -1,0 +1,63 @@
+{
+  "id": "aEP_b_l_dg3",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_b_l_dg3_shot",
+  "type": "BALLISTIC",
+  "size": "LARGE",
+  "everyFrameEffect": "data.scripts.weapons.aEP_ChaingunAnimation",
+  "turretSprite": "graphics/weapons/aEP_large_long_barrel_chaingun/aEP_long_barrel_chaingun_turret_base00.png",
+  "hardpointSprite": "graphics/weapons/aEP_large_long_barrel_chaingun/aEP_long_barrel_chaingun_hardpoint_base00.png",
+  "turretOffsets": [
+    23,
+    -8,
+    23,
+    8,
+    21,
+    -13,
+    21,
+    13
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    23.5,
+    -8,
+    23.5,
+    8,
+    22,
+    -13,
+    22,
+    13
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "numFrames": 4,
+  "frameRate": 28,
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 14,
+    "cloudParticleCount": 1,
+    "cloudDuration": 2,
+    "cloudRadius": 14,
+    "blowbackParticleCount": 1,
+    "blowbackDuration": 0.35,
+    "blowbackLength": 20,
+    "blowbackSpread": 6,
+    "particleColor": [
+      190,
+      180,
+      160,
+      110
+    ]
+  },
+  "fireSoundTwo": "aEP_long_barrel_chaingun_fire"
+}

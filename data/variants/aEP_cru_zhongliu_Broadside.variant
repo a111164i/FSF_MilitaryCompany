@@ -27,8 +27,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_large_long_barrel_chaingun",
-                "WS0002": "aEP_large_long_barrel_chaingun"
+                "WS0001": "aEP_b_l_dg3",
+                "WS0002": "aEP_b_l_dg3"
             }
         },
         {

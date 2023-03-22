@@ -16,7 +16,7 @@ aEP_large_kinetic_flak_trail,aEP_KF_large_shot,base_trail_heavyBurn,16,0.1,0.8,0
 aEP_large_kinetic_flak_trail2,aEP_KF_large_shot,base_trail_mild,16,0.1,0.8,0.1,20,16,"[215,205,255]","[55,55,55]",0.05,256,512,TRUE,10,0,0,0,true,true,false,75,0,0,0,30,0,true,true
 aEP_large_kinetic_flak_trail3,aEP_KF_large_shot,aEP_trail_smoke,16,0.1,0.7,0.2,16,16,"[215,205,255]","[55,55,55]",0.1,128,512,TRUE,10,0,0,0,true,true,false,75,0,0,0,30,0,true,true
 aEP_large_kinetic_flak_trail4,aEP_KF_large_shot,base_trail_fuzzy,16,0,0.2,0.1,60,0,"[215,205,255]","[55,55,55]",0.4,256,512,TRUE,30,0,0,0,true,true,false,0,0,0,0,0,0,true,true
-,aEP_KF_large_shot,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #创伤炮,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -25,7 +25,10 @@ aEP_trauma_cannon_trail2,aEP_trauma_cannon_shot,aEP_trail_rough,16,0,0.15,0.4,10
 aEP_trauma_cannon_trail3,aEP_trauma_cannon_shot,aEP_trail_flame,16,0.1,0.3,0.4,20,5,"[240,240,240,40]","[120,120,120,0]",0.2,96,-0,TRUE,0,0,0,0,true,true,false,50,0,0,0,0,0,false,true
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #狙击榴弹炮,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-aEP_high_speed_HE_shot_trail,aEP_high_speed_HE_shot,aEP_trail_flame,16,0.1,0.7,0.2,10,16,"[200,200,200,45]","[200,55,50,35]",0.15,128,-0,TRUE,10,0,0,0,true,true,false,0,0,0,0,0,0,false,true
+aEP_high_speed_HE_shot_trail,aEP_high_speed_HE_shot,base_trail_smooth,16,0,0.1,0.1,10,5,"[200,200,50]","[200,200,200]",0.6,128,-256,TRUE,20,0,0,0,true,true,true,0,0,0,0,0,0,false,true
+aEP_high_speed_HE_shot_trail2,aEP_high_speed_HE_shot,base_trail_heavySmoke,16,0,0.2,0.2,20,10,"[211,72,72]","[200,200,200]",0.8,128,-256,TRUE,20,0,0,0,true,true,true,0,0,0,0,0,0,false,true
+aEP_high_speed_HE_shot_trail3,aEP_high_speed_HE_shot,aEP_trail_flame,16,0.1,0.3,0.2,10,10,"[200,200,50]","[200,200,200]",0.2,128,256,TRUE,10,0,0,0,true,true,false,0,0,0,0,0,0,false,true
+aEP_high_speed_HE_shot_trail4,aEP_high_speed_HE_shot2,base_trail_zap,8,0,0,0.3,10,10,"[232,224,50]","[240,240,240]",0.6,64,128,TRUE,10,0,0,0,true,true,false,0,0,0,0,0,0,false,true
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #古斯塔夫炮,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_RW_shot_trail,aEP_RW_shot,aEP_trail_smoke,16,0,0.6,0.4,20,20,"[240,240,240,120]","[240,240,240,120]",0.4,80,80,TRUE,0,0,0,0,false,true,false,0,0,0,0,0,0,false,false

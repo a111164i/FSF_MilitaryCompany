@@ -130,7 +130,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
             if (!w.spec.weaponId.contains("aEP_marker")) continue
             val smokeLoc = w.location
             val smoke = aEP_MovingSmoke(smokeLoc)
-            smoke.lifeTime = 0.25f
+            smoke.lifeTime = 0.35f
             smoke.fadeIn = 0.5f
             smoke.fadeOut = 0.5f
             smoke.size = 20f
@@ -154,7 +154,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
             if (!w.spec.weaponId.contains("aEP_marker")) continue
             val smokeLoc = w.location
             val smoke = aEP_MovingSmoke(smokeLoc)
-            smoke.lifeTime = 0.5f
+            smoke.lifeTime = 0.75f
             smoke.fadeIn = 0.25f
             smoke.fadeOut = 0.25f
             smoke.size = 20f

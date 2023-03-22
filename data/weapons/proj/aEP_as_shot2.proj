@@ -1,5 +1,5 @@
 {
-	"id":"aEP_as_shot",
+	"id":"aEP_as_shot2",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC",	
 	"collisionClass":"PROJECTILE_FF",
@@ -13,6 +13,6 @@
 	"fadeTime":0.1,
 	"fringeColor":[200,200,200,255],
 	"coreColor":[255,250,250,255],
-	"glowColor":[155,155,255,75],
+	"glowColor":[250,250,155,75],
 	"glowRadius":100,
 }

@@ -1,2 +1,2 @@
 id,name,faction,desc,script,icon,order
-aEP_FSFMarket,FSF销售中心,aEP_FSF,FSF公司的销售中心，向星系中拥有良好名誉的舰长出售各式武器装备,data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799
+aEP_FSFMarket,测试指派中心,aEP_FSF,这里与其说是出售，不如说是花自己的钱为公司做测试，这些舰船虽然个个拥有独特的机制但是FSF概不提供售后，且保密自毁机制让这些舰船均无法战后被恢复,data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799
