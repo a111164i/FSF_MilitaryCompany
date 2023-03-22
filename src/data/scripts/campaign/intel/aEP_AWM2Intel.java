@@ -29,15 +29,9 @@ public class aEP_AWM2Intel extends aEP_BaseMission
   String shipName;
 
   public aEP_AWM2Intel(SectorEntityToken whereToSpawn, String variantId, String targetShipId) {
-    this.sector = Global.getSector();
-    this.faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    super(0f);
     this.shipName = targetShipId;
-    ending = false;
-    ended = false;
     this.token = whereToSpawn;
-    setName(this.getClass().getSimpleName());
-    setPostingLocation(token);
-
 
     //add Fleet
     CampaignFleetAPI targetFleet = Global.getFactory().createEmptyFleet("derelict", "奇怪的无人舰", true);
@@ -93,9 +87,7 @@ public class aEP_AWM2Intel extends aEP_BaseMission
     this.targetFleet = targetFleet;
     setMapLocation(targetFleet);
 
-    setImportant(true);
     Global.getSector().getIntelManager().addIntel(this);
-    Global.getSector().getIntelManager().queueIntel(this);
   }
 
   @Override

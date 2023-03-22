@@ -11,6 +11,7 @@ import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import combat.util.aEP_DataTool;
+import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +26,7 @@ public class aEP_BaseMission extends BaseIntelPlugin
   public int shouldEnd = 0;
   //把这个设置为true，任务真正结束，并开始调用一次结算函数
   public boolean readyToEnd = false;
-  public float lifeTime = 0f;
+  public float lifeTime;
   public float time = 0f;
   public SectorAPI sector;
   public FactionAPI faction;
@@ -33,15 +34,38 @@ public class aEP_BaseMission extends BaseIntelPlugin
   public SectorEntityToken mapLocation;
   Set<String> tags = new LinkedHashSet<String>();
 
+  aEP_BaseMission(){
+    this.lifeTime = 0f;
+    endingTimeRemaining = 0f;
+    ended = false;
+    ending = false;
+    this.sector = Global.getSector();
+    this.faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    setName(this.getClass().getSimpleName());
+    setImportant(true);
+
+    //这2个东西是用来算从intelQueue里面多久加入intel，直接加入intel的特殊任务用不到
+    postingRangeLY = 0f;
+    postingLocation = null;
+
+  }
 
   /**
    * 基础的Intel要被看到，至少要设置tag，否则不在Intel页面new以外的tag中显示
    */
-  aEP_BaseMission(){
+  aEP_BaseMission(float lifeTime){
+    this.lifeTime = lifeTime;
     endingTimeRemaining = 0f;
     ended = false;
     ending = false;
+    this.sector = Global.getSector();
+    this.faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    setName(this.getClass().getSimpleName());
+    setImportant(true);
 
+    //这2个东西是用来算从intelQueue里面多久加入intel，直接加入intel的特殊任务用不到
+    postingRangeLY = 0f;
+    postingLocation = null;
   }
 
   @Override
@@ -52,7 +76,7 @@ public class aEP_BaseMission extends BaseIntelPlugin
     //正在结束的任务从这里出去，百分之99的情况是立刻结束所以无视就行，限时任务直在子类里单独写，不用这个
     //单纯是父类里面要这个所以不得不加
     if (ending) {
-      endingTimeRemaining = endingTimeRemaining - days;
+      endingTimeRemaining -= days;
       if (endingTimeRemaining <= 0) {
         ended = true;
         notifyEnded();
@@ -127,7 +151,11 @@ public class aEP_BaseMission extends BaseIntelPlugin
    * */
   @Override
   public void createSmallDescription(TooltipMakerAPI info, float width, float height) {
-    super.createSmallDescription(info, width, height);
+    Color highLight = Misc.getHighlightColor();
+    Color grayColor = Misc.getGrayColor();
+    Color whiteColor = Misc.getTextColor();
+    Color barColor = faction.getDarkUIColor();
+    Color titleTextColor = faction.getColor();
   }
 
   /**
@@ -155,7 +183,7 @@ public class aEP_BaseMission extends BaseIntelPlugin
   }
 
   /**
-   * 和 postLocation一起用
+   * 在任务地图里面显示目的地在那
    * */
   public void setMapLocation(SectorEntityToken mapLocation) {
     this.mapLocation = mapLocation;

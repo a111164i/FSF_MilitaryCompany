@@ -13,19 +13,19 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "railgun",
-                "WS0005": "hurricane"
+                "WS0005": "aEP_harpoon_large"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "vulcan",
-                "WS0002": "vulcan",
-                "WS0004": "vulcan"
+                "WS0001": "aEP_vulcan",
+                "WS0002": "aEP_vulcan",
+                "WS0003": "aEP_vulcan",
+                "WS0004": "aEP_vulcan"
             }
         }
     ],
-    "wings": ["longbow_wing"]
+    "wings": ["aEP_ftr_bom_attacker_wing"]
 }

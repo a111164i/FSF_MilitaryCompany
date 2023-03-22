@@ -2,22 +2,26 @@ package data.scripts.world.aEP_systems
 
 import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.Script
 import com.fs.starfarer.api.campaign.*
 import com.fs.starfarer.api.campaign.econ.MarketAPI
+import com.fs.starfarer.api.characters.PersonAPI
+import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.fleet.FleetMemberType
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3
+import com.fs.starfarer.api.impl.campaign.fleets.FleetParamsV3
 import com.fs.starfarer.api.impl.campaign.ids.*
 import com.fs.starfarer.api.impl.campaign.ids.Entities.STABLE_LOCATION
-import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantStationFleetManager
 import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantThemeGenerator
 import com.fs.starfarer.api.util.DelayedActionScript
 import com.fs.starfarer.api.util.Misc
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
+import combat.util.aEP_Tool
 import data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus
 import data.scripts.campaign.econ.environment.aEP_MilitaryZone
 import data.scripts.campaign.econ.environment.aEP_SpaceFarm
 import org.lazywizard.lazylib.MathUtils
-import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
 class aEP_FSF_DWR43 : SectorGeneratorPlugin {
@@ -43,6 +47,10 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
 
     val FSF_EarthStar = system.initStar("FSF_EarthStar", "aEP_FSF_Earthstar", 1200f, 120f)
     FSF_EarthStar.location.set(0f,0f)
+
+    //先把星系绑定在超空间，因为没有调用自带生成重力井，所以尚未绑定
+    system.generateAnchorIfNeeded()
+
 
 
     //创造沙漠行星和环绕它的2个恒星遮罩，环绕时间同步就能做到一直背对恒星
@@ -220,7 +228,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     fleet.memoryWithoutUpdate[MemFlags.MEMORY_KEY_MAKE_ALLOW_DISENGAGE] = true
     fleet.addTag(Tags.NEUTRINO_HIGH)
 
-    fleet.setStationMode(true)
+    fleet.isStationMode = true
     RemnantThemeGenerator.addRemnantStationInteractionConfig(fleet)
 
     fleet.clearAbilities()
@@ -240,15 +248,15 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     fleet.flagship.captain = commander
     member.repairTracker.cr = member.repairTracker.maxCR
 
-    //自循环生成舰队
-    system.addScript(object : DelayedActionScript(1f) {
+    //自循环生成舰队，这里不希望玩家刷a核心所以注释了
+   /* system.addScript(object : DelayedActionScript(1f) {
       override fun doAction() {
         val activeFleets = RemnantStationFleetManager(
-          fleet, 1f, 0, 3, 25f, 6, 12
+          fleet, 1f, 0, 2, 30f, 2, 4
         )
         system.addScript(activeFleets)
       }
-    })
+    })*/
 
 
 
@@ -284,11 +292,6 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
       Factions.NEUTRAL)
     stableLoc03.setCircularOrbit(FSF_EarthStar,MathUtils.getRandomNumberInRange(0f,360f),10000f,10000f/10f)
 
-
-
-    //先把星系绑定在超空间，因为没有调用自带生成重力井，所以尚未绑定
-    system.generateAnchorIfNeeded()
-
     //在星系内生成一个出去的重力井
     val jumpPoint1 = Global.getFactory().createJumpPoint("$ID _jump_out", "$ID Jump-point")
     jumpPoint1.setCircularOrbit(FSF_EarthStar, 70f, 6350f, 635f)
@@ -308,9 +311,20 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     //把星系内出去的重力井和外面相连
     jumpPoint1.addDestination(JumpPointAPI.JumpDestination(well,null))
 
-
     //添加脚本，在玩家第一次进入星系时，现形
     system.addScript(DiscoverSector(system, FSF_SpaceFactoryMarket, FSF_MiningStationMarket, well, jumpPoint1))
+
+    //创建空间站守护者舰队，同时加入脚本捕捉玩家第一次进入星系，必须延迟一秒再生成，构建星系的时候势力文件还没完成，此时根据任何势力都刷不出东西
+    system.addScript(object : DelayedActionScript(2f){
+      override fun doAction() {
+        val jumpPointGuardian = spawnFleet(jumpPoint1,FSF_SpaceFactoryMarket)
+        jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_NO_JUMP, true)
+        jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORED_BY_OTHER_FLEETS, true)
+        jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORES_OTHER_FLEETS, true)
+        system.addScript(GuardianCatchPlayer(jumpPointGuardian,jumpPoint1,FSF_SpaceFactoryMarket))
+      }
+    })
+
 
     aEP_FSF_Heng.cleanup(system)
   }
@@ -330,7 +344,6 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
       this.inSpaceJumpPoint = inSpaceJumpPoint
     }
 
-
     override fun advanceImpl(amount: Float) {
       Global.getSector().hyperspace.addHitParticle(nascentWell.location,aEP_ID.VECTOR2F_ZERO,1000f,1f,1f, Color.white)
       if(Global.getSector().playerFleet.containingLocation == system){
@@ -340,16 +353,28 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
 
     override fun readyToEnd() {
       val hyper = Global.getSector().hyperspace
-      //超空间新建一个跳跃点
+      for(planet in system.planets){
+        planet.isSkipForJumpPointAutoGen = true;
+        if(planet.id.equals("FSF_EarthStar")) planet.isSkipForJumpPointAutoGen = false
+      }
+
+      /* //超空间新建一个跳跃点
       val jumpPoint1 = Global.getFactory().createJumpPoint("$ID _jump_in", "$ID Gravity Well")
-      jumpPoint1.location.set(Vector2f(nascentWell.location))
       hyper.addEntity(jumpPoint1)
       //相互连通
       jumpPoint1.addDestination(JumpPointAPI.JumpDestination(inSpaceJumpPoint,inSpaceJumpPoint.name))
       inSpaceJumpPoint.addDestination(JumpPointAPI.JumpDestination(jumpPoint1,jumpPoint1.name))
       //断开并移除老的超空间跳跃点
       inSpaceJumpPoint.removeDestination(nascentWell)
-      hyper.removeEntity(nascentWell)
+      hyper.removeEntity(nascentWell)*/
+
+      //设置在超空间的位置
+      system.autogenerateHyperspaceJumpPoints(false,false,false)
+
+
+      //设置在超空间的位置，这个半径是星系内环绕半径的等比例缩小，实际obj算法会更复杂，越远的地方缩的越多
+      //jumpPoint1.autoUpdateHyperJumpPointLocationBasedOnInSystemEntityAtRadius(inSpaceJumpPoint,inSpaceJumpPoint.circularOrbitRadius/10f)
+
 
       //之前设置为NONE，但是这个殖民地已经被占领了，玩家又不能去扫描，故手动改为FULL
       factoryMarket.surveyLevel = MarketAPI.SurveyLevel.FULL
@@ -362,7 +387,6 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
       miningMarket.isHidden = false
       miningMarket.memoryWithoutUpdate.removeAllRequired(MemFlags.HIDDEN_BASE_MEM_FLAG)
       miningMarket.econGroup = null
-
 
       system.tags.remove(Tags.SYSTEM_CUT_OFF_FROM_HYPER)
       //system.tags.remove(Tags.THEME_HIDDEN)
@@ -434,4 +458,230 @@ open class aEP_BaseEveryFrame : EveryFrameScript{
       shouldEnd = true
     }
   }
+}
+
+fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
+  val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF_ADV)
+
+  //add Fleet
+  val para = FleetParamsV3(
+    null,
+    aEP_ID.FACTION_ID_FSF_ADV,
+    99f,  // qualityMod
+    FleetTypes.PERSON_BOUNTY_FLEET,
+    80f,  // combatPts
+    0f,  // freighterPts
+    0f,  // tankerPts
+    0f,  // transportPts
+    0f,  // linerPts
+    0f,  // utilityPts
+    1f
+  )
+  para.maxShipSize = 2
+  para.treatCombatFreighterSettingAsFraction = true
+  para.averageSMods = 1
+  para.ignoreMarketFleetSizeMult = true
+  val fleet = FleetFactoryV3.createFleet(para)
+
+  //加入舰队必须调用这个
+  fleet.setFaction(aEP_ID.FACTION_ID_FSF,true)
+  //这个用于rules里面openCommLink的id检测
+  fleet.id = "aEP_DWR43_JumpPointGuard"
+
+  //手动添加敌人
+  //加一艘内波
+  var s: FleetMemberAPI = fleet.fleetData.addFleetMember("aEP_cap_neibo_Standard")
+  var p: PersonAPI = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_COMMANDER
+  p.setPersonality(Personalities.STEADY)
+  //0-未学习，1-普通，2-专精
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 1f)
+  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 1f)
+  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 1f)
+  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  s.variant.addPermaMod("ecm", true)
+  //加入一个分解者
+  s = fleet.fleetData.addFleetMember("aEP_cap_decomposer_Standard")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_COMMANDER
+  p.setPersonality(Personalities.CAUTIOUS)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.POLARIZED_ARMOR, 1f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  s.variant.addPermaMod("ecm", true)
+
+  s = fleet.fleetData.addFleetMember("aEP_cru_pubu_Standard")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_LIEUTENANT
+  p.setPersonality(Personalities.CAUTIOUS)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  s.variant.addPermaMod("ecm", true)
+
+  s = fleet.fleetData.addFleetMember("aEP_cru_pubu_Standard")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_LIEUTENANT
+  p.setPersonality(Personalities.CAUTIOUS)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  s.variant.addPermaMod("ecm", true)
+  //第一艘 平定级
+  s = fleet.getFleetData().addFleetMember("aEP_cru_pingding_Standard")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_LIEUTENANT
+  p.setPersonality(Personalities.STEADY)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 1f)
+  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 1f)
+  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 1f)
+  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+
+  s = fleet.getFleetData().addFleetMember("aEP_cru_pingding_Standard")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_LIEUTENANT
+  p.setPersonality(Personalities.STEADY)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 1f)
+  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 1f)
+  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 1f)
+  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  //第一艘 深度级 荡平联队
+  s = fleet.fleetData.addFleetMember("aEP_des_shendu_Standard")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_ENSIGN
+  p.setPersonality(Personalities.CAUTIOUS)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  fleet.getFleetData().addOfficer(p)
+  s.captain = p
+  //2 进军联队
+  s = fleet.fleetData.addFleetMember("aEP_des_shendu_Strike")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_ENSIGN
+  p.setPersonality(Personalities.CAUTIOUS)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  //3 进军联队
+  s = fleet.fleetData.addFleetMember("aEP_des_shendu_Strike")
+  p = faction.createRandomPerson()
+  p.rankId = Ranks.SPACE_ENSIGN
+  p.setPersonality(Personalities.CAUTIOUS)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  fleet.fleetData.addOfficer(p)
+  s.captain = p
+  //加入4艘涌浪级
+  for(i in 0 until 4){
+    s = fleet.fleetData.addFleetMember("aEP_fga_yonglang_Mixed")
+    p = faction.createRandomPerson()
+    p.rankId = Ranks.SPACE_CHIEF
+    p.setPersonality(Personalities.STEADY)
+    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
+    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+    fleet.fleetData.addOfficer(p)
+    s.captain = p
+  }
+  fleet.forceSync()
+  //要把舰队刷新到生涯地图，调用这个
+  market.containingLocation.spawnFleet(jumpPoint,0f,0f,fleet)
+  return fleet
+}
+
+class GuardianCatchPlayer(val fleet:CampaignFleetAPI, val jumpPoint: SectorEntityToken, val market: MarketAPI) : aEP_BaseEveryFrame(0f,fleet){
+
+  var didChase = false
+
+  override fun advanceImpl(amount: Float) {
+
+    //当舰队捉到了玩家，在rules里面触发了对话，在那里面把这个改成true
+    if(fleet.memoryWithoutUpdate.contains("\$have_permission")){
+      shouldEnd = true
+      return
+    }
+    if(Global.getSector().playerFleet.containingLocation == fleet.containingLocation && !didChase){
+      didChase = true
+      if(fleet.currentAssignment != null) fleet.currentAssignment.expire()
+      fleet.memoryWithoutUpdate[MemFlags.MEMORY_KEY_PURSUE_PLAYER] = true
+      fleet.memoryWithoutUpdate[MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE] = true
+      fleet.memoryWithoutUpdate[MemFlags.MEMORY_KEY_MAKE_HOSTILE] = true
+      //注意追击assignment如果追到了就会被打断，并不算作完成
+      fleet.addAssignment(FleetAssignment.INTERCEPT,Global.getSector().playerFleet,2f,
+        txt("aEP_ApproachingTo")+Global.getSector().playerPerson.nameString,InterceptOnComplete())
+    }
+    //追击被打断后要重置ai
+    if(fleet.currentAssignment == null){
+      fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_PURSUE_PLAYER)
+      fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE)
+      fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_HOSTILE)
+      fleet.addAssignment(FleetAssignment.ORBIT_PASSIVE,jumpPoint,Float.MAX_VALUE)
+      didChase = false
+    }
+
+  }
+  //捉到过一次玩家，就返回市场刷没
+  override fun readyToEnd() {
+    if(fleet.currentAssignment != null) fleet.currentAssignment.expire()
+    fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_PURSUE_PLAYER)
+    fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE)
+    fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_HOSTILE)
+    fleet.addAssignment(FleetAssignment.GO_TO_LOCATION_AND_DESPAWN, market.primaryEntity,Float.MAX_VALUE)
+  }
+
+  inner class InterceptOnComplete : Script{
+    override fun run() {
+      if(fleet.currentAssignment != null) fleet.currentAssignment.expire()
+      fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_PURSUE_PLAYER)
+      fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE)
+      fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_HOSTILE)
+      fleet.addAssignment(FleetAssignment.ORBIT_PASSIVE,jumpPoint,Float.MAX_VALUE)
+      aEP_Tool.addDebugLog("enddddddddddd")
+      didChase = false
+    }
+  }
+
 }

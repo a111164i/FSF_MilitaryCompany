@@ -1,5 +1,19 @@
 {
-
+	"aEP_base_campaign_objective":{
+		"defaultRadius":75, # used if radius<0 in addCustomEntity()
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":true,
+		"nameFontScale":1,
+		"nameAngle":0,
+		"nameColor":[70,200,255,255],
+		"nameShadowColor":[0,0,0,255],
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"renderCircleIndicator":true,
+		"renderCircleIndicatorSelectionFlash":true,
+		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+	},
 	"aEP_FSF_SaleStation":{
 		"defaultName":"FSF 商业中心",# used if name=null in addCustomEntity()
 		"nameInText":"FSF 商业中心",

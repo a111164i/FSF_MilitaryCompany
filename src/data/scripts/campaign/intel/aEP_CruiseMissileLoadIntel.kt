@@ -25,7 +25,7 @@ import org.lwjgl.opengl.GL11
 import java.awt.Color
 import java.util.*
 
-class aEP_CruiseMissileLoadIntel:aEP_BaseMission() {
+class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
   companion object{
     const val SELECT_MEMBER_BUTTON = "select_member"
     const val RELOAD_MEMBER_BUTTON = "reload_member"

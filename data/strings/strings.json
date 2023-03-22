@@ -109,6 +109,12 @@
 		"AWM03_mission03":"失联舰队",
 		"AWM03_mission04":"回收原型舰",
 		"AWM03_mission05":"任务完成",
+
+		"AWM04_title":"AWM04:找到隐藏星系",
+		"AWM04_mission01":"搜寻坐标附近的隐藏跳跃点",
+		"AWM04_mission02":"这张纸质文件上面写了一个大概的坐标，在你阅读完的一小段时间后，纸张在你手上燃烧了起来。淡紫色的火焰并没有多高的温度，但是现在能够获取坐标的地方只有你的记忆了",
+		"AWM04_have_permission":"出示证件",
+		"AWM04_nothave_permission":"你在说什么东西",
 		
 		"MarineTrain_title":"陆战队训练",
 		"MarineTrain01":"训练已经完成",
@@ -182,6 +188,8 @@
 		"aEP_SoftfluxDissipate03":"每一点耗散通道的正常加成减少{%s}",
 
 		"aEP_RapidDissipate01":"根据当前幅能水平，每次舰体受到伤害时，耗散掉最多等同于伤害量的{%s}的幅能",
-		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散"
+		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散",
+
+		"aEP_ApproachingTo":"正在接近 "
 	}
 }

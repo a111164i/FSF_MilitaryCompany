@@ -23,6 +23,7 @@ import com.fs.starfarer.campaign.CampaignEntity;
 import com.fs.starfarer.campaign.CustomCampaignEntity;
 import com.fs.starfarer.rpg.OfficerData;
 import combat.util.aEP_DataTool;
+import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
 import data.hullmods.aEP_CruiseMissileCarrier;
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin;
@@ -49,19 +50,13 @@ public class aEP_AWM3Intel extends aEP_BaseMission
   int didHighlightLili = 0;
 
   public aEP_AWM3Intel(SectorEntityToken whereToSpawn, String targetShipId) {
-    this.sector = Global.getSector();
-    this.faction = Global.getSector().getFaction("aEP_FSF");
-    ending = false;
-    ended = false;
+    super(0f);
     shipName = targetShipId;
     this.token = whereToSpawn;
-    setName(this.getClass().getSimpleName());
-    setPostingLocation(token);
-
 
     //add Fleet
-    FleetParamsV3 para = new FleetParamsV3(new Vector2f(0f, 0f),
-            "aEP_FSF",
+    FleetParamsV3 para = new FleetParamsV3(null,
+            aEP_ID.FACTION_ID_FSF,
             1f,// qualityMod
             FleetTypes.PERSON_BOUNTY_FLEET,
             80f, // combatPts
@@ -190,7 +185,6 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
     }
-
     //添加特殊舰作为旗舰
     FleetMemberAPI flagship = targetFleet.getFleetData().addFleetMember(MISSILE_CARRIER_SPEC_ID +"_Standard");
     flagship.getVariant().addPermaMod("reinforcedhull", true);
@@ -232,7 +226,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     drop.addSpecialItem(aEP_CruiseMissileCarrier.SPECIAL_ITEM_ID, 5);
     targetFleet.addDropValue(drop);
 
-
+    //加入舰队必须调用这个
     token.getContainingLocation().spawnFleet(token, 0f, 0f, targetFleet);
     targetFleet.getAI().addAssignment(FleetAssignment.ORBIT_AGGRESSIVE, token, 999999999f, null);
     //给ai舰队上对玩家发射导弹的脚本
@@ -249,11 +243,8 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     targetFleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true);
     this.targetFleet = targetFleet;
     setMapLocation(targetFleet);
-    setPostingLocation(targetFleet);
 
-    setImportant(true);
     Global.getSector().getIntelManager().addIntel(this);
-    Global.getSector().getIntelManager().queueIntel(this);
   }
 
   @Override

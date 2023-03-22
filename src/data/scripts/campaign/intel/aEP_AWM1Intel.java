@@ -43,18 +43,10 @@ public class aEP_AWM1Intel extends aEP_BaseMission
 
   //第一次聊天直接接任务
   public aEP_AWM1Intel(List<String> requestWeaponList,PersonAPI person) {
-    this.requestWeaponList = requestWeaponList;
+    super(0f);
     this.person = person;
-    this.sector = Global.getSector();
-    this.faction = Global.getSector().getFaction(FACTION_ID_FSF);
-    ending = false;
-    ended = false;
-    endingTimeRemaining = 0f;
-    setName("aEP_AWM1Intel");
-
-    setImportant(true);
+    this.requestWeaponList = requestWeaponList;
     Global.getSector().getIntelManager().addIntel(this);
-    Global.getSector().getIntelManager().queueIntel(this);
   }
 
   public static List genWeaponList(){
