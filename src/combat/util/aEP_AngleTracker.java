@@ -2,6 +2,8 @@ package combat.util;
 
 import org.lazywizard.lazylib.MathUtils;
 
+import static java.lang.Math.abs;
+
 public class aEP_AngleTracker {
   float curr;
   float to;
@@ -22,7 +24,7 @@ public class aEP_AngleTracker {
     float toMove;
     if (curr > to) toMove = -Math.min(curr - to, speed * amount);
     else toMove = Math.min(to - curr, speed * amount);
-    curr += toMove;
+    curr += toMove * (0.5f * (1f - abs(curr)/(max+1f)) + 0.5f);
     curr = MathUtils.clamp(curr, min, max);
 
   }
@@ -64,7 +66,7 @@ public class aEP_AngleTracker {
   }
 
   public boolean isInPosition() {
-    boolean inPosition = Math.abs(curr - to) < 0.01f;
+    boolean inPosition = abs(curr - to) < 0.01f;
     return inPosition;
   }
 

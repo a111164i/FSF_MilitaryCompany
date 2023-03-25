@@ -12,8 +12,9 @@
   "shieldRadius": 133.5,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
-    "targetingunit"
+		"aEP_MarkerDissipation",
+		"targetingunit",
+		"aEP_HLMultiTurret"
   ],
   "builtInWeapons": {
     "WS0007": "aEP_des_cengliu_cover",

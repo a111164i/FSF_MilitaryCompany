@@ -345,7 +345,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     }
 
     override fun advanceImpl(amount: Float) {
-      Global.getSector().hyperspace.addHitParticle(nascentWell.location,aEP_ID.VECTOR2F_ZERO,1000f,1f,1f, Color.white)
+      //Global.getSector().hyperspace.addHitParticle(nascentWell.location,aEP_ID.VECTOR2F_ZERO,1000f,1f,1f, Color.white)
       if(Global.getSector().playerFleet.containingLocation == system){
         shouldEnd = true
       }
@@ -495,72 +495,73 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
   p.rankId = Ranks.SPACE_COMMANDER
   p.setPersonality(Personalities.STEADY)
   //0-未学习，1-普通，2-专精
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
   p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
-  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 1f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
+  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
   p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 1f)
-  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 1f)
-  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 1f)
-  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  s.variant.addPermaMod("ecm", true)
-  //加入一个分解者
-  s = fleet.fleetData.addFleetMember("aEP_cap_decomposer_Standard")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_COMMANDER
-  p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
-  p.stats.setSkillLevel(Skills.POLARIZED_ARMOR, 1f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
-  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
+  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
+  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
   fleet.fleetData.addOfficer(p)
   s.captain = p
   s.variant.addPermaMod("ecm", true)
 
-  s = fleet.fleetData.addFleetMember("aEP_cru_pubu_Standard")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_LIEUTENANT
-  p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  s.variant.addPermaMod("ecm", true)
+  //加入2个分解者
+  for(i in 0 until 2){
+    s = fleet.fleetData.addFleetMember("aEP_cap_decomposer_Standard")
+    p = faction.createRandomPerson()
+    p.rankId = Ranks.SPACE_COMMANDER
+    p.setPersonality(Personalities.CAUTIOUS)
+    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
+    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
+    p.stats.setSkillLevel(Skills.POLARIZED_ARMOR, 2f)
+    p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
+    p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
+    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
+    fleet.fleetData.addOfficer(p)
+    s.captain = p
+    s.variant.addPermaMod("ecm", true)
+  }
 
-  s = fleet.fleetData.addFleetMember("aEP_cru_pubu_Standard")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_LIEUTENANT
-  p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  s.variant.addPermaMod("ecm", true)
+  //加两艘瀑布级
+  for(i in 0 until 2){
+    s = fleet.fleetData.addFleetMember("aEP_cru_pubu_Standard")
+    p = faction.createRandomPerson()
+    p.rankId = Ranks.SPACE_LIEUTENANT
+    p.setPersonality(Personalities.CAUTIOUS)
+    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
+    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+    p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
+    p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
+    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
+    fleet.fleetData.addOfficer(p)
+    s.captain = p
+    s.variant.addPermaMod("ecm", true)
+
+  }
+
   //第一艘 平定级
   s = fleet.getFleetData().addFleetMember("aEP_cru_pingding_Standard")
   p = faction.createRandomPerson()
   p.rankId = Ranks.SPACE_LIEUTENANT
   p.setPersonality(Personalities.STEADY)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
   p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
+  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
   p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 1f)
-  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 1f)
-  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 1f)
-  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
+  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
+  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
   fleet.fleetData.addOfficer(p)
   s.captain = p
 
@@ -568,16 +569,17 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
   p = faction.createRandomPerson()
   p.rankId = Ranks.SPACE_LIEUTENANT
   p.setPersonality(Personalities.STEADY)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
   p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 1f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
+  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
   p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 1f)
-  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 1f)
-  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 1f)
-  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
+  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
+  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
   fleet.fleetData.addOfficer(p)
   s.captain = p
   //第一艘 深度级 荡平联队
@@ -585,10 +587,12 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
   p = faction.createRandomPerson()
   p.rankId = Ranks.SPACE_ENSIGN
   p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
   fleet.getFleetData().addOfficer(p)
   s.captain = p
   //2 进军联队
@@ -596,10 +600,12 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
   p = faction.createRandomPerson()
   p.rankId = Ranks.SPACE_ENSIGN
   p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
   fleet.fleetData.addOfficer(p)
   s.captain = p
   //3 进军联队
@@ -607,10 +613,12 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
   p = faction.createRandomPerson()
   p.rankId = Ranks.SPACE_ENSIGN
   p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
+  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
+  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
+  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
   fleet.fleetData.addOfficer(p)
   s.captain = p
   //加入4艘涌浪级
@@ -619,14 +627,33 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
     p = faction.createRandomPerson()
     p.rankId = Ranks.SPACE_CHIEF
     p.setPersonality(Personalities.STEADY)
-    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 1f)
-    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 1f)
-    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 1f)
-    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 1f)
+    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
+    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
+    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
+    p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
+    p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
+    p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
+    p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
+    p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
+    p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
+    p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
+    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
     fleet.fleetData.addOfficer(p)
     s.captain = p
   }
+  //自动sync舰队指挥官
   fleet.forceSync()
+  //全局buff
+  fleet.commander.stats.setSkillLevel(Skills.TACTICAL_DRILLS,1f)
+  fleet.commander.stats.setSkillLevel(Skills.COORDINATED_MANEUVERS,1f)
+  fleet.commander.stats.setSkillLevel(Skills.WOLFPACK_TACTICS,1f)
+  fleet.commander.stats.setSkillLevel(Skills.CREW_TRAINING,1f)
+  fleet.commander.stats.setSkillLevel(Skills.CARRIER_GROUP,1f)
+  fleet.commander.stats.setSkillLevel(Skills.FIGHTER_UPLINK,1f)
+  fleet.commander.stats.setSkillLevel(Skills.SUPPORT_DOCTRINE,1f)
+  fleet.commander.stats.setSkillLevel(Skills.ELECTRONIC_WARFARE,1f)
+  fleet.commander.stats.setSkillLevel(Skills.HULL_RESTORATION,1f)
+
   //要把舰队刷新到生涯地图，调用这个
   market.containingLocation.spawnFleet(jumpPoint,0f,0f,fleet)
   return fleet
@@ -679,7 +706,6 @@ class GuardianCatchPlayer(val fleet:CampaignFleetAPI, val jumpPoint: SectorEntit
       fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE)
       fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_MAKE_HOSTILE)
       fleet.addAssignment(FleetAssignment.ORBIT_PASSIVE,jumpPoint,Float.MAX_VALUE)
-      aEP_Tool.addDebugLog("enddddddddddd")
       didChase = false
     }
   }

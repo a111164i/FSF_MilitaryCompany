@@ -570,7 +570,7 @@ open class aEP_CruiseMissile : BaseHullMod() {
         )
         spec.damageType = DamageType.HIGH_EXPLOSIVE
         engine.spawnDamagingExplosion(spec, ship, point)
-        engine.combatNotOverFor = engine.combatNotOverFor + 6f
+        engine.combatNotOverFor = engine.combatNotOverFor + 4f
         engine.removeEntity(ship)
 
       }
@@ -651,7 +651,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
   open class ExplodeListener : AdvanceableListener{
     companion object{
       const val CENTER_DAMAGE = 1000f
-      const val FUSE_RANGE = 800f
+      const val FUSE_RANGE = 600f
       const val FUSE_DELAY= 0.25f
       const val PROJ_NUM = 8
     }
@@ -684,7 +684,6 @@ class aEP_CruiseMissile2 : BaseHullMod() {
         ship.mutableStats.maxSpeed.modifyMult(id,0.1f)
 
         //后坐力烟尘
-        aEP_Tool.addDebugLog(backBlowSmokeTimer.toString())
         backBlowSmokeTimer += amount
         if(backBlowSmokeTimer > 0.05f){
           backBlowSmokeTimer -= 0.05f
@@ -835,7 +834,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
         )
         spec.damageType = DamageType.HIGH_EXPLOSIVE
         engine.spawnDamagingExplosion(spec, ship, point)
-        engine.combatNotOverFor = engine.combatNotOverFor + 6f
+        engine.combatNotOverFor = engine.combatNotOverFor + 4f
         engine.removeEntity(ship)
       }
     }
@@ -910,11 +909,11 @@ class aEP_CruiseMissile2 : BaseHullMod() {
 class aEP_FighterArmor : BaseHullMod() {
   companion object {
     const val ARMOR_COMPUTE_PERCENT_BONUS = 25f
-    const val ARMOR_MIN_FRACTION_MULT = 1f
+    const val ARMOR_MIN_FRACTION_FLAT = 0.1f
 
-    const val EMP_TAKEN_MULT = 0.5f
+    const val EMP_TAKEN_REDUCE_MULT = 0.5f
 
-    const val WEAPON_DAMAGE_TAKEN_MULT = 0.25f
+    const val WEAPON_DAMAGE_TAKEN_REDUCE_MULT = 0.5f
 
     const val ARMOR_DAMAGE_TAKEN_REDUCE_MULT = 0.25f
     const val HULL_DAMAGE_TAKEN_REDUCE_MULT = 0.25f
@@ -924,15 +923,15 @@ class aEP_FighterArmor : BaseHullMod() {
     val modifier = 1f
 
     ship.mutableStats.effectiveArmorBonus.modifyPercent(id, ARMOR_COMPUTE_PERCENT_BONUS * modifier)
-    ship.mutableStats.minArmorFraction.modifyMult(id, ARMOR_MIN_FRACTION_MULT)
+    ship.mutableStats.minArmorFraction.modifyFlat(id, ARMOR_MIN_FRACTION_FLAT*modifier)
     ship.mutableStats.armorDamageTakenMult.modifyMult(id, 1f-ARMOR_DAMAGE_TAKEN_REDUCE_MULT* modifier)
 
-    ship.mutableStats.empDamageTakenMult.modifyMult(id, EMP_TAKEN_MULT)
+    ship.mutableStats.empDamageTakenMult.modifyMult(id,1f - EMP_TAKEN_REDUCE_MULT* modifier)
 
-    ship.mutableStats.engineDamageTakenMult.modifyMult(id, WEAPON_DAMAGE_TAKEN_MULT)
-    ship.mutableStats.weaponDamageTakenMult.modifyMult(id,WEAPON_DAMAGE_TAKEN_MULT)
+    ship.mutableStats.engineDamageTakenMult.modifyMult(id,1f - WEAPON_DAMAGE_TAKEN_REDUCE_MULT* modifier)
+    ship.mutableStats.weaponDamageTakenMult.modifyMult(id,1f - WEAPON_DAMAGE_TAKEN_REDUCE_MULT* modifier)
 
-    ship.mutableStats.hullDamageTakenMult.modifyMult(id, 1f-HULL_DAMAGE_TAKEN_REDUCE_MULT * modifier)
+    ship.mutableStats.hullDamageTakenMult.modifyMult(id, 1f - HULL_DAMAGE_TAKEN_REDUCE_MULT * modifier)
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
@@ -1088,7 +1087,7 @@ class aEP_Module : aEP_BaseHullMod() {
 //crossout结构减伤
 class aEP_Structure : aEP_BaseHullMod() {
   companion object {
-    const val DAMAGE_MULT = 0.25f
+    const val DAMAGE_MULT = 0.5f
     const val MIN_ARMOR_FRACTION_FLAT = 0.25f
   }
 

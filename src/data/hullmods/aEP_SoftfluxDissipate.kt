@@ -1,7 +1,6 @@
 package data.hullmods
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.ShieldAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
@@ -11,7 +10,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
-import combat.util.aEP_Tool
+import combat.util.aEP_ID
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
 
@@ -27,13 +26,12 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
   init {
     notCompatibleList.add("aEP_RapidDissipate")
     notCompatibleList.add(HullMods.SAFETYOVERRIDES)
-    haveToBeWithMod.add("aEP_MarkerDissipation")
+    haveToBeWithMod.add(aEP_MarkerDissipation.ID)
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI , id: String) {
     val numOfDissipation = ship.variant.numFluxVents
     ship.mutableStats.fluxDissipation.modifyFlat(ID_P,-numOfDissipation* PER_PUNISH)
-    ship.mutableStats.fluxDissipation.modifyFlat(ID_B,numOfDissipation* PER_BONUS)
 
     if (!ship.hasListenerOfClass(FluxDissipationDynamic::class.java)) {
       ship.addListener(FluxDissipationDynamic(ship, numOfDissipation * PER_BONUS))
@@ -54,13 +52,21 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     ship?:return
-    val h = Misc.getHighlightColor()
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     //val fluxVent = (ship.variant.numFluxVents + ship.variant.numFluxCapacitors) * BASE_BUFF_PER_VENT
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"), Alignment.MID, 5f)
+    tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
+    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
-    image.addPara("- " + aEP_DataTool.txt("aEP_SoftfluxDissipate02") , 5f, Color.white, Color.green, PER_BONUS.toInt().toString(),"0" )
+    //先说常规加成会-5，再说给额外15浮动，这样符合逻辑
     image.addPara("- " + aEP_DataTool.txt("aEP_SoftfluxDissipate03") , 5f, Color.white, Color.red, PER_PUNISH.toInt().toString() )
+    image.addPara("- " + aEP_DataTool.txt("aEP_SoftfluxDissipate02") , 5f, Color.white, Color.green, PER_BONUS.toInt().toString(),"0" )
     tooltip.addImageWithText(5f)
   }
 

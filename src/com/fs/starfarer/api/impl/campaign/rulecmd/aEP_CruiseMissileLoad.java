@@ -13,7 +13,6 @@ public class aEP_CruiseMissileLoad extends BaseCommandPlugin{
 
     @Override
     public boolean execute(String ruleId, InteractionDialogAPI dialog, List<Misc.Token> params, Map<String, MemoryAPI> memoryMap) {
-        aEP_Tool.addDebugLog("dsd");
         dialog.showCargoPickerDialog("sd",
                 "sd",
                 "sds",

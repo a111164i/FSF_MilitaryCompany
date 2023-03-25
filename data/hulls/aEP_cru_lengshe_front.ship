@@ -1,6 +1,6 @@
 {
-  "hullName": "LengShe2",
-  "hullId": "aEP_LengShe2",
+  "hullName": "",
+  "hullId": "aEP_cru_lengshe_front",
   "hullSize": "FRIGATE",
   "spriteName": "graphics/ships/aEP_lengshe2.png",
   "style": "aEP_FSF",
@@ -12,6 +12,7 @@
   "shieldRadius": 123,
   "viewOffset": 0,
   "builtInMods": [
+    "aEP_MarkerDissipation",
     "aEP_Module",
     "always_detaches",
     "hardenedshieldemitter",

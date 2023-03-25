@@ -1,13 +1,14 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 6,
-    "fluxVents": 30,
+    "fluxCapacitors": 0,
+    "fluxVents": 17,
     "goalVariant": true,
     "hullId": "aEP_cru_pingding",
     "hullMods": [
         "targetingunit",
         "solar_shielding",
-        "aEP_SoftfluxDissipate"
+        "aEP_SoftfluxDissipate",
+        "missleracks"
     ],
     "permaMods": [],
     "sMods": [],
@@ -19,14 +20,9 @@
             "weapons": {"MAIN": "aEP_cru_pingding_main"}
         },
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0002": "gauss"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0006": "hveldriver"}
+            "weapons": {"WS0002": "aEP_harpoon_large"}
         },
         {
             "autofire": true,
@@ -34,6 +30,7 @@
             "weapons": {
                 "WS0003": "vulcan",
                 "WS0004": "vulcan",
+                "WS0006": "dualflak",
                 "WS0007": "vulcan",
                 "WS0008": "vulcan"
             }

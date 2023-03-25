@@ -21,6 +21,19 @@ import combat.impl.aEP_Buff
 import java.awt.Color
 
 class aEP_DroneDash : BaseShipSystemScript() {
+  companion object {
+    const val MAX_SPEED_BONUS = 200f
+    const val TURN_RATE_BONUS = 250f
+    const val ROTATE_SPEED = 20f
+    const val END_BUFF_TIME = 1f
+    const val END_TURN_RATE_BONUS = 300f
+    const val END_TURN_ACC_BONUS = 50f
+    const val DAMAGE_TAKEN = 0.33f
+
+    val AFTER_MERGE_COLOR = Color(255, 155, 155, 250)
+    val SMOKE_MERGE_COLOR = Color(255, 250, 250, 125)
+  }
+
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     //stats的entity有可能为null
     val ship = (stats?.entity?: return)as ShipAPI
@@ -57,13 +70,13 @@ class aEP_DroneDash : BaseShipSystemScript() {
         2f,
         0.25f,
         0.5f, 1f,
-        Color(255, 250, 250, 125)
+        SMOKE_MERGE_COLOR
       )
     }
     //加残影
     var vel = speed2Velocity(ship.facing, -100f)
     ship.addAfterimage(
-      Color(255, 155, 155, 250), 0f, 0f,
+      AFTER_MERGE_COLOR, 0f, 0f,
       vel.x, vel.y, 5f, 0f,
       0.5f,
       0.5f,
@@ -73,7 +86,7 @@ class aEP_DroneDash : BaseShipSystemScript() {
     )
     vel = speed2Velocity(ship.facing, -200f)
     ship.addAfterimage(
-      Color(255, 155, 155, 250), 0f, 0f,
+      AFTER_MERGE_COLOR, 0f, 0f,
       vel.x, vel.y, 5f, 0f,
       0.5f,
       0.5f,
@@ -83,7 +96,7 @@ class aEP_DroneDash : BaseShipSystemScript() {
     )
     vel = speed2Velocity(ship.facing, -300f)
     ship.addAfterimage(
-      Color(255, 155, 155, 250), 0f, 0f,
+      AFTER_MERGE_COLOR, 0f, 0f,
       vel.x, vel.y, 5f, 0f,
       0.5f,
       0.5f,
@@ -135,13 +148,4 @@ class aEP_DroneDash : BaseShipSystemScript() {
     }
   }
 
-  companion object {
-    const val MAX_SPEED_BONUS = 200f
-    const val TURN_RATE_BONUS = 250f
-    const val ROTATE_SPEED = 20f
-    const val END_BUFF_TIME = 1f
-    const val END_TURN_RATE_BONUS = 300f
-    const val END_TURN_ACC_BONUS = 50f
-    const val DAMAGE_TAKEN = 0.25f
-  }
 }

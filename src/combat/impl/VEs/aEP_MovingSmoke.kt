@@ -56,22 +56,21 @@ class aEP_MovingSmoke : aEP_BaseCombatEffect{
 
   override fun advanceImpl(amount: Float) {
     //默认颜色是处于 full状态
+    val R = color.red
+    val G = color.green
+    val B = color.blue
     changingColor = color
+
+    //fade in
     val fadeInTime = fadeIn*lifeTime
-    if (time < fadeInTime) {
-      val R = color.red
-      val G = color.green
-      val B = color.blue
+    if (time < fadeInTime && fadeInTime > 0f) {
       val transparency = MathUtils.clamp(color.alpha * time / fadeInTime, 0f, 250f).toInt()
       changingColor = Color(R, G, B, transparency)
     }
 
     //fade out
     val fadeOutTime = fadeOut*lifeTime
-    if (lifeTime - time < fadeOutTime) {
-      val R = color.red
-      val G = color.green
-      val B = color.blue
+    if (lifeTime - time < fadeOutTime &&  fadeOutTime > 0f) {
       val transparency = MathUtils.clamp(color.alpha * (lifeTime - time) / fadeOutTime, 0f, 250f).toInt()
       changingColor = Color(R, G, B, transparency)
     }

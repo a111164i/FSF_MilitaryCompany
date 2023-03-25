@@ -45,6 +45,6 @@
   #"noShieldImpactSounds":false,
   #"noNonShieldImpactSounds":false,
   #"fireSoundOne":"", # played when charing, can't leave empty.
-  #"fireSoundTwo":"", # played when projectile fired
+  "fireSoundTwo":"lightmortar_shot", # played when projectile fired
 
 }

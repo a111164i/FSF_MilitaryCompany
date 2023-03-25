@@ -5,7 +5,7 @@
 	"collisionClass":"PROJECTILE_FF",
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
 	#"onFireEffect":"aEP_SplitAfterFire",
-	#"onHitEffect":"data.scripts.weapons.aEP_RWOnHit",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	#"collisionRadius":15,
 	"length":60,
 	"width":6,

@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_LengShe2_Standard",
-  "hullId": "aEP_LengShe2",
+  "variantId": "aEP_cru_lengshe_front_Standard",
+  "hullId": "aEP_cru_lengshe_front",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,

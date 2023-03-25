@@ -1,7 +1,7 @@
 {
     "displayName": "Standard",
     "fluxCapacitors": 0,
-    "fluxVents": 26,
+    "fluxVents": 17,
     "goalVariant": true,
     "hullId": "aEP_cru_zhongliu",
     "hullMods": [
@@ -16,14 +16,14 @@
     "weaponGroups": [
         {
             "autofire": true,
-            "mode": "ALTERNATING",
+            "mode": "LINKED",
             "weapons": {
                 "WS0001": "aEP_large_kinetic_flak",
                 "WS0002": "aEP_large_kinetic_flak"
             }
         },
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
                 "WS0007": "sabot",
@@ -33,7 +33,7 @@
             }
         },
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {
                 "WS0003": "flak",

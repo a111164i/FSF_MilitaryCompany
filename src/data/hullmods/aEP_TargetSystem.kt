@@ -1,5 +1,6 @@
 package data.hullmods
 
+import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import java.util.HashMap
@@ -10,14 +11,18 @@ import com.fs.starfarer.api.ui.Alignment
 import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_ID
+import data.scripts.world.aEP_systems.aEP_BaseEveryFrame
 import org.lazywizard.lazylib.combat.AIUtils
 import java.awt.Color
 
-class aEP_TargetSystem : BaseHullMod() {
+class aEP_TargetSystem : aEP_BaseHullMod() {
   companion object {
     private val BONUS = HashMap<HullSize,Array<Float>>()
     private val PUNISH = HashMap<HullSize, Float>()
+    const val DETECT_RANGE = 450f
     init {
       BONUS[HullSize.FRIGATE] = arrayOf(5f,10f,15f,25f)
       BONUS[HullSize.DESTROYER] = arrayOf(0f,5f,10f,20f)
@@ -33,12 +38,16 @@ class aEP_TargetSystem : BaseHullMod() {
     }
   }
 
-  var id = "aEP_TargetSystem"
+  init {
+    haveToBeWithMod.add(aEP_MarkerDissipation.ID)
+  }
 
-  override fun applyEffectsAfterShipCreation(ship: ShipAPI?, id: String?) {
-    ship?:return
+  var ID = "aEP_TargetSystem"
+
+  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     if(!ship.hasListenerOfClass(RangeListener::class.java)) ship.addListener(RangeListener(ship))
   }
+
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize?, ship: ShipAPI?): String? {
     if (index == 0) return String.format("%.0f", BONUS[HullSize.FRIGATE]?.get(3)?:0f)
@@ -49,6 +58,7 @@ class aEP_TargetSystem : BaseHullMod() {
     else if (index == 5) return String.format("%.0f", PUNISH[HullSize.DESTROYER]?:0f)
     else if (index == 6) return String.format("%.0f", PUNISH[HullSize.CRUISER]?:0f)
     else if (index == 7) return String.format("%.0f", PUNISH[HullSize.CAPITAL_SHIP]?:0f)
+    else if (index == 8) return String.format("%.0f", DETECT_RANGE)
     else return null
   }
 
@@ -57,6 +67,15 @@ class aEP_TargetSystem : BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+    ship?:return
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     //tooltip.addGrid( 5 * 5f + 10f);
 
@@ -68,18 +87,19 @@ class aEP_TargetSystem : BaseHullMod() {
   }
 
   override fun isApplicableToShip(ship: ShipAPI): Boolean {
-    if (ship.hullSpec.manufacturer == aEP_DataTool.txt("manufacturer")){
-      if (ship.isFrigate) return true
-      else if (ship.isDestroyer) return true
-    }
-    return false
+    var allow = false
+    allow = super.isApplicableToShip(ship)
+    if (ship.isCapital) allow = false
+    if (ship.isCruiser) allow = false
+    return allow
   }
 
   override fun getUnapplicableReason(ship: ShipAPI): String {
-    if (ship.hullSpec.manufacturer != aEP_DataTool.txt("manufacturer")) return aEP_DataTool.txt("only_on_FSF")
-    else if (ship.isCapital) return aEP_DataTool.txt("not_capital")
-    else if (ship.isCruiser) return aEP_DataTool.txt("not_cruiser")
-    else return ""
+    var reason = ""
+    reason = super.getUnapplicableReason(ship)
+    if (ship.isCapital) reason = aEP_DataTool.txt("not_capital")
+    if (ship.isCruiser) reason = aEP_DataTool.txt("not_cruiser")
+    return reason
 
   }
 
@@ -105,13 +125,32 @@ class aEP_TargetSystem : BaseHullMod() {
     }
 
     override fun advance(amount: Float) {
+
+      if (Global.getCombatEngine().playerShip === ship) {
+        Global.getCombatEngine().maintainStatusForPlayerShip(
+          this.javaClass.simpleName,  //key
+          Global.getSettings().getHullModSpec(ID).spriteName,  //sprite name,full, must be registed in setting first
+          Global.getSettings().getHullModSpec(ID).displayName,  //title
+          aEP_DataTool.txt("aEP_TargetSystem01") + (rangePercent).toInt() + "%",  //data
+          false
+        ) //is debuff
+        Global.getCombatEngine().maintainStatusForPlayerShip(
+          this.javaClass.simpleName+"2",  //key
+          Global.getSettings().getHullModSpec(ID).spriteName,  //sprite name,full, must be registed in setting first
+          Global.getSettings().getHullModSpec(ID).displayName,  //title
+          aEP_DataTool.txt("aEP_TargetSystem02") + (maxSpeedPunish).toInt() ,  //data
+          true
+        ) //is debuff
+      }
+
+
       thinkTracker.advance(amount)
       if(thinkTracker.intervalElapsed()) {
         //找附近最大的友军，改变射程加成
         rangePercent = 0f
         //默认没用速度惩罚
         maxSpeedPunish = 0f
-        for(f in AIUtils.getNearbyAllies( ship,400f)){
+        for(f in AIUtils.getNearbyAllies( ship,DETECT_RANGE)){
           f?:continue
           if(f.isFighter) continue
           var bonus = 0f
@@ -127,7 +166,7 @@ class aEP_TargetSystem : BaseHullMod() {
           }
         }
 
-        ship.mutableStats.maxSpeed.modifyFlat(id,-maxSpeedPunish)
+        ship.mutableStats.maxSpeed.modifyFlat(ID,-maxSpeedPunish)
       }
 
     }

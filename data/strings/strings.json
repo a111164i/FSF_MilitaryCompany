@@ -46,6 +46,8 @@
 		"backward":"负向",	
 		"only_on_small_ship":"只能安装在护卫舰和驱逐舰上",
 		"VA_des01":"船体每次受到伤害时,有百分之{%s}的概率减少伤害{%s}点",
+
+		"aEP_HotLoader01": "所有非内置，非导弹的武器获得常驻百分之{%s}的装填速度加成",
 		
 		"CMCarrier01":"本舰装填已经完成",
 		"CMCarrier02":"CR过低停止装填",
@@ -54,6 +56,11 @@
 		
 		"ArmorShield01":"装甲已充能",
 		"ArmorShield02":"%的伤害转换为硬幅能",
+
+		"aEP_BBLockOn01": "武器幅能消耗增高",
+
+		"aEP_TargetSystem01": "武器射程提高百分之: ",
+		"aEP_TargetSystem02": "极速降低: ",
 		
 		"ExtremeOverload01":"已生成软幅能",
 		"ExtremeOverload02":"武器冷却时间",

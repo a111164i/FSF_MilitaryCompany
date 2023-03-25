@@ -1,13 +1,10 @@
 {
     "displayName": "Support",
-    "fluxCapacitors": 0,
-    "fluxVents": 2,
+    "fluxCapacitors": 6,
+    "fluxVents": 8,
     "goalVariant": true,
     "hullId": "aEP_cap_nuanchi",
-    "hullMods": [
-        "heavyarmor",
-        "hardenedshieldemitter"
-    ],
+    "hullMods": ["heavyarmor"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cap_nuanchi_Support",

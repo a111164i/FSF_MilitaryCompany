@@ -13,6 +13,6 @@
 	"fadeTime":0.1,
 	"fringeColor":[200,200,200,255],
 	"coreColor":[255,250,250,255],
-	"glowColor":[250,250,155,75],
+	"glowColor":[250,250,105,125],
 	"glowRadius":100,
 }

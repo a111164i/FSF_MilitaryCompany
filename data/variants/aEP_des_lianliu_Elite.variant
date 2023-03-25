@@ -1,7 +1,7 @@
 {
     "displayName": "Elite",
     "fluxCapacitors": 0,
-    "fluxVents": 10,
+    "fluxVents": 3,
     "goalVariant": true,
     "hullId": "aEP_des_lianliu",
     "hullMods": [

@@ -34,6 +34,16 @@
                 "WS0003": "vulcan",
                 "WS0008": "flak"
             }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_cluster_small"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0012": "aEP_cluster_small"}
         }
     ],
     "wings": [

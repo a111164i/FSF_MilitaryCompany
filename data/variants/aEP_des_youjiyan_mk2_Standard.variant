@@ -1,14 +1,13 @@
 {
-    "displayName": "Defense",
+    "displayName": "Standard",
     "fluxCapacitors": 0,
-    "fluxVents": 1,
+    "fluxVents": 8,
     "goalVariant": true,
     "hullId": "aEP_des_youjiyan_mk2",
     "hullMods": [
         "efficiency_overhaul",
         "expanded_cargo_holds",
-        "heavyarmor",
-        "reinforcedhull"
+        "heavyarmor"
     ],
     "permaMods": [],
     "sMods": [],
@@ -27,5 +26,6 @@
             "mode": "LINKED",
             "weapons": {"WS0002": "vulcan"}
         }
-    ]
+    ],
+    "wings": []
 }

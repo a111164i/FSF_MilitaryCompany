@@ -849,13 +849,13 @@ class aEP_Tool {
       return absOffset
     }
 
-    fun getDistForProjToHitShield(proj: CombatEntityAPI, ship: ShipAPI): Float {
+    fun getDistForLocToHitShield(loc: Vector2f, ship: ShipAPI): Float {
       if (ship.shield == null || ship.getShield().getType() == ShieldAPI.ShieldType.NONE) {
         return 9999f
       }
-      val inAngle = Math.abs(MathUtils.getShortestRotation(VectorUtils.getAngle(ship.location, proj.location), ship.shield.facing)) < ship.shield.activeArc / 2
+      val inAngle = Math.abs(MathUtils.getShortestRotation(VectorUtils.getAngle(ship.location, loc), ship.shield.facing)) < ship.shield.activeArc / 2
       return if (inAngle) {
-        MathUtils.getDistance(proj.location, ship.location) - ship.shield.radius
+        MathUtils.getDistance(loc, ship.location) - ship.shield.radius
       } else {
         9999f
       }
@@ -907,20 +907,6 @@ class aEP_Tool {
         return engine.isInCampaign && !engine.isInCampaignSim && ship != null && ship.owner == 0
       }
       return false
-    }
-
-    @JvmStatic
-    fun killMissile(missile: CombatEntityAPI, engine: CombatEngineAPI) {
-      engine.applyDamage(
-        missile,  //target
-        missile.location,  //point
-        missile.hitpoints * 10,  //damage
-        DamageType.ENERGY,
-        0f,
-        true,  //deal softflux
-        true,  //is bypass shield
-        missile
-      ) //damage source
     }
 
     @JvmStatic
@@ -1039,14 +1025,6 @@ class aEP_Tool {
       entity.velocity.set(newVel)
     }
 
-    fun getEveryFrameScriptWithClass(clazz: Class<*>?): EveryFrameScript? {
-      for (EFS in Global.getSector().scripts) {
-        if (EFS.javaClass.isInstance(clazz)) {
-          return EFS
-        }
-      }
-      return null
-    }
 
     @JvmStatic
     fun isWithinArc(target: ShipAPI?, weapon: WeaponAPI): Boolean {
@@ -1106,18 +1084,6 @@ class aEP_Tool {
 
     fun getColorWithChange(ori: Color, alphaLevel: Float): Color {
       return Color((ori.blue * alphaLevel).toInt(), (ori.blue * alphaLevel).toInt(), (ori.blue * alphaLevel).toInt(), (ori.alpha * alphaLevel).toInt())
-    }
-
-    fun isHitMissileAndShip(toCheck: CollisionClass): Boolean {
-      return EnumSet.of(CollisionClass.MISSILE_FF, CollisionClass.MISSILE_NO_FF, CollisionClass.SHIP, CollisionClass.FIGHTER, CollisionClass.ASTEROID).contains(toCheck)
-    }
-
-    fun exponentialIncreaseSmooth(`in`: Float): Float {
-      return `in` * `in`
-    }
-
-    fun exponentialDecreaseSmooth(`in`: Float): Float {
-      return 1 - (1 - `in`) * (1 - `in`)
     }
 
     fun getPointRotateVector(point: Vector2f?, center: Vector2f, angle: Float): Vector2f {
@@ -1216,21 +1182,6 @@ class aEP_Tool {
         }
       }
       return closest
-    }
-
-    fun isEntityHit(entity: CombatEntityAPI): Boolean {
-      var distance: Float
-      for (tmp in Global.getCombatEngine().ships) {
-        if (tmp.isFighter) continue
-        if (tmp === entity || tmp.isHulk || tmp.isShuttlePod || !tmp.isAlive || !Global.getCombatEngine().isEntityInPlay(tmp)) continue
-        if (tmp.collisionClass != CollisionClass.SHIP) continue
-        distance = MathUtils.getDistance(tmp, entity.location)
-        if (distance > tmp.collisionRadius) continue
-        if (CollisionUtils.isPointWithinBounds(entity.location, tmp)) {
-          return true
-        }
-      }
-      return false
     }
 
     //angle, length
@@ -1342,14 +1293,28 @@ class aEP_Tool {
       return Global.getSettings().getHullModSpec(spec).displayName
     }
 
+    /**
+     * 加上自身的碰撞半径但是不加上对面的碰撞半径
+     * */
     fun checkTargetWithinSystemRange(ship: ShipAPI?, baseRange: Float): Boolean{
-      val range = ship?.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: -9999999999f
+      //默认返回false，所以初始为-1f
+      val range = ship?.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: -1f
       if(ship?.shipTarget != null) {
         if(MathUtils.getDistance(ship.shipTarget.location,ship.location) - ship.collisionRadius< range){
           return true
         }
       }
       return false
+    }
+
+    fun getTargetWithinSystemRange(ship: ShipAPI?, baseRange: Float): Float{
+      val range = ship?.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: 9999999999f
+      if(ship?.shipTarget != null) {
+        if(MathUtils.getDistance(ship.shipTarget.location,ship.location) - ship.collisionRadius< range){
+          return range
+        }
+      }
+      return 9999999999f
     }
 
     fun txtOfTargetWithinSystemRange(ship: ShipAPI?, baseRange: Float): String{

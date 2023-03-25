@@ -1,7 +1,7 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 5,
-    "fluxVents": 40,
+    "fluxCapacitors": 0,
+    "fluxVents": 26,
     "goalVariant": true,
     "hullId": "aEP_cap_neibo",
     "hullMods": [
@@ -21,27 +21,29 @@
             "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "lightac",
-                "WS0004": "lightac",
-                "WS0015": "lightac",
-                "WS0022": "lightac"
+                "WS0003": "lightneedler",
+                "WS0004": "lightneedler",
+                "WS0015": "lightneedler",
+                "WS0022": "lightneedler"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {
-                "COVER_MAIN": "aEP_cap_neibo_main",
-                "WS0016": "aEP_b_l_dg3"
-            }
+            "weapons": {"COVER_MAIN": "aEP_cap_neibo_main"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "lightac",
-                "WS0002": "lightac"
+                "WS0001": "lightneedler",
+                "WS0002": "lightneedler"
             }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0016": "devastator"}
         },
         {
             "autofire": true,

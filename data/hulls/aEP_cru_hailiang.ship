@@ -9,7 +9,7 @@
   "center": [120, 140],
   "collisionRadius": 227.5,
   "shieldCenter": [-20, -0],
-  "shieldRadius": 205,
+  "shieldRadius": 200,
   "viewOffset": 0,
   "builtInMods": [
     "aEP_MarkerDissipation",

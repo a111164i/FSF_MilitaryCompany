@@ -9,7 +9,9 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipVariantAPI
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
+import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_ID
 import java.awt.Color
 
 class aEP_ModuleTargeting : aEP_BaseHullMod() {
@@ -92,6 +94,14 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     tooltip.addSectionHeading(aEP_DataTool.txt("aEP_ModuleTargeting01"), Alignment.MID, 5f)
     tooltip.addPara("- " + "{%s}", 5f, Color.white, Color.green, Global.getSettings().getHullModSpec("dedicated_targeting_core").displayName)
     tooltip.addPara("- " + "{%s}", 5f, Color.white, Color.green, Global.getSettings().getHullModSpec("targetingunit").displayName)

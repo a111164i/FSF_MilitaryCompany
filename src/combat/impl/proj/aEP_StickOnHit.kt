@@ -14,7 +14,6 @@ import java.awt.Color
 
 open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Vector2f, spriteId: String, outSpriteId: String, spriteOnHitAngle: Float, hitShield: Boolean) : aEP_BaseCombatEffect() {
 
-  var hitPoint: Vector2f
   var sprite: SpriteAPI
   var outSpriteId : String
   var target: CombatEntityAPI
@@ -22,12 +21,10 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
   var hitShield: Boolean
   var onHitAngle = 0f
   var relativeLocData: Vector2f? = null
-  var renderLoc: Vector2f? = null
   var renderAngle = 0f
 
   init {
     this.lifeTime = duration
-    this.hitPoint = hitPoint
     this.target = target
     var id = spriteId.split("\\.".toRegex()).toTypedArray()
     sprite = Global.getSettings().getSprite(id[0], id[1])
@@ -52,15 +49,15 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
     super.advance(amount)
     if (hitShield) {
       renderAngle = aEP_Tool.angleAdd(onHitAngle, target.shield.facing - 90f)
-      renderLoc = aEP_Tool.getAbsoluteLocation(relativeLocData!!.x, relativeLocData!!.y, target, true)
+      loc = aEP_Tool.getAbsoluteLocation(relativeLocData!!.x, relativeLocData!!.y, target, true)
     } else {
       renderAngle = aEP_Tool.angleAdd(onHitAngle, target.facing - 90f)
-      renderLoc = aEP_Tool.getAbsoluteLocation(relativeLocData!!.x, relativeLocData!!.y, target, false)
+      loc = aEP_Tool.getAbsoluteLocation(relativeLocData!!.x, relativeLocData!!.y, target, false)
     }
     advanceImpl(amount)
 
     //渲染原图
-    MagicRender.singleframe(sprite,renderLoc,
+    MagicRender.singleframe(sprite,loc,
       Vector2f(sprite.width,sprite.height),
       renderAngle,
       Color(255,255,255),
@@ -86,7 +83,7 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
   override fun readyToEnd() {
     val id: Array<String> = outSpriteId.split("\\.".toRegex()).toTypedArray()
     val outSprite = Global.getSettings().getSprite(id[0], id[1])
-    val ms = aEP_MovingSprite(outSprite, renderLoc)
+    val ms = aEP_MovingSprite(outSprite, loc)
     ms.setInitVel(aEP_Tool.speed2Velocity(renderAngle-90f + MathUtils.getRandomNumberInRange(-20f,20f), 100f + Math.random().toFloat() * 50f))
     ms.angleSpeed = MathUtils.getRandomNumberInRange(120f,240f)
     ms.size = Vector2f(outSprite.width,outSprite.height)

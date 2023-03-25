@@ -9,7 +9,7 @@ import javax.swing.plaf.ColorUIResource
 
 class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
   companion object{
-    const val SYSTEM_RANGE = 1000f
+    const val SYSTEM_RANGE = 1600f
   }
 
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {

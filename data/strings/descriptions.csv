@@ -6,7 +6,7 @@ aEP_ExtremeOverload,SHIP_SYSTEM,激活时大幅度增加武器射速，同时降
 aEP_NCReload,SHIP_SYSTEM,激活快速装弹机构，产生大量幅能，极大缩短当前所有导弹武器的冷却时间,,,
 aEP_DecomposerFastBuild,SHIP_SYSTEM,激活后所有非内置联队将被额外部署至两倍数量，但此波战机对任何尺寸的舰船都只造成一半伤害,,,
 aEP_BBLockOn,SHIP_SYSTEM,激活后自身持续产生软幅能，短时间内大量增加目标武器产生的幅能,,,
-aEP_NBFiringJet,SHIP_SYSTEM,激活时辅助推进器爆发性喷射，立刻向鼠标方向获得大量速度，同时获得短暂的机动性加成,,,
+aEP_NBFiringJet,SHIP_SYSTEM,激活时辅助推进器爆发性喷射，立刻朝加速方向获得大量速度，同时获得短暂的机动性加成,,,
 aEP_FuelBurn,SHIP_SYSTEM,可切换，激活时大幅度提升最大速度并强制向前加速，无法转向，持续产生大量幅能并消耗仓库中的反物质燃料,,,
 aEP_DamperTanker,SHIP_SYSTEM,可切换，激活时禁用武器和护盾，展开折叠的装甲，能大量的增加装甲有效值，减少伤害,,,
 ,,,,,

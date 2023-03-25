@@ -1,7 +1,7 @@
 {
     "displayName": "PD",
-    "fluxCapacitors": 6,
-    "fluxVents": 5,
+    "fluxCapacitors": 3,
+    "fluxVents": 2,
     "goalVariant": true,
     "hullId": "aEP_fga_raoliu",
     "hullMods": [
@@ -21,18 +21,14 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0002": "lightag"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
             "weapons": {
+                "WS0002": "aEP_b_s_pom",
                 "WS0003": "vulcan",
                 "WS0006": "vulcan"
             }
         },
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {"WS0005": "aEP_forcus_laser"}
         }

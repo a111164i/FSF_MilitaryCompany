@@ -8,7 +8,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class aEP_DuiliuMainGunEffect implements EveryFrameWeaponEffectPlugin
 {
-  //总伤害= 2秒充能 * 均值0.5f * 每秒生成10次 * 每次生成10颗 * dph
+  //总伤害 = 2秒充能 * 均值0.5f * 每秒生成10次 * 每次生成10颗 * dph
   static final int MAX_NUM = 11;
   static final float MAX_SPREAD = 2;
   static final float FLUX_PER_SEC_CHARGING = 500f;//充能时每秒涨幅能
@@ -34,7 +34,7 @@ public class aEP_DuiliuMainGunEffect implements EveryFrameWeaponEffectPlugin
       return;
     }
     else {
-      if (weapon.getShip() != null && !engine.isPaused())
+      if (weapon.getShip() != null)
         weapon.getShip().getFluxTracker().increaseFlux(FLUX_PER_SEC_CHARGING * amount, false);
       effectLevelLastFrame = effectiveLevel;
     }

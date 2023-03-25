@@ -1,5 +1,5 @@
 {
-		"id":"aEP_b_m_mb32_shot",
+    "id":"aEP_b_m_mb32_shot",
   	"specClass":"projectile",
     "spawnType":"BALLISTIC",
     "collisionClass":"PROJECTILE_FF",
@@ -26,7 +26,7 @@
 
 
     "behaviorSpec":{"behavior":"PROXIMITY_FUSE",
-            "shotRangeVariance":0.5,
+            "shotRangeVariance":0.75,
             "probOfVariance":0.5,
             "range":0,
             "explosionSpec":{"duration":0.0001f,

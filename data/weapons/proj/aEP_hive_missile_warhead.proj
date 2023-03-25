@@ -7,12 +7,12 @@
 	"center":[3.5,7.5],
 	"collisionRadius":8,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[80,40,40,200],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[80,40,40,225],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":100, # purely visual
 	"maxFlightTime":10,	
 	"engineSpec":{"turnAcc":180,
 				  "turnRate":60,
-				  "acc":800,
+				  "acc":600,
 				  "dec":0},
 	"engineSlots":[{"id":"ES1",
 					"loc":[-7.5, 0],
@@ -21,14 +21,14 @@
 					"styleSpec":{
 								"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
 								"engineColor":[250,125,125,250],
-								"contrailDuration":2.5,
+								"contrailDuration":1.6,
 								"contrailWidthMult":1,
 								"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
 								"contrailMinSeg":5, # min segment length, in pixels
 								"contrailMaxSpeedMult":1f,
 								"contrailAngularVelocityMult":1f,
-								"contrailColor":[140,60,60,160],
-								"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+								"contrailColor":[140,60,60,182],
+								"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
 					},
 				    "width":3.5,
 				    "length":25.0,

@@ -50,14 +50,6 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0005": "aEP_forcus_laser",
-                "WS0006": "aEP_forcus_laser"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
                 "WS0001": "railgun",
                 "WS0002": "railgun"
             }
@@ -71,6 +63,14 @@
                 "WS0011": "vulcan",
                 "WS0012": "vulcan",
                 "WS0017": "dualflak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "aEP_forcus_laser",
+                "WS0006": "aEP_forcus_laser"
             }
         }
     ]

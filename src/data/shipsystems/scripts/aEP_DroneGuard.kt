@@ -17,7 +17,7 @@ import java.awt.Color
 class aEP_DroneGuard: BaseShipSystemScript(){
 
   companion object{
-    const val MAX_DIST = 750f
+    const val MAX_DIST = 800f
   }
   var didBlink = false
   var ship:ShipAPI? = null

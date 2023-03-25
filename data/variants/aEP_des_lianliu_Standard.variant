@@ -1,7 +1,7 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 14,
-    "fluxVents": 14,
+    "fluxCapacitors": 9,
+    "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_des_lianliu",
     "hullMods": [

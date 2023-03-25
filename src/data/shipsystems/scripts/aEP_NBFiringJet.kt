@@ -27,7 +27,7 @@ import java.awt.Color
 class aEP_NBFiringJet : BaseShipSystemScript() {
 
   companion object {
-    const val MAX_SPEED_FLAT = 160f
+    const val MAX_SPEED_FLAT = 175f
 
     const val ACC_MULT = 0.25f
 
@@ -58,7 +58,6 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
 
   var smokeTrailTimer = IntervalUtil(0.1f, 0.1f)
 
-  var mouseFacing:Float? = null
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     val ship = (stats?.entity?: return) as ShipAPI
@@ -80,40 +79,33 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
     stats.maxTurnRate.modifyPercent(id, MAX_TURN_RATE_PERCENT)
     stats.weaponTurnRateBonus.modifyPercent(id, WEAPON_TURN_RATE_PERCENT)
 
-    //在启动的第一帧得到鼠标方向
-    if(mouseFacing == null){
-      mouseFacing = VectorUtils.getAngle(ship.location,ship.mouseTarget?: aEP_ID.VECTOR2F_ZERO)
-    }
-
-    //对于ai开的船，用另一种方式
-    if(ship .shipAI != null){
-      var angle = 0f
-      //如果正在前进
-      if(ship.engineController.isDecelerating || ship.engineController.isAcceleratingBackwards){
-        angle = 180f
-        if(ship.engineController.isStrafingLeft){
-          angle = 135f
-        }else if (ship.engineController.isStrafingRight){
-          angle = 225f
-        }
-      //如果正在后退
-      }else if(ship.engineController.isAccelerating){
-        angle = 0f
-        if(ship.engineController.isStrafingLeft){
-          angle = 45f
-        }else if (ship.engineController.isStrafingRight){
-          angle = 315f
-        }
-      //如果只在进行侧向漂移
-      }else{
-        if(ship.engineController.isStrafingLeft){
-          angle = 90f
-        }else if (ship.engineController.isStrafingRight){
-          angle = 270f
-        }
+    var angle = 0f
+    //如果正在前进
+    if(ship.engineController.isDecelerating || ship.engineController.isAcceleratingBackwards){
+      angle = 180f
+      if(ship.engineController.isStrafingLeft){
+        angle = 135f
+      }else if (ship.engineController.isStrafingRight){
+        angle = 225f
       }
-      mouseFacing = aEP_Tool.angleAdd(ship.facing,angle)
+    //如果正在后退
+    }else if(ship.engineController.isAccelerating){
+      angle = 0f
+      if(ship.engineController.isStrafingLeft){
+        angle = 45f
+      }else if (ship.engineController.isStrafingRight){
+        angle = 315f
+      }
+    //如果只在进行侧向漂移
+    }else{
+      if(ship.engineController.isStrafingLeft){
+        angle = 90f
+      }else if (ship.engineController.isStrafingRight){
+        angle = 270f
+      }
     }
+    //引擎相对角度加上舰船本身的角度，变成战场绝对角度
+    angle = aEP_Tool.angleAdd(angle,ship.facing)
 
     //烟雾拖尾
     smokeTrailTimer.advance(getAmount(null))
@@ -173,10 +165,10 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
     if (effectLevel < 1) return
     //先减速，去除惯性，再朝目标方向加速
     ship.velocity.scale(0.25f)
-    val toAddVel = speed2Velocity(mouseFacing?:ship.facing, MAX_SPEED_FLAT)
+    val toAddVel = speed2Velocity(angle, MAX_SPEED_FLAT)
     ship.velocity[ship.velocity.x + toAddVel.x] = ship.velocity.y + toAddVel.y
 
-    val angleDistToShipFacing = MathUtils.getShortestRotation(ship.facing,mouseFacing?:ship.facing)
+    val angleDistToShipFacing = MathUtils.getShortestRotation(ship.facing,angle)
     giveInitialBurst(ship,angleDistToShipFacing)
 
   }
@@ -198,8 +190,6 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
     engineFrontRight1Active = false
     engineFrontRight2Active = false
 
-    mouseFacing = null
-
     stats.maxSpeed.unmodify(id)
     stats.maxTurnRate.unmodify(id)
     stats.turnAcceleration.unmodify(id)
@@ -211,7 +201,6 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
     val angleAndSpeed = velocity2Speed(ship.velocity)
     val toClamp = angleAndSpeed.y/(ship.mutableStats.maxSpeed.modifiedValue+30f)
     ship.velocity.scale(MathUtils.clamp(1f/toClamp,0.25f,1f))
-
   }
 
   fun createSmokeTrail(ship: ShipAPI, level:Float) {

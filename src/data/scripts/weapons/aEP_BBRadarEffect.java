@@ -23,9 +23,9 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
   public static final String id = "aEP_BBRadarEffect";
   public static final Map<WeaponAPI.WeaponSize, Float> BONUS_PERCENT = new HashMap<>();
   static {
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.85f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.85f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.85f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.8f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.8f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.8f);
   }
 
   static final float ANGLE_BEST = 15f;
@@ -87,7 +87,7 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
         //保底起效百分之25
         buffPercent = MathUtils.clamp(buffPercent, MIN_BONUS, 1f);
         //帮助一下ai，武器不开火的时候加满范围
-        if(Global.getCombatEngine().getPlayerShip() != weapon.getShip() && weapon.getChargeLevel() == 0f) buffPercent = 1f;
+        if(ship.getShipAI() != null && weapon.getChargeLevel() == 0f) buffPercent = 1f;
         return BONUS_PERCENT.get(weapon.getSize()) * buffPercent;
       }
 

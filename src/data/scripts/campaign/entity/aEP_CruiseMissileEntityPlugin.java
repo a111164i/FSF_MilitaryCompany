@@ -5,17 +5,22 @@ import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
+import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
+import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
+import com.fs.starfarer.campaign.Faction;
 import combat.util.aEP_Tool;
 import data.hullmods.aEP_CruiseMissileCarrier;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;
+import org.lazywizard.lazylib.campaign.CampaignUtils;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
@@ -23,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import static combat.util.aEP_DataTool.txt;
+import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S1_VAR_ID;
 
 public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
 {
@@ -214,10 +220,21 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     }
   }
 
+  //玩家射人
   void spawnBattle(String missileVariantId) {
     CampaignFleetAPI missileFleet = FleetFactoryV3.createEmptyFleet(token.getFaction().getId(), Global.getSettings().getVariant(missileVariantId).getDisplayName(), null);
     missileFleet.getFleetData().addFleetMember(missileVariantId);
+    //加个军官，强制白板，用ai头像
+    PersonAPI p = Global.getSector().getFaction(Factions.REMNANTS).createRandomPerson();
+    for(MutableCharacterStatsAPI.SkillLevelAPI skill : p.getStats().getSkillsCopy()){
+      skill.setLevel(0);
+    };
+    p.setFaction(Factions.NEUTRAL);
+    missileFleet.getFleetData().addOfficer(p);
+    missileFleet.setCommander(p);
+    missileFleet.getMembersWithFightersCopy().get(0).setCaptain(p);
     missileFleet.getMembersWithFightersCopy().get(0).setFlagship(true);
+    missileFleet.forceSync();
 
     token.getContainingLocation().spawnFleet(token, 0, 0, missileFleet);
 
@@ -225,21 +242,24 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     Global.getSector().setPlayerFleet(missileFleet);
 
     //启动战斗
-    BattleCreationContext context = new BattleCreationContext(Global.getSector().getPlayerFleet(), FleetGoal.ATTACK, targetFleet, FleetGoal.ESCAPE);
+    BattleCreationContext context = new BattleCreationContext(missileFleet, FleetGoal.ATTACK, targetFleet, FleetGoal.ESCAPE);
     context.objectivesAllowed = false;
     context.enemyDeployAll = true;
     context.fightToTheLast = true;
     Global.getSector().getCampaignUI().startBattle(context);
 
+
+    //即使战斗是missileFleet和TargetFleet之间生成，也会强制在我军后备中放入玩家当前舰队所属的全部fleetMember
     //向战斗引擎中加入导弹制导和强制部署的 combatEveryFrame
+    //同时把玩家舰队设置回来，不要等到生涯
     Global.getCombatEngine().addPlugin(new MissileCombatPlugin(false));
 
     //进入战斗后强制暂停生涯
     Global.getSector().setPaused(false);
-    //Global.getLogger(this.getClass()).info("p1"+Global.getSector().isPaused());
+
     //加入监听器，战后换回舰船
     Global.getSector().addScript(new ExchangePlayerFleet(originalFleet));
-    //Global.getLogger(this.getClass()).info("p2"+Global.getSector().isPaused());
+
     token.getContainingLocation().removeEntity(token);
   }
 
@@ -247,7 +267,17 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
   void spawnBattleToPlayer(String missileVariantId) {
     CampaignFleetAPI missileFleet = FleetFactoryV3.createEmptyFleet(token.getFaction().getId(), Global.getSettings().getVariant(missileVariantId).getDisplayName(), null);
     missileFleet.getFleetData().addFleetMember(missileVariantId);
+    //加个军官，强制白板，用ai头像
+    PersonAPI p = Global.getSector().getFaction(Factions.REMNANTS).createRandomPerson();
+    for(MutableCharacterStatsAPI.SkillLevelAPI skill : p.getStats().getSkillsCopy()){
+      skill.setLevel(0);
+    };
+    p.setFaction(Factions.NEUTRAL);
+    missileFleet.getFleetData().addOfficer(p);
+    missileFleet.setCommander(p);
+    missileFleet.getMembersWithFightersCopy().get(0).setCaptain(p);
     missileFleet.getMembersWithFightersCopy().get(0).setFlagship(true);
+    missileFleet.forceSync();
 
     token.getContainingLocation().spawnFleet(token, 0, 0, missileFleet);
     //启动战斗
@@ -263,12 +293,10 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     token.getContainingLocation().removeEntity(token);
   }
 
-
   class ExchangePlayerFleet implements EveryFrameScript {
-
+    //toExchange是待会换回来的舰队，也就是存起来的原正常玩家舰队
     CampaignFleetAPI toExchange;
     float supply;
-    int frame= 0;
     boolean shouldEnd = false;
 
     ExchangePlayerFleet(CampaignFleetAPI toExchange) {
@@ -291,14 +319,20 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     //在刚刚进入战斗时，生涯依然会持续运行一段小时间，直到战斗完全初始化完毕，此时会持续把 sector暂停
     @Override
     public void advance(float amount) {
-      //持续尝试生成dialog,当对话框成功弹出，则交换回舰队
-      if(Global.getSector().getCampaignUI().showInteractionDialog(new ShowLoadedDialog(targetFleet), targetFleet) == true){
-        if(Global.getSector().getPlayerFleet() != toExchange) {
+      if(Global.getSector().getCampaignUI() == null) return;
 
-          for (FleetMemberAPI member : targetFleet.getMembersWithFightersCopy()) {
-            member.getRepairTracker().setCR(Math.min(member.getRepairTracker().getCR(), 1 - member.getRepairTracker().getRepairRatePerDay() * member.getRepairTracker().getRemainingRepairTime()));
-            if (member.getRepairTracker().isCrashMothballed()) {
-              targetFleet.removeFleetMemberWithDestructionFlash(member);
+      //持续尝试生成dialog,当对话框成功弹出，则交换回舰队
+      CampaignFleetAPI toShow = targetFleet;
+      if(targetFleet == null || targetFleet.isExpired()) toShow = toExchange;
+      if(Global.getSector().getCampaignUI().showInteractionDialog(new ShowLoadedDialog(toShow), toExchange) == true){
+        if(Global.getSector().getPlayerFleet() != toExchange) {
+          //显示被攻击一方现在的状态
+          if(targetFleet != null){
+            for (FleetMemberAPI member : targetFleet.getMembersWithFightersCopy()) {
+              member.getRepairTracker().setCR(Math.min(member.getRepairTracker().getCR(), 1 - member.getRepairTracker().getRepairRatePerDay() * member.getRepairTracker().getRemainingRepairTime()));
+              if (member.getRepairTracker().isCrashMothballed()) {
+                targetFleet.removeFleetMemberWithDestructionFlash(member);
+              }
             }
           }
 
@@ -316,8 +350,7 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     }
   }
 
-  class DespawnMissileFleet implements EveryFrameScript
-  {
+  class DespawnMissileFleet implements EveryFrameScript {
     CampaignFleetAPI missileFleet;
     boolean shouldEnd = false;
 
@@ -348,14 +381,14 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
 
   }
 
-  class MissileCombatPlugin extends BaseEveryFrameCombatPlugin
-  {
+  class MissileCombatPlugin extends BaseEveryFrameCombatPlugin {
     CombatEngineAPI engine;
     boolean isEnemy = false;
 
     MissileCombatPlugin(boolean isEnemy){
       this.isEnemy = isEnemy;
     }
+
 
     @Override
     public void advance(float amount, List<InputEventAPI> events) {
@@ -394,11 +427,9 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
 
   }
 
-  class ShowLoadedDialog implements InteractionDialogPlugin
-  {
+  class ShowLoadedDialog implements InteractionDialogPlugin {
     InteractionDialogAPI dialog;
     CampaignFleetAPI toShow;
-
 
     ShowLoadedDialog(CampaignFleetAPI toShow){
 

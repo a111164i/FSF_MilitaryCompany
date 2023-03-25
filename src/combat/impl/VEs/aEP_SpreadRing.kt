@@ -129,7 +129,7 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
   @JvmName("getRadius1")
   fun getRadius(): Float {
     var level = MathUtils.clamp(time / lifeTime, 0f, 1f)
-    level = aEP_Tool.exponentialDecreaseSmooth(level)
+    level = -(level*level -1f)
     val radiusChange = spreadSpeed * lifeTime * level
     return MathUtils.clamp(ringRadius + radiusChange, 10f, 99999f)
   }

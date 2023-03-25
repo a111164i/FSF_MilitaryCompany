@@ -12,9 +12,11 @@ import com.fs.starfarer.api.combat.listeners.DamageListener
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
+import com.fs.starfarer.api.util.Misc
 import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
 import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.floatDataRecorder
+import combat.util.aEP_ID
 import data.scripts.weapons.aEP_TeslaBeam
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
@@ -28,7 +30,7 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
 
     const val OVERLOAD_TIME_DECREASE = 0.25f
     const val MAX_OVERLOAD_TIME = 7f
-    private const val ID = "aEP_MarkerDissipation"
+    const val ID = "aEP_MarkerDissipation"
     @JvmStatic
     fun getBufferLevel(ship: ShipAPI?): Float {
       if (ship == null || !ship.isAlive || ship.isHulk || !ship.variant.hasHullMod(ID)) return 0f
@@ -80,6 +82,14 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     tooltip.addPara("- " + aEP_DataTool.txt("overload_time_reduce") + "{%s}", 5f, Color.white, Color.green, (OVERLOAD_TIME_DECREASE * 100).toInt().toString() + "%")
     tooltip.addPara(aEP_DataTool.txt("MD_des04"), Color.gray, 5f)

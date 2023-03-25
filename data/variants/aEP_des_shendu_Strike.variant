@@ -1,6 +1,6 @@
 {
     "displayName": "Strike",
-    "fluxCapacitors": 3,
+    "fluxCapacitors": 2,
     "fluxVents": 2,
     "goalVariant": true,
     "hullId": "aEP_des_shendu",
@@ -12,9 +12,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {
-                "WS0005": "aEP_harpoon_large"
-            }
+            "weapons": {"WS0005": "aEP_harpoon_large"}
         },
         {
             "autofire": true,

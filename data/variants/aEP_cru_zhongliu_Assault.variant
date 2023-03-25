@@ -1,7 +1,7 @@
 {
     "displayName": "Assault",
-    "fluxCapacitors": 2,
-    "fluxVents": 30,
+    "fluxCapacitors": 0,
+    "fluxVents": 27,
     "goalVariant": true,
     "hullId": "aEP_cru_zhongliu",
     "hullMods": [
@@ -14,11 +14,21 @@
     "variantId": "aEP_cru_zhongliu_Assault",
     "weaponGroups": [
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {
                 "WS0001": "mjolnir",
                 "WS0002": "mjolnir"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "heatseeker",
+                "WS0008": "heatseeker",
+                "WS0009": "heatseeker",
+                "WS0010": "heatseeker"
             }
         },
         {
@@ -30,16 +40,6 @@
                 "WS0005": "aEP_b_s_pom",
                 "WS0006": "vulcan",
                 "WS0011": "vulcan"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0007": "heatseeker",
-                "WS0008": "heatseeker",
-                "WS0009": "heatseeker",
-                "WS0010": "heatseeker"
             }
         }
     ]

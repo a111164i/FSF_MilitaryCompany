@@ -1,6 +1,6 @@
 {
-  "hullName": "LengShe",
-  "hullId": "aEP_LengShe",
+  "hullName": "",
+  "hullId": "aEP_cru_lengshe",
   "hullSize": "CRUISER",
   "spriteName": "graphics/ships/aEP_lengshe.png",
   "style": "aEP_FSF",
@@ -12,7 +12,7 @@
   "shieldRadius": 140,
   "viewOffset": 0,
   "builtInWeapons": {
-    "WS0012": "aEP_lengshe_cover"
+    "WS0012": "aEP_cru_lengshe_cover"
   },
   "weaponSlots": [
     {

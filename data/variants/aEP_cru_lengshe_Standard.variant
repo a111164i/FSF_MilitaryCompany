@@ -1,0 +1,58 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_cru_lengshe",
+    "hullMods": [],
+    "modules": [{"FRONT": "aEP_cru_lengshe_front_Standard"}],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_lengshe_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_b_l_dg3"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0010": "aEP_cluster_small",
+                "WS0011": "aEP_cluster_small"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0013": "heavyneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "heavyneedler",
+                "WS0008": "heavyneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_forcus_laser",
+                "WS0004": "aEP_forcus_laser",
+                "WS0005": "aEP_forcus_laser",
+                "WS0006": "aEP_forcus_laser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_pom",
+                "WS0002": "aEP_b_s_pom"
+            }
+        }
+    ]
+}

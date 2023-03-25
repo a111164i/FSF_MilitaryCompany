@@ -1,7 +1,7 @@
 {
     "displayName": "Defense",
     "fluxCapacitors": 0,
-    "fluxVents": 30,
+    "fluxVents": 22,
     "goalVariant": true,
     "hullId": "aEP_cap_shangshengliu",
     "hullMods": [
@@ -31,16 +31,10 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "aEP_b_s_pom",
-                "WS0004": "aEP_b_s_pom"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
                 "WS0001": "vulcan",
                 "WS0002": "vulcan",
+                "WS0003": "aEP_b_s_pom",
+                "WS0004": "aEP_b_s_pom",
                 "WS0016": "vulcan",
                 "WS0017": "vulcan"
             }

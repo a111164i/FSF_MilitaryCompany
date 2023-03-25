@@ -76,7 +76,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //特殊
     api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship 01", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_mk2_Standard", FleetMemberType.SHIP, "FSF ship 01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_LengShe_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_lengshe_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配

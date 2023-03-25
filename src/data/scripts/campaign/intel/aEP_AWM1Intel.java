@@ -21,6 +21,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
+import static com.fs.starfarer.api.impl.campaign.ids.Items.TAG_NO_DEALER;
 import static combat.util.aEP_DataTool.txt;
 import static combat.util.aEP_ID.FACTION_ID_FSF;
 
@@ -53,10 +54,11 @@ public class aEP_AWM1Intel extends aEP_BaseMission
     List requestWeaponList = new ArrayList();
     WeightedRandomPicker picker = new WeightedRandomPicker();
     List excludes = new ArrayList();
-    excludes.add("no_drop");
-    excludes.add("no_sell");
-    excludes.add("no_dealer");
-    excludes.add("restricted");
+    excludes.add(Tags.NO_DROP);
+    excludes.add(Tags.NO_BP_DROP);
+    excludes.add(Tags.NO_SELL);
+    excludes.add(TAG_NO_DEALER);
+    excludes.add(Tags.RESTRICTED);
     excludes.add("FSF_bp");
 
     //限制那些武器可以进入抽取库
@@ -66,7 +68,7 @@ public class aEP_AWM1Intel extends aEP_BaseMission
       if(f.getId().equals("aEP_FSF")) continue;
       for(String weaponId : f.getKnownWeapons()) {
         WeaponSpecAPI spec = Global.getSettings().getWeaponSpec(weaponId);
-        if (spec.getAIHints().contains("SYSTEM")) continue;
+        if (spec.getAIHints().contains(WeaponAPI.AIHints.SYSTEM)) continue;
         if (!spec.getTags().contains(excludes)) {
           boolean shouldAdd = false;
           if (spec.getTier() >= 3) shouldAdd = true;
@@ -86,7 +88,6 @@ public class aEP_AWM1Intel extends aEP_BaseMission
     requestWeaponList.add(picker.pickAndRemove().toString());
     requestWeaponList.add(picker.pickAndRemove().toString());
     requestWeaponList.add(picker.pickAndRemove().toString());
-    aEP_Tool.Util.addDebugLog(requestWeaponList.get(0).toString());
     return requestWeaponList;
   }
 

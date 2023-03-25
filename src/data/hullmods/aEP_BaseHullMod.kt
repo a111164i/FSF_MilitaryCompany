@@ -17,7 +17,8 @@ open class aEP_BaseHullMod : BaseHullMod() {
   public val notCompatibleList = HashSet<String>()
   public val haveToBeWithMod = HashSet<String>()
 
-  override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
+  override fun applyEffectsAfterShipCreation(ship: ShipAPI?, id: String) {
+    ship?:return
     //遍历所有已经安装船插，若存在任何一个排斥，返回false
     var iterator: Iterator<*> = ship.variant.hullMods.iterator()
     var shouldRemove = false
@@ -67,9 +68,8 @@ open class aEP_BaseHullMod : BaseHullMod() {
     //遍历必须安装的船插表，若任何一个未安装，返回false
     var iterator: Iterator<*> = haveToBeWithMod.iterator()
     while (iterator.hasNext()) {
-      if (!ship.variant.hasHullMod(iterator.next() as String?)) {
-        return false
-      }
+      if (!ship.variant.hasHullMod(iterator.next() as String?)) return false
+
     }
     //遍历所有已经安装船插，若存在任何一个排斥，返回false
     iterator = ship.variant.hullMods.iterator()

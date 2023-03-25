@@ -11,6 +11,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
@@ -65,10 +66,17 @@ class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     ship?:return
-    val h = Misc.getHighlightColor()
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     //tooltip.addPara("- " + aEP_DataTool.txt("flux_diss") + aEP_DataTool.txt("alter") + "{%s}", 5f, Color.white,h , fluxVent.toInt().toString())
-    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"), Alignment.MID, 5f)
+    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec("aEP_RapidDissipate").spriteName, 48f)
     image.addPara("- " + aEP_DataTool.txt("aEP_RapidDissipate01") , 5f, Color.white, Color.green, round(DAMAGE_CONVERTED*100).toInt().toString()+"%")
     tooltip.addImageWithText(5f)

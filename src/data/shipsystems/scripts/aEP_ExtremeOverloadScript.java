@@ -162,7 +162,6 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
   @Override  //run once when unapply
   public void unapply(MutableShipStatsAPI stats, String id) {
     ShipAPI ship = (ShipAPI) stats.getEntity();
-    if(!didUse) return;
 
     //在这修改数值
     stats.getBallisticRoFMult().unmodify(id);
@@ -170,6 +169,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     stats.getBallisticWeaponFluxCostMod().unmodify(id);
     stats.getFluxDissipation().unmodify(id);
 
+    if(!didUse) return;
     //stop weapon glowing
     ship.setWeaponGlow(0f,//float glow,
       new Color(240, 240, 150, 100),//java.awt.Color color,
@@ -182,7 +182,6 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     if (overloadTime > 0.1f)
       endSystem(ship);
     accumulatedFlux.reset();
-    overloadTime = 0f;
     didUse = false;
   }
 
@@ -339,6 +338,23 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
 
     @Override
     public void advanceImpl(float amount) {
+      overloadTime -= amount;
+      if(overloadTime <= 0f){
+        setShouldEnd(true);
+        return;
+      }
+
+      if (Global.getCombatEngine().getPlayerShip() == ship) {
+        String name = aEP_ExtremeOverloadScript.class.getSimpleName().replace("Script","");
+
+        Global.getCombatEngine().maintainStatusForPlayerShip(
+                this.getClass().getSimpleName(),  //key
+                Global.getSettings().getShipSystemSpec(name).getIconSpriteName(),  //sprite name,full, must be registed in setting first
+                txt("ExtremeOverload02"),  //title
+                (((int) (overloadTime * 100f)) / 100f)+"",  //data
+                true);
+      }
+
       //start weapon glowing
       ship.setWeaponGlow(1f,//float glow,
               new Color(240, 240, 150, 100),//java.awt.Color color,
@@ -347,6 +363,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
       ship.setHoldFireOneFrame(true);
       ship.blockCommandForOneFrame(ShipCommand.FIRE);
 
+      //如果系统立刻再次激活，立刻打断禁开火
       if(ship.getSystem() != null && ship.getSystem().isActive()){
         setShouldEnd(true);
       }

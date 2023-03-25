@@ -17,15 +17,20 @@ import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.combat.BeamAPI
 import data.hullmods.aEP_MarkerDissipation
 import com.fs.starfarer.api.combat.DamageType
+import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
+import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
+import combat.util.aEP_ID
+import combat.util.aEP_Tool
 import java.awt.Color
 
 class aEP_VanguardHull : aEP_BaseHullMod() {
   companion object {
     const val REDUCE_PERCENT = 0.70f
     const val FLUX_REDUCE_PER_HIT = 4f
-    const val BEAM_PER_HIT_REDUCE_COMPROMISE = 0.25f
+    const val BEAM_PER_HIT_REDUCE_COMPROMISE = 0.2f
     private val REDUCE_AMOUNT = HashMap<HullSize, Float>()
 
     init {
@@ -56,55 +61,67 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
 
   //在船插还是物品的的时候，ship的参数可能为null
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+    ship?:return
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     //tooltip.addGrid( 5 * 5f + 10f);
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     tooltip.addPara("- " + aEP_DataTool.txt("VA_des01"), 5f, Color.white, Color.green, String.format("%.0f", REDUCE_PERCENT * 100f), REDUCE_AMOUNT[hullSize]!!.toInt().toString() + "")
-    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"), Alignment.MID, 5f)
+    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec("aEP_VanguardHull").spriteName, 48f)
     image.addPara("- " + aEP_DataTool.txt("reduce_flux_per_hit"), 5f, Color.white, Color.green, String.format("%.1f", FLUX_REDUCE_PER_HIT))
     tooltip.addImageWithText(5f)
   }
 
-  internal class aEP_VanguardDamageTaken(reduceAmount: Float, ship: ShipAPI) : DamageTakenModifier {
-    var ship: ShipAPI
+  internal class aEP_VanguardDamageTaken(reduceAmount: Float, ship: ShipAPI) : DamageTakenModifier, AdvanceableListener {
+    var ship: ShipAPI = ship
     var id = "aEP_VanguardDamageTaken"
-    var reduceAmount = 0f
+    var reduceAmount = reduceAmount
+    val checkTracker = IntervalUtil(0.25f,0.25f)
+    var heatingLevel = 0f
+
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       if (shieldHit) return null
       if (MathUtils.getRandomNumberInRange(0f, 1f) >= REDUCE_PERCENT) return null
       var toReduce = reduceAmount
+      var realDamage = damage.damage
       //对于激光，每秒伤害被分为10段，这里这里认为每4次tick等同一个弹丸，每次减伤为正常的0.25倍，
       if (param is BeamAPI) toReduce *= BEAM_PER_HIT_REDUCE_COMPROMISE
       //不可减到0伤害，故为-1
-      toReduce = Math.min(toReduce, damage.damage - 1)
+      toReduce = Math.min(toReduce, (damage.damage - 1f).coerceAtLeast(0f) )
 
-      //这个flat是修改的mult
+      //这个modifier的基础值1f，实际伤害 = modifier * baseDamage
+      val modifierFlatChange =toReduce/(realDamage+0.1f)
+      damage.modifier.modifyFlat(id, -modifierFlatChange)
+      //生成绿字
       Global.getCombatEngine().addFloatingDamageText(
         point,
-        toReduce,
+        modifierFlatChange * realDamage,
         Color(100, 250, 150, 180),
         target,
         null
       )
-      damage.modifier.modifyFlat(id, -toReduce)
 
       //如果舰船预热完全，每次生效都会减少幅能
-      if (aEP_MarkerDissipation.getBufferLevel(ship) >= 1f){
+      if (heatingLevel >= 1f){
         ship.fluxTracker.decreaseFlux(FLUX_REDUCE_PER_HIT)
       }
       return id
     }
 
-    fun getFluxReduce(damage: DamageAPI, baseReduce: Float): Float {
-      return if (damage.type == DamageType.FRAGMENTATION) {
-        baseReduce / 4f
-      } else baseReduce
+    override fun advance(amount: Float) {
+      checkTracker.advance(amount)
+      if(!checkTracker.intervalElapsed()) return
+      //根据受益者的预热程度，更新转换率
+      heatingLevel = aEP_MarkerDissipation.getBufferLevel(ship)
     }
 
-    init {
-      this.reduceAmount = reduceAmount
-      this.ship = ship
-    }
   }
 
   init {

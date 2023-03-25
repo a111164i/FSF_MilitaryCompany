@@ -30,8 +30,11 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
     const val SELECT_MEMBER_BUTTON = "select_member"
     const val RELOAD_MEMBER_BUTTON = "reload_member"
     const val FIRE_MEMBER_BUTTON = "fire_member"
+    //务必保证variantId和ItemId的一致性
     const val S1_ITEM_ID = "aEP_cruise_missile"
     const val S2_ITEM_ID = "aEP_cruise_missile2"
+    const val S1_VAR_ID = "aEP_CruiseMissile"
+    const val S2_VAR_ID = "aEP_CruiseMissile2"
     const val MEMORY_ID = "$" + "aEP_CruiseMissileLoadIntel"
     const val CR_THRESHOLD = 0.5f
     const val FIRE = "FIRE!"
@@ -49,8 +52,8 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
 
     public val ITEM_TO_SHIP_ID = HashMap<String,String>()
     init {
-      ITEM_TO_SHIP_ID[S1_ITEM_ID] = "aEP_CruiseMissile"
-      ITEM_TO_SHIP_ID[S2_ITEM_ID] = "aEP_CruiseMissile2"
+      ITEM_TO_SHIP_ID[S1_ITEM_ID] = S1_VAR_ID
+      ITEM_TO_SHIP_ID[S2_ITEM_ID] = S2_VAR_ID
     }
 
     fun createLoading(memberId:String, missileItemId:String){
@@ -90,7 +93,7 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
       return itemId
     }
 
-    fun createMissileEntityFromPlayer(missileItemId: String){
+    public fun createMissileEntityFromPlayer(missileItemId: String){
       /**
        * Adds a custom entity.
        * Use SectorEntityToken.setFixedLocation() or .setCircularOrbit (or setOrbit) to set its location and/or orbit.
@@ -115,7 +118,6 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
       plugin.setVariantId(missileShipId)
     }
   }
-
 
   val pad = 3f
   val opad = 10f
@@ -304,7 +306,6 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
     loadingPercent = data?.get(1)?.toFloat()?:0f
     var loadRate =  loadingPercent.div(MISSILE_LOAD_SPEED_MAG[missileItemName]?:1f).times(100).toInt()
     loadRate = MathUtils.clamp(loadRate,0,100)
-    aEP_Tool.addDebugLog(data?.get(1)?:"null")
     //画选择的舰队成员的数据
     var spriteSize = 100f
     var spriteName = Global.getSettings().getHullSpec(selectedMember.hullSpec.hullId).spriteName

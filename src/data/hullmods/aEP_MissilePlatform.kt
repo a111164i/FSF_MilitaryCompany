@@ -10,6 +10,8 @@ import com.fs.starfarer.api.combat.WeaponAPI
 import java.util.WeakHashMap
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
+import combat.util.aEP_ID
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
 import java.lang.Math.abs
@@ -53,6 +55,14 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     //tooltip.addGrid( 5 * 5f + 10f);
     tooltip.addPara("- " + aEP_DataTool.txt("missile_health_up") + "{%s}", 5f, Color.white, Color.green, MISSILE_HITPOINT_BUFF.toInt().toString() + "%")

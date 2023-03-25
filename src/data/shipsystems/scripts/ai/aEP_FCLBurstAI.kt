@@ -46,7 +46,6 @@ class aEP_FCLBurstAI : aEP_BaseSystemAI() {
     if (flags.hasFlag(ShipwideAIFlags.AIFlags.PURSUING)) willing -= 25f
 
     willing *= MathUtils.getRandomNumberInRange(0.75f, 1.25f)
-    aEP_Tool.addDebugLog(willing.toString())
     if (willing >= 100f) {
       shouldActive = true
     }
