@@ -1,0 +1,36 @@
+{
+  "variantId": "aEP_fga_wanliu_Standard",
+  "hullId": "aEP_fga_wanliu",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_large_kinetic_flak"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "aEP_b_s_pom"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "aEP_vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

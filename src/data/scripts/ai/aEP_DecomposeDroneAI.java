@@ -269,12 +269,10 @@ public class aEP_DecomposeDroneAI implements ShipAIPlugin
     }
 
     if (dist <= 50f) {
-
       if (!landingStarted) {
         ship.beginLandingAnimation(parentShip);
         ship.getMutableStats().getMaxSpeed().modifyFlat(id, parentShip.getMaxSpeed() + ship.getMaxSpeed());
       }
-
     }
 
     float supplyNum = 0;

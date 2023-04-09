@@ -8,7 +8,7 @@ import java.awt.Color
 
 class aEP_DroneTimeAlter: BaseShipSystemScript() {
   companion object{
-    const val TIME_ALTER_BONUS_MULT = 2f
+    const val TIME_ALTER_BONUS_MULT = 1.75f
     val JITTER_COLOR = Color(90, 165, 255, 55)
     val JITTER_UNDER_COLOR = Color(90, 165, 255, 155)
 

@@ -58,8 +58,16 @@
 		],
 	},
 	"knownFighters":{
-		"tags":["base_bp", "FSF_bp"],
+		"tags":["base_bp", "midline_bp", "FSF_bp"],
 		"fighters":[
+			"gladius_wing",
+			"warthog_wing",
+			"broadsword_wing",
+
+			"longbow_wing",
+			"cobra_wing",
+
+			"xyphos_wing",
 		],
 	},
 	"priorityFighters":{
@@ -70,17 +78,37 @@
 	"knownWeapons":{
 		"tags":["base_bp", "midline_bp", "FSF_bp"],
 		"weapons":[
+			"lightac",
+			"lightdualac",
 			"lightneedler",
 			"railgun",
 			"vulcan",
 
+			"heavymortar",
 			"flak",
 			"dualflak",
+			"heavyac",
+			"heavyneedler",
 
 			"autopulse",
 			"gauss",
 			"mjolnir",
 			"devastator",
+			"multineedler",
+
+			#小导弹
+			"swarmer",
+			"annihilator",
+			"reaper",
+			"harpoon",
+			"heatseeker",
+			"sabot",
+
+			"annihilatorpod",
+			"typhoon",
+			"harpoonpod",
+			"salamanderpod",
+			"sabotpod",
 
 			"hurricane",
 			"squall",
@@ -91,51 +119,73 @@
 		"tags":["FSF_bp"],
 		"weapons":[
 			"vulcan",
-			"dualflak",
 			"lightac",
 			"railgun",
 
 			"flak",
+			"dualflak",
 
 			"mjolnir",
+
+			"squall",
 		],
 	},
 	"knownHullMods":{
-		"tags":["base_bp", "independent", "FSF"],
+		"tags":["base_bp", "FSF"],
 		"hullMods":[
-			"advancedshieldemitter", # accelerated
-			"turretgyros",
-			"armoredweapons",
-			"augmentedengines",
-			"autorepair",
-			"converted_hangar",
-			"eccm",
-			"ecm",
-			"expanded_deck_crew",
-			"magazines",
-			"missleracks",
-			"extendedshieldemitter",
-			"frontemitter",
-			"frontshield",  # makeshift
-			"hardenedshieldemitter",
-			"heavyarmor",
-			"insulatedengine",
-			"targetingunit",
-			"nav_relay",
-			"adaptiveshields", # omni
-			"operations_center",
-			"recovery_shuttles",
-			"fluxbreakers",
-			"stabilizedshieldemitter",
-			"surveying_equipment",
-			"hiressensors",
-			"efficiency_overhaul",
 			"ballistic_rangefinder",
+			"dedicated_targeting_core",
+			"targetingunit",
+
+			"fluxdistributor",
+			"fluxcoil",
+			"fluxbreakers",
+
+			"stabilizedshieldemitter",
+			"advancedshieldemitter", # accelerated
+			"extendedshieldemitter",
+			"adaptiveshields", # omni
+			"frontemitter",
+      "frontshield",  # makeshift
+      "hardenedshieldemitter",
+
+			"armoredweapons",
+			"reinforcedhull",
+      "heavyarmor",
+      "autorepair",
+      "blast_doors",
+
+			"eccm",
+      "missleracks",
+			"turretgyros",
+			"magazines",
+			"hardened_subsystems",
+
+			"auxiliarythrusters",
+			"unstable_injector",
+			"insulatedengine",
+			"augmentedengines",
+
+			"expanded_deck_crew",
+			"recovery_shuttles",
+
+			"ecm",
+			"nav_relay",
+			"operations_center",
+
+			"hiressensors",
+			"surveying_equipment",
+			"militarized_subsystems",
+
+			"auxiliary_fuel_tanks",
+			"additional_berthing",
+			"expanded_cargo_holds",
+			"efficiency_overhaul",
 		],
 	},
 	"factionDoctrine":{
-		"warships":4,
-		"carriers":3,
+		"warships":5,
+		"carriers":2,
 		"phaseShips":0,
 		
 		"officerQuality":2,

@@ -31,7 +31,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   companion object{
     //about visual effect
     private val EMP_ARC_CHANCE_PER_SECOND = 15f
-    private val ARC_FRINGE_COLOR = Color(240, 100, 100, 240)
+    private val ARC_FRINGE_COLOR = Color(240, 100, 100, 250)
     private val ARC_CORE_COLOR = Color(200, 200, 200, 120)
     private val SMOKE_COLOR = Color(200, 200, 200, 80)
     private val SMOKE_EMIT_COLOR = Color(250, 250, 250, 180)
@@ -48,24 +48,24 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     private val WEAPON_ROF_PERCENT_BONUS: MutableMap<String, Float> = HashMap()
     init {
       spreadRange[WeaponSize.LARGE] = 10f
-      spreadRange[WeaponSize.MEDIUM] = 7.5f
+      spreadRange[WeaponSize.MEDIUM] = 8f
       spreadRange[WeaponSize.SMALL] = 5f
 
       timeRange[WeaponSize.LARGE] = 0.5f
       timeRange[WeaponSize.MEDIUM] = 0.4f
       timeRange[WeaponSize.SMALL] = 0.3f
 
-      FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.66f
-      FLUX_DECREASE_PERCENT["aEP_des_cengliu"] = 0.5f
-      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.33f
+      FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.75f
+      FLUX_DECREASE_PERCENT["aEP_des_cengliu"] = 0.66f
+      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.5f
 
       FLUX_RETURN_SPEED["aEP_fga_xiliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_des_cengliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.8f
 
-      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 200f
-      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 200f
-      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 200f
+      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 100f
+      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 100f
+      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 100f
     }
   }
 
@@ -75,9 +75,10 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   private var storedSoftFlux = 0f
   private val presmokeTracker = IntervalTracker(0.05f,0.05f)
 
-  override fun apply(stats: MutableShipStatsAPI, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
-    ship = (stats?.entity?: return)as ShipAPI
-    val ship = (ship?:return)
+  override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
+    //复制粘贴这行
+    ship = (stats?.entity?: return) as ShipAPI
+    val ship = ship as ShipAPI
     if (!ship.isAlive) return
 
 
@@ -184,7 +185,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
               getExtendedLocationFromPoint(offset, w.currAngle + 90f, MathUtils.getRandomNumberInRange(-spreadRange[w.size]!!, spreadRange[w.size]!!)),  //loc
               Vector2f(vel.getX() + shipVel.getX(), vel.getY() + shipVel.getY()),  //vel
               MathUtils.getRandomNumberInRange(spreadRange[w.size]!! / 4f, spreadRange[w.size]!!),  //size
-              MathUtils.getRandomNumberInRange(0.7f, 1f),  //brightness
+              MathUtils.getRandomNumberInRange(0.75f, 1f),  //brightness
               timeRange[w.size]!!,  //duration
               ARC_FRINGE_COLOR
             )
@@ -259,8 +260,10 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   }
 
   override fun unapply(stats: MutableShipStatsAPI, id: String?) {
-    ship = (stats?.entity?: return)as ShipAPI
-    val ship = (ship?:return)
+    //复制粘贴这行
+    ship = (stats?.entity?: return) as ShipAPI
+    val ship = ship as ShipAPI
+
 
 
 

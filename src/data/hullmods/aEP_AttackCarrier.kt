@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.WeaponAPI
+import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin.BULLET
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -14,6 +15,8 @@ import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
+import combat.util.aEP_ID.Companion.HULLMOD_BULLET
+import combat.util.aEP_ID.Companion.HULLMOD_POINT
 import combat.util.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import data.shipsystems.scripts.aEP_FighterLaunch
@@ -25,7 +28,7 @@ import java.awt.Color
 class aEP_AttackCarrier:aEP_BaseHullMod() {
 
   companion object{
-    const val RANGE_INCREASE_PERCENT = 50
+    const val RANGE_INCREASE_PERCENT = 0
     const val SPEED_BONUS_RANGE = 1000
     const val SPEED_THRESHOLD = 200
     const val SPEED_GAP_BONUS = 0.7f
@@ -129,14 +132,19 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    val h = Misc.getHighlightColor()
-    val n = Misc.getTextColor()
-    val g = Misc.getGrayColor()
-    val c = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF).baseUIColor
-    val d = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF).darkUIColor
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("- " + aEP_DataTool.txt("aEP_AttackCarrier00"), 5f, n,h , "$RANGE_INCREASE_PERCENT %")
-    tooltip.addPara("- " + aEP_DataTool.txt("aEP_AttackCarrier01"), 5f, n,h , SPEED_BONUS_RANGE.toString(), SPEED_THRESHOLD.toString())
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
+
+
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
+    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier01"), 5f, arrayOf(Color.green), HULLMOD_POINT, SPEED_BONUS_RANGE.toString(), SPEED_THRESHOLD.toString())
+
     for(wings in ship?.variant?.fittedWings?:ArrayList()) {
       val spec = Global.getSettings().getFighterWingSpec(wings)
       val name = spec.wingName
@@ -144,14 +152,13 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       //速度大于200或者不存在的联队就跳过
       if(speed >= SPEED_THRESHOLD) continue
       val string = StringBuffer()
-      string.append(name)
-      string.append(": {%s}")
+      string.append("$HULLMOD_BULLET{$name}{%s}")
       val bonus = "+" + ((SPEED_THRESHOLD - speed) * SPEED_GAP_BONUS).toInt().toString()
-      tooltip.addPara(string.toString(), 5f, g, h, bonus)
+      tooltip.addPara(string.toString(), 5f, txtColor, highLight, bonus)
     }
-    val fluxLevelString= (100f* MAX_ACTIVE_FLUX_LEVEL).toInt().toString()+"%"
-    tooltip.addPara("- " + aEP_DataTool.txt("aEP_AttackCarrier02"), 5f, n,h ,fluxLevelString, FORGE_TOTAL_TIME.toInt().toString())
 
+    val fluxLevelString= (100f* MAX_ACTIVE_FLUX_LEVEL).toInt().toString()+"%"
+    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier02"), 5f, arrayOf(Color.green), HULLMOD_POINT, fluxLevelString, FORGE_TOTAL_TIME.toInt().toString())
 
   }
 

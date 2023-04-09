@@ -17,6 +17,8 @@ import org.lwjgl.util.vector.Vector2f;
 import java.util.ArrayList;
 import java.util.List;
 
+import static combat.util.aEP_DataTool.txt;
+
 public class MissionDefinition implements MissionDefinitionPlugin
 {
 
@@ -31,14 +33,14 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     // Set a small blurb for each fleet that shows up on the mission detail and
     // mission results screens to identify each side.
-    api.setFleetTagline(FleetSide.PLAYER, "Lamdor星际巡逻队");
-    api.setFleetTagline(FleetSide.ENEMY, "海盗不可能凑出来的'海盗'舰队");
+    api.setFleetTagline(FleetSide.PLAYER, txt("aEP_Mission02_01"));
+    api.setFleetTagline(FleetSide.ENEMY, txt("aEP_Mission02_02"));
 
     // These show up as items in the bulleted list under
     // "Tactical Objectives" on the mission detail screen
-    api.addBriefingItem("敌人比你快得多，不要被包围了，让海量级掩护你");
-    api.addBriefingItem("海量级战术系统的燃料已经用完了，你不可能追得上任何一艘敌人");
-    api.addBriefingItem("你的峰值比他们长，坚持就是胜利");
+    api.addBriefingItem(txt("aEP_Mission02_03"));
+    api.addBriefingItem(txt("aEP_Mission02_04"));
+    api.addBriefingItem(txt("aEP_Mission02_05"));
 
 
     //在这加自己的船，用装配文件的ID，后面是船名，true和false是“是否是旗舰”的设定
@@ -51,6 +53,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配
     // Set up the enemy fleet.
     api.addToFleet(FleetSide.ENEMY, "aurora_Balanced", FleetMemberType.SHIP, "Unknown", true);
+    api.addToFleet(FleetSide.ENEMY, "aurora_Balanced", FleetMemberType.SHIP, "Unknown", false);
     api.addToFleet(FleetSide.ENEMY, "aurora_Balanced", FleetMemberType.SHIP, "Unknown", false);
     api.addToFleet(FleetSide.ENEMY, "shrike_Attack", FleetMemberType.SHIP, "Unknown", false);
     api.addToFleet(FleetSide.ENEMY, "shrike_Attack", FleetMemberType.SHIP, "Unknown", false);

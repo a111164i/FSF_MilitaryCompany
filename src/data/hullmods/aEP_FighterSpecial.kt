@@ -4,10 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CampaignUIAPI
 import com.fs.starfarer.api.campaign.econ.MarketAPI
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.combat.listeners.AdvanceableListener
-import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
-import com.fs.starfarer.api.combat.listeners.HullDamageAboutToBeTakenListener
-import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
+import com.fs.starfarer.api.combat.listeners.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_DAMAGE_MULT
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_RADIUS_MULT
@@ -25,6 +22,7 @@ import data.scripts.util.MagicAnim
 import data.scripts.util.MagicLensFlare
 import data.scripts.util.MagicRender
 import data.scripts.weapons.aEP_DecoAnimation
+import org.dark.graphics.plugins.ShipDestructionEffects
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
@@ -245,44 +243,49 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
 
     var shouldEnd = false
     override fun advance(amount: Float) {
+
       time = MathUtils.clamp(time + aEP_Tool.getAmount(ship),0f,999f)
       val shieldLevel = shieldTime/TIME_TO_EXTEND
       val fluxLevel = MathUtils.clamp(ship.fluxLevel,0f,1f)
-      //改变盾大小，和只改radius冲突，需要每帧调用，别动最好，因为盾的外圈是最先渲染的，动态调整会影响ring的贴图
-      /*
-      val rad = MAX_SHIELD_RADIUS * MagicAnim.smooth(shieldLevel)
-      ship.shield?.setRadius(rad,
-        Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_inner03"),
-        Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_outer03"))
-      //顺便改变船碰撞圈的大小
-      ship.collisionRadius = MathUtils.clamp(rad,40f,MAX_SHIELD_RADIUS)
-       */
-      //盾颜色
-      ship.shield.innerColor = Color(0.5f+0.5f*fluxLevel,
-        0.5f,
-        0.65f*(1f-fluxLevel),
-        (0.2f * shieldLevel * shieldLevel) +MagicAnim.smooth((0.35f*(1f-fluxLevel))))
 
-      //若开盾强制增加软幅能，增加护盾时间。若不开盾增加机动时间，减少护盾时间，机动超时后快速涨幅能
-      if(ship.shield?.isOn == true){
-        shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
-        ship.fluxTracker.increaseFlux((FLUX_INCREASE+ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
-        for(w in ship.allWeapons){
-          if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow"){
-            //注意一下这3个存进去的类并不是初始化的时候就一起初始化的
-            (w.effectPlugin as aEP_DecoAnimation).decoGlowController.toLevel = 1f
+      //如果有盾，就产生效果
+      if(ship.shield != null){
+        //改变盾大小，和只改radius冲突，需要每帧调用，别动最好，因为盾的外圈是最先渲染的，动态调整会影响ring的贴图
+        /*
+        val rad = MAX_SHIELD_RADIUS * MagicAnim.smooth(shieldLevel)
+        ship.shield?.setRadius(rad,
+          Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_inner03"),
+          Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_outer03"))
+        //顺便改变船碰撞圈的大小
+        ship.collisionRadius = MathUtils.clamp(rad,40f,MAX_SHIELD_RADIUS)
+         */
+        //盾颜色
+        ship.shield.innerColor = Color(0.5f+0.5f*fluxLevel,
+          0.5f,
+          0.65f*(1f-fluxLevel),
+          (0.2f * shieldLevel * shieldLevel) +MagicAnim.smooth((0.35f*(1f-fluxLevel))))
+
+        //若开盾强制增加软幅能，增加护盾时间。若不开盾增加机动时间，减少护盾时间，机动超时后快速涨幅能
+        if(ship.shield?.isOn == true){
+          shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
+          ship.fluxTracker.increaseFlux((FLUX_INCREASE+ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
+          for(w in ship.allWeapons){
+            if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow"){
+              //注意一下这3个存进去的类并不是初始化的时候就一起初始化的
+              (w.effectPlugin as aEP_DecoAnimation).decoGlowController.toLevel = 1f
+            }
           }
-        }
-      }else{
-        shieldTime = MathUtils.clamp(shieldTime - aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
-        moveTime = MathUtils.clamp(moveTime + aEP_Tool.getAmount(ship),0f,MAX_MOVE_TIME)
-        if(moveTime >= MAX_MOVE_TIME){
-          ship.fluxTracker.increaseFlux((ship.fluxTracker.maxFlux * 0.2f + ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
-        }
-        for(w in ship.allWeapons){
-          if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow") {
-            //注意一下这3个存进去的类并不是初始化的时候就一起初始化的，在开战第一帧call会报空
-            (w.effectPlugin as aEP_DecoAnimation)?.decoGlowController?.toLevel = 0f
+        }else{
+          shieldTime = MathUtils.clamp(shieldTime - aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
+          moveTime = MathUtils.clamp(moveTime + aEP_Tool.getAmount(ship),0f,MAX_MOVE_TIME)
+          if(moveTime >= MAX_MOVE_TIME){
+            ship.fluxTracker.increaseFlux((ship.fluxTracker.maxFlux * 0.2f + ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
+          }
+          for(w in ship.allWeapons){
+            if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow") {
+              //注意一下这3个存进去的类并不是初始化的时候就一起初始化的，在开战第一帧call会报空
+              (w.effectPlugin as aEP_DecoAnimation)?.decoGlowController?.toLevel = 0f
+            }
           }
         }
       }
@@ -570,7 +573,7 @@ open class aEP_CruiseMissile : BaseHullMod() {
         )
         spec.damageType = DamageType.HIGH_EXPLOSIVE
         engine.spawnDamagingExplosion(spec, ship, point)
-        engine.combatNotOverFor = engine.combatNotOverFor + 4f
+        engine.combatNotOverFor = engine.combatNotOverFor + 2f
         engine.removeEntity(ship)
 
       }
@@ -758,7 +761,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
           engine.addNebulaParticle(
             loc, Vector2f(0f,0f),200f*SIZE_MULT, 1.5f,
             0f,0.5f, 2.5f+1.5f*MathUtils.getRandomNumberInRange(0f,1f),
-            Color(100, 100, 100, 55))
+            Color(100, 100, 100, 60))
         }
 
         //横杠闪光
@@ -834,7 +837,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
         )
         spec.damageType = DamageType.HIGH_EXPLOSIVE
         engine.spawnDamagingExplosion(spec, ship, point)
-        engine.combatNotOverFor = engine.combatNotOverFor + 4f
+        engine.combatNotOverFor = engine.combatNotOverFor + 2f
         engine.removeEntity(ship)
       }
     }
@@ -1046,14 +1049,13 @@ class aEP_Module : aEP_BaseHullMod() {
     const val DAMAGE_MULT = 0.001f
     const val DAMAGE_RANGE_MULT = 0.25f
   }
-  var id: String = "aEP_Module"
+  var ID: String = "aEP_Module"
   override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, id: String) {
-    this.id = id
     stats?:return
-    stats.dynamic.getStat(EXPLOSION_DAMAGE_MULT)?.modifyMult(id, DAMAGE_MULT)
-    stats.dynamic.getStat(EXPLOSION_RADIUS_MULT)?.modifyMult(id, DAMAGE_RANGE_MULT)
+    stats.dynamic.getStat(EXPLOSION_DAMAGE_MULT)?.modifyMult(ID, DAMAGE_MULT)
+    stats.dynamic.getStat(EXPLOSION_RADIUS_MULT)?.modifyMult(ID, DAMAGE_RANGE_MULT)
 
-    stats.ventRateMult.modifyMult(id,0f)
+    stats.ventRateMult.modifyMult(ID,0f)
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
@@ -1081,6 +1083,36 @@ class aEP_Module : aEP_BaseHullMod() {
       }
     }
 
+  }
+
+  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    if(!ship.customData.containsKey(ID)){
+      ship.addListener(DamageListener(ship))
+      ship.setCustomData(ID,1f)
+    }
+  }
+
+
+
+  /**
+   * 返回true表示保持舰船不死
+   * 通过这个死前把模块的幅能清空，防止殉爆高闪
+   * */
+  inner class DamageListener(val ship: ShipAPI) : HullDamageAboutToBeTakenListener, AdvanceableListener{
+    var shouldEnd = false
+
+    override fun notifyAboutToTakeHullDamage(param: Any?, ship: ShipAPI?, point: Vector2f?, damageAmount: Float): Boolean {
+      ship?:return false
+      if(damageAmount >= ship.hitpoints && !shouldEnd){
+        ship.mutableStats.fluxCapacity.modifyMult(ID,0.05f)
+        ship.fluxTracker.currFlux = 0f
+        return false
+      }
+      return false
+    }
+
+    override fun advance(amount: Float) {
+    }
   }
 }
 

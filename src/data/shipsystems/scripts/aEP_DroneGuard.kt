@@ -112,7 +112,7 @@ class aEP_DroneGuard: BaseShipSystemScript(){
     val ship = (stats?.entity?: return) as ShipAPI
     this.ship = ship
 
-    ship.setShield(ShieldAPI.ShieldType.NONE,0f,1f,180f)
+    ship.setShield(ShieldAPI.ShieldType.FRONT,0f,1f,0f)
 
     stats.maxTurnRate.unmodify(id)
     stats.turnAcceleration.unmodify(id)

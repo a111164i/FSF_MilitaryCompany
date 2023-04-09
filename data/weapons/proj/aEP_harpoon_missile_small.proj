@@ -2,14 +2,14 @@
 	"id":"aEP_harpoon_missile_small",
 	"specClass":"missile",
 	"missileType":"MISSILE",
-    #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"sprite":"graphics/weapons/aEP_harpoon_large/s.png",
 	"size":[11,24],	
 	"center":[5.5,12],
 	"collisionRadius":14,
 	"collisionClass":"MISSILE_NO_FF",
 	#"explosionColor":[100,100,100,25],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":180, # purely visual
+	"explosionRadius":120, # purely visual
 	"explosionSpec":{"duration":0.1f, # not visual
 					 "radius":30,
 					 "coreRadius":30, # full damage within core radius
@@ -20,7 +20,7 @@
 					 "particleDuration":1,
 					 "particleCount":1,
 					 "particleColor":[250,250,250,250]},
-    "alwaysAccelerate":true,
+  "alwaysAccelerate":true,
 	"flameoutTime":0.6,  # total time from flameout to full fadeout
 	"armingTime":1, # safe range count by time
 	"noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)				

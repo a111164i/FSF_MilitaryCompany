@@ -16,7 +16,8 @@ class aEP_FuelBurn: BaseShipSystemScript() {
   val fuelUse = 10f;
   var activeCompensation = 1
   override fun apply(stats: MutableShipStatsAPI?, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
-    //stats的entity有可能为null
+
+    //复制粘贴这行
     val ship = (stats?.entity?: return)as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
 

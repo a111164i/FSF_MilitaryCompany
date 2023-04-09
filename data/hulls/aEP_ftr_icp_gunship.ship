@@ -18,15 +18,13 @@
     "aEP_FighterArmor",
     "turretgyros"
   ],
-  "builtInWeapons": {
-  },
   "weaponSlots": [
     {
       "id": "WS0001",
       "size": "SMALL",
       "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 250,
+      "arc": 210,
       "angle": 135,
       "locations": [-13, 11]
     },
@@ -35,7 +33,7 @@
       "size": "SMALL",
       "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 250,
+      "arc": 210,
       "angle": -135,
       "locations": [-13, -11]
     },
@@ -44,7 +42,7 @@
       "size": "SMALL",
       "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 250,
+      "arc": 210,
       "angle": 45,
       "locations": [11, 11.5]
     },
@@ -72,7 +70,7 @@
       "size": "SMALL",
       "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 250,
+      "arc": 210,
       "angle": -45,
       "locations": [11, -11.5]
     },

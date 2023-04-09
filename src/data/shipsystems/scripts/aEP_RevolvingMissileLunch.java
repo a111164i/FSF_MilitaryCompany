@@ -28,6 +28,8 @@ public class aEP_RevolvingMissileLunch extends BaseShipSystemScript
 
   @Override
   public void apply(MutableShipStatsAPI stats, String id, State state, float effectLevel) {
+    //复制粘贴
+    if(stats == null || stats.getEntity() == null || !(stats.getEntity() instanceof ShipAPI)) return;
     ShipAPI ship = (ShipAPI) stats.getEntity();
 
     //死了强行使用一次

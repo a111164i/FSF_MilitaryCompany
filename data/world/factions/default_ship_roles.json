@@ -4,13 +4,17 @@
   "combatSmallForSmallFleet": {
     "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 10,
-    "aEP_fga_yonglang_Mixed": 5,
+    "aEP_fga_yonglang_Mixed": 3,
+    "aEP_fga_yonglang_Standard": 4,
     "aEP_fga_raoliu_PD":4,
     "aEP_fga_raoliu_Standard":6,
 
 },
   "combatSmall": {
-    "aEP_fga_yonglang_Mixed": 10,
+    "aEP_fga_wanliu_Standard": 4,
+    "aEP_fga_wanliu_Elite": 6,
+    "aEP_fga_yonglang_Standard": 6,
+    "aEP_fga_yonglang_Mixed": 4,
     "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 5,
     "aEP_fga_raoliu_PD": 5,

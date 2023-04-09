@@ -10,6 +10,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
@@ -24,7 +25,8 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
   }
 
   init {
-    notCompatibleList.add("aEP_RapidDissipate")
+    notCompatibleList.add(aEP_BurstDissipate.ID)
+    notCompatibleList.add(aEP_RapidDissipate.ID)
     notCompatibleList.add(HullMods.SAFETYOVERRIDES)
     haveToBeWithMod.add(aEP_MarkerDissipation.ID)
   }
@@ -32,9 +34,8 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI , id: String) {
     val numOfDissipation = ship.variant.numFluxVents
     ship.mutableStats.fluxDissipation.modifyFlat(ID_P,-numOfDissipation* PER_PUNISH)
-
     if (!ship.hasListenerOfClass(FluxDissipationDynamic::class.java)) {
-      ship.addListener(FluxDissipationDynamic(ship, numOfDissipation * PER_BONUS))
+      ship.addListener(FluxDissipationDynamic(ship, numOfDissipation * PER_BONUS, numOfDissipation * PER_PUNISH))
     }
   }
 
@@ -62,37 +63,43 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
 
     //val fluxVent = (ship.variant.numFluxVents + ship.variant.numFluxCapacitors) * BASE_BUFF_PER_VENT
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
+    //先说常规加成会-5，再说给额外15浮动，这样符合逻辑
+    tooltip.addPara("{%s}"+ txt("aEP_SoftfluxDissipate03") , 5f, arrayOf(Color.red), aEP_ID.HULLMOD_POINT, String.format("%.0f", PER_PUNISH))
+
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
-    //先说常规加成会-5，再说给额外15浮动，这样符合逻辑
-    image.addPara("- " + aEP_DataTool.txt("aEP_SoftfluxDissipate03") , 5f, Color.white, Color.red, PER_PUNISH.toInt().toString() )
-    image.addPara("- " + aEP_DataTool.txt("aEP_SoftfluxDissipate02") , 5f, Color.white, Color.green, PER_BONUS.toInt().toString(),"0" )
+    image.addPara("{%s}"+ txt("aEP_SoftfluxDissipate02"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", PER_BONUS- PER_PUNISH), "0")
+
     tooltip.addImageWithText(5f)
   }
 
 
-  inner class FluxDissipationDynamic(val ship: ShipAPI, val maxBonus: Float):AdvanceableListener{
+  inner class FluxDissipationDynamic(val ship: ShipAPI, val maxBonus: Float, val maxPunish:Float):AdvanceableListener{
     val checkTracker = IntervalUtil(0.25f,0.25f)
     var heatingLevel = 0f
 
     override fun advance(amount: Float) {
       //维持玩家左下角的提示
-      val bonus = heatingLevel * maxBonus * MathUtils.clamp(1f-ship.hardFluxLevel,0f,1f)
+      val level = heatingLevel * MathUtils.clamp(1f-ship.hardFluxLevel,0f,1f)
+      val bonus = level * maxBonus
+      //val punish = heatingLevel * maxPunish
       if (Global.getCombatEngine().playerShip == ship) {
         Global.getCombatEngine().maintainStatusForPlayerShip(
-          this.javaClass.simpleName,  //key
+          this.javaClass.simpleName+"1",  //key
           Global.getSettings().getHullModSpec(ID).spriteName,  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("aEP_SoftfluxDissipate01")  + bonus.toInt(),  //data
-          false
+          aEP_DataTool.txt("aEP_SoftfluxDissipate01")  + (bonus-maxPunish).toInt(),  //data
+          (maxPunish - bonus) >= 0
         )
       }
 
       checkTracker.advance(amount)
       if(!checkTracker.intervalElapsed()) return
-      //根据预热程度，增加舰船幅散
       heatingLevel = aEP_MarkerDissipation.getBufferLevel(ship)
+      //根据预热程度，增加浮动幅散
       ship.mutableStats.fluxDissipation.modifyFlat(ID_B, bonus)
+      //根据预热程度，抑制基础幅散
+      //ship.mutableStats.fluxDissipation.modifyFlat(ID_P,-punish)
 
     }
   }

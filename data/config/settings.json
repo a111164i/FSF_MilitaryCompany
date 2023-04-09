@@ -4,8 +4,8 @@
 			"background1":"graphics/aEP_background/background1.jpg",
 		},
 		"blueprint_packages":{
-      		"FSF_bp":"graphics/aEP_items/FSF_bp.png",
-      		"FSF_openbp":"graphics/aEP_items/FSF_openbp.png",
+			"FSF_rarebp":"graphics/aEP_items/FSF_rarebp.png",
+			"FSF_openbp":"graphics/aEP_items/FSF_openbp.png",
      
 		},
 		"aEP_FX":{
@@ -96,6 +96,9 @@
 			"none":"graphics/aEP_items/aEP_none.png",
 			"cruise_missile":"graphics/aEP_items/aEP_cruise_missile.png",
 			"cruise_missile2":"graphics/aEP_items/aEP_cruise_missile.png"
+		},
+		"aEP_hullsys":{
+			"aEP_MissilePlatform":"graphics/aEP_hullsys/aEP_missile_platform.png"
 		}
 	},
 
@@ -105,6 +108,8 @@
 		"a111164CampaignPlugin":"data.scripts.campaign.a111164CampaignPlugin",
 		"aEP_BuffEffect": "combat.plugin.aEP_BuffEffect",
 		"aEP_CombatEffectPlugin": "combat.plugin.aEP_CombatEffectPlugin",
+
+		#"aEP_MissionPlugin": "combat.plugin.aEP_MissionPlugin",
 		#"aEP_RotateSlot": "data.scripts.plugins.aEP_RotateSlot"
 	},
 	

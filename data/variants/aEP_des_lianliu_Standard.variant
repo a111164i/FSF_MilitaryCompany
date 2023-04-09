@@ -15,7 +15,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0001": "aEP_trauma_cannon"}
+            "weapons": {"WS0001": "aEP_b_m_trauma"}
         },
         {
             "autofire": true,

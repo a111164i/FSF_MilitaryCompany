@@ -7,6 +7,7 @@ import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.mission.MissionDefinitionAPI;
 import com.fs.starfarer.api.mission.MissionDefinitionPlugin;
+import data.missions.aEP_MissionUtils;
 
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     // Set a small blurb for each fleet that shows up on the mission detail and
     // mission results screens to identify each side.
-    api.setFleetTagline(FleetSide.PLAYER, "FSF舰船测试");
-    api.setFleetTagline(FleetSide.ENEMY, "模拟目标");
+    api.setFleetTagline(FleetSide.PLAYER, "FSF Test");
+    api.setFleetTagline(FleetSide.ENEMY, "Test");
 
     // These show up as items in the bulleted list under
     // "Tactical Objectives" on the mission detail screen
@@ -68,15 +69,19 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
 
     //护卫
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP, "FSF ship 08", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship 08", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_PD", FleetMemberType.SHIP, "FSF ship 11", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Mixed", FleetMemberType.SHIP, "FSF ship 01", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_wanliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_PD", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Mixed", FleetMemberType.SHIP, "FSF ship", false);
 
     //特殊
-    api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship 01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_mk2_Standard", FleetMemberType.SHIP, "FSF ship 01", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_lengshe_Standard", FleetMemberType.SHIP, "FSF ship", false);
+
+    //取消filter
+    aEP_MissionUtils.restore();
 
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配

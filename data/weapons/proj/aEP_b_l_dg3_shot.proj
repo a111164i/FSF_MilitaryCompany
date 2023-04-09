@@ -4,9 +4,9 @@
   "spawnType":"BALLISTIC",
   "collisionClass":"PROJECTILE_FF",
   "collisionClassByFighter":"PROJECTILE_FIGHTER",
-  "length":4.0,
+  "length":20.0,
   "width":4.0,
-  "fadeTime":0.4,
+  "fadeTime":0.3,
 
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
@@ -22,5 +22,5 @@
   "textureScrollSpeed":64.0,
   "pixelsPerTexel":5.0,
   "passThroughMissiles":false,
-  "bulletSprite":"graphics/missiles/shell_small_yellow.png"
+  "bulletSprite":"graphics/weapons/aEP_b_l_dg3/shell.png"
 }

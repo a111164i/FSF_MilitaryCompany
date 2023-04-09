@@ -29,7 +29,8 @@ class aEP_VectorThrust : BaseShipSystemScript() {
   val afterImageTracker = IntervalTracker(0.05f,0.05f)
 
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
-    val ship = (stats?.entity?: return) as ShipAPI
+    //复制粘贴这行
+    val ship = (stats?.entity?: return)as ShipAPI
     val angleAndSpeed = aEP_Tool.velocity2Speed(ship.velocity)
     val angleDist = MathUtils.getShortestRotation(angleAndSpeed.x,ship.facing)
     val amount = aEP_Tool.getAmount(ship)

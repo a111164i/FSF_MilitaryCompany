@@ -7,7 +7,7 @@
 	"length":80.0,
 	"hitGlowRadius":300,
 	"width":20.0,
-	"fadeTime":0.1,
+	"fadeTime":0.3,
 	"passThroughMissiles":true,	
 	#"onHitEffect":"",
 	"fringeColor":[250,100,170,105],

@@ -7,11 +7,13 @@ import data.hullmods.aEP_ModuleTargeting
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipVariantAPI
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
 import combat.util.aEP_ID
+import combat.util.aEP_ID.Companion.HULLMOD_BULLET
 import java.awt.Color
 
 class aEP_ModuleTargeting : aEP_BaseHullMod() {
@@ -52,8 +54,6 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
       syncId = "targetingunit"
       if (m.hasHullMod(syncId)) m.removeMod(syncId)
       syncId = "dedicated_targeting_core"
-      if (m.hasHullMod(syncId)) m.removeMod(syncId)
-      syncId = "aEP_TargetSystem"
       if (m.hasHullMod(syncId)) m.removeMod(syncId)
     }
   }
@@ -103,11 +103,12 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
     tooltip.addSectionHeading(aEP_DataTool.txt("aEP_ModuleTargeting01"), Alignment.MID, 5f)
-    tooltip.addPara("- " + "{%s}", 5f, Color.white, Color.green, Global.getSettings().getHullModSpec("dedicated_targeting_core").displayName)
-    tooltip.addPara("- " + "{%s}", 5f, Color.white, Color.green, Global.getSettings().getHullModSpec("targetingunit").displayName)
+    tooltip.addPara("{%s}"+"{%s}", 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT,  Global.getSettings().getHullModSpec(HullMods.DEDICATED_TARGETING_CORE).displayName)
+    tooltip.addPara("{%s}"+"{%s}", 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT,  Global.getSettings().getHullModSpec(HullMods.INTEGRATED_TARGETING_UNIT).displayName)
+
     tooltip.addSectionHeading(aEP_DataTool.txt("aEP_ModuleTargeting03"), Alignment.MID, 5f)
-    tooltip.addPara("- " + "{%s}", 5f, Color.white, Color.red, Global.getSettings().getHullModSpec("safetyoverrides").displayName)
-    tooltip.addPara("- " + "{%s}", 5f, Color.white, Color.red, Global.getSettings().getHullModSpec("aEP_TargetSystem").displayName)
+    tooltip.addPara("{%s}"+"{%s}", 5f, arrayOf(Color.red), aEP_ID.HULLMOD_POINT,  Global.getSettings().getHullModSpec(HullMods.SAFETYOVERRIDES).displayName)
+
     tooltip.addPara(aEP_DataTool.txt("aEP_ModuleTargeting02"), Color.gray, 5f)
   }
 }

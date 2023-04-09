@@ -13,10 +13,10 @@
 	"engineActivateHiddenNozzles":false,
 	"engineGlowColor":[255,60,60,255],
 	"engineGlowContrailColor":[255,100,100,25],
-	"engineGlowMaxBlend":0.8,
-	"engineGlowLengthMult":3,
-	"engineGlowWidthMult":3,
-	"engineGlowGlowMult":2,
+	"engineGlowMaxBlend":0.9,
+	"engineGlowLengthMult":4,
+	"engineGlowWidthMult":2,
+	"engineGlowGlowMult":4,
 	
 	"flameoutOnImpactChance":0,
 

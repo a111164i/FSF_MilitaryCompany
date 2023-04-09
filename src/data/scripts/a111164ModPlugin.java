@@ -8,6 +8,8 @@ import com.fs.starfarer.api.campaign.SectorAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
+import combat.util.aEP_Tool;
+import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
 import data.scripts.campaign.a111164CampaignPlugin;
 import data.scripts.world.aEP_gen;
@@ -25,9 +27,11 @@ public class a111164ModPlugin extends BaseModPlugin
   public static final String CruiseMissile2_ID = "aEP_CruiseMissile2";
 
 
+
   //shipAI plugin pick
   @Override
   public PluginPick<ShipAIPlugin> pickShipAI(FleetMemberAPI member, ShipAPI ship) {
+
     if (ship.getHullSpec().getHullId().equals(RepairDrone_ID)) {
       return new PluginPick<ShipAIPlugin>(new aEP_RepairingDroneAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
     }
@@ -55,7 +59,9 @@ public class a111164ModPlugin extends BaseModPlugin
   public PluginPick<MissileAIPlugin> pickMissileAI(MissileAPI missile, ShipAPI launchingShip) {
     switch (missile.getProjectileSpecId()) {
       case "aEP_harpoon_missile":
+      case "aEP_harpoon_missile_small":
         return new PluginPick<MissileAIPlugin>(new aEP_MissileAI(missile,launchingShip), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+
     }
     return null;
   }
@@ -72,6 +78,23 @@ public class a111164ModPlugin extends BaseModPlugin
     }
 
     return null;
+  }
+
+  @Override
+  public void onApplicationLoad() throws Exception {
+    try{
+      aEP_MissionUtils.loadDefaultWeapon(Global.getSettings().getAllWeaponSpecs());
+      aEP_MissionUtils.loadDefaultWing(Global.getSettings().getAllFighterWingSpecs());
+      aEP_MissionUtils.loadDefaultHullMod(Global.getSettings().getAllHullModSpecs());
+    } catch (Exception e1){
+      aEP_Tool.Util.addDebugLog("aEP_ onApplicationLoad filter mission weapon wrong");
+    }
+
+  }
+
+  @Override
+  public void onGameLoad(boolean newGame) {
+    aEP_MissionUtils.restore();
   }
 
   //create a sector

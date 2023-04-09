@@ -1,0 +1,31 @@
+{
+    "displayName": "",
+    "fluxCapacitors": 4,
+    "fluxVents": 6,
+    "goalVariant": true,
+    "hullId": "glimmer",
+    "hullMods": ["safetyoverrides"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_glimmer_Assault",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 001": "heavyblaster",
+                "WS 005": "sabot"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS 004": "atropos"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 003": "ioncannon"}
+        }
+    ]
+}

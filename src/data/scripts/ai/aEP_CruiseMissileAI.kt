@@ -5,6 +5,7 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.util.aEP_Tool
 import data.scripts.util.MagicTargeting
+import data.scripts.weapons.aEP_cruise_missile_weapon_shot.Companion.TARGET_KEY
 
 class aEP_CruiseMissileAI: aEP_BaseShipAI {
 
@@ -16,7 +17,7 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
   constructor(m: ShipAPI, ship: ShipAPI?) : super(ship) {
     this.m = m
     this.s = ship
-    if(ship?.shipTarget != null){
+    if(ship?.shipTarget != null && !ship.shipTarget.isFighter && !ship.shipTarget.isDrone){
       t = ship.shipTarget
       stat = StraightToTarget()
     }else{
@@ -41,13 +42,14 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
         stat = Searching()
         return
       }
+
       if(t is ShipAPI){
-        t = t as ShipAPI
-        if((t as ShipAPI).isPhased){
+        val t = t as ShipAPI
+        if(t.isPhased){
           m.giveCommand(ShipCommand.ACCELERATE,null,0)
         }else{
-          if(t?.location != null){
-            aEP_Tool.flyThroughPosition(m,t?.location)
+          if(t.location != null){
+            aEP_Tool.flyThroughPosition(m,t.location)
           }else{
             stat = Searching()
           }
@@ -60,6 +62,12 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
   inner class Searching() : Status() {
     val searchTracker = IntervalUtil(0.25f,0.25f)
     override fun advance(amount: Float) {
+      //如果t被人为设置，或者上一帧已经找到了目标，就直接转入StraightToTarget
+      if(t != null){
+        stat = StraightToTarget()
+        return
+      }
+
       m.giveCommand(ShipCommand.ACCELERATE,null,0)
       searchTracker.advance(amount)
       if(!searchTracker.intervalElapsed()) return
@@ -75,7 +83,6 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
         60,
         false
       )
-      if(t != null)stat = StraightToTarget()
     }
   }
 }

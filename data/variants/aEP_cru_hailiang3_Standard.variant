@@ -31,16 +31,16 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0004": "aEP_trauma_cannon",
-                "WS0005": "aEP_trauma_cannon"
+                "WS0004": "aEP_b_m_trauma",
+                "WS0005": "aEP_b_m_trauma"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_trauma_cannon",
-                "WS0002": "aEP_trauma_cannon"
+                "WS0001": "aEP_b_m_trauma",
+                "WS0002": "aEP_b_m_trauma"
             }
         }
     ],

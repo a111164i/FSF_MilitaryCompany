@@ -11,6 +11,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import java.awt.Color
@@ -50,7 +51,7 @@ class aEP_HotLoader : aEP_BaseHullMod() {
       checkTracker.advance(amount)
       //每0.25秒计算一次全武器
       if(!checkTracker.intervalElapsed()) return
-      val timePassed = checkTracker.minInterval
+      val timePassed = checkTracker.elapsed
       heatLevel = aEP_MarkerDissipation.getBufferLevel(ship)
       var extra = EXTRA_SPEED_ON_FIRE * heatLevel
       //如果战术系统是高压填弹，再加百分之50速度，暂时封印，太强了
@@ -97,10 +98,12 @@ class aEP_HotLoader : aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
-    tooltip.addPara("- " + aEP_DataTool.txt("aEP_HotLoader01"), 5f, Color.white, Color.green, String.format("%.0f", RELOAD_PERCENT * 100f))
+    tooltip.addPara("{%s}"+ txt("aEP_HotLoader01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", RELOAD_PERCENT * 100f)+"%")
+
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    val image2 = tooltip.beginImageWithText(Global.getSettings().getHullModSpec("aEP_HotLoader").spriteName, 48f)
-    image2.addPara("- " + aEP_DataTool.txt("ammo_regen_speed_up") + "{%s}", 5f, Color.white, Color.green, (EXTRA_SPEED_ON_FIRE * 100).toInt().toString() + "%")
+    val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec("aEP_HotLoader").spriteName, 48f)
+    image.addPara("{%s}"+ txt("ammo_regen_speed_up") , 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", EXTRA_SPEED_ON_FIRE * 100f)+"%")
+
     tooltip.addImageWithText(5f)
   }
 

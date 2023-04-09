@@ -14,7 +14,7 @@
     "knownWeapons":{
 			"tags":[],
 			"weapons":[	
-                "aEP_trauma_cannon",
+                "aEP_b_m_trauma",
                 "aEP_breakin_hammer",	
 			],
 		},

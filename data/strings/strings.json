@@ -4,10 +4,10 @@
 		"only_on_FSF":"只能安装在FSF的舰船上",
 		"not_capital":"不能安装在主力舰上",
 		"not_cruiser":"不能安装在巡洋舰上",
-		"effect":"效果",
+		"effect":"常驻效果",
 		"no_link":"目前没有任何联动效果",
 		"not_compatible":"不兼容",
-		"when_soft_up":"预热完成时",
+		"when_soft_up":"预热完成时 额外效果",
 		"when_soft_not_up":"尚未完全预热时",
 		"flux_gen_reduce":"武器幅能产生减少",
 
@@ -19,24 +19,27 @@
 		"MD_des03":"受到伤害减免百分之",
 		"MD_des04":"* 不计入因为承受伤害导致的软幅能增加，如光束武器命中护盾",
 		"missile_health_up":"导弹生命值提高",
-		"MP_des01":"对于小型槽位，舰船每100秒生产等价于{%s}装配点的导弹",
-		"MP_des02":"对于中型槽位，舰船每100秒生产等价于{%s}装配点的导弹",
-		"MP_des03":"对于大型槽位，舰船每100秒生产等价于{%s}装配点的导弹",
-		"MP_des04":"导弹急速提高",
-		"MP_des05":"导弹射速降低",
-		"missile_reload_speed_down":"导弹射速降低",
-		"zero_flux_speed_reduce":"零幅能加速减少",
-		
+
+		"MP_des00": "总装填率",
+		"MP_des01":"对于小型导弹，每100秒最多生产等价于{%s}装配点的弹药",
+		"MP_des02":"对于中型导弹，每100秒最多生产等价于{%s}装配点的弹药",
+		"MP_des03":"对于大型导弹，每100秒最多生产等价于{%s}装配点的弹药",
+		"MP_des04":"所有导弹的备弹量不会超过{%s}轮的发射量",
+		"MP_des05":"当前总装填率: ",
+		"MP_des06":"当总装填率为{%s}时，不同导弹武器的最大生产速度如下: ",
+		"MP_des07":"总装填率的回复速度，为本舰安装的全部导弹武器装配点总和的{%s}除以100 ",
+		"MP_des08":"* 例如装配点为30的导弹武器，基础备弹为10发，则每发导弹价值为3点",
+
 		"extra":"额外",
-		"weapon_range_up":"附近友军为主力舰时，武器射程提升",
-		"weapon_range_up2":"附近友军为巡洋舰时，武器射程提升",
-		"weapon_range_up3":"附近友军为驱逐舰时，武器射程提升",
-		"weapon_range_up4":"附近友军为护卫舰时，武器射程提升",
+		"weapon_range_up":"附近友军为主力舰时，武器射程提升{%s}}",
+		"weapon_range_up2":"附近友军为巡洋舰时，武器射程提升{%s}",
+		"weapon_range_up3":"附近友军为驱逐舰时，武器射程提升{%s}",
+		"weapon_range_up4":"附近友军为护卫舰时，武器射程提升{%s}",
 		"max_speed_down":"最大速度降低",
 		"shield_damge_taken_reduce":"护盾承受伤害减少",
-		"ammo_regen_speed_up":"弹药恢复速度再提升",
+		"ammo_regen_speed_up":"弹药恢复速度再提升{%s}}",
 		"HotLoader_desc02":"当本舰的战术系统激活时，弹药恢复速度再提升{%s}",
-		"reduce_flux_per_hit":"每次生效的同时减少{%s}点软幅能",
+		"reduce_flux_per_hit":"每次生效的同时减少{%s}点幅能",
 		
 		"add":"增加",
 		"reduce":"减少",
@@ -47,7 +50,7 @@
 		"only_on_small_ship":"只能安装在护卫舰和驱逐舰上",
 		"VA_des01":"船体每次受到伤害时,有百分之{%s}的概率减少伤害{%s}点",
 
-		"aEP_HotLoader01": "所有非内置，非导弹的武器获得常驻百分之{%s}的装填速度加成",
+		"aEP_HotLoader01": "所有非内置，非导弹的武器获得常驻{%s}的装填速度加成",
 		
 		"CMCarrier01":"本舰装填已经完成",
 		"CMCarrier02":"CR过低停止装填",
@@ -191,12 +194,42 @@
 		"aEP_AttackCarrier04":"冷却剩余: %s",
 
 		"aEP_SoftfluxDissipate01":"幅能耗散增加: ",
-		"aEP_SoftfluxDissipate02":"每一点耗散通道除了正常加成，还会额外获得{%s}的浮动加成，这些加成随着舰船硬幅能水平上升而逐渐减少到{%s}",
+		"aEP_SoftfluxDissipate02":"每一点耗散通道不再造成常驻的耗散减少，而是获得{%s}的浮动加成，但这些加成随着舰船硬幅能水平上升而逐渐减少到{%s}",
 		"aEP_SoftfluxDissipate03":"每一点耗散通道的正常加成减少{%s}",
+		"aEP_SoftfluxDissipate04":"幅能耗散变动: ",
 
 		"aEP_RapidDissipate01":"根据当前幅能水平，每次舰体受到伤害时，耗散掉最多等同于伤害量的{%s}的幅能",
 		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散",
 
-		"aEP_ApproachingTo":"正在接近 "
+		"aEP_BurstDissipate01": "每一点耗散通道的正常加成增加{%s}",
+		"aEP_BurstDissipate02": "每一点耗散通道不再提供常驻的额外加成，而是造成{%s}的耗散减少",
+		"aEP_BurstDissipate03": "幅能耗散变动: ",
+		"aEP_BurstDissipate04": "护盾伤害吸收率劣化{%s}",
+
+		"aEP_FortressShieldStats01": "护盾伤害承受减免 %s",
+
+		"aEP_ApproachingTo":"正在接近 ",
+
+		"aEP_Mission01_01": "你的舰队",
+		"aEP_Mission01_02": "模拟目标",
+		"aEP_Mission01_03": "公司的驱逐舰不太能承受伤害且缺失导弹武器",
+		"aEP_Mission01_04": "指挥你的骚扰型战舰吸引火力，制造集中火力的空间",
+		"aEP_Mission01_05": "在多对一的情况下利用战术系统快速摧毁目标",
+
+		"aEP_Mission02_01": "Lamdor星际巡逻队",
+		"aEP_Mission02_02": "海盗不可能凑出来的'海盗'舰队",
+		"aEP_Mission02_03": "敌人比你快得多，不要被包围了，让海量级掩护你",
+		"aEP_Mission02_04": "海量级战术系统的燃料已经用完了，你不可能追得上任何一艘敌人",
+		"aEP_Mission02_05": "你的峰值比他们长，坚持就是胜利",
+
+		"aEP_Mission03_01": "边缘测绘舰队019200号",
+		"aEP_Mission03_02": "余辉巡逻队",
+		"aEP_Mission03_03": "不能损失<破冰号>，<汹涌号>",
+		"aEP_Mission03_04": "最多损失一艘战舰",
+		"aEP_Mission03_05": "不可以使用FSF势力未拥有的武器，战机联队，插件",
+
+		"aEP_Mission04_01": "DWR43余辉歼灭舰队",
+		"aEP_Mission04_02": "余辉舰队",
+		"aEP_Mission04_03": "不能损失<涌动>号",
 	}
 }

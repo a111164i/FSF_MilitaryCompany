@@ -16,7 +16,6 @@
     "always_detaches",
     "aEP_MarkerDissipation",
     "axialrotation",
-    "aEP_MissilePlatform",
     "turretgyros",
   ],
   "weaponSlots": [

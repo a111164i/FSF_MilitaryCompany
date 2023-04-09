@@ -5,8 +5,8 @@
   "type": "BALLISTIC",
   "size": "LARGE",
   "everyFrameEffect": "data.scripts.weapons.aEP_ChaingunAnimation",
-  "turretSprite": "graphics/weapons/aEP_large_long_barrel_chaingun/aEP_long_barrel_chaingun_turret_base00.png",
-  "hardpointSprite": "graphics/weapons/aEP_large_long_barrel_chaingun/aEP_long_barrel_chaingun_hardpoint_base00.png",
+  "turretSprite": "graphics/weapons/aEP_b_l_dg3/aEP_long_barrel_chaingun_turret_base00.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_l_dg3/aEP_long_barrel_chaingun_hardpoint_base00.png",
   "turretOffsets": [
     23,
     -8,

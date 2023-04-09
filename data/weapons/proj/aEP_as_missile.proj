@@ -33,8 +33,8 @@
   #"useProjectileRangeCalculation":false
   #defaults to 0.5 (same as what was hardcoded before)
   #"dudProbabilityOnFlameout":0.5
-	"engineSpec":{"turnAcc":120,
-				  "turnRate":80,
+	"engineSpec":{"turnAcc":100,
+				  "turnRate":66,
 				  "acc":200,
 				  "dec":50},
 	"engineSlots":[{"id":"ES1",

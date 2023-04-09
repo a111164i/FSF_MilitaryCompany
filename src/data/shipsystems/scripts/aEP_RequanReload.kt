@@ -10,12 +10,15 @@ import combat.plugin.aEP_CombatEffectPlugin
 import data.shipsystems.scripts.aEP_NCReloadScript.RefresherOrb
 import com.fs.starfarer.api.combat.WeaponAPI
 import combat.util.aEP_Tool
+import data.hullmods.aEP_MissilePlatform
 import data.shipsystems.scripts.aEP_RequanReload
 
 class aEP_RequanReload : BaseShipSystemScript() {
   var didVisual = false
-  override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
-    val ship = stats.entity as ShipAPI ?: return
+
+  override fun apply(stats: MutableShipStatsAPI?, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
+    //复制粘贴这行
+    val ship = (stats?.entity?: return)as ShipAPI
 
     //使用的一瞬间启用特效
     if (!didVisual) {
@@ -25,6 +28,13 @@ class aEP_RequanReload : BaseShipSystemScript() {
 
     //effectLevel == 1f 时运行一次
     if (effectLevel < 1f) return
+    
+    //回满总装填率
+    if(ship.customData.containsKey(aEP_MissilePlatform.ID)){
+      val loadingClass = ship.customData[aEP_MissilePlatform.ID] as aEP_MissilePlatform.LoadingMap
+      loadingClass.currRate = loadingClass.maxRate
+    }
+
     for (w in ship.allWeapons) {
       //少量减少内置导弹cd
       if (w.slot.weaponType != WeaponAPI.WeaponType.BUILT_IN) {

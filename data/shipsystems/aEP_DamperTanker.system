@@ -19,8 +19,7 @@
 	
 	#"statsScript":"com.fs.starfarer.api.impl.combat.DamperFieldStats",
 	"statsScript":"data.shipsystems.scripts.aEP_DamperTanker",
-	#"statsScript":"data.shipsystems.scripts.FortressShieldStats",
-	
+
 
 	
 	#"weaponGlowColor":[255,165,90,0],

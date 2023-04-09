@@ -11,6 +11,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
@@ -22,14 +23,15 @@ import kotlin.math.round
 class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
 
   companion object {
-    const val DAMAGE_CONVERTED = 0.75f
+    const val DAMAGE_CONVERTED = 0.65f
     var ID = "aEP_RapidDissipate"
     val FLOAT_TEXT_COLOR = Color(20,100,240) //每次受击都new一个颜色类有点废性能
   }
 
   init {
+    notCompatibleList.add(aEP_SoftfluxDissipate.ID)
+    notCompatibleList.add(aEP_BurstDissipate.ID)
     notCompatibleList.add(HullMods.SAFETYOVERRIDES)
-    notCompatibleList.add("aEP_SoftfluxDissipate")
     haveToBeWithMod.add("aEP_MarkerDissipation")
   }
 
@@ -75,11 +77,13 @@ class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    //tooltip.addPara("- " + aEP_DataTool.txt("flux_diss") + aEP_DataTool.txt("alter") + "{%s}", 5f, Color.white,h , fluxVent.toInt().toString())
+
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec("aEP_RapidDissipate").spriteName, 48f)
-    image.addPara("- " + aEP_DataTool.txt("aEP_RapidDissipate01") , 5f, Color.white, Color.green, round(DAMAGE_CONVERTED*100).toInt().toString()+"%")
+    val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
+    image.addPara("{%s}"+txt("aEP_RapidDissipate01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f",DAMAGE_CONVERTED*100f)+"%")
     tooltip.addImageWithText(5f)
+
+    //额外灰色说明
     tooltip.addPara(aEP_DataTool.txt("aEP_RapidDissipate02"), Color.gray, 5f)
 
   }

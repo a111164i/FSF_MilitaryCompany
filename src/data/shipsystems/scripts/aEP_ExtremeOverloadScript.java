@@ -35,7 +35,7 @@ import static java.lang.Math.PI;
 
 public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
 {
-  static final float ROF_BONUS = 2f;
+  static final float ROF_BONUS = 1.5f;
   static final float FLUX_PERCENT_TO_OVERLOAD_TIME = 0.1f;//how many percent accumulated flux of total flux convert to 1 second overload
   static final float MAX_OVERLOAD_TIME = 10f;
   static final float WEAPON_COST_REDUCE_MULT = 0.5f;
@@ -66,8 +66,10 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
 
   @Override   //run every frame
   public void apply(MutableShipStatsAPI stats, String id, State state, float effectLevel) {
+    //复制粘贴
+    if(stats == null || stats.getEntity() == null || !(stats.getEntity() instanceof ShipAPI)) return;
     ShipAPI ship = (ShipAPI) stats.getEntity();
-    if(ship == null) return;
+
     amount = aEP_Tool.getAmount(ship);
 
     //检测每帧的软幅能增长

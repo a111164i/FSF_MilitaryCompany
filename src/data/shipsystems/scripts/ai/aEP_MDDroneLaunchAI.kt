@@ -9,8 +9,12 @@ import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 
 class aEP_MDDroneLaunchAI:aEP_BaseSystemAI() {
+  companion object{
+    const val TARGET_KEY = "aEP_MDDroneLaunchAI_assign_target"
+  }
+
   override fun initImpl() {
-    thinkTracker.setInterval(0.2f,0.3f)
+    thinkTracker.setInterval(0.5f,0.5f)
   }
 
   fun getMultiple(size :ShipAPI.HullSize): Float{
@@ -39,9 +43,11 @@ class aEP_MDDroneLaunchAI:aEP_BaseSystemAI() {
     }
     targetWeightPicker.add(ship,getWeight(ship)*getMultiple(ship.hullSize))
     val target = targetWeightPicker.pick()
+    shouldActive = false
     if(target != null){
-      ship.customData["aEP_MDDroneLaunchAI_assign_target"] = aEP_Tool.getExtendedLocationFromPoint(target.location,target.facing,target.collisionRadius/2f)
-      ship.useSystem()
+      //如果是ai使用，把ai的目标塞入母舰的customData
+      ship.customData[TARGET_KEY] = aEP_Tool.getExtendedLocationFromPoint(target.location,target.facing,target.collisionRadius)
+      shouldActive = true
     }
   }
 

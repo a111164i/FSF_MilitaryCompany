@@ -1,5 +1,5 @@
 {
-	"id":"aEP_trauma_cannon_eject",
+	"id":"aEP_b_m_trauma_eject",
  #	"everyFrameEffect":"",
 	"specClass":"projectile",
 	"type":"SYSTEM",
@@ -14,6 +14,6 @@
 	"renderHints":[RENDER_LOADED_MISSILES],	
 	"interruptibleBurst":false,
 	"animationType":"NONE",
-	"projectileSpecId":"aEP_trauma_cannon_ammo",
+	"projectileSpecId":"aEP_b_m_trauma_eject_shot",
 	"fireSoundTwo":""
 }

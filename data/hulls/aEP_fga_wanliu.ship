@@ -1,0 +1,119 @@
+{
+  "hullName": "",
+  "hullId": "aEP_fga_wanliu",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_wangliu.png",
+  "style": "aEP_FSF",
+  "height": 150,
+  "width": 140,
+  "center": [70, 80],
+  "collisionRadius": 92.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 89.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_MarkerDissipation",
+    "aEP_TargetSystem"
+  ],
+  "builtInWeapons": {
+    "WS0005": "aEP_fga_wanliu_cover"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "LARGE",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -0,
+      "locations": [12, -0]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-26, -12],
+      "renderOrderMod": 100
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 60,
+      "angle": -0,
+      "locations": [29, 17]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-2, 1],
+      "renderOrderMod": 10
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-63, 17],
+      "length": 43.5,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 16,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-63, -17],
+      "length": 43.5,
+      "width": 16,
+      "angle": -180,
+      "contrailSize": 16,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-60, 41],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-60, -41],
+      "length": 30,
+      "width": 10,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    21, 12.5,
+    32, 12.5,
+    36, 19.5,
+    54.5, 19.5,
+    54.5, 37.5,
+    -25.5, 40.5,
+    -41.5, 48,
+    -64.5, 36.5,
+    -65.5, 23.5,
+    -61.5, 21.5,
+    -61.5, 13.5,
+    -56.5, 9.5,
+    -56.5, -9.5,
+    -61.5, -13.5,
+    -61.5, -21.5,
+    -65.5, -23.5,
+    -64.5, -36.5,
+    -41.5, -48,
+    -25.5, -40.5,
+    54.5, -37.5,
+    54.5, -18.5,
+    21, -18.5
+  ]
+}

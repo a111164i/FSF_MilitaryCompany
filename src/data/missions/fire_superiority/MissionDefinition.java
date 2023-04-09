@@ -14,6 +14,8 @@ import combat.util.aEP_Tool;
 
 import java.util.List;
 
+import static combat.util.aEP_DataTool.txt;
+
 public class MissionDefinition implements MissionDefinitionPlugin
 {
 
@@ -27,28 +29,25 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     // Set a small blurb for each fleet that shows up on the mission detail and
     // mission results screens to identify each side.
-    api.setFleetTagline(FleetSide.PLAYER, "你的舰队");
-    api.setFleetTagline(FleetSide.ENEMY, "模拟目标");
+    api.setFleetTagline(FleetSide.PLAYER, txt("aEP_Mission01_01"));
+    api.setFleetTagline(FleetSide.ENEMY, txt("aEP_Mission01_02"));
 
     // These show up as items in the bulleted list under
     // "Tactical Objectives" on the mission detail screen
-    api.addBriefingItem("公司的驱逐舰不太能承受伤害且缺失导弹武器，在与"+ aEP_Tool.Util.getShipSpecName("enforcer") +"一对一中处于下风");
-    api.addBriefingItem("指挥你的骚扰型战舰吸引火力，制造集中火力的空间");
-    api.addBriefingItem("在多对一的情况下利用战术系统快速摧毁目标");
-    api.addBriefingItem("在这场战斗中，你不能使用"+aEP_Tool.Util.getHullModName("safetyoverrides") );
+    api.addBriefingItem(txt("aEP_Mission01_03"));
+    api.addBriefingItem(txt("aEP_Mission01_04"));
+    api.addBriefingItem(txt("aEP_Mission01_05"));
 
 
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
     //api.addToFleet(FleetSide.PLAYER, "harbinger_Strike", FleetMemberType.SHIP, "TTS Invisible Hand", true, CrewXPLevel.VETERAN);
-    api.addToFleet(FleetSide.PLAYER, "aEP_des_lianliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_des_lianliu_Elite", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_cengliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_cengliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
 
-    //api.defeatOnShipLoss("FSF ship 01");
 
 
     // Set up the enemy fleet.

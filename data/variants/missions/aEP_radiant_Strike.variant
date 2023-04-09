@@ -1,0 +1,53 @@
+{
+    "displayName": "",
+    "fluxCapacitors": 40,
+    "fluxVents": 47,
+    "goalVariant": true,
+    "hullId": "radiant",
+    "hullMods": [
+        "targetingunit",
+        "missleracks"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_radiant_Strike",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 000": "plasma",
+                "WS 001": "plasma"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 002": "hammerrack",
+                "WS 004": "hammerrack"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 006": "phasecl",
+                "WS 007": "phasecl"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 003": "plasma"}
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 005": "phasecl",
+                "WS 008": "phasecl"
+            }
+        }
+    ]
+}

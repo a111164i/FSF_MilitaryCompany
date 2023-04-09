@@ -26,7 +26,7 @@
 
 
     "behaviorSpec":{"behavior":"PROXIMITY_FUSE",
-            "shotRangeVariance":0.75,
+            "shotRangeVariance":0.5,
             "probOfVariance":0.5,
             "range":0,
             "explosionSpec":{"duration":0.0001f,

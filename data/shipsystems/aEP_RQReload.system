@@ -7,7 +7,7 @@
 	"statsScript":"data.shipsystems.scripts.aEP_RequanReload",
 	#这里不留空，会自动把其他导弹一起装了
 	"weaponTypes":[],
-	"minFractionToReload":0.65,
+	"minFractionToReload":0.25,
 	
 	"useSound":"system_fast_missile_racks",
 	"outOfUsesSound":"gun_out_of_ammo",

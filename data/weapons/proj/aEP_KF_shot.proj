@@ -9,7 +9,7 @@
 	"bulletSprite":"graphics/missiles/shell_large_green.png",
 	"collisionRadius":1,
 	"length":30.0,
-	"hitGlowRadius":50,
+	"hitGlowRadius":25,
 	"width":6,
 	"fadeTime":0.25,
 	"fringeColor":[235,255,215,235],

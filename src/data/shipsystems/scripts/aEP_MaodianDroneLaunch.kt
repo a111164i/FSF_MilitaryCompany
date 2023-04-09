@@ -5,6 +5,8 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import data.scripts.weapons.aEP_cru_maodian_missile
+import data.shipsystems.scripts.ai.aEP_MDDroneLaunchAI
+import org.lwjgl.util.vector.Vector2f
 import javax.swing.plaf.ColorUIResource
 
 class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
@@ -12,8 +14,11 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
     const val SYSTEM_RANGE = 1600f
   }
 
+  var targetLoc:Vector2f? = null
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
+    //复制粘贴这行
     val ship = (stats?.entity?: return)as ShipAPI
+
     //每帧运行
     //检测系统是否就绪，如果否就不显示模拟无人机的导弹
     var weapon : WeaponAPI? = null
@@ -26,9 +31,9 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
         weapon.animation.frame = 1
       }
     }
-
-
     weapon?: return
+
+
     //运行一帧
     if(effectLevel >= 1){
       Global.getCombatEngine().spawnMuzzleFlashOrSmoke(ship,weapon.slot,weapon.spec,0,weapon.currAngle)
@@ -36,6 +41,5 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
       aEP_cru_maodian_missile().onFire(proj as DamagingProjectileAPI,weapon,Global.getCombatEngine(),weapon.spec.weaponId)
     }
   }
-
 
 }

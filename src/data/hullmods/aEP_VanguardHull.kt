@@ -22,6 +22,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import java.awt.Color
@@ -43,11 +44,7 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    //remove itself if ship has not compatible hullmod
-    if (!isApplicableToShip(ship)) {
-      ship.variant.removeMod(id)
-      return
-    }
+
     ship.mutableStats.dynamic.getMod(Stats.INDIVIDUAL_SHIP_RECOVERY_MOD).modifyFlat(id, 1000f)
     if (!ship.hasListenerOfClass(aEP_VanguardDamageTaken::class.java)) {
       ship.addListener(aEP_VanguardDamageTaken(REDUCE_AMOUNT[ship.hullSize]!!.toFloat(), ship))
@@ -61,7 +58,6 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
 
   //在船插还是物品的的时候，ship的参数可能为null
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    ship?:return
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
     val highLight = Misc.getHighlightColor()
     val grayColor = Misc.getGrayColor()
@@ -72,11 +68,13 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
 
     //tooltip.addGrid( 5 * 5f + 10f);
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("- " + aEP_DataTool.txt("VA_des01"), 5f, Color.white, Color.green, String.format("%.0f", REDUCE_PERCENT * 100f), REDUCE_AMOUNT[hullSize]!!.toInt().toString() + "")
+    tooltip.addPara("{%s}"+ txt("VA_des01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT,  String.format("%.0f", REDUCE_PERCENT * 100f), REDUCE_AMOUNT[hullSize]?.toInt()?.toString()?:0f.toString())
+
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec("aEP_VanguardHull").spriteName, 48f)
-    image.addPara("- " + aEP_DataTool.txt("reduce_flux_per_hit"), 5f, Color.white, Color.green, String.format("%.1f", FLUX_REDUCE_PER_HIT))
+    image.addPara("{%s}"+ txt("reduce_flux_per_hit"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT,  String.format("%.1f", FLUX_REDUCE_PER_HIT))
     tooltip.addImageWithText(5f)
+
   }
 
   internal class aEP_VanguardDamageTaken(reduceAmount: Float, ship: ShipAPI) : DamageTakenModifier, AdvanceableListener {

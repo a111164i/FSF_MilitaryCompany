@@ -601,6 +601,39 @@ class aEP_Tool {
       }
     }
 
+    @JvmStatic
+    fun isFriendlyInLine(from: Vector2f, to: Vector2f): ShipAPI? {
+      val dist = MathUtils.getDistance(from,to)
+      val facing = VectorUtils.getAngle(from,to)
+      val allShipsInArc: MutableList<CombatEntityAPI> = ArrayList()
+      val allShips = CombatUtils.getEntitiesWithinRange(from, dist) ?: return null
+      for (s in allShips) {
+        val targetFacing = VectorUtils.getAngle(from, s.location)
+        val targetWidth = getTargetWidthAngleInDistance(from, s)
+        if (Math.abs(MathUtils.getShortestRotation(facing, targetFacing)) < targetWidth / 2 && s is ShipAPI && !s.isFighter) {
+          //Global.getCombatEngine().addFloatingText(s.getLocation(),MathUtils.getShortestRotation(weaponFacing , targetFacing) + "", 20f ,new Color(100,100,100,100),s, 0.25f, 120f);
+          allShipsInArc.add(s)
+        }
+      }
+      var closestDist = 4000f
+      var closestShip: CombatEntityAPI? = null
+      for (c in allShipsInArc) {
+        if (MathUtils.getDistance(c, from) < closestDist) {
+          closestDist = MathUtils.getDistance(c, from)
+          closestShip = c
+        }
+      }
+      if (closestShip == null) {
+        return null
+      }
+      val ship = closestShip as ShipAPI
+      return if (ship.isAlly || ship.owner == 0) {
+        ship
+      } else {
+        null
+      }
+    }
+
     fun isEnemyInRange(from: WeaponAPI): ShipAPI? {
       val weaponRange = from.range
       val weaponFacing = from.currAngle
@@ -667,29 +700,6 @@ class aEP_Tool {
     fun aimToAngle(weapon: WeaponAPI, angle: Float) {
       val ship = weapon.ship
       val maxTurnRate = weapon.turnRate / 60f
-      val angleDist = MathUtils.getShortestRotation(weapon.currAngle, angle)
-      if (Math.abs(MathUtils.getShortestRotation(weapon.slot.angle + ship.facing, angle)) > weapon.slot.arc / 2) {
-      } else {
-        if (angleDist >= 0) {
-          if (angleDist > maxTurnRate) {
-            weapon.currAngle = weapon.currAngle + maxTurnRate
-          } else {
-            weapon.currAngle = angle
-          }
-        } else {
-          if (angleDist < -maxTurnRate) {
-            weapon.currAngle = weapon.currAngle - maxTurnRate
-          } else {
-            weapon.currAngle = angle
-          }
-        }
-      }
-    }
-
-    @JvmStatic
-    fun aimToAngle(weapon: WeaponAPI, angle: Float, speed: Float) {
-      val ship = weapon.ship
-      val maxTurnRate = speed
       val angleDist = MathUtils.getShortestRotation(weapon.currAngle, angle)
       if (Math.abs(MathUtils.getShortestRotation(weapon.slot.angle + ship.facing, angle)) > weapon.slot.arc / 2) {
       } else {
@@ -943,7 +953,11 @@ class aEP_Tool {
 
     @JvmStatic
     fun isNormalWeaponSlotType(slot: WeaponSlotAPI, containMissile: Boolean): Boolean {
-      return if (slot.weaponType != WeaponAPI.WeaponType.DECORATIVE && slot.weaponType != WeaponAPI.WeaponType.BUILT_IN && slot.weaponType != WeaponAPI.WeaponType.LAUNCH_BAY && slot.weaponType != WeaponAPI.WeaponType.SYSTEM && slot.weaponType != WeaponAPI.WeaponType.STATION_MODULE) {
+      return if (slot.weaponType != WeaponAPI.WeaponType.DECORATIVE &&
+        slot.weaponType != WeaponAPI.WeaponType.BUILT_IN &&
+        slot.weaponType != WeaponAPI.WeaponType.LAUNCH_BAY &&
+        slot.weaponType != WeaponAPI.WeaponType.SYSTEM &&
+        slot.weaponType != WeaponAPI.WeaponType.STATION_MODULE) {
         if (containMissile) {
           true
         } else {
@@ -954,7 +968,11 @@ class aEP_Tool {
 
     @JvmStatic
     fun isNormalWeaponType(w: WeaponAPI, containMissile: Boolean): Boolean {
-      return if (w.type != WeaponAPI.WeaponType.DECORATIVE && w.type != WeaponAPI.WeaponType.BUILT_IN && w.type != WeaponAPI.WeaponType.LAUNCH_BAY && w.type != WeaponAPI.WeaponType.SYSTEM && w.type != WeaponAPI.WeaponType.STATION_MODULE) {
+      return if (w.type != WeaponAPI.WeaponType.DECORATIVE &&
+        w.type != WeaponAPI.WeaponType.BUILT_IN &&
+        w.type != WeaponAPI.WeaponType.LAUNCH_BAY &&
+        w.type != WeaponAPI.WeaponType.SYSTEM &&
+        w.type != WeaponAPI.WeaponType.STATION_MODULE) {
         if (containMissile) {
           true
         } else {
@@ -978,9 +996,9 @@ class aEP_Tool {
       var ableToFireCost = 0.01f
       for (w in group.weaponsCopy) {
         if (w.distanceFromArc(toTargetPo) == 0f && isNormalWeaponSlotType(w.slot, false)) {
-          allCost = allCost + w.spec.getOrdnancePointCost(null, null)
+          allCost += w.spec.getOrdnancePointCost(null, null)
           if (MathUtils.getDistance(w.location, toTargetPo) > w.range - rangeFix) {
-            ableToFireCost = ableToFireCost + w.spec.getOrdnancePointCost(null, null)
+            ableToFireCost += w.spec.getOrdnancePointCost(null, null)
           }
         }
       }
@@ -1160,21 +1178,6 @@ class aEP_Tool {
       var closestDistance = Float.MAX_VALUE
       for (tmp in AIUtils.getAlliesOnMap(entity)) {
         if (tmp.isFighter || tmp.owner != entity.owner) continue
-        distance = MathUtils.getDistance(tmp, entity.location)
-        if (distance < closestDistance) {
-          closest = tmp
-          closestDistance = distance
-        }
-      }
-      return closest
-    }
-
-    fun findNearestEnemyFighter(entity: CombatEntityAPI): ShipAPI? {
-      var closest: ShipAPI? = null
-      var distance: Float
-      var closestDistance = Float.MAX_VALUE
-      for (tmp in AIUtils.getEnemiesOnMap(entity)) {
-        if (!tmp.isFighter || tmp.owner == entity.owner) continue
         distance = MathUtils.getDistance(tmp, entity.location)
         if (distance < closestDistance) {
           closest = tmp
@@ -1589,6 +1592,8 @@ class aEP_ID{
     val VECTOR2F_ZERO = Vector2f(0f,0f)
     const val FACTION_ID_FSF = "aEP_FSF"
     const val FACTION_ID_FSF_ADV = "aEP_FSF_adv"
+    const val HULLMOD_POINT = "#"
+    const val HULLMOD_BULLET = "     --"
     const val CONFIRM = "Confirm"
     const val CANCEL = "Cancel"
     const val RETURN = "Return"

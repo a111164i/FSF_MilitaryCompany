@@ -60,7 +60,8 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
 
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
-    val ship = (stats?.entity?: return) as ShipAPI
+    //复制粘贴这行
+    val ship = (stats?.entity?: return)as ShipAPI
     if(engineBackLeft1 == null || engineBackLeft2 == null || engineFrontLeft1 == null || engineFrontLeft2 == null){
       if(engineBackRight1 == null || engineBackRight2 == null || engineFrontRight1 == null || engineFrontRight2 == null){
         findEngines(ship)
