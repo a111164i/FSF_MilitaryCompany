@@ -1141,42 +1141,10 @@ class aEP_FlyingTank : aEP_BaseHullMod(){
     if(!ship.hasListenerOfClass(RangeListener::class.java)) ship.addListener(RangeListener(ship))
   }
 
-  class RangeListener(val ship: ShipAPI) : WeaponRangeModifier, AdvanceableListener{
-    val thinkTracker = IntervalUtil(0.5f,0.5f)
-    val armorTracker = IntervalUtil(0.25f,0.25f)
-    var rangePercent = 0f
-
-    override fun getWeaponRangePercentMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
-      if(weapon?.hasAIHint(WeaponAPI.AIHints.PD) == false){
-        return rangePercent
-      }
-      return 0f
-    }
-
-    override fun getWeaponRangeMultMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
-      return 1f
-    }
-
-    override fun getWeaponRangeFlatMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
-      return 0f
-    }
+  class RangeListener(val ship: ShipAPI) : AdvanceableListener{
+    val armorTracker = IntervalUtil(0.1f,0.1f)
 
     override fun advance(amount: Float) {
-      thinkTracker.advance(amount)
-      if(thinkTracker.intervalElapsed()) {
-        //找附近最大的友军，改变射程加成
-        rangePercent = 0f
-        for(f in AIUtils.getNearbyAllies( ship,400f)){
-          f?:continue
-          if(f.isFighter) continue
-          var bonus = 0f
-          if(f.hullSize == ShipAPI.HullSize.CAPITAL_SHIP) bonus = 0.6f
-          else if(f.hullSize == ShipAPI.HullSize.CRUISER) bonus = 0.4f
-          else if(f.hullSize == ShipAPI.HullSize.DESTROYER) bonus = 0.2f
-          else if(f.hullSize == ShipAPI.HullSize.FRIGATE) bonus = 0.1f
-          if(bonus > rangePercent) rangePercent = bonus
-        }
-      }
 
       armorTracker.advance(amount)
       if(armorTracker.intervalElapsed()){
@@ -1207,7 +1175,7 @@ class aEP_FlyingTank : aEP_BaseHullMod(){
           val armorAtMin = ship.armorGrid.getArmorValue(minX, minY)
           val needRepair = cellMaxArmor - armorAtMin
           //做不到完全回复
-          if ( needRepair > 0.01f) {
+          if ( needRepair > 0.1f) {
             var toAddArmor = 0f
             if(needRepair > toRepair){
               toAddArmor = toRepair
@@ -1222,7 +1190,6 @@ class aEP_FlyingTank : aEP_BaseHullMod(){
           }
         }
       }
-
 
     }
   }

@@ -1,10 +1,10 @@
 {
-	"id":"aEP_b_l_dg3_shot",
-	"specClass":"projectile",
+  "id":"aEP_b_l_dg3_shot",
+  "specClass":"projectile",
   "spawnType":"BALLISTIC",
   "collisionClass":"PROJECTILE_FF",
   "collisionClassByFighter":"PROJECTILE_FIGHTER",
-  "length":20.0,
+  "length":40.0,
   "width":4.0,
   "fadeTime":0.3,
 
