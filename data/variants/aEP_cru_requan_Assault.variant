@@ -1,55 +1,57 @@
 {
-    "displayName": "Assault",
-    "fluxCapacitors": 6,
-    "fluxVents": 18,
-    "goalVariant": true,
-    "hullId": "aEP_cru_requan",
-    "hullMods": [
-        "hardenedshieldemitter",
-        "unstable_injector",
-        "targetingunit"
-    ],
-    "permaMods": [],
-    "sMods": [],
-    "variantId": "aEP_cru_requan_Assault",
-    "weaponGroups": [
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "aEP_harpoon_small",
-                "WS0002": "aEP_harpoon_small",
-                "WS0003": "aEP_harpoon_small",
-                "WS0004": "aEP_harpoon_small",
-                "WS0005": "aEP_harpoon_small",
-                "WS0006": "aEP_harpoon_small"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0010": "aEP_as_bay",
-                "WS0011": "aEP_as_bay"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0007": "aEP_b_m_mb32",
-                "WS0008": "aEP_b_m_mb32"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0009": "vulcan"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0016": "aEP_cru_requan_missile"}
-        }
-    ]
+  "variantId": "aEP_cru_requan_Assault",
+  "hullId": "aEP_cru_requan",
+  "displayName": "Assault",
+  "goalVariant": true,
+  "fluxCapacitors": 9,
+  "fluxVents": 19,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "hardenedshieldemitter",
+    "unstable_injector",
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "aEP_m_s_harpoon",
+        "WS0004": "aEP_m_s_harpoon",
+        "WS0005": "aEP_m_s_harpoon",
+        "WS0006": "aEP_as_bay"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0010": "aEP_as_bay",
+        "WS0011": "aEP_as_bay"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "aEP_b_m_mb32",
+        "WS0008": "aEP_b_m_mb32"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0016": "aEP_cru_requan_missile"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
 }

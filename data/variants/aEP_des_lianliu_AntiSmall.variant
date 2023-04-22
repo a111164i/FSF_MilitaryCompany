@@ -18,8 +18,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0002": "aEP_EMP_pike",
-                "WS0003": "aEP_EMP_pike"
+                "WS0002": "aEP_b_m_rk107",
+                "WS0003": "aEP_b_m_rk107"
             }
         },
         {

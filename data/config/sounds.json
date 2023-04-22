@@ -90,7 +90,7 @@
   "aEP_RW_hit": [
   	{"file": "sounds/weapons/aEP_RW_gun/RW_fire3.ogg", "pitch": 1, "volume": 1.2},
   ],
-   "aEP_pompom_fire": [
+  "aEP_pompom_fire": [
   	{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 0.95, "volume": 0.35},
 		{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 1.05, "volume": 0.35},
   ],
@@ -108,6 +108,10 @@
 	],	
   "aEP_harpoon_large_fire": [
   	{"file": "sounds/weapons/aEP_harpoon_large/fire.ogg", "pitch": 1, "volume": 1},	
+  ],
+  "aEP_b_m_rk107_fire": [
+    {"file": "sounds/weapons/aEP_b_m_rk107/fire3.ogg", "pitch": 0.74, "volume": 0.75},
+    {"file": "sounds/weapons/aEP_b_m_rk107/fire3.ogg", "pitch": 0.77, "volume": 0.8},
   ],
   
   #hullmods

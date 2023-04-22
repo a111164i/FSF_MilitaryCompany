@@ -1,0 +1,68 @@
+{
+  "id": "aEP_b_m_rk107",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_b_m_rk107_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "mountTypeOverride":"COMPOSITE",
+  "turretSprite": "graphics/weapons/aEP_b_m_rk107/tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_m_rk107/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_m_rk107/hp.png",
+  "renderHints": [
+    RENDER_LOADED_MISSILES
+  ],
+  "turretOffsets": [
+    2,
+    5,
+    2,
+    2,
+    2,
+    -1,
+    2,
+    -4
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    5,
+    5,
+    5,
+    2,
+    5,
+    -1,
+    5,
+    -4
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "interruptibleBurst": true,
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 15,
+    "particleSizeRange": 10,
+    "cloudParticleCount": 16,
+    "cloudDuration": 0.8,
+    "cloudRadius": 20,
+    "blowbackParticleCount": 16,
+    "blowbackDuration": 1,
+    "blowbackLength": 40,
+    "blowbackSpread": 0,
+    "particleColor": [
+      255,
+      255,
+      255,
+      55
+    ]
+  },
+	"fireSoundTwo":"aEP_b_m_rk107_fire",
+}

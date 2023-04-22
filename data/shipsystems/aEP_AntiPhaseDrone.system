@@ -3,8 +3,8 @@
 	"type":"STAT_MOD",
 	#"aiType":"WEAPON_BOOST",
 	"aiType":"CUSTOM",
-	"aiScript":"data.shipsystems.scripts.ai.aEP_AntiPhaseDroneAI",
-	"statsScript":"data.shipsystems.scripts.aEP_AntiPhaseDrone",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_AntiPhaseDroneAI",
+	"statsScript":"data.scripts.shipsystems.aEP_AntiPhaseDrone",
    
 	"runScriptWhileIdle":false,  # this means unapply() never gets called	
 	"useSound":"gun_out_of_ammo",

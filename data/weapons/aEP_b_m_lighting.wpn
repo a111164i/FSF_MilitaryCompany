@@ -1,0 +1,64 @@
+{
+  "id": "aEP_b_m_lighting",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_b_m_lighting_shot",
+  "type": "BALLISTIC",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/trbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/hpbr.png",
+  "visualRecoil": 5,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    22,
+    6,
+    24,
+    2,
+    24,
+    -2,
+    22,
+    -6
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    25,
+    6,
+    27,
+    2,
+    27,
+    -2,
+    25,
+    -6
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "DUAL",
+  "animationType": "MUZZLE_FLASH",
+  "muzzleFlashSpec": {
+    "length": 15,
+    "spread": 5,
+    "particleSizeMin": 6,
+    "particleSizeRange": 6,
+    "particleDuration": 0.1,
+    "particleCount": 8,
+    "particleColor": [
+      65,
+      75,
+      255,
+      255
+    ]
+  },
+  "fireSoundTwo": "light_assault_gun_fire"
+}

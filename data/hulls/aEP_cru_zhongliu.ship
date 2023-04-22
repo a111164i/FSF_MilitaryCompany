@@ -158,33 +158,17 @@
   ],
   "engineSlots": [
     {
-      "location": [-133.5, 33],
-      "length": 41,
-      "width": 15,
-      "angle": 180,
-      "contrailSize": 15,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-133.5, -33],
-      "length": 41,
-      "width": 15,
-      "angle": -180,
-      "contrailSize": 15,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-131.5, 19.5],
-      "length": 73.5,
-      "width": 26,
+      "location": [-130.5, 20],
+      "length": 65,
+      "width": 22,
       "angle": -180,
       "contrailSize": 26,
       "style": "FSF_MAIN"
     },
     {
-      "location": [-131.5, -19.5],
-      "length": 73.5,
-      "width": 26,
+      "location": [-130.5, -20],
+      "length": 65,
+      "width": 22,
       "angle": 180,
       "contrailSize": 26,
       "style": "FSF_MAIN"

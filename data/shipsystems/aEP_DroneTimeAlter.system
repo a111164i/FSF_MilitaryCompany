@@ -3,8 +3,8 @@
 	"type":"STAT_MOD",
 	#"aiType":"TEMPORAL_SHELL",
 	"aiType":"CUSTOM",
-	"aiScript":"data.shipsystems.scripts.ai.aEP_DroneTimeAlterAI",
-	"statsScript":"data.shipsystems.scripts.aEP_DroneTimeAlter",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_DroneTimeAlterAI",
+	"statsScript":"data.scripts.shipsystems.aEP_DroneTimeAlter",
 
 	"clampTurnRateAfter":true,
 	"clampMaxSpeedAfter":true,

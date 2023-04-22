@@ -15,7 +15,7 @@
     "autorepair",
     "insulatedengine",
     "armoredweapons",
-      "aEP_FighterArmor",
+    "aEP_FighterArmor",
   ],
   "builtInWeapons": {
     "WS0001": "aEP_ftr_ftr_hvfighter_gun",

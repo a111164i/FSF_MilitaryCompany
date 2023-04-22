@@ -2,7 +2,7 @@
 	"id":"aEP_cruise_missile_shot2",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC",
-  	"collisionClass":"PROJECTILE_FF",
+	"collisionClass":"PROJECTILE_FF",
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
 	"length":80.0,
 	"hitGlowRadius":300,

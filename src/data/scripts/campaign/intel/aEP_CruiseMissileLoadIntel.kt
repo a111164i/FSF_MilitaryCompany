@@ -17,11 +17,9 @@ import combat.util.aEP_ID.Companion.CONFIRM
 import combat.util.aEP_ID.Companion.RETURN
 import combat.util.aEP_ID.Companion.SELECT
 import combat.util.aEP_Tool
-import data.hullmods.aEP_CruiseMissileCarrier
+import data.scripts.hullmods.aEP_CruiseMissileCarrier
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin
-import jdk.jfr.Description
 import org.lazywizard.lazylib.MathUtils
-import org.lwjgl.opengl.GL11
 import java.awt.Color
 import java.util.*
 

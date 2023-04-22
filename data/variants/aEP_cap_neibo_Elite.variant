@@ -60,8 +60,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0005": "aEP_forcus_laser",
-                "WS0006": "aEP_forcus_laser"
+                "WS0005": "aEP_e_s_300k",
+                "WS0006": "aEP_e_s_300k"
             }
         }
     ]

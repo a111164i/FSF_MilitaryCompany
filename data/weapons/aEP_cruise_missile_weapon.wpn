@@ -7,7 +7,7 @@
   #展示武器数据的时候用的炮塔贴图，装在船上用挂载点不显示贴图
   "turretSprite": "graphics/weapons/aEP_CM_weapon/aEP_CM00.png",
   "hardpointSprite": "graphics/weapons/aEP_CM_weapon/aEP_CM00.png",
-  "everyFrameEffect": "data.hullmods.aEP_CruiseMissileCarrier",
+  "everyFrameEffect": "data.scripts.hullmods.aEP_CruiseMissileCarrier",
   "numFrames":3,
   "frameRate":0,
   #"renderHints": [

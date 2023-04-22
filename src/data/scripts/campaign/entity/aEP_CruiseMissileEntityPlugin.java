@@ -15,12 +15,10 @@ import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
-import com.fs.starfarer.campaign.Faction;
 import combat.util.aEP_Tool;
-import data.hullmods.aEP_CruiseMissileCarrier;
+import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;
-import org.lazywizard.lazylib.campaign.CampaignUtils;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
@@ -28,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import static combat.util.aEP_DataTool.txt;
-import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S1_VAR_ID;
 
 public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
 {

@@ -31,8 +31,8 @@
 		"coversMatchShipBrightness":true,
 		"slotCoverSmallTurret":"graphics/aEP_hullstyle/small_tr_cover.png",
 		"slotCoverSmallHardpoint":"graphics/aEP_hullstyle/small_hp_cover.png",
-		"slotCoverMediumTurret":"graphics/weapons/covers/cover_turret_midline_medium.png",
-		"slotCoverMediumHardpoint":"graphics/weapons/covers/cover_hardpoint_midline_medium.png",
+		"slotCoverMediumTurret":"graphics/aEP_hullstyle/m_tr_cover.png",
+		"slotCoverMediumHardpoint":"graphics/aEP_hullstyle/m_hp_cover.png",
 		"slotCoverLargeTurret":"graphics/weapons/covers/cover_turret_midline_large.png",
 		"slotCoverLargeHardpoint":"graphics/weapons/covers/cover_hardpoint_midline_large.png",
 		

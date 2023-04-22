@@ -1,0 +1,22 @@
+{
+	"id":"aEP_m_m_fluxtube_shot",
+	"specClass":"missile",
+	"missileType":"ROCKET",
+	"collisionRadius":30,
+	"collisionClass":"NONE",
+  "collisionClassAfterFlameout":"NONE",
+	"sprite":"graphics/weapons/aEP_m_m_fluxtube/shot.png",
+	"glowColor":[30,30,100,150],
+	"glowRadius":100,		
+	"size":[18,4],	
+	"center":[9,2],
+	"flameoutTime":2, # total time from flameout to full fadeout
+	"noEngineGlowTime":0.5, # time spent without the engine glow being rendered
+	"renderTargetIndicator":false,
+	"fadeTime":0.5, # fadeout duration			
+	"engineSpec":{"turnAcc":0,
+				  "turnRate":0,
+				  "acc":0,
+				  "dec":0}
+}
+			

@@ -1,0 +1,47 @@
+{
+  "id": "aEP_b_s_h37",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_b_s_h37_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_b_s_h37/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_s_h37/trbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_s_h37/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_s_h37/hpbr.png",
+  "visualRecoil": 7,
+  "turretOffsets": [
+    12,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    12,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 10,
+    "cloudParticleCount": 0,
+    "cloudDuration": 0,
+    "cloudRadius": 0,
+    "blowbackParticleCount": 6,
+    "blowbackDuration": 1,
+    "blowbackLength": -20, #散布后能飞多远
+    "blowbackSpread": 10, #初始在多少距离内散布
+    "particleColor": [
+			250,
+			255,
+			245,
+			65
+    ]
+  },
+  "fireSoundTwo":"aEP_needler_fire",
+}

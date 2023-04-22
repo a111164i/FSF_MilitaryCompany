@@ -58,8 +58,8 @@ public class a111164ModPlugin extends BaseModPlugin
   @Override
   public PluginPick<MissileAIPlugin> pickMissileAI(MissileAPI missile, ShipAPI launchingShip) {
     switch (missile.getProjectileSpecId()) {
-      case "aEP_harpoon_missile":
-      case "aEP_harpoon_missile_small":
+      case "aEP_m_l_harpoon_shot":
+      case "aEP_m_s_harpoon_shot":
         return new PluginPick<MissileAIPlugin>(new aEP_MissileAI(missile,launchingShip), CampaignPlugin.PickPriority.MOD_SPECIFIC);
 
     }

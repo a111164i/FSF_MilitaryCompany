@@ -1,0 +1,19 @@
+{
+	"id":"aEP_b_m_lighting_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"length":12.0,
+	"width":4.0,
+	"fadeTime":0.2,
+	"fringeColor":[155,150,255,140],
+	"coreColor":[50,50,250,180],
+	"glowColor":[155,150,250,15],
+	"glowRadius":40,
+	"hitGlowRadius":15,	
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/shell_large_yellow.png"
+}

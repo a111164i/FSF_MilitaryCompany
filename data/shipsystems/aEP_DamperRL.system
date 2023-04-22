@@ -11,7 +11,7 @@
 	"jitterUnderRange":2,
 	"jitterUnderRangeRadiusFraction":0,
 	
-	"statsScript":"data.shipsystems.scripts.aEP_DamperBoost",
+	"statsScript":"data.scripts.shipsystems.aEP_DamperBoost",
 	
 		
 	"weaponGlowColor":[255,165,90,60],

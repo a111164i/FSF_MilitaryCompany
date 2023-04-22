@@ -4,7 +4,7 @@
 	"aiType":"FAST_RELOAD",
 	#"aiType":"CUSTOM",
 	#"aiScript":"data.shipsystems.scripts.ai.FastMissileRacksAI",
-	"statsScript":"data.shipsystems.scripts.aEP_NCReloadScript",
+	"statsScript":"data.scripts.shipsystems.aEP_NCReloadScript",
 	#这里不留空，会自动把其他导弹一起装了
 	"weaponTypes":[MISSILE],
 	"minFractionToReload":0.25,

@@ -1,47 +1,48 @@
 {
-    "displayName": "Standard",
-    "fluxCapacitors": 0,
-    "fluxVents": 17,
-    "goalVariant": true,
-    "hullId": "aEP_cru_zhongliu",
-    "hullMods": [
-        "aEP_SoftfluxDissipate",
-        "targetingunit",
-        "aEP_HotLoader"
-    ],
-    "modules": [{"MD01": "aEP_cru_zhongliu_armor_Standard"}],
-    "permaMods": [],
-    "sMods": [],
-    "variantId": "aEP_cru_zhongliu_Standard",
-    "weaponGroups": [
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "aEP_large_kinetic_flak",
-                "WS0002": "aEP_large_kinetic_flak"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0007": "sabot",
-                "WS0008": "sabot",
-                "WS0009": "sabot",
-                "WS0010": "sabot"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0003": "flak",
-                "WS0004": "vulcan",
-                "WS0005": "vulcan",
-                "WS0006": "vulcan",
-                "WS0011": "vulcan"
-            }
-        }
-    ]
+  "variantId": "aEP_cru_zhongliu_Standard",
+  "hullId": "aEP_cru_zhongliu",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 11,
+  "fluxVents": 21,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "aEP_BurstDissipate",
+    "targetingunit",
+    "aEP_HotLoader"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_large_kinetic_flak",
+        "WS0002": "aEP_large_kinetic_flak"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "flak"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "vulcan",
+        "WS0005": "vulcan",
+        "WS0006": "vulcan",
+        "WS0011": "vulcan"
+      }
+    }
+  ],
+  "modules": [
+    {
+      "MD01": "aEP_cru_zhongliu_armor_Standard"
+    }
+  ],
+  "wings": []
 }

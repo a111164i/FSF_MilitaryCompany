@@ -4,10 +4,10 @@
   "projectileSpecId": "aEP_b_m_mb32_shot",
   "type": "BALLISTIC",
   "size": "MEDIUM",
-  "turretSprite": "graphics/weapons/aEP_long_barrel_chaingun/tr.png",
-  "turretGunSprite": "graphics/weapons/aEP_long_barrel_chaingun/tr_br.png",
-  "hardpointSprite": "graphics/weapons/aEP_long_barrel_chaingun/hp.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_long_barrel_chaingun/hp_br.png",
+  "turretSprite": "graphics/weapons/aEP_b_m_mb32/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_m_mb32/tr_br.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_m_mb32/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_m_mb32/hp_br.png",
   "visualRecoil": 12,
   "renderHints": [
     RENDER_BARREL_BELOW

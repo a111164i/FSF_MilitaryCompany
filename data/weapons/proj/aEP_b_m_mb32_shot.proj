@@ -2,7 +2,7 @@
     "id":"aEP_b_m_mb32_shot",
   	"specClass":"projectile",
     "spawnType":"BALLISTIC",
-    "collisionClass":"PROJECTILE_FF",
+    "collisionClass":"PROJECTILE_NO_FF",
     "collisionClassByFighter":"PROJECTILE_FIGHTER",
     "length":36.0,
     "width":4.0,

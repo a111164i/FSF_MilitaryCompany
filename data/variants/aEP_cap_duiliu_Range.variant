@@ -5,7 +5,6 @@
     "goalVariant": true,
     "hullId": "aEP_cap_duiliu",
     "hullMods": [
-        "aEP_ControledShield",
         "targetingunit",
         "aEP_SoftfluxDissipate"
     ],
@@ -22,8 +21,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0007": "aEP_EMP_pike",
-                "WS0008": "aEP_EMP_pike",
+                "WS0007": "aEP_b_m_rk107",
+                "WS0008": "aEP_b_m_rk107",
                 "WS0009": "hveldriver",
                 "WS0010": "hveldriver",
                 "WS0011": "hveldriver",

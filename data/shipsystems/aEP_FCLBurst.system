@@ -2,8 +2,8 @@
 	"id":"aEP_FCLBurst",
 	"type":"STAT_MOD",
 	"aiType":"CUSTOM",
-	"aiScript":"data.shipsystems.scripts.ai.aEP_FCLBurstAI",
-	"statsScript":"data.shipsystems.scripts.aEP_FCLBurstScript",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_FCLBurstAI",
+	"statsScript":"data.scripts.shipsystems.aEP_FCLBurstScript",
 	
 	
 	#"useSound":"",

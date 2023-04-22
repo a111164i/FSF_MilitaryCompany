@@ -2,8 +2,8 @@
 	"id":"aEP_ExtremeOverload",
 	"type":"STAT_MOD",
 	"aiType":"WEAPON_BOOST",
-	#"aiScript":"data.shipsystems.scripts.ai.aEP_ExtremeOverloadAI",
-	"statsScript":"data.shipsystems.scripts.aEP_ExtremeOverloadScript",
+	#"aiScript":"data.scripts.shipsystemai.aEP_ExtremeOverloadAI",
+	"statsScript":"data.scripts.shipsystems.aEP_ExtremeOverloadScript",
 
  
 	"fadeActivationSoundOnChargedown":true,

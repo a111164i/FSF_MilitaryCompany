@@ -60,10 +60,10 @@
 			"DL_pike_shot":"graphics/weapons/aEP_duiliu/shot.png",
 			
 			
-			"LBCG_flame":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame.png",
-			"LBCG_flame_core":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame_core.png",
-			"LBCG_flame2":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame2.png",
-			"LBCG_flame2_core":"graphics/weapons/aEP_long_barrel_chaingun/firing_flame2_core.png",
+			"LBCG_flame":"graphics/weapons/aEP_b_m_mb32/firing_flame.png",
+			"LBCG_flame_core":"graphics/weapons/aEP_b_m_mb32/firing_flame_core.png",
+			"LBCG_flame2":"graphics/weapons/aEP_b_m_mb32/firing_flame2.png",
+			"LBCG_flame2_core":"graphics/weapons/aEP_b_m_mb32/firing_flame2_core.png",
 			
 			"small_shell":"graphics/weapons/small_shell.png",
 			"mid_shell":"graphics/weapons/mid_shell.png",
@@ -71,6 +71,8 @@
 			"aEP_PD_f":"graphics/weapons/aEP_pingding/f.png",
 			"aEP_PD_b":"graphics/weapons/aEP_pingding/b.png",
 			"aEP_PD_br":"graphics/weapons/aEP_pingding/br.png",
+
+			"aEP_b_m_h88_eject":"graphics/weapons/aEP_b_m_h88/eject.png",
 		},
 		"aEP_hullstyle":{
 			"aEP_shield_inner":"graphics/aEP_hullstyle/shield_inner.png",
@@ -106,7 +108,6 @@
 	
 	"plugins":{
 		"a111164CampaignPlugin":"data.scripts.campaign.a111164CampaignPlugin",
-		"aEP_BuffEffect": "combat.plugin.aEP_BuffEffect",
 		"aEP_CombatEffectPlugin": "combat.plugin.aEP_CombatEffectPlugin",
 
 		#"aEP_MissionPlugin": "combat.plugin.aEP_MissionPlugin",

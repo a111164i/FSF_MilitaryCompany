@@ -1,0 +1,100 @@
+{
+  "id":"aEP_e_s_300k",
+  "specClass": "beam",
+  "type": "ENERGY",
+  "size": "SMALL",
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "turretSprite": "graphics/weapons/aEP_e_s_300k/tr.png",
+  "turretGlowSprite": "graphics/weapons/aEP_e_s_300k/tr_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_e_s_300k/hp.png",
+  "hardpointGlowSprite": "graphics/weapons/aEP_e_s_300k/hp_glow.png",
+  #"beamEffect":"",
+  #"everyFrameEffect": "data.scripts.weapons.aEP_FocusBeamAnimation",
+  "turretOffsets": [
+	  9,
+	  7,
+	  9,
+	  4,
+		7,
+		2,
+		7,
+		0,
+		7,
+		-2,
+	  9,
+	  -4,
+	  9,
+	  -7
+  ],
+  "turretAngleOffsets": [
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0
+
+  ],
+  "hardpointOffsets": [
+	  11,
+	  6,
+	  11,
+	  4,
+		9,
+		2,
+		9,
+    0,
+		9,
+		-2,
+	  11,
+	  -4,
+	  11,
+	  -6
+  ],
+  "hardpointAngleOffsets": [
+	  0,
+    0,
+    0,
+    0,
+    0,
+	  0,
+	  0
+  ],
+  #"beamFireOnlyOnFullCharge": true,
+  "convergeOnPoint":true,
+  #"autocharge":true, 
+  "darkCore":true,
+  "barrelMode": "LINKED",
+  "fringeColor": [
+	  255,
+	  150,
+	  10,
+		30
+	],
+  "coreColor": [
+	  255,
+	  10,
+	  10,
+	  30
+  ],
+  "glowColor": [
+	  255,
+	  10,
+	  10,
+	  250
+  ],
+  "width": 4,
+  #"textureType": ROUGH,
+  "textureType":["graphics/weapons/aEP_e_s_300k/core.png","graphics/weapons/aEP_e_s_300k/core.png"],#fringe, core
+  "textureScrollSpeed": 480,
+  "pixelsPerTexel": 1,##bigger,  longer
+  "pierceSet":[
+  	PROJECTILE_FF,
+  	PROJECTILE_NO_FF,
+  	PROJECTILE_FIGHTER
+  ],
+  "fireSoundOne":"laser_intro",
+	"fireSoundTwo":"pd_laser_loop"
+},

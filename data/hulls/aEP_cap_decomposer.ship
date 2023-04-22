@@ -24,7 +24,11 @@
     "WS0017": "aEP_marker",
     "WS0018": "aEP_marker",
     "WS0019": "aEP_marker",
-    "WS0020": "aEP_decorative_crane"
+    "WS0020": "aEP_decorative_crane",
+    "WS0025": "aEP_m_s_era",
+    "WS0026": "aEP_m_s_era",
+    "WS0030": "aEP_m_s_era",
+    "WS0033": "aEP_m_s_era"
   },
   "weaponSlots": [
     {
@@ -279,6 +283,42 @@
       "angle": 135,
       "locations": [51, -32],
       "renderOrderMod": 10
+    },
+    {
+      "id": "WS0025",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [107.5, 80.5]
+    },
+    {
+      "id": "WS0026",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [95.5, 80.5]
+    },
+    {
+      "id": "WS0030",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": -0,
+      "locations": [125.5, -30]
+    },
+    {
+      "id": "WS0033",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [119.5, 80.5]
     }
   ],
   "engineSlots": [

@@ -29,7 +29,7 @@
         "probOfVariance":1,
 				"range":20,
 				#"vsMissileRange":100,
-				"explosionSpec":{"duration":0.0000001f,
+				"explosionSpec":{"duration":0.0001f,
 								 "radius":20,
 								 "coreRadius":20, # full damage within core radius - also equal to proximity fuse range
 								 "collisionClass":PROJECTILE_NO_FF,

@@ -17,17 +17,11 @@ import com.fs.starfarer.api.ui.Alignment;
 import com.fs.starfarer.api.ui.IntelUIAPI;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
-import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
-import com.fs.starfarer.campaign.CampaignEntity;
-import com.fs.starfarer.campaign.CustomCampaignEntity;
-import com.fs.starfarer.rpg.OfficerData;
 import combat.util.aEP_DataTool;
 import combat.util.aEP_ID;
-import combat.util.aEP_Tool;
-import data.hullmods.aEP_CruiseMissileCarrier;
+import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin;
-import data.scripts.campaign.items.aEP_CruiseMissile;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;
 import org.lwjgl.util.vector.Vector2f;
@@ -38,7 +32,6 @@ import java.util.Set;
 
 import static com.fs.starfarer.api.impl.campaign.rulecmd.aEP_AdvanceWeaponMission.MISSILE_CARRIER_SPEC_ID;
 import static combat.util.aEP_DataTool.txt;
-import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S1_ITEM_ID;
 
 public class aEP_AWM3Intel extends aEP_BaseMission
 {

@@ -8,7 +8,7 @@ import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
 import combat.impl.VEs.aEP_MovingSprite;
 import combat.plugin.aEP_CombatEffectPlugin;
-import data.hullmods.aEP_MarkerDissipation;
+import data.scripts.hullmods.aEP_MarkerDissipation;
 
 import combat.util.aEP_Tool;
 import org.dark.shaders.distortion.DistortionShader;

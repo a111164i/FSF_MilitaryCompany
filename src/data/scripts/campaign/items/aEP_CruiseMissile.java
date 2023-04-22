@@ -1,23 +1,20 @@
 package data.scripts.campaign.items;
 
 
-import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.impl.items.BaseSpecialItemPlugin;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
-import data.hullmods.aEP_CruiseMissileCarrier;
+import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin;
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import static com.fs.starfarer.api.impl.campaign.ids.MemFlags.FLEET_IGNORED_BY_OTHER_FLEETS;
 import static combat.util.aEP_DataTool.txt;
 
 

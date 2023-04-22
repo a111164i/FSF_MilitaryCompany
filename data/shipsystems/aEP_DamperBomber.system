@@ -18,7 +18,7 @@
 	"jitterUnderRangeRadiusFraction":0,
 	
 	#"statsScript":"com.fs.starfarer.api.impl.combat.DamperFieldStats",
-	"statsScript":"data.shipsystems.scripts.aEP_DamperTanker",
+	"statsScript":"data.scripts.shipsystems.aEP_DamperTanker",
 
 
 	

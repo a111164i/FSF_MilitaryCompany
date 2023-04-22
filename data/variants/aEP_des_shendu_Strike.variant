@@ -12,7 +12,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0005": "aEP_harpoon_large"}
+            "weapons": {"WS0005": "aEP_m_l_harpoon"}
         },
         {
             "autofire": true,

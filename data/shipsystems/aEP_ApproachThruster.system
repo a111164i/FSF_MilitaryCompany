@@ -4,7 +4,7 @@
 	#"aiType":"CUSTOM",
 	"aiType":"BURN_DRIVE_TOGGLE",
 	#"aiScript":"data.shipsystems.scripts.ai.aEP_ApproachThrusterAI",
-	"statsScript":"data.shipsystems.scripts.aEP_ApproachThrusterScript",
+	"statsScript":"data.scripts.shipsystems.aEP_ApproachThrusterScript",
    
 	"runScriptWhileIdle":false,  # this means unapply() never gets called
 	

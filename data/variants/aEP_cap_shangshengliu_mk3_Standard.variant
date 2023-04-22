@@ -48,12 +48,12 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L07": "aEP_b_m_trauma",
-                "L08": "aEP_b_m_trauma",
-                "L09": "aEP_b_m_trauma",
-                "R07": "aEP_b_m_trauma",
-                "R08": "aEP_b_m_trauma",
-                "R09": "aEP_b_m_trauma"
+                "L07": "aEP_b_m_h88",
+                "L08": "aEP_b_m_h88",
+                "L09": "aEP_b_m_h88",
+                "R07": "aEP_b_m_h88",
+                "R08": "aEP_b_m_h88",
+                "R09": "aEP_b_m_h88"
             }
         },
         {

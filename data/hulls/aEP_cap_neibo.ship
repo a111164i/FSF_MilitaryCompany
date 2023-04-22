@@ -18,8 +18,7 @@
   "builtInWeapons": {
     "COVER_MAIN": "aEP_cap_neibo_main",
     "WS0007": "aEP_marker",
-    "WS0008": "aEP_marker",
-    #"WS0023": "aEP_neibo_cover"
+    "WS0008": "aEP_marker"
   },
   "weaponSlots": [
     {

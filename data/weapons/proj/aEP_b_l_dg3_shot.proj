@@ -4,15 +4,15 @@
   "spawnType":"BALLISTIC",
   "collisionClass":"PROJECTILE_FF",
   "collisionClassByFighter":"PROJECTILE_FIGHTER",
-  "length":40.0,
+  "length":120.0,
   "width":4.0,
   "fadeTime":0.3,
 
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  "fringeColor":[255,200,70,160],
+  "fringeColor":[255,131,81,160],
   "coreColor":[255,200,200,220],
-  "glowColor":[240,240,240,20], # 发光的颜色
+  "glowColor":[240,160,72,80], # 发光的颜色
   "glowRadius":10,
   "hitGlowRadius":20,
 

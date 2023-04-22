@@ -1,0 +1,47 @@
+{
+  "id": "aEP_b_m_h88",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_b_m_h88_shot",
+  "type": "BALLISTIC",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/aEP_b_m_h88/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_m_h88/trbr.png",
+  "turretUnderSprite": "graphics/weapons/aEP_m_base.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_m_h88/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_m_h88/hpbr.png",
+  "visualRecoil": 6,
+  "turretOffsets": [
+    21,
+    -0.5
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    23,
+    -0.5
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 12,
+    "particleSizeRange": 10,
+    "cloudParticleCount": 12,
+    "cloudDuration": 1.5,
+    "cloudRadius": 5,
+    "blowbackParticleCount": 15,
+    "blowbackDuration": 2,
+    "blowbackLength": -15, #散布后能飞多远
+    "blowbackSpread": 15, #初始在多少距离内散布
+    "particleColor": [
+      250,
+      255,
+      245,
+      50
+    ]
+  },
+  "fireSoundTwo": "hephaestus_fire"
+}

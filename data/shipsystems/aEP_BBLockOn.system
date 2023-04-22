@@ -3,7 +3,7 @@
 	"type":"STAT_MOD",
 	"aiType":"WEAPON_BOOST",
 	#"aiScript":"data.shipsystems.scripts.ai.",
-	"statsScript":"data.shipsystems.scripts.aEP_BBLockOn",
+	"statsScript":"data.scripts.shipsystems.aEP_BBLockOn",
 	
 
 	"fadeActivationSoundOnChargedown":true,

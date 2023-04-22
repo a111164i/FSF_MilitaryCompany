@@ -1,0 +1,87 @@
+{
+	"id":"aEP_m_l_harpoon_shot",
+	"specClass":"missile",
+	"missileType":"MISSILE",
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"sprite":"graphics/weapons/aEP_harpoon_large/m.png",
+	"size":[11,34],	
+	"center":[5.5,16],
+	"collisionRadius":16,
+	"collisionClass":"MISSILE_NO_FF",
+	#"explosionColor":[100,100,100,25],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":160, # purely visual
+	"explosionSpec":{"duration":0.1f, # not visual
+					 "radius":30,
+					 "coreRadius":30, # full damage within core radius
+					 "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+					 "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+					 "particleSizeMin":0,
+					 "particleSizeRange":0,
+					 "particleDuration":1,
+					 "particleCount":1,
+					 "particleColor":[250,250,250,250]},
+  "alwaysAccelerate":true,
+	"flameoutTime":0.6,  # total time from flameout to full fadeout
+	"armingTime":1, # safe range count by time
+	"noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)				
+	"engineSpec":{"turnAcc":60,
+				  "turnRate":60,
+				  "acc":3600, # make is really big that keeps velocity facing syngergizes missile facing
+				  "dec":0},
+	"engineSlots":[
+		{
+			"id":"ES1",
+			"loc":[-18, 0],
+		  "style":"CUSTOM",
+			"styleSpec":{
+				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+				"engineColor":[150,150,250,155],
+				"contrailDuration":1.5,
+				"contrailWidthMult":1,
+				"contrailWidthAddedFractionAtEnd":0.5,  # can be negative. makes trail spread out/narrow at the end
+				"contrailMinSeg":5, # min segment length, in pixels
+				"contrailMaxSpeedMult":0f,
+				"contrailAngularVelocityMult":0.5f,
+				"contrailSpawnDistMult":0f, # how far away from engine it starts
+				"contrailColor":[180,180,250,220],
+				"glowSizeMult":3,
+				"glowAlternateColor":[100,100,100,255],
+				"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+			},
+	    "width":12.0,
+	    "length":120.0,
+	    "angle":180.0
+    },
+
+		{
+			"id":"ES2",
+			"loc":[-18, 0],
+			#"style":"MISSILE_HIGH_TECH",
+			"style":"CUSTOM",
+			"styleSpec":{
+				"mode":"PARTICLES", # PARTICLES or QUAD_STRIP, determines which params are used
+        "engineColor":[65,95,255,155],
+
+        "contrailDuration":1,
+        "contrailWidthMult":1,
+        "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
+        "contrailMinSeg":5, # min segment length, in pixels
+        "contrailColor":[55,55,55,159],
+
+        "contrailParticleSizeMult":5,
+        "contrailParticleDuration":1,
+        "contrailParticleFinalSizeMult":5,
+        "contrailMaxSpeedMult":0.5,
+        "contrailAngularVelocityMult":0.5,
+        "glowSizeMult":0.1,
+        "glowAlternateColor":[255,192,123,0],
+        "type":"SMOKE"
+			},
+			"width":12.0,
+			"length":60.0,
+			"angle":180.0
+		},
+
+  ]
+}
+			

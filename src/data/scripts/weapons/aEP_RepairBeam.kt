@@ -1,15 +1,8 @@
 package data.scripts.weapons
 
-import combat.util.aEP_Tool.Util.limitToTop
-import com.fs.starfarer.api.combat.BeamEffectPlugin
-import com.fs.starfarer.api.combat.CombatEngineAPI
-import com.fs.starfarer.api.combat.BeamAPI
-import com.fs.starfarer.api.combat.ShipAPI
-import org.lwjgl.util.vector.Vector2f
-import combat.util.aEP_Tool
-import data.hullmods.aEP_FlyingTank
+import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import java.awt.Color
-import java.util.*
 
 class aEP_RepairBeam : BeamEffectPlugin {
   companion object {
@@ -17,19 +10,38 @@ class aEP_RepairBeam : BeamEffectPlugin {
     private const val REPAIR_PERCENT= 0.003f
     private const val FSF_BONUS = 2f
     private const val REPAIR_THRESHOLD = 0.5f
-    private val repairing = Color(250, 250, 200, 220)
+    private val REPAIR_COLOR = Color(250, 250, 178, 220)
+    private val REPAIR_COLOR2 = Color(250, 220, 70, 220)
   }
 
-  private var timer = 0
+  private var didRepair = false
   override fun advance(amount: Float, engine: CombatEngineAPI, beam: BeamAPI) {
     if (beam.didDamageThisFrame() && beam.damageTarget is ShipAPI) {
-      timer += 1
-      if (timer < 3) {
-        return
-      }
-      timer = 0
+
+      //只修一次
+      if (didRepair ) return
+      didRepair = true
+
+
+      //修的不是舰船，return
+      if(beam.damageTarget !is ShipAPI) return
       val ship = beam.damageTarget as ShipAPI
-      val rand1 = Random()
+
+      //先在光束落点加一个特效
+      val spec = DamagingExplosionSpec(1f, 70f, 35f,
+        0f,0f,
+        CollisionClass.NONE, CollisionClass.NONE,
+        5f,5f,0.8f,30,
+        REPAIR_COLOR, REPAIR_COLOR2
+      )
+      spec.isUseDetailedExplosion = true
+      spec.detailedExplosionFlashDuration = 0.12f
+      spec.detailedExplosionFlashRadius = 70f
+      spec.detailedExplosionRadius = 70f
+      spec.detailedExplosionFlashColorFringe = REPAIR_COLOR2
+      spec.detailedExplosionFlashColorCore = REPAIR_COLOR
+      spec.detailedExplosionRadius = 70f
+      engine.spawnDamagingExplosion(spec,beam.source,beam.to)
 
 
       //维修装甲
@@ -74,30 +86,37 @@ class aEP_RepairBeam : BeamEffectPlugin {
           ship.armorGrid.setArmorValue(minX, minY, armorAtMin + toAddArmor)
 
           //每一个修好的格子创造一个火花，每次维修最多生成一次
-          if(!didSpark){
-            val minArmorLoc = ship.armorGrid.getLocation(minX,minY)
-            for(i in 0 until 3){
-              var randomX = (rand1.nextInt(200) - 100).toFloat()
-              var randomY = (rand1.nextInt(200) - 100).toFloat()
-              engine.addSmoothParticle(
-                minArmorLoc,  //added loc
-                Vector2f(randomX, randomY),  //random initial speed
-                30f,  //size
-                1f,  //brightness
-                1f,  //duration
-                repairing) //color
-            }
-            didSpark = true
-          }
 
+          val minArmorLoc = ship.armorGrid.getLocation(minX,minY)
+          for(i in 0 until 12){
+            if(!didSpark){
+              engine.spawnExplosion(
+                minArmorLoc,
+                ship.velocity,
+                REPAIR_COLOR,
+                15f,
+                0.5f
+              )
+              engine.spawnExplosion(
+                minArmorLoc,
+                ship.velocity,
+                REPAIR_COLOR2,
+                30f,
+                0.5f
+              )
+              didSpark = true
+            }
+
+          }
 
         }else{
           //如果当前最低装甲格都大于阈值，就中断修理
-          engine.addFloatingText(ship.location, "No_Need_toRepair", 15f, repairing, ship, 0.25f, 20f)
+          engine.addFloatingText(ship.location, "No Need toRepair", 15f, REPAIR_COLOR, ship, 0.25f, 20f)
           break
         }
       }
-
+      ship.syncWithArmorGridState()
+      ship.syncWeaponDecalsWithArmorDamage()
     }
   }
 

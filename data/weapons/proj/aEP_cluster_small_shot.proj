@@ -20,7 +20,7 @@
 					 "particleDuration":1,
 					 "particleCount":1,
 					 "particleColor":[250,250,250,250]},
-  	"alwaysAccelerate":false,
+  "alwaysAccelerate":false,
 	"flameoutTime":0.6,  # total time from flameout to full fadeout
 	"armingTime":1, # safe range count by time
 	"noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)				

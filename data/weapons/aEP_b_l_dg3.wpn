@@ -43,20 +43,20 @@
   "frameRate": 28,
   "autocharge": true,
   "smokeSpec": {
-    "particleSizeMin": 10,
-    "particleSizeRange": 14,
-    "cloudParticleCount": 1,
+    "particleSizeMin": 20,
+    "particleSizeRange": 10,
+    "cloudParticleCount": 2,
     "cloudDuration": 2,
-    "cloudRadius": 14,
-    "blowbackParticleCount": 1,
-    "blowbackDuration": 0.35,
-    "blowbackLength": 20,
-    "blowbackSpread": 6,
+    "cloudRadius": 15,
+    "blowbackParticleCount": 4,
+    "blowbackDuration": 0.75,
+    "blowbackLength": -30,
+    "blowbackSpread": 0,
     "particleColor": [
-      190,
-      180,
-      160,
-      110
+      243,
+      233,
+      210,
+      40
     ]
   },
   "fireSoundTwo": "aEP_long_barrel_chaingun_fire"

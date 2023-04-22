@@ -15,7 +15,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0007": "aEP_EMP_pike"}
+            "weapons": {"WS0007": "aEP_b_m_mb32"}
         },
         {
             "autofire": true,

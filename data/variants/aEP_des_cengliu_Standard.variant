@@ -13,8 +13,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "aEP_b_m_trauma",
-                "WS0005": "aEP_b_m_trauma"
+                "WS0003": "aEP_b_m_h88",
+                "WS0005": "aEP_b_m_h88"
             }
         },
         {

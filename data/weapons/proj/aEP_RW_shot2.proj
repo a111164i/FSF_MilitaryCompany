@@ -1,19 +1,18 @@
 {
 	"id":"aEP_RW_shot2",
 	"specClass":"projectile",
-	"spawnType":"BALLISTIC_AS_BEAM",
-	"collisionClass":"RAY",
-	"collisionClassByFighter":"RAY_FIGHTER",
-	"length":45.0,
-	"width":7,
-	"fadeTime":0.3,
-	#"onHitEffect":"",
-	"fringeColor":[200,200,200,255],
-	"coreColor":[255,100,100,255],
-	"glowColor":[250,100,100,75],
-	"glowRadius":100,
-	"hitGlowRadius":200,	
-	"textureScrollSpeed":64.0,
-	"pixelsPerTexel":5.0,
-	"bulletSprite":"graphics/missiles/shell_gauss_cannon.png"	
+	"spawnType":"BALLISTIC",
+  "collisionClass":"PROJECTILE_FF",
+  "collisionClassByFighter":"PROJECTILE_FIGHTER",
+  "length":80,
+  "width":40,
+	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "hitGlowRadius":80,
+  "fadeTime":0.4,
+  "fringeColor":[252,185,45,155],# 拖尾和爆炸的颜色
+  "coreColor":[242,222,200,255], # 弹体的颜色
+	"glowColor":[250,184,72,15],
+	"glowRadius":150,
+	"bulletSprite":"graphics/weapons/aEP_FCL/flame.png",
 }

@@ -68,9 +68,6 @@ public class MissionDefinition implements MissionDefinitionPlugin
     // Set up the enemy fleet.
 
     api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
-    api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
-    api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
-
 
 
     api.addToFleet(FleetSide.ENEMY, "aEP_radiant_Strike", FleetMemberType.SHIP,  false);

@@ -26,7 +26,12 @@
     "WS0029": "aEP_blinker_green",
     "WS0030": "aEP_blinker_green",
     "WS0031": "aEP_blinker_green",
-    "WS0036": "aEP_cap_nuanchi_missile"
+    "WS0032": "aEP_m_s_era",
+    "WS0033": "aEP_m_s_era",
+    "WS0034": "aEP_m_s_era",
+    "WS0035": "aEP_m_s_era",
+    "WS0036": "aEP_cap_nuanchi_missile",
+    "WS0037": "aEP_m_s_era"
   },
   "weaponSlots": [
     {
@@ -324,6 +329,51 @@
       "arc": 0,
       "angle": 0,
       "locations": [97, 17]
+    },
+    {
+      "id": "WS0032",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [134, 90.5]
+    },
+    {
+      "id": "WS0033",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 45,
+      "locations": [149, 86]
+    },
+    {
+      "id": "WS0034",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 45,
+      "locations": [159, 76]
+    },
+    {
+      "id": "WS0035",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 45,
+      "locations": [169, 66]
+    },
+    {
+      "id": "WS0037",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [174, 50.5]
     }
   ],
   "engineSlots": [
@@ -381,21 +431,36 @@
     156, 13.5,
     140, 13.5,
     141, 25,
-    176, 43,
-    176, 61.5,
-    147, 94.5,
-    59, 94.5,
-    46.5, 74.5,
+    174.5, 43.5,
+    174.5, 61,
+    145, 91.5,
+    62, 91.5,
+    48, 71.5,
+    28.5, 76.5,
     3.5, 103.5,
     -82, 103.5,
-    -110.5, 76,
-    -164.5, 76,
-    -180.5, 32.5,
-    -180.5, -41.5,
-    -164.5, -88,
-    -120.5, -88,
-    -106, -111,
-    96, -111.5,
-    108, -98.5
+    -111, 75.5,
+    -164, 75.5,
+    -170, 61.5,
+    -148, 44.5,
+    -179, 32.5,
+    -179, -41.5,
+    -148, -56.5,
+    -170, -73.5,
+    -164, -87.5,
+    -109, -87.5,
+    -101, -109.5,
+    51.5, -109.5,
+    51.5, -98.5,
+    88.5, -98.5,
+    88.5, -76.5,
+    163, -67.5,
+    163, -57.5,
+    158, -53.5,
+    175, -47.5,
+    175, -38.5,
+    187, -28.5,
+    187, -19.5,
+    170.5, -16
   ]
 }

@@ -3,8 +3,8 @@
 	"type":"STAT_MOD",
 	#"aiType":"WEAPON_BOOST",
 	"aiType":"CUSTOM",
-	"aiScript":"data.shipsystems.scripts.ai.aEP_RevolvingMissileAI",
-	"statsScript":"data.shipsystems.scripts.aEP_RevolvingMissileLunch",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_RevolvingMissileAI",
+	"statsScript":"data.scripts.shipsystems.aEP_RevolvingMissileLunch",
    
 	"runScriptWhileIdle":true,  # this means unapply() never gets called	
 	"useSound":"system_ammo_feeder",

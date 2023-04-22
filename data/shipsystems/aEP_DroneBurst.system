@@ -2,7 +2,7 @@
 	"id":"aEP_DroneBurst",
 	"type":"ENGINE_MOD",
 	"aiType":"BURN_DRIVE_TOGGLE",
-	"statsScript":"data.shipsystems.scripts.aEP_DroneBurstScript",
+	"statsScript":"data.scripts.shipsystems.aEP_DroneBurstScript",
 	"engineGlowLengthMult":2.25,
 	"engineGlowWidthMult":3,
 	"engineGlowGlowMult":2,

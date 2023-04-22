@@ -12,7 +12,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "aEP_supress_needle_large"}
+            "weapons": {"WS0006": "mark9"}
         },
         {
             "autofire": false,
@@ -25,22 +25,22 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_supress_needle_large"}
+            "weapons": {"WS0003": "mark9"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0004": "aEP_b_m_trauma",
-                "WS0005": "aEP_b_m_trauma"
+                "WS0004": "aEP_b_m_h88",
+                "WS0005": "aEP_b_m_h88"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_b_m_trauma",
-                "WS0002": "aEP_b_m_trauma"
+                "WS0001": "aEP_b_m_h88",
+                "WS0002": "aEP_b_m_h88"
             }
         }
     ],
