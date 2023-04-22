@@ -17,7 +17,8 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
     //录入 loadingMap
     loadingMap?: run {
-      if(ship.customData.containsKey(aEP_MissilePlatform.ID)) loadingMap= ship.customData[aEP_MissilePlatform.ID] as aEP_MissilePlatform.LoadingMap
+      if(ship.customData.containsKey(aEP_MissilePlatform.ID))
+        loadingMap= ship.customData[aEP_MissilePlatform.ID] as aEP_MissilePlatform.LoadingMap
     }
 
     var willing = 0f
