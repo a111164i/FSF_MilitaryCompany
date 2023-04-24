@@ -419,7 +419,7 @@ class aEP_m_s_harpoon_shot: Effect{
     for(i in 0 until 12){
       val randomSize = getRandomNumberInRange(4f,6f)
       val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-      val randomVel = speed2Velocity(randomAngle,300f)
+      val randomVel = speed2Velocity(randomAngle,400f)
       randomVel.scale(getRandomNumberInRange(0.25f,1f))
       val ms = aEP_MovingSprite(
         point,
@@ -502,7 +502,7 @@ class aEP_m_l_harpoon_shot : Effect{
     for(i in 0 until 18){
       val randomSize = getRandomNumberInRange(4f,6f)
       val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-      val randomVel = speed2Velocity(randomAngle,400f)
+      val randomVel = speed2Velocity(randomAngle,500f)
       randomVel.scale(getRandomNumberInRange(0.25f,1f))
       val ms = aEP_MovingSprite(
         point,
@@ -572,7 +572,6 @@ class aEP_ftr_bom_nuke_bomb_shot1 : Effect(){
   }
 
 }
-
 class aEP_ftr_bom_nuke_bomb_shot2 : Effect(){
   override fun onExplosion(explosion: DamagingProjectileAPI?, originalProjectile: DamagingProjectileAPI?, weaponId: String?) {
 
@@ -1985,85 +1984,8 @@ class aEP_EMP_pike_shot : Effect(){
 class aEP_KF_shot : Effect(){
   companion object{
     val SMOKE_RING_COLOR =  Color(240,240,240,200)
-
+    val SHELL_GLOW =   Color(255, 218, 188, 35)
   }
-  override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
-    weapon?:return
-    val param = aEP_Tool.FiringSmokeParam()
-    param.smokeSize = 25f
-    param.smokeEndSizeMult = 1.5f
-    param.smokeSpread = 20f
-    param.maxSpreadRange = 40f
-
-    param.smokeInitSpeed = 100f
-    param.smokeStopSpeed = 0.9f
-
-    param.smokeTime = 1.5f
-    param.smokeNum = 5
-    param.smokeAlpha = 0.35f
-
-    firingSmoke(projectile?.location?: Vector2f(0f,0f),weapon.currAngle,param, weapon.ship)
-
-    val param2 = aEP_Tool.FiringSmokeParam()
-    param2.smokeSize = 25f
-    param2.smokeEndSizeMult = 1.5f
-
-    param2.smokeSpread = 10f
-    param2.maxSpreadRange = 20f
-
-    param2.smokeInitSpeed = 100f
-    param2.smokeStopSpeed = 0.9f
-
-    param2.smokeTime = 0.5f
-    param2.smokeNum = 5
-    param2.smokeAlpha = 0.1f
-
-    param2.smokeColor = Color(240,110,20)
-
-    firingSmoke(projectile?.location?: Vector2f(0f,0f),weapon.currAngle,param2, weapon.ship)
-
-    val param3 = aEP_Tool.FiringSmokeParam()
-    param3.smokeSize = 25f
-    param3.smokeEndSizeMult = 1.5f
-
-    param3.smokeSpread = 5f
-    param3.maxSpreadRange = 10f
-
-    param3.smokeInitSpeed = 100f
-    param3.smokeStopSpeed = 0.9f
-
-    param3.smokeTime = 0.3f
-    param3.smokeNum = 5
-    param3.smokeAlpha = 0.2f
-
-    param3.smokeColor = Color(255,240,160)
-
-    firingSmokeNebula(projectile?.location?: Vector2f(0f,0f),weapon.currAngle,param3, weapon.ship)
-
-  }
-
-  override fun onHit(projectile: DamagingProjectileAPI?, target: CombatEntityAPI?, point: Vector2f?, shieldHit: Boolean, damageResult: ApplyDamageResultAPI?, engine: CombatEngineAPI?, weaponId: String?) {
-    point?:return
-    explode(point)
-  }
-
-  override fun onExplosion(explosion: DamagingProjectileAPI?, originalProjectile: DamagingProjectileAPI?, weaponId: String?) {
-    explosion?:return
-    explode(explosion.location)
-  }
-
-  fun explode(loc: Vector2f){
-    spawnSingleCompositeSmoke(loc,100f,1.2f,SMOKE_RING_COLOR)
-  }
-}
-class aEP_KF_large_shot : Effect(){
-  companion object{
-    val SMOKE_RING_COLOR =  Color(205, 205, 205, 30)
-    val SMOKE_RING_COLOR2 =   Color(40, 40, 40, 70)
-    val CENTER_SMOKE_COLOR =   Color(240, 180, 120, 60)
-    val CENTER_SMOKE_COLOR2 =   Color(100, 100, 100, 30)
-  }
-
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     weapon?:return
     val param = aEP_Tool.FiringSmokeParam()
@@ -2118,6 +2040,99 @@ class aEP_KF_large_shot : Effect(){
     firingSmokeNebula(projectile?.location?: Vector2f(0f,0f),weapon.currAngle,param3, weapon.ship)
 
     //创造蛋壳
+    val ejectPoint = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle-135f,16f)
+    val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f,3f),weapon.currAngle,"graphics/weapons/aEP_large_kinetic_flak/shred.png")
+    ms.lifeTime = 2f
+    ms.fadeIn = 0.05f
+    ms.fadeOut = 0.2f
+    ms.color = Color(255,255,255,255)
+    ms.angle = weapon.currAngle
+    ms.angleSpeed = MathUtils.getRandomNumberInRange(-180f,180f)
+    ms.setInitVel(aEP_Tool.speed2Velocity(weapon.currAngle-90f +MathUtils.getRandomNumberInRange(-10f,10f),MathUtils.getRandomNumberInRange(40f,80f)))
+    ms.setInitVel(weapon.ship.velocity)
+    ms.stopSpeed = 0.9f
+    addEffect(ms)
+    addEffect(aEP_b_m_h88_shot.ShellGlow(ms, SHELL_GLOW))
+
+  }
+
+  override fun onHit(projectile: DamagingProjectileAPI?, target: CombatEntityAPI?, point: Vector2f?, shieldHit: Boolean, damageResult: ApplyDamageResultAPI?, engine: CombatEngineAPI?, weaponId: String?) {
+    point?:return
+    explode(point)
+  }
+
+  override fun onExplosion(explosion: DamagingProjectileAPI?, originalProjectile: DamagingProjectileAPI?, weaponId: String?) {
+    explosion?:return
+    explode(explosion.location)
+  }
+
+  fun explode(loc: Vector2f){
+    spawnSingleCompositeSmoke(loc,100f,1.2f,SMOKE_RING_COLOR)
+  }
+}
+class aEP_KF_large_shot : Effect(){
+  companion object{
+    val SMOKE_RING_COLOR =  Color(205, 205, 205, 30)
+    val SMOKE_RING_COLOR2 =   Color(40, 40, 40, 70)
+    val CENTER_SMOKE_COLOR =   Color(240, 180, 120, 60)
+    val CENTER_SMOKE_COLOR2 =   Color(100, 100, 100, 30)
+
+    val SHELL_GLOW =   Color(255, 168, 58, 80)
+  }
+
+  override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
+    val param = aEP_Tool.FiringSmokeParam()
+    param.smokeSize = 25f
+    param.smokeEndSizeMult = 1.5f
+    param.smokeSpread = 20f
+    param.maxSpreadRange = 40f
+
+    param.smokeInitSpeed = 100f
+    param.smokeStopSpeed = 0.9f
+
+    param.smokeTime = 1.5f
+    param.smokeNum = 5
+    param.smokeAlpha = 0.35f
+
+    firingSmoke(projectile.location?: Vector2f(0f,0f),weapon.currAngle,param, weapon.ship)
+
+    val param2 = aEP_Tool.FiringSmokeParam()
+    param2.smokeSize = 25f
+    param2.smokeEndSizeMult = 1.5f
+
+    param2.smokeSpread = 10f
+    param2.maxSpreadRange = 20f
+
+    param2.smokeInitSpeed = 100f
+    param2.smokeStopSpeed = 0.9f
+
+    param2.smokeTime = 0.5f
+    param2.smokeNum = 5
+    param2.smokeAlpha = 0.1f
+
+    param2.smokeColor = Color(240,110,20)
+
+    firingSmoke(projectile.location?: Vector2f(0f,0f),weapon.currAngle,param2, weapon.ship)
+
+    val param3 = aEP_Tool.FiringSmokeParam()
+    param3.smokeSize = 25f
+    param3.smokeEndSizeMult = 1.5f
+
+    param3.smokeSpread = 5f
+    param3.maxSpreadRange = 10f
+
+    param3.smokeInitSpeed = 100f
+    param3.smokeStopSpeed = 0.9f
+
+    param3.smokeTime = 0.3f
+    param3.smokeNum = 5
+    param3.smokeAlpha = 0.2f
+
+    param3.smokeColor = Color(255,240,160)
+
+    firingSmokeNebula(projectile.location?: Vector2f(0f,0f),weapon.currAngle,param3, weapon.ship)
+
+    //创造蛋壳
     projectile?: return
     var onLeft = false
     if(MathUtils.getShortestRotation(VectorUtils.getAngle(weapon.location,projectile.location),weapon.currAngle) > 0){
@@ -2136,6 +2151,7 @@ class aEP_KF_large_shot : Effect(){
       ms.setInitVel(weapon.ship.velocity)
       ms.stopSpeed = 0.9f
       addEffect(ms)
+      addEffect(aEP_b_m_h88_shot.ShellGlow(ms, SHELL_GLOW))
     }else{
       val ejectPoint = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle+100f,20f)
       val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f,3f),weapon.currAngle,"graphics/weapons/aEP_large_kinetic_flak/shred.png")
@@ -2149,6 +2165,7 @@ class aEP_KF_large_shot : Effect(){
       ms.setInitVel(weapon.ship.velocity)
       ms.stopSpeed = 0.9f
       addEffect(ms)
+      addEffect(aEP_b_m_h88_shot.ShellGlow(ms, SHELL_GLOW))
     }
 
   }
@@ -2255,6 +2272,7 @@ class aEP_KF_large_shot : Effect(){
     centerSmoke2.color =CENTER_SMOKE_COLOR2
     aEP_CombatEffectPlugin.addEffect(centerSmoke2)
   }
+
 }
 
 //高速榴弹炮
@@ -2373,11 +2391,12 @@ class aEP_b_m_h88_shot : Effect() {
     ms.setInitVel(weapon.ship.velocity)
     ms.stopSpeed = 0.9f
     addEffect(ms)
-    addEffect(Glow(ms))
+    addEffect(ShellGlow(ms,EJECT_GLOW_COLOR))
   }
 
-  inner class Glow(val ms:aEP_MovingSprite):aEP_BaseCombatEffect(){
-
+  open class ShellGlow(val ms:aEP_MovingSprite, val color: Color):aEP_BaseCombatEffect(){
+    var endSize = 10f
+    var extraSize = 30f
     override fun advanceImpl(amount: Float) {
       if(ms.time>=ms.lifeTime){
         shouldEnd = true
@@ -2387,13 +2406,14 @@ class aEP_b_m_h88_shot : Effect() {
       Global.getCombatEngine().addSmoothParticle(
         ms.loc,
         aEP_ID.VECTOR2F_ZERO,
-        30f*level+10f,
+        extraSize*level + endSize,
         0.5f + 0.5f*level,
         Global.getCombatEngine().elapsedInLastFrame * 2f,
-        EJECT_GLOW_COLOR
+        color
       )
     }
   }
+
 }
 
 //锚点无人机模拟导弹

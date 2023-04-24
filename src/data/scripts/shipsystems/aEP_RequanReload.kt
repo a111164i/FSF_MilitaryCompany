@@ -11,6 +11,11 @@ import com.fs.starfarer.api.combat.WeaponAPI
 import data.scripts.hullmods.aEP_MissilePlatform
 
 class aEP_RequanReload : BaseShipSystemScript() {
+
+  companion object {
+    private const val COOLDOWN_REDUCE = 8f
+  }
+
   var didVisual = false
 
   override fun apply(stats: MutableShipStatsAPI?, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
@@ -49,7 +54,4 @@ class aEP_RequanReload : BaseShipSystemScript() {
     didVisual = false
   }
 
-  companion object {
-    private const val COOLDOWN_REDUCE = 5f
-  }
 }

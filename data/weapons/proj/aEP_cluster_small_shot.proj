@@ -54,7 +54,7 @@
 				   ],
 	"behaviorSpec":{"behavior":"MIRV",
                         "splitRange":700,
-                        "minTimeToSplit":1,
+                        "minTimeToSplit":2,
                         "canSplitEarly":false,
                         "splitSound":"",
                         "hitpoints":75,
