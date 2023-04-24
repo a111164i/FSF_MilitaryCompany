@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="D:\Starsector-0.951\starsector-core\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="D:\Starsector-0.951\starsector-core\data\campaign\industries.csv">
           <value>
             <Attribute>
@@ -158,6 +165,13 @@
           </value>
         </entry>
         <entry key="D:\Starsector-0.951\starsector-core\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector-0.951\starsector-core\data\config\title_screen_variants.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

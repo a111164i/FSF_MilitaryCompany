@@ -44,14 +44,14 @@
 				"particleDuration":0.8,
 				"particleCount":50,
 				"particleColor":[148,70,211,255],
-				"explosionColor":[255,100,50,188],
+				"explosionColor":[255,100,50,248],
 
 				"useDetailedExplosion":true,
 				"useDetailedExplosionColorAlpha":true,
-				"detailedExplosionRadius":50,
-				"detailedExplosionFlashRadius":100,
+				"detailedExplosionRadius":100,
+				"detailedExplosionFlashRadius":150,
 				"detailedExplosionFlashDuration":0.2,
-				"detailedExplosionFlashColorFringe":[230,235,230,175],
+				"detailedExplosionFlashColorFringe":[230,235,230,199],
 				"detailedExplosionFlashColorCore":[235,40,251,255],
 
 				"sound":"devastator_explosion"

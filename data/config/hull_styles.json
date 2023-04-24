@@ -33,8 +33,8 @@
 		"slotCoverSmallHardpoint":"graphics/aEP_hullstyle/small_hp_cover.png",
 		"slotCoverMediumTurret":"graphics/aEP_hullstyle/m_tr_cover.png",
 		"slotCoverMediumHardpoint":"graphics/aEP_hullstyle/m_hp_cover.png",
-		"slotCoverLargeTurret":"graphics/weapons/covers/cover_turret_midline_large.png",
-		"slotCoverLargeHardpoint":"graphics/weapons/covers/cover_hardpoint_midline_large.png",
+		"slotCoverLargeTurret":"graphics/aEP_hullstyle/l_tr_cover.png",
+		"slotCoverLargeHardpoint":"graphics/aEP_hullstyle/l_hp_cover.png",
 		
 		"dHullOverlayLight":"graphics/damage/dmod_overlay_midline_light.png",
 		"dHullOverlayMedium":"graphics/damage/dmod_overlay_midline_medium.png",

@@ -406,6 +406,35 @@ class aEP_m_s_harpoon_shot: Effect{
     engine?:return
     projectile?:return
     point?:return
+
+    Global.getCombatEngine().spawnExplosion(
+      point,
+      VECTOR2F_ZERO,
+      HIT_COLOR,
+      170f,
+      1.1f)
+
+    //创造一坨碎屑特效
+    val facing = projectile.facing
+    for(i in 0 until 12){
+      val randomSize = getRandomNumberInRange(4f,6f)
+      val randomAngle = getRandomNumberInRange(-15f,15f) + facing
+      val randomVel = speed2Velocity(randomAngle,300f)
+      randomVel.scale(getRandomNumberInRange(0.25f,1f))
+      val ms = aEP_MovingSprite(
+        point,
+        Vector2f(randomSize,randomSize),
+        getRandomNumberInRange(0f,360f),
+        "graphics/weapons/aEP_large_kinetic_flak/shell.png")
+      ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
+      ms.fadeOut = 0.35f
+      ms.color = FRAG_COLOR
+      ms.setInitVel(randomVel)
+      ms.stopSpeed = 0.875f
+      addEffect(ms)
+      addEffect(Glow(ms))
+    }
+
     if(shieldHit && target is ShipAPI){
       //施加伤害，只造成软幅能
       engine.applyDamage(
@@ -416,33 +445,6 @@ class aEP_m_s_harpoon_shot: Effect{
         false,true,
         projectile.source)
 
-      Global.getCombatEngine().spawnExplosion(
-        point,
-        VECTOR2F_ZERO,
-        HIT_COLOR,
-        170f,
-        1.1f)
-
-      //创造一坨碎屑特效
-      val facing = projectile.facing
-      for(i in 0 until 12){
-        val randomSize = getRandomNumberInRange(4f,6f)
-        val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-        val randomVel = speed2Velocity(randomAngle,300f)
-        randomVel.scale(getRandomNumberInRange(0.25f,1f))
-        val ms = aEP_MovingSprite(
-          point,
-          Vector2f(randomSize,randomSize),
-          getRandomNumberInRange(0f,360f),
-          "graphics/weapons/aEP_large_kinetic_flak/shell.png")
-        ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
-        ms.fadeOut = 0.35f
-        ms.color = FRAG_COLOR
-        ms.setInitVel(randomVel)
-        ms.stopSpeed = 0.875f
-        addEffect(ms)
-        addEffect(Glow(ms))
-      }
     }
   }
 
@@ -488,6 +490,34 @@ class aEP_m_l_harpoon_shot : Effect{
     engine?:return
     projectile?:return
     point?:return
+    Global.getCombatEngine().spawnExplosion(
+      point,
+      VECTOR2F_ZERO,
+      HIT_COLOR,
+      220f,
+      1.1f)
+
+    //创造一坨碎屑特效
+    val facing = projectile.facing
+    for(i in 0 until 18){
+      val randomSize = getRandomNumberInRange(4f,6f)
+      val randomAngle = getRandomNumberInRange(-15f,15f) + facing
+      val randomVel = speed2Velocity(randomAngle,400f)
+      randomVel.scale(getRandomNumberInRange(0.25f,1f))
+      val ms = aEP_MovingSprite(
+        point,
+        Vector2f(randomSize,randomSize),
+        getRandomNumberInRange(0f,360f),
+        "graphics/weapons/aEP_large_kinetic_flak/shell.png")
+      ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
+      ms.fadeOut = 0.35f
+      ms.color = FRAG_COLOR
+      ms.setInitVel(randomVel)
+      ms.stopSpeed = 0.875f
+      addEffect(ms)
+      addEffect(Glow(ms))
+    }
+
     if(shieldHit && target is ShipAPI){
       //施加伤害，只造成软幅能
       engine.applyDamage(
@@ -497,34 +527,6 @@ class aEP_m_l_harpoon_shot : Effect{
         0f,
         false,true,
         projectile.source)
-
-      Global.getCombatEngine().spawnExplosion(
-        point,
-        VECTOR2F_ZERO,
-        HIT_COLOR,
-        220f,
-        1.1f)
-
-      //创造一坨碎屑特效
-      val facing = projectile.facing
-      for(i in 0 until 18){
-        val randomSize = getRandomNumberInRange(4f,6f)
-        val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-        val randomVel = speed2Velocity(randomAngle,400f)
-        randomVel.scale(getRandomNumberInRange(0.25f,1f))
-        val ms = aEP_MovingSprite(
-          point,
-          Vector2f(randomSize,randomSize),
-          getRandomNumberInRange(0f,360f),
-          "graphics/weapons/aEP_large_kinetic_flak/shell.png")
-        ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
-        ms.fadeOut = 0.35f
-        ms.color = FRAG_COLOR
-        ms.setInitVel(randomVel)
-        ms.stopSpeed = 0.875f
-        addEffect(ms)
-        addEffect(Glow(ms))
-      }
     }
   }
 
@@ -2954,7 +2956,6 @@ class aEP_m_s_era :EveryFrame{
     }
   }
 }
-
 class aEP_m_s_era_shot : Effect(){
   companion object{
     const val WARHEAD_WEAPON_ID = "aEP_m_s_era2"
@@ -2974,6 +2975,7 @@ class aEP_m_s_era_shot : Effect(){
       )
       proj.velocity.scale(getRandomNumberInRange(0.75f,1.25f))
     }
+
   }
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
