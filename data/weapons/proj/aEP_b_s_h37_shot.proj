@@ -1,0 +1,19 @@
+{
+	"id":"aEP_b_s_h37_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"length":50.0,
+	"hitGlowRadius":45,
+	"width":5.0,
+	"fadeTime":0.175,
+	"fringeColor":[255,230,50,155],
+	"coreColor":[255,230,170,220],
+	"glowColor":[255,165,30,30],
+	"glowRadius":25,
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/shell_round_sml.png"
+}
