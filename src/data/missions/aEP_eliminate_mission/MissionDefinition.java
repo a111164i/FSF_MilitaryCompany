@@ -56,11 +56,11 @@ public class MissionDefinition implements MissionDefinitionPlugin
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
     String name1 = "涌动";
+    String name2 = "冰绒";
     api.addToFleet(FleetSide.PLAYER, "aEP_cap_nuanchi_Standard", FleetMemberType.SHIP, name1, true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_duiliu_Standard", FleetMemberType.SHIP,  name2,false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP, "R01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP, "R02",false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  "H01",false);
-
 
 
 
@@ -74,6 +74,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addToFleet(FleetSide.ENEMY, "aEP_radiant_Standard", FleetMemberType.SHIP,  false);
     //设置输赢条件
     api.defeatOnShipLoss(name1);
+    api.defeatOnShipLoss(name2);
 
     //过滤插件
     FactionAPI f = Global.getSettings().createBaseFaction(aEP_ID.FACTION_ID_FSF);
