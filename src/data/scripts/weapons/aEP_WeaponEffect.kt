@@ -1827,7 +1827,7 @@ class aEP_b_l_dg3_shot : Effect{
   override fun onHit(projectile: DamagingProjectileAPI?, target: CombatEntityAPI?, point: Vector2f?, shieldHit: Boolean, damageResult: ApplyDamageResultAPI?, engine: CombatEngineAPI?, weaponId: String?) {
     if(shieldHit) return
     if(target is ShipAPI){
-      val damage = computeDamageToShip(projectile?.source,target,projectile?.weapon,DAMAGE_PER_TRIGGER, DamageType.OTHER,false)
+      val damage = computeDamageToShip(projectile?.source,null, projectile?.weapon, DAMAGE_PER_TRIGGER, null,false)
       val armorLevel = DefenseUtils.getArmorLevel(target,point)
       if(armorLevel <= 0.05f){
         //不能通过此种方式将hp减到负数或者0
@@ -2832,7 +2832,7 @@ class aEP_fga_yonglang_main_shot : Effect(){
 class aEP_b_m_rk107_shot : Effect{
   companion object{
     private var DAMAGE_BONUS = 0.2f
-    const val MAX_DAMAGE = 400f
+    const val MAX_BONUS_DAMAGE = 400f
     const val CUSTOM_KEY = "aEP_b_m_rk107_shot"
   }
 
@@ -2886,9 +2886,11 @@ class aEP_b_m_rk107_shot : Effect{
 
       if(param is MissileAPI){
         if(param.projectileSpecId.equals(CUSTOM_KEY)){
-          val minArmor = target.armorGrid.armorRating * DAMAGE_BONUS
+          val armorBonus = (target.armorGrid.armorRating * DAMAGE_BONUS).coerceAtMost(MAX_BONUS_DAMAGE)
           //基础值是1哦
-          damage.modifier.modifyFlat(CUSTOM_KEY,(minArmor/damage.baseDamage).coerceAtMost(MAX_DAMAGE))
+          //如果基础伤害是0就没法计算了，不加成
+          if(damage.baseDamage <= 0f) return null
+          damage.modifier.modifyFlat(CUSTOM_KEY,armorBonus/damage.baseDamage)
           damage.modifier.modifiedValue
           return CUSTOM_KEY
         }

@@ -1431,95 +1431,95 @@ class aEP_Tool {
 
     }
 
-    fun computeDamageToShip(source:ShipAPI?, target: ShipAPI, weapon:WeaponAPI?, damage:Float, type:DamageType, hitShield:Boolean): Float {
+    fun computeDamageToShip(source:ShipAPI?, target: ShipAPI?, weapon:WeaponAPI?, damage:Float, type:DamageType?, hitShield:Boolean): Float {
       var d = damage
       var weaponSpec = weapon?.spec?.type?:WeaponAPI.WeaponType.DECORATIVE
+
+      val sourceStat : MutableShipStatsAPI? = source?.mutableStats
+      val targetStat : MutableShipStatsAPI? = target?.mutableStats
 
       //武器加成
       var weaponMult = 1f
       when (weaponSpec) {
         WeaponAPI.WeaponType.BALLISTIC ->
-          weaponMult = source?.mutableStats?.ballisticWeaponDamageMult?.modifiedValue ?: 1f
+          weaponMult = sourceStat?.ballisticWeaponDamageMult?.modifiedValue ?: 1f
         WeaponAPI.WeaponType.ENERGY ->
-          weaponMult = source?.mutableStats?.energyWeaponDamageMult?.modifiedValue ?: 1f
+          weaponMult = sourceStat?.energyWeaponDamageMult?.modifiedValue ?: 1f
         WeaponAPI.WeaponType.MISSILE ->
-          weaponMult = source?.mutableStats?.missileWeaponDamageMult?.modifiedValue ?: 1f
+          weaponMult = sourceStat?.missileWeaponDamageMult?.modifiedValue ?: 1f
       }
+
 
       //光束加成
       var beamMult = 1f
-      if(weapon?.isBeam == true) beamMult = source?.mutableStats?.beamWeaponDamageMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamMult = sourceStat?.beamWeaponDamageMult?.modifiedValue ?: 1f
 
       //对护盾易伤加成
-      var allDamageToShieldDealtMult = source?.mutableStats?.damageToTargetShieldsMult?.modifiedValue ?: 1f
+      var allDamageToShieldDealtMult = sourceStat?.damageToTargetShieldsMult?.modifiedValue ?: 1f
 
 
       //对舰体级别加成
       var targetSizeMult = 1f
       when (target?.hullSize?: ShipAPI.HullSize.DEFAULT) {
         ShipAPI.HullSize.CAPITAL_SHIP ->
-          targetSizeMult = source?.mutableStats?.damageToCapital?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToCapital?.modifiedValue ?: 1f
         ShipAPI.HullSize.CRUISER ->
-          targetSizeMult = source?.mutableStats?.damageToCruisers?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToCruisers?.modifiedValue ?: 1f
         ShipAPI.HullSize.DESTROYER ->
-          targetSizeMult = source?.mutableStats?.damageToDestroyers?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToDestroyers?.modifiedValue ?: 1f
         ShipAPI.HullSize.FRIGATE ->
-          targetSizeMult = source?.mutableStats?.damageToFrigates?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToFrigates?.modifiedValue ?: 1f
         ShipAPI.HullSize.FIGHTER ->
-          targetSizeMult = source?.mutableStats?.damageToFighters?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToFighters?.modifiedValue ?: 1f
       }
 
       //目标舰体/装甲易伤加成
       var targetDamageTakenMult = 1f
       when (type) {
         DamageType.KINETIC ->
-          targetDamageTakenMult = target?.mutableStats?.kineticDamageTakenMult?.modifiedValue ?: 1f
+          targetDamageTakenMult = targetStat?.kineticDamageTakenMult?.modifiedValue ?: 1f
         DamageType.ENERGY ->
-          targetDamageTakenMult = target?.mutableStats?.energyDamageTakenMult?.modifiedValue ?: 1f
+          targetDamageTakenMult = targetStat?.energyDamageTakenMult?.modifiedValue ?: 1f
         DamageType.HIGH_EXPLOSIVE ->
-          targetDamageTakenMult = target?.mutableStats?.highExplosiveDamageTakenMult?.modifiedValue ?: 1f
+          targetDamageTakenMult = targetStat?.highExplosiveDamageTakenMult?.modifiedValue ?: 1f
         DamageType.FRAGMENTATION ->
-          targetDamageTakenMult = target?.mutableStats?.fragmentationDamageTakenMult?.modifiedValue ?: 1f
-        DamageType.OTHER ->
-          targetDamageTakenMult = 1f
+          targetDamageTakenMult = targetStat?.fragmentationDamageTakenMult?.modifiedValue ?: 1f
       }
 
       //目标护盾易伤加成
       var targetShieldDamageTakenMult = 1f
       when (type) {
         DamageType.KINETIC ->
-          targetShieldDamageTakenMult = target?.mutableStats?.kineticShieldDamageTakenMult?.modifiedValue ?:1f
+          targetShieldDamageTakenMult = targetStat?.kineticShieldDamageTakenMult?.modifiedValue ?:1f
         DamageType.ENERGY ->
-          targetShieldDamageTakenMult = target?.mutableStats?.energyShieldDamageTakenMult?.modifiedValue ?: 1f
+          targetShieldDamageTakenMult = targetStat?.energyShieldDamageTakenMult?.modifiedValue ?: 1f
         DamageType.HIGH_EXPLOSIVE ->
-          targetShieldDamageTakenMult = target?.mutableStats?.highExplosiveShieldDamageTakenMult?.modifiedValue ?: 1f
+          targetShieldDamageTakenMult = targetStat?.highExplosiveShieldDamageTakenMult?.modifiedValue ?: 1f
         DamageType.FRAGMENTATION ->
-          targetShieldDamageTakenMult = target?.mutableStats?.fragmentationShieldDamageTakenMult?.modifiedValue ?: 1f
-        DamageType.OTHER ->
-          targetShieldDamageTakenMult = 1f
+          targetShieldDamageTakenMult = targetStat?.fragmentationShieldDamageTakenMult?.modifiedValue ?: 1f
       }
       targetShieldDamageTakenMult *= targetDamageTakenMult
 
       //目标船体易伤加成
-      var targetAllDamageTakenMult = target?.mutableStats?.hullDamageTakenMult?.modifiedValue ?: 1f
+      var targetAllDamageTakenMult = targetStat?.hullDamageTakenMult?.modifiedValue ?: 1f
       //目标护盾易伤加成
-      var targetShieldAllDamageTakenMult = target?.mutableStats?.shieldDamageTakenMult?.modifiedValue ?: 1f
+      var targetShieldAllDamageTakenMult = targetStat?.shieldDamageTakenMult?.modifiedValue ?: 1f
 
 
       //目标投射物易伤加成
       var projDamageTakenMult = 1f
-      if(weapon?.isBeam == false) projDamageTakenMult = target?.mutableStats?.projectileDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == false) projDamageTakenMult = targetStat?.projectileDamageTakenMult?.modifiedValue ?: 1f
       //目标投射物对护盾易伤加成
       var projShieldDamageTakenMult = 1f
-      if(weapon?.isBeam == false) projShieldDamageTakenMult = target?.mutableStats?.projectileShieldDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == false) projShieldDamageTakenMult = targetStat?.projectileShieldDamageTakenMult?.modifiedValue ?: 1f
       projShieldDamageTakenMult *= projDamageTakenMult
 
       //目标光束易伤加成
       var beamDamgeTakenMult = 1f
-      if(weapon?.isBeam == true) beamDamgeTakenMult = target?.mutableStats?.beamDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamDamgeTakenMult = targetStat?.beamDamageTakenMult?.modifiedValue ?: 1f
       //目标光束对护盾易伤加成
       var beamShieldDamgeTakenMult = 1f
-      if(weapon?.isBeam == true) beamShieldDamgeTakenMult = target?.mutableStats?.beamShieldDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamShieldDamgeTakenMult = targetStat?.beamShieldDamageTakenMult?.modifiedValue ?: 1f
       beamShieldDamgeTakenMult *= beamDamgeTakenMult
 
 
