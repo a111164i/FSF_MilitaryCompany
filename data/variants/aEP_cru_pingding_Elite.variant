@@ -26,7 +26,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "aEP_kinetic_flak"}
+            "weapons": {"WS0006": "aEP_b_m_k125"}
         },
         {
             "autofire": true,

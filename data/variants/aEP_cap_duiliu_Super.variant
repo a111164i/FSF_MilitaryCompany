@@ -33,10 +33,10 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0009": "aEP_kinetic_flak",
-        "WS0010": "aEP_kinetic_flak",
-        "WS0011": "aEP_kinetic_flak",
-        "WS0012": "aEP_kinetic_flak"
+        "WS0009": "aEP_b_m_k125",
+        "WS0010": "aEP_b_m_k125",
+        "WS0011": "aEP_b_m_k125",
+        "WS0012": "aEP_b_m_k125"
       }
     },
     {

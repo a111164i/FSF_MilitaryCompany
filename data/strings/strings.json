@@ -194,14 +194,14 @@
 		"aEP_AttackCarrier04":"冷却剩余: %s",
 
 		"aEP_SoftfluxDissipate01":"幅能耗散增加: ",
-		"aEP_SoftfluxDissipate02":"每一点耗散通道不再造成常驻的耗散减少，而是获得{%s}的浮动加成，但这些加成随着舰船硬幅能水平上升而逐渐减少到{%s}",
-		"aEP_SoftfluxDissipate03":"每一点耗散通道的正常加成减少{%s}",
+		"aEP_SoftfluxDissipate02":"每一点耗散通道不再造成常驻的额外减益，而是获得{%s}的浮动加成，但这些加成随着舰船硬幅能水平上升而逐渐减少到{%s}",
+		"aEP_SoftfluxDissipate03":"每一点耗散通道的正常加成额外减少{%s}",
 		"aEP_SoftfluxDissipate04":"幅能耗散变动: ",
 
 		"aEP_RapidDissipate01":"根据当前幅能水平，每次舰体受到伤害时，耗散掉最多等同于伤害量的{%s}的幅能",
 		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散",
 
-		"aEP_BurstDissipate01": "每一点耗散通道的正常加成增加{%s}",
+		"aEP_BurstDissipate01": "每一点耗散通道的正常加成额外增加{%s}",
 		"aEP_BurstDissipate02": "每一点耗散通道不再提供常驻的额外加成，而是造成{%s}的耗散减少",
 		"aEP_BurstDissipate03": "幅能耗散变动: ",
 		"aEP_BurstDissipate04": "护盾伤害吸收率劣化{%s}",

@@ -35,7 +35,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
   static final float FLUX_PERCENT_TO_OVERLOAD_TIME = 0.12f;//how many percent accumulated flux of total flux convert to 1 second overload
   static final float MAX_OVERLOAD_TIME = 12f;
   static final float WEAPON_COST_REDUCE_MULT = 0.5f;
-  static final float FLUX_DISS_RUDUCE_MULT = 0.2f;
+  static final float FLUX_DISS_RUDUCE_MULT = 0.75f;
 
   static final Color JITTER_COLOR = new Color(240, 50, 50, 60);
   static final Color HIGHLIGHT_COLOR = new Color(255, 20, 20, 120);

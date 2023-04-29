@@ -262,6 +262,10 @@ class ApproximatePrimer(val missile: MissileAPI) : aEP_BaseCombatEffect(0f,missi
     val FUSE_RANGE = 100f
   }
   override fun advanceImpl(amount: Float){
+    //转向时延长飞行时间
+    if(!missile.engineController.isAccelerating){
+      missile.flightTime -= amount * 0.5f
+    }
 
     val detectPoint = aEP_Tool.getExtendedLocationFromPoint(missile.location,missile.facing,FUSE_RANGE )
     val sprite = Global.getSettings().getSprite("aEP_FX","noise")
@@ -1981,7 +1985,7 @@ class aEP_EMP_pike_shot : Effect(){
 }
 
 //aa40 125 转膛炮系列
-class aEP_KF_shot : Effect(){
+class aEP_b_m_k125_shot : Effect(){
   companion object{
     val SMOKE_RING_COLOR =  Color(240,240,240,200)
     val SHELL_GLOW =   Color(255, 218, 188, 35)
@@ -2067,10 +2071,10 @@ class aEP_KF_shot : Effect(){
   }
 
   fun explode(loc: Vector2f){
-    spawnSingleCompositeSmoke(loc,100f,1.2f,SMOKE_RING_COLOR)
+    spawnSingleCompositeSmoke(loc,125f,1.2f,SMOKE_RING_COLOR)
   }
 }
-class aEP_KF_large_shot : Effect(){
+class aEP_b_l_aa40_shot : Effect(){
   companion object{
     val SMOKE_RING_COLOR =  Color(205, 205, 205, 30)
     val SMOKE_RING_COLOR2 =   Color(40, 40, 40, 70)

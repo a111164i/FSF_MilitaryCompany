@@ -17,8 +17,8 @@
       "autofire": true,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_large_kinetic_flak",
-        "WS0002": "aEP_large_kinetic_flak"
+        "WS0001": "aEP_b_l_aa40",
+        "WS0002": "aEP_b_l_aa40"
       }
     },
     {

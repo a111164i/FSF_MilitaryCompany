@@ -1,7 +1,7 @@
 {
-  "id": "aEP_large_kinetic_flak",
+  "id": "aEP_b_l_aa40",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_KF_large_shot",
+  "projectileSpecId": "aEP_b_l_aa40_shot",
   "type": "BALLISTIC",
   "size": "LARGE",
   "turretSprite": "graphics/weapons/aEP_large_kinetic_flak/tr.png",

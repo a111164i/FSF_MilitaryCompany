@@ -1,7 +1,7 @@
 {
-  "id": "aEP_kinetic_flak",
+  "id": "aEP_b_m_k125",
   "specClass": "projectile",
-  "projectileSpecId":"aEP_KF_shot",
+  "projectileSpecId":"aEP_b_m_k125_shot",
   "type": "BALLISTIC",
   "size": "MEDIUM",
   "turretSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak00.png",
@@ -24,16 +24,16 @@
   "barrelMode": "LINKED",
   "autocharge":true, 
   "interruptibleBurst":false,
-  "separateRecoilForLinkedBarrels":"true",
+  "separateRecoilForLinkedBarrels":"false",
   "animationType": "MUZZLE_FLASH",
   "muzzleFlashSpec": {
-    "length": 24,
+    "length": 30,
     "spread": 12,
     "particleSizeMin": 40,
     "particleSizeRange": 30,
-    "particleDuration": 0.13,
-    "particleCount": 6,
-    "particleColor": [225,255,205,200]},
+    "particleDuration": 0.15,
+    "particleCount": 10,
+    "particleColor": [225,255,205,175]},
   "fireSoundTwo":"aEP_kinetic_flak_fire",	
   
   

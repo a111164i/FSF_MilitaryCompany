@@ -15,7 +15,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "aEP_large_kinetic_flak"}
+            "weapons": {"WS0006": "aEP_b_l_aa40"}
         },
         {
             "autofire": false,
@@ -28,7 +28,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_large_kinetic_flak"}
+            "weapons": {"WS0003": "aEP_b_l_aa40"}
         },
         {
             "autofire": true,

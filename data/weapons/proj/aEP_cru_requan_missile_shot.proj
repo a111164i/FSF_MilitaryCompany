@@ -7,8 +7,8 @@
 	"center":[4,14],
 	"collisionRadius":14,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[80,40,40,200],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":100, # purely visual
+	"explosionColor":[141,80,245,225],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":120, # purely visual
 	#"alwaysAccelerate":true,
 	"engineSpec":{"turnAcc":200,
 				  "turnRate":60,
@@ -22,8 +22,8 @@
 			"style":"CUSTOM",
 			"styleSpec":{
 				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-				"engineColor":[100,165,255,200],
-				"contrailDuration":0.35,
+				"engineColor":[100,165,255,245],
+				"contrailDuration":0.3,
 				"contrailWidthMult":1,
 				"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
 				"contrailMinSeg":5, # min segment length, in pixels
@@ -45,7 +45,7 @@
       "style":"CUSTOM",
       "styleSpec":{
       	"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-        "engineColor":[195,165,155,200],
+        "engineColor":[195,165,155,220],
         "contrailDuration":0.65,
         "contrailWidthMult":1,
         "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
@@ -68,13 +68,13 @@
 	    "style":"CUSTOM",
 	    "styleSpec":{
 	    	"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-	      "engineColor":[255,115,75,200],
+	      "engineColor":[255,115,75,220],
 
         "contrailDuration":1,
         "contrailWidthMult":1,
         "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
         "contrailMinSeg":5, # min segment length, in pixels
-	      "contrailColor":[55,55,55,199],
+	      "contrailColor":[155,55,55,199],
 
 	      "contrailParticleSizeMult":2,
 	      "contrailParticleDuration":2,
