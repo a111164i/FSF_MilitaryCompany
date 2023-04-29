@@ -740,72 +740,72 @@
   "engineSlots": [
     {
       "location": [-131, 78.5],
-      "length": 39,
-      "width": 9,
+      "length": 80,
+      "width": 12,
       "angle": -180,
       "contrailSize": 9,
       "style": "FSF_MAIN"
     },
     {
       "location": [-131, -78.5],
-      "length": 39,
-      "width": 9,
+      "length": 80,
+      "width": 12,
       "angle": 180,
       "contrailSize": 9,
       "style": "FSF_MAIN"
     },
     {
       "location": [-153, 35],
-      "length": 62.5,
-      "width": 16,
+      "length": 65,
+      "width": 22,
       "angle": -180,
       "contrailSize": 16,
       "style": "FSF_MAIN"
     },
     {
       "location": [-153, -35],
-      "length": 62.5,
-      "width": 16,
+      "length": 65,
+      "width": 22,
       "angle": 180,
       "contrailSize": 16,
       "style": "FSF_MAIN"
     },
     {
       "location": [-144, 51.5],
-      "length": 47,
-      "width": 9,
+      "length": 80,
+      "width": 12,
       "angle": 180,
       "contrailSize": 9,
       "style": "FSF_MAIN"
     },
     {
       "location": [-144, -51.5],
-      "length": 47,
-      "width": 9,
+      "length": 80,
+      "width": 12,
       "angle": -180,
       "contrailSize": 9,
       "style": "FSF_MAIN"
     },
     {
       "location": [-169, 0],
-      "length": 101.5,
-      "width": 33,
+      "length": 80,
+      "width": 24,
       "angle": -180,
       "contrailSize": 33,
       "style": "FSF_MAIN"
     },
     {
       "location": [-134.5, -66],
-      "length": 47,
-      "width": 9,
+      "length": 80,
+      "width": 12,
       "angle": -180,
       "contrailSize": 9,
       "style": "FSF_MAIN"
     },
     {
       "location": [-134.5, 66],
-      "length": 47,
-      "width": 9,
+      "length": 80,
+      "width": 12,
       "angle": 180,
       "contrailSize": 9,
       "style": "FSF_MAIN"

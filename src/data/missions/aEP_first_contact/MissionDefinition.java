@@ -137,8 +137,14 @@ public class MissionDefinition implements MissionDefinitionPlugin
           }
 
 
-          int sizeDisable = manager.getDisabledCopy().size();
-          int sizeDestroyed = manager.getDestroyedCopy().size();
+
+          int sizeDisable = 0;
+          for(FleetMemberAPI m : manager.getDisabledCopy()){
+            //模块被击毁不算在总数内
+            if(m.getUnmodifiedDeploymentPointsCost() <= 0) continue;
+            sizeDisable += 1;
+          }
+
           if(sizeDisable > 1){
             engine.endCombat(0f,FleetSide.ENEMY);
             didOnce = true;

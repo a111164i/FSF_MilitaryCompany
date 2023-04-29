@@ -337,7 +337,7 @@
       "mount": "HARDPOINT",
       "arc": 0,
       "angle": 90,
-      "locations": [134, 90.5]
+      "locations": [133, 90.5]
     },
     {
       "id": "WS0033",
@@ -373,21 +373,21 @@
       "mount": "HARDPOINT",
       "arc": 0,
       "angle": 0,
-      "locations": [174, 50.5]
+      "locations": [174, 49.5]
     }
   ],
   "engineSlots": [
     {
       "location": [-182.5, 27],
-      "length": 67.5,
+      "length": 80,
       "width": 12,
       "angle": 180,
-      "contrailSize": 12,
+      "contrailSize": 11,
       "style": "FSF_MAIN"
     },
     {
       "location": [-181.5, -39],
-      "length": 67.5,
+      "length": 80,
       "width": 12,
       "angle": 180,
       "contrailSize": 12,
@@ -395,34 +395,34 @@
     },
     {
       "location": [-182, 8],
-      "length": 101.5,
-      "width": 33,
+      "length": 65,
+      "width": 22,
       "angle": 180,
-      "contrailSize": 33,
+      "contrailSize": 22,
       "style": "FSF_MAIN"
     },
     {
       "location": [-182, -20],
-      "length": 101.5,
-      "width": 33,
+      "length": 65,
+      "width": 22,
       "angle": 180,
-      "contrailSize": 33,
+      "contrailSize": 22,
       "style": "FSF_MAIN"
     },
     {
       "location": [-166, -66],
-      "length": 101.5,
-      "width": 33,
+      "length": 65,
+      "width": 22,
       "angle": 180,
-      "contrailSize": 33,
+      "contrailSize": 22,
       "style": "FSF_MAIN"
     },
     {
       "location": [-166, 54],
-      "length": 101.5,
-      "width": 33,
+      "length": 65,
+      "width": 22,
       "angle": 180,
-      "contrailSize": 33,
+      "contrailSize": 22,
       "style": "FSF_MAIN"
     }
   ],

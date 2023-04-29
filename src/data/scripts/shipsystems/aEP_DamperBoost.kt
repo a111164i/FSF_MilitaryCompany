@@ -21,10 +21,10 @@ class aEP_DamperBoost : BaseShipSystemScript() {
     }
     val EFFECT_ARMOR_FLAT_BONUS = HashMap<String,Float>()
     init {
-      EFFECT_ARMOR_FLAT_BONUS["aEP_fga_raoliu"] = 200f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan"] = 200f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan_mk2"] = 200f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_des_lianliu"] = 200f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_fga_raoliu"] = 300f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan"] = 300f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan_mk2"] = 300f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_des_lianliu"] = 300f;
     }
     val EFFECT_ARMOR_PERCENT_BONUS = HashMap<String,Float>()
     init {
