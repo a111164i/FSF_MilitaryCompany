@@ -416,6 +416,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

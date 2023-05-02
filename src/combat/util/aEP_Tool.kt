@@ -123,7 +123,6 @@ class aEP_Tool {
     }
 
 
-
     //turn weapon to angle with accelerate
     fun moveToAngle(toAngle: Float, MAX_SPEED: Float, ACC: Float, w: WeaponAPI, turnRate: Float, amount: Float): Float {
       var turnRate = turnRate
@@ -295,11 +294,11 @@ class aEP_Tool {
     }
 
     /**
-     * 用于飞行到目标点，会停在目标点上
+     * 用于直飞到目标点，会停在目标点上
      * 舰船类
      * */
     @JvmStatic
-    fun moveToPosition(entity: ShipAPI, toPosition: Vector2f?) {
+    fun moveToPosition(entity: ShipAPI, toPosition: Vector2f) {
       val directionVec = VectorUtils.getDirectionalVector(entity.location, toPosition)
       val directionAngle = VectorUtils.getFacing(directionVec)
       val distSq = MathUtils.getDistanceSquared(entity.location, toPosition)
@@ -740,11 +739,12 @@ class aEP_Tool {
     }
 
     @JvmStatic
-    fun returnToParent(ship: ShipAPI, parentShip: ShipAPI, amount: Float) {
+    fun returnToParent(ship: ShipAPI, parentShip: ShipAPI?, amount: Float): Boolean {
       ship.giveCommand(ShipCommand.HOLD_FIRE, null, 0)
       val id = "aEP_ReturnToParent"
-      if (parentShip.launchBaysCopy.size <= 0) {
-        val callBackColor = if (ship.shield != null) ship.shield.innerColor else Color(100, 100, 200, 100)
+      //没有母舰直接自爆
+      if ( (parentShip?.launchBaysCopy?.size?:0) <= 0) {
+        val callBackColor = if (ship.shield != null) ship.shield.innerColor else Color(100, 100, 200, 200)
         Global.getCombatEngine().spawnExplosion(
           ship.location,  //loc
           Vector2f(0f, 0f),  //velocity
@@ -753,12 +753,15 @@ class aEP_Tool {
           0.5f
         ) //duration
         Global.getCombatEngine().removeEntity(ship)
+        return false
       }
+      val parentShip = parentShip as ShipAPI
 
       //landing check
       val landingStarted = ship.isLanding
       val toTargetPo = ship.wing.source.getLandingLocation(ship)
-      val dist = MathUtils.getDistance(ship.location, toTargetPo)
+      var dist = MathUtils.getDistance(ship.location, toTargetPo)
+
 
       //距离降落100外时，飞到100内，取消额外机动性
       if (dist > 100f) {
@@ -789,7 +792,9 @@ class aEP_Tool {
       //让飞机降落
       if (ship.isFinishedLanding) {
         ship.wing.source.land(ship)
+        return true
       }
+      return false
     }
 
     fun getSpriteRelPoint(spriteCenter: Vector2f, spriteSize: Vector2f, facing: Float, boundPoint: Vector2f?): Vector2f {
@@ -805,7 +810,7 @@ class aEP_Tool {
       val absoluteAngle = VectorUtils.getAngle(target.location, hitPoint)
       var angle = 0f
       angle = if (relativeToShield) {
-        angleAdd(absoluteAngle, -target.shield.facing)
+        angleAdd(absoluteAngle, -(target.shield?.facing?:target.facing) )
       } else {
         angleAdd(absoluteAngle, -target.facing)
       }
@@ -827,7 +832,7 @@ class aEP_Tool {
       val angle = relativeData.x
       val dist = relativeData.y
       return if (relativeToShield) {
-        val absoluteAngle = angleAdd(angle, target.shield.facing)
+        val absoluteAngle = angleAdd(angle, target.shield?.facing?:target.facing)
         getExtendedLocationFromPoint(target.location, absoluteAngle, dist)
       } else {
         val absoluteAngle = angleAdd(angle, target.facing)
@@ -922,7 +927,7 @@ class aEP_Tool {
 
     @JvmStatic
     fun getNearestFriendCombatShip(e: CombatEntityAPI?): ShipAPI? {
-      var distMost = 1000000f
+      var distMost = Float.MAX_VALUE
       var returnShip: ShipAPI? = null
       for (s in AIUtils.getAlliesOnMap(e)) {
         if (s.isFrigate || s.isDestroyer || s.isCruiser || s.isCapital) {
@@ -938,7 +943,7 @@ class aEP_Tool {
 
     @JvmStatic
     fun getNearestEnemyCombatShip(e: CombatEntityAPI?): ShipAPI? {
-      var distMost = 1000000f
+      var distMost = Float.MAX_VALUE
       var returnShip: ShipAPI? = null
       for (s in AIUtils.getEnemiesOnMap(e)) {
         if (s.isFrigate || s.isDestroyer || s.isCruiser || s.isCapital) {
@@ -1197,6 +1202,14 @@ class aEP_Tool {
     }
 
     fun getAbsPos(angleAndLength: Vector2f, basePoint: Vector2f): Vector2f {
+      val angle = angleAndLength.x
+      val length = angleAndLength.y
+      val xAxis = FastTrig.cos(Math.toRadians(angle.toDouble())).toFloat() * length
+      val yAxis = FastTrig.sin(Math.toRadians(angle.toDouble())).toFloat() * length
+      return Vector2f(xAxis + basePoint.x, yAxis + basePoint.y)
+    }
+
+    fun getAbsPos(angleAndLength: Vector2f, basePoint: Vector2f, baseAngle: Float): Vector2f {
       val angle = angleAndLength.x
       val length = angleAndLength.y
       val xAxis = FastTrig.cos(Math.toRadians(angle.toDouble())).toFloat() * length
@@ -1566,6 +1579,11 @@ class aEP_Tool {
         }
         target.syncWithArmorGridState()
       }
+    }
+
+    fun isDead(ship: ShipAPI) : Boolean{
+      if(!ship.isAlive || ship.isHulk || !Global.getCombatEngine().isEntityInPlay(ship)) return true
+      return false
     }
 
   }

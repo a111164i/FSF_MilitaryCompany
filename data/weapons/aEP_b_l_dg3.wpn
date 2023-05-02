@@ -42,6 +42,8 @@
   "numFrames": 4,
   "frameRate": 28,
   "autocharge": true,
+  "interruptibleBurst":false,
+  "separateRecoilForLinkedBarrels":"true",
   "smokeSpec": {
     "particleSizeMin": 20,
     "particleSizeRange": 10,

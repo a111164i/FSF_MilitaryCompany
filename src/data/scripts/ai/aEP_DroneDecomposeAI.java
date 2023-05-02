@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class aEP_DecomposeDroneAI implements ShipAIPlugin
+public class aEP_DroneDecomposeAI implements ShipAIPlugin
 {
 
   private static final float MOVEMENT_MOD_CHANGE_RANGE = 400f;//how far from target that drone change its movement mod
@@ -34,7 +34,6 @@ public class aEP_DecomposeDroneAI implements ShipAIPlugin
   private CombatEngineAPI engine;
   private final ShipAPI ship;
   private ShipAPI parentShip;
-  private WeaponAPI weapon;
   private CombatEntityAPI toTarget;
   private Vector2f toTargetPo;
   private float timer;
@@ -44,7 +43,7 @@ public class aEP_DecomposeDroneAI implements ShipAIPlugin
   private boolean shouldReturn = false;
 
 
-  public aEP_DecomposeDroneAI(FleetMemberAPI member, ShipAPI ship) {
+  public aEP_DroneDecomposeAI(FleetMemberAPI member, ShipAPI ship) {
     this.ship = ship;
     this.engine = Global.getCombatEngine();
   }
@@ -98,7 +97,6 @@ public class aEP_DecomposeDroneAI implements ShipAIPlugin
     //检测每个武器携带的补给
     float allSupplies = 0f;
     for (WeaponAPI w : ship.getAllWeapons()) {
-      weapon = w;
       if (engine.getCustomData().get("aEP_decompose_drone_supplies") != null) {
         if(((Map<WeaponAPI, Float>) engine.getCustomData().get("aEP_decompose_drone_supplies")).get(w) != null) {
           allSupplies += ((Map<WeaponAPI, Float>) engine.getCustomData().get("aEP_decompose_drone_supplies")).get(w);
@@ -191,15 +189,6 @@ public class aEP_DecomposeDroneAI implements ShipAIPlugin
       aEP_Tool.Util.setToPosition(ship, toTargetPo);
       aEP_Tool.Util.moveToAngle(ship, VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())));
     }
-
-    //战术系统ai检测
-    if (dist <= 800f && ship.getSystem().isActive() || ship.getSystem().isActive() && Math.abs(MathUtils.getShortestRotation(ship.getFacing(), VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())))) > 45f) {
-      ship.useSystem();
-    }
-    if (dist >= 800f && !ship.getSystem().isActive() && Math.abs(MathUtils.getShortestRotation(ship.getFacing(), VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())))) <= 45f) {
-      ship.useSystem();
-    }
-
 
   }
 

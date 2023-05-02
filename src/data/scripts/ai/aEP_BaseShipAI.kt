@@ -3,28 +3,53 @@ package data.scripts.ai
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
+import com.fs.starfarer.combat.entities.Ship
+import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
+import data.scripts.ai.shipsystemai.aEP_BaseSystemAI
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
+import java.util.*
+import kotlin.collections.HashMap
 
 open class aEP_BaseShipAI: ShipAIPlugin {
 
-  var stopFiringTime = 1f;
-  var needsRefit = false;
+  companion object{
+    const val ID = "aEP_BaseShipAI"
+  }
+
+  lateinit var engine: CombatEngineAPI
+
+  var ship: ShipAPI
+
+  var systemTarget: ShipAPI? = null
+  var systemAI: aEP_BaseSystemAI? = null
+
+  var missileDangerDir : Vector2f? = null
+  var collisionDangerDir : Vector2f? = null
+
   val shipAIConfig = ShipAIConfig()
   val shipAIFlags = ShipwideAIFlags()
-  var ship: ShipAPI?
-  var systemAI: ShipSystemAIScript? = null
-  var useSystemAi = true
 
-  constructor(ship : ShipAPI?){
+  var stopFiringTime = 1f
+  var needsRefit = false
+
+  var stat: aEP_MissileAI.Status = aEP_MissileAI.Status()
+
+  constructor(ship : ShipAPI){
     this.ship = ship
+    this.engine = Global.getCombatEngine()
+
   }
 
-  constructor(ship : ShipAPI?, systemScript: ShipSystemAIScript){
+  constructor(ship : ShipAPI, systemAI: aEP_BaseSystemAI){
     this.ship = ship
-    this.systemAI = systemScript
+    this.engine = Global.getCombatEngine()
+    this.systemAI = systemAI
+    systemAI.init(ship,ship.system,aiFlags,engine)
   }
+
+
 
   override fun setDoNotFireDelay(amount: Float) {
     stopFiringTime = amount
@@ -35,10 +60,16 @@ open class aEP_BaseShipAI: ShipAIPlugin {
   }
 
   override fun advance(amount: Float) {
+    //如果本体已经死亡，不再运行ai
+    if(!ship.isAlive || ship.isHulk || !engine.isEntityInPlay(ship) ){
+      return
+    }
+
+    stat.advance(amount)
     stopFiringTime -= amount
     stopFiringTime = MathUtils.clamp(stopFiringTime,0f,999f)
-    if(systemAI != null && useSystemAi) {
-      systemAI?.advance(amount, Vector2f(0f,0f),Vector2f(0f,0f),ship?.shipTarget)
+    if(systemAI != null) {
+      systemAI?.advance(amount, missileDangerDir, collisionDangerDir, systemTarget?:ship.shipTarget)
     }
     aiFlags.advance(amount)
     advanceImpl(amount)
@@ -70,4 +101,6 @@ open class aEP_BaseShipAI: ShipAIPlugin {
   override fun getConfig(): ShipAIConfig {
     return shipAIConfig
   }
+
+
 }

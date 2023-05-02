@@ -33,13 +33,13 @@ public class a111164ModPlugin extends BaseModPlugin
   public PluginPick<ShipAIPlugin> pickShipAI(FleetMemberAPI member, ShipAPI ship) {
 
     if (ship.getHullSpec().getHullId().equals(RepairDrone_ID)) {
-      return new PluginPick<ShipAIPlugin>(new aEP_RepairingDroneAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+      return new PluginPick<ShipAIPlugin>(new aEP_DroneRepairShipAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
     }
     else if (ship.getHullSpec().getHullId().equals(DefenseDrone_ID)) {
-      return new PluginPick<ShipAIPlugin>(new aEP_DefenseDroneAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+      return new PluginPick<ShipAIPlugin>(new aEP_DroneShieldShipAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
     }
     else if (ship.getHullSpec().getHullId().equals(DecomposeDrone_ID)) {
-      return new PluginPick<ShipAIPlugin>(new aEP_DecomposeDroneAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+      return new PluginPick<ShipAIPlugin>(new aEP_DroneDecomposeAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
     }
     else if (ship.getHullSpec().getHullId().equals(CruiseMissile_ID)) {
       member.setCaptain(null);
@@ -87,7 +87,7 @@ public class a111164ModPlugin extends BaseModPlugin
       aEP_MissionUtils.loadDefaultWing(Global.getSettings().getAllFighterWingSpecs());
       aEP_MissionUtils.loadDefaultHullMod(Global.getSettings().getAllHullModSpecs());
     } catch (Exception e1){
-      aEP_Tool.Util.addDebugLog("aEP_ onApplicationLoad filter mission weapon wrong");
+      aEP_Tool.Util.addDebugLog(this.getClass().getSimpleName()+" onApplicationLoad, mission filter initiation error");
     }
 
   }
@@ -108,6 +108,7 @@ public class a111164ModPlugin extends BaseModPlugin
       sector.addScript(new a111164CampaignPlugin());
     }
   }
+
 
 
 }

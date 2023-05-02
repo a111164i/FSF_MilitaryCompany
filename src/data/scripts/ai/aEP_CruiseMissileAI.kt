@@ -12,12 +12,11 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
   var t: CombatEntityAPI? = null
   val m: ShipAPI
   var s: ShipAPI? = null
-  var stat: Status = Status()
 
-  constructor(m: ShipAPI, ship: ShipAPI?) : super(ship) {
+  constructor(m: ShipAPI, ship: ShipAPI) : super(ship) {
     this.m = m
     this.s = ship
-    if(ship?.shipTarget != null && !ship.shipTarget.isFighter && !ship.shipTarget.isDrone){
+    if(ship.shipTarget != null && !ship.shipTarget.isFighter && !ship.shipTarget.isDrone){
       t = ship.shipTarget
       stat = StraightToTarget()
     }else{
@@ -26,17 +25,10 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
 
   }
 
-  override fun advance(amount: Float) {
-    stat.advance(amount)
-  }
 
-  open class Status {
-    open fun advance(amount: Float){
 
-    }
-  }
 
-  inner class StraightToTarget() : Status() {
+  inner class StraightToTarget() : aEP_MissileAI.Status() {
     override fun advance(amount: Float) {
       if(t == null || !Global.getCombatEngine().isInPlay(t) || (t is ShipAPI && !(t as ShipAPI).isAlive)){
         stat = Searching()
@@ -59,7 +51,7 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
   }
 
 
-  inner class Searching() : Status() {
+  inner class Searching() : aEP_MissileAI.Status() {
     val searchTracker = IntervalUtil(0.25f,0.25f)
     override fun advance(amount: Float) {
       //如果t被人为设置，或者上一帧已经找到了目标，就直接转入StraightToTarget

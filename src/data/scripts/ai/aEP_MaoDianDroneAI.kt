@@ -19,17 +19,11 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
     const val ROTATE_SPEED = 30
   }
 
-  var stat: Status = Status()
   var target: ShipAPI? = null
   var targetLoc: Vector2f? = null
 
-  constructor(ship: ShipAPI?):super(ship){
+  constructor(ship: ShipAPI):super(ship){
     stat = Searching()
-  }
-
-  override fun advanceImpl(amount: Float) {
-    stat.advance(amount)
-
   }
 
   fun setToTarget(loc:Vector2f){
@@ -37,51 +31,43 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
     stat = StraightToTarget()
   }
 
-  open class Status {
-    open fun advance(amount: Float){
 
-    }
-  }
-
-  inner class Searching() : Status(){
+  inner class Searching() : aEP_MissileAI.Status(){
     override fun advance(amount: Float){
       if(targetLoc == null){
-        targetLoc = ((aEP_Tool.getNearestFriendCombatShip(ship))?.location?: Vector2f(ship?.location?:Vector2f(0f,0f))) as Vector2f?
-
+        targetLoc = ((aEP_Tool.getNearestFriendCombatShip(ship))?.location?: Vector2f(ship.location?:Vector2f(0f,0f))) as Vector2f?
       }else{
         stat = StraightToTarget()
       }
     }
   }
 
-  inner class StraightToTarget() : Status() {
+  inner class StraightToTarget() : aEP_MissileAI.Status() {
     override fun advance(amount: Float) {
-      ship?: return
-      aEP_Tool.moveToPosition(ship!!,targetLoc)
-      if(MathUtils.getDistance(ship!!.location,targetLoc) < 50f){
+      aEP_Tool.moveToPosition(ship,targetLoc!!)
+      if(MathUtils.getDistance(ship.location,targetLoc) < 50f){
         targetLoc = null
         stat = HoldShield()
       }
     }
   }
 
-  inner class HoldShield : Status() {
+  inner class HoldShield : aEP_MissileAI.Status() {
     override fun advance(amount: Float) {
-      ship?: return
       //速度大于1就减速，小于1开始转圈
-      if(ship!!.velocity.x * ship!!.velocity.x + ship!!.velocity.y * ship!!.velocity.y < 4){
-        if(ship!!.angularVelocity > -ROTATE_SPEED){
-          ship!!.giveCommand(ShipCommand.TURN_RIGHT,null,0)
+      if(ship.velocity.x * ship.velocity.x + ship.velocity.y * ship.velocity.y < 4){
+        if(ship.angularVelocity > -ROTATE_SPEED){
+          ship.giveCommand(ShipCommand.TURN_RIGHT,null,0)
         }else{
-          ship!!.giveCommand(ShipCommand.TURN_LEFT,null,0)
+          ship.giveCommand(ShipCommand.TURN_LEFT,null,0)
         }
       }else{
-        ship!!.giveCommand(ShipCommand.DECELERATE,null,0)
+        ship.giveCommand(ShipCommand.DECELERATE,null,0)
       }
 
       //速度够慢就开盾
-      if(ship!!.velocity.x < 10 && ship!!.velocity.y < 10){
-        ship!!.shield?.toggleOn()
+      if(ship.velocity.x < 10 && ship.velocity.y < 10){
+        ship.shield?.toggleOn()
       }
     }
   }

@@ -15,14 +15,16 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 
-public class aEP_DefenseDroneAI implements ShipAIPlugin
+public class aEP_DroneShieldShipAI implements ShipAIPlugin
 {
 
   private static final float DRONE_WIDTH_MULT = 0.9f;// 1 means by default no gap between, 2 means gap as big as 1 drone
   private static final float FAR_FROM_PARENT = 30f;// 30su far from parent's collisionRadius
   private static final float RESET_TIME = 30f;//by second;
-  private static final Map<ShipAPI, CombatEntityAPI> protectTarget = new WeakHashMap<ShipAPI, CombatEntityAPI>();//ShipAPI drone, CombatEntity target
-  private static final Map<ShipAPI, Integer> dronePosition = new WeakHashMap<ShipAPI, Integer>();
+  private static final String KEY1 = "protectTarget";
+  private static final String KEY2 = "dronePosition";
+  private Map<ShipAPI, CombatEntityAPI> protectTarget;//ShipAPI drone, CombatEntity target
+  private Map<ShipAPI, Integer> dronePosition;
   private final ShipwideAIFlags flags = new ShipwideAIFlags();
   private final ShipAIConfig config = new ShipAIConfig();
   private CombatEngineAPI engine;
@@ -31,13 +33,13 @@ public class aEP_DefenseDroneAI implements ShipAIPlugin
   private CombatEntityAPI target;
   private Vector2f targetPo;
   private float timer = 0;
+
   private boolean shouldReset = false;
   private boolean shouldDissipate = false;
-  private final boolean didOnce = false;
   private boolean shouldReturn = false;
   private final ArrayList<ShipAPI> droneSequence = new ArrayList<ShipAPI>();
 
-  public aEP_DefenseDroneAI(FleetMemberAPI member, ShipAPI ship) {
+  public aEP_DroneShieldShipAI(FleetMemberAPI member, ShipAPI ship) {
     this.ship = ship;
 
   }
@@ -67,7 +69,6 @@ public class aEP_DefenseDroneAI implements ShipAIPlugin
   @Override
   public void advance(float amount) {
 
-
     if (engine == null || engine.isPaused() || ship == null) {
       engine = Global.getCombatEngine();
       return;
@@ -80,6 +81,26 @@ public class aEP_DefenseDroneAI implements ShipAIPlugin
     else {
       parentShip = ship.getWing().getSourceShip();
     }
+
+    //get protectTarget list
+    if(protectTarget == null){
+      if(engine.getCustomData().containsKey(KEY1)){
+        protectTarget = (Map<ShipAPI, CombatEntityAPI>) engine.getCustomData().get(KEY1);
+      }else {
+        protectTarget = new WeakHashMap<ShipAPI, CombatEntityAPI>();
+        engine.getCustomData().put(KEY1,protectTarget);
+      }
+    }
+    //get dronePosition list
+    if(dronePosition == null){
+      if(engine.getCustomData().containsKey(KEY2)){
+        dronePosition = (Map<ShipAPI, Integer>) engine.getCustomData().get(KEY2);
+      }else {
+        dronePosition = new WeakHashMap<ShipAPI, Integer>();
+        engine.getCustomData().put(KEY2,dronePosition);
+      }
+    }
+
 
     if (parentShip == null || !parentShip.isAlive() || !ship.isAlive()) {
       protectTarget.remove(ship);
@@ -110,20 +131,9 @@ public class aEP_DefenseDroneAI implements ShipAIPlugin
       timer = 0f;
     }
 
-    //switch AI check ,I moved that part to systemscript
-    /*
-    if(parentShip.getSystem().isOn())
-    {
-
-        ShipAIPlugin fighterai = new FighterAI((Ship)ship,(L)ship.getWing() );
-        ship.setShipAI(fighterai);
-        dronePosition.remove(ship);
-        shouldReset = true;
-    }
-    */
 
     // get all drone with same target, add them to List:droneSequence
-    //get all dead drone and remove them from all 3 list
+    // get all dead drone and remove them from all 3 list
     ArrayList<ShipAPI> allDestroyedDrone = new ArrayList<ShipAPI>();
     for (Map.Entry entry : protectTarget.entrySet()) {
 
@@ -183,10 +193,10 @@ public class aEP_DefenseDroneAI implements ShipAIPlugin
 
 
     //shield check
-    if (ship.getFluxLevel() > 0.95) {
+    if (ship.getFluxLevel() > 0.9) {
       shouldDissipate = true;
     }
-    if (ship.getFluxLevel() <= 0) {
+    if (ship.getFluxLevel() <= 0.1) {
       shouldDissipate = false;
     }
 
@@ -208,27 +218,6 @@ public class aEP_DefenseDroneAI implements ShipAIPlugin
 
 
   }
-
-
-  //return the most endangering target it to intercept
-  private CombatEntityAPI findTargetNow(CombatEntityAPI toProtectTarget) {
-    List<DamagingProjectileAPI> allProjs = CombatUtils.getProjectilesWithinRange(toProtectTarget.getLocation(), 1000f);
-    DamagingProjectileAPI mostDangerProj = null;
-    float mostDamage = 0f;
-    for (DamagingProjectileAPI Proj : allProjs) {
-
-
-      if (Proj.getDamageAmount() > mostDamage) {
-        mostDangerProj = Proj;
-      }
-
-
-    }
-
-    return mostDangerProj;
-
-  }
-
 
   private Vector2f findTargetLocation(CombatEntityAPI toProtectTarget, float targetAngle) {
     float shipCollisionRadius = toProtectTarget.getCollisionRadius() + FAR_FROM_PARENT;
