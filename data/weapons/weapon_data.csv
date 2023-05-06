@@ -1,7 +1,7 @@
 name,,id,hints,type,OPs,range,turn rate,damage/second,damage/shot,emp,energy/second,energy/shot,impact,proj speed,beam speed,flight time,chargeup,chargedown,burst size,burst delay,ammo,ammo/sec,reload size,noDPSInTooltip,min spread,max spread,spread/shot,spread decay/sec,proj hitpoints,launch speed,tech/manufacturer,primaryRoleStr,customPrimaryHL,customPrimary,rarity,base value,tags,groupTag,tier,autofireAccBonus,extraArcForAI,speedStr,trackingStr,turnRateStr,accuracyStr,customAncillary,customAncillaryHL,number
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"""标兵""搭载雷达",,aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,0,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF制造,战术,"80% | 100 ",全船所有与雷达朝向相同的非PD武器获得{%s}射程提升，中能量武器获得额外{%s}基础射程,,,,,,,,,,,,,,
+"""标兵""搭载雷达",,aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,0,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF制造,战术,"45% | 100 ",全船所有与雷达朝向相同的非PD武器获得{%s}射程提升，中能量武器获得额外{%s}基础射程,,,,,,,,,,,,,,
 """无光层""多级加速器",,aEP_cap_duiliu_main,SYSTEM,KINETIC,1,1200,,,500,,,1000,10000,2000,,1,2,10,,,1,0.0833,1,,0,0,0,0,,,FSF制造,反护盾,1500 | 1000 | 500,武器充能时会发射碎片流，造成总计{%s}点动能伤害，产生{%s}幅能。主弹丸如果击中装甲则会在脱离时爆炸，造成{%s}的高爆伤害,,,,,,,,,,,,,,
 无光层弹片,,aEP_KF_shred,SYSTEM,KINETIC,,1200,0,,15,0,,1,,800,,,0,0.5,,,,,,,0,10,5,10,,,FSF制造,,,,,,,,,,,,,,,,,
 """黑星改""转轮炮",,aEP_cap_neibo_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,,900,15,,75,,,75,,900,,,0.5,2,50,0.05,50,5,50,,0,2,0.25,2,,,FSF制造,反装甲,25 | 300,弹丸在击中装甲时有百分之{%s}的概率造成额外{%s}点破片伤害,,,,,,,,,,,,,,

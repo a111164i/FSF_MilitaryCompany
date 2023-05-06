@@ -20,14 +20,14 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
   public static final String id = "aEP_BBRadarEffect";
   public static final Map<WeaponAPI.WeaponSize, Float> BONUS_PERCENT = new HashMap<>();
   static {
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.85f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.85f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.85f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.45f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.45f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.45f);
   }
 
   static final float ANGLE_BEST = 20f;
-  static final float ANGLE_TOLERANCE = 120f;
-  static final float MIN_BONUS = 0.1f;
+  static final float ANGLE_TOLERANCE = 90f;
+  static final float MIN_BONUS = 0f;
 
   public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
     if(weapon == null) return;
@@ -49,7 +49,8 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
 
     @Override
     public float getWeaponRangeFlatMod(ShipAPI ship, WeaponAPI weapon) {
-      if(weapon.getSpec().getType() == WeaponAPI.WeaponType.ENERGY && weapon.getSpec().getSize() == WeaponAPI.WeaponSize.MEDIUM){
+      if(weapon.getSpec().getType() == WeaponAPI.WeaponType.ENERGY
+              && weapon.getSpec().getSize() == WeaponAPI.WeaponSize.MEDIUM){
         return 100f;
       }
       return 0f;

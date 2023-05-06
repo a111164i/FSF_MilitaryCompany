@@ -59,7 +59,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       val sa = stat as StickAndFire
       ship.setCustomData(ID,sa.target)
     }else{
-      ship.removeCustomData(ID)
+      ship.setCustomData(ID,null)
     }
 
     //同步系统目标，使用系统ai

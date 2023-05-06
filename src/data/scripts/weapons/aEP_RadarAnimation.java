@@ -27,6 +27,8 @@ public class aEP_RadarAnimation implements EveryFrameWeaponEffectPlugin {
   @Override
   public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
     if (weapon.getShip() == null) return;
+    if (aEP_Tool.Util.isDead(weapon.getShip())) return;
+
     if(usingRate == -999f){
       if(ROTATE_RATE.containsKey(weapon.getId())){
         usingRate = ROTATE_RATE.get(weapon.getId());
