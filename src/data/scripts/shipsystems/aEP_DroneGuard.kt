@@ -99,11 +99,6 @@ class aEP_DroneGuard: BaseShipSystemScript(){
       moveDeco(ship,effectLevel)
     }
 
-    //如果在系统过程中过载，会自毁
-    if(ship.fluxTracker.isOverloaded){
-      Global.getCombatEngine().applyDamage(ship,ship.location,9999f,DamageType.HIGH_EXPLOSIVE,0f,true,false,ship,true)
-      Global.getCombatEngine().removeEntity(ship)
-    }
 
   }
 
@@ -111,7 +106,10 @@ class aEP_DroneGuard: BaseShipSystemScript(){
     val ship = (stats?.entity?: return) as ShipAPI
     this.ship = ship
 
-    ship.setShield(ShieldAPI.ShieldType.FRONT,0f,1f,0f)
+    val spec = Global.getSettings().getHullSpec(ship.hullSpec.hullId)
+    if(spec.shieldSpec != null ){
+      ship.setShield(spec.shieldSpec.type, spec.shieldSpec.upkeepCost,spec.shieldSpec.fluxPerDamageAbsorbed,spec.shieldSpec.arc)
+    }
 
     stats.maxTurnRate.unmodify(id)
     stats.turnAcceleration.unmodify(id)

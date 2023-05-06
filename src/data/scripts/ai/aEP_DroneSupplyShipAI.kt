@@ -106,7 +106,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
             && ally.hullSize != ShipAPI.HullSize.FRIGATE) continue
 
           val factor = calculateFactor(ally)
-          if(factor  > 1000f){
+          if(factor  > 100f){
             targetPicker.add(ally, factor)
           }
         }
