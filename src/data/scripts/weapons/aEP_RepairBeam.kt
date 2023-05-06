@@ -1,14 +1,14 @@
 package data.scripts.weapons
 
+import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.loading.DamagingExplosionSpec
+import com.fs.starfarer.api.util.IntervalUtil
 import data.scripts.hullmods.aEP_MarkerDissipation
 import java.awt.Color
 
 class aEP_RepairBeam : BeamEffectPlugin {
   companion object {
-    private const val REPAIR_AMOUNT = 4f
-    private const val REPAIR_PERCENT= 0.004f
     private const val HULL_REPAIR_MULT = 1.5f //溢出的装甲维修点数转换成几倍的结构恢复
     private const val REPAIR_STEP_PER_CELL = 4f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
@@ -17,9 +17,24 @@ class aEP_RepairBeam : BeamEffectPlugin {
     const val HULL_REPAIR_THRESHOLD = 0.25f
     private val REPAIR_COLOR = Color(250, 250, 178, 220)
     private val REPAIR_COLOR2 = Color(250, 220, 70, 220)
+
   }
 
+  var repairAmount = 4f
+  var repairPercent = 0.004f
   private var didRepair = false
+
+  init {
+    val hlString = Global.getSettings().getWeaponSpec("aEP_ftr_ut_repair_beam").customPrimaryHL
+    var i = 0
+    for(num in hlString.split("|")){
+      if(i == 0) repairAmount = num.toFloat()
+      if(i == 1) repairPercent = num.replace("%","").toFloat()/100f
+      i += 1
+    }
+  }
+
+
   override fun advance(amount: Float, engine: CombatEngineAPI, beam: BeamAPI) {
     if (beam.didDamageThisFrame() && beam.damageTarget is ShipAPI) {
 
@@ -54,7 +69,7 @@ class aEP_RepairBeam : BeamEffectPlugin {
       val ySize = ship.armorGrid.above + ship.armorGrid.below
       val cellMaxArmor = ship.armorGrid.maxArmorInCell
 
-      var toRepair = REPAIR_AMOUNT + ship.armorGrid.armorRating * REPAIR_PERCENT
+      var toRepair = repairAmount + ship.armorGrid.armorRating * repairPercent
       if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) toRepair *= FSF_BONUS
       toRepair *= FSF_BONUS
       var didSpark = false

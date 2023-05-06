@@ -3,11 +3,16 @@ package data.scripts.weapons
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
+import data.scripts.hullmods.aEP_MarkerDissipation
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
 class aEP_FluxBeam : BeamEffectPlugin {
+
+  companion object{
+    const val FSF_BONUS = 1.5f
+  }
 
   var fluxDrain = 75f
   var damage = 200f
@@ -49,6 +54,9 @@ class aEP_FluxBeam : BeamEffectPlugin {
         val target = beam.damageTarget as ShipAPI
         //光束一秒10次
         var fluxDecrease = fluxDrain * 0.1f
+        //FSF加成
+        if(target.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) fluxDecrease *= FSF_BONUS
+
 
         //阻尼，堡垒盾这种系统产生硬幅能，防止永动机，需要检测
         if (target.system?.isActive == true) {
@@ -68,6 +76,8 @@ class aEP_FluxBeam : BeamEffectPlugin {
           beam.source.fluxTracker.increaseFlux(fluxDecrease, true)
           target.fluxTracker.decreaseFlux(fluxDecrease)
         }
+
+
       }else{
         damageTimer.advance(amount)
         if(damageTimer.intervalElapsed()){
