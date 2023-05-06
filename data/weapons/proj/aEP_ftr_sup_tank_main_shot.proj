@@ -21,5 +21,5 @@
   "textureScrollSpeed":64.0,
   "pixelsPerTexel":5.0,
   "passThroughMissiles":false,
-  "bulletSprite":"graphics/weapons/aEP_fighters/sup_tank_main_shot.png"
+  "bulletSprite":"graphics/weapons/aEP_fighters/aEP_tank/shot.png"
 }

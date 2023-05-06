@@ -1,0 +1,92 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_ut_supply",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/sup_supply.png",
+  "style": "aEP_FSF",
+  "height": 42,
+  "width": 39,
+  "center": [19.5, 21],
+  "collisionRadius": 25.5,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 24.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "aEP_FighterArmor"
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_ftr_ut_supply_fan",
+    "WS0002": "aEP_ftr_ut_supply_fan"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [0.5, 10]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": -45,
+      "locations": [0.5, -10]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [14, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-17, -0],
+      "length": 12,
+      "width": 4,
+      "angle": 180,
+      "contrailSize": 4,
+      "style": "FSF_MAIN_CLEAN"
+    },
+    {
+      "location": [-13.5, 5],
+      "length": 10,
+      "width": 2,
+      "angle": 180,
+      "contrailSize": 2,
+      "style": "FSF_MAIN_CLEAN"
+    },
+    {
+      "location": [-13.5, -5],
+      "length": 10,
+      "width": 2,
+      "angle": -180,
+      "contrailSize": 2,
+      "style": "FSF_MAIN_CLEAN"
+    }
+  ],
+  "bounds": [
+    -16.5, -3,
+    -5, -6,
+    -3.5, -14,
+    2.5, -14,
+    5.5, -7,
+    15.5, -6.5,
+    15.5, 6.5,
+    5.5, 7,
+    2.5, 14,
+    -3.5, 14,
+    -5, 6,
+    -16.5, 3
+  ]
+}

@@ -20,7 +20,7 @@ import java.awt.Color
 class aEP_NBFiringJet : BaseShipSystemScript() {
 
   companion object {
-    const val MAX_SPEED_FLAT = 175f
+    const val MAX_SPEED_FLAT = 225f
 
     const val ACC_MULT = 0.25f
 

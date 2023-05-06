@@ -205,17 +205,72 @@ class aEP_FighterSpecial: HullModEffect {
   override fun getDisplayCategoryIndex(): Int {
     hullmod?:return 4
     return hullmod!!.displayCategoryIndex
-    return 4
+  }
+
+  override fun hasSModEffectSection(hullSize: ShipAPI.HullSize?, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
+    hullmod?: return false
+    hullSize?: return false
+    ship?: return false
+    return hullmod!!.hasSModEffectSection(hullSize, ship, isForModSpec)
+  }
+
+  override fun addSModSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize?, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
+    hullmod?: return
+    hullSize?: return
+    ship?: return
+    hullmod!!.addSModSection(tooltip, hullSize, ship, width, isForModSpec, isForBuildInList)
+  }
+
+  override fun addSModEffectSection(tooltip: TooltipMakerAPI?, hullSize: ShipAPI.HullSize?, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
+    hullmod?: return
+    hullSize?: return
+    ship?: return
+    hullmod!!.addSModSection(tooltip, hullSize, ship, width, isForModSpec, isForBuildInList)
+  }
+
+  override fun hasSModEffect(): Boolean {
+    hullmod?: return false
+    return hullmod!!.hasSModEffect()
+  }
+
+  override fun getSModDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?): String {
+    hullmod?: return ""
+    hullSize?: return ""
+    return hullmod!!.getSModDescriptionParam(index, hullSize)
+  }
+
+  override fun getSModDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String {
+    hullmod?: return ""
+    hullSize?: return ""
+    ship?: return ""
+    return hullmod!!.getSModDescriptionParam(index, hullSize, ship)
+  }
+
+  override fun getTooltipWidth(): Float {
+    hullmod?: return 369f
+    return hullmod!!.tooltipWidth
+
+  }
+
+  override fun isSModEffectAPenalty(): Boolean {
+    hullmod?: return false
+    return hullmod!!.isSModEffectAPenalty
+  }
+
+  override fun showInRefitScreenModPickerFor(ship: ShipAPI?): Boolean {
+    hullmod?: true
+    ship?: return false
+    return hullmod!!.showInRefitScreenModPickerFor(ship as ShipAPI)
   }
 }
 
 //锚点无人机护盾插件
 class aEP_MaoDianShield : aEP_BaseHullMod() {
-  val id = "aEP_MaoDianShield"
+  val ID = "aEP_MaoDianShield"
   val TIME_TO_EXTEND = 1f
   //ship文件里的护盾半径也要改，否则护盾中心在屏幕外的时候不会渲染护盾
   val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian").shieldSpec.radius
-  val MAX_MOVE_TIME = 15f
+  val MAX_MOVE_TIME = 12f
   val FLUX_INCREASE = 100f
   val RADAR_SPEED = -90f
   val EXPLODSION_DAMAGE_MULT = 0.005f
@@ -225,7 +280,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
    * 使用这个
    **/
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    ship.mutableStats.empDamageTakenMult.modifyMult(this.id,0f)
+    ship.mutableStats.empDamageTakenMult.modifyMult(this.ID,0f)
     if(!ship.hasListenerOfClass(ShieldListener::class.java)){
       ship.addListener(ShieldListener(ship))
     }
@@ -400,15 +455,15 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
       if(afterHitFlux >=0){
         ship.fluxTracker.decreaseFlux(fluxToSheild)
         ship.fluxTracker.increaseFlux(fluxToSheild,true)
-        damage?.modifier?.modifyMult(id,0f)
+        damage?.modifier?.modifyMult(ID,0f)
        // Global.getLogger(this.javaClass).info(fluxToSheild)
       }else{
         val percent = MathUtils.clamp((-afterHitFlux)/fluxToSheild,0f,1f)
         ship.fluxTracker.decreaseFlux(softFlux)
         ship.fluxTracker.increaseFlux(fluxToSheild,true)
-        damage?.modifier?.modifyMult(id,percent)
+        damage?.modifier?.modifyMult(ID,percent)
       }
-      return id
+      return ID
     }
 
     /**
@@ -925,6 +980,7 @@ class aEP_FighterArmor : BaseHullMod() {
       "aEP_ftr_bom_nuke"-> modifier = 2.5f
       "aEP_ftr_icp_gunship"-> modifier = 2.5f
       "aEP_ftr_ftr_hvfighter"-> modifier = 1.5f
+      "aEP_ftr_ftr_helicop"-> modifier = 1.5f
     }
 
 

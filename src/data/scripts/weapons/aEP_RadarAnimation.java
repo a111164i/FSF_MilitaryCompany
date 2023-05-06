@@ -11,10 +11,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class aEP_RadarAnimation implements EveryFrameWeaponEffectPlugin {
+  /**
+   * 大于0就是转向鼠标指向
+   * 小于0是自动旋转
+   * */
   static Map<String, Float> ROTATE_RATE = new HashMap<>();
   static {
     ROTATE_RATE.put("aEP_cap_duiliu_radar",-60f);
     ROTATE_RATE.put("aEP_cap_nuanchi_radar",-180f);
+    ROTATE_RATE.put("aEP_ftr_ftr_helicop_fan",-540f);
+    ROTATE_RATE.put("aEP_ftr_ut_supply_fan",-540f);
   }
 
   public float usingRate = -999f;
@@ -27,6 +33,7 @@ public class aEP_RadarAnimation implements EveryFrameWeaponEffectPlugin {
       }
       return;
     }
+
 
     if(usingRate > 0){
       float toAngle = VectorUtils.getAngle(weapon.getLocation(), weapon.getShip().getMouseTarget());

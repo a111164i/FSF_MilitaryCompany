@@ -17,13 +17,13 @@
   ],
   "builtInWeapons": {
     "WING_L": "aEP_ftr_sup_guardian_cover_l",
-    "WING_R": "aEP_ftr_sup_guardian_cover_r",
+    "WING_R": "aEP_ftr_sup_guardian_cover_r"
   },
   "weaponSlots": [
     {
       "id": "WS0001",
       "size": "SMALL",
-      "type": "BALLISTIC",
+      "type": "UNIVERSAL",
       "mount": "HARDPOINT",
       "arc": 0,
       "angle": 0,
@@ -32,7 +32,7 @@
     {
       "id": "WS0002",
       "size": "SMALL",
-      "type": "BALLISTIC",
+      "type": "UNIVERSAL",
       "mount": "HARDPOINT",
       "arc": 0,
       "angle": -0,

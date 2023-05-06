@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_ftr_sup_guardian",
-  "hullId": "aEP_ftr_sup_guardian",
+  "variantId": "aEP_ftr_ftr_helicop",
+  "hullId": "aEP_ftr_ftr_helicop",
   "displayName": "",
   "goalVariant": true,
   "fluxCapacitors": 0,
@@ -13,14 +13,15 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_ftr_ftr_helicop_lmg"
+        "WS0005": "aEP_ftr_ftr_helicop_lmg"
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0002": "aEP_ftr_sup_guardian_gun"
+        "WS0003": "aEP_ftr_ftr_helicop_rocket",
+        "WS0004": "aEP_ftr_ftr_helicop_rocket"
       }
     }
   ],

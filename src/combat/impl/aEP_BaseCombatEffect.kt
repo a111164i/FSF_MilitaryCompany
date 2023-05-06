@@ -25,17 +25,17 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   var renderInShader = false
 
   constructor(){
-
+    init(null)
   }
 
   constructor(lifeTime: Float){
     this.lifeTime = lifeTime
+    init(null)
   }
 
   constructor(lifeTime: Float, entity: CombatEntityAPI?){
-
     this.lifeTime = lifeTime
-    this.entity = entity
+    init(entity)
   }
 
   /**

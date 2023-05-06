@@ -5,16 +5,17 @@ import com.fs.starfarer.api.combat.ShipwideAIFlags
 import com.fs.starfarer.api.util.WeightedRandomPicker
 import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
+import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 
-class aEP_MDDroneLaunchAI: aEP_BaseSystemAI() {
+class aEP_MaoDianDroneLaunchAI: aEP_BaseSystemAI() {
   companion object{
     const val TARGET_KEY = "aEP_MDDroneLaunchAI_assign_target"
   }
 
   override fun initImpl() {
-    thinkTracker.setInterval(0.5f,0.5f)
+    thinkTracker.setInterval(0.5f,1.5f)
   }
 
   fun getMultiple(size :ShipAPI.HullSize): Float{
@@ -46,7 +47,9 @@ class aEP_MDDroneLaunchAI: aEP_BaseSystemAI() {
     shouldActive = false
     if(target != null){
       //如果是ai使用，把ai的目标塞入母舰的customData
-      ship.customData[TARGET_KEY] = aEP_Tool.getExtendedLocationFromPoint(target.location,target.facing,target.collisionRadius)
+      val loc = aEP_Tool.getExtendedLocationFromPoint(target.location,target.facing,target.collisionRadius)
+      loc.set(MathUtils.getRandomPointInCircle(loc,100f))
+      ship.customData[TARGET_KEY] = loc
       shouldActive = true
     }
   }

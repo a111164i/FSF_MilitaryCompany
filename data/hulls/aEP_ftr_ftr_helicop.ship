@@ -1,0 +1,91 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_ftr_helicop",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/ftr_helicop.png",
+  "style": "aEP_FSF",
+  "height": 42,
+  "width": 39,
+  "center": [19.5, 23],
+  "collisionRadius": 23,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 22.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+    "aEP_FighterArmor"
+  ],
+  "builtInWeapons": {
+    "WS0006": "aEP_ftr_ftr_helicop_fan"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [11, 12.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -0,
+      "locations": [11, -12.5]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": 0,
+      "locations": [15, -0]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": -45,
+      "locations": [3.5, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [0, 7.5],
+      "length": 7,
+      "width": 3,
+      "angle": 180,
+      "contrailSize": 3,
+      "style": "MIDLINE"
+    },
+    {
+      "location": [0, -7.5],
+      "length": 7,
+      "width": 3,
+      "angle": -180,
+      "contrailSize": 3,
+      "style": "MIDLINE"
+    }
+  ],
+  "bounds": [
+    -19, -2,
+    -2, -2,
+    4, -17,
+    8.5, -17,
+    15.5, -5.5,
+    15.5, 5.5,
+    8.5, 17,
+    4, 17,
+    -2, 2,
+    -19, 2
+  ]
+}

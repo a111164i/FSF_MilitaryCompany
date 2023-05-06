@@ -29,14 +29,16 @@
   "barrelMode": "ALTERNATING",
   "animationType": "MUZZLE_FLASH",
   "muzzleFlashSpec": {
-    "length": 16,
+    "length": 18,
     "spread": 5,
     "particleSizeMin": 15,
     "particleSizeRange": 10,
-    "particleDuration": 0.2,
-    "particleCount": 10,
+    "particleDuration": 0.3,
+    "particleCount": 12,
     "particleColor": [
-      255,165,30,75
+      255,165,30,122
     ]
-  }
+  },
+  #"fireSoundOne":"graviton_beam_intro",
+  "fireSoundTwo":"light_autocannon_fire",
 }

@@ -1,7 +1,7 @@
 {
-  "id": "aEP_ftr_sup_guardian_gun",
+  "id": "aEP_ftr_ftr_helicop_lmg",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_ftr_sup_guardian_gun_shot",
+  "projectileSpecId": "aEP_ftr_ftr_helicop_lmg_shot",
   "type": "BALLISTIC",
   "size": "SMALL",
 
@@ -20,8 +20,8 @@
   #"frameRate":16,
 
   "renderHints":[RENDER_BARREL_BELOW], # RENDER_ADDITIVE, RENDER_LOADED_MISSILES_UNLESS_HIDDEN, RENDER_BARREL_BELOW, RENDER_LOADED_MISSILES, SUSPEND_RECOIL
-  "turretOffsets":[0, 0], # [height, width]
-  "turretAngleOffsets":[0],
+  "turretOffsets":[5, 1.5, 5, -1.5], # [height, width]
+  "turretAngleOffsets":[0, 0],
   "hardpointOffsets":[0, 0],
   "hardpointAngleOffsets":[0],
 
@@ -35,15 +35,15 @@
   "muzzleFlashSpec": {
     "length": 10,
     "spread": 5,
-    "particleSizeMin": 15,
-    "particleSizeRange": 15,
+    "particleSizeMin": 8,
+    "particleSizeRange": 6,
     "particleDuration": 0.3,
     "particleCount": 2,
-    "particleColor": [255,240,155,255]
+    "particleColor": [255,255,255,255]
   },
   #"noImpactSounds":false,
   #"noShieldImpactSounds":false,
   #"noNonShieldImpactSounds":false,
   #"fireSoundOne":"", # played when charing, can't leave empty.
-  #"fireSoundTwo":"", # played when projectile fired
+  "fireSoundTwo":"light_machinegun_fire", # played when projectile fired
 }

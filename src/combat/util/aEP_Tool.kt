@@ -1016,7 +1016,11 @@ class aEP_Tool {
       if (shouldUse && systemShip.system.state == ShipSystemAPI.SystemState.IDLE) {
         systemShip.useSystem()
       }
-      if (!shouldUse && (systemShip.system.state == ShipSystemAPI.SystemState.IN || systemShip.system.state == ShipSystemAPI.SystemState.ACTIVE)) {
+      val isActived = (systemShip.system.state == ShipSystemAPI.SystemState.ACTIVE ||
+          systemShip.system.state == ShipSystemAPI.SystemState.IN ||
+          systemShip.system.state == ShipSystemAPI.SystemState.OUT)
+
+      if (!shouldUse && isActived) {
         systemShip.useSystem()
       }
     }

@@ -26,7 +26,6 @@ import combat.util.aEP_Tool.Util.firingSmokeNebula
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import combat.util.aEP_Tool.Util.spawnSingleCompositeSmoke
 import combat.util.aEP_Tool.Util.speed2Velocity
-import data.scripts.a111164ModPlugin.MaoDianDrone_ID
 import data.scripts.ai.aEP_CruiseMissileAI
 import data.scripts.ai.aEP_MaoDianDroneAI
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel
@@ -35,7 +34,7 @@ import data.scripts.util.MagicAnim
 import data.scripts.util.MagicLensFlare
 import data.scripts.util.MagicRender
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
-import data.scripts.ai.shipsystemai.aEP_MDDroneLaunchAI
+import data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
@@ -482,7 +481,7 @@ class aEP_m_l_harpoon_shot : Effect{
   }
 
   constructor(){
-    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
+    val hlString = Global.getSettings().getWeaponSpec("aEP_ftr_ut_supply_main").customPrimaryHL
     var i = 0
     for(num in hlString.split("|")){
       if(i == 0) DAMAGE = num.toFloat()
@@ -2422,21 +2421,25 @@ class aEP_b_m_h88_shot : Effect() {
 
 //锚点无人机模拟导弹
 class aEP_cru_maodian_missile : Effect(){
+  companion object{
+    const val DRONE_ID = "aEP_ftr_ut_maodian"
+  }
+
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
-    projectile?.weapon?.ship?: return
+    projectile.weapon?.ship?: return
 
     val ship = projectile.weapon.ship
     //屏蔽左上角入场提示
-    val suppressBefore = engine?.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages
-    engine?.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages = true
+    val suppressBefore = engine.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages
+    engine.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages = true
     //生成无人机
-    val drone = engine?.getFleetManager(projectile.owner?:100)?.spawnShipOrWing(
-      MaoDianDrone_ID,
+    val drone = engine.getFleetManager(projectile.owner?:100)?.spawnShipOrWing(
+      DRONE_ID,
       projectile.location?: VECTOR2F_ZERO,
       projectile.facing
     )
     //恢复左上角入场提示
-    engine?.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages = suppressBefore?: false
+    engine.getFleetManager(projectile.owner?:100)?.isSuppressDeploymentMessages = suppressBefore?: false
 
     //旋转雷达
     if(drone != null){
@@ -2459,9 +2462,9 @@ class aEP_cru_maodian_missile : Effect(){
     //默认位置是当前的鼠标位置
     var targetLoc = ship.mouseTarget?: VECTOR2F_ZERO
     //如果是ai使用，读取母舰的customData，由systemAI放入
-    if(ship.customData[aEP_MDDroneLaunchAI.TARGET_KEY] is Vector2f && ship.shipAI != null) {
-      targetLoc = ship.customData[aEP_MDDroneLaunchAI.TARGET_KEY] as Vector2f
-      ship.customData[aEP_MDDroneLaunchAI.TARGET_KEY] = null
+    if(ship.customData[aEP_MaoDianDroneLaunchAI.TARGET_KEY] is Vector2f && ship.shipAI != null) {
+      targetLoc = ship.customData[aEP_MaoDianDroneLaunchAI.TARGET_KEY] as Vector2f
+      ship.customData[aEP_MaoDianDroneLaunchAI.TARGET_KEY] = null
     }
 
     //不可位置越界

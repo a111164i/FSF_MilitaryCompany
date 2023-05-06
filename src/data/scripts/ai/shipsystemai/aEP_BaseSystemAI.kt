@@ -34,7 +34,6 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
     if (engine.isPaused) {
       return
     }
-    if(system.state != ShipSystemAPI.SystemState.IDLE) return
     thinkTracker.advance(amount)
     if (!thinkTracker.intervalElapsed()) return
     advanceImpl(amount, missileDangerDir, collisionDangerDir, target)

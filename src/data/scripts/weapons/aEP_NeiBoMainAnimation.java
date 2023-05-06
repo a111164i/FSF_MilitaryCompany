@@ -6,7 +6,6 @@ import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.campaign.ui.marketinfo.m;
-import com.fs.starfarer.ui.N;
 import combat.util.aEP_Tool;
 
 import java.util.LinkedHashMap;

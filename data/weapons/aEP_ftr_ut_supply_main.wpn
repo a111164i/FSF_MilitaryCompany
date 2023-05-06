@@ -1,25 +1,25 @@
 {
-  "id":"aEP_tesla_gun",
+  "id":"aEP_ftr_ut_supply_main",
   "specClass": "beam",
   "type": "ENERGY",
   "size": "SMALL",
   "collisionClass": "RAY",
-  "collisionClassByFighter": "RAY_FIGHTER",
-  "turretSprite": "graphics/weapons/aEP_FCL/tesla_tr.png",
+  "collisionClassByFighter": "RAY",
+  "turretSprite": "",
   "turretGlowSprite": "graphics/weapons/aEP_FCL/tesla_tr_glow.png",
-  "hardpointSprite": "graphics/weapons/aEP_FCL/tesla_hp.png",
+  "hardpointSprite": "",
   "hardpointGlowSprite": "graphics/weapons/aEP_FCL/tesla_hp_glow.png",
-  "beamEffect":"data.scripts.weapons.aEP_TeslaBeam",
-  #"everyFrameEffect": "data.scripts.weapons.aEP_FocusBeamAnimation",
+  "beamEffect":"data.scripts.weapons.aEP_FluxBeam",
+  #"everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
   "turretOffsets": [
-	  9,
+	  0,
 	  0
   ],
   "turretAngleOffsets": [
 	  0
   ],
   "hardpointOffsets": [
-	  11,
+	  0,
 	  0
   ],
   "hardpointAngleOffsets": [
@@ -31,16 +31,16 @@
   "darkCore":false,
   "barrelMode": "LINKED",
   "fringeColor": [
-	  49,
-	  42,
+	  89,
+	  92,
 	  231,
-    249
+    209
 	],
   "coreColor": [
 	  255,
 	  255,
 	  255,
-	  125
+	  100
   ],
   "glowColor": [
 	  104,
@@ -48,13 +48,12 @@
 	  235,
 	  255
   ],
-  "width": 10,
+  "width": 16,
   "textureType": ROUGH,
   #"textureType":["graphics/weapons/aEP_focus_laser/core.png","graphics/weapons/aEP_focus_laser/core.png"],#fringe, core
-  "textureScrollSpeed": 180,
-  "pixelsPerTexel": 1,##bigger,  longer
-  "pierceSet":[
-  ],
+  "textureScrollSpeed": -32,
+  "pixelsPerTexel": 2,##bigger,  longer
+  "pierceSet":[],
   "fireSoundOne":"laser_intro",
   "fireSoundTwo":"pd_laser_loop"
 },

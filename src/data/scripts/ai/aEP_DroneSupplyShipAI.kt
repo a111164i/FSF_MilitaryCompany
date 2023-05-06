@@ -3,29 +3,37 @@
 package data.scripts.ai
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.DamageType
-import com.fs.starfarer.api.combat.FighterWingAPI
-import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.ShipCommand
+import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.ListMap
 import com.fs.starfarer.api.util.WeightedRandomPicker
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
 import combat.util.aEP_Tool.Util.getRelativeLocationData
+import combat.util.aEP_Tool.Util.isDead
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
 import data.scripts.weapons.aEP_RepairBeam.Companion.HULL_REPAIR_THRESHOLD
 import data.scripts.weapons.aEP_RepairBeam.Companion.REPAIR_THRESHOLD
 import org.lazywizard.lazylib.CollisionUtils
+import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector
 import org.lwjgl.util.vector.Vector2f
+import java.lang.Math.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
+import kotlin.math.cos
 
 
-class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI()) {
+class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI()) {
+
+  companion object{
+    const val ID = "aEP_DroneSupplyShipAI"
+  }
 
   private var parentShip: ShipAPI? = null
 
@@ -40,33 +48,41 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
   }
 
-  companion object{
-    const val ID = "aEP_DroneRepairShipAI"
-  }
+
+  private var dronePosition: LinkedList<ShipAPI>? = null
 
   override fun advanceImpl(amount: Float) {
     super.advanceImpl(amount)
+    if(stat is StickAndFire){
+      //并且把自己的目标存入自己的customMap，用于检测需不需要踢掉
+      //一定用setCustomData()这个方法才能初始化原本为空的customMap
+      val sa = stat as StickAndFire
+      ship.setCustomData(ID,sa.target)
+    }else{
+      ship.removeCustomData(ID)
+    }
 
     //同步系统目标，使用系统ai
-    if(stat is aEP_DroneSupplyShipAI.Approaching){
-      val sa = stat as aEP_DroneSupplyShipAI.Approaching
+    if(stat is Approaching){
+      val sa = stat as Approaching
       systemTarget = sa.target
     }else{
       systemTarget = null
     }
-    if(stat is aEP_DroneSupplyShipAI.Searching && parentShip != null){
-      val sa = stat as aEP_DroneSupplyShipAI.Searching
+    if(stat is Searching && parentShip != null){
+      val sa = stat as Searching
       systemTarget = parentShip
     }else{
       systemTarget = null
     }
 
 
+
   }
 
   inner class Searching(): aEP_MissileAI.Status(){
     val searchTracker = IntervalUtil(0.4f,0.6f)
-    val pointTracker = IntervalUtil(0.75f,1.25f)
+    val pointTracker = IntervalUtil(1f,1f)
     var point = ship.location?: Vector2f(0f,0f)
     override fun advance(amount: Float) {
       //如果弹药用完，转入返回模式，最高优先级
@@ -89,9 +105,9 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
             && ally.hullSize != ShipAPI.HullSize.DESTROYER
             && ally.hullSize != ShipAPI.HullSize.FRIGATE) continue
 
-          val damagedPercent = calculateDamagedPercent(ally)
-          if(damagedPercent  > 0.01f){
-            targetPicker.add(ally, damagedPercent)
+          val factor = calculateFactor(ally)
+          if(factor  > 1000f){
+            targetPicker.add(ally, factor)
           }
         }
 
@@ -175,88 +191,61 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       }
 
       //如果成功进入100内
-      val dist = MathUtils.getDistance(ship,target)
+      val dist = MathUtils.getDistance(ship,target.location)
       if(dist < 100f){
-        val randomPointAtCir =MathUtils.getRandomPointOnCircumference(target.location,target.collisionRadius+100f)
-        val hitPoint = CollisionUtils.getCollisionPoint(randomPointAtCir, target.location, target)
-        //处于100内，并且成功生成一个随机附着点，切换到吸附模式
-        if(hitPoint != null){
-          val hitFacing = VectorUtils.getAngle(hitPoint,target.location)
-          //不要贴着边缘，略微往外挪一点
-          hitPoint.set(aEP_Tool.getExtendedLocationFromPoint(hitPoint,hitFacing,-30f))
-          val relPos = getRelativeLocationData(hitPoint, target, false)
-          stat = StickAndFire(relPos, target)
-          return
-        //处于100内，但是因为相位等情况并没有碰撞
-        }else{
-          ship.giveCommand(ShipCommand.ACCELERATE,null,0)
-          return
-        }
+        stat = StickAndFire(target)
       }
 
       aEP_Tool.moveToPosition(ship, target.location)
     }
   }
 
-  inner class StickAndFire(val relPos: Vector2f, val target:ShipAPI ): aEP_MissileAI.Status(){
-    val reformTimer = IntervalUtil(4f,4f)
+  inner class StickAndFire(val target:ShipAPI ): aEP_MissileAI.Status(){
+    val pos = Vector2f(0f,0f)
 
     override fun advance(amount: Float) {
-      //如果弹药用完，转入返回模式，最高优先级
-      for(w in ship.allWeapons){
-        if(w.usesAmmo() && w.ammoTracker.ammoPerSecond <= 0 && w.ammoTracker.ammo <=0){
-          stat = ForceReturn()
-          return
-        }
+      //如果幅能太高，转入返回模式，最高优先级
+      if(ship.fluxLevel > 0.9f){
+        stat = ForceReturn()
+        return
       }
 
-      //如果目标失效，转入搜索模式，这里并没写中途修好然后重新索敌的判断，而且只要进入黏附就一定会打完弹药触发返回
-      //没必要为了百分之1的情况去增加复杂度
-      if(!target.isAlive || target.isHulk || !engine.isEntityInPlay(target)){
+      //如果目标失效，转入搜索模式，
+      if(aEP_Tool.isDead(target) || target.fluxLevel <= 0f){
         stat = Searching()
         return
       }
 
       //如果脱离200外，重新转入快速接近模式
-      val dist = MathUtils.getDistance(ship,target.location)
+      val dist = MathUtils.getDistance(ship,target)
       if(dist > 200f) {
         stat = Approaching(target)
         return
       }
 
-      //转换相对位置到绝对位置，吸附舰船
-      val absPos = aEP_Tool.getAbsoluteLocation(relPos, target, false)
-      val absFacing = VectorUtils.getAngle(ship.location, target.location)
-      aEP_Tool.setToPosition(ship, absPos)
-      aEP_Tool.moveToAngle(ship, absFacing)
-
-      //定期换位置，如果武器刚在开火就在结束后立刻换位
-      reformTimer.advance(amount)
-      for(w in ship.allWeapons){
-        if(w.isFiring) reformTimer.elapsed = (reformTimer.intervalDuration - 0.1f)
-      }
-      if(reformTimer.intervalElapsed()){
-        val randomPointAtCir =MathUtils.getRandomPointOnCircumference(target.location,target.collisionRadius+100f)
-        val hitPoint = CollisionUtils.getCollisionPoint(randomPointAtCir, target.location, target)
-
-        if(hitPoint != null){
-          val hitFacing = VectorUtils.getAngle(hitPoint,target.location)
-          //不要贴着边缘，略微往外挪一点
-          hitPoint.set(aEP_Tool.getExtendedLocationFromPoint(hitPoint,hitFacing,-30f))
-          val relPos = getRelativeLocationData(hitPoint, target, false)
-          stat = StickAndFire(relPos, target)
-          return
-          //处于100内，但是因为相位等情况并没有碰撞
-        }else{
-          stat = Approaching(target)
-          return
+      //获取支援机位置表
+      //这个部分管加不管踢，踢的部分在findPos()里面
+      if(!target.customData.containsKey(ID)){
+        //如果目标之前没有支援机，为目标创建一个支援机位置表
+        dronePosition = LinkedList()
+        dronePosition!!.add(ship)
+        target.customData[ID] = dronePosition
+      }else{
+        //如果已经存在，把自己加入位置表
+        dronePosition = target.customData[ID] as LinkedList<ShipAPI>
+        if(!dronePosition!!.contains(ship)){
+          dronePosition!!.add(ship)
         }
       }
 
+      //转换相对位置到绝对位置，吸附舰船
+      pos.set(findPos(target, dronePosition!!) )
+      aEP_Tool.setToPosition(ship, pos)
+      aEP_Tool.moveToAngle(ship, target.facing)
 
       //开火检测，停稳了，对准了
-      val distToAbsPos = MathUtils.getDistance(ship.location,absPos)
-      if(distToAbsPos < 30f && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f ){
+      val distToAbsPos = MathUtils.getDistance(ship.location, pos)
+      if(distToAbsPos < 30f ){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }
@@ -284,37 +273,17 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     }
   }
 
-  fun calculateDamagedPercent(target:ShipAPI): Float{
 
-    //找到装甲百分比
-    val xSize = target.armorGrid.grid.size
-    val ySize = target.armorGrid.grid[0].size
-    val cellMaxArmor = target.armorGrid.maxArmorInCell
-
-    //计算百分之50以下部分的装甲的损伤百分比
-    var totalDamageTaken = 0f
-    for (a in 0 until xSize) {
-      for (b in 0 until ySize) {
-        val armorInCell = target.armorGrid.getArmorValue(a,b)
-        if(armorInCell < cellMaxArmor * REPAIR_THRESHOLD) {
-          totalDamageTaken += (cellMaxArmor * REPAIR_THRESHOLD - armorInCell)
-        }
-      }
+  fun calculateFactor(target:ShipAPI): Float{
+    var fluxLevelFactor = 0f
+    if(target.fluxLevel < 0.5f){
+      fluxLevelFactor = (target.fluxLevel - 0.5f) * 2f
+      fluxLevelFactor *= 2000f
     }
-    val totalMaxArmor = cellMaxArmor * xSize * ySize * REPAIR_THRESHOLD + 0.1f
-    var damagedPercent = totalDamageTaken/ (totalMaxArmor)
-    damagedPercent = (damagedPercent * damagedPercent)
 
-    //计算结构值损失百分比
-    var hullDamageTaken = 0f
-    if(target.hitpoints < target.maxHitpoints * HULL_REPAIR_THRESHOLD){
-      hullDamageTaken = target.maxHitpoints * HULL_REPAIR_THRESHOLD - target.hitpoints
-    }
-    val maxHullDamageTaken = target.maxHitpoints * HULL_REPAIR_THRESHOLD + 0.1f
-    var hullDamagedPercent = hullDamageTaken/ maxHullDamageTaken
-    hullDamagedPercent = (hullDamagedPercent * hullDamagedPercent)
+    var currFluxFactor = target.currFlux * 0.8f
 
-    return hullDamagedPercent + damagedPercent
+    return fluxLevelFactor + currFluxFactor
   }
 
   fun genBoxFormation(wing:FighterWingAPI, boxSize:Float, vectors: MutableList<Vector2f> ): MutableList<Vector2f>{
@@ -363,5 +332,35 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     return vectors
   }
 
+  private fun findPos(target: CombatEntityAPI, dronePosition: LinkedList<ShipAPI>): Vector2f {
+    val pos = Vector2f(0f,0f)
+
+    //清理list中失效的战机
+    val toRemove = ArrayList<ShipAPI>()
+    for(drone in dronePosition){
+      if(isDead(drone)) toRemove.add(drone)
+      val droneTarget = drone.customData[ID]
+      if(droneTarget != target) toRemove.add(drone)
+    }
+    dronePosition.removeAll(toRemove)
+
+    //找到自己的战机编号
+    var i = 0
+    for(f in dronePosition){
+      if(ship == f) break
+      i += 1
+    }
+
+    val totalNum = dronePosition.size
+    val angleAdd = (120f/totalNum).coerceAtMost(120f)
+    var startAngle = target.facing -180f - 60f
+    pos.set(aEP_Tool.getExtendedLocationFromPoint(
+      target.location,
+      startAngle+angleAdd*i,
+      target.collisionRadius+100f ))
+    //aEP_Tool.addDebugPoint(pos)
+
+    return pos
+  }
 
 }

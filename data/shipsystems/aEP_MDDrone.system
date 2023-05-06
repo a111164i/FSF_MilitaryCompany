@@ -2,7 +2,7 @@
 	"id":"aEP_MDDroneLaunch",
 	"type":"STAT_MOD",
 	"aiType":"CUSTOM",
-	"aiScript":"data.scripts.ai.shipsystemai.aEP_MDDroneLaunchAI",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI",
 	"statsScript":"data.scripts.shipsystems.aEP_MaodianDroneLaunch",
 
 	

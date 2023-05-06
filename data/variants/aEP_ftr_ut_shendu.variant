@@ -9,7 +9,7 @@
   "permaMods": [],
   "hullMods": [],
   "weaponGroups": [
-     {
+    {
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
@@ -20,15 +20,16 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_ftr_ut_shendu_mine",
-        "WS0002": "aEP_ftr_ut_shendu_mine"
+        "WS0003": "aEP_ftr_ut_shendu_beam",
+        "WS0005": "aEP_ftr_ut_shendu_beam"
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0003": "aEP_ftr_ut_shendu_beam"
+        "WS0001": "aEP_ftr_ut_shendu_mine",
+        "WS0002": "aEP_ftr_ut_shendu_mine"
       }
     }
   ],

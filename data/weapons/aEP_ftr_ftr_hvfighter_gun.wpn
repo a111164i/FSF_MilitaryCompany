@@ -26,10 +26,10 @@
   "muzzleFlashSpec": {
     "length": 15,
     "spread": 5,
-    "particleSizeMin": 5,
-    "particleSizeRange": 5,
-    "particleDuration": 0.2,
-    "particleCount": 2,
+    "particleSizeMin": 8,
+    "particleSizeRange": 8,
+    "particleDuration": 0.4,
+    "particleCount": 12,
     "particleColor": [
       255,
       240,
@@ -37,5 +37,5 @@
       255
     ]
   },
-  "textureType": ROUGH
+  "fireSoundTwo":"light_dual_autocannon_fire",
 }

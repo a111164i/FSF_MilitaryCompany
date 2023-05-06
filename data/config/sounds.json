@@ -92,7 +92,7 @@
   ],
   "aEP_pompom_fire": [
   	{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 0.95, "volume": 0.35},
-		{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 1.05, "volume": 0.35},
+    {"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 1.05, "volume": 0.35},
   ],
   "aEP_DL_fire": [
   	{"file": "sounds/weapons/aEP_duiliu/fire.ogg", "pitch": 0.95, "volume": 1.25},	
@@ -113,6 +113,7 @@
     {"file": "sounds/weapons/aEP_b_m_rk107/fire3.ogg", "pitch": 0.74, "volume": 0.75},
     {"file": "sounds/weapons/aEP_b_m_rk107/fire3.ogg", "pitch": 0.77, "volume": 0.8},
   ],
+
   
   #hullmods
   "aEP_ExhaustIntro": [

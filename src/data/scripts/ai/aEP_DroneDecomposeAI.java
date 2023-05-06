@@ -133,10 +133,10 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
 
 
     //shield check
-    if (ship.getFluxLevel() > 0.95) {
+    if (ship.getFluxLevel() > 0.9) {
       shouldDissipate = true;
     }
-    if (ship.getFluxLevel() <= 0.05) {
+    if (ship.getFluxLevel() <= 0.1) {
       shouldDissipate = false;
     }
 
@@ -217,52 +217,7 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
 
   //can't use method in AITool, we have supply to add
   void returnToParent(ShipAPI ship, ShipAPI parentShip, float amount) {
-    ship.giveCommand(ShipCommand.HOLD_FIRE, null, 0);
-    String id = "returnToParent";
-
-    if (parentShip.getLaunchBaysCopy().size() <= 0) {
-      Color callBackColor = (ship.getShield() != null ? ship.getShield().getInnerColor() : new Color(100, 100, 200, 100));
-      Global.getCombatEngine().spawnExplosion(ship.getLocation(), //loc
-        new Vector2f(0f, 0f), //velocity
-        callBackColor, //color
-        ship.getCollisionRadius() * 3f, //range
-        0.5f);//duration
-      Global.getCombatEngine().removeEntity(ship);
-    }
-
-    //landing check
-    boolean landingStarted = ship.isLanding();
-
-    toTargetPo = ship.getWing().getSource().getLandingLocation(ship);
-    toTarget = parentShip;
-    float dist = MathUtils.getDistance(ship.getLocation(), toTargetPo);
-
-    //战术系统ai检测
-    if (dist <= 800f && ship.getSystem().isActive() || ship.getSystem().isActive() && Math.abs(MathUtils.getShortestRotation(ship.getFacing(), VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())))) > 45f) {
-      ship.useSystem();
-    }
-    if (dist >= 800f && !ship.getSystem().isActive() && Math.abs(MathUtils.getShortestRotation(ship.getFacing(), VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())))) <= 45f) {
-      ship.useSystem();
-    }
-
-    if (dist > 100f) {
-      aEP_Tool.moveToPosition(ship, toTargetPo);
-      if (landingStarted) {
-        ship.abortLanding();
-      }
-    }
-    else {
-      ship.getMutableStats().getMaxSpeed().modifyFlat(id, parentShip.getMaxSpeed() + ship.getMaxSpeed());
-      aEP_Tool.Util.moveToAngle(ship, parentShip.getFacing());
-      aEP_Tool.Util.setToPosition(ship, toTargetPo);
-    }
-
-    if (dist <= 50f) {
-      if (!landingStarted) {
-        ship.beginLandingAnimation(parentShip);
-        ship.getMutableStats().getMaxSpeed().modifyFlat(id, parentShip.getMaxSpeed() + ship.getMaxSpeed());
-      }
-    }
+    aEP_Tool.returnToParent(ship, parentShip,amount);
 
     float supplyNum = 0;
     if (ship.isFinishedLanding()) {

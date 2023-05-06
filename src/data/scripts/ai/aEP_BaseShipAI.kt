@@ -3,6 +3,7 @@ package data.scripts.ai
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
+import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.combat.entities.Ship
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
@@ -102,5 +103,21 @@ open class aEP_BaseShipAI: ShipAIPlugin {
     return shipAIConfig
   }
 
+
+  inner class SelfExplode: aEP_MissileAI.Status(){
+    val damageTracker = IntervalUtil(0.5f,0.5f)
+    override fun advance(amount: Float) {
+      damageTracker.advance(amount)
+      if(damageTracker.intervalElapsed()){
+        engine.applyDamage(
+          ship,
+          ship.location,
+          ship.armorGrid.armorRating+ship.maxHitpoints*0.2f,
+          DamageType.HIGH_EXPLOSIVE,
+          0f, true, false, ship)
+      }
+
+    }
+  }
 
 }

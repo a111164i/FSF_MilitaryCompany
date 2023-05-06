@@ -5,17 +5,18 @@
 	"type": "BALLISTIC",
 	"size": "SMALL",
 
-	"turretSprite": "graphics/weapons/aEP_fighters/sup_tank_main.png",
-	"turretGunSprite": "",
+	"turretSprite": "graphics/weapons/aEP_fighters/aEP_tank/tr.png",
+	"turretGunSprite": "graphics/weapons/aEP_fighters/aEP_tank/trbr.png",
 	#"turretGlowSprite":"",
 
-	"hardpointSprite": "graphics/weapons/aEP_fighters/sup_tank_main.png",
-  "hardpointGunSprite": "",
+	"hardpointSprite": "graphics/weapons/aEP_fighters/aEP_tank/tr.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_fighters/aEP_tank/trbr.png",
   #"hardpointGlowSprite":"",
 
   #"everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
   #"glowColor":[200,200,255,255], # for glow sprite
   #"alwaysAnimate":"false",
+  "visualRecoil":6,
   #"numFrames":8,
   #"frameRate":16,
 
@@ -45,6 +46,6 @@
   #"noShieldImpactSounds":false,
   #"noNonShieldImpactSounds":false,
   #"fireSoundOne":"", # played when charing, can't leave empty.
-  "fireSoundTwo":"lightmortar_shot", # played when projectile fired
+  "fireSoundTwo":"light_mortar_fire", # played when projectile fired
 
 }

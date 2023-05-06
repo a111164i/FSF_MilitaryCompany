@@ -5,7 +5,7 @@
   "type": "BALLISTIC",
   "size": "SMALL",
   "turretSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/gun.png",
-  "hardpointSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/gun.png",
+  "hardpointSprite": "",
   "renderAboveAllWeapons": 0,
   "turretOffsets": [
     5,

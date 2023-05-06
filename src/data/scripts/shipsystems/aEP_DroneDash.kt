@@ -9,6 +9,7 @@ import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.MathUtils
 import combat.impl.aEP_BaseCombatEffect
+import combat.plugin.aEP_CombatEffectPlugin
 import java.awt.Color
 
 class aEP_DroneDash : BaseShipSystemScript() {
@@ -16,10 +17,10 @@ class aEP_DroneDash : BaseShipSystemScript() {
     const val MAX_SPEED_BONUS = 200f
     const val TURN_RATE_BONUS = 250f
     const val ROTATE_SPEED = 20f
-    const val END_BUFF_TIME = 1f
-    const val END_TURN_RATE_BONUS = 300f
-    const val END_TURN_ACC_BONUS = 50f
-    const val DAMAGE_TAKEN = 0.33f
+    const val END_BUFF_TIME = 0.5f
+    const val END_TURN_RATE_BONUS = 180f
+    const val END_ACC_BONUS = 50f
+    const val DAMAGE_TAKEN = 0.35f
 
     val AFTER_MERGE_COLOR = Color(255, 155, 155, 250)
     val SMOKE_MERGE_COLOR = Color(255, 250, 250, 125)
@@ -29,7 +30,7 @@ class aEP_DroneDash : BaseShipSystemScript() {
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     //stats的entity有可能为null
-    val ship = (stats?.entity?: return)as ShipAPI
+    val ship = (stats.entity?: return)as ShipAPI
 
     val amount = Global.getCombatEngine().elapsedInLastFrame * stats.timeMult.modifiedValue
     stats.maxSpeed.modifyFlat(id, Math.max(effectLevel, 0.5f) * MAX_SPEED_BONUS)
@@ -100,7 +101,7 @@ class aEP_DroneDash : BaseShipSystemScript() {
     val m: MissileAPI? = null
   }
 
-  override fun unapply(stats: MutableShipStatsAPI, id: String) {
+  override fun unapply(stats: MutableShipStatsAPI?, id: String) {
     //stats的entity有可能为null
     val ship = (stats?.entity?: return)as ShipAPI
 
@@ -111,19 +112,23 @@ class aEP_DroneDash : BaseShipSystemScript() {
     stats.armorDamageTakenMult.unmodify(id)
     stats.hullDamageTakenMult.unmodify(id)
 
+    aEP_CombatEffectPlugin.addEffect(aEP_ExtraTurnRate(END_BUFF_TIME,ship))
+
   }
 
-  internal inner class aEP_ExtraTurnRate(time:Float,val ship: ShipAPI) : aEP_BaseCombatEffect(time,ship) {
+  internal inner class aEP_ExtraTurnRate(time:Float,ship: ShipAPI) : aEP_BaseCombatEffect(time,ship) {
     override fun init(entity: CombatEntityAPI?) {
       super.init(entity)
-      ship.mutableStats.maxTurnRate.modifyPercent(ID, END_TURN_RATE_BONUS)
-      ship.mutableStats.turnAcceleration.modifyPercent(ID, END_TURN_RATE_BONUS * 2)
-      ship.mutableStats.acceleration.modifyPercent(ID, END_TURN_ACC_BONUS)
-      ship.mutableStats.deceleration.modifyPercent(ID, END_TURN_ACC_BONUS)
+      val ship = (entity?: return)as ShipAPI
+      ship.mutableStats.maxTurnRate.modifyFlat(ID, END_TURN_RATE_BONUS)
+      ship.mutableStats.turnAcceleration.modifyFlat(ID, END_TURN_RATE_BONUS * 2)
+      ship.mutableStats.acceleration.modifyPercent(ID, END_ACC_BONUS)
+      ship.mutableStats.deceleration.modifyPercent(ID, END_ACC_BONUS)
     }
 
     override fun advanceImpl(amount: Float) {
-      ship.setJitterUnder(ID, Color(255, 155, 155, 255), 1f, 18, 1f)
+      val ship = (entity?: return)as ShipAPI
+      ship.setJitterUnder(ID, Color(255, 155, 155, 255), 1f, 18, 1.5f)
     }
 
     override fun readyToEnd() {

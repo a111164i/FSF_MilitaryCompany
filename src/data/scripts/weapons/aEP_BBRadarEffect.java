@@ -13,7 +13,6 @@ import org.lazywizard.lazylib.combat.WeaponUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import static data.scripts.a111164ModPlugin.BB_Radar_ID;
 
 public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
 {
