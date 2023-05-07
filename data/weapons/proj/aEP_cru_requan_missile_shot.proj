@@ -5,7 +5,7 @@
 	"sprite":"graphics/weapons/aEP_requan/shot.png",
 	"size":[8,26],
 	"center":[4,14],
-	"collisionRadius":14,
+	"collisionRadius":12,
 	"collisionClass":"MISSILE_NO_FF",
 	"explosionColor":[141,80,245,225],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":120, # purely visual

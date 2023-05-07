@@ -79,7 +79,7 @@ class aEP_FluxBeam : BeamEffectPlugin {
 
 
       }else{
-        damageTimer.advance(amount)
+        damageTimer.advance(0.1f)
         if(damageTimer.intervalElapsed()){
           engine.applyDamage(
             beam.damageTarget,

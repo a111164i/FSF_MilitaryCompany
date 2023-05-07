@@ -276,6 +276,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="D:\Starsector096\starsector-core\data\campaign\sim_opponents_dev.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector096\starsector-core\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector096\starsector-core\data\characters\person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="D:\Starsector096\starsector-core\data\characters\personalities.csv">
           <value>
             <Attribute>
@@ -291,6 +312,13 @@
           </value>
         </entry>
         <entry key="D:\Starsector096\starsector-core\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector096\starsector-core\data\hulls\ship_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

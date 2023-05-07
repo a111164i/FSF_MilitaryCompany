@@ -112,7 +112,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
         engine.applyDamage(
           ship,
           ship.location,
-          ship.armorGrid.armorRating+ship.maxHitpoints*0.2f,
+          ship.armorGrid.armorRating * 0.5f + ship.maxHitpoints*0.2f,
           DamageType.HIGH_EXPLOSIVE,
           0f, true, false, ship)
       }

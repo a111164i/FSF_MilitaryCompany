@@ -1,7 +1,6 @@
 //by a111164
 package combat.util
 
-import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CargoAPI
 import com.fs.starfarer.api.combat.*
@@ -9,7 +8,6 @@ import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.util.Misc
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
-import data.scripts.util.MagicRender
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -17,9 +15,9 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicRender
 import java.awt.Color
-import java.lang.reflect.Type
-import java.util.*
+import java.awt.geom.Line2D
 import kotlin.math.abs
 import kotlin.math.asin
 
@@ -1589,6 +1587,7 @@ class aEP_Tool {
       if(!ship.isAlive || ship.isHulk || !Global.getCombatEngine().isEntityInPlay(ship)) return true
       return false
     }
+
 
   }
   class FiringSmokeParam{

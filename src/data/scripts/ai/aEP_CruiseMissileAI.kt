@@ -4,8 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.util.aEP_Tool
-import data.scripts.util.MagicTargeting
-import data.scripts.weapons.aEP_cruise_missile_weapon_shot.Companion.TARGET_KEY
+import org.magiclib.util.MagicTargeting
 
 class aEP_CruiseMissileAI: aEP_BaseShipAI {
 
@@ -64,8 +63,7 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
       searchTracker.advance(amount)
       if(!searchTracker.intervalElapsed()) return
       t = MagicTargeting.pickTarget(
-        m,
-        MagicTargeting.targetSeeking.LOCAL_RANDOM,
+        m, MagicTargeting.targetSeeking.LOCAL_RANDOM,
         9999999,
         360,
         0,
@@ -73,8 +71,7 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
         10,
         40,
         60,
-        false
-      )
+        false)
     }
   }
 }

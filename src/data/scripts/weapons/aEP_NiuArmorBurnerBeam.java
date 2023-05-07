@@ -68,7 +68,7 @@ public class aEP_NiuArmorBurnerBeam implements BeamEffectPlugin
     }
 
 
-    //source 是伤害源，比如ShipAPI或者AsteroidAPI
+    //source 是伤害源头，ShipAPI, projectileAPI，missileAPI，beamAPI等
     //每遭受一次伤害，先 modifyDamageTaken才会 report
     //发生在伤害已经施加在船体之后
     @Override

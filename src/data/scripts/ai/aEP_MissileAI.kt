@@ -4,7 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.util.aEP_Tool
-import data.scripts.util.MagicTargeting
+import org.magiclib.util.MagicTargeting
 
 
 class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {
@@ -69,8 +69,7 @@ class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {
       searchTracker.advance(amount)
       if(!searchTracker.intervalElapsed()) return
       t = MagicTargeting.pickTarget(
-        m,
-        MagicTargeting.targetSeeking.LOCAL_RANDOM,
+        m, MagicTargeting.targetSeeking.LOCAL_RANDOM,
         ((m.spec.maxFlightTime - m.flightTime) * m.maxSpeed/2f).toInt(),
         360,
         0,

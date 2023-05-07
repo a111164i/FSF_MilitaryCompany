@@ -64,6 +64,8 @@ public class a111164ModPlugin extends BaseModPlugin
         return null;
       case "aEP_ftr_ut_decompose_beam":
         return new PluginPick<AutofireAIPlugin>(new aEP_TearingBeamAI(weapon), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+      case "aEP_ftr_ut_maodian_ads":
+        return new PluginPick<AutofireAIPlugin>(new aEP_MaoDianDroneAutoFire(weapon), CampaignPlugin.PickPriority.MOD_SPECIFIC);
     }
     return null;
 

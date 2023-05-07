@@ -8,6 +8,7 @@ import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.api.util.WeightedRandomPicker
+import com.fs.starfarer.combat.entities.DamagingExplosion
 import combat.impl.VEs.aEP_AnchorStandardLight
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.impl.VEs.aEP_MovingSprite
@@ -28,13 +29,11 @@ import combat.util.aEP_Tool.Util.spawnSingleCompositeSmoke
 import combat.util.aEP_Tool.Util.speed2Velocity
 import data.scripts.ai.aEP_CruiseMissileAI
 import data.scripts.ai.aEP_MaoDianDroneAI
+import data.scripts.ai.aEP_MaoDianDroneAutoFire
+import data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.Companion.LOADING_MAP
-import data.scripts.util.MagicAnim
-import data.scripts.util.MagicLensFlare
-import data.scripts.util.MagicRender
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
-import data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
@@ -47,6 +46,9 @@ import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lazywizard.lazylib.combat.DefenseUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicAnim
+import org.magiclib.util.MagicLensFlare
+import org.magiclib.util.MagicRender
 import java.awt.Color
 
 /**
@@ -2453,9 +2455,15 @@ class aEP_cru_maodian_missile : Effect(){
 
     //把武器转头藏好，不要生成以后穿模
     for( w in drone.allWeapons ){
-      if(w.slot.id.equals("WS0003")) w.currAngle = (drone.facing-10)
-      if(w.slot.id.equals("WS0004")) w.currAngle = (drone.facing+10)
-      if(w.slot.id.equals("WS0005")) w.currAngle = (drone.facing+120)
+      if(w.slot.id.equals("WS0003")){
+        w.currAngle = (drone.facing-10)
+      }
+      if(w.slot.id.equals("WS0004")){
+        w.currAngle = (drone.facing+10)
+      }
+      if(w.slot.id.equals("WS0005")){
+        w.currAngle = (drone.facing+120)
+      }
     }
     drone.velocity.set( projectile.velocity?:VECTOR2F_ZERO)
 
@@ -2508,6 +2516,82 @@ class aEP_cru_maodian_missile : Effect(){
     override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
     }
   }
+}
+class aEP_ftr_ut_maodian_ads_shot : Effect(){
+  override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
+    addEffect(AdsDamageListener(projectile as MissileAPI))
+  }
+}
+class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
+  override fun advance(amount: Float) {
+    super.advance(amount)
+  }
+
+  override fun advanceImpl(amount: Float) {
+    //找到触发了碰撞，并且用于穿越导弹能力的所有弹丸
+    val projs: MutableList<DamagingProjectileAPI> = java.util.ArrayList()
+    for (hit in Global.getCombatEngine().projectiles) {
+      if(hit.owner == proj.owner) continue
+      if(hit.collisionClass == CollisionClass.NONE) continue
+      //检测到可以穿越导弹的弹丸
+      if(hit.projectileSpec?.isPassThroughMissiles != true) continue
+
+      if (MathUtils.isWithinRange(proj, hit, proj.collisionRadius)) {
+        projs.add(hit)
+      }
+    }
+
+    //触发ads效果，手动降低弹丸基础伤害，如果弹丸基础伤害够低就消除
+    val keyDamage = proj.maxHitpoints
+    if(projs.size >= 1){
+      val toErase = projs[0]
+      if(toErase.damage.baseDamage < keyDamage){
+        Global.getCombatEngine().spawnExplosion(
+          toErase.location,
+          aEP_ID.VECTOR2F_ZERO,
+          toErase.projectileSpec?.fringeColor?:proj.spec.explosionColor,
+          (toErase.damage.baseDamage/8f).coerceAtMost(120f),
+        0.35f)
+        Global.getCombatEngine().removeEntity(toErase)
+
+      }else{
+        toErase.damage.damage -= keyDamage
+      }
+
+      Global.getCombatEngine().spawnEmpArcVisual(
+        proj.location,
+        proj,
+        toErase.location,
+        toErase,
+        5f,
+        proj.spec.glowColor,
+        Color.white)
+
+      proj.explode()
+    }
+
+  }
+
+  override fun readyToEnd() {
+    val projs: MutableList<DamagingProjectileAPI> = java.util.ArrayList()
+    for (hit in Global.getCombatEngine().projectiles) {
+      if (MathUtils.isWithinRange(proj, hit, proj.collisionRadius)) {
+        projs.add(hit)
+      }
+    }
+    if(projs.size >= 1){
+      val toErase = projs[0]
+      if(toErase.damage.baseDamage < 100){
+        Global.getCombatEngine().removeEntity(toErase)
+      }else{
+        toErase.damage.damage -= 100
+      }
+    }
+
+
+  }
+
+
 }
 
 //巡洋导弹发射装置

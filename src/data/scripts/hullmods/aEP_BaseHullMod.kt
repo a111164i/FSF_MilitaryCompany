@@ -6,9 +6,9 @@ import com.fs.starfarer.api.combat.BaseHullMod
 import java.util.HashSet
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
-import data.scripts.util.MagicIncompatibleHullmods
 import combat.util.aEP_Tool
 import combat.util.aEP_DataTool
+import org.magiclib.util.MagicIncompatibleHullmods
 import java.lang.Exception
 import java.lang.StringBuffer
 

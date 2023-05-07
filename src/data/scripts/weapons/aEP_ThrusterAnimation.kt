@@ -1,9 +1,9 @@
 package data.scripts.weapons
 
-import data.scripts.weapons.MagicVectorThruster
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.WeaponAPI
+import org.magiclib.weapons.MagicVectorThruster
 
 class aEP_ThrusterAnimation : MagicVectorThruster() {
   private val e: ShipEngineAPI? = null

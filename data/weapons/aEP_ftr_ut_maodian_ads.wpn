@@ -31,17 +31,17 @@
   "barrelMode": "LINKED",
   "animationType": "MUZZLE_FLASH",
   "muzzleFlashSpec": {
-    "length": 16,
+    "length": 20,
     "spread": 6,
     "particleSizeMin": 8,
     "particleSizeRange": 12,
     "particleDuration": 0.15,
-    "particleCount": 4,
+    "particleCount":12 ,
     "particleColor": [
       255,
       240,
       165,
-      200
+      240
     ]
   },
   "fireSoundTwo": "vulcan_cannon_fire"

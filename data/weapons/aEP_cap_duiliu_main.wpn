@@ -13,6 +13,10 @@
   "hardpointGlowSprite":"graphics/weapons/aEP_duiliu/glow.png",
   "everyFrameEffect":"data.scripts.weapons.aEP_DuiliuMainGunEffect",
   "alwaysAnimate":"true",
+  "passThroughMissiles":true,
+  "passThroughFighters":true,
+  "passThroughFightersOnlyWhenDestroyed":true,
+  "applyOnHitEffectWhenPassThrough":false,
   "glowColor":[255,120,120,255],
   "visualRecoil": 20,
   "renderHints": [

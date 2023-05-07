@@ -18,14 +18,14 @@ import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.angleAdd
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import data.scripts.util.MagicAnim
-import data.scripts.util.MagicLensFlare
-import data.scripts.util.MagicRender
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicAnim
+import org.magiclib.util.MagicLensFlare
+import org.magiclib.util.MagicRender
 import java.awt.Color
 
 class aEP_FighterSpecial: HullModEffect {
@@ -317,7 +317,7 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
         ship.shield.innerColor = Color(0.5f+0.5f*fluxLevel,
           0.5f,
           0.65f*(1f-fluxLevel),
-          (0.2f * shieldLevel * shieldLevel) +MagicAnim.smooth((0.35f*(1f-fluxLevel))))
+          (0.2f * shieldLevel * shieldLevel) + MagicAnim.smooth((0.35f*(1f-fluxLevel))))
 
         //若开盾强制增加软幅能，增加护盾时间。若不开盾增加机动时间，减少护盾时间，机动超时后快速涨幅能
         if(ship.shield?.isOn == true){

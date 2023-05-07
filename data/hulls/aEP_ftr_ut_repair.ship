@@ -14,7 +14,6 @@
   "builtInMods": [
     "autorepair",
     "insulatedengine",
-    "armoredweapons",
   ],
   "builtInWeapons": {
     "WS0001": "aEP_ftr_ut_repair_beam"

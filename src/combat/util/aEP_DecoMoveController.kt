@@ -5,7 +5,7 @@ import java.util.HashMap
 import combat.util.aEP_DecoMoveController
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.FastTrig
-import data.scripts.util.MagicAnim
+import org.magiclib.util.MagicAnim
 
 class aEP_DecoMoveController(var weapon: WeaponAPI) {
   companion object {

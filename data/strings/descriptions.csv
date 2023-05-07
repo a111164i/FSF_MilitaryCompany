@@ -11,7 +11,7 @@ aEP_FuelBurn,SHIP_SYSTEM,可切换，激活时大幅度提升最大速度并强�
 aEP_DamperTanker,SHIP_SYSTEM,可切换，激活时禁用武器和护盾，展开折叠的装甲，能大量的增加装甲有效值，减少伤害,,,
 ,,,,,
 #巡洋舰,,,,,
-aEP_MDDroneLaunch,SHIP_SYSTEM,激活时向鼠标位置部署一架无人机，到达底指定位置后会展开护盾吸收伤害，一段时间后自毁,,,
+aEP_MDDroneLaunch,SHIP_SYSTEM,激活时向鼠标位置部署一架无人机拦截附近的敌方弹丸，到达底指定位置后会展开护盾吸收伤害，一段时间后自毁,,,
 aEP_WeaponResetZL,SHIP_SYSTEM,激活时快速吸收一定比例的当前幅能，并加快武器射速与弹仓填装速度，结束后这些幅能会快速返还,,,
 aEP_ApproachThruster,SHIP_SYSTEM,可切换，激活时提升最大速度并强制向前加速，无法转向，同时持续消耗使用次数,,,
 aEP_RQReload,SHIP_SYSTEM,激活时产生大量幅能，少量加快非内置导弹武器的冷却，并装填满内置导弹的弹药,,,
