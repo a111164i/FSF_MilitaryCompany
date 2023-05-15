@@ -180,7 +180,7 @@ aEP_AdvanceWeaponMission check1 SCORE:100
 ","ShowPersonVisual
 $faction.AWM_1Complete = true
 aEP_AdvanceWeaponMission complete1
-aEP_HandInParts aEP_long_barrel_chaingunAP -2 none 0","""很好，你的表现证明我的眼光没错，或许之后我们会有更多的合作""","0:aEP_researcher_stage0_Complete_talk01:""让我看看报酬有什么特殊之处""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+aEP_HandInParts aEP_b_m_lighting -2 none 0","""很好，你的表现证明我的眼光没错，或许之后我们会有更多的合作""","0:aEP_researcher_stage0_Complete_talk01:""让我看看报酬有什么特殊之处""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage0_Complete_talk01,DialogOptionSelected,$option == aEP_researcher_stage0_Complete_talk01,,"""正如部门的名字所示，我们负责武器的研发，自然有很多接近成功但是因为成本过高或者恶劣环境下可靠性太低等问题而下马的项目，我们也不希望这些'实验品'就这么在仓库里发霉""","0:cutCommLink:""希望它有这个价值""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ##任务线第二节（stage1） 摧毁无人舰,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage1,MarketPostOpen,"$id == aEP_FSF_DefStation
@@ -225,7 +225,7 @@ aEP_researcher_stage1_talk04,DialogOptionSelected,$option == aEP_researcher_stag
 
 看到你半信半疑的神色，$personFirstName并没有向你展示更多的信息，而是继续说道:""除了不合理的护盾，这艘舰船的其他地方就像星域中它的同行一样，仅仅能称作'能用'——这意味你有很多种方法能摧毁它""
 ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-aEP_researcher_stage1_talk05,DialogOptionSelected,$option == aEP_researcher_stage1_talk05,aEP_HandInParts aEP_long_barrel_chaingunAP -2 none 0,"""我会提前支付一部分报酬，但是这是没有投入量产的东西，研究所也没有很多""","0:aEP_researcher_stage1_AskAccept:""非常感谢""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+aEP_researcher_stage1_talk05,DialogOptionSelected,$option == aEP_researcher_stage1_talk05,aEP_HandInParts aEP_b_m_lighting -2 none 0,"""我会提前支付一部分报酬，但是这是没有投入量产的东西，研究所也没有很多""","0:aEP_researcher_stage1_AskAccept:""非常感谢""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage1_AskAccept,DialogOptionSelected,$option == aEP_researcher_stage1_AskAccept,"ShowPersonVisual
 
 ","""那么你接受这个任务吗""","0:aEP_researcher_stage1_Accept:接受

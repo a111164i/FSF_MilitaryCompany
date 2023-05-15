@@ -51,7 +51,7 @@ public class aEP_PickReward extends BaseCommandPlugin
 
 
   @Override
-  public boolean execute(java.lang.String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  public boolean execute(String ruleId, InteractionDialogAPI dialog, List<Misc.Token> params, Map<String, MemoryAPI> memoryMap) {
 
     //if faction memory map is empty, put a new map in it
     MemoryAPI factionMemory = Global.getSector().getFaction("aEP_FSF").getMemoryWithoutUpdate();
@@ -122,7 +122,7 @@ public class aEP_PickReward extends BaseCommandPlugin
     }
   }
 
-  private void confirmBuying(String ruleId, InteractionDialogAPI dialog, java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  private void confirmBuying(String ruleId, InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
     if (!aEP_Tool.checkCargoAvailable(null, null)) {
       return;
     }

@@ -1,19 +1,19 @@
 {
 	"id":"aEP_ftr_ut_maodian_ads_shot",
 	"specClass":"missile",
-	"missileType":"PHASE_MINE",
+	"missileType":"BOMB",
 	"sprite":"graphics/weapons/aEP_harpoon_large/bomblet.png",
 	"glowSprite":"",
-  "glowColor":[255,110,110,85],
-  "glowRadius":20,
+  "glowColor":[255,110,110,125],
+  "glowRadius":35,
 	"size":[8,10],
   "center":[4,5],
-	"collisionRadius":25,
+	"collisionRadius":30,
   "collisionClass":"MISSILE_NO_FF",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
   #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"explosionColor":[141,80,245,225],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":60, # purely visual
+	"explosionRadius":50, # purely visual
   "armingTime":0, # safe range count by time
   "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
   "fadeTime":0, # 熄火后能漂移多久
@@ -30,24 +30,6 @@
     "turnRate":0,
     "acc":20,
     "dec":20
-  },
-	"behaviorSpec":{
-    "behavior":"PROXIMITY_FUSE",
-    "range":30,
-    "vsMissileRange":30,
-    "explosionSpec":{
-      "duration":0.0001f,
-      "radius":50,
-      "coreRadius":30, # full damage within core radius - also equal to proximity fuse range
-      "collisionClass":PROJECTILE_NO_FF,
-      "collisionClassByFighter":PROJECTILE_FIGHTER,
-      "particleSizeMin":5.0,
-      "particleSizeRange":5,
-      "particleDuration":1,
-      "particleCount":4,
-      "particleColor":[245,245,185,235],
-      "sound":""
-    },
   },
   "engineSlots":[
 

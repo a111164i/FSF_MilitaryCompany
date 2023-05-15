@@ -5,7 +5,6 @@
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
-        "aEP_TargetSystem",
         "targetingunit",
         "aEP_SoftfluxDissipate"
     ],

@@ -690,7 +690,7 @@ class GuardianCatchPlayer(val fleet:CampaignFleetAPI, val jumpPoint: SectorEntit
     }
 
   }
-  //捉到过一次玩家，就返回市场刷没
+  //捉到过一次玩家，就返回市场
   override fun readyToEnd() {
     if(fleet.currentAssignment != null) fleet.currentAssignment.expire()
     fleet.memoryWithoutUpdate.unset(MemFlags.MEMORY_KEY_PURSUE_PLAYER)

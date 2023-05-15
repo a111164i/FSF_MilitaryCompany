@@ -13,7 +13,7 @@ public class aEP_CheckItem extends BaseCommandPlugin
    */
 
   @Override
-  public boolean execute(java.lang.String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  public boolean execute(String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<String, MemoryAPI> memoryMap) {
 
     String commodity = params.get(0).string;
     float num = 0f;

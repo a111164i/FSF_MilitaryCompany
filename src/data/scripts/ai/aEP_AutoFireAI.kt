@@ -94,7 +94,6 @@ fun getDamagingProjectileInArc(weapon: WeaponAPI): List<DamagingProjectileAPI>{
     distanceSquared = MathUtils.getDistanceSquared(tmp.location, weapon.location)
     if (distanceSquared > maxRange) continue
     if(tmp is DamagingExplosion) continue
-    if(tmp is MovingRay) continue
     list.add(tmp)
 
   }
@@ -120,7 +119,7 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
       //先计算一下有没有拦截的可能
       val targetEndPoint = AIUtils.getBestInterceptPoint(weapon.location, weapon.projectileSpeed, it.location, it.velocity)
       //拦截点不能在武器射界外面
-      if(weapon.distanceFromArc(targetEndPoint) > 0f) continue
+      if(weapon?.distanceFromArc(targetEndPoint)?:1f > 0f) continue
       if(MathUtils.getDistance(targetEndPoint, weapon.location) > w.range) continue
 
       //弹丸本身，还有拦截点都不能处于队友的碰撞圈内（都已经打到队友了还拦啥）

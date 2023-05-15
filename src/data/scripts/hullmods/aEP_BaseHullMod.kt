@@ -8,7 +8,7 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import combat.util.aEP_Tool
 import combat.util.aEP_DataTool
-import org.magiclib.util.MagicIncompatibleHullmods
+import data.scripts.util.MagicIncompatibleHullmods
 import java.lang.Exception
 import java.lang.StringBuffer
 

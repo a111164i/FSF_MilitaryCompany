@@ -26,7 +26,7 @@ import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S2_ITEM_ID;
 
 public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
 
-  static float REQUIRE_RELATIONSHIP = 90f;
+  static float REQUIRE_RELATIONSHIP = 80f;
   public static String ID = "aEP_FSFMarket";
 
   @Override
@@ -165,11 +165,19 @@ public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
 
   @Override
   public boolean isEnabled(CoreUIAPI ui) {
-    if(Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF).getRelToPlayer().getRel() >= REQUIRE_RELATIONSHIP/100f){
-      ui.getHintPanel().setHint(0,String.format(txt("aEP_Market01"), (int)REQUIRE_RELATIONSHIP +"" ));
-      return true;
+
+    if(Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF).getRelToPlayer().getRel() < REQUIRE_RELATIONSHIP/100f){
+      return false;
     }
-    return false;
+    return true;
+  }
+
+  @Override
+  public String getTooltipAppendix(CoreUIAPI ui) {
+    if(Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF).getRelToPlayer().getRel() < REQUIRE_RELATIONSHIP/100f){
+      return String.format(txt("aEP_Market01"), (int)REQUIRE_RELATIONSHIP +"" );
+    }
+    return "";
   }
 
   private void addNormalShipList(){

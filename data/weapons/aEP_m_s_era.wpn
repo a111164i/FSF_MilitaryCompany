@@ -4,6 +4,7 @@
   "projectileSpecId": "aEP_m_s_era_shot",
   "type": "MISSILE",
   "size": "SMALL",
+  "mountTypeOverride":"UNIVERSAL",
   "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
   "turretSprite": "graphics/weapons/aEP_m_s_era/tr.png",
   "hardpointSprite": "graphics/weapons/aEP_m_s_era/hp.png",

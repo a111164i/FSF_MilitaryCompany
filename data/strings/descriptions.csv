@@ -178,6 +178,7 @@ aEP_ftr_ftr_helicop,SHIP,可以在大气层内作战的重型武装直升机，�
 #战机武器,,,,,
 aEP_ftr_ut_repair_beam,WEAPON,一种发射纳米材料射流的工程武器，覆盖受损装甲后冷却固定，多用于战场紧急维修，无法将装甲修补到原本的强度。,,,
 aEP_ftr_ut_supply_main,WEAPON,一种汲取器，能远程将目标的幅能转移到自己身上。,,,
+aEP_ftr_ut_maodian_ads,WEAPON,先进的主动防御系统，发射一种实心无动力混凝土块，撞毁路线上的敌方弹丸。,,,
 aEP_ftr_ut_decompose_beam,WEAPON,带有牵引力的切割光束，对完好的舰船几乎没有作用，但能快速切开已经损坏的残骸,,,
 aEP_ftr_icp_gunship_gun,WEAPON,发射带有emp的动能子弹，用于在空战中破开护盾并瘫痪对手，也能压制小型槽位上的防空武器,,,
 aEP_ftr_icp_gunship_beam,WEAPON,一种高能光束发生器，在半秒内就能烧穿大部分战机的装甲。对于装备对舰武器的战机而言这并不是什么难事，可贵的地方在于作为专门为战机设计的武器，能以炮塔的形式安装,,,

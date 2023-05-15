@@ -42,6 +42,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
   init {
     notCompatibleList.add("missleracks")
+    notCompatibleList.add("missile_autoloader")
   }
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize): String {

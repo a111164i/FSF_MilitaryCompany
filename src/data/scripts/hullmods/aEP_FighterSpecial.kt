@@ -18,14 +18,14 @@ import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.angleAdd
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
+import data.scripts.util.MagicAnim
+import data.scripts.util.MagicLensFlare
+import data.scripts.util.MagicRender
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
-import org.magiclib.util.MagicAnim
-import org.magiclib.util.MagicLensFlare
-import org.magiclib.util.MagicRender
 import java.awt.Color
 
 class aEP_FighterSpecial: HullModEffect {
@@ -207,61 +207,6 @@ class aEP_FighterSpecial: HullModEffect {
     return hullmod!!.displayCategoryIndex
   }
 
-  override fun hasSModEffectSection(hullSize: ShipAPI.HullSize?, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    hullmod?: return false
-    hullSize?: return false
-    ship?: return false
-    return hullmod!!.hasSModEffectSection(hullSize, ship, isForModSpec)
-  }
-
-  override fun addSModSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize?, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
-    hullmod?: return
-    hullSize?: return
-    ship?: return
-    hullmod!!.addSModSection(tooltip, hullSize, ship, width, isForModSpec, isForBuildInList)
-  }
-
-  override fun addSModEffectSection(tooltip: TooltipMakerAPI?, hullSize: ShipAPI.HullSize?, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
-    hullmod?: return
-    hullSize?: return
-    ship?: return
-    hullmod!!.addSModSection(tooltip, hullSize, ship, width, isForModSpec, isForBuildInList)
-  }
-
-  override fun hasSModEffect(): Boolean {
-    hullmod?: return false
-    return hullmod!!.hasSModEffect()
-  }
-
-  override fun getSModDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?): String {
-    hullmod?: return ""
-    hullSize?: return ""
-    return hullmod!!.getSModDescriptionParam(index, hullSize)
-  }
-
-  override fun getSModDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String {
-    hullmod?: return ""
-    hullSize?: return ""
-    ship?: return ""
-    return hullmod!!.getSModDescriptionParam(index, hullSize, ship)
-  }
-
-  override fun getTooltipWidth(): Float {
-    hullmod?: return 369f
-    return hullmod!!.tooltipWidth
-
-  }
-
-  override fun isSModEffectAPenalty(): Boolean {
-    hullmod?: return false
-    return hullmod!!.isSModEffectAPenalty
-  }
-
-  override fun showInRefitScreenModPickerFor(ship: ShipAPI?): Boolean {
-    hullmod?: true
-    ship?: return false
-    return hullmod!!.showInRefitScreenModPickerFor(ship as ShipAPI)
-  }
 }
 
 //锚点无人机护盾插件

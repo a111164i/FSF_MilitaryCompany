@@ -3,9 +3,9 @@ package combat.util
 import com.fs.starfarer.api.combat.WeaponAPI
 import java.util.HashMap
 import combat.util.aEP_DecoMoveController
+import data.scripts.util.MagicAnim
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.FastTrig
-import org.magiclib.util.MagicAnim
 
 class aEP_DecoMoveController(var weapon: WeaponAPI) {
   companion object {

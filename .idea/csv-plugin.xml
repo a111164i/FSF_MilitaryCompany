@@ -423,6 +423,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\config\exerelin\corvus_capitals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\exerelin\corvus_spawnpoints.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\config\exerelin\mining_ships.csv">
           <value>
             <Attribute>
@@ -452,6 +466,13 @@
           </value>
         </entry>
         <entry key="\data\hullmods\ref.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\hullmods\ref_hullmod.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

@@ -5,7 +5,6 @@
     "goalVariant": true,
     "hullId": "aEP_des_yangji",
     "hullMods": [
-        "aEP_TargetSystem",
         "targetingunit",
         "ballistic_rangefinder"
     ],

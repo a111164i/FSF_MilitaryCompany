@@ -79,9 +79,10 @@
     "aEP_des_shendu_Strike": 5,
 },
   "carrierLarge": {
-    "aEP_cru_shanhu_Standard":4,
+    "aEP_cru_shanhu_Standard":3,
     "aEP_cru_shanhu_Attack":3,
-    "aEP_cru_shanhu_Siege":3,
+    "aEP_cru_shanhu_Siege":2,
+    "aEP_cru_shanhu_Front":2,
     "aEP_cap_decomposer_Standard": 10,
     "aEP_cru_pubu_Elite": 2,
     "aEP_cru_pubu_Standard": 4,

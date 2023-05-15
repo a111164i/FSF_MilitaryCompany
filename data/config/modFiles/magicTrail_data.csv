@@ -42,7 +42,7 @@ aEP_ftr_bom_attacker_gun_trail,aEP_ftr_bom_attacker_gun_shot,base_trail_fuzzy,16
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_ftr_ftr_hvfighter_gun_trail,aEP_ftr_ftr_hvfighter_gun_shot,base_trail_fuzzy,16,0.1,0.1,0.1,10,5,"[255,255,155]","[255,255,150,100]",0.3,128,-256,TRUE,10,0,0,0,true,true,false,0,0,0,0,0,0,false,true
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-aEP_ftr_sup_tank_main_trail,aEP_ftr_sup_tank_main_shot,base_trail_mild,20,0.1,0.7,0.5,4,6,"[182,122,71]","[176,176,172]",0.35,256,-256,0,0,0,0,0,true,true,false,90,0,0,0,16,0,true,true
+aEP_ftr_sup_tank_main_trail,aEP_ftr_sup_tank_main_shot,base_trail_mild,20,0.1,0.7,0.5,4,6,"[182,122,101]","[176,176,172]",0.35,256,-256,0,0,0,0,0,true,true,false,90,0,0,0,16,0,true,true
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_cru_pubu_main_trail,aEP_cru_pubu_main_shot,aEP_trail_smooth_with_bright_core,12,0.1,0.1,0.3,80,40,"[255,150,150]","[255,255,255]",0.1,128,64,TRUE,0,0,0,0,true,false,false,64,64,0,0,0,0,true,true

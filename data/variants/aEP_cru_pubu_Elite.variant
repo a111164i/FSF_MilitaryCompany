@@ -1,35 +1,40 @@
 {
-    "displayName": "Elite",
-    "fluxCapacitors": 1,
-    "fluxVents": 15,
-    "goalVariant": true,
-    "hullId": "aEP_cru_pubu",
-    "hullMods": ["expanded_deck_crew"],
-    "permaMods": [],
-    "sMods": [],
-    "variantId": "aEP_cru_pubu_Elite",
-    "weaponGroups": [
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0007": "aEP_b_m_mb32"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "aEP_vulcan",
-                "WS0002": "aEP_vulcan",
-                "WS0003": "aEP_vulcan",
-                "WS0004": "aEP_vulcan"
-            }
-        }
-    ],
-    "wings": [
-        "aEP_ftr_icp_gunship_wing",
-        "aEP_ftr_icp_gunship_wing",
-        "aEP_ftr_icp_gunship_wing",
-        "aEP_ftr_icp_gunship_wing",
-        "aEP_ftr_icp_gunship_wing"
-    ]
+  "variantId": "aEP_cru_pubu_Elite",
+  "hullId": "aEP_cru_pubu",
+  "displayName": "Elite",
+  "goalVariant": true,
+  "fluxCapacitors": 6,
+  "fluxVents": 16,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "expanded_deck_crew"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "aEP_b_m_mb32"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_vulcan",
+        "WS0002": "aEP_vulcan",
+        "WS0003": "aEP_vulcan",
+        "WS0004": "aEP_vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "aEP_ftr_icp_gunship_wing",
+    "aEP_ftr_icp_gunship_wing",
+    "aEP_ftr_icp_gunship_wing",
+    "aEP_ftr_icp_gunship_wing",
+    "aEP_ftr_icp_gunship_wing"
+  ]
 }

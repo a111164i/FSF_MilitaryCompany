@@ -53,7 +53,7 @@
 											
 				   ],
 	"behaviorSpec":{"behavior":"MIRV",
-                        "splitRange":700,
+                        "splitRange":600,
                         "minTimeToSplit":2,
                         "canSplitEarly":false,
                         "splitSound":"",

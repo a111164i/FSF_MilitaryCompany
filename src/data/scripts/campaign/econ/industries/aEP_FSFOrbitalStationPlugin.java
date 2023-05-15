@@ -1,4 +1,4 @@
-package data.scripts.campaign.econ.entity;
+package data.scripts.campaign.econ.industries;
 
 import com.fs.starfarer.api.impl.campaign.econ.impl.OrbitalStation;
 

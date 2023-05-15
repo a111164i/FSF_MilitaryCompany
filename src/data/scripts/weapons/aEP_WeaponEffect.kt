@@ -34,6 +34,9 @@ import data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.Companion.LOADING_MAP
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
+import data.scripts.util.MagicAnim
+import data.scripts.util.MagicLensFlare
+import data.scripts.util.MagicRender
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
@@ -46,9 +49,6 @@ import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lazywizard.lazylib.combat.DefenseUtils
 import org.lwjgl.util.vector.Vector2f
-import org.magiclib.util.MagicAnim
-import org.magiclib.util.MagicLensFlare
-import org.magiclib.util.MagicRender
 import java.awt.Color
 
 /**
@@ -2991,7 +2991,7 @@ class aEP_b_m_rk107_shot : Effect{
 class aEP_m_s_era :EveryFrame{
   companion object{
     const val KEY = "aEP_m_s_era"
-    const val RANGE = 20f
+    const val RANGE = 30f
     var DAMAGE_THRESHOLD = 749f
     var ARMOR_THRESHOLD = 1f
   }
@@ -3063,7 +3063,7 @@ class aEP_m_s_era :EveryFrame{
         proj.explode()
         w.ammo -= 1
         //降低90%的伤害
-        damage.modifier.modifyMult(KEY,0.1f)
+        damage.damage = damage.baseDamage * 0.1f
       }
       return null
     }

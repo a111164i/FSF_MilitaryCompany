@@ -18,7 +18,8 @@
   "builtInWeapons": {
     "WS0009": "aEP_marker",
     "WS0010": "aEP_marker",
-    "WS0011": "aEP_cru_maodian_missile"
+    "WS0011": "aEP_cru_maodian_missile",
+    "WS0014": "aEP_ftr_ut_maodian_ads"
   },
   "weaponSlots": [
     {
@@ -64,7 +65,8 @@
       "mount": "TURRET",
       "arc": 240,
       "angle": 135,
-      "locations": [-67, 37.5]
+      "locations": [-67, 37.5],
+      "renderOrderMod": 10
     },
     {
       "id": "WS0008",
@@ -73,7 +75,8 @@
       "mount": "TURRET",
       "arc": 210,
       "angle": -165,
-      "locations": [-51, 14.5]
+      "locations": [-51, 14.5],
+      "renderOrderMod": 20
     },
     {
       "id": "WS0009",
@@ -176,6 +179,16 @@
       "arc": 15,
       "angle": -89,
       "locations": [3, -73.5]
+    },
+    {
+      "id": "WS0014",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 100,
+      "angle": 0,
+      "locations": [-49.5, 57],
+      "renderOrderMod": 5
     }
   ],
   "engineSlots": [

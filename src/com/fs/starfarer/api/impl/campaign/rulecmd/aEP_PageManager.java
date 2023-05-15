@@ -11,7 +11,7 @@ public class aEP_PageManager extends BaseCommandPlugin
 
 
   @Override
-  public boolean execute(java.lang.String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  public boolean execute(String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<String, MemoryAPI> memoryMap) {
 
     switch (params.get(0).string) {
       case "check":
@@ -37,7 +37,7 @@ public class aEP_PageManager extends BaseCommandPlugin
     return false;
   }
 
-  private boolean check(java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  private boolean check(java.util.Map<String, MemoryAPI> memoryMap) {
     if (getManager() == null) {
       return false;
     }

@@ -15,8 +15,7 @@ import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import static data.scripts.world.aEP_systems.aEP_FSF_DWR43.MINING_PLANET_MARKET_ID;
 
 
-public class a111164CampaignPlugin implements EveryFrameScript
-{
+public class a111164CampaignPlugin implements EveryFrameScript {
 
 
   private float dayTimer = 0;
@@ -151,7 +150,7 @@ public class a111164CampaignPlugin implements EveryFrameScript
 
   public static class CustomEvent {
 
-    public float time = 0f;//1 = 1 second, total life time till now
+    public float time = 0f;//1 = 1 second, total eclipsed time
     public float lifeTime = 0f;//1 = 1 second
 
 

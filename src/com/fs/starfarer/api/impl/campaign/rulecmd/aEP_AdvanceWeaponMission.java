@@ -43,7 +43,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
 {
   InteractionDialogAPI dialog;
   String ruleId;
-  java.util.Map<java.lang.String, MemoryAPI> memoryMap;
+  java.util.Map<String, MemoryAPI> memoryMap;
 
   public static final String MISSILE_CARRIER_SPEC_ID = "aEP_des_shendu_mk2";
 
@@ -52,7 +52,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
    */
 
   @Override
-  public boolean execute(java.lang.String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  public boolean execute(String ruleId, InteractionDialogAPI dialog, List<Misc.Token> params, java.util.Map<String, MemoryAPI> memoryMap) {
     this.dialog = dialog;
     this.ruleId = ruleId;
     this.memoryMap = memoryMap;

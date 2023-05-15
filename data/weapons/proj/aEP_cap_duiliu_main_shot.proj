@@ -18,7 +18,9 @@
 	"textureScrollSpeed":64,
 	"pixelsPerTexel":5,
 	"passThroughMissiles":true,
+  "passThroughFighters":true,
+  "passThroughFightersOnlyWhenDestroyed":true,
+  "applyOnHitEffectWhenPassThrough":false,
 
-	
 }
 			

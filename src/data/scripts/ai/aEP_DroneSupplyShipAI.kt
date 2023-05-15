@@ -191,7 +191,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       }
 
       //如果成功进入100内
-      val dist = MathUtils.getDistance(ship,target.location)
+      val dist = MathUtils.getDistance(ship,target)
       if(dist < 100f){
         stat = StickAndFire(target)
       }
@@ -245,7 +245,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location, pos)
-      if(distToAbsPos < 30f ){
+      if(distToAbsPos < 50f ){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }

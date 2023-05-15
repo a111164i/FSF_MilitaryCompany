@@ -26,7 +26,7 @@ public class aEP_HandInParts extends BaseCommandPlugin
    * @param params commodity, quantity, return commodity, return quantity, extra
    */
   @Override
-  public boolean execute(java.lang.String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<java.lang.String, MemoryAPI> memoryMap) {
+  public boolean execute(String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, Map<String, MemoryAPI> memoryMap) {
 
     commodity = params.get(0).string;
     num = 0f;

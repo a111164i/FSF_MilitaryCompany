@@ -256,7 +256,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location,absPos)
-      if(distToAbsPos < 30f && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f ){
+      if(distToAbsPos < 50f && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f ){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }
