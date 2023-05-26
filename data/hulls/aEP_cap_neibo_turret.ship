@@ -12,8 +12,9 @@
   "shieldRadius": 58,
   "viewOffset": 0,
   "builtInMods": [
-    "reduced_explosion",
-    "never_detaches"
+    "aEP_Module",
+    "never_detaches",
+    "aEP_ModuleTargeting"
   ],
   "weaponSlots": [
     {

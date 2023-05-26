@@ -9,7 +9,7 @@
 	#"onHitEffect":"data.scripts.weapons.aEP_ChaingunOnHitEffect",	
 	"length":2,
 	"width":2,
-	"fadeTime":0.1,
+	"fadeTime":0.4,
 	#"fringeColor":[255,125,125,255],
 	#"coreColor":[255,200,200,150],
 	"fringeColor":[255,255,255,1],

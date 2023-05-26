@@ -5,16 +5,17 @@ import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import combat.util.aEP_Tool
 import java.awt.Color
 
-class aEP_DecomposerFastBuildScript : BaseShipSystemScript() {
+class aEP_DecomposerFastBuild : BaseShipSystemScript() {
   companion object {
     const val EXTRA_NUM_MULT = 1f //by mult, to mult
     const val FRR_DECREASE_SPEED_MOD = 900f //by percent to mult
     const val NEW_FTR_ATK_MULT = 0.5f
-    const val NEW_FTR_TAKEN_INCREASE_PERCENT = 0.20f
-    const val NEW_FTR_LIFE = 20f //
-    const val RATE_COST = 0.15f
+    const val NEW_FTR_TAKEN_INCREASE_MULT = 0.25f
+    const val NEW_FTR_LIFE = 16f //
+    const val RATE_COST = 0.20f
   }
 
   var ship: ShipAPI? = null
@@ -65,9 +66,9 @@ class aEP_DecomposerFastBuildScript : BaseShipSystemScript() {
             ftr.mutableStats.damageToCruisers.modifyMult(id, NEW_FTR_ATK_MULT)
             ftr.mutableStats.damageToCapital.modifyMult(id, NEW_FTR_ATK_MULT)
 
-            ftr.mutableStats.hullDamageTakenMult.modifyFlat(id, NEW_FTR_TAKEN_INCREASE_PERCENT)
-            ftr.mutableStats.shieldDamageTakenMult.modifyFlat(id, NEW_FTR_TAKEN_INCREASE_PERCENT)
-            ftr.mutableStats.armorDamageTakenMult.modifyFlat(id, NEW_FTR_TAKEN_INCREASE_PERCENT)
+            ftr.mutableStats.hullDamageTakenMult.modifyFlat(id, NEW_FTR_TAKEN_INCREASE_MULT)
+            ftr.mutableStats.shieldDamageTakenMult.modifyFlat(id, NEW_FTR_TAKEN_INCREASE_MULT)
+            ftr.mutableStats.armorDamageTakenMult.modifyFlat(id, NEW_FTR_TAKEN_INCREASE_MULT)
 
             engine.addFloatingText(ftr.location, "Degraded", 15f, Color.red, ftr, 1f, 1f)
           }

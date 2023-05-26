@@ -49,34 +49,37 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
   }
 
 
-  private var dronePosition: LinkedList<ShipAPI>? = null
-
   override fun advanceImpl(amount: Float) {
     super.advanceImpl(amount)
     if(stat is StickAndFire){
-      //并且把自己的目标存入自己的customMap，用于检测需不需要踢掉
+      //把自己的目标存入自己的customMap，用于检测需不需要踢掉
       //一定用setCustomData()这个方法才能初始化原本为空的customMap
       val sa = stat as StickAndFire
-      ship.setCustomData(ID,sa.target)
+      if(ship.customData[ID] != sa.target){
+        ship.setCustomData(ID,sa.target)
+      }
     }else{
-      ship.setCustomData(ID,null)
+      if(ship.customData[ID] != null){
+        ship.setCustomData(ID,null)
+      }
     }
 
     //同步系统目标，使用系统ai
+    systemTarget = null
     if(stat is Approaching){
       val sa = stat as Approaching
       systemTarget = sa.target
-    }else{
-      systemTarget = null
     }
+
     if(stat is Searching && parentShip != null){
       val sa = stat as Searching
       systemTarget = parentShip
-    }else{
-      systemTarget = null
     }
 
-
+    if(stat is ForceReturn && parentShip != null){
+      val sa = stat as ForceReturn
+      systemTarget = parentShip
+    }
 
   }
 
@@ -203,16 +206,38 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
   inner class StickAndFire(val target:ShipAPI ): aEP_MissileAI.Status(){
     val pos = Vector2f(0f,0f)
 
+    init {
+      //获得基于目标速度一定值的极速和机动性加成，防止永远追不上
+      ship.mutableStats.maxSpeed.modifyFlat(ID, target.maxSpeed)
+      ship.mutableStats.acceleration.modifyFlat(ID, target.maxSpeed * 2f)
+      ship.mutableStats.deceleration.modifyFlat(ID, target.maxSpeed * 2f)
+
+      ship.mutableStats.maxTurnRate.modifyFlat(ID, target.maxTurnRate)
+      ship.mutableStats.turnAcceleration.modifyFlat(ID, target.turnAcceleration * 2f)
+    }
+
     override fun advance(amount: Float) {
       //如果幅能太高，转入返回模式，最高优先级
       if(ship.fluxLevel > 0.9f){
         stat = ForceReturn()
+        ship.mutableStats.maxSpeed.unmodify(ID)
+        ship.mutableStats.acceleration.unmodify(ID)
+        ship.mutableStats.deceleration.unmodify(ID)
+
+        ship.mutableStats.maxTurnRate.unmodify(ID)
+        ship.mutableStats.turnAcceleration.unmodify(ID)
         return
       }
 
       //如果目标失效，转入搜索模式，
       if(aEP_Tool.isDead(target) || target.fluxLevel <= 0f){
         stat = Searching()
+        ship.mutableStats.maxSpeed.unmodify(ID)
+        ship.mutableStats.acceleration.unmodify(ID)
+        ship.mutableStats.deceleration.unmodify(ID)
+
+        ship.mutableStats.maxTurnRate.unmodify(ID)
+        ship.mutableStats.turnAcceleration.unmodify(ID)
         return
       }
 
@@ -220,59 +245,46 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       val dist = MathUtils.getDistance(ship,target)
       if(dist > 200f) {
         stat = Approaching(target)
+        ship.mutableStats.maxSpeed.unmodify(ID)
+        ship.mutableStats.acceleration.unmodify(ID)
+        ship.mutableStats.deceleration.unmodify(ID)
+
+        ship.mutableStats.maxTurnRate.unmodify(ID)
+        ship.mutableStats.turnAcceleration.unmodify(ID)
         return
       }
 
       //获取支援机位置表
       //这个部分管加不管踢，踢的部分在findPos()里面
+      //如果目标之前没有支援机，为目标创建一个支援机位置表
+      var dronePosition = LinkedList<ShipAPI>()
       if(!target.customData.containsKey(ID)){
-        //如果目标之前没有支援机，为目标创建一个支援机位置表
-        dronePosition = LinkedList()
-        dronePosition!!.add(ship)
-        target.customData[ID] = dronePosition
+        dronePosition.add(ship)
+        target.setCustomData(ID,dronePosition)
+      //如果目标目前有支援机，每帧读取他的位置表
+      //如果自己目前不在这个位置表中，把自己加入
       }else{
-        //如果已经存在，把自己加入位置表
         dronePosition = target.customData[ID] as LinkedList<ShipAPI>
-        if(!dronePosition!!.contains(ship)){
-          dronePosition!!.add(ship)
+        if(!dronePosition.contains(ship)){
+          dronePosition.add(ship)
         }
       }
 
       //转换相对位置到绝对位置，吸附舰船
-      pos.set(findPos(target, dronePosition!!) )
+      //在findPos()时，会先从位置表里面踢掉已经离开的成员
+      pos.set(findPos(target, dronePosition) )
       aEP_Tool.setToPosition(ship, pos)
       aEP_Tool.moveToAngle(ship, target.facing)
 
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location, pos)
-      if(distToAbsPos < 50f ){
+      if(distToAbsPos < 50f + target.maxSpeed * 0.25f ){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }
 
     }
   }
-
-  inner class ForceReturn: aEP_MissileAI.Status(){
-    override fun advance(amount: Float) {
-      //如果根本没有母舰，直接转入自毁
-      if(parentShip == null){
-        stat = SelfExplode()
-        return
-      }
-
-      //拥有母舰，则开始返回，如果返回途中母舰炸了，转入自毁
-      val parent = parentShip as ShipAPI
-      if(!parent.isAlive || parent.isHulk || !engine.isEntityInPlay(parent)){
-        stat = SelfExplode()
-        return
-      }
-
-      //其实不用这么麻烦还写个自爆，因为这个方法里面自带了，如果parent为空会直接自爆
-      aEP_Tool.returnToParent(ship, parent, amount)
-    }
-  }
-
 
   fun calculateFactor(target:ShipAPI): Float{
     var fluxLevelFactor = 0f
@@ -335,7 +347,9 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
   private fun findPos(target: CombatEntityAPI, dronePosition: LinkedList<ShipAPI>): Vector2f {
     val pos = Vector2f(0f,0f)
 
-    //清理list中失效的战机
+    //清理list中失效的战机，战机会每帧把当前的母舰更新到customData的id中
+    //查战机customData的id里面的母舰，是不是当前需要findPos的母舰
+    //如果不是，踢掉
     val toRemove = ArrayList<ShipAPI>()
     for(drone in dronePosition){
       if(isDead(drone)) toRemove.add(drone)

@@ -1,23 +1,21 @@
 {
-    "hullFrequency":{
-        "hulls":{
-
-    
-        },
-    },
-    "knownShips":{
-        "hulls":[
-      		"aEP_fga_xiliu_mk2",
-          "aEP_cap_shangshengliu_mk3",
-        ],
-    },
-    "knownWeapons":{
-			"tags":[],
-			"weapons":[	
-                "aEP_b_m_h88",
-                "aEP_breakin_hammer",	
-			],
-		},
-
+	"knownShips":{
+		"hulls":[
+			"aEP_fga_xiliu_mk2",
+			"aEP_cap_shangshengliu_mk3",
+		],
+	},
+	"knownFighters":{
+		"tags":[],
+		"fighters":[	
+		],
+	},
+	"knownWeapons":{
+		"tags":[],
+		"weapons":[	
+			"aEP_b_m_h88",
+			"aEP_breakin_hammer",	
+		],
+	},
   
 },

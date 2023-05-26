@@ -58,6 +58,7 @@ class aEP_DamperBoost : BaseShipSystemScript() {
   private val id = "aEP_DamperBoost"
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     ship = (stats.entity?:return) as ShipAPI
+
     var convertedLevel = effectLevel
     for (w in ship.allWeapons) {
       if (!w.slot.isDecorative) continue
@@ -108,23 +109,29 @@ class aEP_DamperBoost : BaseShipSystemScript() {
     val armorPercent = (EFFECT_ARMOR_PERCENT_BONUS[ship.hullSpec.hullId]?: 0f)
     val toAdd = armorFlat + (ship.hullSpec?.armorRating?:0f) * (armorPercent/100f)
 
-    stats.effectiveArmorBonus.modifyFlat(id, toAdd * effectLevel)
+
     stats.ballisticRoFMult.modifyPercent(id,RofPercent * effectLevel)
     stats.energyRoFMult.modifyPercent(id, RofPercent * effectLevel)
 
+    stats.effectiveArmorBonus.modifyFlat(id, toAdd * effectLevel)
     stats.armorDamageTakenMult.modifyMult(id, damageTakenMult)
     stats.hullDamageTakenMult.modifyMult(id, damageTakenMult)
+    stats.weaponDamageTakenMult.modifyMult(id, damageTakenMult)
+    stats.engineDamageTakenMult.modifyMult(id, damageTakenMult)
+
   }
 
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
     ship = (stats.entity?:return) as ShipAPI
 
-    stats.effectiveArmorBonus.unmodify(id)
     stats.ballisticRoFMult.unmodify(id)
     stats.energyRoFMult.unmodify(id)
 
+    stats.effectiveArmorBonus.unmodify(id)
     stats.armorDamageTakenMult.unmodify(id)
     stats.hullDamageTakenMult.unmodify(id)
+    stats.weaponDamageTakenMult.unmodify(id)
+    stats.engineDamageTakenMult.unmodify(id)
 
     for (w in ship.allWeapons) {
       if (!w.slot.isDecorative) continue

@@ -8,9 +8,9 @@ class aEP_TargetSystem : aEP_BaseHullMod() {
   companion object {
 
     const val ID = "aEP_TargetSystem"
-    const val RANGE_PERCENT_BONUS = 60f
-    const val RANGE_PD_PERCENT_BONUS = 40f
-    const val RANGE_THRESHOLD = 1600f
+    const val RANGE_PERCENT_BONUS = 50f
+    const val RANGE_PD_PERCENT_BONUS = 35f
+    const val RANGE_THRESHOLD = 1500f
     const val THRESHOLD_PUNISH = 0.5f
   }
 

@@ -29,7 +29,7 @@
 	# multiplier for how often hulls show up in the faction's fleets
 	"hullFrequency":{
 		"tags":{
-			"FSF_advancebp": 0.2
+			"FSF_advancebp": 0.25
 		},
 		"hulls":{
 			"aEP_des_youjiyan":0.75,
@@ -184,15 +184,15 @@
 		],
 	},
 	"factionDoctrine":{
-		"warships":5,
-		"carriers":2,
+		"warships":4,
+		"carriers":3,
 		"phaseShips":0,
 		
 		"officerQuality":2,
 		"shipQuality":2,
 		"numShips":3,
 		
-		"shipSize":4,
+		"shipSize":3,
 		
 		"aggression":2,
 		

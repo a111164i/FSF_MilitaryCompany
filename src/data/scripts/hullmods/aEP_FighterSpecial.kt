@@ -28,7 +28,7 @@ import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
-class aEP_FighterSpecial: HullModEffect {
+class aEP_FighterSpecial: BaseHullMod() {
 
   var hullmod : HullModEffect? = null
 

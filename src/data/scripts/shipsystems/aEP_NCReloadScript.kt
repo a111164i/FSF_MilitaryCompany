@@ -1,16 +1,13 @@
 package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.combat.*
 import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
 import combat.util.aEP_Tool.Util.speed2Velocity
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
-import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import com.fs.starfarer.api.combat.WeaponAPI
 import combat.impl.VEs.aEP_MovingSmoke
 import org.lazywizard.lazylib.MathUtils
-import com.fs.starfarer.api.combat.CombatEntityAPI
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_ID
 import data.scripts.hullmods.aEP_MissilePlatform
@@ -22,7 +19,9 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
 
 
   companion object {
-    const val RELOAD_COOLDOWN_MULT = 0.25f //0.25 = 75 percent off
+    const val RELOAD_RATE_ADD = 0.15f
+    const val COOLDOWN_REDUCE = 16f
+
     const val GLOW_INTERVAL = 0.05f
     const val GLOW_TIME = 0.5f
     const val GLOW_SIZE = 25f
@@ -47,25 +46,39 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
     //回满总装填率
     if(ship.customData.containsKey(aEP_MissilePlatform.ID)){
       val loadingClass = ship.customData[aEP_MissilePlatform.ID] as aEP_MissilePlatform.LoadingMap
-      loadingClass.currRate = loadingClass.maxRate
+
+      val rateAdd = MathUtils.clamp(
+        RELOAD_RATE_ADD * loadingClass.maxRate,
+        0f,loadingClass.maxRate-loadingClass.currRate)
+      loadingClass.currRate += rateAdd
     }
 
     //为每个武器刷出烟雾
     for (w in ship.allWeapons) {
-      if (w.type == WeaponAPI.WeaponType.MISSILE && w.slot.weaponType == WeaponAPI.WeaponType.MISSILE) {
-        for (i in 0 until 5) {
-          //add cloud
-          val colorMult = (Math.random() * 40f).toInt() + 40
-          val sizeMult = Math.random().toFloat()
-          val ms = aEP_MovingSmoke(w.location)
-          ms.setInitVel(speed2Velocity(MathUtils.getRandomNumberInRange(0f, 360f), 1.2f))
-          ms.lifeTime = 3f
-          ms.fadeIn = 0.1f
-          ms.fadeOut = 0.5f
-          ms.size = 20 + 40 * sizeMult
-          ms.color = Color(colorMult, colorMult, colorMult, (Math.random() * 40).toInt() + 200)
-          addEffect(ms)
+      if (w.type == WeaponAPI.WeaponType.MISSILE){
+        if(w.slot.weaponType == WeaponAPI.WeaponType.MISSILE || w.slot.weaponType == WeaponAPI.WeaponType.COMPOSITE) {
+
+          w.setRemainingCooldownTo(w.cooldownRemaining - COOLDOWN_REDUCE.coerceAtMost(w.cooldownRemaining))
+          //刷点烟雾
+          for (i in 0 until 3) {
+            //add cloud
+            val colorMult = (Math.random() * 40f).toInt() + 40
+            val sizeMult = Math.random().toFloat()
+            val ms = aEP_MovingSmoke(w.location)
+            ms.setInitVel(speed2Velocity(MathUtils.getRandomNumberInRange(0f, 360f), 1.2f))
+            ms.lifeTime = 2.5f
+            ms.fadeIn = 0.1f
+            ms.fadeOut = 0.6f
+            ms.size = 20 + 40 * sizeMult
+            ms.color = Color(colorMult, colorMult, colorMult, (Math.random() * 40).toInt() + 200)
+            addEffect(ms)
+          }
+
+        }else if(w.spec.weaponId.contains("aEP_cap_requan_missile")){ //回复系统导弹
+          w.ammoTracker.ammo = Math.min(w.ammo + w.spec.burstSize, w.maxAmmo)
         }
+
+
       }
     }
 
@@ -76,6 +89,15 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
     didVisual = false
   }
 
+  override fun isUsable(system: ShipSystemAPI?, ship: ShipAPI?): Boolean {
+    //复制粘贴这行
+    if(ship == null) return false
+
+    if(ship.fluxTracker.maxFlux - ship.fluxTracker.currFlux < ship.system.fluxPerSecond) {
+      return false
+    }
+    return true
+  }
 
   class RefresherOrb internal constructor(var target: CombatEntityAPI) : aEP_BaseCombatEffect() {
     var length: Float

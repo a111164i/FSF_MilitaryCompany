@@ -61,7 +61,6 @@ public class MissionDefinition implements MissionDefinitionPlugin
     String name2 = "汹涌";
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_zhongliu_Standard", FleetMemberType.SHIP, name2, false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "A02",false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP,  "A03",false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP,  "F4A",false);
 
 

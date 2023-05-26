@@ -12,7 +12,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
   lateinit var system: ShipSystemAPI
   lateinit var ship: ShipAPI
   lateinit var flags: ShipwideAIFlags
-  var thinkTracker = IntervalUtil(0f, 0.4f)
+  var thinkTracker = IntervalUtil(0f, 0.5f)
   var shouldActive = false
 
   override fun init(ship: ShipAPI, system: ShipSystemAPI, flags: ShipwideAIFlags, engine: CombatEngineAPI) {

@@ -118,6 +118,7 @@ public class aEP_RevolvingMissileLunch extends BaseShipSystemScript
       if (arcTimer < ARC_INTERVAL) return;
       arcTimer -= ARC_INTERVAL;
       Global.getCombatEngine().spawnEmpArcVisual(MathUtils.getRandomPointInCircle(ship.getLocation(), ship.getCollisionRadius()), ship, missile.getLocation(), missile, 6f, Color.magenta, Color.white);
+
       if(arcTimer > ARC_LIFE_TIME) cleanup();
     }
 

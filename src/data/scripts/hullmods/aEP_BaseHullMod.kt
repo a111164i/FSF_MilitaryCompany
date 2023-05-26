@@ -6,6 +6,7 @@ import com.fs.starfarer.api.combat.BaseHullMod
 import java.util.HashSet
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
+import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_Tool
 import combat.util.aEP_DataTool
 import data.scripts.util.MagicIncompatibleHullmods
@@ -31,7 +32,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
       }
     }
     if (shouldRemove) {
-      //如果本 mod是 built-in的话，移除发生冲突的另一个，反之移除本 mod
+      //如果本 mod 是 built-in的话，移除发生冲突的另一个，反之移除本 mod
       if (!ship.variant.nonBuiltInHullmods.contains(id)) {
         MagicIncompatibleHullmods.removeHullmodWithWarning(ship.variant, conflictId, id)
       } else {
@@ -124,11 +125,14 @@ open class aEP_BaseHullMod : BaseHullMod() {
    */
   open fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {}
 
-  private fun showModName(list: Set<String>): String {
+  open fun showModName(list: Set<String>): String {
     val toReturn = StringBuffer()
     for (id in list.toTypedArray()) {
-      toReturn.append(Global.getSettings().getHullModSpec(id).displayName + " ")
+      if(Misc.getMod(id) !=null){
+        toReturn.append(Global.getSettings().getHullModSpec(id).displayName + ", ")
+      }
     }
+    if(toReturn.length > 1) toReturn.replace(toReturn.length-2,toReturn.length-1,"")
     return toReturn.toString()
   }
 }

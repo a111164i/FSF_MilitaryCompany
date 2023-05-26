@@ -4,7 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.util.aEP_Tool
-import org.magiclib.util.MagicTargeting
+import data.scripts.util.MagicTargeting
 
 
 class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {

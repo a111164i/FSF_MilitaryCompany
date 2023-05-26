@@ -12,7 +12,7 @@ class aEP_DroneBurstAI: aEP_BaseSystemAI() {
 
 
   override fun initImpl() {
-    thinkTracker.setInterval(0.25f, 0.25f)
+    thinkTracker.setInterval(0.1f, 0.1f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
@@ -27,7 +27,7 @@ class aEP_DroneBurstAI: aEP_BaseSystemAI() {
     val angleDistAbs = MathUtils.getShortestRotation(ship.facing, toTargetFacing).absoluteValue
 
     //战术系统ai检测
-    if (dist <= 500f || angleDistAbs > 45f) {
+    if (dist <= 200f || angleDistAbs > 45f) {
       shouldActive = false
     }else{
       shouldActive = true

@@ -31,7 +31,8 @@
     "WS0034": "aEP_m_s_era",
     "WS0035": "aEP_m_s_era",
     "WS0036": "aEP_cap_nuanchi_missile",
-    "WS0037": "aEP_m_s_era"
+    "WS0037": "aEP_m_s_era",
+    "WS0038": "aEP_cap_requan_missile"
   },
   "weaponSlots": [
     {
@@ -374,6 +375,15 @@
       "arc": 0,
       "angle": 0,
       "locations": [174.5, 49.5]
+    },
+    {
+      "id": "WS0038",
+      "size": "LARGE",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 90,
+      "locations": [103.5, 92]
     }
   ],
   "engineSlots": [

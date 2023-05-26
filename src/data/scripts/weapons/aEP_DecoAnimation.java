@@ -18,6 +18,7 @@ public class aEP_DecoAnimation implements EveryFrameWeaponEffectPlugin
   aEP_DecoGlowController decoGlowController;
   aEP_AnimationController animeController;
 
+
   @Override
   public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
     this.weapon = weapon;
@@ -36,32 +37,47 @@ public class aEP_DecoAnimation implements EveryFrameWeaponEffectPlugin
     decoGlowController.advance(amount);
   }
 
-  public void setAnimeToLevel(float tolevel) {
-    animeController.setToLevel(tolevel);
-  }
 
   public void setMoveToLevel(float toLevel) {
-    decoMoveController.setToLevel(toLevel);
+    if(decoMoveController != null){
+      decoMoveController.setToLevel(toLevel);
+    }
   }
 
   public void setMoveToSideLevel(float toLevel) {
-    decoMoveController.setToSideLevel(toLevel);
+    if (decoMoveController != null) {
+      decoMoveController.setToSideLevel(toLevel);
+    }
   }
 
   public void setRevoToLevel(float toLevel) {
-    decoRevoController.setToLevel(toLevel);
+    if (decoRevoController != null) {
+      decoRevoController.setToLevel(toLevel);
+    }
   }
 
   public void setGlowToLevel(float toLevel) {
-    decoGlowController.setToLevel(toLevel);
+    if (decoGlowController != null) {
+      decoGlowController.setToLevel(toLevel);
+    }
   }
 
   public void setGlowEffectiveLevel(float effectiveLevel) {
-    decoGlowController.setEffectiveLevel(effectiveLevel);
+    if (decoGlowController != null) {
+      decoGlowController.setEffectiveLevel(effectiveLevel);
+    }
   }
 
   public void setFrameRate(float frameRate) {
-    animeController.setSpeed(frameRate);
+    if (animeController != null) {
+      animeController.setSpeed(frameRate);
+    }
+  }
+
+  public void setAnimeToLevel(float tolevel) {
+    if (animeController != null) {
+      animeController.setToLevel(tolevel);
+    }
   }
 
   public aEP_AnimationController getAnimeController() {

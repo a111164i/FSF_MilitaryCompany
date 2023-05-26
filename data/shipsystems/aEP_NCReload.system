@@ -1,12 +1,12 @@
 {
 	"id":"aEP_NCReload",
 	"type":"FAST_RELOAD",
-	"aiType":"FAST_RELOAD",
-	#"aiType":"CUSTOM",
-	#"aiScript":"data.shipsystems.scripts.ai.FastMissileRacksAI",
+	#"aiType":"FAST_RELOAD",
+	"aiType":"CUSTOM",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_RequanReloadAI",
 	"statsScript":"data.scripts.shipsystems.aEP_NCReloadScript",
 	#这里不留空，会自动把其他导弹一起装了
-	"weaponTypes":[MISSILE],
+	"weaponTypes":[],
 	"minFractionToReload":0.25,
 	
 	"useSound":"system_fast_missile_racks",

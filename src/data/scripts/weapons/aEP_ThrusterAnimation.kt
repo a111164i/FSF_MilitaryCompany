@@ -3,7 +3,9 @@ package data.scripts.weapons
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.WeaponAPI
-import org.magiclib.weapons.MagicVectorThruster
+import combat.util.aEP_ID
+import combat.util.aEP_Tool
+import java.awt.Color
 
 class aEP_ThrusterAnimation : MagicVectorThruster() {
   private val e: ShipEngineAPI? = null
@@ -14,10 +16,12 @@ class aEP_ThrusterAnimation : MagicVectorThruster() {
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
     if (enable) {
       super.advance(amount, engine, weapon)
+      engine.addSmoothParticle(weapon.location,aEP_ID.VECTOR2F_ZERO,40f,1f,aEP_Tool.getAmount(null),ENGINE_GLOW)
     }
   }
 
   companion object {
     private const val maxFlameState = 30f // 0 == non flame, control flame length
+    val ENGINE_GLOW = Color(240,235,170,255)
   }
 }

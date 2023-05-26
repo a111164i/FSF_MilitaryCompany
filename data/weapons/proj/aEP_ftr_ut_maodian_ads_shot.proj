@@ -1,17 +1,17 @@
 {
 	"id":"aEP_ftr_ut_maodian_ads_shot",
 	"specClass":"missile",
-	"missileType":"BOMB",
+	"missileType":"MISSILE",
 	"sprite":"graphics/weapons/aEP_harpoon_large/bomblet.png",
 	"glowSprite":"",
-  "glowColor":[255,110,110,125],
+  "glowColor":[135,110,250,125],
   "glowRadius":35,
 	"size":[8,10],
   "center":[4,5],
 	"collisionRadius":30,
   "collisionClass":"MISSILE_NO_FF",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"explosionColor":[141,80,245,225],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":50, # purely visual
   "armingTime":0, # safe range count by time
@@ -25,6 +25,23 @@
   "renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
   "noCollisionWhileFading":true,
   "useHitGlowWhenDestroyed":true, # instead of the default explosion
+  # 不是PHASE_MINE不会读取这个behavior PROXIMITY_FUSE
+  "behaviorSpec":{
+    "behavior":"PROXIMITY_FUSE",
+    "onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+    "range":0,
+    "explosionSpec":{
+      "duration":0.0001f,
+			"radius":0,
+			"coreRadius":0, # full damage within core radius
+			"collisionClass":PROJECTILE_NO_FF,
+			"collisionClassByFighter":PROJECTILE_NO_FF,
+			"particleDuration":1,
+			"particleCount":0,
+			"particleColor":[0,0,0,0],
+			"explosionColor":[0,0,0,0],
+			"sound":"system_emp_emitter_impact"},
+  },
   "engineSpec":{
     "turnAcc":0,
     "turnRate":0,

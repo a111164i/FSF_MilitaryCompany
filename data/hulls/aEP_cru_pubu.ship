@@ -40,6 +40,7 @@
     "POD_1": "aEP_cru_pubu_pod_hold",
     "POD_2": "aEP_cru_pubu_armor_hold",
     "POD_3": "aEP_cru_pubu_pod",
+    "RAIL_GLOW_1": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_10": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_11": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_12": "aEP_cap_duiliu_main_glow",
@@ -54,7 +55,6 @@
     "RAIL_GLOW_20": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_21": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_22": "aEP_cap_duiliu_main_glow",
-    "RAIL_GLOW_1": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_3": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_4": "aEP_cap_duiliu_main_glow",
     "RAIL_GLOW_5": "aEP_cap_duiliu_main_glow",
@@ -625,59 +625,27 @@
   ],
   "engineSlots": [
     {
-      "location": [-181.5, 6],
-      "length": 37,
-      "width": 13,
-      "angle": 180,
-      "contrailSize": 13,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-181.5, -6],
-      "length": 37,
-      "width": 13,
-      "angle": -180,
-      "contrailSize": 13,
-      "style": "FSF_MAIN"
-    },
-    {
       "location": [-181.5, -0],
-      "length": 61,
-      "width": 19,
+      "length": 80,
+      "width": 24,
       "angle": 180,
-      "contrailSize": 19,
+      "contrailSize": 31,
       "style": "FSF_MAIN"
     },
     {
       "location": [-138, 41],
-      "length": 40,
-      "width": 14,
+      "length": 65,
+      "width": 22,
       "angle": 180,
       "contrailSize": 14,
       "style": "FSF_MAIN"
     },
     {
       "location": [-138, -41],
-      "length": 40,
-      "width": 14,
+      "length": 65,
+      "width": 22,
       "angle": -180,
       "contrailSize": 14,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-138, 48],
-      "length": 29,
-      "width": 9,
-      "angle": 180,
-      "contrailSize": 9,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-138, -48],
-      "length": 29,
-      "width": 9,
-      "angle": -180,
-      "contrailSize": 9,
       "style": "FSF_MAIN"
     }
   ],

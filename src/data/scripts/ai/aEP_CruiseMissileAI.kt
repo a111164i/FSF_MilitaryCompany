@@ -10,13 +10,13 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
 
   var t: CombatEntityAPI? = null
   val m: ShipAPI
-  var s: ShipAPI? = null
+  var parent: ShipAPI? = null
 
-  constructor(m: ShipAPI, ship: ShipAPI) : super(ship) {
+  constructor(m: ShipAPI, parent: ShipAPI?) : super(m) {
     this.m = m
-    this.s = ship
-    if(ship.shipTarget != null && !ship.shipTarget.isFighter && !ship.shipTarget.isDrone){
-      t = ship.shipTarget
+    this.parent = parent
+    if(parent != null && parent.shipTarget != null && !parent.shipTarget.isFighter && !parent.shipTarget.isDrone){
+      t = parent.shipTarget
       stat = StraightToTarget()
     }else{
       stat = Searching()

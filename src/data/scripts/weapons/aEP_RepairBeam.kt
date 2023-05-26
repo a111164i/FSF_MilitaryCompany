@@ -10,9 +10,9 @@ import java.awt.Color
 class aEP_RepairBeam : BeamEffectPlugin {
   companion object {
     private const val HULL_REPAIR_MULT = 1.5f //溢出的装甲维修点数转换成几倍的结构恢复
-    private const val REPAIR_STEP_PER_CELL = 4f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
+    private const val REPAIR_STEP_PER_CELL = 6f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
-    private const val FSF_BONUS = 1.5f
+    private const val FSF_BONUS = 1.75f
     const val REPAIR_THRESHOLD = 0.5f
     const val HULL_REPAIR_THRESHOLD = 0.25f
     private val REPAIR_COLOR = Color(250, 250, 178, 220)
@@ -118,15 +118,13 @@ class aEP_RepairBeam : BeamEffectPlugin {
                 ship.velocity,
                 REPAIR_COLOR,
                 15f,
-                0.5f
-              )
+                0.5f)
               engine.spawnExplosion(
                 minArmorLoc,
                 ship.velocity,
                 REPAIR_COLOR2,
                 30f,
-                0.5f
-              )
+                0.5f)
               didSpark = true
             }
 
@@ -147,7 +145,7 @@ class aEP_RepairBeam : BeamEffectPlugin {
       }else{
         //如果维修完装甲就不剩了，就显示修好了
         if(!didSpark){
-          engine.addFloatingText(ship.location, "No Need Repair", 15f, REPAIR_COLOR, ship, 0.25f, 25f)
+          engine.addFloatingText(ship.location, "No Need Repair", 15f, REPAIR_COLOR, ship, 0.5f, 1.5f)
         }
       }
     }

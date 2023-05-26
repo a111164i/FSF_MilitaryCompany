@@ -16,8 +16,8 @@ import java.awt.Color
 class aEP_DamperTanker : BaseShipSystemScript() {
 
   companion object {
-    private const val EFFECT_ARMOR_FLAT_BONUS = 500f
-    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.33f
+    private const val EFFECT_ARMOR_FLAT_BONUS = 800f
+    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.1f
     private const val ARMOR_DAMAGE_REDUCE = 0.5f //by mult
     private const val HULL_DAMAGE_REDUCE = 0.5f
   }
@@ -32,7 +32,7 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     var convertedLevel = effectLevel
     if (state == ShipSystemStatsScript.State.ACTIVE) convertedLevel = 1f
     //折叠侧面的的装甲
-    for (w in ship!!.allWeapons) {
+    for (w in ship.allWeapons) {
       if(!w.isDecorative) continue
       if (!w.slot.id.startsWith("TOP_LV") && !w.slot.id.startsWith("RL_DECO")) continue
       val anima = w.effectPlugin as aEP_DecoAnimation
@@ -75,6 +75,8 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     stats.effectiveArmorBonus.modifyFlat(id, toAdd * effectLevel)
     stats.armorDamageTakenMult.modifyMult(id, (1f- ARMOR_DAMAGE_REDUCE * effectLevel))
     stats.hullDamageTakenMult.modifyMult(id, (1f- HULL_DAMAGE_REDUCE * effectLevel))
+    stats.weaponDamageTakenMult.modifyMult(id, (1f- ARMOR_DAMAGE_REDUCE * effectLevel))
+    stats.engineDamageTakenMult.modifyMult(id, (1f- ARMOR_DAMAGE_REDUCE * effectLevel))
     //ship.getExactBounds().getSegments()
   }
 
@@ -106,6 +108,8 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     stats.effectiveArmorBonus.unmodify(id)
     stats.armorDamageTakenMult.unmodify(id)
     stats.hullDamageTakenMult.unmodify(id)
+    stats.weaponDamageTakenMult.unmodify(id)
+    stats.engineDamageTakenMult.unmodify(id)
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): StatusData? {

@@ -26,17 +26,17 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
   companion object {
     private const val MISSILE_HITPOINT_BUFF = 10f //by percent
-    private const val MISSILE_MAX_MULT = 2 //by percent\
-    private const val MIN_RATE = 0.25f //by percent
+    private const val MISSILE_MAX_MULT = 2 //by percent
+    private const val MIN_RATE = 0.35f //by percent
     private const val MAX_RATE_MULT = 12f //
-    private const val RATE_INCREASE_SPEED_MULT = 0.5f
+    private const val RATE_INCREASE_SPEED_MULT = 0.75f
     private const val RATE_DECREASE_SPEED_MULT = 1f
     const val ID = "aEP_MissilePlatform"
     private val MAX_RELOAD_SPEED = HashMap<WeaponAPI.WeaponSize,Float>()
     init {
-      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE] = 0.26f
-      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM] = 0.16f
-      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL] = 0.08f
+      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE] = 0.30f
+      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM] = 0.18f
+      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL] = 0.10f
     }
   }
 
@@ -56,7 +56,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     val stats = ship.mutableStats
     stats.missileHealthBonus.modifyPercent(id, MISSILE_HITPOINT_BUFF)
 
-    var maxRate = Float.MIN_VALUE
+    var maxRate = 0.01f
     for (w in ship.allWeapons) {
       if(!isMissileWeapon(w)) continue
 
@@ -99,7 +99,15 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     tooltip.addPara(HULLMOD_BULLET + txt("MP_des01"), 5f ,highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?.times(100) ?: 0))
     tooltip.addPara(HULLMOD_BULLET + txt("MP_des02"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?.times(100) ?: 0))
     tooltip.addPara(HULLMOD_BULLET + txt("MP_des03"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?.times(100) ?: 0))
-    tooltip.addPara("{%s}"+txt("MP_des07"), 5f, arrayOf(Color.green), HULLMOD_POINT, String.format("%.0f",100f * RATE_INCREASE_SPEED_MULT)+"%")
+    var totalOp = 0f
+    ship?.run {
+      for (w in ship.allWeapons) {
+        if (!isMissileWeapon(w)) continue
+        val opMissileWeapon = w.spec.getOrdnancePointCost(null)
+        totalOp += opMissileWeapon * RATE_INCREASE_SPEED_MULT
+      }
+    }
+    tooltip.addPara("{%s}"+ txt("MP_des07"), 5f, arrayOf(Color.green, highLight), HULLMOD_POINT,String.format("%.1f", totalOp))
 
 
     tooltip.addPara("{%s}" + txt("missile_health_up") + "{%s}", 5f,arrayOf(Color.green), HULLMOD_POINT, MISSILE_HITPOINT_BUFF.toInt().toString() + "%")
@@ -107,8 +115,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     //实际上就是把原本扩展架的量慢慢给玩家
     //惩罚项
     tooltip.addPara("{%s}" + txt("MP_des04"), 5f,arrayOf(Color.red), HULLMOD_POINT, MISSILE_MAX_MULT.toString())
-    tooltip.addPara("{%s}" + txt("not_compatible") + "{%s}", 5f, arrayOf(Color.red) , HULLMOD_POINT, Global.getSettings().getHullModSpec(HullMods.MISSLERACKS).displayName )
-
+    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), HULLMOD_POINT,  showModName(notCompatibleList))
     //灰色额外说明
     tooltip.addPara(txt("MP_des08"), grayColor, 5f)
   }
@@ -163,11 +170,11 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
         //存入map的是op数量，而不是具体的弹数
         val opNow = MPTimerMap[w]?:0f
-        val addOpFull = reloadSpeed * amount
-        val newOp = opNow + addOpFull * level
+        val newOp = opNow + reloadSpeed * amount * level
 
         //把map里面的op点转换为导弹数
-        val opPerMissile = w.spec.getOrdnancePointCost(null)/w.spec.maxAmmo.coerceAtLeast(1)
+        val op = w.spec.getOrdnancePointCost(null)
+        val opPerMissile = op/w.spec.maxAmmo.coerceAtLeast(1)
         val ammoPerRegenConvertToOp = ammoPerRegen * opPerMissile
 
         //需要装填，可以立刻回弹
@@ -176,13 +183,13 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           MPTimerMap[w] = (newOp - ammoPerRegenConvertToOp)
           w.ammo += ammoPerRegen
           //降低整备率，该武器需要装填，装了多少就从池子里面取出多少整备率
-          currRate -= addOpFull * level * RATE_DECREASE_SPEED_MULT
+          currRate -= reloadSpeed * amount * level * RATE_DECREASE_SPEED_MULT
 
         //需要装填，但是尚且不能回弹
         }else if(w.ammo <= (w.maxAmmo-ammoPerRegen) && newOp < ammoPerRegenConvertToOp){
           MPTimerMap[w] = newOp
           //降低整备率，该武器需要装填，装了多少就从池子里面取出多少整备率
-          currRate -= addOpFull * level * RATE_DECREASE_SPEED_MULT
+          currRate -= reloadSpeed * amount * level * RATE_DECREASE_SPEED_MULT
 
         //武器已满 不需要装弹
         }else if(w.ammo >= w.maxAmmo) {
@@ -190,10 +197,10 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         }
 
         //无论如何，每门导弹都会提供整备率
-        currRate += addOpFull * RATE_INCREASE_SPEED_MULT
+        currRate += op / 100f * amount * RATE_INCREASE_SPEED_MULT
 
-        //限制最高和最低整备率
-        currRate = MathUtils.clamp(currRate,MIN_RATE* maxRate,maxRate)
+        //限最低整备率
+        currRate = MathUtils.clamp(currRate,MIN_RATE* maxRate, maxRate)
       }
     }
 
@@ -206,7 +213,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     if (w.type != WeaponAPI.WeaponType.MISSILE) return false
     //武器没有弹药，不行
     if (w.ammoTracker == null) return false
-    //武器没有弹药，不行
+    //武器没有弹药，不行，原版里面不适用弹药的武器，这个数为maxValue
     if (w.ammo == Int.MAX_VALUE) return false
     return true
   }

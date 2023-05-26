@@ -23,15 +23,15 @@
 			"styleSpec":{
 				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
 				"engineColor":[100,165,255,245],
-				"contrailDuration":0.3,
+				"contrailDuration":0.5,
 				"contrailWidthMult":1,
 				"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
 				"contrailMinSeg":5, # min segment length, in pixels
 				"contrailMaxSpeedMult":0.75f,
 				"contrailAngularVelocityMult":0.75f,
 				"contrailColor":[100,165,255,140],
-				"glowSizeMult":0.75,
-				"glowAlternateColor":[255,192,123,44],
+				"glowSizeMult":1.25,
+				"glowAlternateColor":[255,162,103,124],
 				"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
 			},
 			"width":8.0,
@@ -39,56 +39,6 @@
 			"angle":180.0
 		},
 
-		{
-      "id":"ES2",
-    	"loc":[-14, 0],
-      "style":"CUSTOM",
-      "styleSpec":{
-      	"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-        "engineColor":[195,165,155,220],
-        "contrailDuration":0.65,
-        "contrailWidthMult":1,
-        "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
-        "contrailMinSeg":5, # min segment length, in pixels
-        "contrailMaxSpeedMult":0.75f,
-        "contrailAngularVelocityMult":0.75f,
-        "contrailColor":[155,175,195,140],
-        "glowSizeMult":0.5,
-        "glowAlternateColor":[255,192,123,44],
-        "type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
-		  },
-      "width":8.0,
-      "length":48.0,
-      "angle":180.0
-    },
-
-    {
-	    "id":"ES3",
-	  	"loc":[-14, 0],
-	    "style":"CUSTOM",
-	    "styleSpec":{
-	    	"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-	      "engineColor":[255,115,75,220],
-
-        "contrailDuration":1,
-        "contrailWidthMult":1,
-        "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
-        "contrailMinSeg":5, # min segment length, in pixels
-	      "contrailColor":[155,55,55,199],
-
-	      "contrailParticleSizeMult":2,
-	      "contrailParticleDuration":2,
-	      "contrailParticleFinalSizeMult":4,
-	      "contrailMaxSpeedMult":0.5,
-	      "contrailAngularVelocityMult":0.5,
-				"glowSizeMult":0.3,
-        "glowAlternateColor":[255,192,123,44],
-	      "type":"SMOKE"
-	    },
-	    "width":8.0,
-	    "length":24.0,
-	    "angle":180.0
-	  },
 
 	]
 }

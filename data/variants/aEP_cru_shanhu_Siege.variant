@@ -1,55 +1,65 @@
 {
-    "displayName": "Siege",
-    "fluxCapacitors": 0,
-    "fluxVents": 0,
-    "goalVariant": true,
-    "hullId": "aEP_cru_shanhu",
-    "hullMods": [],
-    "permaMods": [],
-    "sMods": [],
-    "variantId": "aEP_cru_shanhu_Siege",
-    "weaponGroups": [
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0005": "squall"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0004": "aEP_breakin_bay"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "lightdualac",
-                "WS0002": "lightdualac"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0003": "vulcan",
-                "WS0008": "flak"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0007": "aEP_cluster_small"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0012": "aEP_cluster_small"}
-        }
-    ],
-    "wings": [
-        "aEP_ftr_bom_nuke_wing",
-        "aEP_ftr_bom_nuke_wing",
-        "aEP_ftr_bom_nuke_wing",
-        "aEP_ftr_bom_nuke_wing"
-    ]
+  "variantId": "aEP_cru_shanhu_Siege",
+  "hullId": "aEP_cru_shanhu",
+  "displayName": "Siege",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "squall",
+        "WS0008": "sabotpod",
+        "WS0014": "aEP_ftr_ut_maodian_ads"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "aEP_breakin_bay"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "lightdualac",
+        "WS0002": "lightdualac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "vulcan"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "aEP_cluster_small"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0012": "aEP_cluster_small"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "aEP_ftr_bom_nuke_wing",
+    "aEP_ftr_bom_nuke_wing",
+    "aEP_ftr_bom_nuke_wing",
+    "aEP_ftr_bom_nuke_wing"
+  ]
 }

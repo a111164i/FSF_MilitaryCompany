@@ -3,8 +3,8 @@
   "hullId": "aEP_cru_requan",
   "displayName": "Standard",
   "goalVariant": true,
-  "fluxCapacitors": 21,
-  "fluxVents": 21,
+  "fluxCapacitors": 15,
+  "fluxVents": 17,
   "quality": 1,
   "permaMods": [],
   "hullMods": [

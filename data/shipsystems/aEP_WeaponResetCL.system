@@ -6,10 +6,6 @@
 	#"aiType":"CUSTOM",
 	#"aiScript":"data.shipsystems.scripts.ai.aEP_ZLAmmoFeedAI",
 	"statsScript":"data.scripts.shipsystems.aEP_WeaponReset",
-   
-	"weaponGlowColor":[200,200,100,45],
-	"weaponTypes":[BALLISTIC],
-	
 
 	
 	"runScriptWhileIdle":true,  # this means unapply() never gets called	

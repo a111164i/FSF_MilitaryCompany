@@ -3,6 +3,7 @@ package data.scripts.weapons
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
+import combat.util.aEP_Tool
 import data.scripts.hullmods.aEP_MarkerDissipation
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
@@ -11,7 +12,8 @@ import java.awt.Color
 class aEP_FluxBeam : BeamEffectPlugin {
 
   companion object{
-    const val FSF_BONUS = 1.5f
+    const val FSF_BONUS = 1.35f
+    const val MAX_SPEED_DIS_CAP = 0.5f
   }
 
   var fluxDrain = 75f
@@ -66,6 +68,9 @@ class aEP_FluxBeam : BeamEffectPlugin {
           }
         }
 
+        //单条Beam的每秒吸取量不能超过目标当前幅散的1/2,防止有些系统会降低幅能耗散
+        val targetCurrDis = aEP_Tool.getRealDissipation(target) * 0.1f * MAX_SPEED_DIS_CAP
+        fluxDecrease = MathUtils.clamp(fluxDecrease, 0f, targetCurrDis)
 
         if (beam.source is ShipAPI) {
           val fluxRest = beam.source.maxFlux - beam.source.currFlux
@@ -73,7 +78,7 @@ class aEP_FluxBeam : BeamEffectPlugin {
           fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
           fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
 
-          beam.source.fluxTracker.increaseFlux(fluxDecrease, true)
+          beam.source.fluxTracker.increaseFlux(fluxDecrease/ FSF_BONUS, true)
           target.fluxTracker.decreaseFlux(fluxDecrease)
         }
 

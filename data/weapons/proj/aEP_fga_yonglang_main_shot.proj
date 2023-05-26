@@ -8,7 +8,7 @@
   "sprite":"graphics/weapons/aEP_FCL/proj.png",
   "size":[11,7],
   "center":[5.5,4],
-
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "glowColor":[160,160,238,75], # 发光的颜色
   "glowRadius":100,
@@ -30,7 +30,7 @@
   "flameoutTime":0.2,# 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
   "alwaysAccelerate":true,
   "reduceDamageWhileFading":false,
-  "useProjectileRangeCalculation":true,
+  "useProjectileRangeCalculation":false,
 	"passThroughMissiles":true,
 	"engineSpec":{"turnAcc":0,
     				  "turnRate":0,

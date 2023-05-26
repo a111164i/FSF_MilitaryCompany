@@ -7,9 +7,9 @@ import combat.impl.VEs.aEP_MovingSprite
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Tool
+import data.scripts.util.MagicRender
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
-import org.magiclib.util.MagicRender
 import java.awt.Color
 
 open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Vector2f, spriteId: String, outSpriteId: String, spriteOnHitAngle: Float, hitShield: Boolean) : aEP_BaseCombatEffect() {

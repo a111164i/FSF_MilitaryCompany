@@ -65,16 +65,16 @@
     "particleSizeRange": 8,
     "cloudParticleCount": 8,
     "cloudDuration": 2,
-    "cloudRadius": 10,
+    "cloudRadius": 18,
     "blowbackParticleCount": 18,
     "blowbackDuration": 1.6,
     "blowbackLength": 10,
     "blowbackSpread": 20,
     "particleColor": [
-      100,
-      100,
-      100,
-      60
+      250,
+      250,
+      250,
+      75
     ]
   },
   "fireSoundTwo": "harpoon_fire"

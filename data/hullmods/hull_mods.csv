@@ -5,10 +5,10 @@ name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hid
 Type28护盾发生器,aEP_Type28Shield,0,unknown,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,一个逻辑计算错误的伽马核心为舰体加装了独立的护盾发生器模块，几乎等同于驱逐舰的体积的模块大小给予了其极好的护盾效率，作为代价拥有对等的维持消耗。此发射器模块无法安装任何插件,,graphics/aEP_hullmods/aEP_HL_multi_turret.png
 巡航导弹运载舰,aEP_CruiseMissileCarrier,0,FSF设计,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CruiseMissileCarrier,随时间装载货舱中的巡航导弹，完成装载后可以于战斗中发射,,graphics/aEP_hullmods/aEP_CM_carrier.png
 自旋模块,aEP_SelfRotate,0,FSF设计,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SelfRotate,该舰的模块将以一定速度绕母舰旋转,,graphics/aEP_hullmods/aEP_self_rotate.png
-模块定位,aEP_ModuleTargeting,0,FSF设计,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,本舰的模块会根据本体的插件同步加成,,graphics/aEP_hullmods/aEP_self_rotate.png
+模块定位,aEP_ModuleTargeting,0,FSF设计,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,并非使用星域中常见的模块化插件，而是量身定制的目标定位系统。借助母舰更大的空间使得模块能够获得超过自己舰体级别的射程，但同时也使得一些极端的改装无法进行,,graphics/aEP_hullmods/aEP_self_rotate.png
 进攻性母舰,aEP_AttackCarrier,0,FSF设计,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,本舰为了将重型战机投送到远距离做了特殊适配，战机预先安装了共振模块，可以在远距离接受母舰导轨产生的驱动立场。,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png
 结构防护,aEP_Structure,0,FSF设计,,,,0,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,获得额外的保底装甲和结构减伤，武器和引擎受到更少伤害。,,graphics/aEP_hullmods/aEP_self_rotate.png
-无殉爆伤害,aEP_Module,0,FSF设计,,,,0,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,殉爆时只造成正常百分之1的伤害,,graphics/aEP_hullmods/aEP_self_rotate.png
+模块,aEP_Module,0,FSF设计,,,,0,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,殉爆时只造成正常百分之1的伤害,,graphics/aEP_hullmods/aEP_self_rotate.png
 坦克集成系统,aEP_FlyingTank,0,FSF设计,,,,0,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,根据400范围内尺寸最大的友方非战机舰船获得射程加成,,graphics/aEP_hullmods/aEP_self_rotate.png
 ,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,

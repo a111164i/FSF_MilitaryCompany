@@ -4,7 +4,7 @@
 	#"aiType":"RESERVE_DEPLOYMENT",
 	"aiType":"CUSTOM",
 	"aiScript":"data.scripts.ai.shipsystemai.aEP_DecomposerFastBuildAI",
-	"statsScript":"data.scripts.shipsystems.aEP_DecomposerFastBuildScript",
+	"statsScript":"data.scripts.shipsystems.aEP_DecomposerFastBuild",
 
 	
 	"useSound":"system_fast_missile_racks",

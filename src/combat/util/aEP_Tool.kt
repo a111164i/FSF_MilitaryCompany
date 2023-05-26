@@ -8,6 +8,7 @@ import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.util.Misc
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
+import data.scripts.util.MagicRender
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -15,7 +16,6 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lwjgl.util.vector.Vector2f
-import org.magiclib.util.MagicRender
 import java.awt.Color
 import java.awt.geom.Line2D
 import kotlin.math.abs
@@ -531,9 +531,9 @@ class aEP_Tool {
     fun getLocationTurnedRightByDegrees(originPosition: Vector2f?, turnAroundWhere: Vector2f, degrees: Float): Vector2f {
       var angle = VectorUtils.getAngle(turnAroundWhere, originPosition)
       val dist = MathUtils.getDistance(turnAroundWhere, originPosition)
-      angle = angle + degrees
+      angle += degrees
       if (angle > 365) {
-        angle = angle - 365f
+        angle -= 365f
       }
       return getExtendedLocationFromPoint(turnAroundWhere, angle, dist)
     }
@@ -1379,7 +1379,7 @@ class aEP_Tool {
     fun spawnCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?){
       val c = color?: Color(240,240,240)
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
-        Vector2f(0f,0f),
+        aEP_ID.VECTOR2F_ZERO,
         radius,
         1f,
         0f,
@@ -1390,7 +1390,7 @@ class aEP_Tool {
 
 
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
-        Vector2f(0f,0f),
+        aEP_ID.VECTOR2F_ZERO,
         radius,
         1f,
         0f,
@@ -1422,6 +1422,56 @@ class aEP_Tool {
         smoke.color = getColorWithAlpha(c, 0.2f *(c.alpha/255f))
         aEP_CombatEffectPlugin.addEffect(smoke)
         i += 30
+      }
+    }
+    fun spawnCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?, vel:Vector2f){
+      val c = color?: Color(240,240,240)
+      Global.getCombatEngine().addNebulaSmokeParticle(loc,
+        vel,
+        radius,
+        1f,
+        0f,
+        0f,
+        lifeTime,
+        getColorWithAlpha(c, 0.2f *(c.alpha/255f)))
+
+
+      Global.getCombatEngine().addNebulaSmokeParticle(loc,
+        vel,
+        radius,
+        1f,
+        0f,
+        0f,
+        lifeTime,
+        getColorWithAlpha(c, 0.2f *(c.alpha/255f)))
+
+      val smoke = aEP_MovingSmoke(loc)
+      smoke.size = radius * 3f/4f
+      smoke.fadeIn = 0.1f
+      smoke.fadeOut = 0.8f
+      smoke.lifeTime = lifeTime
+      smoke.sizeChangeSpeed = 0f
+      smoke.color = getColorWithAlpha(c, 0.4f *(c.alpha/255f))
+      smoke.setInitVel(vel)
+      aEP_CombatEffectPlugin.addEffect(smoke)
+
+
+      //生成烟雾
+      //生成雾气
+      var i = 0
+      while (i < 360) {
+        val p = getExtendedLocationFromPoint(loc, i.toFloat(), radius/2f)
+        val smoke = aEP_MovingSmoke(p)
+        smoke.size = radius/2f
+        smoke.fadeIn = 0.1f
+        smoke.fadeOut = 0.8f
+        smoke.lifeTime = lifeTime
+        smoke.sizeChangeSpeed = -(smoke.size/4f)/lifeTime
+        smoke.setInitVel(speed2Velocity(i.toFloat(),smoke.sizeChangeSpeed/2f))
+        smoke.setInitVel(vel)
+        smoke.color = getColorWithAlpha(c, 0.2f *(c.alpha/255f))
+        aEP_CombatEffectPlugin.addEffect(smoke)
+        i += 45
       }
     }
 

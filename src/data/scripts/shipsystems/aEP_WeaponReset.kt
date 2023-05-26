@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
+import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.combat.WeaponAPI.WeaponSize
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
@@ -25,47 +26,54 @@ import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
+import java.util.*
+import kotlin.collections.HashMap
 
 class aEP_WeaponReset: BaseShipSystemScript() {
 
   companion object{
     //about visual effect
-    private val EMP_ARC_CHANCE_PER_SECOND = 15f
-    private val ARC_FRINGE_COLOR = Color(240, 100, 100, 250)
-    private val ARC_CORE_COLOR = Color(200, 200, 200, 120)
+    private val PARTICLE_CHANCE_PER_SEC = 20f
+    private val PARTICLE_COLOR = Color(251, 70, 40, 255)
     private val SMOKE_COLOR = Color(200, 200, 200, 80)
     private val SMOKE_EMIT_COLOR = Color(250, 250, 250, 180)
+    private val GLOW_COLOR = Color(222,50,199,49)
     private const val WORSEN_MULT = 0.5f
 
     private val MAX_FLUX_STORE_CAP_PERCENT = 1f
 
-    private val JITTER_COLOR = Color(240, 50, 50, 80)
+    private val JITTER_COLOR = Color(240, 50, 50, 85)
 
-    private val spreadRange: MutableMap<WeaponSize, Float> = HashMap()
+    private val particleSize: MutableMap<WeaponSize, Float> = HashMap()
     private val timeRange: MutableMap<WeaponSize, Float> = HashMap()
     private val FLUX_DECREASE_PERCENT: MutableMap<String, Float> = HashMap()
+    private val FLUX_DECREASE_FLAT: MutableMap<String, Float> = HashMap()
     private val FLUX_RETURN_SPEED: MutableMap<String, Float> = HashMap()
     private val WEAPON_ROF_PERCENT_BONUS: MutableMap<String, Float> = HashMap()
     init {
-      spreadRange[WeaponSize.LARGE] = 10f
-      spreadRange[WeaponSize.MEDIUM] = 8f
-      spreadRange[WeaponSize.SMALL] = 5f
+      particleSize[WeaponSize.LARGE] = 12f
+      particleSize[WeaponSize.MEDIUM] = 10f
+      particleSize[WeaponSize.SMALL] = 8f
 
-      timeRange[WeaponSize.LARGE] = 0.5f
-      timeRange[WeaponSize.MEDIUM] = 0.4f
-      timeRange[WeaponSize.SMALL] = 0.3f
+      timeRange[WeaponSize.LARGE] = 0.6f
+      timeRange[WeaponSize.MEDIUM] = 0.5f
+      timeRange[WeaponSize.SMALL] = 0.4f
 
       FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.75f
       FLUX_DECREASE_PERCENT["aEP_des_cengliu"] = 0.66f
       FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.5f
 
+      FLUX_DECREASE_FLAT["aEP_fga_xiliu"] = 100f
+      FLUX_DECREASE_FLAT["aEP_des_cengliu"] = 150f
+      FLUX_DECREASE_FLAT["aEP_cru_zhongliu"] = 200f
+
       FLUX_RETURN_SPEED["aEP_fga_xiliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_des_cengliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.8f
 
-      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 100f
-      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 100f
-      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 100f
+      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 120f
+      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 120f
+      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 120f
     }
   }
 
@@ -74,6 +82,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   private var storedHardFlux = 0f
   private var storedSoftFlux = 0f
   private val presmokeTracker = IntervalTracker(0.05f,0.05f)
+
 
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
     //复制粘贴这行
@@ -100,15 +109,16 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       }
 
       //取消护盾维持，防止出现把盾维吸入导致每秒幅散散了个空气的问题
-      //ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
+      ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
 
       //ACTIVE和IN的时候吸收幅能
       if( state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE){
         val hard = (ship.fluxTracker.hardFlux)
         val soft = (ship.fluxTracker.currFlux - hard)
         val speedPercent = FLUX_DECREASE_PERCENT[ship.hullSpec.hullId]?:0.5f
+        val speedFlat = FLUX_DECREASE_FLAT[ship.hullSpec.hullId]?:150f
         //吸收幅能，速度为当前幅能的百分比
-        var toReturnThisFrame = speedPercent * ship.currFlux * getAmount(ship) / (ship.system.chargeActiveDur)
+        var toReturnThisFrame = (speedPercent * ship.currFlux + speedFlat)* getAmount(ship) / (ship.system.chargeActiveDur)
         toReturnThisFrame *= maxStoreMult
         //aEP_Tool.addDebugLog(ship.system.chargeActiveDur.toString())
         if(soft > 0){
@@ -175,20 +185,31 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
       ship.isJitterShields = false
       ship.setJitter(ship, JITTER_COLOR, effectLevel, 1, 0f)
-      ship.setJitterUnder(ship, JITTER_COLOR, effectLevel, 8, 16f)
+      ship.setJitterUnder(ship, JITTER_COLOR, effectLevel, 10, 4f + ship.collisionRadius*0.08f)
+
+      //给武器打粒子
       for (w in ship.allWeapons) {
-        if (isNormalWeaponSlotType(w.slot, false) && Math.random() < EMP_ARC_CHANCE_PER_SECOND * getAmount(null)) {
-          for (offset in getWeaponOffsetInAbsoluteCoo(w)) {
-            val vel = speed2Velocity(w.currAngle, MathUtils.getRandomNumberInRange(20, 120).toFloat())
+        if (isNormalWeaponSlotType(w.slot, false)) {
+          ship.setWeaponGlow(0.5f,
+            GLOW_COLOR,
+            EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
+
+          var chance = MathUtils.getRandomNumberInRange(0f,1f)
+          val t =  getAmount(null) * PARTICLE_CHANCE_PER_SEC
+          while(chance < t) {
+            val offsets = getWeaponOffsetInAbsoluteCoo(w)
+            val offset = offsets[(MathUtils.getRandom().nextFloat()*offsets.size).toInt()]
+            offset.set(MathUtils.getRandomPointInCircle(offset,10f))
+            val vel = speed2Velocity(w.currAngle, MathUtils.getRandomNumberInRange(100f, 100f))
             val shipVel = ship.velocity
-            Global.getCombatEngine().addSmoothParticle(
-              getExtendedLocationFromPoint(offset, w.currAngle + 90f, MathUtils.getRandomNumberInRange(-spreadRange[w.size]!!, spreadRange[w.size]!!)),  //loc
+            Global.getCombatEngine().addHitParticle(
+              offset,  //loc
               Vector2f(vel.getX() + shipVel.getX(), vel.getY() + shipVel.getY()),  //vel
-              MathUtils.getRandomNumberInRange(spreadRange[w.size]!! / 4f, spreadRange[w.size]!!),  //size
-              MathUtils.getRandomNumberInRange(0.75f, 1f),  //brightness
+              MathUtils.getRandomNumberInRange(particleSize[w.size]!! / 4f, particleSize[w.size]!!),  //size
+              1f,  //brightness
               timeRange[w.size]!!,  //duration
-              ARC_FRINGE_COLOR
-            )
+              PARTICLE_COLOR)
+            chance += t
           }
         }
       }
@@ -232,7 +253,14 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         //取消玩梗的光束伤害减免
         stats.beamDamageTakenMult.unmodify(id)
 
+        //还原护盾维持
+        ship.mutableStats.shieldUpkeepMult.unmodify(id)
+
         spawnSmoke(ship, 30)
+
+        ship.setWeaponGlow(0f,
+          GLOW_COLOR,
+          EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
       }
 
       //返还幅能
@@ -293,7 +321,6 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   override fun getInfoText(system: ShipSystemAPI?, ship: ShipAPI?): String {
     return "Stored: "+ storedSoftFlux.toInt()+" / "+ storedHardFlux.toInt()
   }
-  
 
   fun spawnSmoke(ship: ShipAPI, minSmokeDist: Int) {
     var moveAngle = 0f

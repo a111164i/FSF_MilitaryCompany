@@ -48,20 +48,21 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     super.advanceImpl(amount)
 
     //同步系统目标，使用系统ai
-    if(stat is aEP_DroneSupplyShipAI.Approaching){
-      val sa = stat as aEP_DroneSupplyShipAI.Approaching
+    systemTarget = null
+    if(stat is Approaching){
+      val sa = stat as Approaching
       systemTarget = sa.target
-    }else{
-      systemTarget = null
     }
-    if(stat is aEP_DroneSupplyShipAI.Searching && parentShip != null){
-      val sa = stat as aEP_DroneSupplyShipAI.Searching
+
+    if(stat is Searching && parentShip != null){
+      val sa = stat as Searching
       systemTarget = parentShip
-    }else{
-      systemTarget = null
     }
 
-
+    if(stat is ForceReturn && parentShip != null){
+      val sa = stat as ForceReturn
+      systemTarget = parentShip
+    }
   }
 
   inner class Searching(): aEP_MissileAI.Status(){
@@ -201,11 +202,27 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
   inner class StickAndFire(val relPos: Vector2f, val target:ShipAPI ): aEP_MissileAI.Status(){
     val reformTimer = IntervalUtil(4f,4f)
 
+    init {
+      //获得基于目标速度一定值的极速和机动性加成，防止永远追不上
+      ship.mutableStats.maxSpeed.modifyFlat(ID, target.maxSpeed)
+      ship.mutableStats.acceleration.modifyFlat(ID, target.maxSpeed * 2f)
+      ship.mutableStats.deceleration.modifyFlat(ID, target.maxSpeed * 2f)
+
+      ship.mutableStats.maxTurnRate.modifyFlat(ID, target.maxTurnRate)
+      ship.mutableStats.turnAcceleration.modifyFlat(ID, target.turnAcceleration * 2f)
+    }
+
     override fun advance(amount: Float) {
       //如果弹药用完，转入返回模式，最高优先级
       for(w in ship.allWeapons){
         if(w.usesAmmo() && w.ammoTracker.ammoPerSecond <= 0 && w.ammoTracker.ammo <=0){
           stat = ForceReturn()
+          ship.mutableStats.maxSpeed.unmodify(ID)
+          ship.mutableStats.acceleration.unmodify(ID)
+          ship.mutableStats.deceleration.unmodify(ID)
+
+          ship.mutableStats.maxTurnRate.unmodify(ID)
+          ship.mutableStats.turnAcceleration.unmodify(ID)
           return
         }
       }
@@ -214,6 +231,12 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       //没必要为了百分之1的情况去增加复杂度
       if(!target.isAlive || target.isHulk || !engine.isEntityInPlay(target)){
         stat = Searching()
+        ship.mutableStats.maxSpeed.unmodify(ID)
+        ship.mutableStats.acceleration.unmodify(ID)
+        ship.mutableStats.deceleration.unmodify(ID)
+
+        ship.mutableStats.maxTurnRate.unmodify(ID)
+        ship.mutableStats.turnAcceleration.unmodify(ID)
         return
       }
 
@@ -221,6 +244,12 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       val dist = MathUtils.getDistance(ship,target.location)
       if(dist > 200f) {
         stat = Approaching(target)
+        ship.mutableStats.maxSpeed.unmodify(ID)
+        ship.mutableStats.acceleration.unmodify(ID)
+        ship.mutableStats.deceleration.unmodify(ID)
+
+        ship.mutableStats.maxTurnRate.unmodify(ID)
+        ship.mutableStats.turnAcceleration.unmodify(ID)
         return
       }
 
@@ -249,6 +278,12 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
           //处于100内，但是因为相位等情况并没有碰撞
         }else{
           stat = Approaching(target)
+          ship.mutableStats.maxSpeed.unmodify(ID)
+          ship.mutableStats.acceleration.unmodify(ID)
+          ship.mutableStats.deceleration.unmodify(ID)
+
+          ship.mutableStats.maxTurnRate.unmodify(ID)
+          ship.mutableStats.turnAcceleration.unmodify(ID)
           return
         }
       }
@@ -256,31 +291,11 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location,absPos)
-      if(distToAbsPos < 50f && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f ){
+      if(distToAbsPos < 50f + target.maxSpeed * 0.25f && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f ){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }
 
-    }
-  }
-
-  inner class ForceReturn: aEP_MissileAI.Status(){
-    override fun advance(amount: Float) {
-      //如果根本没有母舰，直接转入自毁
-      if(parentShip == null){
-        stat = SelfExplode()
-        return
-      }
-
-      //拥有母舰，则开始返回，如果返回途中母舰炸了，转入自毁
-      val parent = parentShip as ShipAPI
-      if(!parent.isAlive || parent.isHulk || !engine.isEntityInPlay(parent)){
-        stat = SelfExplode()
-        return
-      }
-
-      //其实不用这么麻烦还写个自爆，因为这个方法里面自带了，如果parent为空会直接自爆
-      aEP_Tool.returnToParent(ship, parent, amount)
     }
   }
 

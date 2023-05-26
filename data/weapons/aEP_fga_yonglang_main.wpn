@@ -1,33 +1,34 @@
 {
-  "id":"aEP_fga_yonglang_main",
+  "id": "aEP_fga_yonglang_main",
   "specClass": "projectile",
-  "projectileSpecId":"aEP_fga_yonglang_main_shot",
-  "type": "SYSTEM",
+  "projectileSpecId": "aEP_fga_yonglang_main_shot",
+  "type": "MISSILE",
   "size": "SMALL",
-  "showDamageWhenDecorative":false,
-	"renderBelowAllWeapons":true,
-	#"renderAboveAllWeapons": 0,
-	"alwaysAnimate":"false",
-	#"renderHints":["RENDER_ADDITIVE"],
-  "turretSprite": "graphics/weapons/aEP_FCL/br.png",
-  "hardpointSprite": "graphics/weapons/aEP_FCL/br.png",
-  "everyFrameEffect": "data.scripts.weapons.aEP_DecoAnimation",
-  #"numFrames":2,	
-	#"frameRate":0,
+  "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
+  "turretSprite": "graphics/weapons/aEP_FCL/cover.png",
+  "hardpointSprite": "",
+  "renderBelowAllWeapons": true,
   "turretOffsets": [
-   0,
-   0
+    0,
+    38,
+    0,
+    -38,
   ],
   "turretAngleOffsets": [
+    0,
     0
   ],
   "hardpointOffsets": [
     0,
-    0
+    38,
+    0,
+    -38,
   ],
   "hardpointAngleOffsets": [
+    0,
     0
   ],
-  "barrelMode": "ALTERNATING",
+  "barrelMode": "LINKED",
   "animationType": "NONE",
- }
+  "autocharge": true
+}

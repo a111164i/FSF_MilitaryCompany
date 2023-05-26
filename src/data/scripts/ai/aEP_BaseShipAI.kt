@@ -6,6 +6,8 @@ import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.combat.entities.Ship
 import combat.util.aEP_Tool
+import combat.util.aEP_Tool.Util.addDebugLog
+import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
 import data.scripts.ai.shipsystemai.aEP_BaseSystemAI
 import org.lazywizard.lazylib.MathUtils
@@ -72,8 +74,14 @@ open class aEP_BaseShipAI: ShipAIPlugin {
     if(systemAI != null) {
       systemAI?.advance(amount, missileDangerDir, collisionDangerDir, systemTarget?:ship.shipTarget)
     }
+
     aiFlags.advance(amount)
-    advanceImpl(amount)
+    if(ship.fighterTimeBeforeRefit <= 1f && stat !is ForceReturn){
+      stat = ForceReturn()
+    }else{
+      advanceImpl(amount)
+    }
+
   }
 
   /**
@@ -116,6 +124,37 @@ open class aEP_BaseShipAI: ShipAIPlugin {
           DamageType.HIGH_EXPLOSIVE,
           0f, true, false, ship)
       }
+
+    }
+  }
+
+  inner class ForceReturn: aEP_MissileAI.Status(){
+    var didLand = false
+
+    override fun advance(amount: Float) {
+      //如果根本没有母舰，直接转入自毁
+      if(ship.wing?.sourceShip == null){
+        stat = SelfExplode()
+        return
+      }
+
+      //拥有母舰，则开始返回，如果返回途中母舰炸了，转入自毁
+      val parent = ship.wing.sourceShip
+      if(!parent.isAlive || parent.isHulk || !engine.isEntityInPlay(parent)){
+        stat = SelfExplode()
+        return
+      }
+
+      //其实不用这么麻烦还写个自爆，因为这个方法里面自带了，如果parent为空会直接自爆
+      aEP_Tool.returnToParent(ship, parent, amount)
+      if(ship.isFinishedLanding && !didLand){
+        onReturn()
+        didLand = true
+      }
+
+    }
+
+    open fun onReturn(){
 
     }
   }

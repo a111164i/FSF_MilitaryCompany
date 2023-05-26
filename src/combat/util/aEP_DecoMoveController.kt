@@ -14,7 +14,7 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
 
     init {
       //移动距离，移动时间(每秒移动多少effectiveLevel)，侧向移动距离，侧向移动速度
-      mag["aEP_fga_yonglang_main"] = arrayOf(12f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_main_cover"] = arrayOf(12f, 3f,  0f,0f)
       mag["aEP_fga_yonglang_scaffold"] = arrayOf(4f, 3f,  0f,0f)
       mag["aEP_fga_yonglang_glow"] = arrayOf(12f, 3f,  0f,0f)
       mag["aEP_fga_yonglang_cover"] = arrayOf(-3f, 3f,  0f,0f)

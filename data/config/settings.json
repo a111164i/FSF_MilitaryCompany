@@ -68,9 +68,9 @@
 			"small_shell":"graphics/weapons/small_shell.png",
 			"mid_shell":"graphics/weapons/mid_shell.png",
 			
-			"aEP_PD_f":"graphics/weapons/aEP_pingding/f.png",
-			"aEP_PD_b":"graphics/weapons/aEP_pingding/b.png",
-			"aEP_PD_br":"graphics/weapons/aEP_pingding/br.png",
+			"aEP_PD_f":"graphics/weapons/aEP_cru_pingding/f.png",
+			"aEP_PD_b":"graphics/weapons/aEP_cru_pingding/b.png",
+			"aEP_PD_br":"graphics/weapons/aEP_cru_pingding/br.png",
 
 			"aEP_b_m_h88_eject":"graphics/weapons/aEP_b_m_h88/eject.png",
 		},

@@ -13,18 +13,17 @@ class aEP_VectorThrust : BaseShipSystemScript() {
 
   companion object{
     const val SLOW_FACTOR = 5f
-    const val MAX_PERCENT_BUFF = 300f
+    const val MAX_PERCENT_BUFF = 250f
+    const val MAX_PERCENT_FORWARD_BUFF = 50f
+    const val ACC_PERCENT_BUFF = 1000f
+
     const val MAX_TURN_PERCENT_BUFF = 200f
+    const val ACC_TURN_PERCENT_BUFF = 400f
 
-    const val MAX_PERCENT_FORWARD_BUFF = 120f
-
-    const val ACC_PERCENT_BUFF = 1200f
-    const val ACC_TURN_PERCENT_BUFF = 600f
-
-    val AFTER_IMAGE_COLOR = Color(190,100,93,40)
+    val AFTER_IMAGE_COLOR = Color(190,100,93,30)
   }
 
-  val afterImageTracker = IntervalTracker(0.05f,0.05f)
+  val afterImageTracker = IntervalTracker(0.033f,0.033f)
 
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
     //复制粘贴这行
@@ -34,14 +33,14 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     val amount = aEP_Tool.getAmount(ship)
 
     val slowFactor = MathUtils.clamp(1f - SLOW_FACTOR *amount,0f,1f)
-    if((ship.engineController.isAccelerating)&& (angleDist>90 || angleDist <-90)){
+    if((ship.engineController.isAccelerating) && (angleDist> 135 || angleDist <- 135)){
       ship.velocity.scale(slowFactor)
-    }else if(ship.engineController.isStrafingLeft && (angleDist>0)) {
+    }else if(ship.engineController.isStrafingLeft && (angleDist> 45 && angleDist < 135)) {
       //手动给左右飘逸加上加速度
       ship.velocity.scale(slowFactor)
-    }else if(ship.engineController.isStrafingRight && (angleDist<0)) {
+    }else if(ship.engineController.isStrafingRight && (angleDist < -45 && angleDist > -135)) {
       ship.velocity.scale(slowFactor)
-    }else if(ship.engineController.isAcceleratingBackwards && (angleDist<90 && angleDist > -90)) {
+    }else if(ship.engineController.isAcceleratingBackwards && (angleDist < 45 && angleDist > - 45)) {
       ship.velocity.scale(slowFactor)
     }
 

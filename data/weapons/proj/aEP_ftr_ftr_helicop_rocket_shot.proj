@@ -19,6 +19,7 @@
 	"passThroughMissiles":false,
 	"renderTargetIndicator":true, # no target diamond in combat view, not targeted by flares
 	"noCollisionWhileFading":true,
+	"noDebrisWhenDestroyed": true,
 	"useHitGlowWhenDestroyed":true, # instead of the default explosion
 	"engineSpec":{
 		"turnAcc":0,

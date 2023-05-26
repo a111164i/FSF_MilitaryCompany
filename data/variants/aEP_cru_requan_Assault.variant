@@ -3,8 +3,8 @@
   "hullId": "aEP_cru_requan",
   "displayName": "Assault",
   "goalVariant": true,
-  "fluxCapacitors": 9,
-  "fluxVents": 19,
+  "fluxCapacitors": 4,
+  "fluxVents": 15,
   "quality": 1,
   "permaMods": [],
   "hullMods": [

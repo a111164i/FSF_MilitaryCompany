@@ -17,12 +17,13 @@
   "builtInWeapons": {
     "FCL_DECO01": "aEP_fga_yonglang_scaffold",
     "FCL_DECO02": "aEP_fga_yonglang_glow",
-    "FCL_DECO03": "aEP_fga_yonglang_main",
+    "FCL_DECO03": "aEP_fga_yonglang_main_cover",
     "FCL_DECO04": "aEP_fga_yonglang_scaffold",
     "FCL_DECO05": "aEP_fga_yonglang_glow",
-    "FCL_DECO06": "aEP_fga_yonglang_main",
+    "FCL_DECO06": "aEP_fga_yonglang_main_cover",
     "FCL_DECO07": "aEP_fga_yonglang_cover",
-    "WS0008": "aEP_marker"
+    "WS0008": "aEP_marker",
+    "WS0010": "aEP_fga_yonglang_main"
   },
   "weaponSlots": [
     {
@@ -167,6 +168,24 @@
       "angle": 0,
       "locations": [21.5, -0],
       "renderOrderMod": 15
+    },
+    {
+      "id": "WS0010",
+      "size": "MEDIUM",
+      "type": "BUILT_IN",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": -0,
+      "locations": [31.5, -0]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [35.5, -0]
     }
   ],
   "engineSlots": [
@@ -236,25 +255,15 @@
     }
   ],
   "bounds": [
-    -34.5, -9,
     -28.5, -17.5,
-    -39.5, -19.5,
-    -43.5, -44.5,
-    7, -52,
-    37.5, -45.5,
-    32.5, -25,
-    42.5, -19,
-    42.5, -7,
-    31, -2.5,
-    31, 2.5,
-    42.5, 7,
-    42.5, 19,
-    32.5, 25,
-    37.5, 45.5,
-    7, 52,
-    -43.5, 44.5,
-    -39.5, 19.5,
-    -28.5, 17.5,
-    -34.5, 9
+    -35.5, -45,
+    36, -45,
+    43.5, -19,
+    39, -6,
+    39, 6,
+    43.5, 19,
+    36, 45,
+    -35.5, 45,
+    -28.5, 17.5
   ]
 }

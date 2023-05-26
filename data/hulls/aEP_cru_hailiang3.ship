@@ -15,6 +15,7 @@
     "aEP_Module",
     "always_detaches",
     "aEP_MarkerDissipation",
+    "aEP_ModuleTargeting",
     "axialrotation",
     "turretgyros",
   ],

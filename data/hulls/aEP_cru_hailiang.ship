@@ -15,7 +15,6 @@
     "aEP_MarkerDissipation",
     "targetingunit",
     "turretgyros",
-    "aEP_ModuleTargeting"
   ],
   "builtInWings": [
     "aEP_ftr_sup_guardian2_wing"

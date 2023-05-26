@@ -1,29 +1,27 @@
 {
-    "knownShips":{      
-      "tags":[],
-      "hulls":[
+	"knownShips":{      
+		"tags":[],
+		"hulls":[
 			"aEP_cap_biaobing",
-			"aEP_cap_decomposer",
 			"aEP_des_lianliu",
-			"aEP_fga_yonglang",
 			"aEP_fga_raoliu",
-        ],
-	    },
-	  "knownFighters":{
-			"tags":[],
-			"fighters":[	
 			],
 		},
-		"knownWeapons":{
-			"tags":[],
-			"weapons":[
-			"aEP_b_m_mb32",
-			"aEP_b_m_h88",
-			"aEP_breakin_hammer",
-			"aEP_breakin_bay",
-			"aEP_e_s_300k",
-			"aEP_hive_small",
-			],
-		},
+	"knownFighters":{
+		"tags":[],
+		"fighters":[	
+		],
+	},
+	"knownWeapons":{
+		"tags":[],
+		"weapons":[
+		"aEP_b_m_mb32",
+		"aEP_b_m_h88",
+		"aEP_breakin_hammer",
+		"aEP_breakin_bay",
+		"aEP_e_s_300k",
+		"aEP_hive_small",
+		],
+	},
 
 },
