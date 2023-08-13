@@ -1,0 +1,13 @@
+{
+	"id":"aEP_EcmSuppress",
+	"type":"STAT_MOD",
+	"aiType":"WEAPON_BOOST",
+	#"aiType":"CUSTOM",
+	#"aiScript":"data.scripts.ai.shipsystemai.aEP_EcmSuppressAI",
+	"statsScript":"data.scripts.shipsystems.aEP_EcmSuppress",
+   
+	"runScriptWhileIdle":false,  # this means unapply() never gets called	
+	"useSound":"system_high_energy_focus_activate",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+}

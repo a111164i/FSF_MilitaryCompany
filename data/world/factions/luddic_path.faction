@@ -1,0 +1,36 @@
+{
+	"knownShips":{
+		"hulls":[
+			"aEP_des_yonglang_mk2",
+		],
+	},
+	# variantOverrides restricts hulls to listed variants and adjusts their probability
+  # multiplier for how often hulls show up in the faction's fleets
+  "hullFrequency":{
+    "tags":{
+    },
+    "hulls":{
+      "aEP_des_yonglang_mk2":0.3,
+    },
+  },
+	"knownFighters":{
+		"tags":[],
+		"fighters":[
+			"aEP_ftr_bom_lancer_wing",
+		],
+	},
+	"priorityFighters":{
+    "tags":[],
+    "fighters":[
+      "aEP_ftr_bom_lancer_wing"
+    ],
+  },
+	"knownWeapons":{
+		"tags":[],
+		"weapons":[	
+			"aEP_b_m_h88",
+			"aEP_m_s_breachdoor",
+		],
+	},
+  
+},

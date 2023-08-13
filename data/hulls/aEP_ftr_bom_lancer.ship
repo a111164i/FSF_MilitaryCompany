@@ -1,0 +1,43 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_bom_lancer",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/bom_lancer.png",
+  "style": "aEP_FSF",
+  "height": 60,
+  "width": 35,
+  "center": [17.5, 28],
+  "collisionRadius": 29.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 29,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [22, 1]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-20.5, 1],
+      "length": 24,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 21,
+      "style":"COBRA_BOMBER",
+    }
+  ],
+  "bounds": [
+    20, 6,
+    20, -3,
+    6, -6,
+    -17.5, -3,
+    -17.5, 6,
+    11, 8
+  ]
+}

@@ -1,0 +1,19 @@
+{
+	"id":"aEP_MultiTracker",
+	"type":"STAT_MOD",
+	#have to use this ai with stat_mod
+	#"aiType":"WEAPON_BOOST",
+	"aiType":"CUSTOM",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_MultiTrackerAI",
+	"statsScript":"data.scripts.shipsystems.aEP_MultiTracker",
+
+	
+
+	
+	"runScriptWhileIdle":false,  # this means unapply() never gets called
+	#"useSound":"",
+	#"loopSound":"aEP_LoaderLoop",
+	"deactivateSound":"gun_out_of_ammo",
+	#"outOfUsesSound":"aEP_LoaderEnd",
+	
+}
