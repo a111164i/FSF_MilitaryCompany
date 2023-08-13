@@ -17,8 +17,8 @@ import combat.util.aEP_ID.Companion.CONFIRM
 import combat.util.aEP_ID.Companion.RETURN
 import combat.util.aEP_ID.Companion.SELECT
 import combat.util.aEP_Tool
-import data.scripts.hullmods.aEP_CruiseMissileCarrier
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin
+import data.scripts.hullmods.aEP_CruiseMissileCarrier
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
 import java.util.*
@@ -33,7 +33,7 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
     const val S2_ITEM_ID = "aEP_cruise_missile2"
     const val S1_VAR_ID = "aEP_CruiseMissile"
     const val S2_VAR_ID = "aEP_CruiseMissile2"
-    const val MEMORY_ID = "$" + "aEP_CruiseMissileLoadIntel"
+    const val MEMORY_KEY = "$"+"aEP_CruiseMissileLoadIntel"
     const val CR_THRESHOLD = 0.5f
     const val FIRE = "FIRE!"
 
@@ -134,22 +134,26 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
 
   //稳定的给导弹增加装填进度,放进memory，因为静态变量在游戏重启以后读档可不能保存
   override fun advanceImpl(amount: Float) {
-    if(Global.getSector().memoryWithoutUpdate.contains(MEMORY_ID)){
-      LOADING_MAP = Global.getSector().memoryWithoutUpdate.get(MEMORY_ID) as HashMap<String, ArrayList<String>>
+    if(Global.getSector().memoryWithoutUpdate.contains(MEMORY_KEY)){
+      LOADING_MAP = Global.getSector().memoryWithoutUpdate.get(MEMORY_KEY) as HashMap<String, ArrayList<String>>
     }
 
-    //如果对应的member已经不在舰队中，返还装填中的导弹并移除
+
     val toRemove = ArrayList<String>()
     for( key in LOADING_MAP.keys){
+      //得到装填数据
       val data = LOADING_MAP[key]?: continue
       val missileItemName = data[0]
       var loadedAmount = data[1].toFloat()
+      //增加装填进度
       loadedAmount += Misc.getDays(amount)
       val loadSpeed = MISSILE_LOAD_SPEED_MAG[missileItemName]?:999999999f
       loadedAmount = MathUtils.clamp(loadedAmount,0f,loadSpeed)
       data[1] = loadedAmount.toString()
       //如果对应的member已经不在舰队中，返还装填中的导弹并移除
-      if (!checkMemberIdValid(key)) {
+      //注意，巡洋导弹命中时会暂时的改变玩家舰队，会导致瞬间检测到中玩家舰队中不存在对应运载船错误的移除对应的loadingData，检测KEY防止这个情况的发生
+      if (!checkMemberIdValid(key)
+        && !Global.getSector().memoryWithoutUpdate.contains(aEP_CruiseMissileEntityPlugin.MEMORY_KEY)) {
         val loadedNow = getLoadedItemId(key)
         if(!loadedNow.equals(""))
           Global.getSector().playerFleet.cargo.addSpecial(SpecialItemData(loadedNow,null),1f)
@@ -164,10 +168,12 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
       if(m.variant.hasHullMod(aEP_CruiseMissileCarrier.ID)) missileFleetMembers.add(m)
     }
 
-    Global.getSector().memoryWithoutUpdate.set(MEMORY_ID, LOADING_MAP)
+    Global.getSector().memoryWithoutUpdate.set(MEMORY_KEY, LOADING_MAP)
 
     //如果玩家舰队中不存在任何导弹运载舰，自我移除
-    if(missileFleetMembers.size == 0){
+    //注意，巡洋导弹命中时会暂时的改变玩家舰队，会导致瞬间检测到中玩家舰队中不存在任何运载船错误的终止intel，检测KEY防止这个情况的发生
+    if(missileFleetMembers.size == 0
+      && !Global.getSector().memoryWithoutUpdate.contains(aEP_CruiseMissileEntityPlugin.MEMORY_KEY)){
       //从Intel中移除，源于aEP_BaseIntel
       //自动联动了everyFrame的isDone方法，会自动从everyFrame中移除
       readyToEnd = true
@@ -306,8 +312,8 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
     loadRate = MathUtils.clamp(loadRate,0,100)
     //画选择的舰队成员的数据
     var spriteSize = 100f
-    var spriteName = Global.getSettings().getHullSpec(selectedMember.hullSpec.hullId).spriteName
-    var showName = Global.getSettings().getHullSpec(selectedMember.hullSpec.hullId).hullName
+    var spriteName = Global.getSettings().getHullSpec(selectedMember.hullSpec.baseHullId).spriteName
+    var showName = Global.getSettings().getHullSpec(selectedMember.hullSpec.baseHullId).hullName
     val image = reloadInfoPanel.beginImageWithText(spriteName,spriteSize*sizeMult)
     image.setBulletedListMode(BULLET)
     image.addPara(selectedMember.shipName,h,pad)
@@ -366,7 +372,7 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
     }
     //清空LOADING_MAP
     LOADING_MAP.clear()
-    Global.getSector().memoryWithoutUpdate.keys.remove(MEMORY_ID)
+    Global.getSector().memoryWithoutUpdate.keys.remove(MEMORY_KEY)
   }
 
 

@@ -1,13 +1,10 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 5,
-    "fluxVents": 8,
+    "fluxCapacitors": 9,
+    "fluxVents": 30,
     "goalVariant": true,
     "hullId": "aEP_cap_shangshengliu",
-    "hullMods": [
-        "expanded_cargo_holds",
-        "efficiency_overhaul"
-    ],
+    "hullMods": ["targetingunit"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cap_shangshengliu_Standard",
@@ -15,30 +12,30 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "mark9"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
             "weapons": {
-                "WS0014": "hveldriver",
-                "WS0015": "hveldriver"
+                "WS0005": "aEP_b_m_k125",
+                "WS0007": "aEP_b_m_k125",
+                "WS0014": "aEP_b_m_k125",
+                "WS0015": "aEP_b_m_k125"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
+            "weapons": {"WS0006": "devastator"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
             "weapons": {
-                "WS0001": "vulcan",
-                "WS0002": "vulcan",
-                "WS0003": "aEP_b_s_pom",
-                "WS0004": "aEP_b_s_pom",
-                "WS0005": "dualflak",
-                "WS0007": "dualflak",
-                "WS0016": "vulcan",
-                "WS0017": "vulcan"
+                "WS0001": "aEP_b_s_630",
+                "WS0002": "aEP_b_s_630",
+                "WS0003": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630",
+                "WS0016": "aEP_b_s_630",
+                "WS0017": "aEP_b_s_630"
             }
         }
     ],
-    "wings": ["aEP_ftr_icp_gunship_wing"]
+    "wings": ["aEP_ftr_sup_guardian_wing"]
 }

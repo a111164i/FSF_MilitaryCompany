@@ -19,8 +19,8 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0010": "aEP_cluster_small",
-                "WS0011": "aEP_cluster_small"
+                "WS0010": "aEP_m_s_cluster",
+                "WS0011": "aEP_m_s_cluster"
             }
         },
         {

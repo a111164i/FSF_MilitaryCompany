@@ -30,10 +30,10 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0018": "aEP_hive_small",
-                "WS0019": "aEP_hive_small",
-                "WS0020": "aEP_hive_small",
-                "WS0021": "aEP_hive_small"
+                "WS0018": "aEP_m_s_expander",
+                "WS0019": "aEP_m_s_expander",
+                "WS0020": "aEP_m_s_expander",
+                "WS0021": "aEP_m_s_expander"
             }
         },
         {

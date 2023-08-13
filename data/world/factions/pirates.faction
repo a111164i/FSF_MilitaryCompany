@@ -3,8 +3,18 @@
 		"hulls":[
 			"aEP_fga_xiliu_mk2",
 			"aEP_cap_shangshengliu_mk3",
+			"aEP_des_yonglang_mk2",
 		],
 	},
+	# variantOverrides restricts hulls to listed variants and adjusts their probability
+  # multiplier for how often hulls show up in the faction's fleets
+  "hullFrequency":{
+    "tags":{
+    },
+    "hulls":{
+      "aEP_des_yonglang_mk2":0.2,
+    },
+  },
 	"knownFighters":{
 		"tags":[],
 		"fighters":[	
@@ -14,7 +24,7 @@
 		"tags":[],
 		"weapons":[	
 			"aEP_b_m_h88",
-			"aEP_breakin_hammer",	
+			"aEP_m_s_breachdoor",
 		],
 	},
   

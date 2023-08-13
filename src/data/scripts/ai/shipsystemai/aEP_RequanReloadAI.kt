@@ -1,6 +1,7 @@
 package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipwideAIFlags
 import com.fs.starfarer.api.combat.WeaponAPI
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
@@ -15,14 +16,16 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
   var loadingMap : aEP_MissilePlatform.LoadingMap? = null
 
   override fun initImpl() {
-    thinkTracker.setInterval(1f,1f)
+    thinkTracker.setInterval(1f,3f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
     //录入 loadingMap
     loadingMap?: run {
-      if(ship.customData.containsKey(aEP_MissilePlatform.ID))
-        loadingMap= ship.customData[aEP_MissilePlatform.ID] as aEP_MissilePlatform.LoadingMap
+      if (ship.customData.containsKey(aEP_MissilePlatform.ID)) {
+        loadingMap = ship.customData[aEP_MissilePlatform.ID] as aEP_MissilePlatform.LoadingMap
+      }
+      return
     }
 
     //用不起就不需要思考了
@@ -48,7 +51,7 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
       if( w.slot.weaponType == WeaponAPI.WeaponType.MISSILE || w.slot.weaponType == WeaponAPI.WeaponType.COMPOSITE) {
         val op = w.spec.getOrdnancePointCost(null) + 0.01f
         //小心有些武器的只有delay，没用cooldown
-        val coolDown = w.cooldown + 0.01f
+        val coolDown = w.cooldown + 0.1f
         val coolDownRemaining = w.cooldownRemaining
         reloadLevelTotal += (op * (coolDownRemaining / coolDown))
         totalOp += op
@@ -65,7 +68,7 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
     reloadLevelTotal /= totalOp
     //当热泉导弹需要填装时，挤占普通导弹冷却率的权衡权重，把一部导弹视为全部需要装填
     if(needReloadRqMissile){
-      val weight = 0.4f
+      val weight = 0.33f
       reloadLevelTotal = reloadLevelTotal * (1f-weight) + weight
     }
 
@@ -76,18 +79,28 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
     willing += (reloadLevelTotal * 0.8f)
     willing += (emptyRate * 1.5f)
 
-    //保证幅能小于0.25时，光是用完内置导弹就会使用f
-    val highThreshold = 1f
-    val lowThreshold = 0.25f
-    val lowFluxBonus = (willing * 0.8f + 0.25f)
+    //保证幅能小于0.15时，光是用完内置导弹就会使用f
+    val highThreshold = 0.7f
+    val lowThreshold = 0.15f
+    val lowFluxBonus = (willing * 0.5f + 0.15f)
     if(ship.fluxLevel < lowThreshold){
       willing += lowFluxBonus
     }else if(ship.fluxLevel > lowThreshold && ship.fluxLevel < highThreshold){
       willing += lowFluxBonus * ((highThreshold - ship.fluxLevel)/(highThreshold-lowThreshold) )
     }
 
+    if(ship.fluxLevel > highThreshold){
+      willing *= 0.5f
+    }
+
+    //根据母舰的aiFlag修正willing
+
+    if(flags.hasFlag(ShipwideAIFlags.AIFlags.DO_NOT_AUTOFIRE_NON_ESSENTIAL_GROUPS)) willing -= 0.25f
+    if(flags.hasFlag(ShipwideAIFlags.AIFlags.DO_NOT_USE_FLUX)) willing -= 0.5f
+
+
     willing *= MathUtils.getRandomNumberInRange(0.75f,1.25f)
-    aEP_Tool.addDebugLog(willing.toString())
+    //aEP_Tool.addDebugLog(willing.toString())
     shouldActive = false
     if(willing >= 1f){
       shouldActive = true

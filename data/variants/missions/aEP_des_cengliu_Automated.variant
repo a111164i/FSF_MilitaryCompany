@@ -1,0 +1,42 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 0,
+    "fluxVents": 6,
+    "goalVariant": true,
+    "hullId": "aEP_des_cengliu",
+    "hullMods": ["aEP_HotLoader"],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstructAi",
+    ],
+    "tags":["unboardable"],
+    "sMods": [],
+    "variantId": "aEP_des_cengliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_m_k125",
+                "WS0002": "aEP_b_m_k125",
+                "WS0005": "aEP_b_m_k125"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_b_m_rk107"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "vulcan",
+                "WS0006": "vulcan",
+                "WS0010": "vulcan",
+                "WS0011": "vulcan",
+                "WS0012": "vulcan"
+            }
+        }
+    ]
+}

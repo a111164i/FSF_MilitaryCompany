@@ -12,12 +12,18 @@
   "shieldRadius": 168.5,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
+    "aEP_MarkerDissipation"
   ],
   "builtInWeapons": {
     "COVER_MAIN": "aEP_cap_neibo_main",
     "WS0007": "aEP_marker",
-    "WS0008": "aEP_marker"
+    "WS0008": "aEP_marker",
+    "WS0026": "aEP_m_s_era3",
+    "WS0027": "aEP_m_s_era3",
+    "WS0028": "aEP_m_s_era3",
+    "WS0029": "aEP_m_s_era3",
+    "WS0030": "aEP_m_s_era3",
+    "WS0031": "aEP_m_s_era3"
   },
   "weaponSlots": [
     {
@@ -272,6 +278,60 @@
       "angle": 0,
       "locations": [14, -0],
       "renderOrderMod": 100
+    },
+    {
+      "id": "WS0026",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-0.5, 72]
+    },
+    {
+      "id": "WS0027",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-0.5, -72]
+    },
+    {
+      "id": "WS0028",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-13.5, 72]
+    },
+    {
+      "id": "WS0029",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-13.5, -72]
+    },
+    {
+      "id": "WS0030",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-26.5, 72]
+    },
+    {
+      "id": "WS0031",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-26.5, -72]
     }
   ],
   "engineSlots": [

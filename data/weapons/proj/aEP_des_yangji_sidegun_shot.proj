@@ -30,7 +30,7 @@
 									 "particleSizeRange":10,
 									 "particleDuration":0.5,
 									 "particleCount":24,
-									 "particleColor":[200,200,100,180],
+									 "particleColor":[200,200,100,210],
 									 "sound":"aEP_high_speed_HE_flak"},
 					}
 

@@ -28,7 +28,7 @@
                                 "contrailAngularVelocityMult":0.5f,
                                 "contrailColor":[40,40,150,195],
                                 "type":"SMOKE"},
-                        "width":5,
+                        "width":6,
                         "length":25.0,
                         "angle":180.0},	
 
@@ -46,7 +46,7 @@
                                 "contrailAngularVelocityMult":0.5f,
                                 "contrailColor":[40,40,150,195],
                                 "type":"SMOKE"},
-                        "width":5,
+                        "width":6,
                         "length":25.0,
                         "angle":180.0},
         ],

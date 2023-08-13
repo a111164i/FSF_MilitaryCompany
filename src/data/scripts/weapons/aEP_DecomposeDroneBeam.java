@@ -15,7 +15,7 @@ public class aEP_DecomposeDroneBeam implements BeamEffectPlugin
 {
 
   static final float PARTS_CHANCE = 0.2f;
-  private static final int INTERVAL_TIME = 10;//for beam effect, 10 = 1 second
+  private static final int INTERVAL_TIME = 12;//for beam effect, 10 = 1 second
   private static final float CONVERT_EFFICIENCY = 1f / 1000f;//1 means 1 damage convert to 1 supply
   private static final Map<String, Float> FRAGMENTATION_CORE_DAMAGE = new HashMap();
 

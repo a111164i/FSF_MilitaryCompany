@@ -34,15 +34,15 @@ flavorTextMarketFSF,TradePanelFlavorText,"$global.tradePanelMode == MARKET
 $faction.id == aEP_FSF","AddText ""港口被划分为数个区域，停靠时可以看见在公司的军舰在另一侧停成了一列，通过细长站台访客们汇聚在数个相互连接的商业区域中，大厅中来自不同地方的商人和委托人在谈着自己的事项。在大厅的边缘，由士兵和安检门组成的检查点把限制区和公共区域分明的隔开，向里望去限制区内的墙壁只是简单的覆盖了一层灰色的保护层，仍然能感受到冰冷的金属材质，和所处热闹的环境仿佛是两个世界。"" marketFlavorTextColor",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 flavorTextMarketFSFMilitrayStation,TradePanelFlavorText,"$global.tradePanelMode == MARKET
 $faction.id == aEP_FSF
-$id == aEP_FSF_SpaceFactory","AddText ""在落地的同时就有工作人员带着保安出来迎接，在他们的带领下穿过如同舰船一样的由金属和管道组成的内部结构，最后到达了一块类似休息区的地方，这里能看到公司的员工们穿着黑色的制服相互谈笑着，作为外来者的人才是少数，让人感到略显尴尬，但至少这里有正常的绿化和装饰，甚至还有模拟阳光和循环播放着自然背景的全景屏幕"" marketFlavorTextColor",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+$id == aEP_FSF_SpaceFactory","AddText ""在落地的同时就有工作人员带着警卫出来迎接，在他们的带领下穿过如同舰船一样的由金属和管道组成的内部结构，最后到达了一块类似休息区的地方，这里能看到公司的员工们穿着黑色的制服相互谈笑着，作为外来者的人才是少数，让人感到略显尴尬，但至少这里有正常的绿化和装饰，甚至还有模拟阳光和循环播放着自然背景的全景屏幕"" marketFlavorTextColor",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ##  fsf consult greet,##,##,##,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_ConsultGreeting01,PickGreeting,"$isaEP_Consult
 !$faction.isHostile
 ","ShowPersonVisual
 ","$personName 向你做出了一个职业的微笑:""您好,欢迎来到公司前台,请问有什么需要""","0:aEP_offer_remain_part01:询问 $personName ""我听说,你们在收购残余零件?""
-#1:aEP_marine_training01:询问 $personName ""我想训练一些陆战队员""
-#2:aEP_hair_security01:想雇佣一只星系巡逻队提升自己控制星域的治安
+1:aEP_marine_training01:询问 $personName ""我想训练一些陆战队员""
+#2:aEP_hair_security01: ""我想雇佣一只星系巡逻队提升自己控制星域的治安""
 3:cutCommLink:""我只是逛逛""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_ConsultGreeting02,PickGreeting,"$isaEP_Consult
 $faction.isHostile
@@ -91,7 +91,7 @@ aEP_marine_training_deal,DialogOptionSelected,"$option == aEP_marine_training_de
 aEP_marine_training_complete,MarketPostDock,"aEP_TrainMarine check
 $hasMarket
 !$faction.isHostile
-$faction.id != neutral",aEP_TrainMarine complete,,"0:marketVisitBar:""去酒吧喝一杯""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+$faction.id != neutral",aEP_TrainMarine complete,,"0:marketVisitBar:欢迎他们重新登舰，到酒吧请每个人喝一杯",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -264,7 +264,7 @@ aEP_AdvanceWeaponMission check2 SCORE:100
 ","ShowPersonVisual
 $faction.AWM_2Complete = true
 aEP_AdvanceWeaponMission complete2
-aEP_HandInParts aEP_railway_gun -1 none 0","""你拆下来的护盾生成器我们已经收到了，你到报酬...对研究所而言，曾经是非常有意义的成果，目前已经生产的原型仅此一个，虽然现在比不上你完成的这个任务的价值。希望这个落选的家伙能在你的手上发挥它的余热""","0:cutCommLink:""仅此一件？相当有诚意的报酬""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+aEP_HandInParts aEP_b_l_railwaygun -1 none 0","""你拆下来的护盾生成器我们已经收到了，你到报酬...对研究所而言，曾经是非常有意义的成果，目前已经生产的原型仅此一个，虽然现在比不上你完成的这个任务的价值。希望这个落选的家伙能在你的手上发挥它的余热""","0:cutCommLink:""仅此一件？相当有诚意的报酬""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage2,MarketPostOpen,"$id == aEP_FSF_DefStation

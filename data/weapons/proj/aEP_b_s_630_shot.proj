@@ -1,0 +1,39 @@
+{
+	"id":"aEP_b_s_630_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	#"onFireEffect":"data.scripts.weapons.aEP_SplitAfterFire",
+	#"onHitEffect":"data.scripts.weapons.aEP_RWOnHit",
+	"collisionRadius":2,
+	"fringeColor":[240,120,100,140], # 默认拖尾颜色
+	"coreColor":[255,200,200,220], # 弹体颜色
+	"glowColor":[255,125,105,94], # 发光的颜色
+	"glowRadius":6,
+	"hitGlowRadius":10,
+	"length":32,
+	"width":4,
+	"fadeTime":0.1,
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/shell_small_yellow.png",
+	"behaviorSpec":{
+	  "behavior":"PROXIMITY_FUSE",
+	  "range":0,
+	  "vsMissileRange":20,
+	  "explosionSpec":{
+	    "duration":0.0001f,
+	    "radius":20,
+	    "coreRadius":20, # full damage within core radius - also equal to proximity fuse range
+	    "collisionClass":PROJECTILE_NO_FF,
+	    "collisionClassByFighter":PROJECTILE_FIGHTER,
+	    "particleSizeMin":10.0,
+	    "particleSizeRange":0,
+	    "particleDuration":0.04,
+	    "particleCount":1,
+	    "particleColor":[189,120,120,123],
+	    "sound":""
+	  },
+	},
+}

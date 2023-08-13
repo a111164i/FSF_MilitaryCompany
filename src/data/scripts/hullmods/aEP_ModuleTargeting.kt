@@ -21,7 +21,6 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
     init {
       mag1["aEP_cru_hailiang3"] = 40f
       mag1["aEP_cap_neibo_turret"] = 60f
-
     }
 
   }
@@ -39,8 +38,8 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
    * @param id
    */
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    ship.mutableStats.ballisticWeaponRangeBonus.modifyPercent(Companion.id, (mag1[ship.hullSpec.hullId])?:0f)
-    ship.mutableStats.energyWeaponRangeBonus.modifyPercent(Companion.id, (mag1[ship.hullSpec.hullId])?:0f)
+    ship.mutableStats.ballisticWeaponRangeBonus.modifyPercent(Companion.id, (mag1[ship.hullSpec.baseHullId])?:0f)
+    ship.mutableStats.energyWeaponRangeBonus.modifyPercent(Companion.id, (mag1[ship.hullSpec.baseHullId])?:0f)
   }
 
 
@@ -76,6 +75,8 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
 
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
     tooltip.addPara("{%s}"+txt("aEP_ModuleTargeting02")+"{%s}", 5f, arrayOf(Color.green, highLight), aEP_ID.HULLMOD_POINT, (mag1[ship?.hullSpec?.hullId?:""]?:0).toInt().toString()+"%")
+
+    //显示不兼容插件
     tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
 
   }

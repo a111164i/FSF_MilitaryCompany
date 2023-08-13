@@ -53,7 +53,6 @@ open class aEP_BaseShipAI: ShipAIPlugin {
   }
 
 
-
   override fun setDoNotFireDelay(amount: Float) {
     stopFiringTime = amount
   }
@@ -120,7 +119,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
         engine.applyDamage(
           ship,
           ship.location,
-          ship.armorGrid.armorRating * 0.5f + ship.maxHitpoints*0.2f,
+          ship.armorGrid.armorRating * 0.5f + ship.maxHitpoints*0.1f,
           DamageType.HIGH_EXPLOSIVE,
           0f, true, false, ship)
       }

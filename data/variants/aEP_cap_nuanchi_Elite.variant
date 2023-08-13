@@ -13,8 +13,8 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0018": "aEP_as_large",
-                "WS0019": "aEP_as_large"
+                "WS0018": "aEP_m_l_blasthammer",
+                "WS0019": "aEP_m_l_blasthammer"
             }
         },
         {
@@ -26,22 +26,22 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0014": "aEP_cluster_small",
-                "WS0015": "aEP_cluster_small",
-                "WS0016": "aEP_cluster_small",
-                "WS0017": "aEP_cluster_small",
-                "WS0020": "aEP_cluster_small",
-                "WS0021": "aEP_cluster_small"
+                "WS0014": "aEP_m_s_cluster",
+                "WS0015": "aEP_m_s_cluster",
+                "WS0016": "aEP_m_s_cluster",
+                "WS0017": "aEP_m_s_cluster",
+                "WS0020": "aEP_m_s_cluster",
+                "WS0021": "aEP_m_s_cluster"
             }
         },
         {
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0001": "aEP_as_bay",
-                "WS0003": "aEP_as_bay",
-                "WS0004": "aEP_as_bay",
-                "WS0005": "aEP_as_bay"
+                "WS0001": "aEP_m_m_blasthammer",
+                "WS0003": "aEP_m_m_blasthammer",
+                "WS0004": "aEP_m_m_blasthammer",
+                "WS0005": "aEP_m_m_blasthammer"
             }
         },
         {

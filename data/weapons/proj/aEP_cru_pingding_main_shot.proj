@@ -8,7 +8,7 @@
 	"center":[10.5,18],
 	"collisionRadius":20,
 	"collisionClass":"MISSILE_NO_FF",
-  "armingTime":0.1, # safe range count by time
+  "armingTime":0, # safe range count by time
   "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)
   "fadeTime":0, # fadeout duration
 	"flameoutTime":0.1,  # 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
@@ -16,12 +16,15 @@
   "reduceDamageWhileFading":false,
   "useProjectileRangeCalculation":true,
 	"passThroughMissiles":true,
+  "passThroughFighters":true,
+  "passThroughFightersOnlyWhenDestroyed":false,
+  "applyOnHitEffectWhenPassThrough":false,
 	"explosionColor":[233,122,100,250],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":800, # purely visual
 	"explosionSpec":{
 		"duration":0.0001f, # not visual
-		"radius":120,
-		"coreRadius":60, # full damage within core radius
+		"radius":200,
+		"coreRadius":75, # full damage within core radius
 		"collisionClass":HITS_SHIPS_AND_ASTEROIDS,
 		"collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
 		"particleSizeMin":12.0,

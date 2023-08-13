@@ -1,0 +1,18 @@
+{
+	"id":"aEP_e_s_flamer_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",	
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"length": 60,
+	"width": 30,
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"bulletSprite":"graphics/weapons/aEP_FCL/flame2.png",
+	"hitGlowRadius":20,
+	"fadeTime":0.4,
+	"fringeColor":[252,185,45,235],# fringe color of shot sprite
+	"coreColor":[242,222,200,255], # core color of shot sprite
+	"glowColor":[252,185,45,0],
+	"glowRadius":0,
+}

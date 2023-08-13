@@ -5,6 +5,7 @@ import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.WeaponAPI
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
+import org.magiclib.weapons.MagicVectorThruster
 import java.awt.Color
 
 class aEP_ThrusterAnimation : MagicVectorThruster() {

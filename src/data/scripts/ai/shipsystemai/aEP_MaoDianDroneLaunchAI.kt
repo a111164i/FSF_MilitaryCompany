@@ -6,6 +6,7 @@ import com.fs.starfarer.api.util.WeightedRandomPicker
 import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
 import org.lazywizard.lazylib.MathUtils
+import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 
@@ -15,18 +16,18 @@ class aEP_MaoDianDroneLaunchAI: aEP_BaseSystemAI() {
   }
 
   override fun initImpl() {
-    thinkTracker.setInterval(0.5f,1.5f)
+    thinkTracker.setInterval(1f,1f)
   }
 
   fun getMultiple(size :ShipAPI.HullSize): Float{
     if(size == ShipAPI.HullSize.CAPITAL_SHIP)
-      return 2f
+      return 4f
     else if (size == ShipAPI.HullSize.CRUISER)
-      return 1.75f
+      return 3f
     else if (size == ShipAPI.HullSize.DESTROYER)
       return 1f
     else if (size == ShipAPI.HullSize.FRIGATE)
-      return 0.75f
+      return 0.5f
     return 0f
   }
 
@@ -47,7 +48,14 @@ class aEP_MaoDianDroneLaunchAI: aEP_BaseSystemAI() {
     shouldActive = false
     if(target != null){
       //如果是ai使用，把ai的目标塞入母舰的customData
-      val loc = aEP_Tool.getExtendedLocationFromPoint(target.location,target.facing,target.collisionRadius)
+      //默认方向是目标舰船的头向
+      val loc = aEP_Tool.getExtendedLocationFromPoint(target.location, target.facing,target.collisionRadius + 200f)
+      //如果护盾目标和锁定目标任何一个存在，就往这个方向释放
+      if(target.shieldTarget != null || target.shipTarget != null){
+        val facing = VectorUtils.getAngle(target.location, target.shieldTarget?:target.shipTarget.location)
+        loc.set(aEP_Tool.getExtendedLocationFromPoint(target.location, facing ,target.collisionRadius + 200f))
+      }
+
       loc.set(MathUtils.getRandomPointInCircle(loc,100f))
       ship.customData[TARGET_KEY] = loc
       shouldActive = true

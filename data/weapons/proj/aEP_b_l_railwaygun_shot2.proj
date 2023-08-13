@@ -1,0 +1,18 @@
+{
+	"id":"aEP_b_l_railwaygun_shot2",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+  "collisionClass":"PROJECTILE_FF",
+  "collisionClassByFighter":"PROJECTILE_FIGHTER",
+  "length":80,
+  "width":40,
+	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "hitGlowRadius":80,
+  "fadeTime":0.4,
+  "fringeColor":[252,185,45,155],# 拖尾和爆炸的颜色
+  "coreColor":[242,222,200,255], # 弹体的颜色
+	"glowColor":[250,184,72,15],
+	"glowRadius":150,
+	"bulletSprite":"graphics/aEP_empty.png",
+}

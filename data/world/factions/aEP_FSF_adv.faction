@@ -35,6 +35,7 @@
 			"aEP_des_youjiyan_mk2":0.25,
 			"aEP_cap_shangshengliu":0.25,
 			"aEP_cap_shangshengliu_mk2":0.25,
+
 		},
 	},
 	# ships the faction gets access to when importing S&W out-of-faction
@@ -150,17 +151,27 @@
 		"combatFreighterCombatUseFractionWhenPriority":0,   # as part of normal combat lineup, when marked as priority ship
 		"autofitRandomizeProbability":0.2,
 
+		"officerSkillsShuffleProbability":1f,
+		"officerSkills":[
+			"ballistic_mastery",
+			"ordnance_expert",
+			"missile_specialization"
+		],
+
+
 		"commanderSkillsShuffleProbability":0,
 		"commanderSkills":[
 			"crew_training",
 			"officer_training",
+
 			"coordinated_maneuvers",
 			"electronic_warfare",
+
 			"carrier_group",
-			"flux_regulation",
-			"officer_management",
-			"fighter_doctrine",
 			"fighter_uplink",
+
+			"flux_regulation",
+			"support_doctrine"
 		],
 	},
 	"illegalCommodities":[

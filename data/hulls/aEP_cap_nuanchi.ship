@@ -26,12 +26,12 @@
     "WS0029": "aEP_blinker_green",
     "WS0030": "aEP_blinker_green",
     "WS0031": "aEP_blinker_green",
-    "WS0032": "aEP_m_s_era",
-    "WS0033": "aEP_m_s_era",
-    "WS0034": "aEP_m_s_era",
-    "WS0035": "aEP_m_s_era",
+    "WS0032": "aEP_m_s_era3",
+    "WS0033": "aEP_m_s_era3",
+    "WS0034": "aEP_m_s_era3",
+    "WS0035": "aEP_m_s_era3",
     "WS0036": "aEP_cap_nuanchi_missile",
-    "WS0037": "aEP_m_s_era",
+    "WS0037": "aEP_m_s_era3",
     "WS0038": "aEP_cap_requan_missile"
   },
   "weaponSlots": [
@@ -335,7 +335,7 @@
       "id": "WS0032",
       "size": "SMALL",
       "type": "DECORATIVE",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 0,
       "angle": 90,
       "locations": [133.5, 90.5]
@@ -344,7 +344,7 @@
       "id": "WS0033",
       "size": "SMALL",
       "type": "DECORATIVE",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 0,
       "angle": 45,
       "locations": [149.5, 85.5]
@@ -353,7 +353,7 @@
       "id": "WS0034",
       "size": "SMALL",
       "type": "DECORATIVE",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 0,
       "angle": 45,
       "locations": [159.5, 75.5]
@@ -362,7 +362,7 @@
       "id": "WS0035",
       "size": "SMALL",
       "type": "DECORATIVE",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 0,
       "angle": 45,
       "locations": [169.5, 65.5]
@@ -371,7 +371,7 @@
       "id": "WS0037",
       "size": "SMALL",
       "type": "DECORATIVE",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 0,
       "angle": 0,
       "locations": [174.5, 49.5]

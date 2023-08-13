@@ -1,6 +1,7 @@
 package com.fs.starfarer.api.impl.campaign.rulecmd;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.InteractionDialogImageVisual;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
@@ -15,7 +16,8 @@ import java.awt.*;
 public class aEP_TrainMarine extends BaseCommandPlugin
 {
   private static final float PRICE_PER_CREW = 75f;
-  private static final float DAYS_TO_TRAIN = 90f;
+  private static final float DAYS_TO_TRAIN = 91f;
+  private static final float MAX_PER_CAMP = 1000f;
 
   private static float toTrainNum;
 
@@ -23,14 +25,23 @@ public class aEP_TrainMarine extends BaseCommandPlugin
   public boolean execute(String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, java.util.Map<String, MemoryAPI> memoryMap) {
     switch (params.get(0).string) {
       case "selection":
-        if (Global.getSector() != null && Global.getSector().getPlayerFleet() != null && Global.getSector().getPlayerFleet().getCargo() != null) {
+        if (Global.getSector() != null
+                && Global.getSector().getPlayerFleet() != null
+                && Global.getSector().getPlayerFleet().getCargo() != null) {
+
           CargoAPI cargo = Global.getSector().getPlayerFleet().getCargo();
           int numOfCrew = cargo.getCrew();
           Global.getSector().getFaction("aEP_FSF").getMemory().set("$aEP_crew_in_cargo", numOfCrew);
 
-          //credits and crew check
+          //检测是否有足够的船员或者星币
           if (cargo.getCredits().get() < 100 * PRICE_PER_CREW || cargo.getCrew() < 100) {
             dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_TrainMarine01"));
+            return true;
+          }
+
+          //检测当前是否已经存在一个合同
+          if (Global.getSector().getIntelManager().hasIntelOfClass(aEP_MarineTrainIntel.class)) {
+            dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_TrainMarine05"));
             return true;
           }
 
@@ -44,7 +55,7 @@ public class aEP_TrainMarine extends BaseCommandPlugin
             400f,// Width in pixels, including value label on the right.
             50f,// Width of the value label on the right.
             100,//min
-            Math.min(cargo.getCrew(), (cargo.getCredits().get() / PRICE_PER_CREW) - 1),//max
+            Math.min(Math.min(cargo.getCrew(), (cargo.getCredits().get() / PRICE_PER_CREW) - 1), MAX_PER_CAMP),//max
             ValueDisplayMode.VALUE,//How to display the value
             null);//Tooltip text. Can be null.
           dialog.getOptionPanel().setSelectorValue("aEP_trainMarineSelector", 100);
@@ -57,7 +68,9 @@ public class aEP_TrainMarine extends BaseCommandPlugin
         }
         break;
       case "start":
-        if (Global.getSector() != null && Global.getSector().getPlayerFleet() != null && Global.getSector().getPlayerFleet().getCargo() != null) {
+        if (Global.getSector() != null
+                && Global.getSector().getPlayerFleet() != null &&
+                Global.getSector().getPlayerFleet().getCargo() != null) {
 
           //如果选择以前有SelectedValue，可以直接get
           toTrainNum = dialog.getOptionPanel().getSelectorValue("aEP_trainMarineSelector");
@@ -94,6 +107,11 @@ public class aEP_TrainMarine extends BaseCommandPlugin
         return check;
       case "complete":
         if (Global.getSector() != null && Global.getSector().getPlayerFleet() != null && Global.getSector().getPlayerFleet().getCargo() != null) {
+          dialog.showVisualPanel();
+          dialog.getVisualPanel().showImageVisual(
+                  new InteractionDialogImageVisual(
+                          Global.getSettings().getSpriteName("aEP_illustrations","marine01"),
+                          480f,300f));
           CargoAPI cargo = Global.getSector().getPlayerFleet().getCargo();
           for (IntelInfoPlugin intel : Global.getSector().getIntelManager().getIntel()) {
             if (intel instanceof aEP_MarineTrainIntel && ((aEP_MarineTrainIntel) intel).shouldEnd) {

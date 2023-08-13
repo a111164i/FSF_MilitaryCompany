@@ -1,0 +1,23 @@
+{
+	"id":"aEP_m_s_bomblance",
+	"specClass":"projectile",
+	"type":"MISSILE",
+	"mountTypeOverride":"UNIVERSAL",
+	"size":"SMALL",
+	"turretSprite":"",
+	"hardpointSprite":"",
+	"everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"hardpointOffsets":[190, 0],
+	"turretOffsets":[190, 0],
+	"hardpointAngleOffsets":[0],
+	"turretAngleOffsets":[0],
+	"barrelMode":"LINKED",
+	"renderHints":[RENDER_LOADED_MISSILES],
+	"interruptibleBurst":false,
+	"displayArcRadius":210,
+	"animationType":"NONE",
+	"projectileSpecId":"aEP_m_s_bomblance_shot",
+	"fireSoundTwo":"reaper_fire",
+}
+
+

@@ -15,6 +15,7 @@
     "autorepair",
     "insulatedengine",
     "armoredweapons",
+    "aEP_ProjectileDenialShield"
   ],
   "builtInWeapons": {
     "WS0003": "aEP_ftr_sup_shield_hatch",

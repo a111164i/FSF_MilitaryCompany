@@ -1,13 +1,12 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 0,
-    "fluxVents": 26,
+    "fluxCapacitors": 7,
+    "fluxVents": 29,
     "goalVariant": true,
     "hullId": "aEP_cap_neibo",
     "hullMods": [
         "ballistic_rangefinder",
-        "targetingunit",
-        "solar_shielding"
+        "targetingunit"
     ],
     "modules": [
         {"TR_MOD": "aEP_cap_neibo_turret_Standard"},
@@ -25,6 +24,16 @@
                 "WS0004": "lightneedler",
                 "WS0015": "lightneedler",
                 "WS0022": "lightneedler"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0018": "breach",
+                "WS0019": "breach",
+                "WS0020": "breach",
+                "WS0021": "breach"
             }
         },
         {
@@ -49,10 +58,10 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0009": "aEP_vulcan",
-                "WS0010": "aEP_vulcan",
-                "WS0011": "aEP_vulcan",
-                "WS0012": "aEP_vulcan",
+                "WS0009": "aEP_b_s_630",
+                "WS0010": "aEP_b_s_630",
+                "WS0011": "aEP_b_s_630",
+                "WS0012": "aEP_b_s_630",
                 "WS0017": "dualflak"
             }
         },

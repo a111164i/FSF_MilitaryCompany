@@ -51,7 +51,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     FleetParamsV3 para = new FleetParamsV3(null,
             aEP_ID.FACTION_ID_FSF,
             1f,// qualityMod
-            FleetTypes.PERSON_BOUNTY_FLEET,
+            FleetTypes.TASK_FORCE,
             80f, // combatPts
             0f, // freighterPts
             0f, // tankerPts
@@ -78,6 +78,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
       p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
       p.getStats().setSkillLevel(Skills.POINT_DEFENSE, 1);
+      p.getStats().setLevel(5);
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
@@ -92,6 +93,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
       p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
       p.getStats().setSkillLevel(Skills.POINT_DEFENSE, 1);
+      p.getStats().setLevel(5);
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
@@ -106,81 +108,43 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
       p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
       p.getStats().setSkillLevel(Skills.POINT_DEFENSE, 1);
+      p.getStats().setLevel(5);
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
       s.getVariant().addPermaMod("ecm", true);
 
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Broadside");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_requan_Assault");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
       p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.BALLISTIC_MASTERY, 1);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 1);
+      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
       p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 1);
-      p.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES, 1);
+      p.getStats().setSkillLevel(Skills.FLUX_REGULATION, 2);
       p.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 1);
+      p.getStats().setLevel(4);
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Broadside");
+      s = targetFleet.getFleetData().addFleetMember("aEP_cru_requan_Assault");
       p = faction.createRandomPerson();
       p.setFaction("pirates");
       p.setRankId(Ranks.SPACE_COMMANDER);
       p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.BALLISTIC_MASTERY, 1);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 1);
+      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
       p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 1);
-      p.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES, 1);
+      p.getStats().setSkillLevel(Skills.FLUX_REGULATION, 2);
       p.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 1);
+      p.getStats().setLevel(4);
       targetFleet.getFleetData().addOfficer(p);
       s.setCaptain(p);
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_zhongliu_Standard");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.BALLISTIC_MASTERY, 1);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 1);
-      p.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES, 1);
-      p.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 1);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-
-
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_shanhu_Standard");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 1);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 1);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_shanhu_Attack");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 1);
-      p.getStats().setSkillLevel(Skills.HELMSMANSHIP, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 1);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
     }
     //添加特殊舰作为旗舰
     FleetMemberAPI flagship = targetFleet.getFleetData().addFleetMember(MISSILE_CARRIER_SPEC_ID +"_Standard");
-    flagship.getVariant().addPermaMod("reinforcedhull", true);
+    flagship.getVariant().addPermaMod(HullMods.REINFORCEDHULL, true);
+    flagship.getVariant().addTag(Tags.VARIANT_UNBOARDABLE);
     flagship.setId(shipName);
     targetFleet.getFleetData().setFlagship(flagship);
     aEP_CruiseMissileCarrier.LoadingMissile loading = new aEP_CruiseMissileCarrier.LoadingMissile();
@@ -202,13 +166,13 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     person.setVoice(Voices.VILLAIN);
     person.setPersonality(Personalities.STEADY);
     person.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES,1);
-    person.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE,1);
     person.getStats().setSkillLevel(Skills.COORDINATED_MANEUVERS,1);
     person.getStats().setSkillLevel(Skills.ELECTRONIC_WARFARE,1);
     person.getStats().setSkillLevel(Skills.SUPPORT_DOCTRINE,1);
     person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS,1);
     person.getStats().setSkillLevel(Skills.CREW_TRAINING,1);
     person.getStats().setSkillLevel(Skills.FIGHTER_UPLINK,1);
+    person.getStats().setLevel(7);
     targetFleet.getFleetData().addOfficer(person);
     targetFleet.getFlagship().setCaptain(person);
     targetFleet.setCommander(person);
@@ -221,7 +185,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
 
     //加入舰队必须调用这个
     token.getContainingLocation().spawnFleet(token, 0f, 0f, targetFleet);
-    targetFleet.getAI().addAssignment(FleetAssignment.ORBIT_AGGRESSIVE, token, 999999999f, null);
+    targetFleet.getAI().addAssignment(FleetAssignment.ORBIT_AGGRESSIVE, token, Float.MAX_VALUE, null);
     //给ai舰队上对玩家发射导弹的脚本
     targetFleet.addScript(new EntityWantToMissileAttackPlayer(targetFleet));
     targetFleet.getMemoryWithoutUpdate().set("$isFSFPirate", true);

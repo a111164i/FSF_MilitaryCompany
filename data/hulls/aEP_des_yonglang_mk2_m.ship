@@ -7,14 +7,14 @@
   "height": 40,
   "width": 86,
   "center": [43, 15],
-  "collisionRadius": 42.5,
+  "collisionRadius": 54,
   "shieldCenter": [55, 28],
   "shieldRadius": 0,
   "viewOffset": 0,
   "builtInMods": [
     "reduced_explosion",
     "always_detaches",
-    "aEP_Structure"
+    "ablative_armor"
   ],
   "weaponSlots": [],
   "engineSlots": [],

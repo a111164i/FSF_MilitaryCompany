@@ -4,21 +4,20 @@
   "projectileSpecId": "aEP_b_m_rk107_shot",
   "type": "MISSILE",
   "size": "MEDIUM",
-  "mountTypeOverride":"COMPOSITE",
   "turretSprite": "graphics/weapons/aEP_b_m_rk107/tr.png",
   "hardpointSprite": "graphics/weapons/aEP_b_m_rk107/hp.png",
   "hardpointGunSprite": "graphics/weapons/aEP_b_m_rk107/hp.png",
   "renderHints": [
-    RENDER_LOADED_MISSILES
+    #RENDER_LOADED_MISSILES
   ],
   "turretOffsets": [
-    2,
+    10.5,
     5,
+    10.5,
     2,
-    2,
-    2,
+    10.5,
     -1,
-    2,
+    10.5,
     -4
   ],
   "turretAngleOffsets": [
@@ -28,13 +27,13 @@
     0
   ],
   "hardpointOffsets": [
+    13.5,
     5,
-    5,
-    5,
+    13.5,
     2,
-    5,
+    13.5,
     -1,
-    5,
+    13.5,
     -4
   ],
   "hardpointAngleOffsets": [
@@ -64,5 +63,6 @@
       55
     ]
   },
-	"fireSoundTwo":"aEP_b_m_rk107_fire",
+  "fireSoundTwo": "aEP_b_m_rk107_fire",
+  "mountTypeOverride": "COMPOSITE"
 }

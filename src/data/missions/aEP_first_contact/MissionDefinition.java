@@ -124,17 +124,16 @@ public class MissionDefinition implements MissionDefinitionPlugin
         if(!checkTracker.intervalElapsed()) return;
 
         CombatEngineAPI engine = Global.getCombatEngine();
+
         //检测损失
         if (!didOnce) {
           CombatFleetManagerAPI manager =  engine.getFleetManager(FleetSide.PLAYER);
-
 
           for(ShipAPI ship : engine.getShips()){
             if(ship.getOwner() == 0 && !ship.isFighter() && !ship.isDrone() ) {
               disableUnknownWeapon(f,ship);
             }
           }
-
 
 
           int sizeDisable = 0;

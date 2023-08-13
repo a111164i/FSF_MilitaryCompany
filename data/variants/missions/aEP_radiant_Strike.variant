@@ -2,7 +2,7 @@
   "variantId": "aEP_radiant_Strike",
   "hullId": "radiant",
   "displayName": "",
-  "goalVariant": true,
+  "goalVariant": false,
   "fluxCapacitors": 37,
   "fluxVents": 44,
   "quality": 1,

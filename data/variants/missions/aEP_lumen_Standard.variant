@@ -2,7 +2,7 @@
     "displayName": "",
     "fluxCapacitors": 6,
     "fluxVents": 2,
-    "goalVariant": true,
+    "goalVariant": false,
     "hullId": "lumen",
     "hullMods": ["missleracks"],
     "permaMods": [],

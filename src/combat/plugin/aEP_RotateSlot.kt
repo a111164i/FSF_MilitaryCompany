@@ -21,7 +21,7 @@ class aEP_RotateSlot : BaseEveryFrameCombatPlugin() {
     for (ship in ships) {
       for (slot in ship.hullSpec.allWeaponSlotsCopy) {
         if (slot.id.contains("COVER")) {
-          val originSlot = Global.getSettings().getHullSpec(ship.hullSpec.hullId).getWeaponSlotAPI(slot.id)
+          val originSlot = Global.getSettings().getHullSpec(ship.hullSpec.baseHullId).getWeaponSlotAPI(slot.id)
           slot.location.set(originSlot.location)
           slot.angle = 0f
           //Global.getLogger(this.getClass()).info("NeiBoRotate_restore" + "+" + originSlot.getId());

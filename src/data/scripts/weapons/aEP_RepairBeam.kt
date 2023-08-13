@@ -4,7 +4,10 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.util.IntervalUtil
+import combat.util.aEP_ID
+import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
 import data.scripts.hullmods.aEP_MarkerDissipation
+import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
 class aEP_RepairBeam : BeamEffectPlugin {
@@ -15,8 +18,8 @@ class aEP_RepairBeam : BeamEffectPlugin {
     private const val FSF_BONUS = 1.75f
     const val REPAIR_THRESHOLD = 0.5f
     const val HULL_REPAIR_THRESHOLD = 0.25f
-    private val REPAIR_COLOR = Color(250, 250, 178, 220)
-    private val REPAIR_COLOR2 = Color(250, 220, 70, 220)
+    val REPAIR_COLOR = Color(250, 250, 178, 240)
+    val REPAIR_COLOR2 = Color(250, 220, 70, 250)
 
   }
 
@@ -48,107 +51,109 @@ class aEP_RepairBeam : BeamEffectPlugin {
       val ship = beam.damageTarget as ShipAPI
 
       //先在光束落点加一个特效
-      val spec = DamagingExplosionSpec(1f, 70f, 35f,
-        0f,0f,
-        CollisionClass.NONE, CollisionClass.NONE,
-        5f,5f,0.8f,30,
-        REPAIR_COLOR, REPAIR_COLOR2
-      )
-      spec.isUseDetailedExplosion = true
-      spec.detailedExplosionFlashDuration = 0.12f
-      spec.detailedExplosionFlashRadius = 70f
-      spec.detailedExplosionRadius = 70f
-      spec.detailedExplosionFlashColorFringe = REPAIR_COLOR2
-      spec.detailedExplosionFlashColorCore = REPAIR_COLOR
-      spec.detailedExplosionRadius = 70f
-      engine.spawnDamagingExplosion(spec,beam.source,beam.to)
+      engine.spawnExplosion(
+        beam.to, VECTOR2F_ZERO, REPAIR_COLOR2, 60f, 0.75f)
+      engine.addHitParticle(
+        beam.to, VECTOR2F_ZERO, 150f, 0.75f, 0.1f, 0.2f, REPAIR_COLOR)
 
-
-      //维修装甲
-      val xSize = ship.armorGrid.leftOf + ship.armorGrid.rightOf
-      val ySize = ship.armorGrid.above + ship.armorGrid.below
-      val cellMaxArmor = ship.armorGrid.maxArmorInCell
-
-      var toRepair = repairAmount + ship.armorGrid.armorRating * repairPercent
-      if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) toRepair *= FSF_BONUS
-      toRepair *= FSF_BONUS
-      var didSpark = false
-      while (toRepair > 0f){
-        //find the lowest armor grid
-        var minArmorLevel = 10f
-        var minX = 0
-        var minY = 0
-        for (x in 0 until xSize) {
-          for (y in 0 until ySize) {
-            val armorNow = ship.armorGrid.getArmorValue(x, y)
-            val armorLevel = armorNow / cellMaxArmor
-            if (armorLevel <= minArmorLevel) {
-              minArmorLevel = armorLevel
-              minX = x
-              minY = y
-            }
-          }
-        }
-
-        // 如果当前最低的一块甲不满就修复，否则不用修直接break
-        val armorAtMin = ship.armorGrid.getArmorValue(minX, minY)
-        val threshold = cellMaxArmor * REPAIR_THRESHOLD
-        val needRepair = threshold - armorAtMin
-        //做不到完全回复
-        if ( needRepair > 0f) {
-          var toAddArmor = 0f
-
-          if(needRepair > REPAIR_STEP_PER_CELL){
-            toAddArmor = REPAIR_STEP_PER_CELL
-            toRepair -= REPAIR_STEP_PER_CELL
-          }else{
-            toAddArmor = needRepair
-            toRepair -= toAddArmor
-          }
-
-          ship.armorGrid.setArmorValue(minX, minY, armorAtMin + toAddArmor)
-
-          //每一个修好的格子创造一个火花，每次维修最多生成一次
-
-          val minArmorLoc = ship.armorGrid.getLocation(minX,minY)
-          for(i in 0 until 12){
-            if(!didSpark){
-              engine.spawnExplosion(
-                minArmorLoc,
-                ship.velocity,
-                REPAIR_COLOR,
-                15f,
-                0.5f)
-              engine.spawnExplosion(
-                minArmorLoc,
-                ship.velocity,
-                REPAIR_COLOR2,
-                30f,
-                0.5f)
-              didSpark = true
-            }
-
-          }
-
-        }else{
-          break
-        }
+      //把本船，本船的模块，本船的母舰，统统视为一个整体
+      val checkShipList = ArrayList<ShipAPI>()
+      checkShipList.add(ship)
+      if(ship.isStationModule && ship.parentStation != null){
+        checkShipList.addAll(ship.parentStation.childModulesCopy)
       }
-      ship.syncWithArmorGridState()
-      ship.syncWeaponDecalsWithArmorDamage()
-
-      if(toRepair > 0){
-        val hullDamagedBelowThreshold = ship.maxHitpoints * HULL_REPAIR_THRESHOLD - ship.hitpoints
-        if(hullDamagedBelowThreshold > 0f){
-          ship.hitpoints += (toRepair * HULL_REPAIR_MULT).coerceAtMost(hullDamagedBelowThreshold)
-        }
-      }else{
-        //如果维修完装甲就不剩了，就显示修好了
-        if(!didSpark){
-          engine.addFloatingText(ship.location, "No Need Repair", 15f, REPAIR_COLOR, ship, 0.5f, 1.5f)
-        }
+      if(ship.isStation && ship.childModulesCopy.size > 0){
+        checkShipList.addAll(ship.childModulesCopy)
       }
+
+      //按照顺序选择修谁，前者如果完全不需要修复就轮到后一个
+      val it = checkShipList.iterator()
+      while (it.hasNext() && findToRepair(it.next(),engine) >= 1){}
+
     }
   }
 
+  /**
+   * @return 维修点数剩余百分比，0-1，0代表完全用于维修，1代表船是好的不用修
+   *
+  * */
+  fun findToRepair(ship: ShipAPI, engine: CombatEngineAPI): Float{
+    //维修装甲
+    val xSize = ship.armorGrid.leftOf + ship.armorGrid.rightOf
+    val ySize = ship.armorGrid.above + ship.armorGrid.below
+    val cellMaxArmor = ship.armorGrid.maxArmorInCell
+
+    val maxRepairPoint = repairAmount + ship.armorGrid.armorRating * repairPercent
+    var toRepair = maxRepairPoint
+    if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) toRepair *= FSF_BONUS
+    toRepair *= FSF_BONUS
+    var didSpark = false
+
+
+    while (toRepair > 0f){
+      //find the lowest armor grid
+      var minArmorLevel = 10f
+      var minX = 0
+      var minY = 0
+      for (x in 0 until xSize) {
+        for (y in 0 until ySize) {
+          val armorNow = ship.armorGrid.getArmorValue(x, y)
+          val armorLevel = armorNow / cellMaxArmor
+          if (armorLevel <= minArmorLevel) {
+            minArmorLevel = armorLevel
+            minX = x
+            minY = y
+          }
+        }
+      }
+
+
+      val armorAtMin = ship.armorGrid.getArmorValue(minX, minY)
+      val threshold = cellMaxArmor * REPAIR_THRESHOLD
+      val needRepair = threshold - armorAtMin
+
+      // 如果当前最低的一块甲不满就修复
+      if ( needRepair > 0f) {
+        var toAddArmor = 0f
+
+        if(needRepair > REPAIR_STEP_PER_CELL){
+          toAddArmor = REPAIR_STEP_PER_CELL
+          toRepair -= REPAIR_STEP_PER_CELL
+        }else{
+          toAddArmor = needRepair
+          toRepair -= toAddArmor
+        }
+        ship.armorGrid.setArmorValue(minX, minY, armorAtMin + toAddArmor)
+        //第一个修好的格子创造一个火花，每次维修最多生成一次
+        val minArmorLoc = ship.armorGrid.getLocation(minX,minY)
+        for(i in 0 until 12){
+          if(!didSpark){
+            engine.spawnExplosion(
+              minArmorLoc, ship.velocity, REPAIR_COLOR, 15f, 0.5f)
+            engine.spawnExplosion(
+              minArmorLoc, ship.velocity, REPAIR_COLOR2, 30f, 0.5f)
+            didSpark = true
+          }
+
+        }
+      }else{//如果当前装甲最低的格子都不用修，break出去
+        break
+      }
+    }
+    ship.syncWithArmorGridState()
+    ship.syncWeaponDecalsWithArmorDamage()
+
+    //如果装甲修好了，维修点数还有省的就加结构
+    if(toRepair > 0){
+      val hullDamagedBelowThreshold = ship.maxHitpoints * HULL_REPAIR_THRESHOLD - ship.hitpoints
+      if(hullDamagedBelowThreshold > 0) {
+        val repairToHull = (toRepair * HULL_REPAIR_MULT).coerceAtMost(hullDamagedBelowThreshold)
+        ship.hitpoints += repairToHull
+        toRepair -= repairToHull/ HULL_REPAIR_MULT
+      }
+    }
+
+    toRepair = toRepair.coerceAtLeast(0f)
+    return toRepair/maxRepairPoint
+  }
 }

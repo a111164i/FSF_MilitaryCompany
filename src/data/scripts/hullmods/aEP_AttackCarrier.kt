@@ -39,25 +39,25 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     //在FORGE_ACTIVE_TIME里面每秒产生多少幅能
     const val FLUX_CREATION_PER_SECOND = 600f
     //锻炉产生的幅能不会使舰船幅能超过多少，防止舰船一直灌满幅能过于脆弱
-    const val MAX_INCREASE_FLUX_LEVEL = 0.8f
+    const val MAX_INCREASE_FLUX_LEVEL = 0.9f
     //低于多少水平幅能才会启用锻炉，对舰船幅散提出要求才能无限产生飞机
     const val MAX_ACTIVE_FLUX_LEVEL = 0.4f
     const val FORGE_ACTIVE_TIME = 15f
-    const val FORGE_TOTAL_TIME = 18f
+    const val FORGE_TOTAL_TIME = 20f
     const val FORGE_THRESHOLD = 0.35f
   }
-  val id = "aEP_AttackCarrier"
-  val id2 = "aEP_Forge"
+  val ID = "aEP_AttackCarrier"
+  val ID_FORGE = "aEP_Forge"
 
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI, ship: ShipAPI, ids: String) {
     val speed = fighter.mutableStats.maxSpeed.baseValue
     if(speed >= SPEED_THRESHOLD) return
-    fighter.mutableStats.maxSpeed.modifyFlat(id,(SPEED_THRESHOLD - speed) * SPEED_GAP_BONUS )
+    fighter.mutableStats.maxSpeed.modifyFlat(ID,(SPEED_THRESHOLD - speed) * SPEED_GAP_BONUS )
 
     val turnRate = fighter.mutableStats.maxTurnRate.baseValue
     if(turnRate >= TURNRATE_THRESHOLD) return
-    fighter.mutableStats.maxTurnRate.modifyFlat(id,(TURNRATE_THRESHOLD - turnRate) * TURNRATE_GAP_BONUS )
+    fighter.mutableStats.maxTurnRate.modifyFlat(ID,(TURNRATE_THRESHOLD - turnRate) * TURNRATE_GAP_BONUS )
   }
 
 
@@ -65,7 +65,7 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
   override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, idd: String?) {
     stats?: return
     //延长战机的作战半径
-    stats.fighterWingRange.modifyPercent(id, RANGE_INCREASE_PERCENT.toFloat())
+    stats.fighterWingRange.modifyPercent(ID, RANGE_INCREASE_PERCENT.toFloat())
   }
 
 
@@ -80,10 +80,10 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
         fighter?: continue
         //距离太远，或者母舰不再存活时移除buff
         if(MathUtils.getDistance(ship.location,fighter.location) > SPEED_BONUS_RANGE || !ship.isAlive || ship.isHulk){
-          fighter.mutableStats.maxSpeed.unmodify(id)
-          fighter.mutableStats.maxTurnRate.unmodify(id)
+          fighter.mutableStats.maxSpeed.unmodify(ID)
+          fighter.mutableStats.maxTurnRate.unmodify(ID)
         }else{
-          applyEffectsToFighterSpawnedByShip(fighter,ship,id)
+          applyEffectsToFighterSpawnedByShip(fighter,ship,ID)
         }
       }
     }
@@ -92,7 +92,7 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     //检测是否需要激活锻炉(如果锻炉就绪的话)
     //舰船刚生成的时候，战机还没有生成，会里启用锻炉并且打断生成过程，加一个cd避免这个情况
     if(ship.fullTimeDeployed < 5f) return
-    if(!ship.customData.containsKey(id)){
+    if(!ship.customData.containsKey(ID)){
       //不装战机时默认不激活，所以分子为1，造成比例虚高
       var fighterOpAround = 1f
       var totalFighterOp = 1f
@@ -110,8 +110,8 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       }
 
       //如果总战机装配点少于threshold，且不在冷却，且幅能水平低于阈值，触发锻炉
-      if(fighterOpAround/totalFighterOp < FORGE_THRESHOLD && !ship.customData.contains(id2) && ship.fluxLevel < MAX_ACTIVE_FLUX_LEVEL){
-        ship.setCustomData(id2,1f)
+      if(fighterOpAround/totalFighterOp < FORGE_THRESHOLD && !ship.customData.contains(ID_FORGE) && ship.fluxLevel < MAX_ACTIVE_FLUX_LEVEL){
+        ship.setCustomData(ID_FORGE,1f)
         //快速补充战机
         for(bay in ship.launchBaysCopy) {
           if(!aEP_FighterLaunch.isValidWing(bay.wing)) continue
@@ -156,7 +156,10 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     }
 
     val fluxLevelString= (100f* MAX_ACTIVE_FLUX_LEVEL).toInt().toString()+"%"
-    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier02"), 5f, arrayOf(Color.green), HULLMOD_POINT, fluxLevelString, FORGE_TOTAL_TIME.toInt().toString())
+    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier02"), 5f, arrayOf(Color.green),
+      HULLMOD_POINT,
+      fluxLevelString,
+      FORGE_TOTAL_TIME.toInt().toString())
 
   }
 
@@ -195,7 +198,7 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
 
       //维持左下角状态栏
       if(Global.getCombatEngine().playerShip == weapon.ship){
-        Global.getCombatEngine().maintainStatusForPlayerShip(id,
+        Global.getCombatEngine().maintainStatusForPlayerShip(ID,
          Global.getSettings().getSpriteName("aEP_ui","heavy_fighter_carrier"),
           txt("aEP_AttackCarrier03"),
           String.format(txt("aEP_AttackCarrier04"),(lifeTime-time).toInt().toString()),
@@ -209,9 +212,11 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       smokeTracker.advance(amount)
       if(smokeTracker.intervalElapsed() && time <= FORGE_ACTIVE_TIME ){
         //产生幅能
-        val fluxToAdd = FLUX_CREATION_PER_SECOND * smokeTracker.minInterval
-        if(weapon.ship.fluxTracker.maxFlux - weapon.ship.fluxTracker.currFlux >  fluxToAdd+1f && weapon.ship.fluxLevel < 0.85f)
+        val fluxToAdd = FLUX_CREATION_PER_SECOND * smokeTracker.elapsed
+        if(weapon.ship.fluxTracker.maxFlux - weapon.ship.fluxTracker.currFlux >  fluxToAdd+1f
+          && weapon.ship.fluxLevel < MAX_INCREASE_FLUX_LEVEL){
           weapon.ship.fluxTracker.increaseFlux(fluxToAdd,false)
+        }
 
         //产生视觉特效
         createVe(time)
@@ -227,7 +232,7 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     }
 
     override fun readyToEnd() {
-      entity?.removeCustomData(id2)
+      entity?.removeCustomData(ID_FORGE)
       plugin?.decoGlowController?.toLevel = 0f
     }
 
@@ -253,9 +258,9 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       useLevel = MathUtils.clamp(useLevel,0f,1f)
 
       var initColor = Color(250,50,50)
-      var alpha = 0.2f* useLevel
-      var lifeTime = 2f* useLevel
-      var size = 30f
+      var alpha = 0.3f* useLevel
+      var lifeTime = 3f* useLevel
+      var size = 35f
       var endSizeMult = 1.5f
       var vel = aEP_Tool.speed2Velocity(weapon.currAngle,20f)
       Global.getCombatEngine().addNebulaParticle(

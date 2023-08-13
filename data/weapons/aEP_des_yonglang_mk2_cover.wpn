@@ -2,7 +2,7 @@
   "id":"aEP_des_yonglang_mk2_cover",
   "specClass":"beam",
   "type":"DECORATIVE",
-  "size":"SMALL",
+  "size":"MEDIUM",
   "showDamageWhenDecorative":true,
   "renderBelowAllWeapons":false,
   #"renderHints":["RENDER_ADDITIVE"],

@@ -2,7 +2,7 @@
     "displayName": "",
     "fluxCapacitors": 8,
     "fluxVents": 0,
-    "goalVariant": true,
+    "goalVariant": false,
     "hullId": "brilliant",
     "hullMods": [
         "heavyarmor",

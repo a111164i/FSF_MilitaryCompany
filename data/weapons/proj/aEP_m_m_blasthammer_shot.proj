@@ -1,0 +1,62 @@
+{
+	"id":"aEP_m_m_blasthammer_shot",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	"sprite":"graphics/weapons/aEP_m_l_blasthammer/m_missile.png",
+	"size":[12,32],	
+	"center":[6,16],
+	"collisionRadius":16,
+	"collisionClass":"MISSILE_NO_FF",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[243,242,241,250],  # purely visual, will get a white additively blended core on top of this color
+  "explosionRadius":150, # purely visual
+  "explosionSpec":{"duration":0.0001f, # not visual
+           "radius":80,
+           "coreRadius":40, # full damage within core radius
+           "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+           "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+           "particleSizeMin":10.0,
+           "particleSizeRange":8.0,
+            "particleDuration":1.4,
+           "particleCount":160,
+           "particleColor":[243,242,241,250]},
+	#"maxFlightTime":3, #一般用不上
+	"flameoutTime":0.5,  # total time from flameout to full fadeout
+	"armingTime":2, # safe range count by time 
+	"noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)	
+	"fadeTime":0.1, # fadeout duration
+	"alwaysAccelerate":false,
+  "reduceDamageWhileFading":false,
+	"fizzleOnReachingWeaponRange":true,
+	#will use projectile range calculation that considers range threshold (from SO etc)
+  #"useProjectileRangeCalculation":false
+  #defaults to 0.5 (same as what was hardcoded before)
+  #"dudProbabilityOnFlameout":0.5
+	"engineSpec":{
+		"turnAcc":120,
+	  "turnRate":60,
+	  "acc":200,
+	  "dec":100
+	},
+	"engineSlots":[{"id":"ES1",
+					"loc":[-10,0],				
+					"style":"CUSTOM",
+					"styleSpec":{
+								"mode":"PARTICLES", # PARTICLES or QUAD_STRIP, determines which params are used
+								"engineColor":[255,125,25,200],										
+								"contrailParticleSizeMult":2,
+								"contrailParticleDuration":10,
+								"contrailParticleFinalSizeMult":4,
+								"contrailMaxSpeedMult":0.5,
+								"contrailAngularVelocityMult":0.5,
+								"contrailColor":[50,50,50,50],						
+								"type":"SMOKE"},
+						"width":24,
+						"length":96.0,
+						"angle":180.0},				 					
+				    ],
+
+				    
+				
+}

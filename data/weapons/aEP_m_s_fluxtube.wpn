@@ -1,0 +1,50 @@
+{
+  "id": "aEP_m_s_fluxtube",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_m_m_fluxtube_shot",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "displayArcRadius": 250,
+  "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
+  "turretSprite": "graphics/weapons/aEP_m_m_fluxtube/small_tr.png",
+  "turretUnderSprite": "graphics/weapons/aEP_m_m_fluxtube/small_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_m_fluxtube/small_hp.png",
+  "renderHints": [
+      RENDER_LOADED_MISSILES
+   ],
+  "turretOffsets": [
+    0.5,
+    4.5
+  ],
+  "turretAngleOffsets": [
+    90
+  ],
+  "hardpointOffsets": [
+    5.5,
+    4.5
+  ],
+  "hardpointAngleOffsets": [
+    90
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 16,
+    "particleSizeRange": 18,
+    "cloudParticleCount": 8,
+    "cloudDuration": 1.5,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 4,
+    "blowbackDuration": 2,
+    "blowbackLength": 22,
+    "blowbackSpread": 15,
+    "particleColor": [
+      106,
+      105,
+      105,
+      105
+    ]
+  },
+  "fireSoundTwo": "bomb_bay_fire"
+}

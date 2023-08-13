@@ -1,0 +1,44 @@
+{
+  "id": "aEP_m_m_blasthammer",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_m_m_blasthammer_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_m_l_blasthammer/m_tr.png",
+  "turretGlowSprite":"graphics/weapons/aEP_m_l_blasthammer/m_tr_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_l_blasthammer/m_hp.png",
+  "hardpointGlowSprite":"graphics/weapons/aEP_m_l_blasthammer/m_hp_glow.png",
+  "glowColor":[255,151,75,235],
+  #"renderAboveAllWeapons": 0,
+  "turretOffsets": [
+    26,#y aixs
+    0,#x aixs
+  
+  ],
+  "turretAngleOffsets": [
+    0,
+  ],
+  "hardpointOffsets": [
+    26,
+    0,
+
+  ],
+  "hardpointAngleOffsets": [
+    0,
+
+  ],
+  "barrelMode": "LINKED",
+  "autocharge": true,
+  "animationType": "GLOW_AND_FLASH",
+  "muzzleFlashSpec": {
+    "length": 1,
+    "spread": 1,
+    "particleSizeMin": 200,
+    "particleSizeRange": 0,
+    "particleDuration": 0.35,
+    "particleCount": 1,
+    "particleColor":  [241,231,221,199]},
+  "textureType": ROUGH,
+  "fireSoundTwo": "aEP_m_l_blasthammer_fire"
+}

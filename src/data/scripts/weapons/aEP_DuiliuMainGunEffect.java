@@ -50,7 +50,7 @@ public class aEP_DuiliuMainGunEffect implements EveryFrameWeaponEffectPlugin
       Vector2f loc = aEP_Tool.getExtendedLocationFromPoint(weapon.getFirePoint(0), weapon.getCurrAngle() - 90f, MathUtils.getRandomNumberInRange(-MAX_SPREAD, MAX_SPREAD));
       DamagingProjectileAPI newProj = (DamagingProjectileAPI) engine.spawnProjectile(weapon.getShip(),
         weapon,//from weapon
-        "aEP_KF_shred",//weapon id
+              "aEP_cap_duiliu_main2",//weapon id
         loc,//point
         weapon.getCurrAngle(),//angle
         weapon.getShip().getVelocity());//init ship vel

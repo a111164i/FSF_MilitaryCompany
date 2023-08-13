@@ -1,0 +1,53 @@
+{
+	"id":"aEP_des_shuishi_flare_shot",
+	"specClass":"missile",
+	"missileType":"PHASE_MINE",
+	"sprite":"graphics/weapons/aEP_des_shuishi_flare/heavy_mine0.png",
+	"glowSprite":"graphics/weapons/aEP_des_shuishi_flare/heavy_mine_glow.png",
+	"glowColor":[218,70,21,255],
+	"size":[96,96],
+	"center":[48,48],
+	"collisionRadius":20,
+	"armingTime":10,
+	"collisionClass":"MISSILE_NO_FF",
+	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"fadeTime":0.1, # fadeout duration
+	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"explosionColor":[218,170,61,205],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":250, # purely visual
+	"engineSpec":{
+		"turnAcc":270,
+	  "turnRate":90,
+	  "acc":400,
+	  "dec":400
+  },
+	"behaviorSpec":{
+		"behavior":"PROXIMITY_FUSE",
+		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+		"range":200,
+		"slowToMaxSpeed":false,
+		"delay":0.75,
+		"pingSound":"mine_ping",
+		"pingColor":[255,20,10,255],
+		"pingRadius":250,
+		"pingDuration":0.2,
+		"windupSound":"",
+		"windupDelay":0.25,
+		"explosionSpec":{
+			"duration":0.0001f,
+			"radius":150,
+			"coreRadius":50, # full damage within core radius
+			"collisionClass":MISSILE_NO_FF,
+			"collisionClassByFighter":MISSILE_NO_FF,
+			"particleSizeMin":4.0,
+			"particleSizeRange":4.0,
+			"particleDuration":1,
+			"particleCount":100,
+			"particleColor":[255,225,125,255],
+      "explosionColor":[250,210,195,215],
+			"sound":"system_canister_flak_explosion"
+		},
+	}
+}
+
+

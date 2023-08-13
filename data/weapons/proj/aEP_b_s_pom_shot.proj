@@ -24,22 +24,24 @@
   #"pixelsPerTexel":1,
   "passThroughMissiles":false,
 	"bulletSprite":"graphics/missiles/shell_small_yellow.png",
-	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
-	      "shotRangeVariance":0.2,
-        "probOfVariance":1,
-				"range":20,
-				#"vsMissileRange":100,
-				"explosionSpec":{"duration":0.0001f,
-								 "radius":20,
-								 "coreRadius":20, # full damage within core radius - also equal to proximity fuse range
-								 "collisionClass":PROJECTILE_NO_FF,
-								 "collisionClassByFighter":PROJECTILE_FIGHTER,
-								 "particleSizeMin":10,
-								 "particleSizeRange":15,
-								 "particleDuration":0.25f,
-								 "particleCount":1,
-								 "particleColor":[240,120,100,90],
-								 "sound":""
-				},
-		}
+	"behaviorSpec":{
+		"behavior":"PROXIMITY_FUSE",
+    "shotRangeVariance":0.2,
+    "probOfVariance":1,
+		"range":20,
+		#"vsMissileRange":100,
+		"explosionSpec":{
+			"duration":0.0001f,
+			"radius":30,
+			"coreRadius":20, # full damage within core radius - also equal to proximity fuse range
+			"collisionClass":PROJECTILE_NO_FF,
+			"collisionClassByFighter":PROJECTILE_FIGHTER,
+			"particleSizeMin":10,
+			"particleSizeRange":15,
+			"particleDuration":0.25f,
+			"particleCount":1,
+			"particleColor":[240,120,100,90],
+			"sound":""
+		},
+	}
 }

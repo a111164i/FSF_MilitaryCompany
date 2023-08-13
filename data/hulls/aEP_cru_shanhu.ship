@@ -19,7 +19,7 @@
     "WS0009": "aEP_marker",
     "WS0010": "aEP_marker",
     "WS0011": "aEP_cru_maodian_missile",
-    "WS0014": "aEP_ftr_ut_maodian_ads"
+    "WS0014": "aEP_cru_maodian_ads"
   },
   "weaponSlots": [
     {
@@ -147,8 +147,8 @@
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 90,
-      "locations": [-8.5, 56.5]
+      "angle": 0,
+      "locations": [1, 62.5]
     },
     {
       "id": "WS0005",

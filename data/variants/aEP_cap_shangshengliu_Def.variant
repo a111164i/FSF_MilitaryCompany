@@ -1,12 +1,14 @@
 {
     "displayName": "Defense",
-    "fluxCapacitors": 0,
-    "fluxVents": 22,
+    "fluxCapacitors": 5,
+    "fluxVents": 15,
     "goalVariant": true,
     "hullId": "aEP_cap_shangshengliu",
     "hullMods": [
-        "targetingunit",
-        "armoredweapons"
+        "aEP_EliteShip",
+        "aEP_ResistShield",
+        "aEP_RapidDissipate",
+        "heavyarmor"
     ],
     "permaMods": [],
     "sMods": [],
@@ -15,30 +17,38 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "hellbore"}
+            "weapons": {"WS0015": "arbalest"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "devastator"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0005": "heavyac",
-                "WS0007": "heavyac",
-                "WS0014": "heavyac",
-                "WS0015": "heavyac"
+                "WS0005": "flak",
+                "WS0007": "flak",
+                "WS0016": "aEP_b_s_pom",
+                "WS0017": "aEP_b_s_pom"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "vulcan",
-                "WS0002": "vulcan",
-                "WS0003": "aEP_b_s_pom",
-                "WS0004": "aEP_b_s_pom",
-                "WS0016": "vulcan",
-                "WS0017": "vulcan"
+                "WS0001": "aEP_e_s_300k",
+                "WS0002": "aEP_e_s_300k",
+                "WS0003": "aEP_e_s_300k",
+                "WS0004": "aEP_e_s_300k"
             }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0014": "aEP_b_m_mb32"}
         }
     ],
-    "wings": ["aEP_ftr_icp_gunship_wing"]
+    "wings": ["aEP_ftr_ut_repair_wing"]
 }

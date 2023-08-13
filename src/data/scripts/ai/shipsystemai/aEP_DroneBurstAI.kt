@@ -2,18 +2,21 @@ package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
+import com.fs.starfarer.api.combat.ShipwideAIFlags
+import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import kotlin.math.absoluteValue
 
-class aEP_DroneBurstAI: aEP_BaseSystemAI() {
+class aEP_DroneBurstAI(): aEP_BaseSystemAI() {
 
-
-  override fun initImpl() {
-    thinkTracker.setInterval(0.1f, 0.1f)
+  constructor(ship: ShipAPI,system: ShipSystemAPI) : this(){
+    init(ship, system, ShipwideAIFlags(), Global.getCombatEngine())
   }
+
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
 

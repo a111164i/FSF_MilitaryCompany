@@ -11,10 +11,9 @@ import java.awt.Color
 class aEP_DecomposerFastBuild : BaseShipSystemScript() {
   companion object {
     const val EXTRA_NUM_MULT = 1f //by mult, to mult
-    const val FRR_DECREASE_SPEED_MOD = 900f //by percent to mult
     const val NEW_FTR_ATK_MULT = 0.5f
     const val NEW_FTR_TAKEN_INCREASE_MULT = 0.25f
-    const val NEW_FTR_LIFE = 16f //
+    const val NEW_FTR_LIFE = 18f //
     const val RATE_COST = 0.20f
   }
 

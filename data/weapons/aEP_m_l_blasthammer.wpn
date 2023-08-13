@@ -1,0 +1,46 @@
+{
+  "id": "aEP_m_l_blasthammer",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_m_l_blasthammer_shot",
+  "type": "MISSILE",
+  "size": "LARGE",
+  "displayArcRadius": 300,
+  "turretSprite": "graphics/weapons/aEP_m_l_blasthammer/tr.png",
+  "turretGlowSprite":"graphics/weapons/aEP_m_l_blasthammer/tr_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_l_blasthammer/hp.png",
+  "hardpointGlowSprite":"graphics/weapons/aEP_m_l_blasthammer/hp_glow.png",
+	"glowColor":[255,151,75,235],
+  #"renderAboveAllWeapons": 0,
+  #Allows missiles to have a higher flight time to allow a bit more maneuvering time while within range, without extending their range
+  "fizzleOnReachingWeaponRange":true,
+  "turretOffsets": [
+    36,#y aixs
+    0,#x aixs
+  
+  ],
+  "turretAngleOffsets": [
+    0,
+  ],
+  "hardpointOffsets": [
+    36,
+    0,
+
+  ],
+  "hardpointAngleOffsets": [
+    0,
+
+  ],
+  "barrelMode": "LINKED",
+  "autocharge": true,
+  "animationType": "GLOW_AND_FLASH",
+    "muzzleFlashSpec": {
+      "length": 1,
+      "spread": 1,
+      "particleSizeMin": 240,
+      "particleSizeRange": 0,
+      "particleDuration": 0.4,
+      "particleCount": 1,
+      "particleColor":  [241,231,221,175]},
+  "textureType": ROUGH,
+  "fireSoundTwo": "aEP_m_l_blasthammer_fire"
+}

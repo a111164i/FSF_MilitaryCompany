@@ -8,7 +8,7 @@
 	"center":[2.5,9],
 	"collisionRadius":12,
 	"collisionClass":"MISSILE_FF",
-  "armingTime":0.5, # safe range count by time
+  "armingTime":0, # safe range count by time
   "noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered
   "fadeTime":0.3, # 熄火后能漂移多久
 	"flameoutTime":0.5,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
@@ -16,6 +16,8 @@
   "reduceDamageWhileFading":false,
   "useProjectileRangeCalculation":true,
 	"passThroughMissiles":false,
+	"noCollisionWhileFading":true,
+  "noDebrisWhenDestroyed": true,
 	#"explosionColor":[233,122,100,50],  # purely visual, will get a white additively blended core on top of this color
 	#"explosionRadius":40, # purely visual
 	"explosionSpec":{"duration":0.0001f,

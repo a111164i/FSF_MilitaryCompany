@@ -5,8 +5,8 @@
   "type": "MISSILE",
   "size": "SMALL",
   "displayArcRadius": 3000,
-  "turretSprite": "graphics/weapons/aEP_harpoon_large/small_tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_harpoon_large/small_hp.png",
+  "turretSprite": "graphics/weapons/aEP_m_l_harpoon/small_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_l_harpoon/small_hp.png",
   "renderHints": [
     RENDER_LOADED_MISSILES
   ],
@@ -44,5 +44,6 @@
       105
     ]
   },
-  "fireSoundTwo": "aEP_harpoon_large_fire"
+  "noShieldImpactSounds":true,
+  "fireSoundTwo": "aEP_m_l_harpoon_fire"
 }

@@ -1,12 +1,16 @@
 package data.missions.aEP_test;
 
+import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.combat.BaseEveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberType;
+import com.fs.starfarer.api.impl.campaign.ids.ShipRoles;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.mission.MissionDefinitionAPI;
 import com.fs.starfarer.api.mission.MissionDefinitionPlugin;
+import combat.util.aEP_ID;
 import data.missions.aEP_MissionUtils;
 
 
@@ -60,6 +64,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     //驱逐
     api.addToFleet(FleetSide.PLAYER, "aEP_des_lianliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_cengliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_shuishi_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_yangji_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_youjiyan_Def", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_youjiyan_mk2_Def", FleetMemberType.SHIP, "FSF ship", false);
@@ -74,6 +79,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_PD", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Mixed", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_chichao_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
     //特殊
     api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship", false);
@@ -86,6 +92,21 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配
     // Set up the enemy fleet.
+
+    FactionAPI fsf = Global.getSettings().createBaseFaction(aEP_ID.FACTION_ID_FSF);
+
+
+    fsf.getVariantsForRole(ShipRoles.COMBAT_CAPITAL);
+    fsf.getVariantsForRole(ShipRoles.COMBAT_LARGE);
+    fsf.getVariantsForRole(ShipRoles.COMBAT_MEDIUM);
+    fsf.getVariantsForRole(ShipRoles.COMBAT_SMALL);
+
+    fsf.getVariantsForRole(ShipRoles.CARRIER_LARGE);
+    fsf.getVariantsForRole(ShipRoles.CARRIER_MEDIUM);
+    fsf.getVariantsForRole(ShipRoles.CARRIER_SMALL);
+
+    fsf.getVariantsForRole(ShipRoles.COMBAT_FREIGHTER_LARGE);
+
     api.addToFleet(FleetSide.ENEMY, "dominator_Support", FleetMemberType.SHIP, "VT VirtualTarget 01", true);
 
     //设定地图的尺寸和贴图和里面的星云，陨石，占领点，直接粘的一个原版战役

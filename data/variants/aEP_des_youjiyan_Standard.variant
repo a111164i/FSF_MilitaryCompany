@@ -1,31 +1,39 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 0,
-    "fluxVents": 1,
+    "fluxCapacitors": 11,
+    "fluxVents": 11,
     "goalVariant": true,
     "hullId": "aEP_des_youjiyan",
-    "hullMods": [
-        "efficiency_overhaul",
-        "expanded_cargo_holds",
-        "heavyarmor",
-        "reinforcedhull"
-    ],
+    "hullMods": ["aEP_RapidDissipate"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_youjiyan_Standard",
     "weaponGroups": [
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "vulcan",
-                "WS0003": "aEP_b_s_pom"
+                "WS0006": "aEP_b_m_k125",
+                "WS0028": "aEP_b_m_k125"
             }
         },
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0002": "vulcan"}
+            "weapons": {
+                "WS0004": "aEP_b_s_h37",
+                "WS0005": "aEP_b_s_h37"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0002": "aEP_b_s_630",
+                "WS0003": "aEP_b_s_630"
+            }
         }
-    ]
+    ],
+    "wings": ["aEP_ftr_sup_guardian_wing"]
 }

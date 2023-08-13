@@ -14,17 +14,17 @@ class aEP_DamperBoost : BaseShipSystemScript() {
   companion object{
     val ROF_MAG = HashMap<String,Float>()
     init {
-      ROF_MAG["aEP_fga_raoliu"] = 50f;
-      ROF_MAG["aEP_des_youjiyan"] = 50f;
-      ROF_MAG["aEP_des_youjiyan_mk2"] = 50f;
-      ROF_MAG["aEP_des_lianliu"] = 50f;
+      ROF_MAG["aEP_fga_raoliu"] = 0f;
+      ROF_MAG["aEP_des_youjiyan"] = 0f;
+      ROF_MAG["aEP_des_youjiyan_mk2"] = 0f;
+      ROF_MAG["aEP_des_lianliu"] = 0f;
     }
     val EFFECT_ARMOR_FLAT_BONUS = HashMap<String,Float>()
     init {
-      EFFECT_ARMOR_FLAT_BONUS["aEP_fga_raoliu"] = 300f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan"] = 300f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan_mk2"] = 300f;
-      EFFECT_ARMOR_FLAT_BONUS["aEP_des_lianliu"] = 300f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_fga_raoliu"] = 250f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan"] = 250f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_des_youjiyan_mk2"] = 250f;
+      EFFECT_ARMOR_FLAT_BONUS["aEP_des_lianliu"] = 250f;
     }
     val EFFECT_ARMOR_PERCENT_BONUS = HashMap<String,Float>()
     init {
@@ -33,12 +33,19 @@ class aEP_DamperBoost : BaseShipSystemScript() {
       EFFECT_ARMOR_PERCENT_BONUS["aEP_des_youjiyan_mk2"] = 50f;
       EFFECT_ARMOR_PERCENT_BONUS["aEP_des_lianliu"] = 50f;
     }
-    val ARMOR_DAMAGE_TAKEN_MULT = HashMap<String,Float>()
+    val ARMOR_DAMAGE_REDUCE_MULT = HashMap<String,Float>()
     init {
-      ARMOR_DAMAGE_TAKEN_MULT["aEP_fga_raoliu"] = 0.5f;
-      ARMOR_DAMAGE_TAKEN_MULT["aEP_des_youjiyan"] = 0.5f;
-      ARMOR_DAMAGE_TAKEN_MULT["aEP_des_youjiyan_mk2"] = 0.5f;
-      ARMOR_DAMAGE_TAKEN_MULT["aEP_des_lianliu"] = 0.5f;
+      ARMOR_DAMAGE_REDUCE_MULT["aEP_fga_raoliu"] = 0.25f
+      ARMOR_DAMAGE_REDUCE_MULT["aEP_des_youjiyan"] = 0.25f
+      ARMOR_DAMAGE_REDUCE_MULT["aEP_des_youjiyan_mk2"] = 0.25f
+      ARMOR_DAMAGE_REDUCE_MULT["aEP_des_lianliu"] = 0.25f
+    }
+    val HULL_DAMAGE_REDUCE_MULT = HashMap<String,Float>()
+    init {
+      HULL_DAMAGE_REDUCE_MULT["aEP_fga_raoliu"] = 0.667f
+      HULL_DAMAGE_REDUCE_MULT["aEP_des_youjiyan"] = 0.667f
+      HULL_DAMAGE_REDUCE_MULT["aEP_des_youjiyan_mk2"] = 0.667f
+      HULL_DAMAGE_REDUCE_MULT["aEP_des_lianliu"] = 0.667f
     }
 
     const val SMALL_FOLD_BRIDGE_SHELL = "aEP_small_fold_bridgeshell"
@@ -99,14 +106,19 @@ class aEP_DamperBoost : BaseShipSystemScript() {
 
         ship.setJitter(this,DAMPER_JITTER_COLOR,1f-level,1,0f)
       }
-      if (w.spec.weaponId == SMALL_FOLD_BRIDGE_SHELL) anima.setMoveToLevel(effectLevel)
+      if (w.spec.weaponId == SMALL_FOLD_BRIDGE_SHELL){
+        anima.decoMoveController.range = 8f
+        anima.decoMoveController.speed = 2f
+        anima.setMoveToLevel(effectLevel)
+      }
     }
 
     //modify here
-    val RofPercent = ROF_MAG[ship.hullSpec.hullId]?: 0f
-    val damageTakenMult = ARMOR_DAMAGE_TAKEN_MULT[ship.hullSpec.hullId]?: 1f
-    val armorFlat = EFFECT_ARMOR_FLAT_BONUS[ship.hullSpec.hullId]?: 0f
-    val armorPercent = (EFFECT_ARMOR_PERCENT_BONUS[ship.hullSpec.hullId]?: 0f)
+    val RofPercent = ROF_MAG[ship.hullSpec.baseHullId]?: 0f
+    val damageTakenMult = 1f - (ARMOR_DAMAGE_REDUCE_MULT[ship.hullSpec.baseHullId]?: 0f)
+    val damageHullTakenMult = 1f - (HULL_DAMAGE_REDUCE_MULT[ship.hullSpec.baseHullId]?: 0f)
+    val armorFlat = EFFECT_ARMOR_FLAT_BONUS[ship.hullSpec.baseHullId]?: 0f
+    val armorPercent = (EFFECT_ARMOR_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 0f)
     val toAdd = armorFlat + (ship.hullSpec?.armorRating?:0f) * (armorPercent/100f)
 
 
@@ -115,7 +127,7 @@ class aEP_DamperBoost : BaseShipSystemScript() {
 
     stats.effectiveArmorBonus.modifyFlat(id, toAdd * effectLevel)
     stats.armorDamageTakenMult.modifyMult(id, damageTakenMult)
-    stats.hullDamageTakenMult.modifyMult(id, damageTakenMult)
+    stats.hullDamageTakenMult.modifyMult(id, damageHullTakenMult)
     stats.weaponDamageTakenMult.modifyMult(id, damageTakenMult)
     stats.engineDamageTakenMult.modifyMult(id, damageTakenMult)
 
@@ -145,19 +157,23 @@ class aEP_DamperBoost : BaseShipSystemScript() {
         w.animation.frame = 0
         anima.setMoveToLevel(0f)
       }
-      if (w.spec.weaponId == SMALL_FOLD_BRIDGE_SHELL) anima.setMoveToLevel(0f)
+      if (w.spec.weaponId == SMALL_FOLD_BRIDGE_SHELL) {
+        anima.decoMoveController.range = 8f
+        anima.decoMoveController.speed = 2f
+        anima.setMoveToLevel(0f)
+      }
     }
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): StatusData? {
     if (index == 0) {
-      val armorFlat = EFFECT_ARMOR_FLAT_BONUS[ship?.hullSpec?.hullId]?: 0f
-      val armorPercent = (EFFECT_ARMOR_PERCENT_BONUS[ship?.hullSpec?.hullId]?: 0f)
-      val toAdd = armorFlat + (ship?.hullSpec?.armorRating?:0f) *  (armorPercent/100f)
+      val armorFlat = EFFECT_ARMOR_FLAT_BONUS[ship.hullSpec?.baseHullId]?: 0f
+      val armorPercent = (EFFECT_ARMOR_PERCENT_BONUS[ship.hullSpec?.baseHullId]?: 0f)
+      val toAdd = armorFlat + (ship.hullSpec?.armorRating?:0f) *  (armorPercent/100f)
       return StatusData(aEP_DataTool.txt("aEP_LADamper01") + (toAdd * effectLevel).toInt(), false)
     }else if (index == 1) {
-      val toAdd = ROF_MAG[ship.hullSpec.hullId?:""]?:0f
-      return StatusData(aEP_DataTool.txt("aEP_LADamper02") + (toAdd * effectLevel).toInt()+"%", false)
+      val toAdd = ROF_MAG[ship.hullSpec.baseHullId?:""]?:0f
+      //return StatusData(aEP_DataTool.txt("aEP_LADamper02") + (toAdd * effectLevel).toInt()+"%", false)
     }
     return null
   }

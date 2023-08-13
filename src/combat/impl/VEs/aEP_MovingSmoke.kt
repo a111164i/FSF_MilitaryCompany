@@ -5,8 +5,11 @@ import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.ViewportAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.impl.aEP_BaseCombatEffect
+import combat.util.aEP_Render
 import combat.util.aEP_Tool
+import data.scripts.hullmods.aEP_MissilePlatform
 import org.lazywizard.lazylib.MathUtils
+import org.lwjgl.opengl.Display
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
@@ -91,18 +94,20 @@ class aEP_MovingSmoke : aEP_BaseCombatEffect{
   }
 
   override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
+
     //render会在 advance之前被调用
     GL11.glEnable(GL11.GL_BLEND)
     GL11.glEnable(GL11.GL_TEXTURE_2D)
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
     GL11.glBindTexture(GL11.GL_TEXTURE_2D, Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
 
+
     //begin
     GL11.glBegin(GL11.GL_QUADS)
-    val red = changingColor.red
-    val green = changingColor.green
-    val blue = changingColor.blue
-    val alpha = changingColor.alpha
+    var red = changingColor.red
+    var green = changingColor.green
+    var blue = changingColor.blue
+    var alpha = changingColor.alpha
 
     GL11.glColor4ub(red.toByte(), green.toByte(), blue.toByte(), alpha.toByte())
     val X = usingX

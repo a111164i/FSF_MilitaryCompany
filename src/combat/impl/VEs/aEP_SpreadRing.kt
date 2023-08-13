@@ -5,7 +5,9 @@ import com.fs.starfarer.api.combat.ViewportAPI
 import com.fs.starfarer.api.util.Noise
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_ColorTracker
+import combat.util.aEP_Render
 import combat.util.aEP_Tool
+import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.opengl.GL11
@@ -16,6 +18,7 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
   var spreadSpeed = 0f
   var width = 0f
   var ringRadius = 0f
+  var ringEdgeRad = 10f
   var startRadius = 0f
   var endRadius = 0f
   var minRadius = 0f
@@ -52,8 +55,9 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
     super.advance(amount)
     ringRadius = MathUtils.clamp(ringRadius + spreadSpeed * amount, 0f, 99999f)
     val toRenderRadius = MathUtils.clamp(ringRadius, 10f, 99999f)
+
     if (toRenderRadius - width > endRadius || toRenderRadius <= 10f && spreadSpeed <= 0) cleanup()
-    if (endColor.alpha < 1f && initColor.alpha < 1f) cleanup()
+    if (endColor.alpha < 2 && initColor.alpha < 2) cleanup()
 
 
     //change center if anchor != null
@@ -66,46 +70,31 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
 
 
     //改变颜色
-    initColor!!.advance(amount)
+    initColor.advance(amount)
     endColor.advance(amount)
 
     advanceImpl(amount)
   }
 
   override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
+    aEP_Render.openGL11CombatLayerRendering()
+
     //calculate num of vertex
     val toRenderRadius = MathUtils.clamp(ringRadius, 10f, 99999f)
     val numOfVertex = MathUtils.clamp(precision + ((toRenderRadius + width) / 5f).toInt(), precision, 560)
 
-    //使用模板缓存的步骤一般如下：
-    //开启模板测试
-    //绘制模板，写入模板缓冲(不写入color buffer和depth buffer)
-    //关闭模板缓冲写入
-    //接着我们利用模板缓冲中的值决定是丢弃还是保留后续绘图中的片元。
-
-    //当启动 模板测试时，
-    //通过模板测试的片段像素点会被替换到颜色缓冲区中，从而显示出来，
-    //未通过的则不会保存到颜色缓冲区中，从而达到了过滤的功能
-
-    //glPushAttrib()把绘制前的状态，推入栈保存起来，接下来要动参数了
-    GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS)
-    //开启模板处理
-    GL11.glEnable(GL11.GL_STENCIL_TEST)
-    //画模板测试
-    drawStencilCircle(center, numOfVertex.toFloat(), endRadius)
-
-    //第二轮设置完毕后，开始画实际渲染的圆环
+    //开始画实际渲染的圆环
     GL11.glEnable(GL11.GL_BLEND)
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
-    GL11.glDisable(GL11.GL_TEXTURE_2D)
+    //GL11.glDisable(GL11.GL_TEXTURE_2D)
     GL11.glBegin(GL11.GL_QUAD_STRIP)
     for (i in 0..numOfVertex) {
-      val innerR = Math.max(minRadius, toRenderRadius - width)
-      val outerR = Math.min(toRenderRadius, endRadius)
-      val pointNear = Vector2f(center.x + innerR * FastTrig.cos(2f * Math.PI * i / numOfVertex).toFloat(), center.y + innerR * FastTrig.sin(2f * Math.PI * i / numOfVertex).toFloat())
-      val pointFar = Vector2f(center.x + outerR * FastTrig.cos(2 * Math.PI * i / numOfVertex).toFloat(), center.y + outerR * FastTrig.sin(2 * Math.PI * i / numOfVertex).toFloat())
-      GL11.glColor4ub(endColor.red.toInt().toByte(), endColor.green.toInt().toByte(), endColor.blue.toInt().toByte(), endColor.alpha.toInt().toByte())
+      val innerR = (toRenderRadius - width).coerceAtLeast(minRadius)
+      val outerR = toRenderRadius.coerceAtLeast(minRadius)
+      val pointNear = getExtendedLocationFromPoint(center, 360f * i / numOfVertex,  innerR)
+      val pointFar = getExtendedLocationFromPoint(center, 360f * i / numOfVertex,  outerR)
 
+      GL11.glColor4ub(endColor.red.toInt().toByte(), endColor.green.toInt().toByte(), endColor.blue.toInt().toByte(), endColor.alpha.toInt().toByte())
       GL11.glVertex2f(pointNear.x, pointNear.y)
       GL11.glColor4ub(initColor.red.toInt().toByte(), initColor.green.toInt().toByte(), initColor.blue.toInt().toByte(), initColor.alpha.toInt().toByte())
       GL11.glVertex2f(pointFar.x, pointFar.y)
@@ -113,26 +102,32 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
     }
     GL11.glEnd()
 
-    //关闭模板测试
-    GL11.glDisable(GL11.GL_STENCIL_TEST)
-    //把glStencilFunc的设置还原到绘制之前
-    GL11.glStencilFunc(GL11.GL_ALWAYS, 0, 255)
+    //画外圈，等于厚度+10，做外圈的模糊边
+    GL11.glBegin(GL11.GL_QUAD_STRIP)
+    for (i in 0..numOfVertex) {
+      val innerR = toRenderRadius
+      val outerR = toRenderRadius + ringEdgeRad
+      val pointNear = getExtendedLocationFromPoint(center, 360f * i / numOfVertex,  innerR)
+      val pointFar = getExtendedLocationFromPoint(center, 360f * i / numOfVertex,  outerR)
+
+      GL11.glColor4ub(initColor.red.toInt().toByte(), initColor.green.toInt().toByte(), initColor.blue.toInt().toByte(), initColor.alpha.toInt().toByte())
+      GL11.glVertex2f(pointNear.x, pointNear.y)
+
+      GL11.glColor4ub(endColor.red.toInt().toByte(), endColor.green.toInt().toByte(), endColor.blue.toInt().toByte(), endColor.alpha.toInt().toByte())
+      GL11.glVertex2f(pointFar.x, pointFar.y)
+      //aEP_Tool.addDebugText("1",point);
+    }
+    GL11.glEnd()
+
     //还原参数到绘制之前的状态
-    GL11.glPopAttrib()
+    aEP_Render.closeGL11()
   }
 
-  @JvmName("setMinRadius1")
-  fun setMinRadius(minRadius: Float) {
-    this.minRadius = MathUtils.clamp(minRadius, 10f, 99999f)
+
+  override fun getRenderRadius(): Float {
+    return endRadius + ringEdgeRad
   }
 
-  @JvmName("getRadius1")
-  fun getRadius(): Float {
-    var level = MathUtils.clamp(time / lifeTime, 0f, 1f)
-    level = -(level*level -1f)
-    val radiusChange = spreadSpeed * lifeTime * level
-    return MathUtils.clamp(ringRadius + radiusChange, 10f, 99999f)
-  }
 
 
 
@@ -154,7 +149,7 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
       //  123     010     020
       //  456  &  101  =  406
       //  789     001     009
-      //          mask
+      //          mask = 010 101 001 =
       // mask指向一个长度为128字节的空间，
       // 它表示了一个32*32的矩形应该如何镂空。
       // 其中：第一个字节表示了最左下方的从左到右（也可以是从右到左，这个可以修改）

@@ -2,7 +2,7 @@
     "displayName": "",
     "fluxCapacitors": 4,
     "fluxVents": 6,
-    "goalVariant": true,
+    "goalVariant": false,
     "hullId": "glimmer",
     "hullMods": ["safetyoverrides"],
     "permaMods": [],

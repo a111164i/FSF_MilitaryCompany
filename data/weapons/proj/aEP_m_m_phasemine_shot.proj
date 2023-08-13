@@ -1,0 +1,65 @@
+{
+	"id":"aEP_m_m_phasemine_shot",
+	"specClass":"missile",	
+	"missileType":"PHASE_MINE",
+	"sprite":"graphics/weapons/aEP_m_m_phasemine/proj.png",
+	"glowSprite":"graphics/weapons/aEP_m_m_phasemine/phase_glow.png",
+	"glowColor":[190,60,255,155],
+	"size":[96,96],	
+	"center":[48,48],	
+	"collisionRadius":20,
+	"collisionClass":"NONE",
+	#"onHitEffect":"",
+  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+
+  "armingTime": 999,
+	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"fadeTime":0.1, # fadeout duration
+	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"explosionColor":[148,100,50,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":400, # purely visual
+	"engineSpec":{"turnAcc":180,
+				  "turnRate":60,
+				  "acc":50,
+				  "dec":50},
+	"behaviorSpec":{
+		"behavior":"PROXIMITY_FUSE",
+		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+		# 使用一个手动引信，使用vsMissileRange无法小于普通range，会被导弹大量触发
+		"range":0,
+		"vsMissileRange":0,
+		"slowToMaxSpeed":true,
+		# delay为0就不读取后面的数据了
+		"delay":0.01,
+		"pingSound":"",
+		# 用来模拟脱离相位的闪一下
+		"pingColor":[190,60,255,255],
+		"pingRadius":200,
+		"pingDuration":0.05,
+		"windupSound":"",
+		"windupDelay":0,
+		"explosionSpec":{
+			"duration":0.0001f,
+			"radius":0,
+			"coreRadius":0, # full damage within core radius
+			"collisionClass":NONE,
+			"collisionClassByFighter":NONE,
+			"particleSizeMin":0,
+			"particleSizeRange":0,
+			"particleDuration":0,
+			"particleCount":0,
+			"particleColor":[0,0,0,0],
+			"explosionColor":[190,60,255,255],
+			"useDetailedExplosion":true,
+			"useDetailedExplosionColorAlpha":true,
+			"detailedExplosionRadius":0,
+			"detailedExplosionFlashRadius":250,
+			"detailedExplosionFlashDuration":0.2,
+			"detailedExplosionFlashColorFringe":[190,60,255,255],
+			"detailedExplosionFlashColorCore":[190,60,255,255],
+			"sound":""
+		},
+	}
+}
+
+

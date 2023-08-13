@@ -12,6 +12,7 @@
   "shieldRadius": 78,
   "viewOffset": 0,
   "builtInMods": [
+    "aEP_ProjectileDenialShield",
     "aEP_MaoDianShield"
   ],
   "builtInWeapons": {
@@ -82,27 +83,27 @@
   ],
   "engineSlots": [
     {
-      "location": [-22, -0],
-      "length": 24.5,
-      "width": 14,
+      "location": [-20, -0],
+      "length": 53,
+      "width": 17,
       "angle": 180,
-      "contrailSize": 14,
+      "contrailSize": 17,
       "style": "FSF_MAIN"
     },
     {
-      "location": [-18.5, 12],
-      "length": 20.5,
-      "width": 7,
-      "angle": 180,
-      "contrailSize": 7,
+      "location": [-18.5, 12.5],
+      "length": 35.30677,
+      "width": 8.872887,
+      "angle": 160,
+      "contrailSize": 8.872887,
       "style": "FSF_MAIN"
     },
     {
-      "location": [-18.5, -12],
-      "length": 20.5,
-      "width": 7,
-      "angle": -180,
-      "contrailSize": 7,
+      "location": [-18.5, -12.5],
+      "length": 35.30677,
+      "width": 8.872887,
+      "angle": -160,
+      "contrailSize": 8.872887,
       "style": "FSF_MAIN"
     }
   ],

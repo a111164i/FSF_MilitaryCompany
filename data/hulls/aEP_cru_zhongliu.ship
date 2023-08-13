@@ -12,7 +12,8 @@
   "shieldRadius": 145,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation"
+    "aEP_MarkerDissipation",
+    "targetingunit"
   ],
   "builtInWeapons": {
     "WS0012": "aEP_marker",

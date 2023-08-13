@@ -1,8 +1,8 @@
 package combat.util;
 
 import combat.impl.aEP_BaseCombatEffect;
-import data.scripts.util.MagicAnim;
 import org.lazywizard.lazylib.MathUtils;
+import org.magiclib.util.MagicAnim;
 
 public class aEP_Blinker extends aEP_BaseCombatEffect
 {

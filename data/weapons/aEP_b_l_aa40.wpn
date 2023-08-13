@@ -38,22 +38,16 @@
     0
   ],
   "barrelMode": "DUAL",
-  "animationType": "MUZZLE_FLASH",
   "autocharge": true,
   "separateRecoilForLinkedBarrels":"false",
-  "muzzleFlashSpec": {
-    "length": 45,
-    "spread": 16,
-    "particleSizeMin": 50,
-    "particleSizeRange": 25,
-    "particleDuration": 0.1,
-    "particleCount": 8,
-    "particleColor": [
-      225,
-      255,
-      205,
-      200
-    ]
-  },
-  "fireSoundTwo": "aEP_kinetic_flak_hit01"
+  "animationType": "MUZZLE_FLASH",
+   "muzzleFlashSpec": {
+     "length": 1,
+     "spread": 1,
+     "particleSizeMin": 200,
+     "particleSizeRange": 100,
+     "particleDuration": 0.15,
+     "particleCount": 1,
+     "particleColor":  [255,240,160,158]},
+  "fireSoundTwo": "aEP_b_l_aa40_fire"
 }

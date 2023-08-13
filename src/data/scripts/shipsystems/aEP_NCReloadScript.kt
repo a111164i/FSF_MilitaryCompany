@@ -19,8 +19,8 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
 
 
   companion object {
-    const val RELOAD_RATE_ADD = 0.15f
-    const val COOLDOWN_REDUCE = 16f
+    const val RELOAD_RATE_ADD = 0.12f
+    const val COOLDOWN_REDUCE = 15f
 
     const val GLOW_INTERVAL = 0.05f
     const val GLOW_TIME = 0.5f
@@ -100,7 +100,7 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
   }
 
   class RefresherOrb internal constructor(var target: CombatEntityAPI) : aEP_BaseCombatEffect() {
-    var length: Float
+    var length: Float = -target.collisionRadius
     var advanceDist: Float
     var glowTimer = GLOW_INTERVAL
     override fun advance(amount: Float) {
@@ -108,9 +108,9 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
       if (length > target.collisionRadius * 3f) {
         cleanup()
       }
-      glowTimer = glowTimer + amount
+      glowTimer += amount
       if (glowTimer > GLOW_INTERVAL) {
-        glowTimer = glowTimer - GLOW_INTERVAL
+        glowTimer -= GLOW_INTERVAL
         var xLength = length
         var yLength = target.collisionRadius
         while (yLength >= -target.collisionRadius) {
@@ -142,7 +142,6 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
     }
 
     init {
-      length = -target.collisionRadius
       val num = (target.collisionRadius * 2f / GLOW_SIZE_INTERVAL).toInt()
       advanceDist = GLOW_SIZE_INTERVAL + target.collisionRadius * 2f % GLOW_SIZE_INTERVAL / num
     }

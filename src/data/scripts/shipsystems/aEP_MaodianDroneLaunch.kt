@@ -4,12 +4,13 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import combat.util.aEP_Tool
 import data.scripts.weapons.aEP_cru_maodian_missile
 import org.lwjgl.util.vector.Vector2f
 
 class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
   companion object{
-    const val SYSTEM_RANGE = 1600f
+    const val SYSTEM_RANGE = 2000f
   }
 
   var targetLoc:Vector2f? = null
@@ -40,4 +41,13 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
     }
   }
 
+  override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+    val dist = aEP_Tool.checkTargetWithinSystemRange(ship, ship.mouseTarget, SYSTEM_RANGE)
+    //return dist<=0f
+    return true
+  }
+
+  override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
+    return aEP_Tool.getInfoTextWithinSystemRange(ship, ship.mouseTarget, SYSTEM_RANGE)
+  }
 }

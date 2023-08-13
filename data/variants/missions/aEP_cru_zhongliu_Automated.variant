@@ -1,0 +1,44 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 10,
+    "fluxVents": 21,
+    "goalVariant": true,
+    "hullId": "aEP_cru_zhongliu",
+    "hullMods": [
+        "aEP_BurstDissipate",
+        "aEP_HotLoader"
+    ],
+    "modules": [{"MD01": "aEP_cru_zhongliu_armor_Standard"}],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstructAi",
+    ],
+    "tags":["unboardable"],
+    "sMods": [],
+    "variantId": "aEP_cru_zhongliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_l_aa40",
+                "WS0002": "aEP_b_l_aa40"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {"WS0003": "flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "vulcan",
+                "WS0005": "vulcan",
+                "WS0006": "vulcan",
+                "WS0011": "vulcan"
+            }
+        }
+    ]
+}

@@ -12,9 +12,9 @@
   "shieldRadius": 123,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
-    "aEP_Module",
-    "always_detaches",
+    "reduced_explosion",
+	  "always_detaches",
+	  "aEP_Module",
     "hardenedshieldemitter",
     "advancedshieldemitter"
   ],

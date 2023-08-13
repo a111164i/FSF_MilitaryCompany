@@ -1,6 +1,7 @@
 package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.combat.CollisionClass
 import com.fs.starfarer.api.combat.DamageType
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
@@ -10,6 +11,7 @@ import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
+import combat.util.aEP_Combat
 import combat.util.aEP_DataTool
 import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_system.FortressShieldStats
@@ -22,14 +24,14 @@ class aEP_CrowdControl : BaseShipSystemScript() {
   companion object{
     //REDUCE_MULT 是 1-x
     const val DAMAGE_REDUCE_MULT = 0.5f
-    const val BONUS_ARC = -60f
+    const val BONUS_ARC = -0f
 
     //REDUCE_MULT 是 1-x
-    const val SPEED_REDUCE_MULT = 0.75f
-    const val RANGE = 600f
+    const val SPEED_REDUCE_MULT = 0.5f
+    const val RANGE = 700f
     const val ARC = 60f
     const val ID = "aEP_CrowdControl"
-    var EMP_COLOR = Color(195,125,255,255)
+    var EMP_COLOR = Color(105,85,255,255)
     var EMP_COLOR2 = Color(255,175,255,255)
 
 
@@ -68,6 +70,8 @@ class aEP_CrowdControl : BaseShipSystemScript() {
       var dist = Float.MAX_VALUE
       for(e in AIUtils.getNearbyEnemies(ship, RANGE)){
         if(e.isFighter || e.isDrone || e.isStationModule) continue
+        if(!e.isTargetable) continue
+        if(e.isPhased || e.collisionClass == CollisionClass.NONE) continue
         val shortestRotate = MathUtils.getShortestRotation(ship.facing, VectorUtils.getAngle(ship.location, e.location))
         if(shortestRotate > ARC/2f || shortestRotate < -ARC/2f) continue
         val d = MathUtils.getDistance(ship, e)
@@ -86,24 +90,17 @@ class aEP_CrowdControl : BaseShipSystemScript() {
           DamageType.ENERGY,10f,10f,
           RANGE + nearest.collisionRadius,
           "tachyon_lance_emp_impact",
-           12f,
+           30f,
           EMP_COLOR, EMP_COLOR2)
 
         //如果已经有减速buff，刷新时间
-        if(nearest.customData.containsKey(ID) ){
-          (nearest.customData[ID] as SlowEffect).time = 0f
-        //如果没有，上buff，放进customData，注意必须使用setCustomData()
-        }else{
-          val slowBuff = SlowEffect(2f, nearest, SPEED_REDUCE_MULT)
-          nearest.setCustomData(ID, slowBuff)
-          aEP_CombatEffectPlugin.addEffect(slowBuff)
-        }
-
+        aEP_Combat.AddStandardSlow(1f, SPEED_REDUCE_MULT, 0f, nearest)
 
       }
 
     }
   }
+
 
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
     //复制粘贴
@@ -130,44 +127,4 @@ class aEP_CrowdControl : BaseShipSystemScript() {
   }
 
 
-  internal class SlowEffect(lifetime : Float, val target:ShipAPI, val maxSlowReduceMult:Float)
-    : aEP_BaseCombatEffect(lifetime, target) {
-
-    val checkTimer = IntervalUtil(0.25f,0.25f)
-
-    init {
-      //target.mutableStats.maxTurnRate.modifyMult(ID,maxSlowMult)
-      //target.mutableStats.turnAcceleration.modifyMult(ID,maxSlowMult)
-
-      target.mutableStats.maxSpeed.modifyMult(ID,1f - maxSlowReduceMult)
-      //target.mutableStats.acceleration.modifyMult(ID,maxSlowMult)
-      //target.mutableStats.deceleration.modifyMult(ID,maxSlowMult)
-
-    }
-
-    override fun advanceImpl(amount: Float) {
-      checkTimer.advance(amount)
-      if(checkTimer.intervalElapsed()){
-        //target.mutableStats.maxTurnRate.modifyMult(ID,maxSlowMult)
-        //target.mutableStats.turnAcceleration.modifyMult(ID,maxSlowMult)
-
-        target.mutableStats.maxSpeed.modifyMult(ID,1f - maxSlowReduceMult * (lifeTime-time)/lifeTime)
-        //target.mutableStats.acceleration.modifyMult(ID,maxSlowMult)
-        //target.mutableStats.deceleration.modifyMult(ID,maxSlowMult)
-      }
-    }
-
-    override fun readyToEnd() {
-      if(target.customData.containsKey(ID)){
-        target.customData.remove(ID)
-      }
-
-      target.mutableStats.maxTurnRate.unmodify(ID)
-      target.mutableStats.turnAcceleration.unmodify(ID)
-
-      target.mutableStats.maxSpeed.unmodify(ID)
-      target.mutableStats.acceleration.unmodify(ID)
-      target.mutableStats.deceleration.unmodify(ID)
-    }
-  }
 }

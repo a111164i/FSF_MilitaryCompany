@@ -17,7 +17,9 @@
   ],
   "builtInWeapons": {
     "MAIN": "aEP_cru_pingding_main",
-    "WS0001": "aEP_marker"
+    "WS0001": "aEP_marker",
+    "WS0005": "aEP_cru_pingding_lidardish",
+    "WS0009": "aEP_cru_pingding_lidardish"
   },
   "weaponSlots": [
     {
@@ -119,6 +121,24 @@
       "arc": 0,
       "angle": 160,
       "locations": [-94, 75]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [131.5, -48]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": -0,
+      "locations": [131.5, -9]
     }
   ],
   "engineSlots": [

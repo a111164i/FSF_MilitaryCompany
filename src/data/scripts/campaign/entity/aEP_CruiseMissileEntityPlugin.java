@@ -27,8 +27,10 @@ import java.util.Map;
 
 import static combat.util.aEP_DataTool.txt;
 
-public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
-{
+public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin {
+
+  public static final String MEMORY_KEY = "$aEP_ExchangePlayerFleet";
+  public static final String MEMORY_KEY2 = "$aEP_SpawnBattle";
   private static final float CR_REDUCE_PERCENT  = 0.25f;
 
   String missileVariantId;
@@ -94,13 +96,18 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     if (targetFleet != null) {
       angleSpeed = flyToLoc(token.getLocation(), targetFleet.getLocation());
       if (MathUtils.getDistance(token.getLocation(), targetFleet.getLocation()) < targetFleet.getRadius()) {
-        if(targetFleet != Global.getSector().getPlayerFleet()){
-          spawnBattle(missileVariantId);
-        }else {
-          spawnBattleToPlayer(missileVariantId);
+        //只有在全局不存在key时，才会触发战斗，防止连续在同一帧触发引起bug，无论时对敌还是对我
+        if(!Global.getSector().getMemoryWithoutUpdate().contains(MEMORY_KEY2)){
+          //触发后，把key加入memory，持续0.005天
+          //触发战斗时立刻暂停生涯
+          Global.getSector().getMemoryWithoutUpdate().set(MEMORY_KEY2,true,0.005f);
+          if(targetFleet != Global.getSector().getPlayerFleet()){
+            spawnBattle(missileVariantId);
+          }else {
+            spawnBattleToPlayer(missileVariantId);
+          }
+          token.setExpired(true);
         }
-
-        token.setExpired(true);
       }
     }
     else {
@@ -158,7 +165,7 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
    */
   @Override
   public float getRenderRange() {
-    return 100000;
+    return 1000f;
   }
 
   @Override
@@ -284,6 +291,9 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     context.fightToTheLast = true;
     Global.getSector().getCampaignUI().startBattle(context);
 
+    //进入战斗后强制暂停生涯
+    Global.getSector().setPaused(false);
+
     //加入监听器，战后消除导弹舰队
     Global.getSector().addScript(new DespawnMissileFleet(missileFleet));
 
@@ -291,14 +301,17 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
   }
 
   class ExchangePlayerFleet implements EveryFrameScript {
-    //toExchange是待会换回来的舰队，也就是存起来的原正常玩家舰队
     CampaignFleetAPI toExchange;
-    float supply;
     boolean shouldEnd = false;
 
-    ExchangePlayerFleet(CampaignFleetAPI toExchange) {
-      this.toExchange = toExchange;
-      this.supply = toExchange.getCargo().getSupplies();
+    ExchangePlayerFleet(CampaignFleetAPI playerFleet) {
+      //只会同时存在一个交换舰队的类，如果KEY已经存在，就不要加入
+      if(Global.getSector().getMemoryWithoutUpdate().contains(MEMORY_KEY)){
+        shouldEnd = true;
+      }else {
+        Global.getSector().getMemoryWithoutUpdate().set(MEMORY_KEY, 1f);
+        toExchange = playerFleet;
+      }
     }
 
 
@@ -316,6 +329,7 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     //在刚刚进入战斗时，生涯依然会持续运行一段小时间，直到战斗完全初始化完毕，此时会持续把 sector暂停
     @Override
     public void advance(float amount) {
+      if(shouldEnd) return;
       if(Global.getSector().getCampaignUI() == null) return;
 
       //持续尝试生成dialog,当对话框成功弹出，则交换回舰队
@@ -333,10 +347,11 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
             }
           }
 
+          //交换舰队，同时移除KEY
           CampaignFleetAPI original = Global.getSector().getPlayerFleet();
           Global.getSector().setPlayerFleet(toExchange);
-          //据说会出现切换舰队把补给吞了的问题，做个保险
-          toExchange.getCargo().addSupplies(supply - toExchange.getCargo().getSupplies());
+          Global.getSector().getMemoryWithoutUpdate().unset(MEMORY_KEY);
+
           Global.getSector().getPlayerFleet().getFleetData().setSyncNeeded();
           original.removeFleetMemberWithDestructionFlash(original.getFlagship());
           original.despawn();
@@ -415,7 +430,6 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
       //做好任务以后可以结束了
       engine.removePlugin(this);
     }
-
 
     @Override
     public void init(CombatEngineAPI engine) {

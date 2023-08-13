@@ -1,7 +1,7 @@
 {
   "id": "aEP_ftr_bom_nuke_bomb",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_ftr_bom_nuke_bomb_shot1",
+  "projectileSpecId": "aEP_ftr_bom_nuke_bomb_shot2",
   "type": "MISSILE",
   "size": "SMALL",
   "everyFrameEffect": "data.scripts.weapons.aEP_NoWhenNotReadyAnimation",
@@ -23,7 +23,25 @@
   ],
   "numFrames":2,	
   "barrelMode": "ALTERNATING",
-  "animationType": "NONE",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+      "particleSizeMin": 48,
+      "particleSizeRange": 24,
+      "cloudParticleCount": 12,
+      "cloudDuration": 2,
+      "cloudRadius": 30,
+      "blowbackParticleCount": 6,
+      "blowbackDuration": 1,
+      "blowbackLength": -20, #散布后能飞多远
+      "blowbackSpread": 10, #初始在多少距离内散布
+      "particleColor": [
+  			250,
+  			255,
+  			245,
+  			65
+      ]
+  },
   "autocharge": true,
- 
+  "noNonShieldImpactSounds":true,
+  "fireSoundTwo":"reaper_fire",
 }

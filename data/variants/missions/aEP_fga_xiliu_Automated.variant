@@ -1,0 +1,46 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 5,
+    "fluxVents": 10,
+    "hullId": "aEP_fga_xiliu",
+    "hullMods": [
+        "aEP_VanguardHull",
+        "automated",
+        "aEP_EmergencyReconstructAi",
+        "heavyarmor",
+        "aEP_EliteShip",
+        "armoredweapons",
+        "autorepair"
+    ],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstructAi"
+    ],
+    "sMods": [],
+    "variantId": "aEP_fga_xiliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_b_s_h37"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "railgun"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "lightmg"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "aEP_b_s_pom",
+                "R01": "aEP_b_s_pom"
+            }
+        }
+    ]
+}

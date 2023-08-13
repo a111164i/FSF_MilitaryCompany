@@ -40,8 +40,8 @@
       "autofire": true,
       "mode": "LINKED",
       "weapons": {
-        "WS0011": "aEP_high_speed_HE",
-        "WS0012": "aEP_high_speed_HE"
+        "WS0011": "aEP_b_m_hv7",
+        "WS0012": "aEP_b_m_hv7"
       }
     },
     {

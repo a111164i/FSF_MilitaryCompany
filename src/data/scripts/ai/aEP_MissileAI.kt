@@ -40,8 +40,10 @@ class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {
   }
 
   open class Status {
-    open fun advance(amount: Float){
+    var time = 0f
 
+    open fun advance(amount: Float){
+      time += amount
     }
   }
 

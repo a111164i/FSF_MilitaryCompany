@@ -1,10 +1,14 @@
 {
     "displayName": "Defense",
-    "fluxCapacitors": 0,
-    "fluxVents": 0,
+    "fluxCapacitors": 10,
+    "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_des_youjiyan",
-    "hullMods": ["heavyarmor"],
+    "hullMods": [
+        "heavyarmor",
+        "aEP_EliteShip",
+        "aEP_ResistShield"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_youjiyan_Def",
@@ -12,23 +16,34 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0028": "railgun"}
+            "weapons": {"WS0004": "lightdualac"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0002": "aEP_e_s_300k"}
+            "weapons": {"WS0006": "aEP_b_m_mb32"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0001": "aEP_b_s_pom"}
+            "weapons": {"WS0028": "flak"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "vulcan"}
+            "weapons": {
+                "WS0003": "aEP_b_s_pom",
+                "WS0005": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_e_s_300k",
+                "WS0002": "aEP_e_s_300k"
+            }
         }
     ],
-    "wings": ["aEP_ftr_icp_gunship_wing"]
+    "wings": ["aEP_ftr_ut_supply_wing"]
 }

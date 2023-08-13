@@ -16,10 +16,10 @@ import java.awt.Color
 class aEP_DamperTanker : BaseShipSystemScript() {
 
   companion object {
-    private const val EFFECT_ARMOR_FLAT_BONUS = 800f
-    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.1f
-    private const val ARMOR_DAMAGE_REDUCE = 0.5f //by mult
-    private const val HULL_DAMAGE_REDUCE = 0.5f
+    private const val EFFECT_ARMOR_FLAT_BONUS = 400f
+    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.5f
+    private const val ARMOR_DAMAGE_REDUCE = 0.33f //by mult
+    private const val HULL_DAMAGE_REDUCE = 0.33f
   }
 
   private var ship: ShipAPI? = null
@@ -71,7 +71,7 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     }
 
     //modify here
-    val toAdd = EFFECT_ARMOR_FLAT_BONUS + (ship?.hullSpec?.armorRating?:100f) * EFFECT_ARMOR_PERCENT_BONUS
+    val toAdd = EFFECT_ARMOR_FLAT_BONUS + (ship.hullSpec?.armorRating?:500f) * EFFECT_ARMOR_PERCENT_BONUS
     stats.effectiveArmorBonus.modifyFlat(id, toAdd * effectLevel)
     stats.armorDamageTakenMult.modifyMult(id, (1f- ARMOR_DAMAGE_REDUCE * effectLevel))
     stats.hullDamageTakenMult.modifyMult(id, (1f- HULL_DAMAGE_REDUCE * effectLevel))
@@ -81,7 +81,7 @@ class aEP_DamperTanker : BaseShipSystemScript() {
   }
 
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
-    ship = (stats?.entity?: return)as ShipAPI
+    ship = (stats.entity?: return)as ShipAPI
     for (w in ship?.allWeapons?:ArrayList()) {
       if (!w.slot.id.startsWith("TOP_LV") && !w.slot.id.startsWith("RL_DECO")) continue
       val anima = w.effectPlugin as aEP_DecoAnimation

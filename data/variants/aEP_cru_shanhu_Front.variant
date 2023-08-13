@@ -31,8 +31,8 @@
       "autofire": false,
       "mode": "ALTERNATING",
       "weapons": {
-        "WS0001": "aEP_vulcan",
-        "WS0002": "aEP_vulcan"
+        "WS0001": "aEP_b_s_630",
+        "WS0002": "aEP_b_s_630"
       }
     },
     {

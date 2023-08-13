@@ -18,8 +18,8 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "aEP_hive_bay",
-                "WS0008": "aEP_hive_bay"
+                "WS0007": "aEP_m_m_expander",
+                "WS0008": "aEP_m_m_expander"
             }
         },
         {

@@ -6,6 +6,7 @@ import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_ID
@@ -18,13 +19,13 @@ import java.awt.Color
 class aEP_FighterLaunch : BaseShipSystemScript() {
 
   companion object{
-    const val RECALL_RANGE = 900f
-    const val DAMAGE_TAKEN_WHEN_SPEEDING = 0.05f
+    const val RECALL_RANGE = 1000f
+    const val DAMAGE_TAKEN_WHEN_SPEEDING = 0.1f
     const val MAX_BUFF_TIME = 4f
     const val RECALL_TIME =1f
 
     public fun isValidWing(wing: FighterWingAPI):Boolean{
-      if(wing.range <2000f) return false
+      if(wing.range < 2000f) return false
       if(wing.spec.isBomber) return false
       return true
     }
@@ -405,7 +406,7 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
         aEP_CombatEffectPlugin.addEffect(Speeding(MAX_BUFF_TIME,fighter,fighter))
 
         //放音乐
-        Global.getSoundPlayer().playSound("aEP_EMP_pike_fire",0.5f,1f,fighter.location,aEP_ID.VECTOR2F_ZERO)
+        Global.getSoundPlayer().playSound("aEP_EMP_pike_fire",0.5f,1f,fighter.location, Misc.ZERO)
 
       } else {
         fighter.isPhased = false

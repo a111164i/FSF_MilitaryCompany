@@ -2,7 +2,7 @@
   "variantId": "aEP_radiant_Standard",
   "hullId": "radiant",
   "displayName": "",
-  "goalVariant": true,
+  "goalVariant": false,
   "fluxCapacitors": 50,
   "fluxVents": 35,
   "quality": 1,

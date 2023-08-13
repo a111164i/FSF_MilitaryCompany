@@ -10,10 +10,14 @@
 	"explosionColor":[141,80,245,225],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":120, # purely visual
 	#"alwaysAccelerate":true,
-	"engineSpec":{"turnAcc":200,
-				  "turnRate":60,
-				  "acc":600,
-				  "dec":400},
+	"noCollisionWhileFading":true,
+  "noDebrisWhenDestroyed": true,
+	"engineSpec":{
+		"turnAcc":200,
+	  "turnRate":60,
+	  "acc":600,
+	  "dec":400
+	},
 	"engineSlots":[
 		{
 			"id":"ES1",

@@ -47,6 +47,7 @@
     "RW07": "aEP_cap_duiliu_main_glow",
     "RW08": "aEP_cap_duiliu_main_glow",
     "WS0013": "aEP_cap_duiliu_gun_cover_l",
+    "WS0014": "aEP_m_s_era3",
     "WS0017": "aEP_cap_duiliu_radar",
     "WS0024": "aEP_marker",
     "WS0025": "aEP_marker",
@@ -54,8 +55,17 @@
     "WS0027": "aEP_marker",
     "WS0028": "aEP_marker",
     "WS0029": "aEP_marker",
+    "WS0033": "aEP_m_s_era3",
     "WS0039": "aEP_cap_duiliu_gun_cover",
-    "WS0046": "aEP_cap_duiliu_gun_cover_r"
+    "WS0041": "aEP_m_s_era3",
+    "WS0042": "aEP_m_s_era3",
+    "WS0043": "aEP_m_s_era3",
+    "WS0044": "aEP_m_s_era3",
+    "WS0045": "aEP_m_s_era3",
+    "WS0046": "aEP_cap_duiliu_gun_cover_r",
+    "WS0047": "aEP_m_s_era3",
+    "WS0048": "aEP_m_s_era3",
+    "WS0049": "aEP_m_s_era3"
   },
   "weaponSlots": [
     {
@@ -735,6 +745,96 @@
       "arc": 15,
       "angle": -0,
       "locations": [38, -84]
+    },
+    {
+      "id": "WS0014",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [138.5, 50]
+    },
+    {
+      "id": "WS0033",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [138.5, -50]
+    },
+    {
+      "id": "WS0041",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [125.5, 50]
+    },
+    {
+      "id": "WS0042",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [125.5, -50]
+    },
+    {
+      "id": "WS0043",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [67, 74]
+    },
+    {
+      "id": "WS0044",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [67, -74]
+    },
+    {
+      "id": "WS0045",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-79.5, 98]
+    },
+    {
+      "id": "WS0047",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-79.5, -98]
+    },
+    {
+      "id": "WS0048",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-106.5, 88]
+    },
+    {
+      "id": "WS0049",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-106.5, -88]
     }
   ],
   "engineSlots": [

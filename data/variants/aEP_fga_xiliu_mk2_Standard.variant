@@ -1,7 +1,7 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 6,
-    "fluxVents": 6,
+    "fluxCapacitors": 2,
+    "fluxVents": 4,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu_mk2",
     "hullMods": [

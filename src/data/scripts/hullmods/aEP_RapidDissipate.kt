@@ -19,7 +19,8 @@ import java.awt.Color
 class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
 
   companion object {
-    const val DAMAGE_CONVERTED = 0.60f
+    const val DAMAGE_CONVERTED = 0.2f
+    const val DAMAGE_CONVERTED_BONUS = 0.4f
     var ID = "aEP_RapidDissipate"
     val FLOAT_TEXT_COLOR = Color(20,100,240) //每次受击都new一个颜色类有点废性能
   }
@@ -27,7 +28,6 @@ class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
   init {
     notCompatibleList.add(aEP_SoftfluxDissipate.ID)
     notCompatibleList.add(aEP_BurstDissipate.ID)
-    notCompatibleList.add(HullMods.SAFETYOVERRIDES)
     haveToBeWithMod.add("aEP_MarkerDissipation")
   }
 
@@ -73,11 +73,23 @@ class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
+    //显示不兼容插件
+    tooltip.addPara("{%s}"+txt("aEP_RapidDissipate01"), 5f, arrayOf(Color.green),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f",DAMAGE_CONVERTED*100f)+"%")
+    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight),
+      aEP_ID.HULLMOD_POINT,
+      showModName(notCompatibleList))
+
 
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
-    image.addPara("{%s}"+txt("aEP_RapidDissipate01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f",DAMAGE_CONVERTED*100f)+"%")
-    tooltip.addImageWithText(5f)
+    //val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
+    tooltip.addPara("{%s}"+txt("aEP_RapidDissipate03"), 5f, arrayOf(Color.green),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f",DAMAGE_CONVERTED*100f)+"%",
+      String.format("%.0f",(DAMAGE_CONVERTED_BONUS + DAMAGE_CONVERTED )*100f)+"%")
+
+    //tooltip.addImageWithText(5f)
 
     //额外灰色说明
     tooltip.addPara(aEP_DataTool.txt("aEP_RapidDissipate02"), Color.gray, 5f)
@@ -96,14 +108,14 @@ class aEP_RapidDissipate internal constructor() : aEP_BaseHullMod() {
       //modifier基础值是1
       var d = damage.modifier.modifiedValue  * damage.damage
       if(damage.type == DamageType.FRAGMENTATION){
-        d /= 4f
+        d /= 3f
       } else if(damage.type == DamageType.HIGH_EXPLOSIVE){
-        d *= 2f
+        d *= 1.5f
       } else if(damage.type == DamageType.KINETIC){
-        d /= 2f
+        d *= 0.5f
       }
-      d *= heatingLevel
-      Global.getCombatEngine().addFloatingDamageText(point,d ,FLOAT_TEXT_COLOR,benefited,null)
+      d *= (heatingLevel * DAMAGE_CONVERTED_BONUS + DAMAGE_CONVERTED)
+      Global.getCombatEngine().addFloatingDamageText(point,d ,FLOAT_TEXT_COLOR, benefited,null)
       benefited.fluxTracker.increaseFlux(-d,true)
       //Global.getLogger(this.javaClass).info(d)
       return  null

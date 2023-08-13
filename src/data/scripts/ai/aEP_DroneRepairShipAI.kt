@@ -3,10 +3,7 @@
 package data.scripts.ai
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.DamageType
-import com.fs.starfarer.api.combat.FighterWingAPI
-import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.ShipCommand
+import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.WeightedRandomPicker
@@ -25,7 +22,7 @@ import org.lwjgl.util.vector.Vector2f
 import kotlin.math.absoluteValue
 
 
-class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI()) {
+class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI(ship, ship.system)) {
 
   private var parentShip: ShipAPI? = null
 
@@ -178,7 +175,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       //如果成功进入100内
       val dist = MathUtils.getDistance(ship,target)
       if(dist < 100f){
-        val randomPointAtCir =MathUtils.getRandomPointOnCircumference(target.location,target.collisionRadius+100f)
+        val randomPointAtCir =MathUtils.getRandomPointOnCircumference(target.location,target.collisionRadius + 100f)
         val hitPoint = CollisionUtils.getCollisionPoint(randomPointAtCir, target.location, target)
         //处于100内，并且成功生成一个随机附着点，切换到吸附模式
         if(hitPoint != null){
@@ -202,8 +199,9 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
   inner class StickAndFire(val relPos: Vector2f, val target:ShipAPI ): aEP_MissileAI.Status(){
     val reformTimer = IntervalUtil(4f,4f)
 
+    //获得基于目标速度一定值的极速和机动性加成，防止永远追不上
+    //记得以任何形式的退出本模式，需要取消buff
     init {
-      //获得基于目标速度一定值的极速和机动性加成，防止永远追不上
       ship.mutableStats.maxSpeed.modifyFlat(ID, target.maxSpeed)
       ship.mutableStats.acceleration.modifyFlat(ID, target.maxSpeed * 2f)
       ship.mutableStats.deceleration.modifyFlat(ID, target.maxSpeed * 2f)
@@ -217,12 +215,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       for(w in ship.allWeapons){
         if(w.usesAmmo() && w.ammoTracker.ammoPerSecond <= 0 && w.ammoTracker.ammo <=0){
           stat = ForceReturn()
-          ship.mutableStats.maxSpeed.unmodify(ID)
-          ship.mutableStats.acceleration.unmodify(ID)
-          ship.mutableStats.deceleration.unmodify(ID)
-
-          ship.mutableStats.maxTurnRate.unmodify(ID)
-          ship.mutableStats.turnAcceleration.unmodify(ID)
+          cancelBuff()
           return
         }
       }
@@ -231,12 +224,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       //没必要为了百分之1的情况去增加复杂度
       if(!target.isAlive || target.isHulk || !engine.isEntityInPlay(target)){
         stat = Searching()
-        ship.mutableStats.maxSpeed.unmodify(ID)
-        ship.mutableStats.acceleration.unmodify(ID)
-        ship.mutableStats.deceleration.unmodify(ID)
-
-        ship.mutableStats.maxTurnRate.unmodify(ID)
-        ship.mutableStats.turnAcceleration.unmodify(ID)
+        cancelBuff()
         return
       }
 
@@ -244,12 +232,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       val dist = MathUtils.getDistance(ship,target.location)
       if(dist > 200f) {
         stat = Approaching(target)
-        ship.mutableStats.maxSpeed.unmodify(ID)
-        ship.mutableStats.acceleration.unmodify(ID)
-        ship.mutableStats.deceleration.unmodify(ID)
-
-        ship.mutableStats.maxTurnRate.unmodify(ID)
-        ship.mutableStats.turnAcceleration.unmodify(ID)
+        cancelBuff()
         return
       }
 
@@ -273,29 +256,34 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
           //不要贴着边缘，略微往外挪一点
           hitPoint.set(aEP_Tool.getExtendedLocationFromPoint(hitPoint,hitFacing,-30f))
           val relPos = getRelativeLocationData(hitPoint, target, false)
+          //刷新同一模式不需要取消buff
           stat = StickAndFire(relPos, target)
           return
-          //处于100内，但是因为相位等情况并没有碰撞
-        }else{
-          stat = Approaching(target)
-          ship.mutableStats.maxSpeed.unmodify(ID)
-          ship.mutableStats.acceleration.unmodify(ID)
-          ship.mutableStats.deceleration.unmodify(ID)
+        }else{ //处于100内，但是因为相位等情况并没有碰撞
 
-          ship.mutableStats.maxTurnRate.unmodify(ID)
-          ship.mutableStats.turnAcceleration.unmodify(ID)
-          return
         }
       }
 
 
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location,absPos)
-      if(distToAbsPos < 50f + target.maxSpeed * 0.25f && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f ){
+      if(distToAbsPos < (50f + target.maxSpeed * 0.25f)
+        && MathUtils.getShortestRotation(ship.facing, absFacing).absoluteValue < 10f
+        && target.collisionClass != CollisionClass.NONE){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }
 
+    }
+
+
+    fun cancelBuff(){
+      ship.mutableStats.maxSpeed.unmodify(aEP_DroneSupplyShipAI.ID)
+      ship.mutableStats.acceleration.unmodify(aEP_DroneSupplyShipAI.ID)
+      ship.mutableStats.deceleration.unmodify(aEP_DroneSupplyShipAI.ID)
+
+      ship.mutableStats.maxTurnRate.unmodify(aEP_DroneSupplyShipAI.ID)
+      ship.mutableStats.turnAcceleration.unmodify(aEP_DroneSupplyShipAI.ID)
     }
   }
 

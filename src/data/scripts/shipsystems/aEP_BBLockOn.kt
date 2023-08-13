@@ -9,14 +9,15 @@ import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_Tool
+import combat.util.aEP_Tool.Util.getInfoTextWithinSystemRange
 import java.awt.Color
 
 class aEP_BBLockOn : BaseShipSystemScript(){
   companion object{
-    const val WEAPON_FLUX_INCREASE_PERCENT = 100f;
+    const val WEAPON_FLUX_INCREASE_PERCENT = 200f;
     const val SYSTEM_RANGE = 1500f;
-    val JITTER_COLOR = Color(80,160,235,25)
-    var TEXT_COLOR = Color(120,190,255,215)
+    val JITTER_COLOR = Color(20,40,225,35)
+    var TEXT_COLOR = Color(120,190,255,250)
   }
 
   val textTracker = IntervalUtil(3f,3f)
@@ -29,11 +30,11 @@ class aEP_BBLockOn : BaseShipSystemScript(){
     target.mutableStats.energyWeaponFluxCostMod.modifyPercent(id, WEAPON_FLUX_INCREASE_PERCENT)
     target.mutableStats.ballisticWeaponFluxCostMod.modifyPercent(id, WEAPON_FLUX_INCREASE_PERCENT)
     target.mutableStats.missileWeaponFluxCostMod.modifyPercent(id, WEAPON_FLUX_INCREASE_PERCENT)
-    target.setJitter(id, JITTER_COLOR,1f*effectLevel,12,0f)
+    target.setJitter(id, JITTER_COLOR,1f*effectLevel,12,5f)
 
     textTracker.advance(aEP_Tool.getAmount(ship))
     if(textTracker.intervalElapsed()){
-      Global.getCombatEngine().addFloatingText(target.location,txt(this.javaClass.simpleName+"01"),20f, TEXT_COLOR,target,0.5f,2f)
+      Global.getCombatEngine().addFloatingText(target.location,txt(this.javaClass.simpleName+"01"),20f, TEXT_COLOR,target,1f,1f)
     }
   }
 
@@ -44,21 +45,15 @@ class aEP_BBLockOn : BaseShipSystemScript(){
     target!!.mutableStats.energyWeaponFluxCostMod.unmodify(id)
     target!!.mutableStats.ballisticWeaponFluxCostMod.unmodify(id)
     target!!.mutableStats.missileWeaponFluxCostMod.unmodify(id)
-    target == null
+    target = null
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
-    return aEP_Tool.checkTargetWithinSystemRange(ship, SYSTEM_RANGE)
+    val dist = aEP_Tool.checkTargetWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
+    return dist <= 0f
   }
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
-    if(ship.shipTarget != null) {
-      if(aEP_Tool.checkTargetWithinSystemRange(ship, SYSTEM_RANGE)){
-        return "In Range"
-      } else{
-        return "Out of Range"
-      }
-    }
-    return "Need Target"
+    return getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
   }
 }

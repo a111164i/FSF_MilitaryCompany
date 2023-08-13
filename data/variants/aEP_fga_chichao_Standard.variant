@@ -1,0 +1,26 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 9,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_fga_chichao",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_chichao_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 001": "aEP_b_s_h37",
+                "WS 002": "aEP_b_s_h37"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS 003": "aEP_e_s_300k"}
+        }
+    ]
+}

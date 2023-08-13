@@ -20,7 +20,7 @@ class aEP_RequanReload : BaseShipSystemScript() {
 
   companion object {
     const val RELOAD_RATE_ADD = 0.12f
-    const val COOLDOWN_REDUCE = 10f
+    const val COOLDOWN_REDUCE = 12f
   }
 
   var didVisual = false

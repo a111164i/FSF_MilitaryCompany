@@ -16,6 +16,8 @@ import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.util.Misc;
 import combat.util.aEP_DataTool;
 import combat.util.aEP_ID;
+import data.scripts.FSFModPlugin;
+import lunalib.lunaSettings.LunaSettings;
 import org.lazywizard.lazylib.MathUtils;
 
 import java.util.*;
@@ -36,6 +38,20 @@ public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
     minSWUpdateInterval = 60f;
     //被创建时立刻刷新一次
     sinceSWUpdate = 99999999f;
+
+    //如果启用了跳过主线，刷新出特殊武器
+    if(FSFModPlugin.isLunalibEnabled){
+      boolean shouldSkip = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingMissionSkipAwm");
+      if(shouldSkip){
+        getCargo().addWeapons("aEP_b_m_lighting", 4);
+        getCargo().addWeapons("aEP_b_l_railwaygun", 1);
+        int numShenduMk2 = 1;
+        while (numShenduMk2 > 0){
+          getCargo().addMothballedShip(FleetMemberType.SHIP,"aEP_des_shendu_mk2_Standard",null);
+          numShenduMk2 -= 1;
+        }
+      }
+    }
   }
 
   @Override
@@ -46,6 +62,11 @@ public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
     //如果可以刷新就开始加东西
     if (!okToUpdateShipsAndWeapons()) return;
     sinceSWUpdate = 0f;
+
+    //在清理掉老东西以前，读取一下是否清理掉了某些东西
+    CargoAPI beforeClean = getCargo().createCopy();
+    //copyCargo并不会带着cargo里面的getMothballedShips一起复制
+    List<FleetMemberAPI> ships = getCargo().getMothballedShips().getMembersListCopy();
     pruneWeapons(0f);
     pruneShips(0f);
     getCargo().clear();
@@ -63,8 +84,10 @@ public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
       }
     }
 
+
     addAdvanceShipList();
     addCruiseMissile();
+    addMissionReward(beforeClean, ships);
 
 
     getCargo().sort();
@@ -231,4 +254,24 @@ public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
     getCargo().addSpecial(new SpecialItemData(S1_ITEM_ID,null), 1f);
     getCargo().addSpecial(new SpecialItemData(S2_ITEM_ID,null), 2f);
   }
+
+ private void addMissionReward(CargoAPI beforeClean, List<FleetMemberAPI> ships ){
+    float numLightingGun = beforeClean.getQuantity(CargoAPI.CargoItemType.WEAPONS,"aEP_b_m_lighting" );
+    float numRailwayGun = beforeClean.getQuantity(CargoAPI.CargoItemType.WEAPONS,"aEP_b_l_railwaygun" );
+    int numShenduMk2 = 0;
+    for(FleetMemberAPI m : ships){
+      if(m.getVariant().getHullSpec().getHullId().contains("aEP_des_shendu_mk2")){
+        numShenduMk2 +=1;
+      }
+    }
+
+
+    getCargo().addWeapons("aEP_b_m_lighting", (int) numLightingGun);
+    getCargo().addWeapons("aEP_b_l_railwaygun", (int) numRailwayGun);
+    while (numShenduMk2 > 0){
+      getCargo().addMothballedShip(FleetMemberType.SHIP,"aEP_des_shendu_mk2_Standard",null);
+      numShenduMk2 -= 1;
+    }
+
+ }
 }

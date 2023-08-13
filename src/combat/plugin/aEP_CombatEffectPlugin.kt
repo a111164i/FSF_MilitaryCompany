@@ -5,11 +5,12 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.input.InputEventAPI
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_Tool
+import data.scripts.hullmods.aEP_MissilePlatform
 import java.util.*
 /**
  * 自由特效类，实现自定义特效渲染
  * */
-class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin, CombatLayeredRenderingPlugin{
+class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin(), CombatLayeredRenderingPlugin{
 
   var amount = 0f
   var layers: EnumSet<CombatEngineLayers> = EnumSet.allOf(CombatEngineLayers::class.java)
@@ -18,9 +19,6 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin, CombatLayeredRendering
   private val effects: LinkedList<aEP_BaseCombatEffect> = LinkedList()
   private val newEffects: LinkedList<aEP_BaseCombatEffect> = LinkedList()
 
-  constructor(){
-
-  }
 
   /**
    * EveryFrameCombatPlugin的方法
@@ -93,7 +91,7 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin, CombatLayeredRendering
    * 在特效自己aEP_BaseCombatEffect类的render方法中判定这个特效要不要渲染
    * */
   override fun getRenderRadius(): Float {
-    return 99999999f
+    return 999999f
   }
 
   /**
@@ -102,6 +100,7 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin, CombatLayeredRendering
   override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
     layer?:return
     viewport?:return
+
     for (e in effects) {
       if(!e.activeLayers.contains(layer)) continue
       if(e is aEP_BaseCombatEffect && e.renderInShader) continue

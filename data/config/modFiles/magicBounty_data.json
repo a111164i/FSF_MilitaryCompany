@@ -1,0 +1,107 @@
+{
+	"aEP_MagicBounty1":{
+
+        "required_mods_id": ["FSF_MilitaryCorporation"],
+
+		"trigger_market_id": ["aEP_FSF_SpaceFactory"],
+		"trigger_marketFaction_any":["aEP_FSF"],
+		"trigger_marketFaction_alliedWith":false,
+		"trigger_marketFaction_enemyWith":false,
+		"trigger_marketFaction_none":["remnant"],
+
+
+		"trigger_market_minSize": 0,
+		"trigger_min_fleet_size": 0,
+		"trigger_player_minLevel": 9,
+		"trigger_min_days_elapsed": 0,
+		"trigger_weight_mult":1,
+
+		#"trigger_memKeys_all":{},
+		#"trigger_memKeys_any":{},
+		"trigger_playerRelationship_atLeast":{
+			"aEP_FSF": 0.65
+		},
+		"trigger_playerRelationship_atMost":{
+		},
+
+		"job_name":"电子亡灵",
+		"job_description":"由FSF军备工厂发布的紧急赏金，目标是彻底消灭一只 ==余辉== 控制下的舰队\n该舰队原本是先进武器计划项目的一只测试舰队，计划在可控环境下接触余辉的小股作战集团，在实战中测试”褐潮级无畏舰现代化改造”成果的作战效能。但是事情出了严重的状况，余辉母舰大幅度提高了这次战斗的对策级别并派出了多只包含主力级的舰队增援彻底切断了我们和那只舰队的联系。根据目前通讯监听的情况，尽管已经确定该舰队的成员已经全部阵亡，舰船间还在相互传递战斗命令一样的讯息，就像他们还在与余辉战斗一样，真是令人毛骨悚然\n任务目标是消灭失联的测试舰队",
+
+		"job_comm_reply":"人类...战斗...任务...你是来救我们的吗...啊啊啊",
+		"job_intel_success": "目标舰队看起来已经完全被余辉接管，你在摧毁了这些不断重建的幽灵船后，汇报了这个消息",
+		"job_intel_failure": "在数不清次数的重建后，你已无力再战",
+		"job_intel_expired": "目标舰队失去了信号，似乎是利用舰船中的横轴跳跃装置进入了超空间，再也无法追踪了",
+		"job_forFaction":"aEP_FSF",
+		"job_difficultyDescription": "如果不想加入它们的话最好做好准备，目标舰队拥有1-2艘主力级战舰",
+		"job_deadline":120,
+		"job_reputation_reward":10,
+		"job_item_reward": {
+			"ship_bp aEP_fga_chichao": 1,
+			#"crew": 100
+		},
+		"job_credit_reward":200000,
+		"job_reward_scaling":0,
+		"job_type":"obliteration",
+		"job_show_type":true,
+		"job_show_captain":false,
+		"job_show_fleet":"none",
+		"job_show_distance":"Vanilla",
+		"job_show_arrow":true,
+		"job_pick_option":"Accept the job",
+		#"job_pick_script":"magiclib_test_bounty_completed",
+		"job_memKey":"$aEP_MagicBounty01",
+		#"job_conclusion_script":"magiclib_test_bounty_completed",
+
+		"target_first_name":"019-",
+		"target_last_name":"A02",
+		"target_portrait":"graphics/portraits/portrait_ai2.png",
+		"target_gender":"UNDEFINED",
+		"target_rank":"spaceCaptain",
+		"target_post":"warlord",
+		"target_personality":"reckless",
+		"target_aiCoreId": "alpha_core",
+		"target_level":8,
+		"target_elite_skills":2,
+		"target_skill_preference":"GENERIC",
+		"target_skills": "NO_ENERGY_YES_BALLISTIC_NO_MISSILE_NO_DEFENSE",
+
+		"fleet_name":"失联舰队",
+		"fleet_faction":"remnant",
+		"fleet_flagship_variant":"aEP_fga_chichao_Automated",
+		"fleet_flagship_name":"勇敢",
+		"fleet_flagship_recoverable":false,
+		"fleet_preset_ships":{
+			"aEP_fga_chichao_Automated":5,
+			"aEP_fga_xiliu_Automated":4,
+			"aEP_des_cengliu_Automated":2,
+			"aEP_cru_zhongliu_Automated":1,
+			"aEP_cap_duiliu_Automated":1
+		},
+		"fleet_preset_autofit": false,
+		"fleet_scaling_multiplier":0,
+		"fleet_min_FP":240,
+		"fleet_composition_faction":"remnant",
+		"fleet_composition_quality":2,
+		"fleet_transponder":false,
+		"fleet_no_retreat": true,
+		"fleet_behavior":"AGGRESSIVE",
+		"fleet_musicSetId": "",
+
+		"location_marketIDs":[
+			"aEP_FSF_Earth"
+		],
+		"location_marketFactions":[
+			"remnant"
+		],
+		#"location_distance":"CLOSE",
+		#"location_themes":[],
+		#"location_themes_blacklist":[],
+		"location_entities":[
+			"gate",
+			"stable_location"
+		],
+		"location_prioritizeUnexplored":false,
+		"location_defaultToAnyEntity":true
+    }
+
+}

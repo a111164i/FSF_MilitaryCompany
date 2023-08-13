@@ -21,11 +21,11 @@
 		"engineColor":[245,165,75,245],
 		"contrailParticleSizeMult":2,
 		"contrailParticleDuration":2,
-		"contrailParticleFinalSizeMult":3,
+		"contrailParticleFinalSizeMult":2.5,
 		"contrailMaxSpeedMult":0.5,
 		"contrailAngularVelocityMult":0,
 		"contrailColor":[100,100,100,60],
-		"contrailCampaignColor":[150,120,100,75],
+		"contrailCampaignColor":[181,182,149,85],
 		"type":"SMOKE", # GLOW or SMOKE
 	},
 	"FSF_MAIN_CLEAN":{

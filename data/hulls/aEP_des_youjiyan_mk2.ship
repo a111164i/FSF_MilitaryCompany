@@ -12,6 +12,7 @@
   "shieldRadius": 112,
   "viewOffset": 0,
   "builtInMods": [
+    "aEP_MarkerDissipation",
     "civgrade",
     "aEP_VanguardHull"
   ],

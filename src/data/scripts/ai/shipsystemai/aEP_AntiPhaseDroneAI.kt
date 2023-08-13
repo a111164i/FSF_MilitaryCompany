@@ -1,12 +1,19 @@
 package data.scripts.ai.shipsystemai
 
+import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
+import com.fs.starfarer.api.combat.ShipwideAIFlags
 import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_AntiPhaseDrone.Companion.MAX_DISTANCE
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 
 class aEP_AntiPhaseDroneAI: aEP_BaseSystemAI() {
+
+  override fun init(ship: ShipAPI, system: ShipSystemAPI, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
+    super.init(ship, system, flags, engine)
+  }
 
   override fun initImpl() {
     thinkTracker.setInterval(0.5f,0.5f)

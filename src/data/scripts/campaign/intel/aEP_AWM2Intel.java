@@ -59,7 +59,7 @@ public class aEP_AWM2Intel extends aEP_BaseMission
     person.getStats().setSkillLevel(Skills.POINT_DEFENSE,2);
     person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION,2);
     person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE,2);
-
+    person.getStats().levelUpIfNeeded();
 
     person.setRankId(Ranks.SPACE_CAPTAIN);
     person.setPersonality(Personalities.AGGRESSIVE);

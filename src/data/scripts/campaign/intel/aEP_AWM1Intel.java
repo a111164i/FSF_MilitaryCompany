@@ -126,11 +126,6 @@ public class aEP_AWM1Intel extends aEP_BaseMission
     }
   }
 
-  @Override
-  public String getIcon() {
-    return Global.getSettings().getSpriteName("aEP_icons", "AWM1");
-  }
-
   //this part controls brief bar on lower left
   @Override
   public void createIntelInfo(TooltipMakerAPI info, ListInfoMode mode) {
@@ -164,7 +159,7 @@ public class aEP_AWM1Intel extends aEP_BaseMission
 
 
     info.setParaFontDefault();
-    info.addPara(txt("AWM01_title"), c, 3f);
+    info.addPara(txt("AWM01_title"), c, 10f);
     for (String fullId : requestWeaponList) {
       String weaponId = fullId.split(SPLITTER)[0];
       String factionId = fullId.split(SPLITTER)[1];
@@ -205,6 +200,12 @@ public class aEP_AWM1Intel extends aEP_BaseMission
     if (buttonId.equals("Finish Mission")) {
       shouldEnd = 1;
     }
+  }
+
+
+  @Override
+  public String getIcon() {
+    return Global.getSettings().getSpriteName("aEP_icons", "AWM1");
   }
 
   //control tags

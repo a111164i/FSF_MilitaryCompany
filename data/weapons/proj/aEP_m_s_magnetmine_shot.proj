@@ -1,0 +1,84 @@
+{
+	"id":"aEP_m_s_magnetmine_shot",
+	"specClass":"missile",
+	"missileType":"PHASE_CHARGE",
+	"sprite":"graphics/weapons/aEP_m_s_magnetmine/proj.png",
+	#"glowSprite":"",
+  #"glowColor":[210,185,75,255],
+  #"glowRadius":0,
+  "size":[64,64],
+  "center":[32,30],
+  "collisionRadius":20,
+	"collisionClass":"FIGHTER",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+
+	"armingTime":99, # safe range count by time
+	"noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
+	"fadeTime":0.1, # 熄火后能漂移多久
+	"flameoutTime":0.25,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+	"alwaysAccelerate":false,
+	"reduceDamageWhileFading":false,
+	"useProjectileRangeCalculation":false,
+	"passThroughMissiles":false,
+	#	"maxHealth":75,
+	#	"damage":100,
+	#	"launchSpeed":50,
+	"maxFlightTime":1,
+
+	"explosionColor":[230,215,45,221],  # purely visual, will get a white additively blended core on top of this color
+  "explosionRadius":225, # purely visual
+  "explosionSpec":{
+    "duration":0.0001f, # not visual
+    "radius":25,
+    "coreRadius":25, # full damage within core radius
+    "collisionClass":MISSILE_NO_FF,
+    "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS
+  },
+
+  "engineSpec":{
+    "maxSpeed":100,
+    "turnAcc":15,
+    "turnRate":60,
+    "acc":500,
+    "dec":500
+  },
+
+	"behaviorSpec":{
+		"behavior":"PROXIMITY_FUSE",
+		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+		"range":0,
+		"vsMissileRange":0,
+		"slowToMaxSpeed":true,
+		# 只有phase_mine才触发以下参数
+		#"delay":0.8,
+    #"pingSound":"",
+    #"pingColor":[230,215,45,121],
+    #"pingRadius":250,
+    #"pingDuration":0.4,
+    #"windupSound":"mine_windup_heavy",
+    #"windupDelay":0,
+		"explosionSpec":{
+				"duration":0.0001f,
+				"radius":100,
+				"coreRadius":50, # full damage within core radius - also equal to proximity fuse range
+				"collisionClass":NONE,
+				"collisionClassByFighter":NONE,
+				"particleSizeMin":4.0,
+				"particleSizeRange":4.0,
+				"particleDuration":0.8,
+				"particleCount":50,
+				"particleColor":[101,101,101,175],
+				"explosionColor":[175,175,175,205],
+				"useDetailedExplosion":true,
+				"useDetailedExplosionColorAlpha":true,
+				"detailedExplosionRadius":100,
+				"detailedExplosionFlashRadius":250,
+				"detailedExplosionFlashDuration":0.4,
+				"detailedExplosionFlashColorFringe":[125,125,125,255],
+				"detailedExplosionFlashColorCore":[195,195,195,255],
+				"sound":"prox_charge_explosion"},
+		},
+	}
+					
+}

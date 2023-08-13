@@ -27,7 +27,7 @@
   "maxFlightTime":1,
 
 	"explosionColor":[148,100,50,255],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":50, # purely visual
+	"explosionRadius":100, # purely visual
 	"behaviorSpec":{
 			"behavior":"PROXIMITY_FUSE",
 			"slowToMaxSpeed":true,
@@ -41,17 +41,17 @@
 				"collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
 				"particleSizeMin":6.0,
 				"particleSizeRange":4.0,
-				"particleDuration":0.8,
-				"particleCount":50,
+				"particleDuration":2.4,
+				"particleCount":35,
 				"particleColor":[148,70,211,255],
 				"explosionColor":[255,100,50,248],
 
 				"useDetailedExplosion":true,
 				"useDetailedExplosionColorAlpha":true,
-				"detailedExplosionRadius":100,
-				"detailedExplosionFlashRadius":150,
-				"detailedExplosionFlashDuration":0.2,
-				"detailedExplosionFlashColorFringe":[230,235,230,199],
+				"detailedExplosionRadius":180,
+				"detailedExplosionFlashRadius":600,
+				"detailedExplosionFlashDuration":0.25,
+				"detailedExplosionFlashColorFringe":[255,148,81,239],
 				"detailedExplosionFlashColorCore":[235,40,251,255],
 
 				"sound":"devastator_explosion"

@@ -2,12 +2,18 @@ package data.scripts.ai
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.impl.campaign.ids.Stats
+import com.fs.starfarer.api.util.Misc.getInterceptPoint
 import com.fs.starfarer.api.util.WeightedRandomPicker
 import com.fs.starfarer.combat.ai.AI
 import com.fs.starfarer.combat.entities.DamagingExplosion
 import com.fs.starfarer.combat.entities.MovingRay
 import combat.util.aEP_Tool
+import combat.util.aEP_Tool.Util.addDebugPoint
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
+import combat.util.aEP_Tool.Util.isDead
+import combat.util.aEP_Tool.Util.isEnemy
+import combat.util.aEP_Tool.Util.isShipTargetable
 import combat.util.aEP_Tool.Util.projTimeToHitShip
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
@@ -21,35 +27,97 @@ import kotlin.math.absoluteValue
 
 open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
 
-  var targetPoint : Vector2f? = null
+  val targetPoint =  getExtendedLocationFromPoint(w.location, w.slot.computeMidArcAngle(w.ship), 100f)
+  //interceptPoint可以为null
+  var interceptPoint : Vector2f? = null
   var aimEntity: CombatEntityAPI? = null
 
   var shouldFire = false
 
 
   override fun advance(amount: Float) {
-    search(amount)
-    track(amount)
+    //默认不开火
+    shouldFire = false
 
-    var angleDist = 999f
-    if(targetPoint != null){
-      angleDist = MathUtils.getShortestRotation(weapon.currAngle, VectorUtils.getAngle(weapon.location, targetPoint))
+    //没有目标/目标已经死亡/不再是武器的目标对象，就重新索敌
+    if(aimEntity == null ||
+      (aimEntity != null && (aEP_Tool.isDead(aimEntity!!) || !checkIsValid(aimEntity!!))) ){
+      interceptPoint = null
+      search(amount)
     }
-    angleDist = angleDist.absoluteValue
 
-    shouldFire = checkShouldFire(angleDist)
+    //索敌失败
+    aimEntity?:return
+    //如果索敌成功，interceptPoint一定不为空
+
+    //上一步索敌成功，开始track，此时保证aimEntity一定不为null
+    if(aimEntity is CombatEntityAPI){
+      //计算targetPoint
+      track(amount, aimEntity as CombatEntityAPI)
+      //如果track()完毕发现丢失目标，不进行开火判断
+      aimEntity?:return
+      shouldFire = checkShouldFire(aimEntity as CombatEntityAPI)
+
+      //addDebugPoint(targetPoint)
+
+    }else{
+
+    }
 
   }
 
+  /**
+   *  获取aimEntity和interceptPoint的地方
+   *  不要动targetPoint，那是track()的内容
+   * */
   open fun search(amount: Float){
   }
 
-  open fun track(amount: Float){
+  /**
+   * 只有锁到了有效的target才会调用，只用考虑追踪的问题
+   * 在这里计算targetPoint
+   * 既然能被放入有效目标，一开始肯定是在射界内的，但是后续track中有可能脱离射界，此时需要调用forceOff()重新索敌
+   * */
+  open fun track(amount: Float, target: CombatEntityAPI){
+    if(w.isBeam){
+      //当前追踪的目标脱离了射程，调用forceOff()
+      if(!isPointWithinRange(target.location, 0f,0f)){
+        forceOff()
+        return
+      }
+      targetPoint.set(target.location)
+      return
+    }
 
+    if(!w.isBeam){
+      interceptPoint = AIUtils.getBestInterceptPoint(weapon.location, weapon.projectileSpeed, target.location, target.velocity)
+      //当前追踪的目标脱离了射程，调用forceOff()
+      if(interceptPoint == null || !isPointWithinRange(interceptPoint!!, 0f,0f)){
+        forceOff()
+        return
+      }
+      targetPoint.set(interceptPoint?:target.location)
+      return
+    }
   }
 
+  /**
+   * 本武器会自动瞄准哪些目标
+   * 这里默认的检测包括是否还处于射界中，是否是敌人的弹丸，如果有特殊的ai需求，override本方法，也可以在search()中使用
+   * */
+  open fun checkIsValid(target: CombatEntityAPI) : Boolean{
+    val isEnemy = isEntityEnemy(target)
+    val isInRange = isPointWithinRange(target.location,0f,0f)
+    if(isEnemy && isInRange) return true
+    return false
+  }
 
-  open fun checkShouldFire(angleDist: Float):Boolean{
+  /**
+   * 默认在指向角度和目标角度差距少于1时开火
+   * */
+  open fun checkShouldFire(target: CombatEntityAPI):Boolean{
+    val angleDistAbs = checkAngleDistAbs()
+    if(angleDistAbs < 1f) return true
     return false
   }
 
@@ -58,19 +126,19 @@ open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
   }
 
   override fun forceOff() {
+    shouldFire = false
     aimEntity = null
-    targetPoint = null
+    interceptPoint = null
   }
 
   override fun getTarget(): Vector2f {
-    return targetPoint?: getExtendedLocationFromPoint(weapon.location, weapon.slot.computeMidArcAngle(weapon.ship), 100f)
+    return targetPoint
   }
 
   override fun getTargetShip(): ShipAPI? {
     if(aimEntity is ShipAPI) return aimEntity as ShipAPI
     return null
   }
-
 
   override fun getTargetMissile(): MissileAPI? {
     if(aimEntity is MissileAPI) return aimEntity as MissileAPI
@@ -80,6 +148,70 @@ open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
   override fun getWeapon(): WeaponAPI {
     return w
   }
+
+
+  //往下是工具方法，一般不需要重载
+
+  open fun checkAngleDistAbs(): Float{
+    return MathUtils.getShortestRotation(weapon.currAngle, VectorUtils.getAngle(weapon.location, targetPoint)).absoluteValue
+  }
+
+  open fun checkAngleDist(): Float{
+    return MathUtils.getShortestRotation(weapon.currAngle, VectorUtils.getAngle(weapon.location, targetPoint))
+  }
+
+  //用在checkIsValid当中
+  open fun isEntityEnemy(tmp: CombatEntityAPI) : Boolean{
+
+    if(tmp is ShipAPI){
+      //不瞄准无敌/相位/无碰撞/fx无人机
+      if(!aEP_Tool.isShipTargetable(tmp,
+          false,
+          true,
+          true,
+          false,
+          true)) return false
+      //不瞄准队友
+      if(!isEnemy(w.ship?:return false, tmp)) return false
+      //不瞄准残骸
+      if(isDead(tmp)) return false
+      return true
+    }
+
+    if(tmp is DamagingProjectileAPI){
+      //无伤害弹丸不需要拦截
+      if (tmp.damage.baseDamage <= 0f) return false
+      //无碰撞弹丸不需要拦截
+      if(tmp.collisionClass == CollisionClass.NONE) return false
+      //同阵营舰船射出的NO_FF弹丸不需要拦截
+      if((tmp.source?.owner ?: return false) == (weapon.ship?.owner ?: return false) &&
+        (tmp.collisionClass == CollisionClass.MISSILE_NO_FF || tmp.collisionClass == CollisionClass.PROJECTILE_NO_FF)) return false
+      //自己射出的弹丸不需要拦截
+      if (tmp.owner == (weapon.ship?.owner?:return false)) return false
+      //爆炸也是弹丸的一种，直接跳过
+      if(tmp is DamagingExplosion) return false
+      return true
+    }
+    return false
+  }
+
+  //用在checkIsValid当中
+  open fun isPointWithinRange(point: Vector2f, extraRange: Float, extraArc: Float) : Boolean{
+    //超出射界的不需要拦截
+    if(weapon.distanceFromArc(point) - extraArc > 0f) return false
+    //超出射程的不需要拦截
+    val maxRange: Float = weapon.range * weapon.range
+    val distanceSquared = MathUtils.getDistanceSquared(point, weapon.location)
+    if (distanceSquared - extraRange > maxRange) return false
+    return true
+  }
+
+  open fun isIgnoreFlare():Boolean{
+    return ((w.hasAIHint(WeaponAPI.AIHints.IGNORES_FLARES)
+        || (w.ship?.mutableStats?.dynamic?.getMod(Stats.PD_IGNORES_FLARES)?.computeEffective(0f) ?: 0f) >= 1f) )
+
+  }
+
 }
 
 fun getDamagingProjectileInArc(weapon: WeaponAPI, extraArc:Float, extraRange:Float): List<DamagingProjectileAPI>{
@@ -88,9 +220,14 @@ fun getDamagingProjectileInArc(weapon: WeaponAPI, extraArc:Float, extraRange:Flo
   var distanceSquared: Float
 
   for (tmp in Global.getCombatEngine().projectiles) {
-    if (tmp.owner == weapon.ship.owner) continue
+    //同阵营舰船射出的NO_FF弹丸不需要拦截
+    if((tmp.source?.owner ?: continue) == (weapon.ship?.owner ?: continue) &&
+      (tmp.collisionClass == CollisionClass.MISSILE_NO_FF || tmp.collisionClass == CollisionClass.PROJECTILE_NO_FF)) continue
+    //自己射出的弹丸不需要拦截
+    if (tmp.owner == (weapon.ship?.owner?:continue)) continue
+    //超出射界的不需要拦截
     if(weapon.distanceFromArc(tmp.location) - extraArc > 0f) continue
-
+    //超出射程的不需要拦截
     distanceSquared = MathUtils.getDistanceSquared(tmp.location, weapon.location)
     if (distanceSquared - extraRange > maxRange) continue
     if(tmp is DamagingExplosion) continue
@@ -103,27 +240,32 @@ fun getDamagingProjectileInArc(weapon: WeaponAPI, extraArc:Float, extraRange:Flo
 
 class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
 
-
   override fun search(amount: Float) {
 
-    //已有目标，且目标有效时，不需要search
-    if (aimEntity != null && Global.getCombatEngine().isEntityInPlay(aimEntity)) {
-      return
-    }
     //下面是找新目标的过程
-
-
     val picker = WeightedRandomPicker<Array<Any>>()
     var newTarget: Array<Any>? = null
-    for(it in getDamagingProjectileInArc(weapon, 30f, 250f)) {
-      //先计算一下有没有拦截的可能
-      val targetEndPoint = AIUtils.getBestInterceptPoint(weapon.location, weapon.projectileSpeed, it.location, it.velocity)
-      targetEndPoint?: continue
+    for(it in Global.getCombatEngine().projectiles) {
+      //排除掉射界外的，队友的弹丸
+      if(!checkIsValid(it)) continue
 
+      //热诱弹
+      if(it is MissileAPI && it.isFlare){
+        if(isIgnoreFlare()) continue
+      }
+
+      //先计算一下有没有拦截的可能
+      interceptPoint = AIUtils.getBestInterceptPoint(weapon.location, weapon.projectileSpeed, it.location, it.velocity)
+      interceptPoint?: continue
+
+      //伤害太低了不拦截
+      if(it.damage.type == DamageType.FRAGMENTATION && it.damage.baseDamage < 200) continue
+      if(it.damage.type == DamageType.KINETIC && it.damage.baseDamage < 100) continue
+      if(it.damage.type == DamageType.HIGH_EXPLOSIVE && it.damage.baseDamage < 100) continue
 
       //拦截点不能在武器射界外面
-      if(weapon.distanceFromArc(targetEndPoint)?:1f > 0f) continue
-      if(MathUtils.getDistance(targetEndPoint, weapon.location) > w.range) continue
+      if(weapon.distanceFromArc(interceptPoint) > 0f) continue
+      if(MathUtils.getDistance(interceptPoint, weapon.location) > w.range) continue
 
       //弹丸本身，还有拦截点都不能处于队友的碰撞圈内（都已经打到队友了还拦啥）
       //弹丸必须指向某个友军
@@ -138,39 +280,36 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
         val angleDist = MathUtils.getShortestRotation(it.facing, angleToAlly).absoluteValue
           if(angleDist > 15f) {cant = true; break}
         if(MathUtils.getDistance(ally, it) <= 1f) {cant = true; break}
-        if(MathUtils.getDistance(ally, targetEndPoint) <= 1f) {cant = true; break}
-        if(CollisionUtils.getCollides(it.location, targetEndPoint, ally.location, ally.collisionRadius)) {cant = true; break}
-        val d = MathUtils.getDistance(ally, targetEndPoint)
+        if(MathUtils.getDistance(ally, interceptPoint) <= 1f) {cant = true; break}
+        if(CollisionUtils.getCollides(it.location, interceptPoint, ally.location, ally.collisionRadius)) {cant = true; break}
+        val d = MathUtils.getDistance(ally, interceptPoint)
         if(d < closestDist) closestDist = d
       }
+
       if(cant) continue
-
-
 
       var weight = it.damage?.baseDamage?: 0f
       weight *= MathUtils.clamp(closestDist,50f,500f)/500f
       weight *= weight
       weight *= weight
-      picker.add(arrayOf(it,targetEndPoint), weight)
+      picker.add(arrayOf(it,interceptPoint!!), weight)
     }
 
     newTarget = picker.pick()
     if (newTarget != null) {
       aimEntity = newTarget[0] as DamagingProjectileAPI
-      targetPoint = (newTarget[1] as Vector2f)
+      interceptPoint!!.set(newTarget[1] as Vector2f)
     }else{
       aimEntity = null
-      targetPoint = null
+      interceptPoint = null
     }
 
   }
 
-  override fun track(amount: Float) {
-
-  }
-
-  override fun checkShouldFire(angleDist: Float): Boolean {
-    if(angleDist < 2.5f && aimEntity != null && Global.getCombatEngine().isEntityInPlay(aimEntity)) return true
+  override fun checkIsValid(target: CombatEntityAPI): Boolean {
+    val isEnemy = isEntityEnemy(target)
+    val isInRange = isPointWithinRange(target.location,100f,30f)
+    if(isEnemy && isInRange) return true
     return false
   }
 

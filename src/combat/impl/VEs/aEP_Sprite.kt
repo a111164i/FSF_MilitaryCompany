@@ -24,6 +24,10 @@ open class aEP_MovingSprite : aEP_BaseCombatEffect{
   val stopForceTimer = IntervalUtil(0.1f,0.1f)
   var stopSpeed = 1f
 
+
+  /**
+  *  百分比
+  * */
   var fadeIn = 0f
   var fadeOut = 0f
 

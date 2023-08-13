@@ -1,14 +1,14 @@
 {
 
 	"aEP_FSF":{
-		"hyperspaceJitterColor":[255,145,75,200],
-		"baseCampaignExplosionColor":[255,145,75,255],
-		"baseCombatExplosionColor":[255,145,75,255],
-		"fighterRepairFlickerColor":[255,145,75,255],
-		"fighterChipIconColor":[255,255,255,255],
+		"hyperspaceJitterColor":[80,53,114,200],
+		"baseCampaignExplosionColor":[218,164,62,255],
+		"baseCombatExplosionColor":[218,164,62,255],
+		"fighterRepairFlickerColor":[180,180,150,255],
+		"fighterChipIconColor":[180,180,150,255],
 		"weaponDisabledExplosionColor":[255,111,81,255],
-		"shieldRingColor":[185,45,45,245],
-		"shieldInnerColor":[145,65,65,165],
+		"shieldRingColor":[185,45,45,235],
+		"shieldInnerColor":[145,65,65,175],
 		"fluxVentCoreColor":[255,255,255,255],
 		"fluxVentFringeColor":[155,55,55,255],
 		"fluxVentTextureSheet":"graphics/aEP_hullstyle/vent.png", # optional, this is the default value

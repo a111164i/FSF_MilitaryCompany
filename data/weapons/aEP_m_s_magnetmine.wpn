@@ -1,0 +1,46 @@
+{
+  "id": "aEP_m_s_magnetmine",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_m_s_magnetmine_shot",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_m_s_magnetmine/tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_s_magnetmine/hp.png",
+  "renderHints": [
+    RENDER_LOADED_MISSILES
+  ],
+  "turretOffsets": [
+    -1,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    2,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 18,
+    "particleSizeRange": 24,
+    "cloudParticleCount": 8,
+    "cloudDuration": 1.5,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 5,
+    "blowbackDuration": 1,
+    "blowbackLength": -20,
+    "blowbackSpread": 8,
+    "particleColor": [
+      95,
+      97,
+      92,
+      155
+    ]
+  },
+  "fireSoundTwo":"reaper_fire",
+}

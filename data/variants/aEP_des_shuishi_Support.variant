@@ -1,0 +1,43 @@
+{
+    "displayName": "Support",
+    "fluxCapacitors": 12,
+    "fluxVents": 13,
+    "goalVariant": true,
+    "hullId": "aEP_des_shuishi",
+    "hullMods": [
+        "aEP_ResistShield",
+        "aEP_EliteShip",
+        "aEP_VanguardHull"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_shuishi_Support",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_e_s_300k",
+                "WS0004": "aEP_e_s_300k"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_b_m_rk107"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0002": "aEP_b_s_630"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_ut_repair_wing",
+        "aEP_ftr_ut_supply_wing",
+        "aEP_ftr_bom_attacker_wing"
+    ]
+}

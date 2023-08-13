@@ -6,39 +6,61 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.listeners.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
+import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_DAMAGE_MULT
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_RADIUS_MULT
-import com.fs.starfarer.api.impl.combat.PhaseCloakStats.SHIP_ALPHA_MULT
+import com.fs.starfarer.api.impl.campaign.ids.Tags
+import com.fs.starfarer.api.impl.combat.DamperFieldOmegaStats
 import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.loading.HullModSpecAPI
+import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
+import com.fs.starfarer.combat.entities.DamagingExplosion
 import combat.impl.VEs.aEP_MovingSmoke
+import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Tool
+import combat.util.*
+import combat.util.aEP_DataTool.txt
+import combat.util.aEP_Tool.Util.REPAIR_COLOR
+import combat.util.aEP_Tool.Util.REPAIR_COLOR2
+import combat.util.aEP_Tool.Util.addDebugLog
+import combat.util.aEP_Tool.Util.addDebugPoint
 import combat.util.aEP_Tool.Util.angleAdd
+import combat.util.aEP_Tool.Util.findToRepair
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import data.scripts.util.MagicAnim
-import data.scripts.util.MagicLensFlare
-import data.scripts.util.MagicRender
+import combat.util.aEP_Tool.Util.getRelativeLocationData
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
+import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicAnim
+import org.magiclib.util.MagicLensFlare
+import org.magiclib.util.MagicRender
+import org.magiclib.util.MagicUI
 import java.awt.Color
+import kotlin.math.abs
 
+/**
+* 不知道为什么游戏中不显示基础描述，这里只放一些玩家看不到的插件
+* */
 class aEP_FighterSpecial: BaseHullMod() {
 
-  var hullmod : HullModEffect? = null
+  var hullmod : BaseHullMod? = null
 
   override fun init(spec: HullModSpecAPI?) {
+
     //找到实际对应的代码存入hullmod变量
     //classForName查不到就保持null
     val id = spec?.id
     try {
       val e = Class.forName(aEP_FighterSpecial::class.java.getPackage().name + "." + id)
-      hullmod = e.newInstance() as HullModEffect
+      hullmod = e.newInstance() as BaseHullMod
+      super.init(spec)
+      hullmod?.init(spec)
       Global.getLogger(this.javaClass).info("aEP_FighterSpecialLoaded :" +e.name)
     } catch (e: ClassNotFoundException) {
       e.printStackTrace()
@@ -56,20 +78,18 @@ class aEP_FighterSpecial: BaseHullMod() {
   }
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
+
     hullmod?: return
     hullmod!!.applyEffectsAfterShipCreation(ship, id)
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?): String {
-    hullmod?: return ""
-    hullmod!!.getDescriptionParam(index, hullSize)
-    return ""
+
+    return hullmod?.getDescriptionParam(index, hullSize)?:""
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String {
-    hullmod?: return ""
-    hullmod!!.getDescriptionParam(index, hullSize, ship)
-    return ""
+    return hullmod?.getDescriptionParam(index, hullSize, ship)?:""
   }
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI?, ship: ShipAPI?, id: String?) {
@@ -78,15 +98,11 @@ class aEP_FighterSpecial: BaseHullMod() {
   }
 
   override fun isApplicableToShip(ship: ShipAPI?): Boolean {
-    hullmod?:false
-    hullmod!!.isApplicableToShip(ship)
-    return false
+    return hullmod?.isApplicableToShip(ship)?:false
   }
 
   override fun getUnapplicableReason(ship: ShipAPI?): String {
-    hullmod?: return ""
-    hullmod!!.getUnapplicableReason(ship)
-    return ""
+    return hullmod?.getUnapplicableReason(ship)?:""
   }
 
   /**
@@ -97,15 +113,11 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @return
    */
   override fun canBeAddedOrRemovedNow(ship: ShipAPI?, marketOrNull: MarketAPI?, mode: CampaignUIAPI.CoreUITradeMode?): Boolean {
-    hullmod?: return false
-    hullmod!!.canBeAddedOrRemovedNow(ship, marketOrNull, mode)
-    return false
+    return hullmod?.canBeAddedOrRemovedNow(ship, marketOrNull, mode)?:false
   }
 
   override fun getCanNotBeInstalledNowReason(ship: ShipAPI?, marketOrNull: MarketAPI?, mode: CampaignUIAPI.CoreUITradeMode?): String {
-    hullmod?: return ""
-    hullmod!!.getCanNotBeInstalledNowReason(ship, marketOrNull, mode)
-    return ""
+    return hullmod?.getCanNotBeInstalledNowReason(ship, marketOrNull, mode)?:""
   }
 
   /**
@@ -137,9 +149,7 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @return
    */
   override fun affectsOPCosts(): Boolean {
-    return false
-    return hullmod!!.affectsOPCosts()
-    return false
+    return hullmod?.affectsOPCosts()?:false
   }
 
   /**
@@ -149,9 +159,7 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @param isForModSpec
    * @return
    */
-  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize?, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return false
-    return hullmod!!.shouldAddDescriptionToTooltip(hullSize, ship, isForModSpec)
+  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return false
   }
 
@@ -163,7 +171,7 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @param width
    * @param isForModSpec
    */
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI?, hullSize: ShipAPI.HullSize?, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI?, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     hullmod?: return
     hullmod!!.addPostDescriptionSection(tooltip, hullSize, ship, width, isForModSpec)
   }
@@ -171,13 +179,11 @@ class aEP_FighterSpecial: BaseHullMod() {
   override fun getBorderColor(): Color? {
     hullmod?: return null
     return hullmod!!.borderColor
-    return Color(255,255,255)
   }
 
   override fun getNameColor(): Color? {
     hullmod?: return null
     return hullmod!!.nameColor
-    return Color(255,255,255)
   }
 
   /**
@@ -186,9 +192,7 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @return
    */
   override fun getDisplaySortOrder(): Int {
-    hullmod?:return 99
-    return hullmod!!.displaySortOrder
-    return 99
+    return hullmod?.displaySortOrder ?: 99
   }
 
   /**
@@ -203,29 +207,94 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @return
    */
   override fun getDisplayCategoryIndex(): Int {
-    hullmod?:return 4
-    return hullmod!!.displayCategoryIndex
+    return hullmod?.displayCategoryIndex?:-1
   }
+
+  override fun hasSModEffectSection(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
+    return hullmod?.hasSModEffectSection(hullSize, ship, isForModSpec)?:false
+  }
+
+  override fun addSModSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
+    hullmod?:return
+    hullmod!!.addSModSection(tooltip, hullSize, ship, width, isForModSpec, isForBuildInList)
+  }
+
+  override fun addSModEffectSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
+    hullmod?:return
+    hullmod!!.addSModEffectSection(tooltip, hullSize, ship, width, isForModSpec, isForBuildInList)
+  }
+
+  override fun hasSModEffect(): Boolean {
+    return hullmod?.hasSModEffect()?:false
+  }
+
+  override fun getSModDescriptionParam(index: Int, hullSize: ShipAPI.HullSize): String {
+    return hullmod?.getSModDescriptionParam(index, hullSize)?:""
+  }
+
+  override fun getSModDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String {
+    return hullmod?.getSModDescriptionParam(index, hullSize, ship)?:""
+  }
+
+  override fun getTooltipWidth(): Float {
+    return hullmod?.tooltipWidth?:369f
+  }
+
+  override fun isSModEffectAPenalty(): Boolean {
+    return hullmod?.isSModEffectAPenalty?:false
+  }
+
+  override fun showInRefitScreenModPickerFor(ship: ShipAPI?): Boolean {
+    return hullmod?.showInRefitScreenModPickerFor(ship)?:true
+  }
+
+  override fun isSMod(stats: MutableShipStatsAPI?): Boolean {
+    return hullmod?.isSMod(stats)?:false
+  }
+
+  override fun isSMod(ship: ShipAPI?): Boolean {
+    return hullmod?.isSMod(ship)?:false
+  }
+
+  override fun isBuiltIn(ship: ShipAPI?): Boolean {
+    return hullmod?.isBuiltIn(ship)?:false
+  }
+
+  override fun shipHasOtherModInCategory(ship: ShipAPI?, currMod: String?, category: String?): Boolean {
+    return hullmod?.shipHasOtherModInCategory(ship, currMod, category)?:false
+  }
+
+  override fun isInPlayerFleet(stats: MutableShipStatsAPI?): Boolean {
+    return hullmod?.isInPlayerFleet(stats)?:false
+  }
+
+  override fun isInPlayerFleet(ship: ShipAPI?): Boolean {
+    return hullmod?.isInPlayerFleet(ship)?:false
+  }
+
 
 }
 
 //锚点无人机护盾插件
 class aEP_MaoDianShield : aEP_BaseHullMod() {
-  val ID = "aEP_MaoDianShield"
-  val TIME_TO_EXTEND = 1f
-  //ship文件里的护盾半径也要改，否则护盾中心在屏幕外的时候不会渲染护盾
-  val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian").shieldSpec.radius
-  val MAX_MOVE_TIME = 12f
-  val FLUX_INCREASE = 100f
-  val RADAR_SPEED = -90f
-  val EXPLODSION_DAMAGE_MULT = 0.005f
-  val EXPLODSION_RANGE_MULT = 0.5f
+  companion object{
+    val ID = "aEP_MaoDianShield"
+    val TIME_TO_EXTEND = 1f
+    //ship文件里的护盾半径也要改，否则护盾中心在屏幕外的时候不会渲染护盾
+    val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian").shieldSpec.radius
+    val MAX_MOVE_TIME = 12f
+    val FLUX_INCREASE = 100f
+    val RADAR_SPEED = -90f
+    val EXPLODSION_DAMAGE_MULT = 0.005f
+    val EXPLODSION_RANGE_MULT = 0.5f
+  }
+
 
   /**
    * 使用这个
    **/
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    ship.mutableStats.empDamageTakenMult.modifyMult(this.ID,0f)
+    ship.mutableStats.empDamageTakenMult.modifyMult(ID,0f)
     if(!ship.hasListenerOfClass(ShieldListener::class.java)){
       ship.addListener(ShieldListener(ship))
     }
@@ -259,11 +328,13 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
         ship.collisionRadius = MathUtils.clamp(rad,40f,MAX_SHIELD_RADIUS)
          */
         //盾颜色
-        ship.shield.innerColor = Color(0.5f+0.5f*fluxLevel,
-          0.5f,
-          0.65f*(1f-fluxLevel),
+        val color = Color(
+          0.35f + 0.65f*fluxLevel,
+          0.55f,
+          0.35f + 0.65f*(1f-fluxLevel),
           (0.2f * shieldLevel * shieldLevel) + MagicAnim.smooth((0.35f*(1f-fluxLevel))))
-
+        ship.shield.innerColor = color
+        ship.shield.ringColor = color
         //若开盾强制增加软幅能，增加护盾时间。若不开盾增加机动时间，减少护盾时间，机动超时后快速涨幅能
         if(ship.shield?.isOn == true){
           shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
@@ -429,6 +500,116 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
   }
 }
 
+//吞弹护盾
+class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
+  companion object{
+    const val ID = "aEP_ProjectileDenialShield"
+  }
+
+  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+    if (ship.fluxTracker.isOverloaded && ship.fluxTracker.overloadTimeRemaining > 6f) {
+      ship.fluxTracker.setOverloadDuration(6f)
+    }
+
+  }
+
+  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    if(!ship.customData.containsKey(ID) ){
+      ship.setCustomData(ID,1f)
+      ship.addListener(ProjectileRemove(ship))
+    }
+  }
+
+  inner class ProjectileRemove(val ship: ShipAPI) :  DamageTakenModifier{
+
+    //先于实际施加伤害，对于同一帧的伤害，先全部过一遍这个修改函数，再逐一施加于船体上
+    //param是造成伤害的发射物，DamagingProjectileAPI，beamAPI, EmpArcEntityAPI 等
+    //进行装甲格移除也会进监听器，如果report的话
+    //return修改项的id
+    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
+      if(!shieldHit) return null
+      //如果proj可以穿透战机护盾，直接吞掉同时战机自爆
+      if(param is DamagingProjectileAPI){
+        if(param.projectileSpec?.isPassThroughFightersOnlyWhenDestroyed == false
+          && param.projectileSpec?.isPassThroughFighters == true){
+
+          val damage = param.damage.damage
+          if(ship.maxFlux - ship.currFlux < damage){
+            Global.getCombatEngine().applyDamage(
+              ship,
+              ship.location,
+              (ship.hitpoints + ship.hullSpec.armorRating) * 5f,
+              DamageType.HIGH_EXPLOSIVE,
+              0f,
+              true,
+              false,
+              ship)
+            Global.getCombatEngine().removeEntity(ship)
+          }else{
+            ship.fluxTracker.increaseFlux(damage, true)
+          }
+          Global.getCombatEngine().removeEntity(param)
+        }
+
+        if(param is MissileAPI){
+          param.spec?.explosionSpec?.minDamage?.div(10f)
+          param.spec?.explosionSpec?.maxDamage?.div(10f)
+        }
+
+          //能抓到近炸，但是不能修改explosionSpec所以没有意义
+        if(param is DamagingExplosion){
+          param.damageAmount = param.damageAmount/10f
+        }
+      }
+      if(param is BeamAPI){
+        //如果光束可以穿透，最终目标不是自己但是对自己造成了伤害
+        //当触发时，降低光束本帧的伤害，同时给自己涨幅能
+        if(param.damageTarget is ShipAPI && param.damageTarget != target){
+          //注意光束的damage是只有在造成伤害的那一帧才会赋予一个新的，其他时间为0，数值等同于面板
+          //每当战机承受了伤害，同时beam的最终落点不是战机（代表可以穿透战机）时，给beam的最终落点的舰船一个持续0.33秒的减伤，但是战机没有减伤
+          val beamTarget = param.damageTarget as ShipAPI
+          //一切动作，比如把listener加入beamTarget都在BeamDamageReduce类的init里面，这里只管new
+          BeamDamageReduce(param, beamTarget, 0.33f)
+          return null
+        }
+      }
+      return null
+    }
+  }
+
+}
+class BeamDamageReduce(val beam: BeamAPI, val beamTarget: ShipAPI, val lifetime: Float): DamageTakenModifier, AdvanceableListener{
+  var time = 0f
+  init {
+    //如果已经存在，刷新持续时间
+    if(beamTarget.customData.containsKey(beam.toString())){
+      val listener = (beamTarget.customData[beam.toString()]) as BeamDamageReduce
+      listener.time = 0f
+    }else{ //不存在就加入自己
+      beamTarget.setCustomData(beam.toString(), this)
+      beamTarget.addListener(this)
+    }
+  }
+
+  override fun advance(amount: Float) {
+    time += amount
+    if(time > lifetime){
+      beamTarget.customData.remove(beam.toString())
+      beamTarget.listenerManager.removeListener(this)
+    }
+  }
+
+  override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
+    if(param == beam){
+      damage.modifier.modifyMult(aEP_ProjectileDenialShield.ID, 0.1f)
+      return aEP_ProjectileDenialShield.ID
+    }
+
+    return null
+  }
+}
+
+
 //巡洋导弹引信插件
 open class aEP_CruiseMissile : BaseHullMod() {
   companion object{
@@ -438,7 +619,7 @@ open class aEP_CruiseMissile : BaseHullMod() {
   open class ExplodeListener : AdvanceableListener{
     companion object{
       const val CENTER_DAMAGE = 1000f
-      const val FUSE_RANGE = 150f
+      const val FUSE_RANGE = 200f
       const val FUSE_DELAY= 1f
     }
 
@@ -480,10 +661,7 @@ open class aEP_CruiseMissile : BaseHullMod() {
 
         //中心点大白光
         engine.addHitParticle(
-          point,
-          vel, 400f, 1f,
-          Color.white
-        )
+          point, vel, 400f, 1f, 0.2f, 4f, Color.white)
 
         //随机烟雾
         var SIZE_MULT = 3f
@@ -510,7 +688,7 @@ open class aEP_CruiseMissile : BaseHullMod() {
           val vel = aEP_Tool.speed2Velocity(angle,moveSpeed)
           engine.addNebulaParticle(
             loc,vel,sizeAtMin, endSizeMult,
-            0.1f,1f, 2f,
+            0.1f,1f, 3f,
             Color(100, 100, 100, 255))
           angle += 360f / numMax
         }
@@ -527,13 +705,13 @@ open class aEP_CruiseMissile : BaseHullMod() {
           val vel = aEP_Tool.speed2Velocity(angle,moveSpeed)
           engine.addNebulaParticle(
             loc,vel,sizeAtMin, endSizeMult,
-            0.1f,0.1f, 1f,
+            0.1f,0.1f, 2f,
             Color(100, 100, 100, 175))
           angle += 360f / numMax
         }
 
         //生成弹丸
-        val numOfProj = 160
+        val numOfProj = 180
         val spreadPerProj = 18f
         angle = 0f
         for (i in 0 until  numOfProj) {
@@ -568,8 +746,7 @@ open class aEP_CruiseMissile : BaseHullMod() {
           CollisionClass.MISSILE_FF,  //by ship
           CollisionClass.MISSILE_NO_FF,  //by fighter
           0f, 0f, 0f, 0,
-          Color.white, Color.white
-        )
+          Color.white, Color.white)
         spec.damageType = DamageType.HIGH_EXPLOSIVE
         engine.spawnDamagingExplosion(spec, ship, point)
         engine.combatNotOverFor = engine.combatNotOverFor + 2f
@@ -580,20 +757,26 @@ open class aEP_CruiseMissile : BaseHullMod() {
 
     inner class ApproximatePrimer(ship: ShipAPI) : State(ship) {
       override fun advanceImpl(amount: Float){
-        val sprite = Global.getSettings().getSprite("aEP_FX","noise02")
+        //begin
+        aEP_Render.openGL11CombatLayerRendering()
+
+        val sprite = Global.getSettings().getSprite("aEP_FX","frame02")
         MagicRender.singleframe(sprite,
           ship.location,
-          Vector2f(600f,600f),
-          timeEclipsed*60f, Color(255,0,0,45),false)
+          Vector2f(FUSE_RANGE*2.3f,FUSE_RANGE*2.3f),
+          timeEclipsed*60f, Color(255,0,0,105),true)
+
+
         for (s in Global.getCombatEngine().ships) {
           if (s.owner != ship.owner && !s.isFighter && !s.isDrone && !s.isShuttlePod) {
-            if (MathUtils.getDistance(ship, s) <= FUSE_RANGE) {
+            if (MathUtils.getDistance(s, ship.location) <= FUSE_RANGE) {
               state = this@ExplodeListener.Exploding(ship)
               break
             }
           }
         }
       }
+
     }
 
     inner class SetOff(ship: ShipAPI): State(ship){
@@ -844,11 +1027,11 @@ class aEP_CruiseMissile2 : BaseHullMod() {
     inner class ApproximatePrimer(ship: ShipAPI) : State(ship) {
       override fun advanceImpl(amount: Float){
         val detectPoint = aEP_Tool.getExtendedLocationFromPoint(ship.location,ship.facing, FUSE_RANGE)
-        val sprite = Global.getSettings().getSprite("aEP_FX","noise")
+        val sprite = Global.getSettings().getSprite("aEP_FX","frame")
         MagicRender.singleframe(sprite,
           detectPoint,
-          Vector2f(60f,60f),
-          timeEclipsed*60f, Color(255,0,0,225),false)
+          Vector2f(80f,80f),
+          timeEclipsed*60f, Color(255,0,0,225),true)
         for (s in AIUtils.getNearbyEnemies(ship,1000f)) {
           if (s.owner != ship.owner && !s.isFighter && !s.isDrone && !s.isShuttlePod) {
             if (CollisionUtils.getCollisionPoint(ship.location,detectPoint,s) == null) continue
@@ -921,13 +1104,12 @@ class aEP_FighterArmor : BaseHullMod() {
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
     var modifier = 1f
-    when(ship.hullSpec.hullId){
+    when(ship.hullSpec.baseHullId){
       "aEP_ftr_bom_nuke"-> modifier = 2.5f
       "aEP_ftr_icp_gunship"-> modifier = 2.5f
       "aEP_ftr_ftr_hvfighter"-> modifier = 1.5f
       "aEP_ftr_ftr_helicop"-> modifier = 1.5f
     }
-
 
     ship.mutableStats.effectiveArmorBonus.modifyPercent(id, ARMOR_COMPUTE_PERCENT_BONUS * modifier)
     ship.mutableStats.armorDamageTakenMult.modifyMult(id, 1f - DAMAGE_TAKEN_REDUCE_MULT* modifier)
@@ -975,8 +1157,7 @@ class aEP_Type28Shield : BaseHullMod() {
         shieldColor,
         20f,  //range
         3,  //copies
-        1f * (fluxLevel - 0.5f) * 2f
-      )
+        1f * (fluxLevel - 0.5f) * 2f)
       if (MathUtils.getRandomNumberInRange(0, 100) < (fluxLevel - 0.5f) * 2f * 100f * amount * MIN_EMP_ARC_INTERVAL_PER_SEC) {
         val from = MathUtils.getRandomPointInCircle(ship.location, ship.shield.radius / 2f)
         val to = getExtendedLocationFromPoint(ship.location, MathUtils.getRandomNumberInRange(0, 360).toFloat(), ship.shield.radius)
@@ -998,11 +1179,11 @@ class aEP_Type28Shield : BaseHullMod() {
       if (ship.parentStation.engineController.isAccelerating) {
         modular.giveCommand(ShipCommand.ACCELERATE, null, 0)
       } else if (ship.parentStation.engineController.isTurningRight) {
-        if (modular.hullSpec.hullId == "aEP_typeL28") {
+        if (modular.hullSpec.baseHullId == "aEP_typeL28") {
           modular.giveCommand(ShipCommand.ACCELERATE, null, 0)
         }
       } else if (ship.parentStation.engineController.isTurningLeft) {
-        if (modular.hullSpec.hullId == "aEP_typeR28") {
+        if (modular.hullSpec.baseHullId == "aEP_typeR28") {
           modular.giveCommand(ShipCommand.ACCELERATE, null, 0)
         }
       }
@@ -1018,7 +1199,7 @@ class aEP_Type28Shield : BaseHullMod() {
   }
 
   override fun getUnapplicableReason(ship: ShipAPI): String {
-    return "无法安装任何插件"
+    return "No hullmod allowed"
   }
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
@@ -1034,15 +1215,15 @@ class aEP_Type28Shield : BaseHullMod() {
   }
 
   companion object {
-    private const val COLOR_SHIFT_VALUE = 200
+    const val COLOR_SHIFT_VALUE = 200
     private const val MIN_EMP_ARC_INTERVAL_PER_SEC = 0.25f
     private const val JITTER_THRESHOLD = 0.7f
-    private val JITTER_COLOR = Color(200, 200, 250, 200)
+    //val JITTER_COLOR = Color(200, 200, 250, 200)
     private var id = "aEP_Type28Shield"
   }
 }
 
-//模块爆炸插件
+//模块插件，包括减伤爆炸伤害,禁止v排，同步相位状态，当玩家操控模块的母舰，或者鼠标指向时，显示模块的容量状态
 class aEP_Module : aEP_BaseHullMod() {
   companion object {
     const val DAMAGE_MULT = 0.001f
@@ -1060,26 +1241,68 @@ class aEP_Module : aEP_BaseHullMod() {
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
     super.advanceInCombat(ship, amount)
 
-    ship.isPhased = false
-    ship.extraAlphaMult = 1f
-    ship.setApplyExtraAlphaToEngines(true)
-    if(ship.parentStation != null){
-      val parent = ship.parentStation
-      val stats = ship.mutableStats
-      val parentStats = parent.mutableStats
-      if(parent.isPhased){
-        ship.setApplyExtraAlphaToEngines(true)
-        ship.extraAlphaMult = 1f - (1f - SHIP_ALPHA_MULT)
-        ship.isPhased = true
-
-        if(ship.shield != null){
-          ship.shield.toggleOff()
-        }
-
-        //禁止自动开火，禁止手动开火
-        ship.isHoldFireOneFrame = true
-        ship.blockCommandForOneFrame(ShipCommand.FIRE)
+    //如果本模块不拥有parent，重置一次状态，并从这里出去
+    if(ship.parentStation == null || aEP_Tool.isDead(ship) ) {
+      if( !ship.customData.containsKey(ID)){
+        ship.setCustomData(ID,1f)
+        ship.extraAlphaMult = 1f
+        ship.extraAlphaMult2 = 1f
+        ship.isPhased = false
       }
+      return
+    }
+
+    val parent = ship.parentStation
+    val stats = ship.mutableStats
+    val parentStats = parent.mutableStats
+
+    //模块同步parent的相位和透明度状态
+    ship.setApplyExtraAlphaToEngines(true)
+    ship.extraAlphaMult = parent.extraAlphaMult
+    ship.extraAlphaMult2 = parent.extraAlphaMult2
+    ship.isPhased = parent.isPhased
+
+
+    if(ship.isPhased){
+      //禁止自动开火，禁止手动开火
+      ship.isHoldFireOneFrame = true
+      ship.blockCommandForOneFrame(ShipCommand.FIRE)
+    }
+
+
+    //如果玩家正在操控parent或者玩家鼠标指向了模块的碰撞圈附近，且模块撑起了护盾，在护盾的尖端显示模块当前容量（防止多个模块和本体重叠）
+    var shouldShowStatus = false
+    if(Global.getCombatEngine().playerShip == parent) shouldShowStatus = true
+    val dist = MathUtils.getDistance(Global.getCombatEngine().playerShip.mouseTarget?: aEP_ID.VECTOR2F_ZERO, ship.location)
+    if(dist < ship.collisionRadius + 10f) shouldShowStatus = true
+    if(shouldShowStatus){
+      var color = Misc.getPositiveHighlightColor()
+      if(ship.owner == 1) color = Misc.getNegativeHighlightColor()
+      if(ship.owner == 100) color = Misc.getHighlightColor()
+      val currFlux = ship.currFlux
+      val maxFlux = ship.maxFlux
+      val string = ship.hullSpec.hullName
+      //只有玩家舰船 == ship时才会显示，number是条末端的数字
+      MagicUI.drawInterfaceStatusBar(
+        parent,
+        ship.id,
+        ship.fluxLevel,
+        color,
+        color,
+        ship.hardFluxLevel,
+        string,
+        ship.hitpoints.toInt())
+      //这个方法无法叠加多个
+//      MagicUI.drawHUDStatusBar(
+//        parent,
+//        ship.fluxLevel,
+//        color,
+//        color,
+//        ship.hardFluxLevel,
+//        "1",
+//        "2",
+//        true
+//      )
     }
 
   }
@@ -1090,7 +1313,6 @@ class aEP_Module : aEP_BaseHullMod() {
       ship.setCustomData(ID,1f)
     }
   }
-
 
 
   /**
@@ -1115,25 +1337,11 @@ class aEP_Module : aEP_BaseHullMod() {
   }
 }
 
-//crossout结构减伤
-class aEP_Structure : aEP_BaseHullMod() {
-  companion object {
-    const val DAMAGE_MULT = 0.5f
-    const val MIN_ARMOR_FRACTION_FLAT = 0.25f
-  }
-
-  override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, id: String) {
-    stats?.hullDamageTakenMult?.modifyMult(id, DAMAGE_MULT)
-    stats?.minArmorFraction?.modifyFlat(id, MIN_ARMOR_FRACTION_FLAT)
-  }
-}
-
 //飞行坦克系统
 class aEP_FlyingTank : aEP_BaseHullMod(){
   companion object{
     const val REPAIR_AMOUNT_PER_SECOND = 20f
   }
-
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     ship?:return
@@ -1191,5 +1399,268 @@ class aEP_FlyingTank : aEP_BaseHullMod(){
       }
 
     }
+  }
+}
+
+//战地重建-AI版
+class aEP_EmergencyReconstructAi() : aEP_EmergencyReconstruct(){
+
+  companion object{
+    const val ID = "aEP_EmergencyReconstructAi"
+
+    const val REPAIR_TIME_BASE = 10f
+    const val REPAIR_TIME_PER_DP = 0.5f
+
+    val CHANGE_DROP_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
+
+    init {
+      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.33f)
+      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.15f)
+      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.20f)
+      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.25f)
+      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.33f)
+      CHANGE_DROP_HULLSIZE.withDefault { 0.5f }
+    }
+
+  }
+  constructor(ship: ShipAPI):this(){
+    this.ship = ship
+  }
+
+  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+
+    if(!ship.hasListenerOfClass(this.javaClass)){
+      val listenerClass = aEP_EmergencyReconstructAi(ship)
+      val dp =  ship.mutableStats.dynamic.getMod(Stats.DEPLOYMENT_POINTS_MOD).computeEffective(ship.hullSpec.suppliesToRecover)
+      listenerClass.repairTimeTotal = REPAIR_TIME_BASE + REPAIR_TIME_PER_DP * dp
+      listenerClass.activeChanceDropPerUse = CHANGE_DROP_HULLSIZE[ship.hullSpec.hullSize]?:0.5f
+      ship.addListener(listenerClass)
+    }
+
+  }
+
+  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+
+  }
+
+  override fun advanceInCampaign(member: FleetMemberAPI, amount: Float) {
+    if(!member.variant.hasTag(Tags.VARIANT_UNBOARDABLE)){
+      member.variant.addTag(Tags.VARIANT_UNBOARDABLE)
+    }
+  }
+
+  /**
+   * 这里开始是listener的部分，各个船独立，改变量都要在listener里面动，hullmod的advance是全局的
+   * */
+  override fun advance(amount: Float) {
+    reconstructTimer -= amount
+    reconstructTimer.coerceAtLeast(0f).coerceAtMost(99f)
+    //维修模式时
+    if(reconstructTimer > 0f){
+      duringRepairEffect(amount)
+
+    }else if(didRepair ){//退出维修模式时运行一次
+      onceWhenOutRepair()
+
+    }
+
+    if(aEP_Tool.isDead(ship)){
+      ship.removeCustomData(ACTIVE_KEY)
+      ship.removeListener(this)
+    }
+
+    //addDebugLog(reconstructTime.toString())
+  }
+
+  //if true is returned, the hull damage to be taken is negated.
+  override fun notifyAboutToTakeHullDamage(param: Any?, ship: ShipAPI, point: Vector2f, damageAmount: Float): Boolean {
+    //进入维修模式的那一刻运行一次
+    if(damageAmount >= ship.hitpoints && reconstructTimer <= 0f){
+
+//      aEP_CombatEffectPlugin.addEffect(aEP_Combat.StandardTeleport(1f,ship,
+//        Vector2f(Global.getCombatEngine().playerShip.mouseTarget),ship.facing))
+      val test = MathUtils.getRandomNumberInRange(0f,100f)
+      val threshold = (activeChance * 100f)
+      if(test <= threshold){
+        onceWhenInRepair()
+
+        var txt = String.format("Reconstruct Test: %.0f",test)
+        if(threshold < 100) txt += String.format(" + %.0f",100-threshold)
+        Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.green, ship, 1f,5f)
+
+      }else{
+
+        onceWhenFailTest()
+
+        var txt = String.format("Reconstruct Test: %.0f",test)
+        if(threshold < 100) txt += String.format(" + %.0f",100-threshold)
+        Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.red, ship, 1f,5f)
+
+      }
+    }
+
+    if(reconstructTimer > 0f) return true
+    return false
+  }
+
+  override fun duringRepairEffect(amount: Float){
+    didRepair = true
+    ship.mutableStats.hullDamageTakenMult.modifyMult(aEP_EmergencyReconstruct.ID, 0f)
+    ship.mutableStats.armorDamageTakenMult.modifyMult(aEP_EmergencyReconstruct.ID, 0f)
+    ship.mutableStats.combatWeaponRepairTimeMult.modifyFlat(aEP_EmergencyReconstruct.ID, Float.MAX_VALUE)
+    ship.mutableStats.combatEngineRepairTimeMult.modifyFlat(aEP_EmergencyReconstruct.ID, Float.MAX_VALUE)
+    ship.mutableStats.engineDamageTakenMult.modifyMult(aEP_EmergencyReconstruct.ID, 0f)
+
+    for(e in ship.engineController.shipEngines){
+      if(!e.isDisabled){
+        e.applyDamage(999f, ship)
+        e.disable()
+      }
+    }
+    for(w in ship.allWeapons){
+      if(!w.isDisabled) {
+        w.disable()
+      }
+    }
+
+    //禁止一切操作
+    ship.blockCommandForOneFrame(ShipCommand.FIRE)
+    ship.blockCommandForOneFrame(ShipCommand.VENT_FLUX)
+    ship.blockCommandForOneFrame(ShipCommand.USE_SYSTEM)
+    ship.blockCommandForOneFrame(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK)
+    ship.blockCommandForOneFrame(ShipCommand.ACCELERATE)
+    ship.blockCommandForOneFrame(ShipCommand.ACCELERATE_BACKWARDS)
+    ship.blockCommandForOneFrame(ShipCommand.PULL_BACK_FIGHTERS)
+
+    var level = 1f
+    val fadeTime = 4f
+    if(reconstructTimer > repairTimeTotal-fadeTime) level =  (repairTimeTotal - reconstructTimer)/ fadeTime
+    ship.fadeToColor(aEP_EmergencyReconstruct.ID, Color(75, 75, 75, 255), 1f, 1f, level)
+    ship.isJitterShields = false
+    ship.setCircularJitter(true)
+    ship.setJitterUnder(aEP_EmergencyReconstruct.ID, REPAIR_COLOR2, level, 36, 8f+ship.collisionRadius*0.1f)
+
+    //相位效果
+    ship.extraAlphaMult = level * 0.5f + 0.5f
+    ship.extraAlphaMult2 = level * 0.5f + 0.5f
+    ship.setApplyExtraAlphaToEngines(true)
+    if(level >= 1f){
+      if(ship.phaseCloak != null && ship.phaseCloak.isActive) ship.phaseCloak.deactivate()
+      if(ship.shield != null && ship.shield.isOn) ship.shield.toggleOff()
+      ship.isPhased = true
+      ship.collisionClass = CollisionClass.NONE
+    }
+
+    repairTimer.advance(amount)
+    if(repairTimer.intervalElapsed()){
+      ship.velocity.scale(0.75f)
+      ship.angularVelocity *= 0.75f
+      val repaired = findToRepair(ship,
+        ((ship.armorGrid.maxArmorInCell*(ship.armorGrid.grid.size * ship.armorGrid.grid[0].size)+ship.maxHitpoints) * 0.5f)/repairTimeTotal,
+        1f,1f,100f,1f)
+      if(repaired >= 1f){
+        //reconstructTime = 0.1f
+      }
+    }
+  }
+
+  override fun onceWhenOutRepair(){
+
+    ship.mutableStats.hullDamageTakenMult.unmodify(aEP_EmergencyReconstruct.ID)
+    ship.mutableStats.armorDamageTakenMult.unmodify(aEP_EmergencyReconstruct.ID)
+    ship.mutableStats.combatWeaponRepairTimeMult.unmodify(aEP_EmergencyReconstruct.ID)
+    ship.mutableStats.combatEngineRepairTimeMult.unmodify(aEP_EmergencyReconstruct.ID)
+    ship.mutableStats.engineDamageTakenMult.unmodify(aEP_EmergencyReconstruct.ID)
+
+    ship.removeCustomData(ACTIVE_KEY)
+
+    for(e in ship.engineController.shipEngines){
+      if(e.isDisabled) e.repair()
+    }
+    for(w in ship.allWeapons){
+      if(w.isDisabled) w.repair()
+    }
+
+    //取消相位效果
+    ship.isPhased = false
+    ship.collisionClass = CollisionClass.SHIP
+    ship.extraAlphaMult = 1f
+    ship.extraAlphaMult2 = 1f
+
+    //如果是因为舰船被摧毁导致的运行，不需要清除损伤贴图
+    if(didRepair ){
+      didRepair = false
+      ship.syncWeaponDecalsWithArmorDamage()
+      ship.clearDamageDecals()
+    }
+  }
+
+  override fun onceWhenInRepair(){
+
+    ship.setCustomData(ACTIVE_KEY,true)
+
+    activeChance -= activeChanceDropPerUse
+    activeChance.coerceAtLeast(0f).coerceAtMost(1f)
+
+    ship.hitpoints = 1f
+    reconstructTimer = repairTimeTotal
+    ship.engineController.forceFlameout(true)
+    for(s in Global.getCombatEngine().ships){
+      if(s.shipTarget == ship){
+        s.shipTarget = null
+      }
+    }
+
+
+    val scaffoldSize = 100f
+    val cellSize = ship.armorGrid.cellSize
+    val x = ship.armorGrid.leftOf * cellSize
+    val y = ship.armorGrid.above * cellSize
+    val leftTopAbs = Vector2f.add(VectorUtils.rotate(Vector2f(-x,y),ship.facing-90f), ship.location,null)
+
+    val leftTopRel = getRelativeLocationData(leftTopAbs,ship,false)
+    val centerRel = getRelativeLocationData(ship.location, ship,false)
+
+    val xLength = (ship.armorGrid.leftOf + ship.armorGrid.rightOf)*cellSize
+    val xNum =   (xLength/scaffoldSize).toInt() + 1
+    val xStep = xLength/xNum
+
+    val yLength = (ship.armorGrid.above + ship.armorGrid.below)*cellSize
+    val yNum =   (yLength/scaffoldSize).toInt() + 1
+    val yStep = yLength/yNum
+
+    for(i in 0..yNum){
+      val yMoveOffset = (yNum/2f - i) * yStep
+      val yTime = abs(yMoveOffset/yStep)
+      for(j in 0..xNum){
+        val xOffset = (xNum/2f - j) * xStep
+        val xTime = abs(xOffset/xStep) + yTime
+        //渲染x支架
+        aEP_CombatEffectPlugin.addEffect(RepairScaffoldUp(
+          xTime,1f, reconstructTimer - i * 0.5f,
+          ship, xOffset, yMoveOffset, centerRel))
+      }
+      //渲染水平支架，后于x支架，要盖在上面
+      aEP_CombatEffectPlugin.addEffect(RepairSideFrameUp(
+        yTime,  xNum/2f, reconstructTimer - i * 0.5f,ship,
+        0f,yMoveOffset,(xLength+scaffoldSize)/2f,centerRel))
+    }
+
+    var i = xLength * yLength
+    while (i > 0){
+      i -= scaffoldSize * scaffoldSize * 10
+      aEP_CombatEffectPlugin.addEffect(RepairSideMoving(1f,reconstructTimer - yNum * 0.5f,ship,centerRel))
+    }
+  }
+
+  override fun onceWhenFailTest(){
+    ship.removeListener(this)
+  }
+
+  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
+    return false
+  }
+
+  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
   }
 }

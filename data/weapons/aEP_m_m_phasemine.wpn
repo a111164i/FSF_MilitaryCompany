@@ -1,0 +1,46 @@
+{
+  "id": "aEP_m_m_phasemine",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_m_m_phasemine_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/aEP_m_m_phasemine/tr.png",
+  "turretUnderSprite": "graphics/weapons/aEP_m_base.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_m_phasemine/hp.png",
+  "hardpointUnderSprite": "",
+  "turretOffsets": [
+    -5,
+    -2
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    -3,
+    -4
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "renderHints":[RENDER_LOADED_MISSILES],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 16,
+    "particleSizeRange": 20,
+    "cloudParticleCount": 5,
+    "cloudDuration": 1.5,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 3,
+    "blowbackDuration": 1,
+    "blowbackLength": 10,
+    "blowbackSpread": 8,
+    "particleColor": [
+      95,
+      70,
+      155,
+      110
+    ]
+  },
+  "fireSoundTwo":"proximity_charge_launcher_fire",
+}

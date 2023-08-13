@@ -54,7 +54,7 @@
 			"collisionClass":MISSILE_NO_FF,
 			"collisionClassByFighter":PROJECTILE_FIGHTER,
 			"particleSizeMin":4.0,
-			"particleSizeRange":2.0,
+			"particleSizeRange":3.0,
 			"particleDuration":0.6,
 			"particleCount":20,
 			"particleColor":[255,215,125,155],

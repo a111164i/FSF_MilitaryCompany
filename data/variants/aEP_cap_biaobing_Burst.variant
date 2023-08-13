@@ -1,67 +1,75 @@
 {
-    "displayName": "Burst",
-    "fluxCapacitors": 16,
-    "fluxVents": 30,
-    "goalVariant": true,
-    "hullId": "aEP_cap_biaobing",
-    "hullMods": [
-        "magazines",
-        "hardenedshieldemitter",
-        "stabilizedshieldemitter"
-    ],
-    "permaMods": [],
-    "sMods": [],
-    "variantId": "aEP_cap_biaobing_Burst",
-    "weaponGroups": [
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0021": "aEP_cap_biaobing_radar"}
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0007": "hurricane",
-                "WS0008": "hurricane"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0009": "sabotpod",
-                "WS0010": "sabotpod"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0011": "autopulse"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "ionpulser",
-                "WS0002": "ionpulser",
-                "WS0003": "ionpulser",
-                "WS0004": "ionpulser",
-                "WS0005": "ionpulser",
-                "WS0006": "ionpulser"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0012": "pdburst",
-                "WS0013": "pdburst",
-                "WS0014": "pdburst",
-                "WS0015": "pdburst",
-                "WS0016": "pdlaser",
-                "WS0019": "pdlaser"
-            }
-        }
-    ]
+  "variantId": "aEP_cap_biaobing_Burst",
+  "hullId": "aEP_cap_biaobing",
+  "displayName": "Burst",
+  "goalVariant": true,
+  "fluxCapacitors": 30,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "hardenedshieldemitter",
+    "stabilizedshieldemitter",
+    "solar_shielding",
+    "missleracks"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "kineticblaster",
+        "WS0004": "kineticblaster",
+        "WS0006": "kineticblaster",
+        "WS0011": "plasma"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0008": "cyclone",
+        "WS0009": "typhoon",
+        "WS0010": "typhoon"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "squall"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0021": "aEP_cap_biaobing_radar"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0012": "lrpdlaser",
+        "WS0013": "pdburst",
+        "WS0014": "pdburst",
+        "WS0015": "lrpdlaser",
+        "WS0019": "pdburst",
+        "WS0020": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
 }

@@ -1,6 +1,6 @@
 {
 	id:"aEP_FSF",
-	"color":[180,180,150,255],
+	"color":[181,182,149,255],
 	"displayName":"FSF军事公司",
 	"displayNameWithArticle":"FSF军事公司",
 	"displayNameLong":"FSF军事公司",
@@ -66,7 +66,7 @@
 
 			"longbow_wing",
 			"cobra_wing",
-
+			"sarissa_wing",
 			"xyphos_wing",
 		],
 	},
@@ -196,17 +196,23 @@
 		
 		"aggression":2,
 		
-		"combatFreighterProbability":0.25, 	# instead of some portion of the freighters in a fleet
+		"combatFreighterProbability":0.5, 	# instead of some portion of the freighters in a fleet
 		"combatFreighterCombatUseFraction":0,	# as part of the normal combat lineup
 		"combatFreighterCombatUseFractionWhenPriority":0,   # as part of normal combat lineup, when marked as priority ship
 		"autofitRandomizeProbability":0.25,
+
+
+		"officerSkillsShuffleProbability":1f,
+		"officerSkills":[
+			"ballistic_mastery",
+			"ordnance_expert",
+		],
 
 		"commanderSkillsShuffleProbability":0.5,
 		"commanderSkills":[
 			"officer_management",
 			"coordinated_maneuvers",
-			"fighter_doctrine",
-			"electronic_warfare",
+			"support_doctrine"
 		],
 	},
 	"illegalCommodities":[
@@ -280,10 +286,11 @@
 		"smallTrader": "小型商贸舰队",
 		"tradeLiner": "行商",
 		"patrolSmall": "巡逻队",
-		"patrolMedium": "空间站护卫队",
+		"patrolMedium": "大型巡逻队",
 		"patrolLarge": "快速反应舰队",
 		"inspectionFleet": "评测局",
-	  "taskForce": "任务舰队",
+	  "taskForce": "特种任务舰队",
+	  "personBounty": "悬赏目标"
 	},
  
 },	

@@ -9,35 +9,26 @@
   "center": [50, 100],
   "collisionRadius": 115,
   "shieldCenter": [0, -0],
-  "shieldRadius": 112,
+  "shieldRadius": 114,
   "viewOffset": 0,
   "builtInMods": [
+    "aEP_MarkerDissipation",
     "civgrade",
     "aEP_VanguardHull"
   ],
   "builtInWeapons": {
-    "RL_DECO0012": "aEP_small_fold_armor",
-    "RL_DECO0013": "aEP_small_fold_armor",
-    "RL_DECO0014": "aEP_small_fold_armor",
-    "RL_DECO0015": "aEP_small_fold_armor",
-    "RL_DECO0016": "aEP_small_fold_armor",
-    "RL_DECO0017": "aEP_small_fold_armor",
-    "RL_DECO0018": "aEP_small_fold_armor",
-    "RL_DECO0019": "aEP_small_fold_armor",
-
-    "WS0004": "aEP_des_youjiyan_hull",
-    "WS0005": "aEP_des_youjiyan_hull",
-    "WS0006": "aEP_des_youjiyan_hull",
-    "WS0007": "aEP_des_youjiyan_hull",
-
-    "RL_DECO0004": "aEP_small_fold_below",
-    "RL_DECO0006": "aEP_small_fold_below",
-    "RL_DECO0008": "aEP_small_fold_below",
-    "RL_DECO0009": "aEP_small_fold_below",
-    "RL_DECO0010": "aEP_small_fold_below",
-    "RL_DECO0011": "aEP_small_fold_below",
-    "RL_DECO0021": "aEP_small_fold_below",
-    "RL_DECO0023": "aEP_small_fold_below",
+    "TOP_LV00_01": "aEP_cap_shangshengliu_top_cover",
+    "TOP_LV00_02": "aEP_cap_shangshengliu_top_cover",
+    "TOP_LV00_03": "aEP_cap_shangshengliu_top_cover",
+    "TOP_LV00_04": "aEP_cap_shangshengliu_top_cover",
+    "TOP_LV01_01": "aEP_cap_shangshengliu_top",
+    "TOP_LV01_04": "aEP_cap_shangshengliu_top",
+    "TOP_LV01_08": "aEP_cap_shangshengliu_top",
+    "TOP_LV01_12": "aEP_cap_shangshengliu_top",
+    "TOP_LV02_01": "aEP_cap_shangshengliu_bottom",
+    "TOP_LV02_04": "aEP_cap_shangshengliu_bottom",
+    "TOP_LV02_08": "aEP_cap_shangshengliu_bottom",
+    "TOP_LV02_12": "aEP_cap_shangshengliu_bottom"
   },
   "weaponSlots": [
     {
@@ -45,18 +36,20 @@
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 240,
-      "angle": 60,
-      "locations": [-34, 29]
+      "arc": 120,
+      "angle": 90,
+      "locations": [-34, 29],
+      "renderOrderMod": 4
     },
     {
       "id": "WS0002",
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 240,
-      "angle": -60,
-      "locations": [-34, -29]
+      "arc": 120,
+      "angle": -90,
+      "locations": [-34, -29],
+      "renderOrderMod": 4
     },
     {
       "id": "WS0003",
@@ -80,205 +73,160 @@
       ]
     },
     {
-      "id": "RL_DECO0004",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-17, 38]
-    },
-    {
-      "id": "RL_DECO0006",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [9, 38]
-    },
-    {
-      "id": "RL_DECO0008",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [43, 38]
-    },
-    {
-      "id": "RL_DECO0009",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [43, -38]
-    },
-    {
-      "id": "RL_DECO0010",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [69, 38]
-    },
-    {
-      "id": "RL_DECO0011",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [69, -38]
-    },
-    {
-      "id": "RL_DECO0012",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-17, 42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0013",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-17, -42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0014",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [9, 42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0015",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [9, -42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0016",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [43, 42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0017",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [43, -42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0018",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [69, 42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0019",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [69, -42],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "RL_DECO0021",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-17, -38]
-    },
-    {
-      "id": "RL_DECO0023",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [9, -38]
-    },
-    {
       "id": "WS0028",
-      "size": "SMALL",
+      "size": "MEDIUM",
       "type": "BALLISTIC",
-      "mount": "HARDPOINT",
-      "arc": 15,
+      "mount": "TURRET",
+      "arc": 270,
       "angle": 0,
-      "locations": [82, -0]
+      "locations": [68.5, -0]
+    },
+    {
+      "id": "TOP_LV00_01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [56, 23],
+      "renderOrderMod": 3
+    },
+    {
+      "id": "TOP_LV01_04",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [56, -20],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "TOP_LV01_01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [56, 20],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "TOP_LV00_02",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [56, -23],
+      "renderOrderMod": 3
+    },
+    {
+      "id": "TOP_LV02_01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [56, 24],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "TOP_LV02_04",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [56, -24],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "TOP_LV00_03",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-4, 23],
+      "renderOrderMod": 3
+    },
+    {
+      "id": "TOP_LV00_04",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-4, -23],
+      "renderOrderMod": 3
+    },
+    {
+      "id": "TOP_LV01_08",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-4, 20],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "TOP_LV01_12",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-4, -20],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "TOP_LV02_08",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-4, 24],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "TOP_LV02_12",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-4, -24],
+      "renderOrderMod": 1
     },
     {
       "id": "WS0004",
       "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [56, 39],
-      "renderOrderMod": 1
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": 0,
+      "locations": [94, 11]
     },
     {
       "id": "WS0005",
       "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [56, -39],
-      "renderOrderMod": 1
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": -0,
+      "locations": [94, -11]
     },
     {
       "id": "WS0006",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-4, 39],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "WS0007",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-4, -39],
-      "renderOrderMod": 1
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 0,
+      "locations": [-25.5, -0]
     }
   ],
   "engineSlots": [

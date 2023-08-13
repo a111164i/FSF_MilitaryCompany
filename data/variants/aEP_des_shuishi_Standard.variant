@@ -1,0 +1,36 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 11,
+    "fluxVents": 11,
+    "goalVariant": true,
+    "hullId": "aEP_des_shuishi",
+    "hullMods": [
+        "aEP_BurstDissipate",
+        "aEP_StrategyThruster"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_shuishi_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_b_m_mb32"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0002": "aEP_b_s_630",
+                "WS0003": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630"
+            }
+        }
+    ],
+    "wings": [
+        "wasp_wing",
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_icp_gunship_wing"
+    ]
+}

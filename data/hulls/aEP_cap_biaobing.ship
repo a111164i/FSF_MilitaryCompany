@@ -12,7 +12,7 @@
   "shieldRadius": 238,
   "viewOffset": 0,
   "builtInMods": [
-		"aEP_BBAdjustRange",
+    "aEP_BBAdjustRange"
   ],
   "builtInWeapons": {
     "WS0021": "aEP_cap_biaobing_radar"
@@ -102,18 +102,18 @@
     {
       "id": "WS0009",
       "size": "MEDIUM",
-      "type": "SYNERGY",
+      "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 135,
+      "arc": 235,
       "angle": 0,
       "locations": [99, 0]
     },
     {
       "id": "WS0010",
       "size": "MEDIUM",
-      "type": "SYNERGY",
+      "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 135,
+      "arc": 235,
       "angle": 0,
       "locations": [67, 0]
     },

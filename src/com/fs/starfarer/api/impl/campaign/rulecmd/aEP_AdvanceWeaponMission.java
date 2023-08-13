@@ -20,9 +20,15 @@ import com.fs.starfarer.api.util.WeightedRandomPicker;
 import combat.util.aEP_DataTool;
 import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
+import data.scripts.FSFModPlugin;
 import data.scripts.campaign.intel.*;
 import data.scripts.campaign.submarkets.aEP_FSFMarketPlugin;
 import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
+import exerelin.utilities.LunaConfigHelper;
+import lunalib.LunaLibPlugin;
+import lunalib.backend.ui.settings.LunaSettingsConfigLoader;
+import lunalib.lunaSettings.LunaSettings;
+import lunalib.lunaSettings.LunaSettingsListener;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -126,7 +132,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     return false;
   }
 
-  boolean check(String className) {
+  public boolean check(String className) {
     boolean check = false;
     for (IntelInfoPlugin intel : Global.getSector().getIntelManager().getIntel()) {
       if (intel instanceof aEP_BaseMission) {
@@ -171,22 +177,29 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   }
 
   boolean shouldStart() {
-    FactionAPI faction = Global.getSector().getFaction("aEP_FSF");
-    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
-      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation") && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") > 0.20f) {
-        boolean has = false;
-        for (PersonAPI person : market.getPeopleCopy()) {
-          if (person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) {
-            dialog.getInteractionTarget().setActivePerson(person);
-            has = true;
-            break;
-          }
-        }
-
-        return has;
-      }
+    if(Global.getSector().getMemoryWithoutUpdate().getBoolean("$aEP_isSkipAwmMission") == true){
+      return false;
     }
-    return false;
+
+    FactionAPI faction = Global.getSector().getFaction("aEP_FSF");
+    boolean has = false;
+    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
+      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation")
+              && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") >= 0.20f) {
+        for (PersonAPI person : market.getPeopleCopy()) {
+          //科学家不在市场中，出去
+          if (!person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) continue;
+          //科学家不在通讯录中，出去
+          if (market.getCommDirectory().addPerson(person) == null) continue;
+
+          dialog.getInteractionTarget().setActivePerson(person);
+          has = true;
+          break;
+        }
+      }
+      if(has) break;
+    }
+    return has;
   }
 
   boolean show1(float totalWeaponPoint, String tag) {
@@ -235,16 +248,22 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     FactionAPI faction = Global.getSector().getFaction("aEP_FSF");
     boolean has = false;
     for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
-      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation") && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") > 0.20f) {
+      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation")
+              && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") >= 0.35f) {
         for (PersonAPI person : market.getPeopleCopy()) {
-          if (person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) {
-            dialog.getInteractionTarget().setActivePerson(person);
-            has = true;
-            break;
-          }
+          //科学家不在市场中，出去
+          if (!person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) continue;
+          //科学家不在通讯录中，出去
+          if (market.getCommDirectory().addPerson(person) == null) continue;
+
+          dialog.getInteractionTarget().setActivePerson(person);
+          has = true;
+          break;
         }
       }
+      if(has) break;
     }
+
 
     boolean levelIsEnough = Global.getSector().getPlayerPerson().getStats().getLevel() >= 6;
 
@@ -360,15 +379,20 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     FactionAPI faction = Global.getSector().getFaction("aEP_FSF");
     boolean has = false;
     for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
-      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation") && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") > 0.50f) {
+      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation")
+              && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") >= 0.5f) {
         for (PersonAPI person : market.getPeopleCopy()) {
-          if (person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) {
-            dialog.getInteractionTarget().setActivePerson(person);
-            has = true;
-            break;
-          }
+          //科学家不在市场中，出去
+          if (!person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) continue;
+          //科学家不在通讯录中，出去
+          if (market.getCommDirectory().addPerson(person) == null) continue;
+
+          dialog.getInteractionTarget().setActivePerson(person);
+          has = true;
+          break;
         }
       }
+      if(has) break;
     }
 
     boolean levelIsEnough = Global.getSector().getPlayerPerson().getStats().getLevel() >= 8;
@@ -521,15 +545,20 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
     boolean has = false;
     for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
-      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation") && Global.getSector().getPlayerFaction().getRelationship(aEP_ID.FACTION_ID_FSF) > 0.9f) {
+      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation")
+              && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") >= 0.75f) {
         for (PersonAPI person : market.getPeopleCopy()) {
-          if (person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) {
-            dialog.getInteractionTarget().setActivePerson(person);
-            has = true;
-            break;
-          }
+          //科学家不在市场中，出去
+          if (!person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) continue;
+          //科学家不在通讯录中，出去
+          if (market.getCommDirectory().addPerson(person) == null) continue;
+
+          dialog.getInteractionTarget().setActivePerson(person);
+          has = true;
+          break;
         }
       }
+      if(has) break;
     }
 
     boolean levelIsEnough = Global.getSector().getPlayerPerson().getStats().getLevel() >= 10;
@@ -538,12 +567,6 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
 
   boolean start4() {
     FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
-
-    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
-      if(market.getId().equals(aEP_FSF_DWR43.FACTORY_STATION_MARKET_ID)){
-        market.addSubmarket(aEP_FSFMarketPlugin.ID);
-      }
-    }
     Global.getSector().addScript(new aEP_AWM4Intel());
 
     return false;

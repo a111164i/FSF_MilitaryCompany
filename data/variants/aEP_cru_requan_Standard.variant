@@ -18,13 +18,13 @@
       "weapons": {
         "WS0001": "lightdualac",
         "WS0002": "lightdualac",
-        "WS0003": "aEP_hive_small",
-        "WS0004": "aEP_hive_small",
-        "WS0005": "aEP_hive_small",
-        "WS0006": "aEP_hive_bay",
+        "WS0003": "aEP_m_s_expander",
+        "WS0004": "aEP_m_s_expander",
+        "WS0005": "aEP_m_s_expander",
+        "WS0006": "aEP_m_m_expander",
         "WS0008": "lightdualac",
-        "WS0010": "aEP_hive_bay",
-        "WS0011": "aEP_hive_bay"
+        "WS0010": "aEP_m_m_expander",
+        "WS0011": "aEP_m_m_expander"
       }
     },
     {

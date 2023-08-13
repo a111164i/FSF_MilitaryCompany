@@ -9,7 +9,7 @@
     <method v="2">
       <option name="Make" enabled="true" />
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="a111164_ExtendPack:jar" />
+        <artifact name="FSF_MilitaryCorporation:jar" />
       </option>
     </method>
   </configuration>

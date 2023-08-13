@@ -45,11 +45,11 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0002": "aEP_vulcan",
-                "WS0008": "aEP_vulcan",
-                "WS0010": "aEP_vulcan",
-                "WS0011": "aEP_vulcan",
-                "WS0013": "aEP_vulcan"
+                "WS0002": "aEP_b_s_630",
+                "WS0008": "aEP_b_s_630",
+                "WS0010": "aEP_b_s_630",
+                "WS0011": "aEP_b_s_630",
+                "WS0013": "aEP_b_s_630"
             }
         },
         {

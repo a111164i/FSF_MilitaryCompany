@@ -5,20 +5,17 @@
   "statsScript":"data.scripts.shipsystems.aEP_CrowdControl",
 
 
-  "range":600,
+  "range":700,
 
   "empDamage":50,
-  "damage":25,
-  "damageType":ENERGY,
+  "damage":100,
+  "damageType":FRAGMENTATION,
 
   "shieldRingColor":[255,255,255,255],
   "shieldInnerColor":[125,100,255,75],
 
-  #"effectColor1":[150,150,255,200],
-  #"effectColor2":[175,175,255,255],
   "effectColor1":[255,150,255,200],
   "effectColor2":[255,175,255,255],
-
 
   "useSound":"system_emp_emitter_activate",
   "loopSound":"system_emp_emitter_loop",
@@ -26,7 +23,7 @@
   "outOfUsesSound":"gun_out_of_ammo",
 
   "aiHints":{
-    "threatRange":600,
+    "threatRange":700,
     "threatAmount":2,
     "threatAngle":0,
     "threatArc":60,

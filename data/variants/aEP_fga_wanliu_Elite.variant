@@ -1,36 +1,28 @@
 {
-  "variantId": "aEP_fga_wanliu_Elite",
-  "hullId": "aEP_fga_wanliu",
-  "displayName": "Elite",
-  "goalVariant": true,
-  "fluxCapacitors": 0,
-  "fluxVents": 0,
-  "quality": 1,
-  "permaMods": [],
-  "hullMods": [],
-  "weaponGroups": [
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0001": "gauss"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0002": "taclaser"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0004": "vulcan"
-      }
-    }
-  ],
-  "modules": [],
-  "wings": []
+    "displayName": "Elite",
+    "fluxCapacitors": 5,
+    "fluxVents": 7,
+    "goalVariant": true,
+    "hullId": "aEP_fga_wanliu",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_wanliu_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0004": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_e_s_300k"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "aEP_b_l_dg3"}
+        }
+    ]
 }

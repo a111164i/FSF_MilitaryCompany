@@ -7,6 +7,8 @@ import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import combat.util.aEP_Tool;
+import data.scripts.ai.shipsystemai.aEP_BaseSystemAI;
+import data.scripts.ai.shipsystemai.aEP_DroneBurstAI;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;
 import org.lazywizard.lazylib.combat.CombatUtils;
@@ -42,10 +44,12 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
   private boolean shouldDissipate = false;
   private boolean shouldReturn = false;
 
+  private aEP_BaseSystemAI systemAi;
 
   public aEP_DroneDecomposeAI(FleetMemberAPI member, ShipAPI ship) {
     this.ship = ship;
     this.engine = Global.getCombatEngine();
+    this.systemAi = new aEP_DroneBurstAI(ship, ship.getSystem());
   }
 
   public void cancelCurrentManeuver() {
@@ -80,8 +84,7 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
     //get parent ship
     if (ship.getWing().getSourceShip() == null) {
       parentShip = aEP_Tool.getNearestFriendCombatShip(ship);
-    }
-    else {
+    } else {
       parentShip = ship.getWing().getSourceShip();
     }
 
@@ -150,10 +153,12 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
     //return parent if we should
     if (shouldReturn || (allSupplies > 0 && toTarget == parentShip)) {
       toTarget = parentShip;
-
       returnToParent(ship, parentShip, amount);
       return;
     }
+
+    systemAi.advance(amount,null, null, (ShipAPI) toTarget);
+
 
 
     //normal move
@@ -184,7 +189,7 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
 
       if (splitTimer > SPLIT_INTERVAL) {
         splitTimer = 0f;
-        toTargetPo = MathUtils.getRandomPointInCircle(toTarget.getLocation(),toTarget.getCollisionRadius() + 100f);
+        toTargetPo = MathUtils.getRandomPointOnCircumference(toTarget.getLocation(),toTarget.getCollisionRadius() + 50f);
       }
       aEP_Tool.Util.setToPosition(ship, toTargetPo);
       aEP_Tool.Util.moveToAngle(ship, VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())));
@@ -215,7 +220,6 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
   }
 
 
-  //can't use method in AITool, we have supply to add
   void returnToParent(ShipAPI ship, ShipAPI parentShip, float amount) {
     aEP_Tool.returnToParent(ship, parentShip,amount);
 
@@ -247,6 +251,5 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
     }
 
   }
-
 
 }

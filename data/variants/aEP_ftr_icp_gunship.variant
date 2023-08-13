@@ -8,43 +8,43 @@
   "quality": 1,
   "permaMods": [],
   "hullMods": [
-    "autorepair",
     "armoredweapons",
-    "fluxbreakers"
   ],
   "weaponGroups": [
     {
-      "autofire": true,
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+          "WS0007": "aEP_ftr_icp_gunship_beam"
+        }
+    },
+    {
+      "autofire": false,
       "mode": "LINKED",
       "weapons": {
         "WS0003": "aEP_ftr_icp_gunship_gun",
-        "WS0005": "aEP_ftr_icp_gunship_gun"
       }
     },
     {
-      "autofire": true,
+      "autofire": false,
       "mode": "LINKED",
       "weapons": {
         "WS0001": "aEP_ftr_icp_gunship_gun",
-        "WS0002": "aEP_ftr_icp_gunship_gun"
       }
     },
     {
-      "autofire": true,
+      "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0007": "aEP_ftr_icp_gunship_beam"
+        "WS0002": "aEP_ftr_icp_gunship_gun",
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
-      "weapons": {}
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {}
+      "weapons": {
+        "WS0005": "aEP_ftr_icp_gunship_gun"
+      }
     },
     {
       "autofire": false,

@@ -4,16 +4,31 @@
 		"only_on_FSF":"只能安装在FSF的舰船上",
 		"not_capital":"不能安装在主力舰上",
 		"not_cruiser":"不能安装在巡洋舰上",
-		"effect":"常驻效果",
+		"not_destroyer":"不能安装在驱逐舰上",
+		"not_frigate":"不能安装在护卫舰上",
+		"not_module":"不能安装在模块上",
+		"not_right_hullsize": "无法安装在此种舰体级别上",
+		"effect":"效果",
 		"no_link":"目前没有任何联动效果",
 		"not_compatible":"不兼容",
 		"when_soft_up":"预热完成时 额外效果",
 		"when_soft_not_up":"尚未完全预热时",
 		"flux_gen_reduce":"武器幅能产生减少",
+		"base": "基础",
+		"bomber_wing": "轰炸机",
+		"non_bomber_wing": "非轰炸机",
+
 
 		"hard_diss":"硬幅能耗散",
 		"hard_convert":"硬幅能转换",
-		"overload_time_reduce":"过载时间减少",
+
+		"aEP_MarkerDissipation03": "过载时间减少{%s}",
+		"aEP_MarkerDissipation01": "最长过载时间不会超过{%s}秒",
+		"aEP_MarkerDissipation02": "零幅能加速的{%s}值变为{%s}",
+		"aEP_MarkerDissipation05": "零幅能加速的启用阈值增加{%s}",
+		"aEP_MarkerDissipation06": "零幅能加速需要{%s}秒才能达到最大值",
+		"aEP_MarkerDissipation04": "最大速度增加: ",
+
 		"MD_des01":"预热程度: ",
 		"MD_des02":"武器幅能产生减少百分之{%} 同时幅能耗散减少百分之{%}",
 		"MD_des03":"受到伤害减免百分之",
@@ -24,7 +39,7 @@
 		"MP_des01":"对于小型导弹，每100秒生产等价于{%s}装配点的弹药",
 		"MP_des02":"对于中型导弹，每100秒生产等价于{%s}装配点的弹药",
 		"MP_des03":"对于大型导弹，每100秒生产等价于{%s}装配点的弹药",
-		"MP_des04":"所有导弹的备弹量不会超过{%s}轮的发射量",
+		"MP_des04":"所有导弹的备弹量会被限制到：武器{%s}轮的发射量或是基础备弹量的{%s}，两者取大",
 		"MP_des05":"当前总装填率: ",
 		"MP_des06":"当总装填率为{%s}时，不同导弹武器的最大生产速度如下: ",
 		"MP_des07":"总装填率的回复速度，基于本舰安装的全部导弹武器装配点的总和，当前为每100秒{%s}点",
@@ -37,10 +52,7 @@
 		"weapon_range_up4":"附近友军为护卫舰时，武器射程提升{%s}",
 		"max_speed_down":"最大速度降低",
 		"shield_damge_taken_reduce":"护盾承受伤害减少",
-		"ammo_regen_speed_up":"弹药恢复速度再提升{%s}}",
-		"HotLoader_desc02":"当本舰的战术系统激活时，弹药恢复速度再提升{%s}",
-		"reduce_flux_per_hit":"每次生效的同时减少{%s}点幅能",
-		
+
 		"add":"增加",
 		"reduce":"减少",
 		"alter":"变动",
@@ -48,10 +60,20 @@
 		"forward":"正向",
 		"backward":"负向",	
 		"only_on_small_ship":"只能安装在护卫舰和驱逐舰上",
-		"VA_des01":"船体每次受到伤害时,有百分之{%s}的概率减少伤害{%s}点",
 
-		"aEP_HotLoader01": "所有非内置，非导弹的武器获得常驻{%s}的装填速度加成",
-		
+
+		"VA_des01":"船体每次受到伤害时,有百分之{%s}的概率减少伤害{%s}点",
+		"VA_des02":"每次生效的同时减少{%s}点幅能",
+
+		"VA_des03":"生效概率由{%s}变为{%s}",
+		"VA_des04":"生效伤害减少由{%s}变为{%s}",
+		"VA_des05":"每次生效的减少幅能由{%s}变为{%s}",
+
+
+		"aEP_HotLoader01": "所有非内置，非导弹的武器获得{%s}的弹药回复速度",
+		"aEP_HotLoader02":"弹药回复速度再提升{%s}",
+		"aEP_HotLoader03":"所有实弹和能量武器获得{%s}的弹药回复速度",
+
 		"CMCarrier01":"本舰装填已经完成",
 		"CMCarrier02":"CR过低停止装填",
 		"CMCarrier03":"未在装填",
@@ -70,7 +92,27 @@
 		"ExtremeOverload03":"实弹武器射速提升",
 		"ExtremeOverload04":"实弹武器幅能消耗降低",
 		"ExtremeOverload05":"舰船幅能耗散降低",
-		
+
+		"aEP_VentMode01":"幅能耗散增加: %s 硬幅能产生: %s",
+		"aEP_VentMode02":"护盾承受伤害增加: %s",
+		"aEP_VentMode07":"结构承受伤害增加: %s",
+		"aEP_VentMode03":"实弹武器射速提升",
+		"aEP_VentMode04":"实弹武器幅能消耗降低",
+		"aEP_VentMode05":"舰船幅能耗散降低",
+		"aEP_VentMode06":"软幅能不足",
+
+
+		"aEP_MultiTracker01":"实弹/能量武器的弹速增加: %s",
+		"aEP_MultiTracker02":"实弹/能量武器的精度增加: %s",
+		"aEP_MultiTracker03":"实弹/能量武器的转速增加: %s",
+		"aEP_MultiTracker04":"实弹/能量武器的射程增加: %s",
+		"aEP_MultiTracker05":"对战机/导弹伤害增加: %s",
+		"aEP_MultiTracker06":"非PD的实弹/能量武器的射程减少: %s",
+
+		"aEP_CloseTargeting01": "实弹/能量武器射程增加: %s",
+		"aEP_CloseTargeting02": "对战机/导弹的伤害增加: %s",
+		"aEP_CloseTargeting03": "武器承受伤害减少: %s",
+
 		"LongRange01":"雷达击中目标",
 		"LongRange02":"产生软幅能",
 		
@@ -107,6 +149,8 @@
 		
 		"AWM02_title":"AWM02:摧毁目标",
 		"AWM02_mission01":"目标位于{%s}内的一片小行星中",
+		"mission_terminate":"终止合同",
+		"mission_info":"合同信息",
 		"mission_require":"任务要求",
 		"mission_destroy":"摧毁目标",
 		"mission_destroyed":"目标已被摧毁",
@@ -130,7 +174,15 @@
 		"MarineTrain01":"训练已经完成",
 		"MarineTrain02":"陆战队训练已经开始",
 		"MarineTrain03":"训练已经完成，{%s}位陆战队员已经前往你的下一个目的地",
-		"MarineTrain04":"你的{%s}位船员正在训练中,预计于{%s}天后完成",
+		"MarineTrain04":"你的{%s}位船员正在训练中，预计于{%s}天后完成",
+		"MarineTrain05":"因为你与公司的关系低于{%s}，训练被暂停",
+		"MarineTrain06":"强制终止合同会直接在当地遣散所有正在参加训练的船员，你获得 %s 的星币退还",
+
+		"aEP_TrainMarine01":"不好意思，我们需要至少100人(7500星币)才能开营",
+		"aEP_TrainMarine02":"每位船员需要 %s 星币的费用",
+		"aEP_TrainMarine03":"支付了 %s 星币",
+		"aEP_TrainMarine04":"你的 %s 名船员已经带着装备和技能重新归队，他们现在是合格的陆战队员了",
+		"aEP_TrainMarine05":"看起来您之前的训练合同还没有完成，请取消合同或者等当前训练完成，才能开启下一轮训练营",
 
 		"MissileEntity_after":"一阵火光过后，宇宙恢复了平静",
 		
@@ -151,10 +203,6 @@
 		"aEP_HandInParts06":"获得了 %s %s",
 		"aEP_HandInParts07":"你获得了 %s 的蓝图",
 
-		"aEP_TrainMarine01":"不好意思，我们需要至少100人(7500星币)才能开营",
-		"aEP_TrainMarine02":"每位船员需要 %s 星币的费用",
-		"aEP_TrainMarine03":"支付了 %s 星币",
-		"aEP_TrainMarine04":"你的 %s 名船员已经带着新装备重新归队",
 
 		"aEP_AdvanceWeaponMission01":"我大概明白了",
 		"aEP_AdvanceWeaponMission02":"你失去了 %s",
@@ -187,26 +235,86 @@
 		"aEP_Market00":"这是卖场",
 		"aEP_Market01":"要求与FSF关系高于: {%s}",
 
-		"aEP_AttackCarrier00":"战机联队作战半径提升: {%s}",
-		"aEP_AttackCarrier01":"处于母舰{%s}范围内，基础极速低于{%s}的战机联队提供速度加成: ",
-		"aEP_AttackCarrier02":"当本舰战机存量极低且幅能少于{%s}时，发动锻炉立刻补满所有损失的战机，本能力具有{%s}秒的冷却并产生大量幅能",
+		"aEP_AttackCarrier00":"战机联队作战半径提升:{%s}",
+		"aEP_AttackCarrier01":"处于母舰{%s}范围内，基础最大速度低于{%s}的战机联队提供速度加成: ",
+		"aEP_AttackCarrier02":"当本舰的非轰炸战机存量较低且幅能少于{%s}时，发动锻炉立刻补满所有损失的非轰炸战机，本能力具有{%s}秒的冷却并产生大量幅能",
 		"aEP_AttackCarrier03":"锻炉冷却中",
 		"aEP_AttackCarrier04":"冷却剩余: %s",
 
+
+		"aEP_SoftfluxDissipate03":"每一点耗散通道点数的正常加成减少{%s}",
+		"aEP_SoftfluxDissipate05":"每一点寄存器点数的正常加成减少{%s}",
+		"aEP_SoftfluxDissipate02":"每一点耗散通道点数获得{%s}的{%s}额外耗散，并不再造成常驻减益",
+		"aEP_SoftfluxDissipate06":"每一点寄存器点数获得{%s}的{%s}额外耗散",
+		"aEP_SoftfluxDissipate07":"浮动",
+		"aEP_SoftfluxDissipate08":"{%s}指随着硬幅能水平上升，加成逐渐从{%s}衰减到{%s}",
+
 		"aEP_SoftfluxDissipate01":"幅能耗散增加: ",
-		"aEP_SoftfluxDissipate02":"每一点耗散通道不再造成常驻的额外减益，而是获得{%s}的浮动加成，但这些加成随着舰船硬幅能水平上升而逐渐减少到{%s}",
-		"aEP_SoftfluxDissipate03":"每一点耗散通道的正常加成额外减少{%s}",
 		"aEP_SoftfluxDissipate04":"幅能耗散变动: ",
 
-		"aEP_RapidDissipate01":"根据当前幅能水平，每次舰体受到伤害时，耗散掉最多等同于伤害量的{%s}的幅能",
+		"aEP_RapidDissipate01":"根据当前幅能水平，每次舰体受到伤害时，耗散掉最大等同于伤害量的{%s}的幅能",
+		"aEP_RapidDissipate03":"最大耗散比例由{%s}变为{%s}",
 		"aEP_RapidDissipate02":"* 不可选中模块所承受的伤害也可以为本体提供耗散",
 
-		"aEP_BurstDissipate01": "每一点耗散通道的正常加成额外增加{%s}",
-		"aEP_BurstDissipate02": "每一点耗散通道不再提供常驻的额外加成，而是造成{%s}的耗散减少",
-		"aEP_BurstDissipate03": "幅能耗散变动: ",
+		"aEP_BurstDissipate01": "每一点耗散通道点数额外增加{%s}点耗散",
+		"aEP_BurstDissipate05": "每一点寄存器点数额外增加{%s}点耗散",
 		"aEP_BurstDissipate04": "护盾伤害吸收率劣化{%s}",
+		"aEP_BurstDissipate02": "每一点耗散通道点数造成{%s}的耗散减少，并不再获得常驻增益",
+		"aEP_BurstDissipate06": "每一点寄存器点数造成{%s}的护盾吸收率劣化，并不再获得常驻增益",
+		"aEP_BurstDissipate03": "幅能耗散变动: ",
+		"aEP_BurstDissipate07": "护盾吸收率劣化: ",
+		"aEP_BurstDissipate08": "* 装配页面时数据仅供参考，战斗中会动态变化",
 
-		"aEP_FortressShieldStats01": "护盾伤害承受减免 %s",
+		"aEP_ControledShield01": "对发射点和命中点之间距离超过{%s}的弹丸和光束，减少{%s}对护盾的伤害",
+		"aEP_ControledShield02": "舰船所有实弹和能量武器的{%s}射程无法超过{%s}",
+
+
+		"aEP_ResistShield01": "当护盾承受伤害时会积累等同于伤害量的{%s}",
+		"aEP_ResistShield02": "随着{%s}的增高，达到{%s}时提供最多{%s}的磁通分流效果",
+		"aEP_ResistShield03": "{%s}以每秒{%s}的速度减少",
+		"aEP_ResistShield04": "波动值",
+		"aEP_ResistShield05": "当前波动值: ",
+
+
+		"aEP_StrategyThruster01": "零幅能加速值增加{%s}，现在为{%s}",
+		"aEP_StrategyThruster02": "零幅能加速的启用阈值增加{%s}，现在为{%s}",
+		"aEP_StrategyThruster03": "零幅能加速的启用时，护盾吸收率劣化{%s}",
+
+
+		"aEP_EliteShip01": "护盾吸收率增强{%s}",
+		"aEP_EliteShip02": "装甲值增加{%s}",
+		"aEP_EliteShip06": "结构值增加{%s}",
+		"aEP_EliteShip04": "甲板整备率下降速度减缓{%s}",
+		"aEP_EliteShip05": "最大速度增加{%s}",
+		"aEP_EliteShip07": "每次过载时进行一次0-100的{%s}，若结果<={%s}生成一个无人机生成护盾保护本舰，护盾拥有{%s}点伤害吸收",
+		"aEP_EliteShip08": "保护测试",
+		"aEP_EliteShip03": "战斗中部署点增加{%s}",
+		"aEP_EliteShip09": "必须清空被占用的装配点",
+
+		"aEP_FirstDeck01": "本舰最后一个甲板上的{%s}联队获得以下加成: ",
+		"aEP_FirstDeck02": "最大速度增加{%s}",
+		"aEP_FirstDeck03": "幅能容量增加{%s}",
+		"aEP_FirstDeck04": "耗散增加{%s}",
+		"aEP_FirstDeck05": "实弹，能量和导弹武器的备弹增加{%s}",
+		"aEP_FirstDeck06": "当任何一个甲板的整备率低于{%s}时，会从前一个甲板以每秒{%s}的速度吸取整备率，第一个甲板除外",
+
+
+		"aEP_EmergencyReconstruct01": "每当本舰受到致命伤害时，如果满足以下条件，可以立刻发起重建，完全恢复装甲与结构值: ",
+		"aEP_EmergencyReconstruct02": "本舰{%s}范围内存在非护卫级，非战机，不处于相位状态且不处于无碰撞体积的友方舰船",
+		"aEP_EmergencyReconstruct03": "进行一次0-100的{%s}，结果<={%s}",
+		"aEP_EmergencyReconstruct04": "重建测试",
+		"aEP_EmergencyReconstruct05": "发起重建时，舰船会被传送到附近的友方舰船身边",
+		"aEP_EmergencyReconstruct08": "完成重建消耗的时间为{%s}秒",
+		"aEP_EmergencyReconstruct06": "每次成功发起重建都会使下一次{%s}的结果{%s}",
+		"aEP_EmergencyReconstruct07": "重建的过程中舰船处于相位状态并无碰撞体积，拥有100%的对护盾/装甲/船体伤害的减免",
+
+		"aEP_HighSpeedManeuver01": "每当本舰的护盾或者船体受到伤害时，有最大{%s}的概率进入{%s}",
+		"aEP_HighSpeedManeuver02": "闪避状态",
+		"aEP_HighSpeedManeuver03": "{%s}持续{%s}秒，时间内本舰处于无碰撞状态",
+		"aEP_HighSpeedManeuver04": "每次成功触发都会降低{%s}触发概率，如果持续{%s}秒没有再受到任何伤害，触发概率会逐渐恢复到最大值",
+		"aEP_HighSpeedManeuver05": "当前触发闪避状态的概率: %s",
+
+		"aEP_FortressShieldStats01": "护盾伤害承受减少 %s",
 
 		"aEP_ApproachingTo":"正在接近 ",
 
@@ -231,5 +339,11 @@
 		"aEP_Mission04_01": "DWR43余辉歼灭舰队",
 		"aEP_Mission04_02": "余辉舰队",
 		"aEP_Mission04_03": "不能损失<涌动>",
+
+
+		"aEP_UndergroundStorage01": "当殖民地稳定度低于{%s}时，获得额外稳定度加成，最多{%s}点",
+		"aEP_UndergroundStorage02": "获得额外的地面防御值加成",
+		"aEP_UndergroundStorage03": "获得额外的巡逻队尺寸加成",
+		"aEP_UndergroundStorage04": "获得额外的大型巡逻队数量加成"
 	}
 }

@@ -178,6 +178,8 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
   inner class Approaching(val target: ShipAPI): aEP_MissileAI.Status(){
     override fun advance(amount: Float) {
+      //启用计时器
+      super.advance(amount)
       //如果弹药用完，转入返回模式，最高优先级
       for(w in ship.allWeapons){
         w ?: continue
@@ -187,8 +189,14 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
         }
       }
 
-      //如果目标失效，转入搜索模式
-      if(aEP_Tool.isDead(target)){
+      //如果停留追逐模式时间过长，转入搜索模式
+      if(time >= 16f){
+        stat = Searching()
+        return
+      }
+
+      //如果目标失效或者是相位舰船，转入搜索模式
+      if(aEP_Tool.isDead(target) || target.isPhased){
         stat = Searching()
         return
       }
@@ -206,6 +214,8 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
   inner class StickAndFire(val target:ShipAPI ): aEP_MissileAI.Status(){
     val pos = Vector2f(0f,0f)
 
+    //在进入开火模式时会根据目标的机动性给与自己机动性加成，防止追不上
+    //记得以任何形式的退出本模式，需要取消buff
     init {
       //获得基于目标速度一定值的极速和机动性加成，防止永远追不上
       ship.mutableStats.maxSpeed.modifyFlat(ID, target.maxSpeed)
@@ -217,27 +227,26 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     }
 
     override fun advance(amount: Float) {
-      //如果幅能太高，转入返回模式，最高优先级
+      super.advance(amount)
+
+      //如果自己幅能太高，转入返回模式，最高优先级
       if(ship.fluxLevel > 0.9f){
         stat = ForceReturn()
-        ship.mutableStats.maxSpeed.unmodify(ID)
-        ship.mutableStats.acceleration.unmodify(ID)
-        ship.mutableStats.deceleration.unmodify(ID)
-
-        ship.mutableStats.maxTurnRate.unmodify(ID)
-        ship.mutableStats.turnAcceleration.unmodify(ID)
+        cancelBuff()
         return
       }
 
-      //如果目标失效，转入搜索模式，
-      if(aEP_Tool.isDead(target) || target.fluxLevel <= 0f){
+      //如果停留吸收模式时间过长，转入搜索模式
+      if(time >= 8){
         stat = Searching()
-        ship.mutableStats.maxSpeed.unmodify(ID)
-        ship.mutableStats.acceleration.unmodify(ID)
-        ship.mutableStats.deceleration.unmodify(ID)
+        cancelBuff()
+        return
+      }
 
-        ship.mutableStats.maxTurnRate.unmodify(ID)
-        ship.mutableStats.turnAcceleration.unmodify(ID)
+      //如果目标失效或者是相位舰船，转入搜索模式，
+      if(aEP_Tool.isDead(target) || target.fluxLevel <= 0f || target.isPhased){
+        stat = Searching()
+        cancelBuff()
         return
       }
 
@@ -245,12 +254,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       val dist = MathUtils.getDistance(ship,target)
       if(dist > 200f) {
         stat = Approaching(target)
-        ship.mutableStats.maxSpeed.unmodify(ID)
-        ship.mutableStats.acceleration.unmodify(ID)
-        ship.mutableStats.deceleration.unmodify(ID)
-
-        ship.mutableStats.maxTurnRate.unmodify(ID)
-        ship.mutableStats.turnAcceleration.unmodify(ID)
+        cancelBuff()
         return
       }
 
@@ -278,24 +282,45 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location, pos)
-      if(distToAbsPos < 50f + target.maxSpeed * 0.25f ){
+      if(distToAbsPos < 50f + target.maxSpeed * 0.25f
+        && target.collisionClass != CollisionClass.NONE ){
         ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
         ship.giveCommand(ShipCommand.FIRE,target.location,0)
       }
 
     }
+
+    fun cancelBuff(){
+      ship.mutableStats.maxSpeed.unmodify(ID)
+      ship.mutableStats.acceleration.unmodify(ID)
+      ship.mutableStats.deceleration.unmodify(ID)
+
+      ship.mutableStats.maxTurnRate.unmodify(ID)
+      ship.mutableStats.turnAcceleration.unmodify(ID)
+    }
+
   }
 
   fun calculateFactor(target:ShipAPI): Float{
-    var fluxLevelFactor = 0f
-    if(target.fluxLevel < 0.5f){
-      fluxLevelFactor = (target.fluxLevel - 0.5f) * 2f
-      fluxLevelFactor *= 2000f
+    var fluxLevel = target.fluxLevel
+    fluxLevel *= fluxLevel
+    fluxLevel *= fluxLevel
+
+    if(target.isCapital) {
+      fluxLevel *= 2000
+    } else if(target.isCruiser){
+      fluxLevel *= 1600
+    } else if(target.isDestroyer){
+      fluxLevel *= 500
+    } else if(target.isFrigate){
+      fluxLevel *= 200
     }
 
-    var currFluxFactor = target.currFlux * 0.8f
+    if(target.isPhased){
+      fluxLevel *= 0f
+    }
 
-    return fluxLevelFactor + currFluxFactor
+    return fluxLevel
   }
 
   fun genBoxFormation(wing:FighterWingAPI, boxSize:Float, vectors: MutableList<Vector2f> ): MutableList<Vector2f>{

@@ -8,6 +8,8 @@
    
 	"runScriptWhileIdle":true,  # this means unapply() never gets called	
 	"useSound":"gun_out_of_ammo",
+  "loopSound":"aEP_cru_pingding_main_charge",
+  "deactivateSound":"aEP_cru_pingding_main_down",
 	"outOfUsesSound":"gun_out_of_ammo",
 	
 }

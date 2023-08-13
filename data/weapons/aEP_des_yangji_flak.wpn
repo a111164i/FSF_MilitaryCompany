@@ -2,7 +2,7 @@
   "id": "aEP_des_yangji_flak",
   "specClass": "projectile",
   "projectileSpecId": "aEP_des_yangji_flak_shot",
-  "type": "BALLISTIC",
+  "type": "SYSTEM",
   "size": "SMALL",
   "displayArcRadius": 600,
   "turretSprite": "",

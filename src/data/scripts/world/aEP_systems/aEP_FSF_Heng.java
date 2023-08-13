@@ -4,19 +4,21 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketConditionAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Conditions;
 import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.impl.campaign.ids.Terrain;
 import com.fs.starfarer.api.impl.campaign.procgen.NebulaEditor;
 import com.fs.starfarer.api.impl.campaign.terrain.HyperspaceTerrainPlugin;
 import com.fs.starfarer.api.util.Misc;
+import org.lazywizard.lazylib.MathUtils;
+import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class aEP_FSF_Heng implements SectorGeneratorPlugin
-{
+public class aEP_FSF_Heng implements SectorGeneratorPlugin {
   @Override
   public void generate(SectorAPI sector) {
     StarSystemAPI system = sector.createStarSystem("Heng");
@@ -76,11 +78,11 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
     FSF_DefStation.setCircularOrbit(FSF_CompanyPlanet, 0, 450, 30);//which to orbit, starting angle, radius, orbit days
 
     //创造市场，绑在上面创建的实体上
-    MarketAPI FSF_DefMarket = Global.getFactory().createMarket("aEP_FSF_DefStation", FSF_DefStation.getName(), 4);//id, name, size
+    MarketAPI FSF_DefMarket = Global.getFactory().createMarket("aEP_FSF_DefStation", FSF_DefStation.getName(), 5);//id, name, size
     FSF_DefMarket.setPrimaryEntity(FSF_DefStation);
     FSF_DefMarket.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
     FSF_DefMarket.setFactionId("aEP_FSF");
-    FSF_DefMarket.addCondition("population_4");
+    FSF_DefMarket.addCondition(Conditions.POPULATION_5); //5
     FSF_DefMarket.addIndustry("population");
     FSF_DefMarket.addIndustry("heavybatteries");
     FSF_DefMarket.addIndustry("megaport");
@@ -106,7 +108,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
     FSF_SaleMarket.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
     FSF_SaleMarket.setFactionId("aEP_FSF");
     FSF_SaleMarket.setPrimaryEntity(FSF_SaleStation);
-    FSF_SaleMarket.addCondition("population_6");
+    FSF_SaleMarket.addCondition(Conditions.POPULATION_6); //6
     FSF_SaleMarket.addIndustry("population");
     FSF_SaleMarket.addIndustry("heavybatteries");
     FSF_SaleMarket.addIndustry("megaport");
@@ -131,6 +133,147 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin
       "FSF Relay",// name
       "aEP_FSF_Relay",// type id in planets.json
       "aEP_FSF");//faction id
+    FSF_Relay.setCircularOrbit(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
+
+
+
+     /*SectorEntityToken focus, java.lang.String category, java.lang.String key, float bandWidthInTexture, int bandIndex, java.awt.Color color,
+                        float bandWidthInEngine, float middleRadius, float orbitDays, java.lang.String terrainId, java.lang.String optionalName
+     */
+    system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 0, Color.white, 256f, 7000, 80f);
+    system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 0, Color.white, 256f, 7000, 140f);
+    system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 1, Color.white, 256f, 7000, 160f, Terrain.RING, "Cloud Ring");
+
+    system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 0, Color.white, 256f, 7500, 100f);
+    system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 0, Color.white, 256f, 7500, 160f);
+    system.addRingBand(FSF_HomeStar, "misc", "rings_ice0", 256f, 1, Color.white, 256f, 7500, 180f, Terrain.RING, "Cloud Ring");
+    // generates hyperspace destinations for in-system jump points
+    system.autogenerateHyperspaceJumpPoints(true, true);
+
+    //加个星门，新东西
+    SectorEntityToken gate = system.addCustomEntity("FSF_gate", // unique id
+            "Heng Gate", // name - if null, defaultName from custom_entities.json will be used
+            "inactive_gate", // type of object, defined in custom_entities.json
+            null); // faction
+    gate.setCircularOrbit(FSF_HomeStar, 110, 3100f, 240);
+
+    cleanup(system);
+  }
+
+  public void randomGenerate(SectorAPI sector) {
+    StarSystemAPI system = sector.createStarSystem("Heng");
+    Vector2f location = MathUtils.getRandomPointInCircle(new Vector2f(4350f,20240f), 6000f);
+    system.getLocation().set(location.x, location.y);
+    system.setLightColor(new Color(255, 166, 181));//不可以有透明度，不是叠加而是覆盖
+    LocationAPI hyper = Global.getSector().getHyperspace();
+    system.setBackgroundTextureFilename("graphics/aEP_background/background1.jpg");
+
+    //system.getMemoryWithoutUpdate().set(MusicPlayerPluginImpl.MUSIC_SET_MEM_KEY, "music_title");
+
+    // create the star and generate the hyperspace anchor for this system
+   /*  	PlanetAPI FSF_HomeStar = system.initStar("aEP_FSF_HomeStar", // unique id for this star
+				                         StarTypes.RED_GIANT, // id in planets.json
+										 1000f,		// radius (in pixels at default zoom)
+										 1500, // corona radius, from star edge
+										 5f, // solar wind burn level
+										 0.5f, // flare probability
+										 2f); // cr loss mult
+   */
+    PlanetAPI FSF_HomeStar = system.initStar("aEP_FSF_HomeStar", "aEP_FSF_Homestar", 600f, 500f);
+
+
+    //add planet 1
+    PlanetAPI FSF_HomePlanet = system.addPlanet("aEP_FSF_HomePlanet", //Unique id for this planet (or null to have it be autogenerated)
+            FSF_HomeStar, // What the planet orbits (orbit is always circular)
+            "Harrph X", //Name
+            "aEP_FSF_Homeplanet", //Planet type id in planets.json
+            0, //Starting angle in orbit, i.e. 0 = to the right of the star
+            170, // Planet radius, pixels at default zoom
+            6000, //Orbit radius, pixels at default zoom
+            425);//Days it takes to complete an orbit. 1 day = 10 seconds.
+    List<MarketConditionAPI> initCons = FSF_HomePlanet.getMarket().getConditions();
+    for (MarketConditionAPI Con : initCons) {
+      FSF_HomePlanet.getMarket().removeCondition(Con.getId());
+    }
+    FSF_HomePlanet.getMarket().addCondition("cold");
+    FSF_HomePlanet.getMarket().addCondition("poor_light");
+    FSF_HomePlanet.getMarket().addCondition("aEP_UndergroundStorage");
+
+    //planet 2
+    PlanetAPI FSF_CompanyPlanet = system.addPlanet("aEP_FSF_CompanyPlanet", //Unique id for this planet (or null to have it be autogenerated)
+            FSF_HomeStar, // What the planet orbits (orbit is always circular)
+            "Harrph Y", //Name
+            "aEP_FSF_Companyplanet", //Planet type id in planets.json
+            -35, //Starting angle in orbit, i.e. 0 = to the right of the star
+            160, // Planet radius, pixels at default zoom
+            2200, //Orbit radius, pixels at default zoom
+            205);//Days it takes to complete an orbit. 1 day = 10 seconds.
+
+
+    //创造地图实体
+    SectorEntityToken FSF_DefStation = system.addCustomEntity("aEP_FSF_DefStation",// id
+            null,// name
+            "aEP_FSF_DefStation",// type id in planets.json
+            "aEP_FSF");//faction id
+    //设置实体的运动轨道
+    FSF_DefStation.setCircularOrbit(FSF_CompanyPlanet, 0, 450, 30);//which to orbit, starting angle, radius, orbit days
+
+    //创造市场，绑在上面创建的实体上
+    MarketAPI FSF_DefMarket = Global.getFactory().createMarket("aEP_FSF_DefStation", FSF_DefStation.getName(), 4);//id, name, size
+    FSF_DefMarket.setPrimaryEntity(FSF_DefStation);
+    FSF_DefMarket.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
+    FSF_DefMarket.setFactionId("aEP_FSF");
+    FSF_DefMarket.addCondition(Conditions.POPULATION_5); //5
+    FSF_DefMarket.addIndustry("population");
+    FSF_DefMarket.addIndustry("heavybatteries");
+    FSF_DefMarket.addIndustry("megaport");
+    FSF_DefMarket.addIndustry("highcommand");
+    FSF_DefMarket.addIndustry("fuelprod");
+    FSF_DefMarket.addIndustry("starfortress_mid");
+    FSF_DefMarket.addSubmarket("open_market");
+    FSF_DefMarket.addSubmarket("generic_military");
+    FSF_DefMarket.addSubmarket("storage");
+    FSF_DefMarket.getTariff().modifyFlat("default_tariff", FSF_DefMarket.getFaction().getTariffFraction());
+    FSF_DefStation.setMarket(FSF_DefMarket);
+    //把市场加入经济系统
+    Global.getSector().getEconomy().addMarket(FSF_DefMarket, true);// marketAPI, isJunkAround
+
+
+    SectorEntityToken FSF_SaleStation = system.addCustomEntity("aEP_FSF_SaleStation",// id
+            null,// name
+            "aEP_FSF_SaleStation",// type id in planets.json
+            "aEP_FSF");//faction id
+    FSF_SaleStation.setCircularOrbit(FSF_HomePlanet, 0, 650, 45);//which to orbit, starting angle, radius, orbit days
+
+    MarketAPI FSF_SaleMarket = Global.getFactory().createMarket("aEP_FSF_SaleStation", FSF_SaleStation.getName(), 6);//id, name, size
+    FSF_SaleMarket.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
+    FSF_SaleMarket.setFactionId("aEP_FSF");
+    FSF_SaleMarket.setPrimaryEntity(FSF_SaleStation);
+    FSF_SaleMarket.addCondition(Conditions.POPULATION_6); //6
+    FSF_SaleMarket.addIndustry("population");
+    FSF_SaleMarket.addIndustry("heavybatteries");
+    FSF_SaleMarket.addIndustry("megaport");
+    FSF_SaleMarket.addIndustry("waystation");
+    FSF_SaleMarket.addIndustry("patrolhq");
+    FSF_SaleMarket.addIndustry("lightindustry");
+    FSF_SaleMarket.addIndustry("orbitalworks", new ArrayList(Arrays.asList(Items.CORRUPTED_NANOFORGE)));
+    FSF_SaleMarket.addIndustry("starfortress_mid");
+    FSF_SaleMarket.addSubmarket("open_market");
+    FSF_SaleMarket.addSubmarket("generic_military");
+    //FSF_SaleMarket.addSubmarket("aEP_FSFMarket");
+    FSF_SaleMarket.addSubmarket("black_market");
+    FSF_SaleMarket.addSubmarket("storage");
+    FSF_SaleMarket.addCondition("trade_center");
+    FSF_SaleMarket.getTariff().modifyFlat("default_tariff", FSF_SaleMarket.getFaction().getTariffFraction());
+    FSF_SaleStation.setMarket(FSF_SaleMarket);
+    Global.getSector().getEconomy().addMarket(FSF_SaleMarket, true);// marketAPI, isJunkAround
+    FSF_SaleStation.getMarket().addCondition("aEP_UndergroundStorage");
+
+
+    SectorEntityToken FSF_Relay = system.addCustomEntity("aEP_FSF_Relay",// id
+            "FSF Relay",// name
+            "aEP_FSF_Relay",// type id in planets.json
+            "aEP_FSF");//faction id
     FSF_Relay.setCircularOrbit(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
 
 

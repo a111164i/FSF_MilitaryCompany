@@ -4,57 +4,82 @@
   "combatSmallForSmallFleet": {
     "aEP_fga_xiliu_mk2_Elite": 5,
     "aEP_fga_xiliu_mk2_Standard": 5,
-    "aEP_fga_xiliu_Standard": 10,
+
+    "aEP_fga_xiliu_Standard": 5,
+    "aEP_fga_xiliu_Elite": 5,
+
     "aEP_fga_yonglang_Mixed": 3,
     "aEP_fga_yonglang_Standard": 4,
+
     "aEP_fga_raoliu_PD":4,
     "aEP_fga_raoliu_Standard":6,
+
+    "aEP_des_yonglang_mk2_Standard":10
 
 },
   "combatSmall": {
     "aEP_fga_wanliu_Standard": 4,
     "aEP_fga_wanliu_Elite": 6,
+
     "aEP_fga_yonglang_Standard": 6,
     "aEP_fga_yonglang_Mixed": 4,
+
     "aEP_fga_xiliu_mk2_Elite": 5,
     "aEP_fga_xiliu_mk2_Standard": 5,
+
     "aEP_fga_xiliu_Standard": 5,
+    "aEP_fga_xiliu_Elite": 5,
+
     "aEP_fga_raoliu_PD": 5,
     "aEP_fga_raoliu_Standard":5,
 
+    "aEP_fga_chichao_Standard": 5,
+    "aEP_fga_chichao_SideAtk": 5
 },
   "combatMedium": {
     "aEP_des_cengliu_Standard":4,
     "aEP_des_cengliu_Elite":3,
+
     "aEP_des_lianliu_Standard": 3,
     "aEP_des_lianliu_AntiSmall": 2,
     "aEP_des_lianliu_Elite": 5,
+
     "aEP_des_yangji_Standard":10,
 
-  },
+    "aEP_des_yonglang_mk2_Standard":10
+
+},
   "combatLarge": {
     "aEP_cru_hailiang_Standard": 4,
     "aEP_cru_hailiang_Defense": 6,
+
     "aEP_cru_zhongliu_Standard": 4,
     "aEP_cru_zhongliu_Assault": 4,
     "aEP_cru_zhongliu_Broadside": 4,
+
     "aEP_cru_requan_Standard": 7,
     "aEP_cru_requan_Assault": 3,
+
     "aEP_cru_pingding_Standard": 2,
     "aEP_cru_pingding_Elite": 3,
 
 },
   "combatCapital": {
-    "aEP_cap_biaobing_Standard": 2,
+    "aEP_cap_biaobing_Standard": 1,
     "aEP_cap_biaobing_Burst": 1,
+    "aEP_cap_biaobing_Beam": 1,
+
     "aEP_cap_duiliu_Standard": 4,
     "aEP_cap_duiliu_Range":3,
     "aEP_cap_duiliu_Super": 3,
+
     "aEP_cap_nuanchi_Standard": 4,
     "aEP_cap_nuanchi_Support": 4,
     "aEP_cap_nuanchi_Elite": 3,
+
     "aEP_cap_neibo_Standard": 6,
     "aEP_cap_neibo_Elite": 4,
+
     "aEP_cap_shangshengliu_mk3_Standard":3,
 
   },
@@ -62,11 +87,11 @@
   "combatFreighterSmall": {
   },
   "combatFreighterMedium": {
+    "aEP_des_youjiyan_Standard": 5,
     "aEP_des_youjiyan_Def": 5,
-    "aEP_des_youjiyan_mk2_Def": 3,
   },
   "combatFreighterLarge": {
-    "aEP_cap_decomposer_Standard": 5,
+    "aEP_cap_shangshengliu_Standard": 5,
     "aEP_cap_shangshengliu_Def": 5,
   },
   "civilianRandom": {
@@ -79,13 +104,19 @@
   "carrierMedium": {
     "aEP_des_shendu_Standard": 5,
     "aEP_des_shendu_Strike": 5,
+
+    "aEP_des_shuishi_Standard": 5,
+    "aEP_des_shuishi_Support": 5
 },
   "carrierLarge": {
     "aEP_cru_shanhu_Standard":3,
     "aEP_cru_shanhu_Attack":3,
     "aEP_cru_shanhu_Siege":2,
     "aEP_cru_shanhu_Front":2,
-    "aEP_cap_decomposer_Standard": 10,
+
+    "aEP_cap_decomposer_Standard": 5,
+    "aEP_cap_decomposer_Support": 5,
+
     "aEP_cru_pubu_Elite": 2,
     "aEP_cru_pubu_Standard": 4,
 },
@@ -106,11 +137,9 @@
 
   },
   "freighterMedium": {
-    "aEP_des_youjiyan_Standard": 10,
 
   },
   "freighterLarge": {
-    "aEP_cap_shangshengliu_Standard":5,
 
   },
   "tankerSmall": {
@@ -118,11 +147,9 @@
   },
   "tankerMedium": {
     "aEP_des_youjiyan_mk2_Standard": 10,
-
   },
   "tankerLarge": {
     "aEP_cap_shangshengliu_mk2_Standard":5,
-
   },
   "personnelSmall": {
   },

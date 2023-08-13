@@ -15,12 +15,8 @@
 	"knownWeapons":{
 		"tags":[],
 		"weapons":[
-		"aEP_b_m_mb32",
-		"aEP_b_m_h88",
-		"aEP_breakin_hammer",
-		"aEP_breakin_bay",
-		"aEP_e_s_300k",
-		"aEP_hive_small",
+			"aEP_b_m_h88",
+			"aEP_m_s_breachdoor",
 		],
 	},
 

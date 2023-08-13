@@ -26,7 +26,7 @@
   ],
   "barrelMode": "LINKED",
   "animationType": "MUZZLE_FLASH",
-  "interruptibleBurst": true,
+  "interruptibleBurst": false,
   "autocharge": true,
   "muzzleFlashSpec": {
     "length": 15,

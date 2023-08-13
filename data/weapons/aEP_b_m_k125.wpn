@@ -11,8 +11,8 @@
   #"everyFrameEffect": "",
   "visualRecoil":4.0,  # the gun sprites are only used if this is non-0
   #"renderHints":[RENDER_BARREL_BELOW],
-  "numFrames":4,
-  "frameRate":8,
+  #"numFrames":0,
+  #"frameRate":0,
   "turretOffsets": [25,2.5,25,-2.5],
   "turretAngleOffsets": [
     0
@@ -21,20 +21,20 @@
   "hardpointAngleOffsets": [
     0
   ],
-  "barrelMode": "LINKED",
-  "autocharge":true, 
-  "interruptibleBurst":false,
+  "barrelMode": "ALTERNATING",
+  "autocharge":false,
+  "interruptibleBurst":true,
   "separateRecoilForLinkedBarrels":"false",
   "animationType": "MUZZLE_FLASH",
   "muzzleFlashSpec": {
-    "length": 30,
-    "spread": 12,
-    "particleSizeMin": 40,
-    "particleSizeRange": 30,
-    "particleDuration": 0.15,
-    "particleCount": 10,
-    "particleColor": [225,255,205,175]},
-  "fireSoundTwo":"aEP_kinetic_flak_fire",	
+    "length": 1,
+    "spread": 1,
+    "particleSizeMin": 150,
+    "particleSizeRange": 50,
+    "particleDuration": 0.12,
+    "particleCount": 1,
+    "particleColor":  [255,240,160,128]},
+  "fireSoundTwo":"aEP_b_m_k125_fire",
   
   
 

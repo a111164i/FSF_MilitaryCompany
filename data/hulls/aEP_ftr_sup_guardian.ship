@@ -12,6 +12,7 @@
   "shieldRadius": 45.5,
   "viewOffset": 0,
   "builtInMods": [
+    "aEP_ProjectileDenialShield",
     "insulatedengine",
     "autorepair"
   ],

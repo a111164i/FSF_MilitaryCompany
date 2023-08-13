@@ -12,8 +12,9 @@
   "shieldRadius": 175,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_Module",
+    "reduced_explosion",
     "always_detaches",
+    "aEP_Module",
     "aEP_MarkerDissipation",
     "aEP_ModuleTargeting",
     "axialrotation",

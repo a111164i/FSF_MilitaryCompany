@@ -5,7 +5,7 @@
   "type": "MISSILE",
   "size": "MEDIUM",
   "displayArcRadius": 250,
-  "everyFrameEffect": "data.scripts.weapons.aEP_FluxTubeAnimation",
+  "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
   "turretSprite": "graphics/weapons/aEP_m_m_fluxtube/tr.png",
   "hardpointSprite": "graphics/weapons/aEP_m_m_fluxtube/hp.png",
   "renderAboveAllWeapons": 0,
@@ -47,5 +47,5 @@
   },
   "textureType": ROUGH,
   "autocharge":true, 
-  "fireSoundTwo": "reaper_fire"
+  "fireSoundTwo": "bomb_bay_fire"
 }

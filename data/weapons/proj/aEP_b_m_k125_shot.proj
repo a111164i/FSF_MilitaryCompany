@@ -16,4 +16,23 @@
 	"coreColor":[225,255,205,200],	
 	"textureScrollSpeed":64.0,
 	"pixelsPerTexel":5.0,
+	"behaviorSpec":{
+    "behavior":"PROXIMITY_FUSE",
+    "onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+    "range":0,
+    #"vsMissileRange":0,
+    "explosionSpec":{
+      "duration":0.1f,
+      "radius":50,
+      "coreRadius":20, # full damage within core radius - also equal to proximity fuse range
+      "collisionClass":PROJECTILE_NO_FF,
+      "collisionClassByFighter":PROJECTILE_FIGHTER,
+      "particleSizeMin":5,
+      "particleSizeRange":5,
+      "particleDuration":1,
+      "particleCount":16,
+      "particleColor":[240,240,240,40],
+      "sound":"aEP_kinetic_flak_hit01"
+    },
+  }
 }

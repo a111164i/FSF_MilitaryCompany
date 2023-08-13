@@ -12,13 +12,14 @@ import java.awt.Color
 class aEP_FluxBeam : BeamEffectPlugin {
 
   companion object{
-    const val FSF_BONUS = 1.35f
-    const val MAX_SPEED_DIS_CAP = 0.5f
+    const val FSF_BONUS = 1.25f
+    const val MAX_SPEED_DIS_CAP = 1f
+
   }
 
-  var fluxDrain = 75f
+  var fluxDrain = 100f
   var damage = 200f
-  val damageTimer = IntervalUtil(0.5f,0.5f)
+  val damageTimer = IntervalUtil(0.25f,0.25f)
 
   init {
     val hlString = Global.getSettings().getWeaponSpec("aEP_ftr_ut_supply_main").customPrimaryHL
@@ -53,24 +54,22 @@ class aEP_FluxBeam : BeamEffectPlugin {
         }
 
 
-        val target = beam.damageTarget as ShipAPI
+        val target = pickTarget(beam.damageTarget as ShipAPI)
         //光束一秒10次
         var fluxDecrease = fluxDrain * 0.1f
-        //FSF加成
-        if(target.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) fluxDecrease *= FSF_BONUS
 
 
         //阻尼，堡垒盾这种系统产生硬幅能，防止永动机，需要检测
         if (target.system?.isActive == true) {
           val spec = target.system.specAPI
-          if (!spec.isDissipationAllowed) {
+          if (!spec.isHardDissipationAllowed || !spec.isDissipationAllowed) {
             fluxDecrease = 0f
           }
         }
 
-        //单条Beam的每秒吸取量不能超过目标当前幅散的1/2,防止有些系统会降低幅能耗散
-        val targetCurrDis = aEP_Tool.getRealDissipation(target) * 0.1f * MAX_SPEED_DIS_CAP
-        fluxDecrease = MathUtils.clamp(fluxDecrease, 0f, targetCurrDis)
+        //单条Beam的每秒吸取量不能超过目标当前幅散的1倍,防止有些系统会降低幅能耗散
+        //val targetCurrDis = aEP_Tool.getRealDissipation(target) * 0.1f * MAX_SPEED_DIS_CAP
+        //fluxDecrease = MathUtils.clamp(fluxDecrease, 0f, targetCurrDis)
 
         if (beam.source is ShipAPI) {
           val fluxRest = beam.source.maxFlux - beam.source.currFlux
@@ -78,10 +77,10 @@ class aEP_FluxBeam : BeamEffectPlugin {
           fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
           fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
 
-          beam.source.fluxTracker.increaseFlux(fluxDecrease/ FSF_BONUS, true)
-          target.fluxTracker.decreaseFlux(fluxDecrease)
+          beam.source.fluxTracker.increaseFlux(fluxDecrease, true)
+          //fsf加成
+          target.fluxTracker.decreaseFlux(fluxDecrease * FSF_BONUS)
         }
-
 
       }else{
         damageTimer.advance(0.1f)
@@ -103,4 +102,16 @@ class aEP_FluxBeam : BeamEffectPlugin {
 
   }
 
+  fun pickTarget(ship: ShipAPI): ShipAPI{
+    if(!ship.isStationModule && ship.parentStation == null) return ship
+    //自己是模块的情况
+    if(ship.isStationModule && ship.parentStation != null){
+      val parent = ship.parentStation
+      if(parent.fluxLevel > ship.fluxLevel){
+        return parent
+      }
+    }
+
+    return ship
+  }
 }

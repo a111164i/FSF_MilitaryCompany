@@ -30,5 +30,5 @@
   "barrelMode": "ALTERNATING",
   "animationType": "NONE",
   "autocharge": false,
-  "fireSoundTwo": "aEP_as_missile_fire"
+  "fireSoundTwo": "aEP_m_l_blasthammer_fire"
 }
