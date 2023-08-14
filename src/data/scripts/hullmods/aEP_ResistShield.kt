@@ -23,7 +23,7 @@ class aEP_ResistShield internal constructor() : aEP_BaseHullMod() {
     const val ID = "aEP_ResistShield"
     const val MAX_SHUNT_PERCENT = 100f
     //下降是持续的，如果希望6秒内打满缓冲区，触发满加成，应该写12
-    val SHIFT_COLOR = Color(0,165,145,195)
+    val SHIFT_COLOR = Color(155,25,255,195)
 
     private val MAX_THRESHOLD = HashMap<ShipAPI.HullSize, Float>()
     init {
@@ -127,6 +127,7 @@ class aEP_ResistShield internal constructor() : aEP_BaseHullMod() {
     private var accumlated = 0f
     private val timer = IntervalUtil(0.25f,0.25f)
     private val shifter = ColorShifter(ship.shield.innerColor)
+    private val ringShifter = ColorShifter(ship.shield.ringColor)
     var level = 0f
     override fun reportDamageApplied(source: Any?, target: CombatEntityAPI?, result: ApplyDamageResultAPI?) {
       //谨防有人中途取消护盾
@@ -143,11 +144,13 @@ class aEP_ResistShield internal constructor() : aEP_BaseHullMod() {
       //谨防有人中途取消护盾
       ship.shield?:return
 
-
       //to，durIn, durOut, shiftPercent
       shifter.shift(ID,SHIFT_COLOR,0.001f,0.25f,0.6f * level)
+      ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.25f,0.6f * level)
       shifter.advance(amount)
+      ringShifter.advance(amount)
       ship.shield.innerColor = shifter.curr
+      ship.shield.ringColor = ringShifter.curr
 
       timer.advance(amount)
       if(timer.intervalElapsed()){

@@ -3738,7 +3738,6 @@ open class aEP_m_s_era_shot : Effect(){
     }
   }
 
-
 }
 //era df1 爆反 爆炸反应装甲
 class aEP_m_s_era3 :aEP_m_s_era(){}
@@ -3770,7 +3769,7 @@ class aEP_m_s_fluxtube :EveryFrame(){
         ship.velocity)
       proj.angularVelocity += getRandomNumberInRange(-30f,30f)
       ship.fluxTracker.decreaseFlux(aEP_m_m_fluxtube.FLUX_REDUCE)
-      weapon.ammo = weapon.ammo - 1
+      weapon.ammo -= 1
       weapon.setRemainingCooldownTo(weapon.cooldown)
     }
   }

@@ -34,7 +34,7 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
     private const val REDUCE_MULT = 0.75f
     private const val UPKEEP_PUNISH = 2f
     private const val MAX_WEAPON_RANGE_CAP = 900f
-    val SHIFT_COLOR = Color(0,0,255,195)
+    val SHIFT_COLOR = Color(105,155,255,195)
     private const val COLOR_RECOVER_INTERVAL = 0.025f //by seconds
     const val ID = "aEP_ControledShield"
 
@@ -147,7 +147,7 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
     private var timer = 0f
     private var didChange = false
     private val shifter = ColorShifter(ship.shield.innerColor)
-
+    private val ringShifter = ColorShifter(ship.shield.ringColor)
     init {
       radius = rad + ship.collisionRadius
       layers = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
@@ -166,7 +166,8 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
           if (dist >= rad) {
             ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - REDUCE_MULT)
             ship.mutableStats.shieldUpkeepMult.modifyFlat(ID, UPKEEP_PUNISH)
-            shifter.shift(ID, SHIFT_COLOR,0.001f,0.1f,0.6f)
+            shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,0.6f)
+            ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,0.6f)
             timer = COLOR_RECOVER_INTERVAL
             didChange = true
             return null
@@ -180,7 +181,8 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
           if (dist >= rad) {
             ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - REDUCE_MULT)
             ship.mutableStats.shieldUpkeepMult.modifyFlat(ID, UPKEEP_PUNISH)
-            shifter.shift(ID, SHIFT_COLOR,0.001f,0.05f,0.4f)
+            shifter.shift( ID, SHIFT_COLOR,0.001f,0.05f,0.4f)
+            ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.05f,0.4f)
             timer = COLOR_RECOVER_INTERVAL
             didChange = true
             return null
@@ -196,7 +198,10 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
 
 
       shifter.advance(amount)
+      ringShifter.advance(amount)
       ship.shield.innerColor = shifter.curr
+      ship.shield.ringColor = ringShifter.curr
+
       timer -= amount
       timer = MathUtils.clamp(timer,0f, COLOR_RECOVER_INTERVAL)
       if (timer <= 0f && didChange) {
@@ -262,29 +267,6 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
         }
         GL11.glEnd()
 
-//        //画条纹外边
-
-//        val angleStripe = 15
-//        val numOfVertex = 5
-//        var angle = 0f
-//        while (angle < 360){
-//          GL11.glBegin(GL11.GL_QUAD_STRIP)
-//          for (i in 0 until numOfVertex) {
-//            val pointFar = aEP_Tool.getExtendedLocationFromPoint(center, angle, largeRad)
-//            GL11.glColor4f(0.41f,0.3f,1f, 0.25f)
-//            GL11.glVertex2f(pointFar.x, pointFar.y)
-//
-//            val pointNear = aEP_Tool.getExtendedLocationFromPoint(center, angle, smallRad)
-//            GL11.glColor4f(0.41f,0.3f,1f, 0f)
-//            GL11.glVertex2f(pointNear.x, pointNear.y)
-//            angle += angleStripe/numOfVertex
-//          }
-//          GL11.glEnd()
-//          angle += angleStripe
-//        }
-
-
-
         aEP_Render.closeGL11()
       }
     }
@@ -314,7 +296,7 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
         //开始画图
         aEP_Render.openGL11CombatLayerRendering()
 
-        var rad = (entity!!.collisionRadius).coerceAtLeast(12f).coerceAtMost(48f)
+        var rad = (entity!!.collisionRadius).coerceAtLeast(8f).coerceAtMost(44f) + 4f
         val animationTime = 0.33f
         if(time < animationTime){
           rad += 36f * (animationTime - time)/animationTime
@@ -333,11 +315,11 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
         for (i in 0..edge) {
           val a = i * angleStep + startingAngle
           val pointFar = aEP_Tool.getExtendedLocationFromPoint(entity!!.location, a, largeRad)
-          GL11.glColor4f(0.41f,0.3f,1f, 0.66f)
+          GL11.glColor4f(0.41f,0.3f,1f, 0.75f)
           GL11.glVertex2f(pointFar.x, pointFar.y)
 
           val pointNear = aEP_Tool.getExtendedLocationFromPoint(entity!!.location, a, smallRad)
-          GL11.glColor4f(0.41f,0.3f,1f, 0.33f)
+          GL11.glColor4f(0.41f,0.3f,1f, 0.5f)
           GL11.glVertex2f(pointNear.x, pointNear.y)
         }
         GL11.glEnd()

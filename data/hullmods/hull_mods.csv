@@ -53,3 +53,4 @@ FSF舰体设计,aEP_MarkerDissipation,0,FSF设计,,,,,0,TRUE,,0,0,0,0,data.scrip
 发射平台设计,aEP_MissilePlatform,0,FSF设计,,,,,0,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"本舰内置的先进导弹工厂占据了原本用于储存导弹的空间，使其能以牺牲初始载弹量为代价，源源不断的生产高质量导弹。对所有安装在导弹槽位，复合槽位上的导弹武器生效。
 
 舰船拥有一种叫{%s}的资源，每当一个导弹武器弹药不满时，会消耗总装填率为其生产弹药。总装填率会随着时间自然回复。总装填率越高，弹药产生速度越快。",,graphics/aEP_hullmods/aEP_missile_platform.png,,,,,,,,,,,,,,,,,,,,
+反应装甲,aEP_ReactiveArmor,0,FSF设计,,,,,0,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ReactiveArmor,"装甲中内置了爆炸反应模块，在遭到高伤害武器攻击时会被触发，大幅度减少本次伤害",,graphics/aEP_hullmods/aEP_missile_platform.png,,,,,,,,,,,,,,,,,,,,

@@ -288,6 +288,7 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
 
       if(cant) continue
 
+      //把这个有效目标加入picker
       var weight = it.damage?.baseDamage?: 0f
       weight *= MathUtils.clamp(closestDist,50f,500f)/500f
       weight *= weight
@@ -298,7 +299,7 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
     newTarget = picker.pick()
     if (newTarget != null) {
       aimEntity = newTarget[0] as DamagingProjectileAPI
-      interceptPoint!!.set(newTarget[1] as Vector2f)
+      interceptPoint = newTarget[1] as Vector2f
     }else{
       aimEntity = null
       interceptPoint = null

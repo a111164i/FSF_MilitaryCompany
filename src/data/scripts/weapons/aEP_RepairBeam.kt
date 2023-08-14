@@ -15,7 +15,7 @@ class aEP_RepairBeam : BeamEffectPlugin {
     private const val HULL_REPAIR_MULT = 1.5f //溢出的装甲维修点数转换成几倍的结构恢复
     private const val REPAIR_STEP_PER_CELL = 6f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
-    private const val FSF_BONUS = 1.75f
+    private const val FSF_BONUS = 2.5f
     const val REPAIR_THRESHOLD = 0.5f
     const val HULL_REPAIR_THRESHOLD = 0.25f
     val REPAIR_COLOR = Color(250, 250, 178, 240)
@@ -85,8 +85,8 @@ class aEP_RepairBeam : BeamEffectPlugin {
 
     val maxRepairPoint = repairAmount + ship.armorGrid.armorRating * repairPercent
     var toRepair = maxRepairPoint
+    //计算fsf加成
     if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) toRepair *= FSF_BONUS
-    toRepair *= FSF_BONUS
     var didSpark = false
 
 

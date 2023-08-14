@@ -15,7 +15,7 @@
     "aEP_MarkerDissipation",
     "turretgyros",
     "aEP_CloseTargeting",
-    "aEP_HLMultiTurret"
+    "aEP_HLMultiTurret",
   ],
   "builtInWeapons": {
     "LIDAR01": "aEP_fga_xiliu_lidar",

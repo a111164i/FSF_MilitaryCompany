@@ -25,7 +25,7 @@ name,id,hints,type,OPs,range,turn rate,damage/second,damage/shot,emp,energy/seco
 反冲力炮,aEP_fga_yonglang_main,"SYSTEM, STRIKE, CONSERVE_2",KINETIC,1,900,0,,500,1000,,0,,600,,1.6,1,3,,,6,,,,0,1,1,1,450,600,FSF制造,反护盾,16 | 1200,"击中护盾时，造成等同emp伤害的额外动能伤害,但额外部分只造成软幅能
 
 在弹药不满时，每{%s}秒回复一轮发射的量，在之后的一段时间内缓慢产生共{%s}点软幅能",,,,,,,,,,,,,,
-细流-多重目标追踪光束,aEP_fga_xiliu_lidar,"SYSTEM, PD, ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_IDLE,IGNORES_FLARES",HIGH_EXPLOSIVE,6,400,360,50,,25,0,,,,1000000,,0,0.2,,,,,,,,,,,,,FSF制造,点防御,50,击中战机/导弹时，造成额外{%s}每秒的动能伤害，并降低目标的速度,,,,,,,,,,,,,,
+细流-多重目标追踪光束,aEP_fga_xiliu_lidar,"SYSTEM, PD, ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_IDLE,IGNORES_FLARES",HIGH_EXPLOSIVE,6,400,360,60,,30,0,,,,1000000,,0,0.2,,,,,,,,,,,,,FSF制造,点防御,50,击中战机/导弹时，造成额外{%s}每秒的动能伤害，并降低目标的速度,,,,,,,,,,,,,,
 DF-2重型反应装甲,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF制造,点防御,500 | 1 | 90%,"本武器附近的装甲单次受到超过{%s}或本舰装甲值{%s}倍的伤害时，会自动发射，同时本次伤害减少{%s}
 
 本武器在下线后会立刻修复

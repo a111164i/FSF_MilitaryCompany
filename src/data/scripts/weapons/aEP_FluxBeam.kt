@@ -12,7 +12,7 @@ import java.awt.Color
 class aEP_FluxBeam : BeamEffectPlugin {
 
   companion object{
-    const val FSF_BONUS = 1.25f
+    const val FSF_BONUS = 2.5f
     const val MAX_SPEED_DIS_CAP = 1f
 
   }
@@ -74,12 +74,17 @@ class aEP_FluxBeam : BeamEffectPlugin {
         if (beam.source is ShipAPI) {
           val fluxRest = beam.source.maxFlux - beam.source.currFlux
           val targetFlux = target.currFlux
-          fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
-          fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
-
-          beam.source.fluxTracker.increaseFlux(fluxDecrease, true)
-          //fsf加成
-          target.fluxTracker.decreaseFlux(fluxDecrease * FSF_BONUS)
+          //计算fsf加成
+          if(beam.source.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true){
+            fluxDecrease *= FSF_BONUS
+            fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
+            fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
+            beam.source.fluxTracker.increaseFlux(fluxDecrease/ FSF_BONUS, true)
+          }else{ //正常加成
+            fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
+            fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
+            beam.source.fluxTracker.increaseFlux(fluxDecrease, true)
+          }
         }
 
       }else{
