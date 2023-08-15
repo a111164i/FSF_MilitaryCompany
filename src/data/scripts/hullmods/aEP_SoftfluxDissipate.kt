@@ -98,8 +98,8 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
     tooltip.addPara("{%s}"+ txt("aEP_SoftfluxDissipate08"), 5f, arrayOf(Color.red),
       aEP_ID.HULLMOD_POINT,
       txt("aEP_SoftfluxDissipate07"),
-      "0%",
-      "100%")
+      "100%",
+      "0%")
 
     //额外灰色说明
     //tooltip.addPara(aEP_DataTool.txt("aEP_SoftfluxDissipate08"), Color.gray, 5f)

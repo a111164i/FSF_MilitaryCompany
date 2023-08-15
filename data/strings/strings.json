@@ -311,12 +311,12 @@
 		"aEP_VentMode07":"Hitpoints damage taken: %s",
 		"aEP_VentMode06":"Not enough soft flux",
 
-		"aEP_MultiTracker01":"Ballistic, energy weapon projectile speed bonus: %s",
-		"aEP_MultiTracker02":"Ballistic, energy weapon accuracy bonus: %s",
-		"aEP_MultiTracker03":"Ballistic, energy weapon turn rate bonus: %s",
-		"aEP_MultiTracker06":"Non-PD ballistic, energy weapon range reduced by: %s",
+		"aEP_MultiTracker01":"Ballistic and energy weapon projectile speed bonus: %s",
+		"aEP_MultiTracker02":"Ballistic and energy weapon accuracy bonus: %s",
+		"aEP_MultiTracker03":"Ballistic and energy weapon turn rate bonus: %s",
+		"aEP_MultiTracker06":"Non-PD ballistic and energy weapon range reduced by: %s",
 
-		"aEP_CloseTargeting01": "Ballistic, energy weapon range bonus: %s",
+		"aEP_CloseTargeting01": "Ballistic and energy weapon range bonus: %s",
 		"aEP_CloseTargeting02": "Damage to fighters, missiles increased by: %s",
 		"aEP_CloseTargeting03": "Weapon damage taken reduced by: %s",
 
@@ -398,7 +398,7 @@
 		"aEP_PickReward07_2":"Get %s",
 		"aEP_PickReward08":"Continue",
 
-		"aEP_ModuleTargeting02":"Module get ballistic, energy weapon range bonus: ",
+		"aEP_ModuleTargeting02":"Module get ballistic and energy weapon range bonus: ",
 		"aEP_ModuleTargeting03":"Module can not install following hullmods: ",
 
 		"aEP_WeaponReset01":"Weapon RoF bonus: ",
@@ -421,13 +421,13 @@
 
 		"aEP_SoftfluxDissipate03":"Each OP point spent on vent reduce its normal bonus by: %s",
 		"aEP_SoftfluxDissipate05":"Each OP point spent on capacitor reduce its normal bonus by: %s",
-		"aEP_SoftfluxDissipate02":"Each OP point spent on vent is no longer reducing bonus, and grant %s %s dissipation bonus",
-		"aEP_SoftfluxDissipate06":"Each OP point spent on capacitor is no longer reducing bonus, and grant %s %s dissipation bonus",
+		"aEP_SoftfluxDissipate02":"Each OP point spent on vent is no longer reducing bonus, but grant %s %s dissipation bonus",
+		"aEP_SoftfluxDissipate06":"Each OP point spent on capacitor is no longer reducing bonus, but grant %s %s dissipation bonus",
 		"aEP_SoftfluxDissipate07":"Floating",
-		"aEP_SoftfluxDissipate08":"%s means the bonus will decrease from %s to %s as hard flux of this ship increase",
+		"aEP_SoftfluxDissipate08":"%s means the bonus will decrease from %s to %s as hard flux goes high",
 		"aEP_SoftfluxDissipate04":"Flux dissipation bonus: ",
 
-		"aEP_RapidDissipate01":"According to this ship's flux level, each take a damage, remove flux equals to at most {%s} of damage amount",
+		"aEP_RapidDissipate01":"According to this ship's flux level, each time this ship's hull takes a damage, remove flux equals to at most {%s} of that damage's amount",
 		"aEP_RapidDissipate03":"Damage amount to flux removal rate increased from %s to %s",
 		"aEP_RapidDissipate02":"* Damage taken from any unselectable module of this ship also provide flux removal for this ship itself",
 
@@ -439,8 +439,8 @@
 		"aEP_BurstDissipate03": "Flux dissipation bonus: ",
 		"aEP_BurstDissipate07": "Shield absorption rate worsen: ",
 
-		"aEP_ControledShield01": "To any projectile or beam that its spawn point is %s away from this ship, reduce its damage to shield by: %s",
-		"aEP_ControledShield02": "All ballistic, energy weapon of this ship, the %s range is limited at %s",
+		"aEP_ControledShield01": "Any projectile or beam that spawned %s away from this ship, reduce its damage to shield by: %s",
+		"aEP_ControledShield02": "All ballistic and energy weapon of this ship, the %s range is limited at %s",
 
 		"aEP_ResistShield01": "Each time the shield of this ship takes damage, %s equals to damage is accumulated.",
 		"aEP_ResistShield02": "As %s goes all the way to %s, this ship get at most %s flux shunt rate",
