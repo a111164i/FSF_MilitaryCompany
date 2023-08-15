@@ -144,23 +144,23 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin, On
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI, width: Float, isForModSpec: Boolean) {
     if (Global.getSector() == null || Global.getCurrentState() != GameState.CAMPAIGN) {
-      tooltip.addPara(aEP_DataTool.txt("CMCarrier01"), Color.green, 10f)
+      tooltip.addPara(aEP_DataTool.txt("aEP_CruiseMissileCarrier01"), Color.green, 10f)
       return
     }
     var percent = aEP_CruiseMissileLoadIntel.getLoadedAmount(ship.fleetMemberId)
     if (ship.currentCR < CR_THRESHOLD) {
-      tooltip.addPara(aEP_DataTool.txt("CMCarrier02"), Color.red, 10f)
+      tooltip.addPara(aEP_DataTool.txt("aEP_CruiseMissileCarrier02"), Color.red, 10f)
     }
     if (percent <= 0) {
-      tooltip.addPara(aEP_DataTool.txt("CMCarrier03"), Color.red, 10f)
+      tooltip.addPara(aEP_DataTool.txt("aEP_CruiseMissileCarrier03"), Color.red, 10f)
       return
     }
     if (percent < 1) {
-      tooltip.addPara(aEP_DataTool.txt("CMCarrier04") + ": {%s}", 10f, Color.white, Color.yellow, String.format("%.1f", percent * 100) + "%")
+      tooltip.addPara(aEP_DataTool.txt("aEP_CruiseMissileCarrier04") , 10f, Color.white, Color.yellow, String.format("%.1f", percent * 100) + "%")
       return
     }
     if (percent >= 1) {
-      tooltip.addPara(aEP_DataTool.txt("CMCarrier04"), Color.green, 10f)
+      tooltip.addPara(aEP_DataTool.txt("aEP_CruiseMissileCarrier01"), Color.green, 10f)
       return
     }
   }

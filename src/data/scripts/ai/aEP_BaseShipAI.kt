@@ -127,7 +127,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
     }
   }
 
-  inner class ForceReturn: aEP_MissileAI.Status(){
+  open inner class ForceReturn: aEP_MissileAI.Status(){
     var didLand = false
 
     override fun advance(amount: Float) {

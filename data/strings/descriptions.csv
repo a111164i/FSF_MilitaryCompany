@@ -1,4 +1,4 @@
-id,type,text1,text2,text3,notes,
+id,type,text1,text2,text3,text4,notes
 ,,,,,,
 ,,,,,,
 ,,,,,,
@@ -29,7 +29,7 @@ aEP_WeaponResetCL,SHIP_SYSTEM,激活时快速吸收一定比例的当前幅能�
 aEP_DamperLA,SHIP_SYSTEM,激活时禁用护盾，展开折叠装甲获得额外的装甲计算值和减伤，并不禁止武器射击,,,,
 ,,,,,,
 ,,,,,,
-aEP_CrowdControl,SHIP_SYSTEM,激活时减少护盾承受的伤害，持续产生数个电弧攻击正前方的敌人，造成少量破片伤害与EMP伤害，并极大的降低最靠近的一艘敌方舰船的最大速度，减速效果不会叠加,,,,
+aEP_CrowdControl,SHIP_SYSTEM,激活时禁用武器，减少护盾承受的伤害，持续产生数个电弧攻击正前方的敌人，造成少量破片伤害与EMP伤害，并极大的降低最靠近的一艘敌方舰船的最大速度，减速效果不会叠加,,,,
 aEP_DamperRL,SHIP_SYSTEM,激活时禁用护盾，展开折叠装甲获得额外的装甲计算值和减伤，并不禁止武器射击,,,,
 aEP_FortressShield,SHIP_SYSTEM,可切换，激活时大量减少减少护盾承受的伤害，但期间护盾角度减少，禁止开火，并产生硬幅能,,,,
 aEP_LidarArray,SHIP_SYSTEM,激活时增加实弹与能量挂载点上的非光束武器的射程/射速/弹速/精度。未激活时少量增加实弹与能量武器射程,,,,

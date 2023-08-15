@@ -12,7 +12,7 @@ import java.awt.Color
 class aEP_FluxBeam : BeamEffectPlugin {
 
   companion object{
-    const val FSF_BONUS = 2.5f
+    const val FSF_BONUS = 2f
     const val MAX_SPEED_DIS_CAP = 1f
 
   }
@@ -79,10 +79,12 @@ class aEP_FluxBeam : BeamEffectPlugin {
             fluxDecrease *= FSF_BONUS
             fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
             fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
+            target.fluxTracker.decreaseFlux(-fluxDecrease)
             beam.source.fluxTracker.increaseFlux(fluxDecrease/ FSF_BONUS, true)
           }else{ //正常加成
             fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
             fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
+            target.fluxTracker.decreaseFlux(fluxDecrease)
             beam.source.fluxTracker.increaseFlux(fluxDecrease, true)
           }
         }
@@ -108,15 +110,33 @@ class aEP_FluxBeam : BeamEffectPlugin {
   }
 
   fun pickTarget(ship: ShipAPI): ShipAPI{
-    if(!ship.isStationModule && ship.parentStation == null) return ship
-    //自己是模块的情况
+
+    //把本船，本船的模块，本船的母舰，统统视为一个整体
+    val checkShipList = ArrayList<ShipAPI>()
     if(ship.isStationModule && ship.parentStation != null){
-      val parent = ship.parentStation
-      if(parent.fluxLevel > ship.fluxLevel){
-        return parent
+      checkShipList.add(ship.parentStation)
+      checkShipList.addAll(ship.parentStation.childModulesCopy)
+    }
+    if(ship.isShipWithModules && ship.childModulesCopy.size > 0){
+      checkShipList.add(ship)
+      checkShipList.addAll(ship.childModulesCopy)
+    }
+
+    //找当前幅能最高的模块，如果本体的幅能超过50%直接优先选择本体
+    var maxFluxLevel = 0f
+    var toReturn = checkShipList.get(0)
+    if(toReturn.fluxLevel > 0.5f){
+      return toReturn
+    }
+    for ( s in checkShipList){
+      if(s.fluxLevel > maxFluxLevel){
+        maxFluxLevel = s.fluxLevel
+        toReturn = s
       }
     }
 
-    return ship
+
+
+    return toReturn
   }
 }

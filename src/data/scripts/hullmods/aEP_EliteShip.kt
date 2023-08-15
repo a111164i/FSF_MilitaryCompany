@@ -207,9 +207,6 @@ class aEP_EliteShip:aEP_BaseHullMod() {
     tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip06"), 5f, arrayOf(Color.green,highLight, highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", HULL_BONUS) +"%")
-//    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip04"), 5f, arrayOf(Color.green,highLight, highLight),
-//      aEP_ID.HULLMOD_POINT,
-//      String.format("%.0f", RR_DECREASE_REDUCE_MULT*100f) +"%")
     tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip05"), 5f, arrayOf(Color.green,highLight, highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", SPEED_BONUS[hullSize]?: DEFAULT_SPEED_BONUS))

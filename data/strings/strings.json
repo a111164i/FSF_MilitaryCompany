@@ -1,7 +1,5 @@
 {
 	"aEP":{
-		"manufacturer":"FSF制造",
-		"only_on_FSF":"只能安装在FSF的舰船上",
 		"not_capital":"不能安装在主力舰上",
 		"not_cruiser":"不能安装在巡洋舰上",
 		"not_destroyer":"不能安装在驱逐舰上",
@@ -9,98 +7,53 @@
 		"not_module":"不能安装在模块上",
 		"not_right_hullsize": "无法安装在此种舰体级别上",
 		"effect":"效果",
-		"no_link":"目前没有任何联动效果",
 		"not_compatible":"不兼容",
+		"HaveToBeWith":"舰船必须拥有",
 		"when_soft_up":"预热完成时 额外效果",
-		"when_soft_not_up":"尚未完全预热时",
-		"flux_gen_reduce":"武器幅能产生减少",
 		"base": "基础",
 		"bomber_wing": "轰炸机",
 		"non_bomber_wing": "非轰炸机",
-
-
-		"hard_diss":"硬幅能耗散",
-		"hard_convert":"硬幅能转换",
 
 		"aEP_MarkerDissipation03": "过载时间减少{%s}",
 		"aEP_MarkerDissipation01": "最长过载时间不会超过{%s}秒",
 		"aEP_MarkerDissipation02": "零幅能加速的{%s}值变为{%s}",
 		"aEP_MarkerDissipation05": "零幅能加速的启用阈值增加{%s}",
 		"aEP_MarkerDissipation06": "零幅能加速需要{%s}秒才能达到最大值",
-		"aEP_MarkerDissipation04": "最大速度增加: ",
+		"aEP_MarkerDissipation07": "预热程度: ",
+		"aEP_MarkerDissipation08":"* 不计入因为承受伤害导致的软幅能增加，如光束武器命中护盾",
 
-		"MD_des01":"预热程度: ",
-		"MD_des02":"武器幅能产生减少百分之{%} 同时幅能耗散减少百分之{%}",
-		"MD_des03":"受到伤害减免百分之",
-		"MD_des04":"* 不计入因为承受伤害导致的软幅能增加，如光束武器命中护盾",
-		"missile_health_up":"导弹生命值提高",
+		"aEP_MissilePlatform01":"总装填率",
+		"aEP_MissilePlatform02":"对于小型导弹，每100秒生产等价于{%s}装配点的弹药",
+		"aEP_MissilePlatform03":"对于中型导弹，每100秒生产等价于{%s}装配点的弹药",
+		"aEP_MissilePlatform04":"对于大型导弹，每100秒生产等价于{%s}装配点的弹药",
+		"aEP_MissilePlatform05":"所有导弹的备弹量会被限制到：武器{%s}轮的发射量或是基础备弹量的{%s}，两者取大",
+		"aEP_MissilePlatform06":"当前总装填率: ",
+		"aEP_MissilePlatform07":"当{%s}}为满时，不同导弹武器的最大生产速度如下: ",
+		"aEP_MissilePlatform08":"总装填率的回复速度，基于本舰安装的全部导弹武器装配点的总和，当前为每100秒{%s}点",
+		"aEP_MissilePlatform09":"* 例如装配点为30的导弹武器，基础备弹为10发，则每发导弹价值为3点",
+		"aEP_MissilePlatform10":"导弹生命值提高{%s}",
 
-		"MP_des00":"总装填率",
-		"MP_des01":"对于小型导弹，每100秒生产等价于{%s}装配点的弹药",
-		"MP_des02":"对于中型导弹，每100秒生产等价于{%s}装配点的弹药",
-		"MP_des03":"对于大型导弹，每100秒生产等价于{%s}装配点的弹药",
-		"MP_des04":"所有导弹的备弹量会被限制到：武器{%s}轮的发射量或是基础备弹量的{%s}，两者取大",
-		"MP_des05":"当前总装填率: ",
-		"MP_des06":"当总装填率为{%s}时，不同导弹武器的最大生产速度如下: ",
-		"MP_des07":"总装填率的回复速度，基于本舰安装的全部导弹武器装配点的总和，当前为每100秒{%s}点",
-		"MP_des08":"* 例如装配点为30的导弹武器，基础备弹为10发，则每发导弹价值为3点",
+		"aEP_VanguardHull01":"船体每次受到伤害时,有百分之{%s}的概率减少伤害{%s}点",
+		"aEP_VanguardHull02":"每次生效的同时减少{%s}点幅能",
+		"aEP_VanguardHull03":"生效概率由{%s}变为{%s}",
+		"aEP_VanguardHull04":"生效伤害减少由{%s}变为{%s}",
+		"aEP_VanguardHull05":"每次生效的减少幅能由{%s}变为{%s}",
 
-		"extra":"额外",
-		"weapon_range_up":"附近友军为主力舰时，武器射程提升{%s}}",
-		"weapon_range_up2":"附近友军为巡洋舰时，武器射程提升{%s}",
-		"weapon_range_up3":"附近友军为驱逐舰时，武器射程提升{%s}",
-		"weapon_range_up4":"附近友军为护卫舰时，武器射程提升{%s}",
-		"max_speed_down":"最大速度降低",
-		"shield_damge_taken_reduce":"护盾承受伤害减少",
-
-		"add":"增加",
-		"reduce":"减少",
-		"alter":"变动",
-	
-		"forward":"正向",
-		"backward":"负向",	
-		"only_on_small_ship":"只能安装在护卫舰和驱逐舰上",
-
-
-		"VA_des01":"船体每次受到伤害时,有百分之{%s}的概率减少伤害{%s}点",
-		"VA_des02":"每次生效的同时减少{%s}点幅能",
-
-		"VA_des03":"生效概率由{%s}变为{%s}",
-		"VA_des04":"生效伤害减少由{%s}变为{%s}",
-		"VA_des05":"每次生效的减少幅能由{%s}变为{%s}",
-
-
-		"aEP_HotLoader01": "所有非内置，非导弹的武器获得{%s}的弹药回复速度",
+		"aEP_HotLoader01":"所有非内置，非导弹的武器获得{%s}的弹药回复速度",
 		"aEP_HotLoader02":"弹药回复速度再提升{%s}",
 		"aEP_HotLoader03":"所有实弹和能量武器获得{%s}的弹药回复速度",
 
-		"CMCarrier01":"本舰装填已经完成",
-		"CMCarrier02":"CR过低停止装填",
-		"CMCarrier03":"未在装填",
-		"CMCarrier04":"本舰装填已完成",
-		
-		"ArmorShield01":"装甲已充能",
-		"ArmorShield02":"%的伤害转换为硬幅能",
+		"aEP_CruiseMissileCarrier01":"本舰装填已经完成",
+		"aEP_CruiseMissileCarrier02":"CR过低停止装填",
+		"aEP_CruiseMissileCarrier03":"未在装填",
+		"aEP_CruiseMissileCarrier04":"本舰装填已完成: {%s}",
 
 		"aEP_BBLockOn01": "武器幅能消耗增高",
-
-		"aEP_TargetSystem01": "武器射程提高百分之: ",
-		"aEP_TargetSystem02": "极速降低: ",
-		
-		"ExtremeOverload01":"已生成软幅能",
-		"ExtremeOverload02":"武器冷却时间",
-		"ExtremeOverload03":"实弹武器射速提升",
-		"ExtremeOverload04":"实弹武器幅能消耗降低",
-		"ExtremeOverload05":"舰船幅能耗散降低",
 
 		"aEP_VentMode01":"幅能耗散增加: %s 硬幅能产生: %s",
 		"aEP_VentMode02":"护盾承受伤害增加: %s",
 		"aEP_VentMode07":"结构承受伤害增加: %s",
-		"aEP_VentMode03":"实弹武器射速提升",
-		"aEP_VentMode04":"实弹武器幅能消耗降低",
-		"aEP_VentMode05":"舰船幅能耗散降低",
 		"aEP_VentMode06":"软幅能不足",
-
 
 		"aEP_MultiTracker01":"实弹/能量武器的弹速增加: %s",
 		"aEP_MultiTracker02":"实弹/能量武器的精度增加: %s",
@@ -112,37 +65,21 @@
 		"aEP_CloseTargeting01": "实弹/能量武器射程增加: %s",
 		"aEP_CloseTargeting02": "对战机/导弹的伤害增加: %s",
 		"aEP_CloseTargeting03": "武器承受伤害减少: %s",
-
-		"LongRange01":"雷达击中目标",
-		"LongRange02":"产生软幅能",
-		
-		"distribute":"重新分配",
-		"comfirm":"确定",
-		"return":"返回",
-		"no":"无",
-		"update":"更新状态",
-		"cargo_pick":"从货舱中选择",
-		"target_fleet":"目标舰队",
-		
-		
-		"SpecialAmmoItem01":"右键点击该物品为自己舰队配置特殊弹药",
 		
 		"CruiseMissileItem01":"右键点击该物品后，会向舰队前方发射。请注意，超视距发射巡航导弹时无法真正造成舰队减员，只能消耗其状态",
 		"CruiseMissileItem02":"目前舰队中没有装填完成的巡航导弹运载舰",
 		"CruiseMissileItem03":"舰队拥有装填完成的巡航导弹:{%s}发",
 		"CruiseMissileItem04":"你必须在货舱页面才能使用",
-		
-		"AWM_special_title":"特殊道具",
-		"AWM_special_usage":"使用情况",
-		"SpecialAmmo01":"当前舰队中以下的舰船装备了特殊道具",
-		"SpecialAmmo02":"选择舰队成员",
-		"SpecialAmmo03":"为舰船配置特殊道具--上:库存中的 下:现在装备的",
+
+		"aEP_AdvanceWeaponMission01":"我大概明白了",
+		"aEP_AdvanceWeaponMission02":"你失去了 %s",
+		"aEP_AdvanceWeaponMission03":"你获得了 %s",
 		
 		"AWM01_title":"AWM01:搜集武器",
 		"AWM01_mission01":"你还需要找到{%s} {%s}",
 		"AWM01_mission02":"你已经找到了{%s}",
 		"AWM01_mission03":"你已经搜集到了所有的武器",
-		"AWM01_mission04":"{%s} 拥有的",
+		"AWM01_mission04":"{%s} 知晓的",
 		"AWM01_mission05":"寻找{%s}",
 		"AWM01_desc01":"搜集以下的武器",
 		"AWM01_desc02":"将这些东西交给我后，作为报酬，会给你一些研究所最新的产品",
@@ -162,7 +99,6 @@
 		"AWM03_mission02":"{%s}的舰队中包含以下舰船",
 		"AWM03_mission03":"失联舰队",
 		"AWM03_mission04":"回收原型舰",
-		"AWM03_mission05":"任务完成",
 
 		"AWM04_title":"AWM04:找到隐藏星系",
 		"AWM04_mission01":"搜寻坐标附近的隐藏跳跃点",
@@ -186,11 +122,6 @@
 
 		"MissileEntity_after":"一阵火光过后，宇宙恢复了平静",
 		
-		"compatible":"冲突",
-		"NotCompatible":"与船插冲突：",
-		"HaveToBeWith":"舰船必须拥有",
-		"NeedToBalance:":"需要平衡：",
-
 		"aEP_LADamper01":"装甲计算值增加: ",
 		"aEP_LADamper02":"武器射速增加: ",
 
@@ -204,10 +135,6 @@
 		"aEP_HandInParts07":"你获得了 %s 的蓝图",
 
 
-		"aEP_AdvanceWeaponMission01":"我大概明白了",
-		"aEP_AdvanceWeaponMission02":"你失去了 %s",
-		"aEP_AdvanceWeaponMission03":"你获得了 %s",
-
 		"aEP_PickReward01":"没有更多了",
 		"aEP_PickReward02":"需要 %s %s",
 		"aEP_PickReward03":"选择 %s 蓝图",
@@ -218,10 +145,8 @@
 		"aEP_PickReward07_2":"获得了 %s",
 		"aEP_PickReward08":"继续选择",
 
-		"aEP_ModuleTargeting01":"模块会自动与本体同步以下插件的加成",
 		"aEP_ModuleTargeting02":"模块根据母舰别获得射程加成: ",
 		"aEP_ModuleTargeting03":"模块无法安装以下插件: ",
-		"aEP_ModuleTargeting04":"任何甲板数量加成",
 
 		"aEP_WeaponReset01":"武器射速增加",
 		"aEP_WeaponReset02":"储存幅能过多 系统性能下降至: ",
@@ -241,14 +166,12 @@
 		"aEP_AttackCarrier03":"锻炉冷却中",
 		"aEP_AttackCarrier04":"冷却剩余: %s",
 
-
 		"aEP_SoftfluxDissipate03":"每一点耗散通道点数的正常加成减少{%s}",
 		"aEP_SoftfluxDissipate05":"每一点寄存器点数的正常加成减少{%s}",
 		"aEP_SoftfluxDissipate02":"每一点耗散通道点数获得{%s}的{%s}额外耗散，并不再造成常驻减益",
 		"aEP_SoftfluxDissipate06":"每一点寄存器点数获得{%s}的{%s}额外耗散",
 		"aEP_SoftfluxDissipate07":"浮动",
 		"aEP_SoftfluxDissipate08":"{%s}指随着硬幅能水平上升，加成逐渐从{%s}衰减到{%s}",
-
 		"aEP_SoftfluxDissipate01":"幅能耗散增加: ",
 		"aEP_SoftfluxDissipate04":"幅能耗散变动: ",
 
@@ -263,15 +186,13 @@
 		"aEP_BurstDissipate06": "每一点寄存器点数造成{%s}的护盾吸收率劣化，并不再获得常驻增益",
 		"aEP_BurstDissipate03": "幅能耗散变动: ",
 		"aEP_BurstDissipate07": "护盾吸收率劣化: ",
-		"aEP_BurstDissipate08": "* 装配页面时数据仅供参考，战斗中会动态变化",
 
-		"aEP_ControledShield01": "对发射点和命中点之间距离超过{%s}的弹丸和光束，减少{%s}对护盾的伤害",
-		"aEP_ControledShield02": "舰船所有实弹和能量武器的{%s}射程无法超过{%s}",
+		"aEP_ControledShield01": "对发射点和命中点之间距离超过 %s 的弹丸和光束，减少 %s 对护盾的伤害",
+		"aEP_ControledShield02": "舰船所有实弹和能量武器的 %s 射程无法超过 %s ",
 
-
-		"aEP_ResistShield01": "当护盾承受伤害时会积累等同于伤害量的{%s}",
-		"aEP_ResistShield02": "随着{%s}的增高，达到{%s}时提供最多{%s}的磁通分流效果",
-		"aEP_ResistShield03": "{%s}以每秒{%s}的速度减少",
+		"aEP_ResistShield01": "当护盾承受伤害时会积累等同于伤害量的 %s",
+		"aEP_ResistShield02": "随着 %s 的增高，达到 %s 时提供最多 %s 的磁通分流效果",
+		"aEP_ResistShield03": " %s 以每秒 %s 的速度减少",
 		"aEP_ResistShield04": "波动值",
 		"aEP_ResistShield05": "当前波动值: ",
 
@@ -280,11 +201,9 @@
 		"aEP_StrategyThruster02": "零幅能加速的启用阈值增加{%s}，现在为{%s}",
 		"aEP_StrategyThruster03": "零幅能加速的启用时，护盾吸收率劣化{%s}",
 
-
 		"aEP_EliteShip01": "护盾吸收率增强{%s}",
 		"aEP_EliteShip02": "装甲值增加{%s}",
 		"aEP_EliteShip06": "结构值增加{%s}",
-		"aEP_EliteShip04": "甲板整备率下降速度减缓{%s}",
 		"aEP_EliteShip05": "最大速度增加{%s}",
 		"aEP_EliteShip07": "每次过载时进行一次0-100的{%s}，若结果<={%s}生成一个无人机生成护盾保护本舰，护盾拥有{%s}点伤害吸收",
 		"aEP_EliteShip08": "保护测试",
@@ -297,7 +216,6 @@
 		"aEP_FirstDeck04": "耗散增加{%s}",
 		"aEP_FirstDeck05": "实弹，能量和导弹武器的备弹增加{%s}",
 		"aEP_FirstDeck06": "当任何一个甲板的整备率低于{%s}时，会从前一个甲板以每秒{%s}的速度吸取整备率，第一个甲板除外",
-
 
 		"aEP_EmergencyReconstruct01": "每当本舰受到致命伤害时，如果满足以下条件，可以立刻发起重建，完全恢复装甲与结构值: ",
 		"aEP_EmergencyReconstruct02": "本舰{%s}范围内存在非护卫级，非战机，不处于相位状态且不处于无碰撞体积的友方舰船",
@@ -314,21 +232,13 @@
 		"aEP_HighSpeedManeuver04": "每次成功触发都会降低{%s}触发概率，如果持续{%s}秒没有再受到任何伤害，触发概率会逐渐恢复到最大值",
 		"aEP_HighSpeedManeuver05": "当前触发闪避状态的概率: %s",
 
+		"aEP_ReactiveArmor01" : "当船体受到>= %s 的伤害时会触发反应装甲，使本次伤害减少 %s",
+		"aEP_ReactiveArmor02" : "反应装甲最多被触发 %s 次",
+		"aEP_ReactiveArmor03" : "反应装甲剩余次数: %",
+
 		"aEP_FortressShieldStats01": "护盾伤害承受减少 %s",
 
 		"aEP_ApproachingTo":"正在接近 ",
-
-		"aEP_Mission01_01": "你的舰队",
-		"aEP_Mission01_02": "模拟目标",
-		"aEP_Mission01_03": "公司的驱逐舰不太能承受伤害且缺失导弹武器",
-		"aEP_Mission01_04": "指挥你的骚扰型战舰吸引火力，制造集中火力的空间",
-		"aEP_Mission01_05": "在多对一的情况下利用战术系统快速摧毁目标",
-
-		"aEP_Mission02_01": "Lamdor星际巡逻队",
-		"aEP_Mission02_02": "海盗不可能凑出来的'海盗'舰队",
-		"aEP_Mission02_03": "敌人比你快得多，不要被包围了，让海量级掩护你",
-		"aEP_Mission02_04": "海量级战术系统的燃料已经用完了，你不可能追得上任何一艘敌人",
-		"aEP_Mission02_05": "你的峰值比他们长，坚持就是胜利",
 
 		"aEP_Mission03_01": "边缘测绘舰队019200号",
 		"aEP_Mission03_02": "余辉巡逻队",
@@ -340,10 +250,261 @@
 		"aEP_Mission04_02": "余辉舰队",
 		"aEP_Mission04_03": "不能损失<涌动>",
 
-
 		"aEP_UndergroundStorage01": "当殖民地稳定度低于{%s}时，获得额外稳定度加成，最多{%s}点",
 		"aEP_UndergroundStorage02": "获得额外的地面防御值加成",
 		"aEP_UndergroundStorage03": "获得额外的巡逻队尺寸加成",
 		"aEP_UndergroundStorage04": "获得额外的大型巡逻队数量加成"
+	},
+	"aEP_En":{
+		"not_capital":"Can not be installed on capital ships",
+		"not_cruiser":"Can not be installed on cruiser ships",
+		"not_destroyer":"Can not be installed on destroyer ships",
+		"not_frigate":"Can not be installed on frigate ships",
+		"not_module":"Can not be installed on ship modules",
+		"not_right_hullsize": "Can not be installed on this hullsize",
+		"effect":"Effect",
+		"not_compatible":"Not compatible",
+		"HaveToBeWith":"Have to install with",
+		"when_soft_up":"Additional Effect on Heated",
+		"base": "Base",
+		"bomber_wing": "Bomber Wing",
+		"non_bomber_wing": "Non-Bomber Wing",
+
+		"aEP_MarkerDissipation03": "Overload time reduced by %s",
+		"aEP_MarkerDissipation01": "Longest overload time will not excess %s seconds",
+		"aEP_MarkerDissipation02": "The %s zero flux boost speed change to %s",
+		"aEP_MarkerDissipation05": "The flux level threshold for zero flux boost to active increased by %s",
+		"aEP_MarkerDissipation06": "Zero flux boost takes %s seconds to reach peak bonus",
+		"aEP_MarkerDissipation07": "Heated level: ",
+		"aEP_MarkerDissipation08":"* Do not count any soft flux increase from taking damage, e.g beams hit shield",
+
+		"aEP_MissilePlatform01":"Production Rate",
+		"aEP_MissilePlatform02":"For small missiles，produce ammo equals to %s OP points per 100 second",
+		"aEP_MissilePlatform03":"For medium missiles，produce ammo equals to %s OP points per 100 second",
+		"aEP_MissilePlatform04":"For large missiles，produce ammo equals to %s OP points per 100 second",
+		"aEP_MissilePlatform05":"All missile weapon's ammo will be limited to: %s round of fire or %s of base ammo amount, which one is larger",
+		"aEP_MissilePlatform06":"Current production rate: ",
+		"aEP_MissilePlatform07":"When %s is full, the max speed of producing missiles show as follow: ",
+		"aEP_MissilePlatform08":"Recover speed of %s is based on total OP points cost on missile weapons, currently %s per 100 second",
+		"aEP_MissilePlatform09":"* For example a missile weapon costs 30 OP points with base ammo amount of 10, the OP cost per missile is 3",
+		"aEP_MissilePlatform10":"Max hitpoints of missiles increased by %s",
+
+		"aEP_VanguardHull01":"Each time armor or hull takes damage, there is a %s chance to reduce damage by %s",
+		"aEP_VanguardHull02":"Each time the damage is reduced, remove %s flux as well",
+		"aEP_VanguardHull03":"Chance change from %s to %s",
+		"aEP_VanguardHull04":"Reduction change from %s to %s",
+		"aEP_VanguardHull05":"Flux removal change from %s to %s",
+
+		"aEP_HotLoader01":"All non-built-in, non-missile weapons gain %s ammo regen speed bonus",
+		"aEP_HotLoader02":"Above bonus increased by another %s",
+		"aEP_HotLoader03":"All energy, ballistic weapons gain %s ammo regen speed bonus",
+
+		"aEP_CruiseMissileCarrier01":"Loading process complete",
+		"aEP_CruiseMissileCarrier02":"Loading process stops because CR is too low",
+		"aEP_CruiseMissileCarrier03":"Nothing is loading",
+		"aEP_CruiseMissileCarrier04":"Loading process: %s",
+
+		"aEP_BBLockOn01": "Weapon firing flux cost increased",
+
+		"aEP_VentMode01":"Flux dissipation increased: %s / Hard flux gen per second: %s",
+		"aEP_VentMode02":"Shield damage taken: %s",
+		"aEP_VentMode07":"Hitpoints damage taken: %s",
+		"aEP_VentMode06":"Not enough soft flux",
+
+		"aEP_MultiTracker01":"Ballistic, energy weapon projectile speed bonus: %s",
+		"aEP_MultiTracker02":"Ballistic, energy weapon accuracy bonus: %s",
+		"aEP_MultiTracker03":"Ballistic, energy weapon turn rate bonus: %s",
+		"aEP_MultiTracker06":"Non-PD ballistic, energy weapon range reduced by: %s",
+
+		"aEP_CloseTargeting01": "Ballistic, energy weapon range bonus: %s",
+		"aEP_CloseTargeting02": "Damage to fighters, missiles increased by: %s",
+		"aEP_CloseTargeting03": "Weapon damage taken reduced by: %s",
+
+		"CruiseMissileItem01":"Right click this item will shoot one to the front of your fleet. Be noticed that firing cruise missile at campaign layer will not destroy any ship, only damage it's CR and Hull integrity",
+		"CruiseMissileItem02":"Non of your missile carrier completed loading process",
+		"CruiseMissileItem03":"Currently loaded missiles number: %s",
+		"CruiseMissileItem04":"Can only be right click at cargo page",
+
+		"AWM01_title":"AWM01: Search for weapons",
+		"AWM01_mission01":"Your need to find %s %s",
+		"AWM01_mission02":"Currently %s is in your cargo",
+		"AWM01_mission03":"You have found all the weapon requested",
+		"AWM01_mission04":"Known to %s",
+		"AWM01_mission05":"Find %s",
+		"AWM01_desc01":"Find me the following weapons",
+		"AWM01_desc02":"In return, I will give you some of the prototype weapons in our lab",
+
+		"AWM02_title":"AWM02: Investigate the target",
+		"AWM02_mission01":"Target is located at an asteroid area in %s",
+		"mission_terminate":"Terminate the mission",
+		"mission_info":"Mission Info",
+		"mission_require":"Mission Requirement",
+		"mission_destroy":"Destroy Target",
+		"mission_destroyed":"Target is Destroyed",
+		"mission_complete":"Mission Completed",
+		"mission_ended":"Mission Invalidated",
+
+		"AWM03_title":"AWM03: Destroy the captured fleet",
+		"AWM03_mission01":"Target is in %s system, located at a %s planet",
+		"AWM03_mission02":"%s 's fleet contains following ships: ",
+		"AWM03_mission03":"Captured fleet",
+		"AWM03_mission04":"Recover the missile carrier",
+
+		"AWM04_title":"AWM04: Find the hidden jump point",
+		"AWM04_mission01":"Search hyperspace around this coordinate",
+		"AWM04_mission02":"This paper-like fabric has a hyperspace coordinate written on it, shortly after your read, the paper starts burning. light purple flame is surprisingly low temperature, all you have now is a vague memory in your brain",
+		"AWM04_have_permission":"Show them the pass",
+		"AWM04_nothave_permission":"What are you talking about",
+
+		"aEP_AdvanceWeaponMission01":"I understand",
+		"aEP_AdvanceWeaponMission02":"You lost %s",
+		"aEP_AdvanceWeaponMission03":"You get %s",
+
+		"MarineTrain_title":"Marine Training",
+		"MarineTrain01":"Training has finished",
+		"MarineTrain02":"Training has started",
+		"MarineTrain03":"Training has finished, %s marine troopers will meet you at your next docked station",
+		"MarineTrain04":"Your %s crew is now training, expected to be finished at %s days",
+		"MarineTrain05":"Your current relationship with FSF is lower than %s, the training is stopped",
+		"MarineTrain06":"Early terminate the contract will dismiss all your crew, you gain %s credits refund",
+
+		"aEP_TrainMarine01":"Appreciated your choice, but we need at least 100 people(7500 credits) to start a training camp",
+		"aEP_TrainMarine02":"For each crew you pay %s credits",
+		"aEP_TrainMarine03":"Paid %s credits",
+		"aEP_TrainMarine04":"Your %s crew have rejoined the fleet, now they are qualified marine now",
+		"aEP_TrainMarine05":"Seems like your previously training contract hasn't concluded yet, please wait it to finish before you open a new one",
+
+		"MissileEntity_after":"After sparks and flashes, the space back to dark",
+
+		"aEP_LADamper01":"Effective armor bonus: ",
+		"aEP_LADamper02":"Weapon RoF bonus: ",
+
+		"aEP_HandInParts01":"Your have %s %s in cargo",
+		"aEP_HandInParts02":"You don't have enough credits",
+		"aEP_HandInParts03":"You lost %s credits",
+		"aEP_HandInParts03_2":"You gain %s credits",
+		"aEP_HandInParts04":"You don't have enough %s",
+		"aEP_HandInParts05":"Lost %s %s",
+		"aEP_HandInParts06":"Get %s %s",
+		"aEP_HandInParts07":"You get a blueprint of %s",
+
+		"aEP_PickReward01":"empty now",
+		"aEP_PickReward02":"Need %s %s",
+		"aEP_PickReward03":"Choose blueprint of %s",
+		"aEP_PickReward04":"Choose %s",
+		"aEP_PickReward05":"Not enough",
+		"aEP_PickReward06":"Choose another",
+		"aEP_PickReward07":"Lost %s %s",
+		"aEP_PickReward07_2":"Get %s",
+		"aEP_PickReward08":"Continue",
+
+		"aEP_ModuleTargeting02":"Module get ballistic, energy weapon range bonus: ",
+		"aEP_ModuleTargeting03":"Module can not install following hullmods: ",
+
+		"aEP_WeaponReset01":"Weapon RoF bonus: ",
+		"aEP_WeaponReset02":"Too much flux stored, system performance decreased to: ",
+
+		"aEP_CruiseMissileLoadIntel01":"Cruise Missile Management Page",
+		"aEP_CruiseMissileLoadIntel02":"Load and unload cruise missile at this page",
+		"aEP_CruiseMissileLoadIntel03":"Not loading",
+		"aEP_CruiseMissileLoadIntel04":"Choose a missile for this ship to load",
+		"aEP_CruiseMissileLoadIntel05":"Loading process: %s",
+
+		"aEP_Market00":"Here is seller-only",
+		"aEP_Market01":"Require: relationship with FSF higher than %s",
+
+		"aEP_AttackCarrier00":"Engagement range of all its wings increased by: %s",
+		"aEP_AttackCarrier01":"All its non-bomber wings within %s range of this ship, if its base max speed lower than %s, get max speed bonus: ",
+		"aEP_AttackCarrier02":"When its remaining non-bomber wings number are low and flux level of this ship is lower than %s, a forge is activated to refit all lost immediately. This ability has %s seconds cooldown and produce large amount of soft flux during activating",
+		"aEP_AttackCarrier03":"Forge is activating",
+		"aEP_AttackCarrier04":"Forge cooldown: %s",
+
+		"aEP_SoftfluxDissipate03":"Each OP point spent on vent reduce its normal bonus by: %s",
+		"aEP_SoftfluxDissipate05":"Each OP point spent on capacitor reduce its normal bonus by: %s",
+		"aEP_SoftfluxDissipate02":"Each OP point spent on vent is no longer reducing bonus, and grant %s %s dissipation bonus",
+		"aEP_SoftfluxDissipate06":"Each OP point spent on capacitor is no longer reducing bonus, and grant %s %s dissipation bonus",
+		"aEP_SoftfluxDissipate07":"Floating",
+		"aEP_SoftfluxDissipate08":"%s means the bonus will decrease from %s to %s as hard flux of this ship increase",
+		"aEP_SoftfluxDissipate04":"Flux dissipation bonus: ",
+
+		"aEP_RapidDissipate01":"According to this ship's flux level, each take a damage, remove flux equals to at most {%s} of damage amount",
+		"aEP_RapidDissipate03":"Damage amount to flux removal rate increased from %s to %s",
+		"aEP_RapidDissipate02":"* Damage taken from any unselectable module of this ship also provide flux removal for this ship itself",
+
+		"aEP_BurstDissipate01": "Each OP point spent on vent grant %s dissipation bonus",
+		"aEP_BurstDissipate05": "Each OP point spent on capacitor grant %s dissipation bonus",
+		"aEP_BurstDissipate04": "Shield absorption rate worsen by: %s",
+		"aEP_BurstDissipate02": "Each OP point spent on vent no longer grant dissipation bonus, but reduce its normal bonus by: %s",
+		"aEP_BurstDissipate06": "Each OP point spent on capacitor no longer grant dissipation bonus, but worsen shield absorption rate by: %s",
+		"aEP_BurstDissipate03": "Flux dissipation bonus: ",
+		"aEP_BurstDissipate07": "Shield absorption rate worsen: ",
+
+		"aEP_ControledShield01": "To any projectile or beam that its spawn point is %s away from this ship, reduce its damage to shield by: %s",
+		"aEP_ControledShield02": "All ballistic, energy weapon of this ship, the %s range is limited at %s",
+
+		"aEP_ResistShield01": "Each time the shield of this ship takes damage, %s equals to damage is accumulated.",
+		"aEP_ResistShield02": "As %s goes all the way to %s, this ship get at most %s flux shunt rate",
+		"aEP_ResistShield03": "%s is continuously decreasing %s per second",
+		"aEP_ResistShield04": "Fluctuation points",
+		"aEP_ResistShield05": "fluctuation points/flux shunt rate: ",
+
+
+		"aEP_StrategyThruster01": "Zero flux boost speed bonus increased by %s, now is: %s",
+		"aEP_StrategyThruster02": "The flux level threshold for zero flux boost to active increased by %s, now is: %s",
+		"aEP_StrategyThruster03": "When zero flux boost is activating, shield absorption rate worsen by: %s",
+
+		"aEP_EliteShip01": "Shield absorption rate improved by: %s",
+		"aEP_EliteShip02": "Armor bonus: %s",
+		"aEP_EliteShip06": "Hitpoints bonus: %s",
+		"aEP_EliteShip05": "Max speed bonus: %s",
+		"aEP_EliteShip07": "Each time this ship overload, do a {%s} of 0-100, if result <= %s, a fighter is launched and generates a shield protecting this ship, the shield has %s damage absorption",
+		"aEP_EliteShip08": "Protect Test",
+		"aEP_EliteShip03": "Deployment cost in combat increased by: %s",
+		"aEP_EliteShip09": "Have to empty all extra OP points before uninstall this hullmod",
+
+		"aEP_FirstDeck01": "%s on the last deck of this ship get following bonus: ",
+		"aEP_FirstDeck02": "Max speed bonus: %s",
+		"aEP_FirstDeck03": "Flux capacity bonus: %s",
+		"aEP_FirstDeck04": "Flux dissipation bonus: %s",
+		"aEP_FirstDeck05": "Ballistic, energy and missile weapon ammo bonus: %s",
+		"aEP_FirstDeck06": "When the refit rate of a deck is lower than %s, it drains refit rate of the previous deck at %s per second, excepting the very first deck",
+
+		"aEP_EmergencyReconstruct01": "Each time this ship taken a lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover its armor and hitpoints: ",
+		"aEP_EmergencyReconstruct02": "There is a non-frigate, non-fighter, not phased, not in none collision state friendly ship within %s range of this ship",
+		"aEP_EmergencyReconstruct03": "Do a %s of 0-100, the result <= %s",
+		"aEP_EmergencyReconstruct04": "Reconstruct Test",
+		"aEP_EmergencyReconstruct05": "When a reconstruction initiated, this ship will be teleported to a nearby friendly ship ",
+		"aEP_EmergencyReconstruct08": "Time to reconstruct is %s second",
+		"aEP_EmergencyReconstruct06": "Each time %s succeed will increase the result of next test by %s",
+		"aEP_EmergencyReconstruct07": "During reconstruction, this ship is phased and immune to all damage",
+
+		"aEP_HighSpeedManeuver01": "Each time this ship takes a damage, There is at most %s chance into %s",
+		"aEP_HighSpeedManeuver02": "Evading State",
+		"aEP_HighSpeedManeuver03": "%s lasts %s seconds, during the time the ship is in none collision state",
+		"aEP_HighSpeedManeuver04": "When triggered, lower the chance by %s. If this ship has not taken any damage in %s seconds, chance will recover slowly",
+		"aEP_HighSpeedManeuver05": "Current evade chance: %s",
+
+		"aEP_ReactiveArmor01" : "Each time this ship's hull takes a damage >= %s, it will trigger explosive reactive armor, reduce its damage by: %s ",
+		"aEP_ReactiveArmor02" : "This can only be triggered %s times",
+		"aEP_ReactiveArmor03" : "Remaining ERA: %",
+
+		"aEP_FortressShieldStats01": "Shield Damage taken reduced by: %s",
+
+		"aEP_ApproachingTo":"Approaching!",
+
+		"aEP_Mission03_01": "Fringe Systems Observation Fleet: 019200",
+		"aEP_Mission03_02": "Remnant patrol",
+		"aEP_Mission03_03": "Don't not lose <Ice Break>，<Surging>",
+		"aEP_Mission03_04": "Can lost 1 ship at most",
+		"aEP_Mission03_05": "Can not use any weapon, wing, hullmod that FSF do not know",
+
+		"aEP_Mission04_01": "DWR43 Remnant Elimination Fleet",
+		"aEP_Mission04_02": "Remnant Fleet",
+		"aEP_Mission04_03": "Don't not lose <Pulse>",
+
+		"aEP_UndergroundStorage01": "When the stability of colony is lower than %s, get stability bonus up to %s",
+		"aEP_UndergroundStorage02": "Get ground defense bonus",
+		"aEP_UndergroundStorage03": "Get patrol fleet size bonus",
+		"aEP_UndergroundStorage04": "Get max patrol fleet number bonus"
 	}
 }

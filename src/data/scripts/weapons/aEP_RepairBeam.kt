@@ -12,10 +12,10 @@ import java.awt.Color
 
 class aEP_RepairBeam : BeamEffectPlugin {
   companion object {
-    private const val HULL_REPAIR_MULT = 1.5f //溢出的装甲维修点数转换成几倍的结构恢复
-    private const val REPAIR_STEP_PER_CELL = 6f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
+    private const val HULL_REPAIR_MULT = 2f //溢出的装甲维修点数转换成几倍的结构恢复
+    private const val REPAIR_STEP_PER_CELL = 8f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
-    private const val FSF_BONUS = 2.5f
+    private const val FSF_BONUS = 2f
     const val REPAIR_THRESHOLD = 0.5f
     const val HULL_REPAIR_THRESHOLD = 0.25f
     val REPAIR_COLOR = Color(250, 250, 178, 240)
@@ -23,8 +23,8 @@ class aEP_RepairBeam : BeamEffectPlugin {
 
   }
 
-  var repairAmount = 4f
-  var repairPercent = 0.004f
+  var repairAmount = 6f
+  var repairPercent = 0.005f
   private var didRepair = false
 
   init {
@@ -58,17 +58,24 @@ class aEP_RepairBeam : BeamEffectPlugin {
 
       //把本船，本船的模块，本船的母舰，统统视为一个整体
       val checkShipList = ArrayList<ShipAPI>()
-      checkShipList.add(ship)
       if(ship.isStationModule && ship.parentStation != null){
+        checkShipList.add(ship.parentStation)
         checkShipList.addAll(ship.parentStation.childModulesCopy)
       }
-      if(ship.isStation && ship.childModulesCopy.size > 0){
+      if(ship.isShipWithModules && ship.childModulesCopy.size > 0){
+        checkShipList.add(ship)
         checkShipList.addAll(ship.childModulesCopy)
       }
 
-      //按照顺序选择修谁，前者如果完全不需要修复就轮到后一个
+      //按照顺序选择修谁
       val it = checkShipList.iterator()
-      while (it.hasNext() && findToRepair(it.next(),engine) >= 1){}
+      while (it.hasNext()){
+        //前者如果完全不需要修复就轮到后一个，直到有人需要维修
+        if(findToRepair(it.next(), engine) < 1f){
+          break
+        }
+
+      }
 
     }
   }
@@ -83,10 +90,13 @@ class aEP_RepairBeam : BeamEffectPlugin {
     val ySize = ship.armorGrid.above + ship.armorGrid.below
     val cellMaxArmor = ship.armorGrid.maxArmorInCell
 
-    val maxRepairPoint = repairAmount + ship.armorGrid.armorRating * repairPercent
+    var maxRepairPoint = repairAmount + ship.armorGrid.armorRating * repairPercent
     var toRepair = maxRepairPoint
     //计算fsf加成
-    if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true) toRepair *= FSF_BONUS
+    if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true){
+      maxRepairPoint *= FSF_BONUS
+      toRepair *= FSF_BONUS
+    }
     var didSpark = false
 
 

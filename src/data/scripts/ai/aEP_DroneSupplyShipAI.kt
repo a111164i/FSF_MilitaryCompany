@@ -33,6 +33,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
   companion object{
     const val ID = "aEP_DroneSupplyShipAI"
+    const val FLUX_RETURN_PARENT = 0.5f
   }
 
   private var parentShip: ShipAPI? = null
@@ -109,7 +110,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
             && ally.hullSize != ShipAPI.HullSize.FRIGATE) continue
 
           val factor = calculateFactor(ally)
-          if(factor  > 100f){
+          if(factor  >= 75f){
             targetPicker.add(ally, factor)
           }
         }
@@ -301,9 +302,18 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
   }
 
+  inner class ForceReturn():aEP_BaseShipAI.ForceReturn(){
+    override fun onReturn() {
+      if(parentShip != null && !isDead(parentShip!!)){
+        val parentShip = parentShip as ShipAPI
+        val maxToAdd = (ship.fluxTracker.currFlux * FLUX_RETURN_PARENT).coerceAtMost(parentShip.maxFlux - parentShip.currFlux)
+        parentShip.fluxTracker.increaseFlux(maxToAdd,false)
+      }
+    }
+  }
+
   fun calculateFactor(target:ShipAPI): Float{
     var fluxLevel = target.fluxLevel
-    fluxLevel *= fluxLevel
     fluxLevel *= fluxLevel
 
     if(target.isCapital) {
@@ -316,7 +326,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       fluxLevel *= 200
     }
 
-    if(target.isPhased){
+    if(target.isPhased || target.collisionClass == null){
       fluxLevel *= 0f
     }
 

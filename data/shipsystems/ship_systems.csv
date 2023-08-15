@@ -31,7 +31,7 @@ name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u 
 多重目标追踪器,aEP_MultiTracker,,,,,,,,,,0,4,0,0,,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png,,,,,,,,,,,,,,,,,,,,,,
 舰船阻滞系统,aEP_CrowdControl,,,,,,,,3,0.05,0.5,5,0.5,,TRUE,,,,TRUE,,,,,,,,graphics/icons/hullsys/ammo_feeder.png,,,,,,,,,,,,,,,,,,,,,,
 阻尼供弹,aEP_DamperRL,,,,,,,,3,0.0625,0.5,4,0.5,,,,TRUE,TRUE,,,,,TRUE,TRUE,,uses_damper_ai,graphics/icons/hullsys/ammo_feeder.png,,,,,,,,,,,,,,,,,,,,,,
-掩体护盾,aEP_FortressShield,,,0.05,,,,,,,1,,1,,TRUE,,,TRUE,TRUE,,,,,,,,graphics/icons/hullsys/fortress_shield.png,,,,,,,,,,,,,,,,,,,,,,
+掩体护盾,aEP_FortressShield,,,0.04,,,,,,,1,,1,,TRUE,,,TRUE,TRUE,,,,,,,,graphics/icons/hullsys/fortress_shield.png,,,,,,,,,,,,,,,,,,,,,,
 激光测距阵列,aEP_LidarArray,1,,,,,,,,,2,5,2,10,,,,,,,,,,,,,graphics/icons/hullsys/fortress_shield.png,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

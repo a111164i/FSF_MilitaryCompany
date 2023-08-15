@@ -30,6 +30,14 @@ import kotlin.math.absoluteValue
 class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
   companion object {
     private val mag: MutableMap<HullSize, Float> = HashMap()
+    init {
+      mag[HullSize.FIGHTER] = 800f
+      mag[HullSize.FRIGATE] = 900f
+      mag[HullSize.DESTROYER] = 1000f
+      mag[HullSize.CRUISER] = 1100f
+      mag[HullSize.CAPITAL_SHIP] = 1100f
+    }
+
     //REDUCE_MULT 是 1 - x
     private const val REDUCE_MULT = 0.75f
     private const val UPKEEP_PUNISH = 2f
@@ -38,13 +46,6 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
     private const val COLOR_RECOVER_INTERVAL = 0.025f //by seconds
     const val ID = "aEP_ControledShield"
 
-    init {
-      mag[HullSize.FIGHTER] = 800f
-      mag[HullSize.FRIGATE] = 900f
-      mag[HullSize.DESTROYER] = 1000f
-      mag[HullSize.CRUISER] = 1100f
-      mag[HullSize.CAPITAL_SHIP] = 1100f
-    }
   }
 
   init {

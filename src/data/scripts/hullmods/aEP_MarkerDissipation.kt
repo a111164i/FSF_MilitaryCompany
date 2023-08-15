@@ -159,7 +159,7 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
 
 
     //灰字额外说明
-    tooltip.addPara(aEP_DataTool.txt("MD_des04"), grayColor, 5f)
+    tooltip.addPara(aEP_DataTool.txt("aEP_MarkerDissipation08"), grayColor, 5f)
 
   }
 
@@ -233,7 +233,7 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
           this.javaClass.simpleName,  //key
           "graphics/aEP_hullsys/marker_dissipation.png",  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("MD_des01") + (bufferLevel * 100).toInt() + "%",  //data
+          aEP_DataTool.txt("aEP_MarkerDissipation07") + (bufferLevel * 100).toInt() + "%",  //data
           false) //is debuff
       }
     }

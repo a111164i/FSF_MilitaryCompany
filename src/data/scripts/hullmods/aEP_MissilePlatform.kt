@@ -96,7 +96,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
   }
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
-    if (index == 0) return txt("MP_des00")
+    if (index == 0) return txt("aEP_MissilePlatform01")
     return ""
   }
 
@@ -147,10 +147,10 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
     //tooltip.addGrid( 5 * 5f + 10f);
     //奖励项
-    tooltip.addPara("{%s}"+txt("MP_des06"), 5f, arrayOf(Color.green), HULLMOD_POINT, String.format("%.0f", 100f)+"%")
-    tooltip.addPara(HULLMOD_BULLET + txt("MP_des01"), 5f ,highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?.times(100) ?: 0))
-    tooltip.addPara(HULLMOD_BULLET + txt("MP_des02"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?.times(100) ?: 0))
-    tooltip.addPara(HULLMOD_BULLET + txt("MP_des03"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?.times(100) ?: 0))
+    tooltip.addPara("{%s}"+txt("aEP_MissilePlatform07"), 5f, arrayOf(Color.green), HULLMOD_POINT, txt("aEP_MissilePlatform01"), String.format("%.0f", 100f)+"%")
+    tooltip.addPara(HULLMOD_BULLET + txt("aEP_MissilePlatform02"), 5f ,highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?.times(100) ?: 0))
+    tooltip.addPara(HULLMOD_BULLET + txt("aEP_MissilePlatform03"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?.times(100) ?: 0))
+    tooltip.addPara(HULLMOD_BULLET + txt("aEP_MissilePlatform04"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?.times(100) ?: 0))
     var totalOp = 0f
     ship?.run {
       for (w in ship.allWeapons) {
@@ -159,14 +159,13 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         totalOp += opMissileWeapon * RATE_INCREASE_SPEED_MULT
       }
     }
-    tooltip.addPara("{%s}"+ txt("MP_des07"), 5f, arrayOf(Color.green, highLight), HULLMOD_POINT,String.format("%.1f", totalOp))
+    tooltip.addPara("{%s}"+ txt("aEP_MissilePlatform08"), 5f, arrayOf(Color.green, highLight), HULLMOD_POINT,String.format("%.1f", totalOp))
 
-
-    tooltip.addPara("{%s}" + txt("missile_health_up") + "{%s}", 5f,arrayOf(Color.green), HULLMOD_POINT, MISSILE_HITPOINT_BUFF.toInt().toString() + "%")
+    tooltip.addPara("{%s}" + txt("aEP_MissilePlatform10"), 5f,arrayOf(Color.green), HULLMOD_POINT, MISSILE_HITPOINT_BUFF.toInt().toString() + "%")
 
     //实际上就是把原本扩展架的量慢慢给玩家
     //惩罚项
-    tooltip.addPara("{%s}" + txt("MP_des04"), 5f,arrayOf(Color.red), HULLMOD_POINT, MISSILE_MAX_MULT.toString(), "$MISSILE_MAX_PERCENT%")
+    tooltip.addPara("{%s}" + txt("aEP_MissilePlatform05"), 5f,arrayOf(Color.red), HULLMOD_POINT, MISSILE_MAX_MULT.toString(), "$MISSILE_MAX_PERCENT%")
     tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), HULLMOD_POINT,  showModName(notCompatibleList))
     //灰色额外说明
     tooltip.addPara(txt("MP_des08"), grayColor, 5f)
@@ -229,7 +228,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui",ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("MP_des05")  + (level * 100f).toInt() + "%",  //data
+          aEP_DataTool.txt("aEP_MissilePlatform06")  + (level * 100f).toInt() + "%",  //data
           false
         )
       }

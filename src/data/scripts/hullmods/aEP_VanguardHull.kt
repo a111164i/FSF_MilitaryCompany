@@ -137,7 +137,7 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
 
     //tooltip.addGrid( 5 * 5f + 10f);
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ txt("VA_des01"), 5f, arrayOf(Color.green,highLight,highLight),
+    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull01"), 5f, arrayOf(Color.green,highLight,highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", REDUCE_PERCENT * 100f)+"%",
       (REDUCE_AMOUNT[hullSize]?:0f).toInt().toString())
@@ -147,7 +147,7 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
 
 
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ txt("VA_des02"), 5f, arrayOf(Color.green,highLight),
+    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull02"), 5f, arrayOf(Color.green,highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.1f", FLUX_REDUCE_PER_HIT))
   }
@@ -164,15 +164,15 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
     //Smod自带一个绿色的标题，不需要再来个标题
     //tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
 
-    tooltip.addPara("{%s}"+ txt("VA_des04"), 5f, arrayOf(Color.green,highLight,highLight),
+    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull04"), 5f, arrayOf(Color.green,highLight,highLight),
       aEP_ID.HULLMOD_POINT,
       (REDUCE_AMOUNT[hullSize]?:0f).toInt().toString(),
       (SMOD_REDUCE_AMOUNT[hullSize]?:0f).toInt().toString())
-    tooltip.addPara("{%s}"+ txt("VA_des05"), 5f, arrayOf(Color.green,highLight,highLight),
+    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull05"), 5f, arrayOf(Color.green,highLight,highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", FLUX_REDUCE_PER_HIT),
       String.format("%.0f", SMOD_FLUX_REDUCE_PER_HIT))
-    tooltip.addPara("{%s}"+ txt("VA_des03"), 5f, arrayOf(Color.red,highLight,highLight),
+    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull03"), 5f, arrayOf(Color.red,highLight,highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", REDUCE_PERCENT * 100f) + "%",
       String.format("%.0f", SMOD_REDUCE_PERCENT * 100f) +"%")

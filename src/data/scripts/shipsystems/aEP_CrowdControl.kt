@@ -14,7 +14,6 @@ import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Combat
 import combat.util.aEP_DataTool
 import combat.util.aEP_Tool
-import data.scripts.shipsystems.aEP_system.FortressShieldStats
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
@@ -58,7 +57,6 @@ class aEP_CrowdControl : BaseShipSystemScript() {
       val baseRad = ship.mutableStats.shieldArcBonus.computeEffective(ship.hullSpec.shieldSpec.arc)
       ship.shield.arc = MathUtils.clamp(baseRad + BONUS_ARC * effectLevel, 0f, 360f)
 
-      ship.shield.ringColor
     }
 
 
@@ -87,7 +85,7 @@ class aEP_CrowdControl : BaseShipSystemScript() {
           ship.location,
           ship,
           nearest,
-          DamageType.ENERGY,10f,10f,
+          DamageType.ENERGY,1f,10f,
           RANGE + nearest.collisionRadius,
           "tachyon_lance_emp_impact",
            30f,

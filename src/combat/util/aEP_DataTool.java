@@ -3,15 +3,22 @@ package combat.util;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
+import lunalib.backend.ui.settings.LunaSettingsLoader;
+import lunalib.lunaSettings.LunaSettings;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static data.scripts.FSFModPlugin.isLunalibEnabled;
 
 public class aEP_DataTool
 {
   CombatEngineAPI engine;
 
   public static String txt(String id) {
+    if(Global.getSettings().getBoolean("aEP_UseEnString")) {
+      return Global.getSettings().getString("aEP_En", id);
+    }
     return Global.getSettings().getString("aEP", id);
   }
 

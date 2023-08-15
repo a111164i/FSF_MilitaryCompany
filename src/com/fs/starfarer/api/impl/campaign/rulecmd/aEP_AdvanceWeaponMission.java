@@ -12,23 +12,12 @@ import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.intel.contacts.ContactIntel;
-import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import com.fs.starfarer.api.impl.campaign.terrain.DebrisFieldTerrainPlugin;
-import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
-import combat.util.aEP_DataTool;
 import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
-import data.scripts.FSFModPlugin;
 import data.scripts.campaign.intel.*;
-import data.scripts.campaign.submarkets.aEP_FSFMarketPlugin;
-import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
-import exerelin.utilities.LunaConfigHelper;
-import lunalib.LunaLibPlugin;
-import lunalib.backend.ui.settings.LunaSettingsConfigLoader;
-import lunalib.lunaSettings.LunaSettings;
-import lunalib.lunaSettings.LunaSettingsListener;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -38,7 +27,6 @@ import java.util.List;
 import java.util.Random;
 
 import static combat.util.aEP_DataTool.txt;
-import static data.scripts.campaign.intel.aEP_AWM1Intel.WEAPON_WEIGHT;
 
 /**
  * 在rules.csv中，在script或者condition栏写“aEP_AdvanceWeaponMission show2 exp"即调用本类中的execute方法

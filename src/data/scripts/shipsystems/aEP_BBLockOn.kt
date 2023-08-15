@@ -34,7 +34,7 @@ class aEP_BBLockOn : BaseShipSystemScript(){
 
     textTracker.advance(aEP_Tool.getAmount(ship))
     if(textTracker.intervalElapsed()){
-      Global.getCombatEngine().addFloatingText(target.location,txt(this.javaClass.simpleName+"01"),20f, TEXT_COLOR,target,1f,1f)
+      Global.getCombatEngine().addFloatingText(target.location,txt("aEP_BBLockOn01"),20f, TEXT_COLOR,target,1f,1f)
     }
   }
 

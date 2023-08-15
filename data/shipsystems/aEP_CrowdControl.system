@@ -26,6 +26,6 @@
     "threatRange":700,
     "threatAmount":2,
     "threatAngle":0,
-    "threatArc":60,
+    "threatArc":360,
   }
 }
