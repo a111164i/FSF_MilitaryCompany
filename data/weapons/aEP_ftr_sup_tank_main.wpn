@@ -1,51 +1,47 @@
 {
-	"id": "aEP_ftr_sup_tank_main",
-	"specClass": "projectile",
-	"projectileSpecId": "aEP_ftr_sup_tank_main_shot",
-	"type": "BALLISTIC",
-	"size": "SMALL",
-
-	"turretSprite": "graphics/weapons/aEP_fighters/aEP_tank/tr.png",
-	"turretGunSprite": "graphics/weapons/aEP_fighters/aEP_tank/trbr.png",
-	#"turretGlowSprite":"",
-
-	"hardpointSprite": "graphics/weapons/aEP_fighters/aEP_tank/tr.png",
+  "id": "aEP_ftr_sup_tank_main",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_ftr_sup_tank_main_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_fighters/aEP_tank/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_fighters/aEP_tank/trbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_fighters/aEP_tank/tr.png",
   "hardpointGunSprite": "graphics/weapons/aEP_fighters/aEP_tank/trbr.png",
-  #"hardpointGlowSprite":"",
-
-  #"everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  #"glowColor":[200,200,255,255], # for glow sprite
-  #"alwaysAnimate":"false",
-  "visualRecoil":6,
-  #"numFrames":8,
-  #"frameRate":16,
-
-	"renderHints":[RENDER_BARREL_BELOW], # RENDER_ADDITIVE, RENDER_LOADED_MISSILES_UNLESS_HIDDEN, RENDER_BARREL_BELOW, RENDER_LOADED_MISSILES, SUSPEND_RECOIL
-  "turretOffsets":[15, 0], # [height, width]
-  "turretAngleOffsets":[0],
-  "hardpointOffsets":[15, 0],
-  "hardpointAngleOffsets":[0],
-
-
-  "barrelMode":"ALTERNATING", # ALTERNATING, LINKED, ALTERNATING_BURST, DUAL
-  "animationType": "MUZZLE_FLASH", #GLOW, GLOW_AND_FLASH, MUZZLE_FLASH, SMOKE.
-  "interruptibleBurst": false,
+  "visualRecoil": 6,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    17,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    27.5,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "MUZZLE_FLASH",
   "autocharge": true,
-  #"separateRecoilForLinkedBarrels":false,
-  #"unaffectedByProjectileSpeedBonuses":false,
   "muzzleFlashSpec": {
-	  "length": 25,
-	  "spread": 5,
-	  "particleSizeMin": 15,
-	  "particleSizeRange": 15,
-	  "particleDuration": 0.5,
-	  "particleCount": 8,
-	  "particleColor": [255,165,61,255]
+    "length": 25,
+    "spread": 5,
+    "particleSizeMin": 15,
+    "particleSizeRange": 15,
+    "particleDuration": 0.5,
+    "particleCount": 8,
+    "particleColor": [
+      255,
+      165,
+      61,
+      255
+    ]
   },
-  #"noImpactSounds":false,
-  #"noShieldImpactSounds":false,
-  #"noNonShieldImpactSounds":false,
-  #"fireSoundOne":"", # played when charing, can't leave empty.
-  "fireSoundTwo":"light_mortar_fire", # played when projectile fired
-
+  "fireSoundTwo": "light_mortar_fire"
 }

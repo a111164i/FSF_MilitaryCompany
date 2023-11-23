@@ -16,6 +16,8 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
   lateinit var flags: ShipwideAIFlags
   var thinkTracker = IntervalUtil(0f, 0.5f)
   var shouldActive = false
+  var skipWhenCooldown = false
+
 
   constructor(){
 
@@ -46,7 +48,13 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
     }
     thinkTracker.advance(amount)
     if (!thinkTracker.intervalElapsed()) return
-    advanceImpl(amount, missileDangerDir, collisionDangerDir, target)
+
+    //如果系统正在冷却，不需要思考
+    if(system.state == ShipSystemAPI.SystemState.COOLDOWN && skipWhenCooldown){
+      shouldActive = false
+    }else{
+      advanceImpl(amount, missileDangerDir, collisionDangerDir, target)
+    }
     aEP_Tool.toggleSystemControl(ship,shouldActive)
 
   }

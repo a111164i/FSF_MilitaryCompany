@@ -1,11 +1,11 @@
 {
 	"id":"aEP_m_s_flare_shot2",
 	"specClass":"missile",
-	"missileType":"FLARE_JAMMER",
+	"missileType":"FLARE",
 	"sprite":"graphics/missiles/bomblet0.png",
 	"size":[4,4],
 	"center":[2,2],
-	"collisionRadius":4,
+	"collisionRadius":8,
 	"collisionClass":"FIGHTER",
 	"explosionColor":[255,125,25,255],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":75, # purely visual
@@ -14,8 +14,8 @@
 	"fadeTime":0.5, # fadeout duration
 	"behaviorSpec":{
 		"behavior":"CUSTOM",
-		"effectRange": 300,
-		"effectChance":0.8,
+		"effectRange": 450,
+		"effectChance":0.9,
 	},
 	"engineSpec":{
 		"turnAcc":600,
@@ -29,8 +29,7 @@
 			"loc":[0, 0],
 	    "style":"CUSTOM",
 			"styleSpec":{
-				#"engineColor":[255,50,50,255],
-				"engineColor":[225,135,25,255],
+				"engineColor":[225,125,25,255],
 				"contrailParticleSizeMult":8,
 				"contrailParticleDuration":1,
 				"contrailParticleFinalSizeMult":0.5,
@@ -43,6 +42,6 @@
 		    "width":10.0,
 		    "length":10.0,
 		    "angle":180.0
-    },
-  ]
+	  },
+	]
 }

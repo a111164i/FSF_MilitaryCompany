@@ -10,23 +10,20 @@
   "hullMods": [
     "aEP_FlyingTank",
     "autorepair",
-    "insulatedengine",
+    "insulatedengine"
   ],
   "weaponGroups": [
     {
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "aEP_ftr_sup_tank_main",
+        "WS0001": "aEP_ftr_sup_tank_main"
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
-      "weapons": {
-        "WS0002": "aEP_ftr_sup_shield_gun",
-        "WS0003": "aEP_ftr_sup_shield_gun",
-      }
+      "weapons": {}
     }
   ],
   "modules": [],

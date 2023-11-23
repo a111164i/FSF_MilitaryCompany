@@ -24,6 +24,7 @@ import org.lazywizard.lazylib.combat.WeaponUtils
 import org.lwjgl.util.vector.Vector2f
 import java.util.*
 import kotlin.math.absoluteValue
+import kotlin.math.pow
 
 open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
 
@@ -200,9 +201,9 @@ open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
     //超出射界的不需要拦截
     if(weapon.distanceFromArc(point) - extraArc > 0f) return false
     //超出射程的不需要拦截
-    val maxRange: Float = weapon.range * weapon.range
-    val distanceSquared = MathUtils.getDistanceSquared(point, weapon.location)
-    if (distanceSquared - extraRange > maxRange) return false
+    val maxRangeSq: Float = ((weapon.range + extraRange).pow(2)).coerceAtLeast(0f)
+    val distanceSq = MathUtils.getDistanceSquared(point, weapon.location)
+    if (distanceSq > maxRangeSq) return false
     return true
   }
 
@@ -259,38 +260,39 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
       interceptPoint?: continue
 
       //伤害太低了不拦截
-      if(it.damage.type == DamageType.FRAGMENTATION && it.damage.baseDamage < 200) continue
-      if(it.damage.type == DamageType.KINETIC && it.damage.baseDamage < 100) continue
-      if(it.damage.type == DamageType.HIGH_EXPLOSIVE && it.damage.baseDamage < 100) continue
+      if(it.damage.type == DamageType.FRAGMENTATION && it.damage.baseDamage < 100) continue
+      if(it.damage.type == DamageType.KINETIC && it.damage.baseDamage < 25) continue
+      if(it.damage.type == DamageType.HIGH_EXPLOSIVE && it.damage.baseDamage < 50) continue
 
       //拦截点不能在武器射界外面
-      if(weapon.distanceFromArc(interceptPoint) > 0f) continue
-      if(MathUtils.getDistance(interceptPoint, weapon.location) > w.range) continue
+      if(!isPointWithinRange(interceptPoint!!, 0f,0f)) continue
 
       //弹丸本身，还有拦截点都不能处于队友的碰撞圈内（都已经打到队友了还拦啥）
       //弹丸必须指向某个友军
       //弹丸和拦截点画线不能碰到队友的碰撞圈
       val dist = 800f
       var cant = false
-      var closestDist = 9999999f
+      var closestDistSq = 9999999f
       for(ally in AIUtils.getNearbyEnemies(it, dist)){
-        if(ally.isFighter) continue
-        if(ally.isDrone) continue
-        val angleToAlly = VectorUtils.getAngle(it.location, ally.location)
-        val angleDist = MathUtils.getShortestRotation(it.facing, angleToAlly).absoluteValue
-          if(angleDist > 15f) {cant = true; break}
-        if(MathUtils.getDistance(ally, it) <= 1f) {cant = true; break}
-        if(MathUtils.getDistance(ally, interceptPoint) <= 1f) {cant = true; break}
-        if(CollisionUtils.getCollides(it.location, interceptPoint, ally.location, ally.collisionRadius)) {cant = true; break}
-        val d = MathUtils.getDistance(ally, interceptPoint)
-        if(d < closestDist) closestDist = d
+        //不保护非常规队友
+        if(!aEP_Tool.isShipTargetable(ally,
+            false,
+            true,
+            true,
+            false,
+            true)) continue
+
+        if(MathUtils.getDistanceSquared(ally, it) <= 0f) {cant = true; break}
+        if(MathUtils.getDistanceSquared(ally, interceptPoint) <= 0f) {cant = true; break}
+        val dSq = MathUtils.getDistanceSquared(ally, interceptPoint)
+        if(dSq < closestDistSq) closestDistSq = dSq
       }
 
       if(cant) continue
 
       //把这个有效目标加入picker
       var weight = it.damage?.baseDamage?: 0f
-      weight *= MathUtils.clamp(closestDist,50f,500f)/500f
+      weight *= MathUtils.clamp(closestDistSq,10000f,250000f)/500f
       weight *= weight
       weight *= weight
       picker.add(arrayOf(it,interceptPoint!!), weight)

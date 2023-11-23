@@ -17,8 +17,8 @@ class aEP_DroneGuard: BaseShipSystemScript(){
 
   companion object{
     const val ID = "aEP_DroneGuard"
-    const val MAX_DIST = 1000f
-    const val OVERLOAD_DAMAGE = 250f
+    const val MAX_DIST = 800f
+    const val OVERLOAD_DAMAGE = 500f
   }
   var didBlink = false
   var didOverload = false
@@ -58,7 +58,7 @@ class aEP_DroneGuard: BaseShipSystemScript(){
       val dist = MathUtils.clamp(MathUtils.getDistance(ship.location, ship.mouseTarget), 0f,aEP_Tool.getSystemRange(ship, MAX_DIST))
       ship.location.set(aEP_Tool.getExtendedLocationFromPoint(ship.location, angle, dist))
       //找到瞬移后最近的友军，决定朝向
-      var parent = aEP_Tool.getNearestFriendCombatShip(ship) ?: ship.wing.sourceShip ?: null
+      var parent = aEP_Tool.getNearestFriendCombatShip(ship) ?: ship.wing?.sourceShip ?: null
       if (parent != null) ship.facing = VectorUtils.getAngle(parent.location, ship.location)
 
       ship.angularVelocity = 0f
@@ -91,13 +91,14 @@ class aEP_DroneGuard: BaseShipSystemScript(){
       stats.maxSpeed.modifyMult(ID,0f)
       stats.acceleration.modifyMult(ID,0f)
       //给光束一点点减伤，爆发性光束可以连盾带人一起击破
-      stats.beamShieldDamageTakenMult.modifyMult(ID, 0.2f)
+      //刚好吞弹护盾也有减伤
+      stats.beamShieldDamageTakenMult.modifyMult(ID, 0.5f)
 
     }
 
     //检测过载
-    if(ship.fluxTracker.isOverloaded && !didOverload){
-      didOverload = true
+    if(ship.fluxTracker.isOverloaded ){
+      ship.fluxTracker.stopOverload()
       Global.getCombatEngine().applyDamage(
         ship, ship.location,
         OVERLOAD_DAMAGE, DamageType.ENERGY,

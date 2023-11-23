@@ -67,7 +67,6 @@
   	{"file": "sounds/weapons/aEP_b_s_h37/fire.ogg", "pitch": 1, "volume": 0.7},
   	{"file": "sounds/weapons/aEP_b_s_h37/fire.ogg", "pitch": 0.9, "volume": 0.7},
   ],
-
   "aEP_b_l_aa40_fire": [
   	{"file": "sounds/weapons/aEP_b_l_aa40/fire02.ogg", "pitch": 1, "volume": 1},
     {"file": "sounds/weapons/aEP_b_l_aa40/fire02.ogg", "pitch": 0.9, "volume": 1},
@@ -80,13 +79,27 @@
     {"file": "sounds/weapons/aEP_b_l_aa40/hit02.ogg", "pitch": 1, "volume": 0.6},
     {"file": "sounds/weapons/aEP_b_l_aa40/hit02.ogg", "pitch": 0.95, "volume": 0.6},
   ],
-
   "aEP_b_l_dg3_fire": [
-    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 0.6, "volume": 0.4},
-    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 0.5, "volume": 0.45},
-    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 0.4, "volume": 0.4},
-    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 0.3, "volume": 0.45},
+    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 0.9, "volume": 0.4},
+    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 1, "volume": 0.45},
+    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 1.05, "volume": 0.4},
+    {"file": "sounds/weapons/aEP_b_l_dg3/fire.ogg", "pitch": 0.95, "volume": 0.45},
   ],
+  "aEP_b_l_d100t_fire": [
+    {"file": "sounds/weapons/aEP_b_l_d100t/fire.ogg", "pitch": 1, "volume": 2},
+    {"file": "sounds/weapons/aEP_b_l_d100t/fire.ogg", "pitch": 0.975, "volume": 2.25},
+    {"file": "sounds/weapons/aEP_b_l_d100t/fire.ogg", "pitch": 0.96, "volume": 2},
+  ],
+  "aEP_b_s_630_intro": [
+    {"file": "sounds/weapons/aEP_b_s_630/intro.ogg", "pitch": 1, "volume": 0.25},
+  ],
+  "aEP_b_s_630_fire": [
+    {"file": "sounds/weapons/aEP_b_s_630/fire.ogg", "pitch": 1, "volume": 0.25},
+    {"file": "sounds/weapons/aEP_b_s_630/fire.ogg", "pitch": 0.99, "volume": 0.2},
+    {"file": "sounds/weapons/aEP_b_s_630/fire.ogg", "pitch": 0.98, "volume": 0.21},
+    {"file": "sounds/weapons/aEP_b_s_630/fire.ogg", "pitch": 0.97, "volume": 0.22},
+  ],
+
 
   "aEP_m_l_blasthammer_fire": [
   	{"file": "sounds/weapons/aEP_m_l_blasthammer/fire.ogg", "pitch": 1, "volume": 0.6},
@@ -109,7 +122,7 @@
   ],
 
   "aEP_RW_fire": [
-  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire.ogg", "pitch": 1, "volume": 3},
+  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire.ogg", "pitch": 1, "volume": 2},
   ],
   "aEP_RW_fire2": [
   	{"file": "sounds/weapons/aEP_RW_gun/RW_fire2.ogg", "pitch": 1, "volume": 0.8},
@@ -117,11 +130,36 @@
   "aEP_RW_hit": [
   	{"file": "sounds/weapons/aEP_RW_gun/RW_fire3.ogg", "pitch": 1, "volume": 1.2},
   ],
+
+  "aEP_cap_sta_main_intro":[
+    {"file": "sounds/weapons/aEP_cap_sta_main/intro.ogg", "pitch": 1, "volume": 2.5},
+  ],
+  "aEP_cap_sta_main_fire":[
+    {"file": "sounds/weapons/aEP_cap_sta_main/fire.ogg", "pitch": 1, "volume": 2},
+  ],
+  "aEP_cap_sta_main_explode":[
+    {"file": "sounds/weapons/aEP_cap_sta_main/explode.ogg", "pitch": 1, "volume": 1},
+  ],
+
   "aEP_cru_pingding_main_charge":[
     {"file": "sounds/weapons/aEP_cru_pingding/charge01.ogg", "pitch": 1, "volume": 1},
   ],
   "aEP_cru_pingding_main_down":[
     {"file": "sounds/weapons/aEP_cru_pingding/charge02.ogg", "pitch": 1, "volume": 1},
+  ],
+  "aEP_cru_pingding_torpedo_explode":[
+    {"file": "sounds/weapons/aEP_cru_pingding/torpedo.ogg", "pitch": 1, "volume": 1},
+  ],
+  "aEP_fga_xiliu_main_fire": [
+    {"file": "sounds/weapons/aEP_fga_xiliu/main_fire.ogg", "pitch": 1, "volume": 1},
+    {"file": "sounds/weapons/aEP_fga_xiliu/main_fire.ogg", "pitch": 0.9, "volume": 0.9},
+    {"file": "sounds/weapons/aEP_fga_xiliu/main_fire.ogg", "pitch": 1.1, "volume": 0.95},
+  ],
+  "aEP_ftr_sup_shield_gun_fire": [
+    {"file": "sounds/weapons/aEP_ftr_sup_shield/gun_fire.ogg", "pitch": 1, "volume": 0.4},
+    {"file": "sounds/weapons/aEP_ftr_sup_shield/gun_fire.ogg", "pitch": 0.99, "volume": 0.35},
+    {"file": "sounds/weapons/aEP_ftr_sup_shield/gun_fire.ogg", "pitch": 0.98, "volume": 0.35},
+    {"file": "sounds/weapons/aEP_ftr_sup_shield/gun_fire.ogg", "pitch": 0.97, "volume": 0.4},
   ],
   "aEP_pompom_fire": [
   	{"file": "sounds/weapons/aEP_pompom/fire.ogg", "pitch": 0.95, "volume": 0.35},

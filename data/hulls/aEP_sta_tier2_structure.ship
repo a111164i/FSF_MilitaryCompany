@@ -1,0 +1,86 @@
+{
+  "hullName": "",
+  "hullId": "aEP_sta_tier2_structure",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_stations/tier2_structure.png",
+  "style": "aEP_FSF",
+  "height": 400,
+  "width": 100,
+  "center": [50, 200],
+  "collisionRadius": 191,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 187.5,
+  "viewOffset": 0,
+  "moduleAnchor": [
+    -260,
+    -0
+  ],
+  "builtInMods": [
+    "aEP_SelfRotate",
+    "vastbulk",
+    "never_detaches",
+    "reduced_explosion",
+    "do_not_fire_through",
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_blinker_green",
+    "WS0002": "aEP_blinker_green",
+    "WS0003": "aEP_blinker_green",
+    "WS0004": "aEP_blinker_green",
+    "WS0005": "aEP_blinker_green"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [137.5, -0]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [156, -0]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [65, -0]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [49, -0]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [81, -0]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    -160.5, -26.5,
+    159, -18.5,
+    159, 18.5,
+    -160.5, 26.5
+  ]
+}

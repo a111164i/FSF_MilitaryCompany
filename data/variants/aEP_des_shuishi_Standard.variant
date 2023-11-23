@@ -1,12 +1,12 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 11,
-    "fluxVents": 11,
+    "fluxCapacitors": 18,
+    "fluxVents": 5,
     "goalVariant": true,
     "hullId": "aEP_des_shuishi",
     "hullMods": [
-        "aEP_BurstDissipate",
-        "aEP_StrategyThruster"
+        "aEP_StrategyThruster",
+        "aEP_ShieldControlled"
     ],
     "permaMods": [],
     "sMods": [],
@@ -29,8 +29,7 @@
         }
     ],
     "wings": [
-        "wasp_wing",
-        "aEP_ftr_ftr_hvfighter_wing",
-        "aEP_ftr_icp_gunship_wing"
+        "aEP_ftr_ut_supply_wing",
+        "aEP_ftr_ut_supply_wing"
     ]
 }

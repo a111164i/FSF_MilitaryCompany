@@ -1,31 +1,35 @@
 {
   "id": "aEP_b_m_k125",
   "specClass": "projectile",
-  "projectileSpecId":"aEP_b_m_k125_shot",
+  "projectileSpecId": "aEP_b_m_k125_shot",
   "type": "BALLISTIC",
   "size": "MEDIUM",
-  "turretSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak00.png",
-  "turretGunSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak_tr_barrel.png",
-  "hardpointSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak_hp00.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_kinetic_flak/kinetic_flak_hp_barrel.png",
-  #"everyFrameEffect": "",
-  "visualRecoil":4.0,  # the gun sprites are only used if this is non-0
-  #"renderHints":[RENDER_BARREL_BELOW],
-  #"numFrames":0,
-  #"frameRate":0,
-  "turretOffsets": [25,2.5,25,-2.5],
+  "turretSprite": "graphics/weapons/aEP_b_m_k125/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_m_k125/trbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_m_k125/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_m_k125/hpbr.png",
+  "visualRecoil": 5,
+  "turretOffsets": [
+    22,
+    2.5,
+    22,
+    -2.5
+  ],
   "turretAngleOffsets": [
     0
   ],
-  "hardpointOffsets": [25,2.5,25,-2.5],
+  "hardpointOffsets": [
+    25,
+    2.5,
+    25,
+    -2.5
+  ],
   "hardpointAngleOffsets": [
     0
   ],
   "barrelMode": "ALTERNATING",
-  "autocharge":false,
-  "interruptibleBurst":true,
-  "separateRecoilForLinkedBarrels":"false",
   "animationType": "MUZZLE_FLASH",
+  "interruptibleBurst": true,
   "muzzleFlashSpec": {
     "length": 1,
     "spread": 1,
@@ -33,9 +37,12 @@
     "particleSizeRange": 50,
     "particleDuration": 0.12,
     "particleCount": 1,
-    "particleColor":  [255,240,160,128]},
-  "fireSoundTwo":"aEP_b_m_k125_fire",
-  
-  
-
+    "particleColor": [
+      255,
+      240,
+      160,
+      185
+    ]
+  },
+  "fireSoundTwo": "aEP_b_m_k125_fire"
 }

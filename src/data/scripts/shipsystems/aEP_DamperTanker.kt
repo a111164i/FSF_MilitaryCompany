@@ -3,6 +3,7 @@ package data.scripts.shipsystems
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import data.scripts.weapons.aEP_DecoAnimation
@@ -20,6 +21,7 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     private const val EFFECT_ARMOR_PERCENT_BONUS = 0.5f
     private const val ARMOR_DAMAGE_REDUCE = 0.33f //by mult
     private const val HULL_DAMAGE_REDUCE = 0.33f
+    private const val MIN_SECOND_TO_USE = 3f
   }
 
   private var ship: ShipAPI? = null
@@ -110,6 +112,11 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     stats.hullDamageTakenMult.unmodify(id)
     stats.weaponDamageTakenMult.unmodify(id)
     stats.engineDamageTakenMult.unmodify(id)
+  }
+
+  override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+    if(ship.maxFlux - ship.currFlux < system.fluxPerSecond * MIN_SECOND_TO_USE) return false
+    return true
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): StatusData? {

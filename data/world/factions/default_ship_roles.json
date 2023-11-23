@@ -5,8 +5,9 @@
     "aEP_fga_xiliu_mk2_Elite": 5,
     "aEP_fga_xiliu_mk2_Standard": 5,
 
-    "aEP_fga_xiliu_Standard": 5,
-    "aEP_fga_xiliu_Elite": 5,
+    "aEP_fga_xiliu_Standard": 3,
+    "aEP_fga_xiliu_Elite": 3,
+    "aEP_fga_xiliu_AntiFtr":3,
 
     "aEP_fga_yonglang_Mixed": 3,
     "aEP_fga_yonglang_Standard": 4,
@@ -24,11 +25,12 @@
     "aEP_fga_yonglang_Standard": 6,
     "aEP_fga_yonglang_Mixed": 4,
 
-    "aEP_fga_xiliu_mk2_Elite": 5,
-    "aEP_fga_xiliu_mk2_Standard": 5,
+    "aEP_fga_xiliu_mk2_Elite": 3,
+    "aEP_fga_xiliu_mk2_Standard": 3,
 
-    "aEP_fga_xiliu_Standard": 5,
-    "aEP_fga_xiliu_Elite": 5,
+    "aEP_fga_xiliu_Standard": 4,
+    "aEP_fga_xiliu_Elite": 3,
+    "aEP_fga_xiliu_AntiFtr":3,
 
     "aEP_fga_raoliu_PD": 5,
     "aEP_fga_raoliu_Standard":5,
@@ -37,14 +39,17 @@
     "aEP_fga_chichao_SideAtk": 5
 },
   "combatMedium": {
-    "aEP_des_cengliu_Standard":4,
-    "aEP_des_cengliu_Elite":3,
 
     "aEP_des_lianliu_Standard": 3,
-    "aEP_des_lianliu_AntiSmall": 2,
-    "aEP_des_lianliu_Elite": 5,
+    "aEP_des_lianliu_AntiSmall": 3,
+    "aEP_des_lianliu_Elite": 4,
 
-    "aEP_des_yangji_Standard":10,
+    "aEP_des_taodong_Standard": 4,
+    "aEP_des_taodong_Assault": 4,
+
+    "aEP_des_yangji_Standard":3,
+    "aEP_des_yangji_Elite":2,
+    "aEP_des_yangji_Flak":5,
 
     "aEP_des_yonglang_mk2_Standard":10
 
@@ -70,18 +75,19 @@
     "aEP_cap_biaobing_Beam": 1,
 
     "aEP_cap_duiliu_Standard": 4,
-    "aEP_cap_duiliu_Range":3,
-    "aEP_cap_duiliu_Super": 3,
+    "aEP_cap_duiliu_Super": 4,
+    "aEP_cap_duiliu_Range": 2,
 
     "aEP_cap_nuanchi_Standard": 4,
     "aEP_cap_nuanchi_Support": 4,
     "aEP_cap_nuanchi_Elite": 3,
 
-    "aEP_cap_neibo_Standard": 6,
-    "aEP_cap_neibo_Elite": 4,
+    "aEP_cap_neibo_Standard": 5,
+    "aEP_cap_neibo_Assault": 3,
+    "aEP_cap_neibo_Elite": 3,
 
     "aEP_cap_shangshengliu_mk3_Standard":3,
-
+    "aEP_cap_shangshengliu_mk3_Assault":2
   },
   # hybrid ships with good combat and cargo capacity
   "combatFreighterSmall": {
@@ -111,13 +117,14 @@
   "carrierLarge": {
     "aEP_cru_shanhu_Standard":3,
     "aEP_cru_shanhu_Attack":3,
-    "aEP_cru_shanhu_Siege":2,
-    "aEP_cru_shanhu_Front":2,
+    "aEP_cru_shanhu_Siege":3,
+    "aEP_cru_shanhu_Front":3,
 
-    "aEP_cap_decomposer_Standard": 5,
-    "aEP_cap_decomposer_Support": 5,
+    "aEP_cap_decomposer_Standard": 4,
+    "aEP_cap_decomposer_Attack": 3,
+    "aEP_cap_decomposer_Support": 3,
 
-    "aEP_cru_pubu_Elite": 2,
+    "aEP_cru_pubu_Elite": 4,
     "aEP_cru_pubu_Standard": 4,
 },
   # phase ships

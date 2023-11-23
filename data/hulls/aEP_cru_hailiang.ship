@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_cru_hailiang",
   "hullSize": "CRUISER",
-  "spriteName": "graphics/ships/aEP_hailiang.png",
+  "spriteName": "graphics/ships/aEP_cru_hailiang.png",
   "style": "aEP_FSF",
   "height": 240,
   "width": 240,
@@ -12,18 +12,19 @@
   "shieldRadius": 200,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
+    "aEP_SpecialHull",
     "targetingunit",
-    "turretgyros"
   ],
   "builtInWings": [
-    "aEP_ftr_sup_guardian2_wing"
+    # "aEP_ftr_sup_guardian2_wing2"
   ],
   "builtInWeapons": {
     "HD01": "aEP_cru_hailiang_holder_l",
     "HD02": "aEP_cru_hailiang_holder_r",
     "OL01": "aEP_cru_hailiang_oil",
-    "OL02": "aEP_cru_hailiang_oil"
+    "OL02": "aEP_cru_hailiang_oil",
+    "WS0007": "aEP_cru_hailiang_clipper",
+    "WS0008": "aEP_cru_hailiang_clipper"
   },
   "weaponSlots": [
     {
@@ -163,19 +164,37 @@
       "id": "MD02",
       "size": "LARGE",
       "type": "STATION_MODULE",
-      "mount": "TURRET",
-      "arc": 360,
+      "mount": "HARDPOINT",
+      "arc": 4,
       "angle": -90,
-      "locations": [-4.5, -2]
+      "locations": [-4.5, -0.5]
     },
     {
       "id": "MD03",
       "size": "LARGE",
       "type": "STATION_MODULE",
-      "mount": "TURRET",
-      "arc": 360,
+      "mount": "HARDPOINT",
+      "arc": 4,
       "angle": 90,
-      "locations": [-4.5, 2]
+      "locations": [-4.5, 0.5]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-4.5, 68]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-4.5, -68]
     }
   ],
   "engineSlots": [

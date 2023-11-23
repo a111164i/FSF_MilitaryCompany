@@ -1,0 +1,77 @@
+{
+  "id": "aEP_des_lianliu_grenade_thrower",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_des_lianliu_grenade_thrower_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 600,
+  "turretSprite": "graphics/weapons/aEP_des_lianliu/thrower.png",
+  "hardpointSprite": "graphics/weapons/aEP_des_lianliu/thrower.png",
+  "turretOffsets": [
+    0,
+    14,
+    0,
+    -14,
+    0,
+    9,
+    0,
+    -9,
+    0,
+    -3,
+    0,
+    3
+  ],
+  "turretAngleOffsets": [
+    -65,
+		-40,
+		-15,
+		15,
+		40,
+		65
+  ],
+  "hardpointOffsets": [
+    1.5,
+    14,
+    1.5,
+    -14,
+    1.5,
+    9,
+    1.5,
+    -9,
+    1.5,
+    -3,
+    1.5,
+    3
+  ],
+  "hardpointAngleOffsets": [
+    -65,
+    -40,
+    -15,
+    15,
+    40,
+    65
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "separateRecoilForLinkedBarrels":"true",
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 25,
+    "particleSizeRange": 15,
+    "cloudParticleCount":6,
+    "cloudDuration": 0.55,
+    "cloudRadius": 10,
+    "blowbackParticleCount": 2,
+    "blowbackDuration": 1,
+    "blowbackLength": 18,
+    "blowbackSpread": 10,
+    "particleColor": [
+      240,
+      245,
+      255,
+      25
+    ]
+  },
+  #"fireSoundTwo": "",
+  #"noShieldImpactSounds": true
+}

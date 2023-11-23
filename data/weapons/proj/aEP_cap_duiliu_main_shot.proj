@@ -6,7 +6,7 @@
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",		
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",		
-  "bulletSprite":"graphics/weapons/aEP_duiliu/shot.png",
+  "bulletSprite":"graphics/weapons/aEP_cap_duiliu/shot.png",
 	"fadeTime":0.1,
 	"length": 50,
 	"width": 10,

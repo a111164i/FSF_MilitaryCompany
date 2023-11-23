@@ -12,11 +12,11 @@ import org.lwjgl.util.vector.Vector2f
 
 class aEP_MaoDianDroneLaunchAI: aEP_BaseSystemAI() {
   companion object{
-    const val TARGET_KEY = "aEP_MDDroneLaunchAI_assign_target"
+    const val TARGET_KEY = "aEP_MaoDianDroneLaunchAI_assign_target"
   }
 
   override fun initImpl() {
-    thinkTracker.setInterval(1f,1f)
+    thinkTracker.setInterval(0.5f,1.5f)
   }
 
   fun getMultiple(size :ShipAPI.HullSize): Float{
@@ -50,13 +50,24 @@ class aEP_MaoDianDroneLaunchAI: aEP_BaseSystemAI() {
       //如果是ai使用，把ai的目标塞入母舰的customData
       //默认方向是目标舰船的头向
       val loc = aEP_Tool.getExtendedLocationFromPoint(target.location, target.facing,target.collisionRadius + 200f)
-      //如果护盾目标和锁定目标任何一个存在，就往这个方向释放
-      if(target.shieldTarget != null || target.shipTarget != null){
-        val facing = VectorUtils.getAngle(target.location, target.shieldTarget?:target.shipTarget.location)
-        loc.set(aEP_Tool.getExtendedLocationFromPoint(target.location, facing ,target.collisionRadius + 200f))
+      var toDef = target.shieldTarget
+      toDef?: run {
+        toDef = target.shipTarget?.location
+      }
+      toDef?: run {
+        if(ship.shipAI != null && ship.aiFlags?.getCustom(ShipwideAIFlags.AIFlags.MANEUVER_TARGET) is ShipAPI){
+          toDef = (ship.aiFlags.getCustom(ShipwideAIFlags.AIFlags.MANEUVER_TARGET) as ShipAPI).location
+        }
       }
 
-      loc.set(MathUtils.getRandomPointInCircle(loc,100f))
+
+      //如果护盾目标和锁定目标任何一个存在，放在正中间
+      if(toDef != null ){
+        val midPoint = Vector2f((toDef.x + target.location.x)/2f, (toDef.y + target.location.y)/2f)
+        loc.set(midPoint)
+      }
+
+      loc.set(MathUtils.getRandomPointInCircle(loc,200f))
       ship.customData[TARGET_KEY] = loc
       shouldActive = true
     }
@@ -96,6 +107,8 @@ class aEP_MaoDianDroneLaunchAI: aEP_BaseSystemAI() {
     if(s.fluxTracker.isOverloaded){
       weight += overloadWeight
     }
-    return weight
+
+    //加入随机性
+    return weight * MathUtils.getRandomNumberInRange(0.75f,1.25f)
   }
 }

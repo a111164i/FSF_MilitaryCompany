@@ -2,11 +2,12 @@
     "displayName": "Automated",
     "fluxCapacitors": 5,
     "fluxVents": 10,
+    "goalVariant": false,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
         "aEP_VanguardHull",
         "automated",
-        "aEP_EmergencyReconstructAi",
+        "aEP_EmergencyReconstruct",
         "heavyarmor",
         "aEP_EliteShip",
         "armoredweapons",
@@ -14,7 +15,7 @@
     ],
     "permaMods": [
         "automated",
-        "aEP_EmergencyReconstructAi"
+        "aEP_EmergencyReconstruct"
     ],
     "sMods": [],
     "variantId": "aEP_fga_xiliu_Automated",

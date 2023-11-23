@@ -1,48 +1,32 @@
 {
-  "variantId": "aEP_cru_zhongliu_Standard",
-  "hullId": "aEP_cru_zhongliu",
-  "displayName": "Standard",
-  "goalVariant": true,
-  "fluxCapacitors": 11,
-  "fluxVents": 21,
-  "quality": 1,
-  "permaMods": [],
-  "hullMods": [
-    "aEP_BurstDissipate",
-    "targetingunit",
-    "aEP_HotLoader"
-  ],
-  "weaponGroups": [
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0001": "aEP_b_l_aa40",
-        "WS0002": "aEP_b_l_aa40"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "ALTERNATING",
-      "weapons": {
-        "WS0003": "flak"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0004": "vulcan",
-        "WS0005": "vulcan",
-        "WS0006": "vulcan",
-        "WS0011": "vulcan"
-      }
-    }
-  ],
-  "modules": [
-    {
-      "MD01": "aEP_cru_zhongliu_armor_Standard"
-    }
-  ],
-  "wings": []
+    "displayName": "Standard",
+    "fluxCapacitors": 21,
+    "fluxVents": 21,
+    "goalVariant": true,
+    "hullId": "aEP_cru_zhongliu",
+    "hullMods": ["targetingunit"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_zhongliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_l_aa40",
+                "WS0002": "aEP_b_l_aa40"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630",
+                "WS0005": "aEP_b_s_630",
+                "WS0006": "aEP_b_s_630",
+                "WS0011": "aEP_b_s_630"
+            }
+        }
+    ]
 }

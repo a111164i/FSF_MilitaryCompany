@@ -2,7 +2,7 @@
   "hullName": "aEP_ftr_ut_repair",
   "hullId": "aEP_ftr_ut_repair",
   "hullSize": "FIGHTER",
-  "spriteName": "graphics/ships/aEP_repairing_drone.png",
+  "spriteName": "graphics/ships/aEP_fighters/ut_repair.png",
   "style": "aEP_FSF",
   "height":40,
   "width": 40,

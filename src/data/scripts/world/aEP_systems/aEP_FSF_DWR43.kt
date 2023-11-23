@@ -140,7 +140,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     FSF_SpaceFactoryMarket.addIndustry(Industries.HIGHCOMMAND)
     FSF_SpaceFactoryMarket.addIndustry(Industries.ORBITALWORKS, ArrayList(listOf(Items.PRISTINE_NANOFORGE)))
     FSF_SpaceFactoryMarket.addIndustry(Industries.FUELPROD, ArrayList(listOf(Items.SYNCHROTRON)))
-    FSF_SpaceFactoryMarket.addIndustry("starfortress_mid")
+    FSF_SpaceFactoryMarket.addIndustry("aEP_station_tier3")
     FSF_SpaceFactoryMarket.addIndustry("aEP_AdvanceHq")
 
     FSF_SpaceFactoryMarket.addSubmarket("generic_military")
@@ -180,7 +180,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     FSF_MiningStationMarket.addIndustry(Industries.REFINING)
     FSF_MiningStationMarket.addIndustry(Industries.LIGHTINDUSTRY)
     FSF_MiningStationMarket.addIndustry(Industries.MILITARYBASE)
-    FSF_MiningStationMarket.addIndustry(Industries.BATTLESTATION_MID)
+    FSF_MiningStationMarket.addIndustry("aEP_station_tier1")
 
     FSF_MiningStationMarket.addSubmarket(Submarkets.GENERIC_MILITARY)
     FSF_MiningStationMarket.addSubmarket(Submarkets.SUBMARKET_STORAGE)

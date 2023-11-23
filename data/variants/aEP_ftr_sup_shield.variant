@@ -14,15 +14,13 @@
       "mode": "LINKED",
       "weapons": {
         "WS0001": "aEP_ftr_sup_shield_gun",
-        "WS0002": "aEP_ftr_sup_shield_gun",
+        "WS0002": "aEP_ftr_sup_shield_gun"
       }
     },
     {
       "autofire": false,
       "mode": "LINKED",
-      "weapons": {
-        "WS0004": "aEP_ftr_sup_shield_gun"
-      }
+      "weapons": {}
     },
     {
       "autofire": false,

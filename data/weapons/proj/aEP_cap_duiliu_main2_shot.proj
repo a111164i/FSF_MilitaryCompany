@@ -5,7 +5,7 @@
 	"collisionRadius":1,
 	"collisionClass":"PROJECTILE_FF",
 	"collisionClassByFighter":"PROJECTILE_FF",
-	"bulletSprite":"graphics/weapons/aEP_large_kinetic_flak/shred.png",	
+	"bulletSprite":"graphics/weapons/aEP_b_l_aa40/shred.png",
 	#"onHitEffect":"data.scripts.weapons.aEP_ChaingunOnHitEffect",	
 	"length":2,
 	"width":2,

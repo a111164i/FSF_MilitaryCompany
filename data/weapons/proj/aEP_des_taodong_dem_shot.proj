@@ -1,0 +1,72 @@
+{
+	"id":"aEP_des_taodong_dem_shot",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	#"missileType":"CIRCLE_TARGET",
+	"onFireEffect":"com.fs.starfarer.api.impl.combat.dem.DEMEffect",
+	"behaviorSpec":{
+		"behavior":"CUSTOM",
+		#"circleRadius":[0,50],
+		#"angledApproachDist":[900,1200],
+		"minDelayBeforeTriggering":1,
+		"triggerDistance":[500,550],
+		"preferredMinFireDistance":0,
+		"preferredMaxFireDistance":0,
+		"turnRateBoost":0,
+		#"turnRateMultOnSignal":0.05,
+		"targetingTime":0,
+		"firingTime":4,
+		"targetingLaserId":"targetinglaser1",
+		"targetingLaserFireOffset":[8, 0],
+		"payloadWeaponId":"aEP_des_taodong_dem_payload",
+		"targetingLaserRange":600,
+		"targetingLaserArc":30,
+		"bombPumped":false,
+		"snapFacingToTargetIfCloseEnough":true,
+		"fadeOutEngineWhenFiring":false;
+		"destroyMissleWhenDoneFiring":true,
+		"destroyedExplosionColor":[150,255,150,255],
+	},
+	"sprite":"graphics/missiles/missile_gorgon_dem.png",
+	"size":[11,20],	
+	"center":[5.5,10],
+	"collisionRadius":10,
+	"collisionClass":"MISSILE_NO_FF",
+	"noDebrisWhenDestroyed":true,
+  "noCollisionWhileFading":true,
+  "flameoutTime":0.4, # total time from flameout to full fadeout
+  "fadeTime":0.3, # fadeout duration
+  "noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	#"destroyedExplosionColor":[150,255,150,255],  # when the missile is destroyed by damage
+	"explosionColor":[250,93,106,255],  # purely visual, will get a white additively blended core on top of this color
+	"glowColor":[255,129,120,75],
+	"glowRadius":30,
+	"explosionRadius":40, # purely visual
+	"engineSpec":{"turnAcc":720,
+				  "turnRate":540,
+				  "acc":300,
+				  "dec":100},
+	"engineSlots":[
+		{
+			"id":"ES1",
+			"loc":[-0, 0],
+			#"style":"MISSILE_HIGH_TECH",
+			"style":"CUSTOM",
+					"styleSpec":{
+						"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+						"engineColor":[255,165,255,0],
+						"contrailDuration":1,
+						"contrailWidthMult":1,
+						"contrailWidthAddedFractionAtEnd":2.5,  # can be negative. makes trail spread out/narrow at the end
+						"contrailMinSeg":5, # min segment length, in pixels
+						"contrailMaxSpeedMult":0.5f,
+						"contrailAngularVelocityMult":0.5f,
+						"contrailColor":[255,121,117,0],
+						"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
+					},
+			"width":7.0,
+			"length":40.0,
+			"angle":180.0
+	  },
+	]
+}

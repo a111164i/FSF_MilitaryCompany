@@ -2,25 +2,21 @@
   "hullName": "ShangShengLiu",
   "hullId": "aEP_cap_shangshengliu_mk2",
   "hullSize": "CAPITAL_SHIP",
-  "spriteName": "graphics/ships/aEP_shangshengliu_mk2.png",
+  "spriteName": "graphics/ships/aEP_cap_shangshengliu_mk2.png",
   "style": "aEP_FSF",
-  "height": 440,
-  "width": 220,
-  "center": [110, 204],
+  "height": 420,
+  "width": 200,
+  "center": [100, 194.5],
   "collisionRadius": 235,
   "shieldCenter": [0, -0],
-  "shieldRadius": 226,
+  "shieldRadius": 230,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
+    "aEP_SpecialHull",
     "civgrade",
     "aEP_VanguardHull",
     "aEP_Tugboat"
   ],
-  "builtInWeapons": {
-    "WS0007": "aEP_decorative_crane",
-    #"WS0008": "aEP_decorative_crane"
-  },
   "weaponSlots": [
     {
       "id": "WS0001",
@@ -29,7 +25,7 @@
       "mount": "TURRET",
       "arc": 120,
       "angle": 180,
-      "locations": [-141, 31]
+      "locations": [-133.5, 31]
     },
     {
       "id": "WS0002",
@@ -38,7 +34,7 @@
       "mount": "TURRET",
       "arc": 120,
       "angle": -180,
-      "locations": [-141, -31]
+      "locations": [-133.5, -31]
     },
     {
       "id": "WS0003",
@@ -47,7 +43,7 @@
       "mount": "TURRET",
       "arc": 120,
       "angle": 90,
-      "locations": [-73, 25]
+      "locations": [-66.5, 25]
     },
     {
       "id": "WS0004",
@@ -56,7 +52,7 @@
       "mount": "TURRET",
       "arc": 120,
       "angle": -90,
-      "locations": [-73, -25]
+      "locations": [-66.5, -25]
     },
     {
       "id": "WS0005",
@@ -65,7 +61,7 @@
       "mount": "TURRET",
       "arc": 120,
       "angle": 0,
-      "locations": [182, 29]
+      "locations": [188.5, 29]
     },
     {
       "id": "WS0006",
@@ -74,46 +70,12 @@
       "mount": "TURRET",
       "arc": 120,
       "angle": -0,
-      "locations": [182, -29]
-    },
-    {
-      "id": "WS0007",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 180,
-      "angle": 90,
-      "locations": [-64.5, 73.5]
-    },
-    {
-      "id": "WS0008",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 180,
-      "angle": -90,
-      "locations": [-64.5, -73.5]
+      "locations": [188.5, -29]
     }
   ],
   "engineSlots": [
     {
-      "location": [-182, 86],
-      "length": 66,
-      "width": 15,
-      "angle": 180,
-      "contrailSize": 15,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-182, -86],
-      "length": 66,
-      "width": 15,
-      "angle": -180,
-      "contrailSize": 15,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-188, 64],
+      "location": [-183, 64],
       "length": 90,
       "width": 34,
       "angle": 180,
@@ -121,7 +83,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-188, -64],
+      "location": [-183, -64],
       "length": 90,
       "width": 34,
       "angle": -180,
@@ -129,7 +91,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-170, 5.5],
+      "location": [-165, 5.5],
       "length": 97,
       "width": 24,
       "angle": 180,
@@ -137,7 +99,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-170, -5.5],
+      "location": [-165, -5.5],
       "length": 97,
       "width": 24,
       "angle": -180,
@@ -145,7 +107,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-178, -0],
+      "location": [-173, 0],
       "length": 197,
       "width": 63,
       "angle": 180,
@@ -153,7 +115,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-165.5, 16],
+      "location": [-160.5, 16],
       "length": 72,
       "width": 23,
       "angle": 180,
@@ -161,7 +123,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-165.5, -16],
+      "location": [-160.5, -16],
       "length": 72,
       "width": 23,
       "angle": -180,
@@ -170,21 +132,17 @@
     }
   ],
   "bounds": [
-    -161.5, -27,
-    -147.5, -31.5,
-    -187, -32,
-    -174.5, -94.5,
-    151.5, -94.5,
-    152, -85,
-    170.5, -84.5,
-    185.5, -37.5,
-    185.5, 37.5,
-    170.5, 84.5,
-    152, 85,
-    151.5, 94.5,
-    -174.5, 94.5,
-    -187, 32,
-    -147.5, 31.5,
-    -161.5, 27
+    -142.5, -29,
+    -171, -34.5,
+    -171, -82,
+    180, -82,
+    180, -41.5,
+    191.5, -36.5,
+    191.5, 36.5,
+    180, 41.5,
+    180, 82,
+    -171, 82,
+    -171, 34.5,
+    -142.5, 29
   ]
 }

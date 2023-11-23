@@ -2,12 +2,8 @@ package data.scripts.weapons
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.loading.DamagingExplosionSpec
-import com.fs.starfarer.api.util.IntervalUtil
-import combat.util.aEP_ID
 import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
-import data.scripts.hullmods.aEP_MarkerDissipation
-import org.lwjgl.util.vector.Vector2f
+import data.scripts.hullmods.aEP_SpecialHull
 import java.awt.Color
 
 class aEP_RepairBeam : BeamEffectPlugin {
@@ -15,9 +11,9 @@ class aEP_RepairBeam : BeamEffectPlugin {
     private const val HULL_REPAIR_MULT = 2f //溢出的装甲维修点数转换成几倍的结构恢复
     private const val REPAIR_STEP_PER_CELL = 8f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
-    private const val FSF_BONUS = 2f
+    const val FSF_BONUS = 3f
     const val REPAIR_THRESHOLD = 0.5f
-    const val HULL_REPAIR_THRESHOLD = 0.25f
+    const val HULL_REPAIR_THRESHOLD = 0.3f
     val REPAIR_COLOR = Color(250, 250, 178, 240)
     val REPAIR_COLOR2 = Color(250, 220, 70, 250)
 
@@ -93,7 +89,7 @@ class aEP_RepairBeam : BeamEffectPlugin {
     var maxRepairPoint = repairAmount + ship.armorGrid.armorRating * repairPercent
     var toRepair = maxRepairPoint
     //计算fsf加成
-    if(ship.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true){
+    if(ship.variant?.hasHullMod(aEP_SpecialHull.ID) == true){
       maxRepairPoint *= FSF_BONUS
       toRepair *= FSF_BONUS
     }

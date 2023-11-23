@@ -1,13 +1,12 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 7,
-    "fluxVents": 20,
+    "fluxCapacitors": 19,
+    "fluxVents": 14,
     "goalVariant": true,
     "hullId": "aEP_cru_pingding",
     "hullMods": [
-        "targetingunit",
-        "aEP_SoftfluxDissipate",
-        "missleracks"
+        "missleracks",
+        "aEP_ShieldControlled"
     ],
     "permaMods": [],
     "sMods": [],
@@ -19,23 +18,29 @@
             "weapons": {"MAIN": "aEP_cru_pingding_main"}
         },
         {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0002": "aEP_m_l_blasthammer"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0006": "aEP_b_m_k125"}
-        },
-        {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
+                "WS0008": "aEP_cru_pingding_armor1",
+                "WS0011": "aEP_cru_pingding_torpedo"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_m_l_harpoon"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_m_m_blasthammer"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
                 "WS0003": "aEP_b_s_630",
-                "WS0004": "vulcan",
-                "WS0007": "aEP_b_s_630",
-                "WS0008": "vulcan"
+                "WS0007": "aEP_b_s_630"
             }
         }
     ]

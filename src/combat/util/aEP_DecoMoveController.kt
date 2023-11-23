@@ -3,9 +3,9 @@ package combat.util
 import com.fs.starfarer.api.combat.WeaponAPI
 import java.util.HashMap
 import combat.util.aEP_DecoMoveController
-import data.scripts.util.MagicAnim
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.FastTrig
+import org.magiclib.util.MagicAnim
 
 class aEP_DecoMoveController(var weapon: WeaponAPI) {
   companion object {
@@ -13,29 +13,60 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
     val mag: MutableMap<String, Array<Float>> = HashMap()
 
     init {
-      //移动距离，移动时间(每秒移动多少effectiveLevel)，侧向移动距离，侧向移动速度
-      mag["aEP_fga_yonglang_main_cover"] = arrayOf(12f, 3f,  0f,0f)
-      mag["aEP_fga_yonglang_scaffold"] = arrayOf(4f, 3f,  0f,0f)
-      mag["aEP_fga_yonglang_glow"] = arrayOf(12f, 3f,  0f,0f)
-      mag["aEP_fga_yonglang_cover"] = arrayOf(-3f, 3f,  0f,0f)
-      mag["aEP_cap_duiliu_armor_l"] = arrayOf(20f, 0.5f,  0f,0f)
-      mag["aEP_cap_duiliu_armor_r"] = arrayOf(20f, 0.5f,  0f,0f)
-      mag["aEP_cap_duiliu_armor_l3"] = arrayOf(5f, 0.5f, -10f, 0.5f)
-      mag["aEP_cap_duiliu_armor_r3"] = arrayOf(5f, 0.5f, 10f, 0.5f)
-      mag["aEP_cap_duiliu_limiter"] = arrayOf(18f, 1f,  0f,0f)
-      mag["aEP_cap_duiliu_limiter_glow"] = arrayOf(18f, 1f,  0f,0f)
+      //移动距离(正为向前)，移动时间(每秒移动多少effectiveLevel)，侧向移动距离(正为向右)，侧向移动速度
+      mag["aEP_cap_nuanchi_ring"] = arrayOf(8f, 0.5f,  0f,1f)
+
+      mag["aEP_cap_duiliu_armor_l1"] = arrayOf(20f, 4f, -4f,10f)
+      mag["aEP_cap_duiliu_armor_r1"] = arrayOf(20f, 4f, 4f,10f)
+      mag["aEP_cap_duiliu_armor_l2"] = arrayOf(-40f, 2f,  0f,1f)
+      mag["aEP_cap_duiliu_armor_r2"] = arrayOf(-40f, 2f,  0f,1f)
+      mag["aEP_cap_duiliu_armor_l3"] = arrayOf(0f, 0f, -2f, 2f)
+      mag["aEP_cap_duiliu_armor_r3"] = arrayOf(0f, 0f, 2f, 2f)
+      mag["aEP_cap_duiliu_limiter1"] = arrayOf(0f, 0f,  0f,0f)
+      mag["aEP_cap_duiliu_limiter2"] = arrayOf(10f, 1f, 0f,0f)
+      mag["aEP_cap_duiliu_limiter3"] = arrayOf(18f, 1f, 0f,0f)
       mag["aEP_cap_duiliu_gun_cover"] = arrayOf(-30f, 0.5f,  0f,0f)
-      mag["aEP_cru_hailiang_holder_l"] = arrayOf(6f, 1.33f,  -6f, 1.33f)
-      mag["aEP_cru_hailiang_holder_r"] = arrayOf(6f, 1.33f,  6f, 1.33f)
+
       mag["aEP_cap_shangshengliu_armor"] = arrayOf(8f, 1.3f,  0f,0f)
       mag["aEP_cap_shangshengliu_armor_dark"] = arrayOf(8f, 1.3f,  0f,0f)
       mag["aEP_cap_shangshengliu_hull"] = arrayOf(0f, 2f,  0f,0f)
-      mag["aEP_cap_shangshengliu_top"] = arrayOf(9f, 2f,  0f,0f)
-      mag["aEP_cap_shangshengliu_bottom"] = arrayOf(21f, 1f,  0f,0f)
-      mag["aEP_des_shendu_armor"] = arrayOf(-42f, 10f, 2f,10f)
-      mag["aEP_des_shendu_hold"] = arrayOf(20f, 10f, 2f,10f)
-      mag["aEP_des_shendu_hold2"] = arrayOf(28f, 10f, 2f,10f)
-      mag["aEP_des_shendu_fighter"] = arrayOf(-34f, 10f, 2f,10f)
+
+      mag["aEP_cap_shangshengliu_top"] = arrayOf(8f, 2f,  0f,0f)
+      mag["aEP_cap_shangshengliu_bottom"] = arrayOf(20f, 1f,  0f,0f)
+
+      mag["aEP_cru_hailiang_holder_l"] = arrayOf(6f, 1.33f,  -6f, 1.33f)
+      mag["aEP_cru_hailiang_holder_r"] = arrayOf(6f, 1.33f,  6f, 1.33f)
+
+      mag["aEP_cru_pingding_armor1"] = arrayOf(-10f, 0.66f, -24f, 0.66f)
+      mag["aEP_cru_pingding_armor2"] = arrayOf(0f, 1f,  0f, 1f)
+
+      mag["aEP_cru_zhongliu_head_l"] = arrayOf(0f, 1f,  -6f, 1.33f)
+      mag["aEP_cru_zhongliu_head_r"] = arrayOf(0f, 1f,  6f, 1.33f)
+      mag["aEP_cru_zhongliu_slide_l"] = arrayOf(18f, 1.25f,  4f, 2f)
+      mag["aEP_cru_zhongliu_slide_r"] = arrayOf(18f, 0.75f,  -4f, 2f)
+
+      mag["aEP_des_shuishi_rail1"] = arrayOf(0f, 2f, 0f,0f)
+      mag["aEP_des_shuishi_rail2"] = arrayOf(14f, 2f, 0f,0f)
+      mag["aEP_des_shuishi_base"] = arrayOf(11f, 1f, 0f,0f)
+
+      mag["aEP_des_shendu_door_l"] = arrayOf(5f, 2f, -16f,2f)
+      mag["aEP_des_shendu_door_r"] = arrayOf(5f, 2f, 16f,2f)
+
+      mag["aEP_des_shendu_mk2_clip"] = arrayOf(-6f, 2f, 0f,2f)
+
+      mag["aEP_des_lianliu_front_cover"] = arrayOf(6f, 3f, 0f,0f)
+
+      mag["aEP_fga_wanliu_arm_l"] = arrayOf(-15f, 1f,  -4f, 1f)
+      mag["aEP_fga_wanliu_arm_r"] = arrayOf(-15f, 1f,  4f, 1f)
+      mag["aEP_fga_wanliu_cover"] = arrayOf(21f, 1f,  0f,0f)
+
+      mag["aEP_fga_yonglang_main_cover_l"] = arrayOf(-6f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_main_cover_r"] = arrayOf(-6f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_scaffold"] = arrayOf(6f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_glow"] = arrayOf(10f, 3f,  0f,0f)
+      mag["aEP_fga_yonglang_main_br"] = arrayOf(10f, 3f,  0f,0f)
+
+
       mag["aEP_ftr_sup_guardian_cover_l"] = arrayOf(-6f, 4f, 12f,4f)
       mag["aEP_ftr_sup_guardian_cover_r"] = arrayOf(-6f, 4f, -12f,4f)
     }
@@ -65,7 +96,7 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
 
   fun advance(amount: Float) {
     if (weapon.ship == null) return
-    val slotRevLocation = weapon.ship.hullSpec.getWeaponSlotAPI(weapon.slot.id).location
+
     var toMove = 0f
     toMove = if (effectiveLevel > toLevel) {
       -Math.min(effectiveLevel - toLevel, speed * amount)
@@ -73,6 +104,7 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       Math.min(toLevel - effectiveLevel, speed * amount)
     }
     effectiveLevel += toMove
+
 
     var toSideMove = 0f
     toSideMove = if (effectiveSideLevel > toSideLevel) {

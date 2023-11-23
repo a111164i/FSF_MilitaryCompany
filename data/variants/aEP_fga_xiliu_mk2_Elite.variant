@@ -1,39 +1,43 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 4,
-    "fluxVents": 5,
+    "fluxCapacitors": 10,
+    "fluxVents": 4,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu_mk2",
-    "hullMods": [
-        "missleracks",
-        "unstable_injector"
-    ],
+    "hullMods": ["fluxcoil"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_fga_xiliu_mk2_Elite",
     "weaponGroups": [
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0009": "ioncannon"}
-        },
         {
             "autofire": false,
             "mode": "LINKED",
             "weapons": {"WS0002": "phasecl"}
         },
         {
-            "autofire": true,
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0001": "aEP_fga_xiliu_mk2_missile",
+                "WS0003": "aEP_fga_xiliu_mk2_missile"
+            }
+        },
+        {
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0005": "lightdualac",
-                "WS0006": "lightdualac"
+                "L01": "railgun",
+                "R01": "railgun"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0007": "lrpdlaser"}
+            "weapons": {
+                "L02": "aEP_b_s_630",
+                "R02": "aEP_b_s_630",
+                "WS0009": "aEP_b_s_pom"
+            }
         }
     ]
 }

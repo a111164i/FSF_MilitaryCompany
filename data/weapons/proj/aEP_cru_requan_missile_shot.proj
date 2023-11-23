@@ -2,7 +2,7 @@
 	"id":"aEP_cru_requan_missile_shot",
 	"specClass":"missile",	
 	"missileType":"MISSILE",
-	"sprite":"graphics/weapons/aEP_requan/shot.png",
+	"sprite":"graphics/weapons/aEP_cap_nuanchi/rq_shot.png",
 	"size":[8,26],
 	"center":[4,14],
 	"collisionRadius":12,

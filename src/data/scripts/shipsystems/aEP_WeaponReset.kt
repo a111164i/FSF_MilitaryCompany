@@ -1,14 +1,13 @@
 package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.MutableShipStatsAPI
-import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.ShipSystemAPI
-import com.fs.starfarer.api.combat.WeaponAPI
+import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.WeaponAPI.WeaponSize
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
+import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.util.IntervalTracker
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
@@ -21,58 +20,59 @@ import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import combat.util.aEP_Tool.Util.getTargetWidthAngleInDistance
 import combat.util.aEP_Tool.Util.getWeaponOffsetInAbsoluteCoo
 import combat.util.aEP_Tool.Util.isNormalWeaponSlotType
+import data.scripts.hullmods.aEP_ReactiveArmor
+import data.scripts.hullmods.aEP_Strafe
+import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
+import org.lazywizard.lazylib.MathUtils.clamp
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicRender
+import org.magiclib.util.MagicUI
 import java.awt.Color
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.math.max
 
 class aEP_WeaponReset: BaseShipSystemScript() {
 
   companion object{
-    //about visual effect
-    private val SMOKE_COLOR = Color(200, 200, 200, 80)
-    private val SMOKE_EMIT_COLOR = Color(250, 250, 250, 180)
+    //系统结束时环绕烟雾颜色
+    val SMOKE_COLOR = Color(200, 200, 200, 60)
+    //排气口喷出烟雾的颜色
+    val SMOKE_EMIT_COLOR = Color(250, 250, 250, 160)
     val GLOW_COLOR = Color(255,72,44,118)
-    val STOP_GLOW_COLOR = Color(255,235,215,150)
-    private const val WORSEN_MULT = 0.5f
 
+    //缓冲区大小是最大容量的几倍
     private val MAX_FLUX_STORE_CAP_PERCENT = 1f
-
-    private val JITTER_COLOR = Color(240, 50, 50, 85)
 
     private val FLUX_DECREASE_PERCENT: MutableMap<String, Float> = HashMap()
     private val FLUX_DECREASE_FLAT: MutableMap<String, Float> = HashMap()
     private val FLUX_RETURN_SPEED: MutableMap<String, Float> = HashMap()
+    //武器的射速和装弹速度百分比加成
     private val WEAPON_ROF_PERCENT_BONUS: MutableMap<String, Float> = HashMap()
     init {
 
-      FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.75f
-      FLUX_DECREASE_PERCENT["aEP_des_cengliu"] = 0.66f
-      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.5f
+      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.33f
 
-      FLUX_DECREASE_FLAT["aEP_fga_xiliu"] = 100f
-      FLUX_DECREASE_FLAT["aEP_des_cengliu"] = 150f
-      FLUX_DECREASE_FLAT["aEP_cru_zhongliu"] = 200f
+      FLUX_DECREASE_FLAT["aEP_cru_zhongliu"] = 300f
 
-      FLUX_RETURN_SPEED["aEP_fga_xiliu"] = 0.8f
-      FLUX_RETURN_SPEED["aEP_des_cengliu"] = 0.8f
-      FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.8f
+      FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.75f
 
-      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 120f
-      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 120f
-      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 120f
+      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 100f
+
     }
   }
 
   var didActive = false
   private var ship: ShipAPI? = null
-  private var storedHardFlux = 0f
   private var storedSoftFlux = 0f
+  private var bufferSize = 1f
   private val presmokeTracker = IntervalTracker(0.05f,0.05f)
 
+  private val redSmokeTracker = IntervalUtil(0.1f, 0.2f)
+  var timeElapsedAfterVenting = 0f
 
   //runInIdle == true, unapply()只有在被外界强制关闭时才会调用
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
@@ -81,6 +81,31 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     val ship = ship as ShipAPI
     if (!ship.isAlive) return
 
+    bufferSize = ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT
+    val bufferLvl = (storedSoftFlux/bufferSize).coerceAtMost(1f)
+    val amount = getAmount(ship)
+
+    //维持玩家左下角的提示
+    if (Global.getCombatEngine().playerShip == ship) {
+      MagicUI.drawHUDStatusBar(ship,
+        bufferLvl, null,null, 0f,
+        ship.system.displayName, String.format("%.1f",bufferLvl*100f)+"%",true )
+    }
+
+    //增减进入venting后的时间
+    if(ship.fluxTracker.isVenting){
+      timeElapsedAfterVenting += amount
+    } else{
+      timeElapsedAfterVenting -= amount
+    }
+    timeElapsedAfterVenting = timeElapsedAfterVenting.coerceAtLeast(0f).coerceAtMost(1.5f)
+    //进入系统的时间/venting的时间，两者取大
+    val ventLevel = (timeElapsedAfterVenting/1.5f).coerceAtMost(1f)
+    val decoLevel = max(effectLevel, ventLevel)
+
+    updateDecos(ship,decoLevel, amount)
+    updateHeadDecos(ship,decoLevel)
+    updateBottomIndicators(ship)
 
     //激活中
     if(state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE || state == ShipSystemStatsScript.State.OUT){
@@ -91,44 +116,37 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         presmokeTracker.advance(999f)
       }
 
-      //储存的幅能超过极限容量的1倍但小于2倍时，性能下降，超过2倍时直接到底
-      var maxStoreMult = 1f
-      if(storedHardFlux+storedSoftFlux > ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT
-        && storedHardFlux+storedSoftFlux < ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f) {
-        maxStoreMult = 1f - WORSEN_MULT *MathUtils.clamp((storedHardFlux+storedSoftFlux-ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT)/ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT, 0f,1f)
-      }
-      else if(storedHardFlux+storedSoftFlux >= ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f){
-        maxStoreMult = 1f - WORSEN_MULT
-      }
-
       //ACTIVE和IN的时候吸收幅能
       if( state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE){
-        val hard = (ship.fluxTracker.hardFlux)
-        val soft = (ship.fluxTracker.currFlux - hard)
+        //计算当前软硬幅能和对应船体的软幅能缓冲速度
+        val hard = (ship.fluxTracker.hardFlux).coerceAtLeast(0f)
+        val soft = (ship.fluxTracker.currFlux - hard).coerceAtLeast(0f)
         val speedPercent = FLUX_DECREASE_PERCENT[ship.hullSpec.baseHullId]?:0.5f
         val speedFlat = FLUX_DECREASE_FLAT[ship.hullSpec.baseHullId]?:150f
-        //吸收幅能，速度为当前幅能的百分比
-        var toReturnThisFrame = (speedPercent * ship.currFlux + speedFlat)* getAmount(ship) / (ship.system.chargeActiveDur)
-        toReturnThisFrame *= maxStoreMult
+
+        //监测缓冲区满了没有，满了就强制关闭系统
+        //软幅能散完了也是
+        if(storedSoftFlux >= bufferSize || !isUsable(ship.system,ship)){
+          ship.system.deactivate()
+          ship.system.cooldownRemaining = ship.system.cooldown
+        }
+
+        //吸收幅能，速度为 幅能的百分比 + 固定值
+        var toReturnThisFrame = (speedPercent * soft + speedFlat)* amount
         //aEP_Tool.addDebugLog(ship.system.chargeActiveDur.toString())
         if(soft > 0){
           //限制吸收的软幅能量不超过剩余软幅能
           var toReduce = toReturnThisFrame.coerceAtMost(soft)
           ship.fluxTracker.increaseFlux(-toReduce,false)
-          toReturnThisFrame -=toReduce
-          storedSoftFlux +=toReduce
-        }
-        if(hard > 0){
-          var toReduce = toReturnThisFrame.coerceAtMost(hard)
-          ship.fluxTracker.increaseFlux(-toReduce,true)
-          storedHardFlux += toReduce
+          toReturnThisFrame -= toReduce
+          storedSoftFlux += toReduce
         }
 
         //在激活时，从排幅口喷出短的烟雾
         if(presmokeTracker.intervalElapsed()) {
           for (w in ship.allWeapons) {
             if (!w.slot.isDecorative) continue
-            if (!w.spec.weaponId.contains("aEP_marker")) continue
+            if (!w.spec.weaponId.contains("aEP_cru_zhongliu_side_glow")) continue
             val smokeLoc = w.location
             val smoke = aEP_MovingSmoke(smokeLoc)
             smoke.lifeTime = 0.35f
@@ -137,14 +155,14 @@ class aEP_WeaponReset: BaseShipSystemScript() {
             smoke.size = 20f
             smoke.sizeChangeSpeed = 100f
             smoke.color = SMOKE_EMIT_COLOR
-            smoke.setInitVel(aEP_Tool.speed2Velocity(w.currAngle, 300f))
+            smoke.setInitVel(speed2Velocity(w.currAngle, 300f))
             smoke.stopForceTimer.setInterval(0.05f, 0.05f)
             smoke.stopSpeed = 0.975f
-            aEP_CombatEffectPlugin.addEffect(smoke)
+            addEffect(smoke)
           }
         }
         //后于检测，保证之前加满的第一帧能进去
-        presmokeTracker.advance(aEP_Tool.getAmount(ship))
+        presmokeTracker.advance(getAmount(ship))
       }
 
       //DOWN的时候释放四周喷长烟雾特效
@@ -152,19 +170,19 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         if(presmokeTracker.intervalElapsed()) {
           for (w in ship.allWeapons) {
             if (!w.slot.isDecorative) continue
-            if (!w.spec.weaponId.contains("aEP_marker")) continue
+            if (!w.spec.weaponId.equals("aEP_cru_zhongliu_side_glow")) continue
             val smokeLoc = w.location
             val smoke = aEP_MovingSmoke(smokeLoc)
-            smoke.lifeTime = 0.75f
+            smoke.lifeTime = 0.65f
             smoke.fadeIn = 0.25f
             smoke.fadeOut = 0.25f
             smoke.size = 20f
             smoke.sizeChangeSpeed = 100f
             smoke.color = SMOKE_EMIT_COLOR
-            smoke.setInitVel(aEP_Tool.speed2Velocity(w.currAngle, 250f))
+            smoke.setInitVel(speed2Velocity(w.currAngle, 250f))
             smoke.stopForceTimer.setInterval(0.05f, 0.05f)
-            smoke.stopSpeed = 0.975f
-            aEP_CombatEffectPlugin.addEffect(smoke)
+            smoke.stopSpeed = 0.95f
+            addEffect(smoke)
           }
         }
         //后于检测，保证之前加满的第一帧能进去
@@ -173,41 +191,27 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         ship.mutableStats.beamDamageTakenMult.modifyMult(id,0.2f)
       }
 
-      //船体打光
-      ship.isJitterShields = false
-      ship.setJitter(ship, JITTER_COLOR, effectLevel, 1, 0f)
-      ship.setJitterUnder(ship, JITTER_COLOR, effectLevel, 10, 4f + ship.collisionRadius*0.08f)
-
       //给武器打粒子
       ship.setWeaponGlow(
         effectLevel,
         GLOW_COLOR,
         EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
 
-      val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 100f
+      val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 50f
 
       //ballistic weapon buff
-      stats.ballisticRoFMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
-      stats.ballisticAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
+      stats.ballisticRoFMult.modifyPercent(id, rofPercentBonus * effectLevel)
+      stats.ballisticAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel)
 
       //energy weapon buff
-      stats.energyRoFMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
-      stats.energyAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
+      stats.energyRoFMult.modifyPercent(id, rofPercentBonus * effectLevel)
+      stats.energyAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel)
 
-      //non beam PD buff
-      //stats.getNonBeamPDWeaponRangeBonus().modifyFlat(id,PD_RANGE_BONUS - RANGE_BONUS);
-
-      //flux consume reduce
-      //stats.ballisticWeaponFluxCostMod.modifyPercent(id, -FLUX_REDUCTION)
-      //stats.energyWeaponRangeBonus.modifyPercent(id, -FLUX_REDUCTION)
 
       //取消护盾维持，防止出现把盾维吸入导致每秒幅散散了个空气的问题
       ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
 
-
-    } else{
-
-    //系统为IDLE时
+    } else{  //系统为IDLE时
       //激活结束后运行一次
       if(didActive){
         unapply(stats, id)
@@ -224,14 +228,6 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         //每秒最大返还量 - 软幅能返还量 = 剩下给硬幅能的量
         toReturnThisFrame -= toAdd
         storedSoftFlux -= toAdd
-      }
-      if(storedHardFlux > 0){
-        //限制返还硬幅能量不超过剩余容量，储存的硬幅能量，和剩下给硬幅能的量
-        var toAdd = toReturnThisFrame.coerceAtMost(storedHardFlux)
-        toAdd = toAdd.coerceAtMost(toReturnThisFrame)
-        toAdd = toAdd.coerceAtMost(ship.maxFlux - ship.currFlux)
-        ship.fluxTracker.increaseFlux(toAdd,true)
-        storedHardFlux -=toAdd
       }
     }
 
@@ -276,24 +272,26 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       if (index == 0) {
         val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 100f
         return  StatusData(txt("aEP_WeaponReset01")+": "+ String.format("%.0f",rofPercentBonus)+"%", false)
-      }else if (index == 1){
-        if(storedHardFlux+storedSoftFlux > ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT){
-          var maxStoreMult = 1f
-          if(storedHardFlux+storedSoftFlux > ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT
-            && storedHardFlux+storedSoftFlux < ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f) {
-            maxStoreMult = 1f - WORSEN_MULT *MathUtils.clamp((storedHardFlux+storedSoftFlux-ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT)/ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT, 0f,1f)
-          } else if(storedHardFlux+storedSoftFlux >= ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f){
-            maxStoreMult = 1f - WORSEN_MULT
-          }
-          return  StatusData(txt("aEP_WeaponReset02") + (maxStoreMult*100f).toInt() +" %", true)
-        }
       }
     }
     return  null
   }
 
-  override fun getInfoText(system: ShipSystemAPI?, ship: ShipAPI?): String {
-    return "Stored: "+ storedSoftFlux.toInt()+" / "+ storedHardFlux.toInt()
+  override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
+    var toShow = ""
+    if(!isUsable(system,ship) ){
+      toShow += txt("aEP_VentMode06")
+    }
+    toShow += " Buffer: "+ storedSoftFlux.toInt()+ " / "+bufferSize.toInt()
+    return toShow
+  }
+
+  override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+    val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
+    val hardFlux = ship.fluxTracker.hardFlux
+    if(softFlux < (FLUX_DECREASE_FLAT[ship.hullSpec.baseHullId] ?: 200f) * 1f) return false
+
+    return true
   }
 
   fun spawnSmoke(ship: ShipAPI, minSmokeDist: Int) {
@@ -334,5 +332,254 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       addEffect(ms)
       moveAngle += angleToTurn
     }
+  }
+
+  fun updateDecos(ship: ShipAPI, effectLevel: Float, amount: Float){
+    var slide_l : aEP_DecoAnimation? = null
+    var slide_r : aEP_DecoAnimation? = null
+    var vent_1 : aEP_DecoAnimation? = null
+    var vent_2 : aEP_DecoAnimation? = null
+
+    for(w in ship.allWeapons){
+      if(w.spec.weaponId.equals("aEP_cru_zhongliu_slide_l")) slide_l = w.effectPlugin as aEP_DecoAnimation
+      if(w.spec.weaponId.equals("aEP_cru_zhongliu_slide_r")) slide_r = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("VENT_POINT_0")) vent_1 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("VENT_POINT_1")) vent_2 = w.effectPlugin as aEP_DecoAnimation
+    }
+
+    slide_l?:return
+    slide_r?:return
+    vent_1?:return
+    vent_2?:return
+
+    if(effectLevel <= 0.4f){
+      val convertedLevel = (0.4f - effectLevel)/0.4f
+      slide_l.setMoveToLevel(1f)
+      slide_l.setMoveToSideLevel(convertedLevel)
+      slide_r.setMoveToLevel(1f)
+      slide_r.setMoveToSideLevel(convertedLevel)
+      vent_1.setGlowToLevel(0f)
+      vent_2.setGlowToLevel(0f)
+    }
+    else if(effectLevel <= 1f){
+      val convertedLevel = (1f - effectLevel)/0.6f
+      slide_l.setMoveToLevel(convertedLevel)
+      slide_l.setMoveToSideLevel(0f)
+      slide_r.setMoveToLevel(convertedLevel)
+      slide_r.setMoveToSideLevel(0f)
+      vent_1.setGlowToLevel(1f)
+      vent_2.setGlowToLevel(1f)
+    }
+
+    //创造散热红色电子烟雾
+    redSmokeTracker.advance(amount)
+    if (redSmokeTracker.intervalElapsed()) {
+      if (effectLevel > 0.9f){
+        var initColor = Color(250,50,50)
+        var alpha = 0.3f * effectLevel
+        var lifeTime = 3f * effectLevel
+        var size = 35f
+        var endSizeMult = 1.5f
+        var vel = aEP_Tool.speed2Velocity(vent_1.weapon.currAngle,30f)
+        Vector2f.add(vel,ship.velocity,vel)
+        vel.scale(0.5f)
+        val loc1 = aEP_Tool.getExtendedLocationFromPoint(vent_1.weapon.location,vent_1.weapon.currAngle,20f)
+        Global.getCombatEngine().addNebulaParticle(
+          MathUtils.getRandomPointInCircle(loc1,20f),
+          vel,
+          size, endSizeMult,
+          0.1f, 0.4f,
+          lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
+          aEP_Tool.getColorWithAlpha(initColor,alpha))
+
+        val loc2 = aEP_Tool.getExtendedLocationFromPoint(vent_2.weapon.location,vent_2.weapon.currAngle,20f)
+        Global.getCombatEngine().addNebulaParticle(
+          MathUtils.getRandomPointInCircle(loc2,20f),
+          vel,
+          size, endSizeMult,
+          0.1f, 0.4f,
+          lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
+          aEP_Tool.getColorWithAlpha(initColor,alpha))
+
+      }
+    }
+
+    //散热口闪光1
+    val glowLevel = vent_1.decoGlowController.effectiveLevel
+    for (i in 1..3){
+      val sparkLoc = getExtendedLocationFromPoint(vent_1.weapon.location,vent_1.weapon.currAngle-90f,8f - i*4f)
+      sparkLoc.set(MathUtils.getRandomPointInCircle(sparkLoc, 0.5f))
+      val sparkRad = MathUtils.getRandomNumberInRange(15f,20f) * glowLevel
+      val brightness = MathUtils.getRandomNumberInRange(0.5f, 1f) * glowLevel
+      //闪光
+      Global.getCombatEngine().addSmoothParticle(
+        sparkLoc,
+        Misc.ZERO,
+        sparkRad,brightness,0.5f,Global.getCombatEngine().elapsedInLastFrame*2f,
+        Color(250,50,50))
+    }
+    //散热口闪光2
+    for (i in 1..3){
+      val sparkLoc = getExtendedLocationFromPoint(vent_2.weapon.location,vent_2.weapon.currAngle-90f,8f - i*4f)
+      sparkLoc.set(MathUtils.getRandomPointInCircle(sparkLoc, 0.5f))
+      val sparkRad = MathUtils.getRandomNumberInRange(15f,20f) * glowLevel
+      val brightness = MathUtils.getRandomNumberInRange(0.5f, 1f) * glowLevel
+      //闪光
+      Global.getCombatEngine().addSmoothParticle(
+        sparkLoc,
+        Misc.ZERO,
+        sparkRad,brightness,0.5f,Global.getCombatEngine().elapsedInLastFrame*2f,
+        Color(250,50,50))
+    }
+
+  }
+
+  fun updateHeadDecos(ship: ShipAPI, effectLevel: Float){
+    var head_l : aEP_DecoAnimation? = null
+    var head_r : aEP_DecoAnimation? = null
+    var l1 : aEP_DecoAnimation? = null
+    var l2 : aEP_DecoAnimation? = null
+    var l3 : aEP_DecoAnimation? = null
+
+
+    for(w in ship.allWeapons){
+      if(w.spec.weaponId.equals("aEP_cru_zhongliu_head_l")) head_l = w.effectPlugin as aEP_DecoAnimation
+      if(w.spec.weaponId.equals("aEP_cru_zhongliu_head_r")) head_r = w.effectPlugin as aEP_DecoAnimation
+
+      if(w.slot.id.equals("ID_L1")) l1 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L2")) l2 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L3")) l3 = w.effectPlugin as aEP_DecoAnimation
+
+    }
+
+    head_l?:return
+    head_r?:return
+    l1?:return
+    l2?:return
+    l3?:return
+
+    if(effectLevel >= 0.25f){
+      head_l.setMoveToSideLevel(1f)
+      head_r.setMoveToSideLevel(1f)
+    }else{
+      head_l.setMoveToSideLevel(0f)
+      head_r.setMoveToSideLevel(0f)
+    }
+
+    var currCharge = 0
+    val storedLvl = (storedSoftFlux/bufferSize).coerceAtMost(1f)
+    if(storedLvl > 0.25) currCharge = 3
+    if(storedLvl > 0.5f) currCharge = 2
+    if(storedLvl > 0.7f) currCharge = 1
+    if(storedLvl > 0.9f) currCharge = 0
+
+    l1.decoGlowController.speed = 20f
+    l2.decoGlowController.speed = 20f
+    l3.decoGlowController.speed = 20f
+    if(head_l.decoMoveController.effectiveSideLevel > 0.25f){
+      if(currCharge <= 0){
+        l1.setGlowToLevel(0f)
+        l2.setGlowToLevel(0f)
+        l3.setGlowToLevel(0f)
+      }else if (currCharge <= 1){
+        l1.setGlowToLevel(1f)
+        l2.setGlowToLevel(0f)
+        l3.setGlowToLevel(0f)
+      }else if (currCharge <= 2){
+        l1.setGlowToLevel(1f)
+        l2.setGlowToLevel(1f)
+        l3.setGlowToLevel(0f)
+      }else if (currCharge <= 3){
+        l1.setGlowToLevel(1f)
+        l2.setGlowToLevel(1f)
+        l3.setGlowToLevel(1f)
+      }
+    }else{
+      l1.setGlowToLevel(0f)
+      l2.setGlowToLevel(0f)
+      l3.setGlowToLevel(0f)
+    }
+
+  }
+
+  fun updateBottomIndicators(ship: ShipAPI){
+    val storedLevel = (storedSoftFlux/bufferSize).coerceAtMost(1f)
+
+    //----------//
+    //渲染屁股侧面的2个栅孔颜色
+    val left = ship.hullSpec.getWeaponSlot("TAIL_GLOW_L").computePosition(ship)
+    val right = ship.hullSpec.getWeaponSlot("TAIL_GLOW_R").computePosition(ship)
+
+    val alpha = (storedLevel/0.15f).coerceAtMost(1f)
+    val c = Color(
+      clamp((storedLevel-0.15f)*1.18f ,0f,1f),
+      1f*(1f - clamp((storedLevel-0.15f)*1.18f ,0f,1f)),0f, alpha)
+
+    val sprite1 = Global.getSettings().getSprite("aEP_FX","zhongliu_tail_glow")
+    val sprite2 = Global.getSettings().getSprite("aEP_FX","zhongliu_tail_glow")
+    val sprite3 = Global.getSettings().getSprite("aEP_FX","zhongliu_tail_glow")
+    val sprite4 = Global.getSettings().getSprite("aEP_FX","zhongliu_tail_glow")
+
+    sprite1.setAdditiveBlend()
+    sprite2.setAdditiveBlend()
+    sprite3.setAdditiveBlend()
+    sprite4.setAdditiveBlend()
+
+    val left1 = (MathUtils.getRandomPointInCircle(left,0.36f))
+    val left2 = (MathUtils.getRandomPointInCircle(left,0.36f))
+    val right1 = (MathUtils.getRandomPointInCircle(right,0.36f))
+    val right2 = (MathUtils.getRandomPointInCircle(right,0.36f))
+    MagicRender.singleframe(
+      sprite1, left1, Vector2f(sprite1.width,sprite1.height), ship.facing + 90f,
+      c,true)
+    MagicRender.singleframe(
+      sprite2, left2, Vector2f(sprite2.width,sprite2.height), ship.facing + 90f,
+      c,true)
+    MagicRender.singleframe(
+      sprite3, right1, Vector2f(sprite3.width,sprite3.height), ship.facing + 90f,
+      c,true, CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
+    MagicRender.singleframe(
+      sprite4, right2, Vector2f(sprite4.width,sprite4.height), ship.facing + 90f,
+      c,true, CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
+
+    //----------//
+    //渲染舰桥的3个指示灯
+    val light1 = ship.hullSpec.getWeaponSlot("ID_R1").computePosition(ship)
+    val light2 = ship.hullSpec.getWeaponSlot("ID_R2").computePosition(ship)
+    val light3 = ship.hullSpec.getWeaponSlot("ID_R3").computePosition(ship)
+
+    val lightSprite1 = Global.getSettings().getSprite("aEP_FX","neibo_indicator_glow")
+    val lightSprite2 = Global.getSettings().getSprite("aEP_FX","neibo_indicator_glow")
+    val lightSprite3 = Global.getSettings().getSprite("aEP_FX","neibo_indicator_glow")
+
+    lightSprite1.setAdditiveBlend()
+    lightSprite2.setAdditiveBlend()
+    lightSprite3.setAdditiveBlend()
+
+    val cLight1 = Color(
+      clamp((storedLevel-0.1f) * 3.33f,0f,1f),
+      1f*(1f -   clamp((storedLevel-0.1f) * 3.3f,0f,1f)),
+      0f, alpha)
+    val cLight2 = Color(
+      clamp((storedLevel-0.4f) * 3.33f,0f,1f),
+      1f*(1f -   clamp((storedLevel-0.4f) * 3.3f,0f,1f)),
+      0f, alpha)
+    val cLight3 = Color(
+      clamp((storedLevel-0.7f) * 3.33f,0f,1f),
+      1f*(1f -   clamp((storedLevel-0.7f) * 3.3f,0f,1f)),
+      0f, alpha)
+
+    val loc1 = (MathUtils.getRandomPointInCircle(light1,0.2f))
+    val loc2 = (MathUtils.getRandomPointInCircle(light2,0.2f))
+    val loc3 = (MathUtils.getRandomPointInCircle(light3,0.2f))
+    MagicRender.singleframe(
+      lightSprite1, loc1, Vector2f(lightSprite1.width,lightSprite1.height), ship.facing - 90f,
+      cLight1,true, CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
+    MagicRender.singleframe(
+      lightSprite2, loc2, Vector2f(lightSprite2.width,lightSprite2.height), ship.facing - 90f,
+      cLight2,true, CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
+    MagicRender.singleframe(
+      lightSprite3, loc3, Vector2f(lightSprite3.width,lightSprite3.height), ship.facing - 90f,
+      cLight3,true, CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
   }
 }

@@ -3,7 +3,7 @@
 	"id":"aEP_cru_pingding_lidardish",
 	"type":"SYSTEM",
 	"size":"SMALL",
-  "collisionClass": "PROJECTILE_NO_FF",
+  "collisionClass": "RAY_FIGHTER",
   "collisionClassByFighter": "RAY_FIGHTER",
 	"showDamageWhenDecorative":true,
 	"renderBelowAllWeapons":false,
@@ -25,5 +25,6 @@
 	"textureScrollSpeed":128.0,
 	"pixelsPerTexel":5.0,
 	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF,ASTEROID, FIGHTER],
+
 	"fireSoundOne":"lidar_ping",
 }

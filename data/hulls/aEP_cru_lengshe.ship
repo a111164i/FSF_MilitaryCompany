@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_cru_lengshe",
   "hullSize": "CRUISER",
-  "spriteName": "graphics/ships/aEP_lengshe.png",
+  "spriteName": "graphics/ships/aEP_cru_lengshe.png",
   "style": "aEP_FSF",
   "height": 250,
   "width": 180,

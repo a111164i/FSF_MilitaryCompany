@@ -5,7 +5,7 @@
   "type": "MISSILE",
   "size": "MEDIUM",
   "turretSprite": "graphics/weapons/aEP_m_m_phasemine/tr.png",
-  "turretUnderSprite": "graphics/weapons/aEP_m_base.png",
+  "turretUnderSprite": "graphics/weapons/aEP_base_m.png",
   "hardpointSprite": "graphics/weapons/aEP_m_m_phasemine/hp.png",
   "hardpointUnderSprite": "",
   "turretOffsets": [
@@ -39,7 +39,7 @@
       95,
       70,
       155,
-      110
+      135
     ]
   },
   "fireSoundTwo":"proximity_charge_launcher_fire",

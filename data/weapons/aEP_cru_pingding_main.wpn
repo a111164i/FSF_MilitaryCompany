@@ -2,6 +2,7 @@
   "id": "aEP_cru_pingding_main",
   "specClass": "projectile",
   "projectileSpecId": "aEP_cru_pingding_main_shot",
+  #"type": "MISSILE",
   "type": "BALLISTIC",
   #"type": "BUILT_IN",
   "size": "LARGE",
@@ -10,7 +11,7 @@
   #"turretGlowSprite":"graphics/weapons/aEP_cru_pingding/glow.png",
   "hardpointSprite": "",
   "hardpointGunSprite": "",
-  #"hardpointGlowSprite":"graphics/weapons/aEP_duiliu/glow.png",
+  #"hardpointGlowSprite":"graphics/weapons/aEP_cap_duiliu/glow.png",
   "everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "renderHints": [
     RENDER_BARREL_BELOW

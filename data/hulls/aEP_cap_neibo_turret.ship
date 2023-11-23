@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_cap_neibo_turret",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_neibo_tr.png",
+  "spriteName": "graphics/ships/aEP_cap_neibo_tr.png",
   "style": "aEP_FSF",
   "height": 90,
   "width": 90,

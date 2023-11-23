@@ -150,15 +150,16 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
       ship.getShield().toggleOff();
     }
 
+
+    systemAi.advance(amount,null, null, (ShipAPI) toTarget);
+
+
     //return parent if we should
     if (shouldReturn || (allSupplies > 0 && toTarget == parentShip)) {
       toTarget = parentShip;
       returnToParent(ship, parentShip, amount);
       return;
     }
-
-    systemAi.advance(amount,null, null, (ShipAPI) toTarget);
-
 
 
     //normal move
@@ -168,7 +169,7 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
       if (reformTimer > REFORM_INTERVAL) {
         reformTimer = 0f;
         Vector2f centerPointAtBackOfParent = aEP_Tool.getExtendedLocationFromPoint(parentShip.getLocation(), parentShip.getFacing(), -(parentShip.getCollisionRadius()) * REFORM_DIST_FROM_PARENT);
-        toTargetPo = aEP_Tool.getRandomPointAround(centerPointAtBackOfParent, REFORM_RANGE*parentShip.getCollisionRadius());
+        toTargetPo = MathUtils.getRandomPointInCircle(centerPointAtBackOfParent, REFORM_RANGE*parentShip.getCollisionRadius());
       }
 
       if (MathUtils.getDistance(ship.getLocation(), toTarget.getLocation()) > parentShip.getCollisionRadius() * REFORM_RANGE * 2) {

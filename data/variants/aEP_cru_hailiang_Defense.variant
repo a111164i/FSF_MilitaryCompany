@@ -1,13 +1,10 @@
 {
     "displayName": "Defense",
-    "fluxCapacitors": 0,
-    "fluxVents": 0,
+    "fluxCapacitors": 17,
+    "fluxVents": 15,
     "goalVariant": true,
     "hullId": "aEP_cru_hailiang",
-    "hullMods": [
-        "heavyarmor",
-        "hardenedshieldemitter"
-    ],
+    "hullMods": ["aEP_ShieldControlled"],
     "modules": [
         {"MD01": "aEP_cru_hailiang3_Defense"},
         {"MD03": "aEP_cru_hailiang4_Standard"},
@@ -19,11 +16,8 @@
     "weaponGroups": [
         {
             "autofire": true,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0005": "heavyneedler",
-                "WS0006": "heavyneedler"
-            }
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_b_l_d100t"}
         },
         {
             "autofire": true,
@@ -31,10 +25,17 @@
             "weapons": {
                 "WS0001": "aEP_b_s_630",
                 "WS0002": "aEP_b_s_630",
-                "WS0003": "heavyneedler",
                 "WS0004": "aEP_b_s_630"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "aEP_b_m_flak",
+                "WS0006": "aEP_b_m_flak"
             }
         }
     ],
-    "wings": []
+    "wings": ["aEP_ftr_sup_tank_wing"]
 }

@@ -22,19 +22,17 @@ import java.awt.Color
 class aEP_CrowdControl : BaseShipSystemScript() {
   companion object{
     //REDUCE_MULT 是 1-x
-    const val DAMAGE_REDUCE_MULT = 0.5f
+    const val DAMAGE_REDUCE_MULT = 0f
     const val BONUS_ARC = -0f
 
     //REDUCE_MULT 是 1-x
     const val SPEED_REDUCE_MULT = 0.5f
-    const val RANGE = 700f
-    const val ARC = 60f
+    const val RANGE = 900f
+    const val ARC = 90f
     const val ID = "aEP_CrowdControl"
     var EMP_COLOR = Color(105,85,255,255)
     var EMP_COLOR2 = Color(255,175,255,255)
 
-
-    const val SELF_MAX_SPEED_REDUCE_MULT = 0.35f
   }
 
 
@@ -48,7 +46,6 @@ class aEP_CrowdControl : BaseShipSystemScript() {
     stats.shieldUnfoldRateMult.modifyFlat(ID, 1f)
     stats.shieldDamageTakenMult.modifyMult(ID, 1f - DAMAGE_REDUCE_MULT * effectLevel)
     stats.shieldUpkeepMult.modifyMult(ID, 0f)
-
 
     //复制粘贴
     ship = (stats.entity?:return) as ShipAPI
@@ -80,15 +77,16 @@ class aEP_CrowdControl : BaseShipSystemScript() {
       }
 
       nearest?.run {
+        val p = ship.hullSpec.getWeaponSlot("ARC_POINT").computePosition(ship)
         Global.getCombatEngine().spawnEmpArcPierceShields(
           ship,
-          ship.location,
+          p,
           ship,
           nearest,
-          DamageType.ENERGY,1f,10f,
+          DamageType.ENERGY,1f,1f,
           RANGE + nearest.collisionRadius,
-          "tachyon_lance_emp_impact",
-           30f,
+          null,
+           35f,
           EMP_COLOR, EMP_COLOR2)
 
         //如果已经有减速buff，刷新时间
@@ -110,7 +108,6 @@ class aEP_CrowdControl : BaseShipSystemScript() {
       ship.shield.arc = baseRad
     }
 
-
     stats.shieldUnfoldRateMult.unmodify(ID)
     stats.shieldDamageTakenMult.unmodify(ID)
     stats.shieldUpkeepMult.unmodify(ID)
@@ -119,7 +116,7 @@ class aEP_CrowdControl : BaseShipSystemScript() {
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State?, effectLevel: Float): StatusData? {
     if (index == 0) {
-      return StatusData(String.format(aEP_DataTool.txt("aEP_FortressShieldStats01"), (DAMAGE_REDUCE_MULT * 100f * effectLevel).toInt().toString() + "%"), false)
+      return null
     }
     return null
   }

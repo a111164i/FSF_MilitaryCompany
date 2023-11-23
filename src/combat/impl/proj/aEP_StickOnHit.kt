@@ -34,6 +34,7 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
     } else {
       aEP_Tool.getRelativeLocationData(hitPoint, target, false)
     }
+    sprite.setAdditiveBlend()
     this.hitShield = hitShield
     if (hitShield) {
       this.onHitAngle = aEP_Tool.angleAdd(spriteOnHitAngle, -target.shield.facing)

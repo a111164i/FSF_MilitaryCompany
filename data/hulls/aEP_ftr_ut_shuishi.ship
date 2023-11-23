@@ -1,0 +1,39 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ftr_ut_shuishi",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/ut_shuishi.png",
+  "style": "aEP_FSF",
+  "height": 24,
+  "width": 24,
+  "center": [12, 12],
+  "collisionRadius": 35,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 34.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "autorepair",
+    "insulatedengine",
+    "armoredweapons",
+    "aEP_ProjectileDenialShield"
+  ],
+  "weaponSlots": [],
+  "engineSlots": [
+    {
+      "location": [-6, -0],
+      "length": 12,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 5,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    -0.5, -7.5,
+    2.5, -7.5,
+    6.5, -2.5,
+    6.5, 2.5,
+    2.5, 7.5,
+    -0.5, 7.5
+  ]
+}

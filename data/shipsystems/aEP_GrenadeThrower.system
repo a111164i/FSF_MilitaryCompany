@@ -1,0 +1,17 @@
+{
+	"id":"aEP_GrenadeThrower",
+	#不能直接用weapon，weapon会在in的第一帧触发，并且只开火1帧数
+	"type":"WEAPON",
+  "aiType":"CUSTOM",
+  "weaponDataId":"aEP_des_lianliu_grenade_thrower",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_GrenadeThrowerAI",
+	"statsScript":"data.scripts.shipsystems.aEP_GrenadeThrower",
+
+
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+	"useSound":"gun_out_of_ammo",
+  #"loopSound":"aEP_cru_pingding_main_charge",
+  #"deactivateSound":"aEP_cru_pingding_main_down",
+	#"outOfUsesSound":"gun_out_of_ammo",
+
+}

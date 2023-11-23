@@ -1,12 +1,12 @@
 {
     "displayName": "Defense",
-    "fluxCapacitors": 0,
-    "fluxVents": 15,
+    "fluxCapacitors": 1,
+    "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_cru_hailiang3",
     "hullMods": [
-        "aEP_SoftfluxDissipate",
-        "aEP_HotLoader"
+        "fluxdistributor",
+        "turretgyros"
     ],
     "permaMods": [],
     "sMods": [],
@@ -34,10 +34,10 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "flak",
-                "WS0005": "flak"
+                "WS0001": "aEP_b_m_flak",
+                "WS0005": "aEP_b_m_flak"
             }
         }
     ],
-    "wings": ["xyphos_wing"]
+    "wings": []
 }

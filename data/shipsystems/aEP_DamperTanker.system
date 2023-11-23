@@ -5,13 +5,13 @@
 	#"aiType":"PHASE_CLOAK",
 	
 	
-	"jitterColor":[255,165,90,75],
+	"jitterColor":[255,165,90,45],
 	"jitterCopies":1,
 	"jitterMinRange":0,
 	"jitterRange":0,
 	"jitterRangeRadiusFraction":0,	
 
-	"jitterUnderColor":[255,165,90,175],
+	"jitterUnderColor":[255,165,90,185],
 	"jitterUnderCopies":16,
 	"jitterUnderMinRange":4,
 	"jitterUnderRange":4,

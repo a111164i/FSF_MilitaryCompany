@@ -1,20 +1,61 @@
 {
 	"id":"aEP_b_m_hv7_shot2",
-	"specClass":"projectile",
-	"spawnType":"BALLISTIC",	
-	"collisionClass":"PROJECTILE_FF",
-	"collisionClassByFighter":"PROJECTILE_FIGHTER",
-	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"bulletSprite":"graphics/weapons/aEP_high_speed_HE/high_speed_HE_shot.png",
-	"hitGlowRadius": 50,
-	"fadeTime":0.1,
-	"length": 4,
-	"width": 2,
-    "fringeColor":[255,165,30,175],# fringe color of shot sprite
-	"coreColor":[255,255,255,200], # core color of shot sprite
-	"glowColor":[255,165,30,75],
-	"glowRadius":25,
+	"specClass": "projectile",
+  "spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FIGHTER",
+	"collisionClassByFighter": "PROJECTILE_FIGHTER",
+	"length": 30,
+	"width": 6,
 	"textureScrollSpeed":64,
-	"pixelsPerTexel":5,
-	"passThroughMissiles":false,
+	"pixelsPerTexel":2,
+	"textureType":"SMOOTH",  # now also used for "BALLISTIC_AS_BEAM", if specified
+	#"textureType":["graphics/fx/beamfringeb.png","graphics/fx/beamcore.png"],
+	"bulletSprite":"graphics/weapons/aEP_m_l_harpoon/bomblet.png",
+	#"sprite":"graphics/weapons/aEP_m_l_harpoon/bomblet.png",
+	#"glowSprite":"",
+	"fringeColor":[75,155,255,255],# fringe color of shot sprite
+	"coreColor":[220,170,255,255], # core color of shot sprite
+	"glowColor":[190,215,255,175],
+	"glowRadius":15,
+	"hitGlowRadius": 35,
+	#"size":[8,10],
+	#"center":[4,5],
+	#"collisionRadius":60,
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[0,0,0,0],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":0, # purely visual
+
+	#模板
+	"armingTime":0, # safe range count by time
+	"noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
+	#如果要弹丸严格按照最大距离飞行，这几个参数一定得是0，fadeTime这段时间如果不填默认不是0而且不属于maxFlightTime
+	#如果不填，此时弹丸结束时的flightTime会大于maxFlightTime，且此段时间最大速度不受限制，默认fadeTime + flameoutTime为3.5秒
+	#flameoutTime一般最小写0.1，再低经过测试会有问题
+	"fadeTime":0.3, # 熄火后能漂移多久，对于弹丸是淡出时间
+	"flameoutTime":0.1,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+
+	"alwaysAccelerate":true,
+	"reduceDamageWhileFading":false,
+	"useProjectileRangeCalculation":true,
+	"passThroughMissiles":true,
+	"renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
+	"noCollisionWhileFading":false,
+	"useHitGlowWhenDestroyed":false, # instead of the default explosion
+
+
+	#"behaviorSpec":{
+
+	#},
+	"engineSpec":{
+	  "turnAcc":20,
+	  "turnRate":20,
+	  "acc":20,
+	  "dec":20
+	},
+	"engineSlots":[
+
+	]
+
+
 }

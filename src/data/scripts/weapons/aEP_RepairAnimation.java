@@ -5,6 +5,7 @@ import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.WeaponAPI;
 import combat.util.aEP_Tool;
+import org.lazywizard.lazylib.MathUtils;
 
 public class aEP_RepairAnimation implements EveryFrameWeaponEffectPlugin
 {
@@ -33,11 +34,11 @@ public class aEP_RepairAnimation implements EveryFrameWeaponEffectPlugin
 
     if (weapon.isFiring()) {
       controlTime = controlTime + 2 * amount;
-      controlTime = aEP_Tool.limitToTop(controlTime, (NUM_OF_FRAMES - 3) / FRAME_PER_SEC - 0.01f, 0);
+      controlTime = MathUtils.clamp(controlTime, 0,(NUM_OF_FRAMES - 3) / FRAME_PER_SEC - 0.01f);
     }
 
 
-    controlTime = aEP_Tool.limitToTop(controlTime, NUM_OF_FRAMES / FRAME_PER_SEC - 0.01f, 0);
+    controlTime = MathUtils.clamp(controlTime, 0,NUM_OF_FRAMES / FRAME_PER_SEC - 0.01f);
     anime.setFrame((int) (controlTime * FRAME_PER_SEC));
     return;
   }

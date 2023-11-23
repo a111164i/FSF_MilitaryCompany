@@ -5,21 +5,20 @@
   "type": "MISSILE",
   "size": "MEDIUM",
   "displayArcRadius": 1000,
-  "turretSprite": "graphics/weapons/aEP_breakin_hammer/tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_breakin_hammer/hp.png",
-  "renderAboveAllWeapons": 0,
+  "turretSprite": "graphics/weapons/aEP_m_m_breachdoor/tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_m_breachdoor/hp.png",
   "renderHints": [
     RENDER_LOADED_MISSILES
   ],
   "turretOffsets": [
-    -1,
-    4
+    4,
+    0
   ],
   "turretAngleOffsets": [
     0
   ],
   "hardpointOffsets": [
-    3,
+    5,
     0
   ],
   "hardpointAngleOffsets": [
@@ -44,6 +43,5 @@
       105
     ]
   },
-  "textureType": ROUGH,
   "fireSoundTwo": "reaper_fire"
 }

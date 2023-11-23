@@ -454,9 +454,9 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
       fighter.setJitter(id, Color.RED, 1f, 1, 0f)
 
       //注意当玩家操控时，shipAI为null
-      fighter.shipAI?.setDoNotFireDelay(0.5f)
       fighter.giveCommand(ShipCommand.ACCELERATE,null,0)
       fighter.blockCommandForOneFrame(ShipCommand.FIRE)
+      fighter.blockCommandForOneFrame(ShipCommand.ACCELERATE_BACKWARDS)
       fighter.blockCommandForOneFrame(ShipCommand.STRAFE_RIGHT)
       fighter.blockCommandForOneFrame(ShipCommand.STRAFE_LEFT)
       fighter.blockCommandForOneFrame(ShipCommand.DECELERATE)

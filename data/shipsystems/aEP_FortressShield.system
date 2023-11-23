@@ -4,7 +4,9 @@
 	"aiType":"FORTRESS_SHIELD",
 
 	"statsScript":"data.scripts.shipsystems.aEP_system.FortressShieldStats",
-	
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+
+
 	"shieldRingColor":[255,255,255,255],
 	"shieldInnerColor":[125,100,255,75],
 	"shieldThicknessMult":1,

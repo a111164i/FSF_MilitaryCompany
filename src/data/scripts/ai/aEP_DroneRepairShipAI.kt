@@ -22,7 +22,7 @@ import org.lwjgl.util.vector.Vector2f
 import kotlin.math.absoluteValue
 
 
-class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI(ship, ship.system)) {
+class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI(ship, ship.system)) {
 
   private var parentShip: ShipAPI? = null
 
@@ -81,6 +81,13 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
         val aroundShips = AIUtils.getNearbyAllies(ship, ship.wing.range)
         val targetPicker = WeightedRandomPicker<ShipAPI>()
         for(ally in aroundShips){
+          if(!aEP_Tool.isShipTargetable(ally,
+              false,
+              false,
+              true,
+              false,
+              false)) continue
+
           //跳过非常规舰船
           if (ally.hullSize != ShipAPI.HullSize.CAPITAL_SHIP
             && ally.hullSize != ShipAPI.HullSize.CRUISER

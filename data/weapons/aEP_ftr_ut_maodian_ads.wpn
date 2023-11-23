@@ -5,11 +5,11 @@
   "type": "BALLISTIC",
   "size": "SMALL",
   "displayArcRadius": 300,
-  "turretSprite": "graphics/weapons/aEP_maodian/pd.png",
-  "turretGunSprite": "graphics/weapons/aEP_maodian/pd_br.png",
-  "turretUnderSprite": "graphics/weapons/aEP_vulcan/base.png",
-  "hardpointSprite": "graphics/weapons/aEP_maodian/pd.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_maodian/pd_br.png",
+  "turretSprite": "graphics/weapons/aEP_fighters/aEP_maodian/pd.png",
+  "turretGunSprite": "graphics/weapons/aEP_fighters/aEP_maodian/pd_br.png",
+  #"turretUnderSprite": "",
+  "hardpointSprite": "graphics/weapons/aEP_fighters/aEP_maodian/pd.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_fighters/aEP_maodian/pd_br.png",
   "visualRecoil": 4,
   "renderHints": [
     RENDER_BARREL_BELOW

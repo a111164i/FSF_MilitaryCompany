@@ -9,7 +9,9 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
+import combat.util.aEP_ID
 import org.magiclib.util.MagicIncompatibleHullmods.removeHullmodWithWarning
+import java.awt.Color
 import java.lang.Exception
 import java.lang.StringBuffer
 
@@ -78,6 +80,10 @@ open class aEP_BaseHullMod : BaseHullMod() {
       }
 
     } catch (e1: Exception) {
+      if(ship == null){
+        addDebugLog("Error in hullmod: $id at applyEffectsAfterShipCreationImpl: param @ship is null")
+        return
+      }
       addDebugLog("Error in hullmod: $id at applyEffectsAfterShipCreationImpl")
     }
   }
@@ -162,6 +168,12 @@ open class aEP_BaseHullMod : BaseHullMod() {
    **/
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     super.addPostDescriptionSection(tooltip, hullSize, ship, width, isForModSpec)
+
+    val highLight = Misc.getHighlightColor()
+    //显示不兼容插件
+    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 8f, arrayOf(Color.red),
+      aEP_ID.HULLMOD_POINT,
+      showModName(notCompatibleList))
   }
 
   /**
@@ -175,12 +187,13 @@ open class aEP_BaseHullMod : BaseHullMod() {
     val toReturn = StringBuffer()
     for (id in list.toTypedArray()) {
       if(Misc.getMod(id) !=null){
-        toReturn.append(Global.getSettings().getHullModSpec(id).displayName + ", ")
+        toReturn.append('<')
+        toReturn.append(Global.getSettings().getHullModSpec(id).displayName)
+        toReturn.append('>')
+        toReturn.append(' ')
       }
     }
-    if(toReturn.length > 1) {
-      toReturn.replace(toReturn.length-2,toReturn.length-1,"")
-    }else{
+    if(toReturn.isEmpty()) {
       toReturn.append("None")
     }
     return toReturn.toString()
@@ -194,7 +207,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
   }
 
   override fun showInRefitScreenModPickerFor(ship: ShipAPI): Boolean {
-    if(haveToBeWithMod.contains(aEP_MarkerDissipation.ID) && !ship.variant.hasHullMod(aEP_MarkerDissipation.ID)) return false
+    if(haveToBeWithMod.contains(aEP_SpecialHull.ID) && !ship.variant.hasHullMod(aEP_SpecialHull.ID)) return false
     return super.showInRefitScreenModPickerFor(ship)
   }
 }

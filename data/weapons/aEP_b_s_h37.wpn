@@ -8,7 +8,7 @@
   "turretGunSprite": "graphics/weapons/aEP_b_s_h37/trbr.png",
   "hardpointSprite": "graphics/weapons/aEP_b_s_h37/hp.png",
   "hardpointGunSprite": "graphics/weapons/aEP_b_s_h37/hpbr.png",
-  "visualRecoil": 7,
+  "visualRecoil": 5,
   "turretOffsets": [
     12,
     0
@@ -17,15 +17,15 @@
     0
   ],
   "hardpointOffsets": [
-    12,
+    11,
     0
   ],
   "hardpointAngleOffsets": [
     0
   ],
   "barrelMode": "ALTERNATING",
-  "autocharge": true,
   "animationType": "SMOKE",
+  "autocharge": true,
   "smokeSpec": {
     "particleSizeMin": 10,
     "particleSizeRange": 10,
@@ -34,14 +34,14 @@
     "cloudRadius": 0,
     "blowbackParticleCount": 6,
     "blowbackDuration": 1,
-    "blowbackLength": -20, #散布后能飞多远
-    "blowbackSpread": 10, #初始在多少距离内散布
+    "blowbackLength": -20,
+    "blowbackSpread": 10,
     "particleColor": [
-			250,
-			255,
-			245,
-			65
+      250,
+      255,
+      245,
+      65
     ]
   },
-  "fireSoundTwo":"aEP_b_s_h37_fire",
+  "fireSoundTwo": "aEP_b_s_h37_fire"
 }

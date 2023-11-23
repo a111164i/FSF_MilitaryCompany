@@ -10,6 +10,7 @@ import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
+import combat.util.aEP_DecoMoveController
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
@@ -17,6 +18,7 @@ import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 import java.util.*
+import kotlin.math.max
 
 class aEP_VentMode: BaseShipSystemScript() {
 
@@ -29,21 +31,25 @@ class aEP_VentMode: BaseShipSystemScript() {
     val SMOKE_EMIT_COLOR = Color(250, 250, 250, 60)
     val SMOKE_EMIT_COLOR2 = Color(250, 250, 250, 180)
 
-    const val SOFT_CONVERT_RATE = 0.2f
-    const val SOFT_CONVERT_SPEED = 2000f
-    const val SHIELD_DAMAGE_TAKEN_BONUS = 100f
+    const val SOFT_CONVERT_RATE = 0.22f
+    const val SOFT_CONVERT_SPEED = 1800f
+    const val SHIELD_DAMAGE_TAKEN_BONUS = 50f
     const val HULL_DAMAGE_TAKEN_BONUS = 25f
-  }
 
+    const val MAX_SPEED_REDUCE_MULT = 0.5f
+
+    private const val MIN_SECOND_TO_USE = 1f
+  }
 
   var engine = Global.getCombatEngine()
   var amount = 0f
-  var didUse = false
   private val smokeTracker = IntervalUtil(0.2f, 0.2f)
   private val smokeTracker2 = IntervalUtil(0.1f, 0.1f)
-  private val sparkTracker = IntervalUtil(0.1f, 0.4f)
+  private val sparkTracker = IntervalUtil(0.1f, 0.5f)
 
   var timeElapsedAfterIn = 0f;
+  var timeElapsedAfterVenting = 0f;
+  var forceDown = false
 
   //run every frame
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
@@ -52,183 +58,194 @@ class aEP_VentMode: BaseShipSystemScript() {
     val ship = stats.entity as ShipAPI
     amount = aEP_Tool.getAmount(ship)
 
-    timeElapsedAfterIn += amount
+    //增减激活系统后的时间
+    if((state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE) && !forceDown){
+      timeElapsedAfterIn += amount
+    } else{
+      timeElapsedAfterIn -= amount
+    }
+    //增减进入venting后的时间
+    if(ship.fluxTracker.isVenting){
+      timeElapsedAfterVenting += amount
+    } else{
+      timeElapsedAfterVenting -= amount
+    }
+    //把时间累计卡在2秒
+    timeElapsedAfterIn = timeElapsedAfterIn.coerceAtLeast(0f).coerceAtMost(2f)
+    timeElapsedAfterVenting = timeElapsedAfterVenting.coerceAtLeast(0f).coerceAtMost(2f)
+    forceDown = false
 
-    //开启的一秒内，禁止手动关闭
-    if(timeElapsedAfterIn <= 1f){
-      ship.blockCommandForOneFrame(ShipCommand.USE_SYSTEM)
+    //在这里修改数值
+    //完全关闭后，还原数值
+    if(timeElapsedAfterIn <= 0f){
+      //在这修改数值
+      stats.shieldDamageTakenMult.unmodify(ID)
+      stats.armorDamageTakenMult.unmodify(ID)
+      stats.hullDamageTakenMult.unmodify(ID)
+
+      stats.fluxDissipation.unmodify(ID)
+    }
+    else{
+      //转化幅能
+      val convertLevel = 0.5f + (effectLevel-0.5f).coerceAtLeast(0f)
+      val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
+      val hardFlux = ship.fluxTracker.hardFlux
+      //幅能充足就转换幅能，不充足就强制关闭
+      if(ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux > 100f){
+        val toConvert = softFlux.coerceAtMost(SOFT_CONVERT_SPEED * amount * convertLevel)
+        //这里选择使用原版的耗散，而不是直接扣除幅能，方便ai理解
+        ship.mutableStats.fluxDissipation.modifyFlat(ID, SOFT_CONVERT_SPEED * convertLevel)
+        //ship.fluxTracker.decreaseFlux(toConvert)
+        ship.system.fluxPerSecond = SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE * convertLevel
+        //ship.fluxTracker.increaseFlux(toConvert * SOFT_CONVERT_RATE, true)
+
+      }else{
+        if(timeElapsedAfterIn >= 1.9f){
+          ship.system.deactivate()
+        }
+      }
+
+      //修改数值
+      stats.shieldDamageTakenMult.modifyPercent(ID, SHIELD_DAMAGE_TAKEN_BONUS * convertLevel)
+      //stats.armorDamageTakenMult.modifyPercent(ID, DAMAGE_TAKEN_BONUS)
+      stats.hullDamageTakenMult.modifyPercent(ID, HULL_DAMAGE_TAKEN_BONUS * convertLevel)
+      stats.maxSpeed.modifyMult(ID,1f - MAX_SPEED_REDUCE_MULT * convertLevel)
     }
 
-    if(state == ShipSystemStatsScript.State.OUT){
-      timeElapsedAfterIn = 0f
-    }
+    //激活后才会产生的特效
+    if(timeElapsedAfterIn > 0.5f){
+      //创造散热器烟雾
+      smokeTracker.advance(amount)
+      if (smokeTracker.intervalElapsed()) {
+        for (w in ship.allWeapons) {
+          if (w.id.contains("aEP_cap_duiliu_glow")) {
+            val angle = w.currAngle
+            val smoke = aEP_MovingSmoke(w.location)
+            smoke.setInitVel(aEP_Tool.speed2Velocity(angle, 10f))
+            smoke.setInitVel(ship.velocity)
+            smoke.stopSpeed = 0.975f
+            smoke.fadeIn = 0f
+            smoke.fadeOut = 1f
+            smoke.lifeTime = 1f + 1f * effectLevel
+            smoke.size = 10f
+            smoke.sizeChangeSpeed = 25f
+            smoke.color = SMOKE_EMIT_COLOR
+            aEP_CombatEffectPlugin.addEffect(smoke)
+          }
+        }
+      }
 
-    //创造散热器烟雾
-    smokeTracker.advance(amount)
-    if (smokeTracker.intervalElapsed()) {
-      for (w in ship.allWeapons) {
-        if (w.id.contains("aEP_cap_duiliu_limiter_glow")) {
-          val angle = w.currAngle
-          val smoke = aEP_MovingSmoke(w.location)
-          smoke.setInitVel(aEP_Tool.speed2Velocity(angle, 10f))
-          smoke.setInitVel(ship.velocity)
-          smoke.stopSpeed = 0.975f
-          smoke.fadeIn = 0f
-          smoke.fadeOut = 1f
-          smoke.lifeTime = 1f + 1f * effectLevel
-          smoke.size = 10f
-          smoke.sizeChangeSpeed = 25f
-          smoke.color = SMOKE_EMIT_COLOR
+      //创造四角烟雾
+      smokeTracker2.advance(amount)
+      if (smokeTracker2.intervalElapsed()) {
+        for (s in ship.hullSpec.allWeaponSlotsCopy) {
+          if (!s.isSystemSlot) continue
+          val smokeLoc = s.computePosition(ship)
+          val smoke = aEP_MovingSmoke(smokeLoc)
+          smoke.lifeTime = 0.5f + 0.25f * effectLevel
+          smoke.fadeIn = 0.5f
+          smoke.fadeOut = 0.5f
+          smoke.size = 20f
+          smoke.sizeChangeSpeed = 40f
+          smoke.color = SMOKE_EMIT_COLOR2
+          smoke.setInitVel(aEP_Tool.speed2Velocity(s.computeMidArcAngle(ship), 100f))
+          smoke.stopForceTimer.setInterval(0.05f, 0.05f)
+          smoke.stopSpeed = 0.95f
           aEP_CombatEffectPlugin.addEffect(smoke)
         }
       }
-    }
 
-    //创造四角烟雾
-    smokeTracker2.advance(amount)
-    if (smokeTracker2.intervalElapsed()) {
-      for (s in ship.hullSpec.allWeaponSlotsCopy) {
-        if (!s.isSystemSlot) continue
-        val smokeLoc = s.computePosition(ship)
-        val smoke = aEP_MovingSmoke(smokeLoc)
-        smoke.lifeTime = 0.5f + 0.25f * effectLevel
-        smoke.fadeIn = 0.5f
-        smoke.fadeOut = 0.5f
-        smoke.size = 20f
-        smoke.sizeChangeSpeed = 40f
-        smoke.color = SMOKE_EMIT_COLOR2
-        smoke.setInitVel(aEP_Tool.speed2Velocity(s.computeMidArcAngle(ship), 100f))
-        smoke.stopForceTimer.setInterval(0.05f, 0.05f)
-        smoke.stopSpeed = 0.95f
-        aEP_CombatEffectPlugin.addEffect(smoke)
+      //创造散热栓红色电子烟雾
+      sparkTracker.advance(amount)
+      if (sparkTracker.intervalElapsed()) {
+        for (weapon in ship.allWeapons) {
+          if (!weapon.isDecorative) continue
+          if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter1")) continue
+          if (effectLevel <= 0.9f) continue
+
+          var initColor = Color(250,50,50)
+          var alpha = 0.3f * effectLevel
+          var lifeTime = 3f * effectLevel
+          var size = 35f
+          var endSizeMult = 1.5f
+          var vel = aEP_Tool.speed2Velocity(weapon.currAngle,30f)
+          Vector2f.add(vel,ship.velocity,vel)
+          vel.scale(0.5f)
+          val loc = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle,20f)
+          Global.getCombatEngine().addNebulaParticle(
+            MathUtils.getRandomPointInCircle(loc,20f),
+            vel,
+            size, endSizeMult,
+            0.1f, 0.4f,
+            lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
+            aEP_Tool.getColorWithAlpha(initColor,alpha))
+
+        }
       }
-    }
 
-    //创造散热栓烟雾
-    sparkTracker.advance(amount * effectLevel)
-    if (sparkTracker.intervalElapsed()) {
+      //散热栓闪光
       for (weapon in ship.allWeapons) {
         if (!weapon.isDecorative) continue
-        if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter")) continue
-        if (effectLevel <= 0.9f) continue
+        if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter1")) continue
+        val glowLevel = ((timeElapsedAfterIn-1.85f)/0.3f).coerceAtLeast(0f).coerceAtMost(1f)
+        for (i in 1..5){
 
-        var initColor = Color(250,50,50)
-        var alpha = 0.3f
-        var lifeTime = 3f
-        var size = 35f
-        var endSizeMult = 1.5f
-        var vel = aEP_Tool.speed2Velocity(weapon.currAngle,30f)
-        Vector2f.add(vel,ship.velocity,vel)
-        vel.scale(0.5f)
-        val loc = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle,20f)
-        Global.getCombatEngine().addNebulaParticle(
-          MathUtils.getRandomPointInCircle(loc,20f),
-          vel,
-          size, endSizeMult,
-          0.1f, 0.4f,
-          lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
-          aEP_Tool.getColorWithAlpha(initColor,alpha))
+          val sparkLoc = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle,i*5f)
+          sparkLoc.set(MathUtils.getRandomPointInCircle(sparkLoc, 0.5f))
+          val sparkRad = MathUtils.getRandomNumberInRange(15f,20f) * glowLevel
+          val brightness = MathUtils.getRandomNumberInRange(0.5f, 0.75f) * glowLevel
+          //闪光
+          Global.getCombatEngine().addSmoothParticle(
+            sparkLoc,
+            Misc.ZERO,
+            sparkRad,brightness,0.5f,Global.getCombatEngine().elapsedInLastFrame*2f,
+            Color(250,50,50))
+        }
 
       }
     }
 
-    //散热栓闪光
-    for (weapon in ship.allWeapons) {
-      if (!weapon.isDecorative) continue
-      if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter")) continue
-      val glowLevel = (timeElapsedAfterIn/2f).coerceAtMost(1f)
-      for (i in 1..6){
-
-        val sparkLoc = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle,i*5f)
-        val sparkRad = MathUtils.getRandomNumberInRange(15f,20f) * glowLevel
-        val brightness = MathUtils.getRandomNumberInRange(0.5f, 0.75f) * glowLevel
-        //闪光
-        Global.getCombatEngine().addSmoothParticle(
-          sparkLoc,
-          Misc.ZERO,
-          sparkRad,brightness,0.5f,Global.getCombatEngine().elapsedInLastFrame*2f,
-          Color(250,50,50))
-      }
-
-    }
 
     //move deco weapon
-    openDeco(ship, effectLevel)
-
-    //转化幅能
-    val convertLevel = 0.5f + (effectLevel-0.5f).coerceAtLeast(0f)
-    val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
-    val hardFlux = ship.fluxTracker.hardFlux
-    if(isUsable(ship.system, ship)){
-      val toConvert = softFlux.coerceAtMost(SOFT_CONVERT_SPEED * amount * convertLevel)
-
-      //这里选择使用原版的耗散，而不是直接扣除幅能，方便ai理解
-      ship.mutableStats.fluxDissipation.modifyFlat(ID, SOFT_CONVERT_SPEED * convertLevel)
-      //ship.fluxTracker.decreaseFlux(toConvert)
-      ship.system.fluxPerSecond = SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE * convertLevel
-      //ship.fluxTracker.increaseFlux(toConvert * SOFT_CONVERT_RATE, true)
-
-    }else{
-      ship.system.deactivate()
-    }
-
-    //修改数值
-    stats.shieldDamageTakenMult.modifyPercent(ID, SHIELD_DAMAGE_TAKEN_BONUS * convertLevel)
-    //stats.armorDamageTakenMult.modifyPercent(ID, DAMAGE_TAKEN_BONUS)
-    stats.hullDamageTakenMult.modifyPercent(ID, HULL_DAMAGE_TAKEN_BONUS * convertLevel)
-
+    //进入系统的时间/venting的时间，两者取大
+    val systemLevel = (timeElapsedAfterIn/2f).coerceAtMost(1f)
+    val ventLevel = (timeElapsedAfterVenting/2f).coerceAtMost(1f)
+    val decoLevel = max(systemLevel, ventLevel)
+    openDeco(ship, decoLevel)
 
     ship.isJitterShields = true
     //舰体微微泛红
     ship.setJitter(
-      ship,
-      JITTER_COLOR,
-      effectLevel,  // intensity
-      1,  //copies
-      0f) // range
+      ship, JITTER_COLOR, effectLevel, 1, 0f) // range
 
-
-    didUse = true
   }
 
   //run once when unapply
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
     val ship = stats.entity as ShipAPI
-
-    timeElapsedAfterIn = 0f
-
-    //在这修改数值
-    stats.shieldDamageTakenMult.unmodify(ID)
-    stats.armorDamageTakenMult.unmodify(ID)
-    stats.hullDamageTakenMult.unmodify(ID)
-
-    stats.fluxDissipation.unmodify(ID)
-
-    if (!didUse) return
-
-    //move decos
-    openDeco(ship, 0f)
-
-    didUse = false
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): ShipSystemStatsScript.StatusData? {
     val convertLevel = 0.5f + (effectLevel-0.5f).coerceAtLeast(0f)
-    if (index == 0) {
-      return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode01"),
-        String.format("%.0f", SOFT_CONVERT_SPEED * convertLevel) ,
-        String.format("%.0f", SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE) ),
-        false)
-    } else if (index == 1) {
-      return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode02") ,
-        String.format("%.0f", SHIELD_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
-        true)
+    if(effectLevel > 0f){
+      if (index == 0) {
+        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode01"),
+          String.format("%.0f", SOFT_CONVERT_SPEED * convertLevel) ,
+          String.format("%.0f", SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE) ),
+          false)
+      } else if (index == 1) {
+        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode02") ,
+          String.format("%.0f", SHIELD_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
+          true)
+      }
+      else if (index == 2) {
+        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode07") ,
+          String.format("%.0f", HULL_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
+          true)
+      }
+
     }
-    else if (index == 2) {
-      return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode07") ,
-        String.format("%.0f", HULL_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
-        true)
-    }
+
 
     return null
   }
@@ -243,7 +260,7 @@ class aEP_VentMode: BaseShipSystemScript() {
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
     val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
     val hardFlux = ship.fluxTracker.hardFlux
-    if(softFlux < SOFT_CONVERT_SPEED* 0.5f) return false
+    if(softFlux < SOFT_CONVERT_SPEED * MIN_SECOND_TO_USE) return false
 
     return true
   }
@@ -251,31 +268,86 @@ class aEP_VentMode: BaseShipSystemScript() {
   fun openDeco(ship: ShipAPI, effectLevel: Float) {
     //move deco weapon
     for (weapon in ship.allWeapons) {
-      if (weapon.slot.id.contains("AM")) {
-        val to = MathUtils.clamp(effectLevel * 2f, 0f, 1f)
-        if (weapon.slot.id.contains("01") || weapon.slot.id.contains("04")) {
-          (weapon.effectPlugin as aEP_DecoAnimation).decoMoveController.range = 6f
-          (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(to)
+      if (weapon.spec.weaponId.contains("aEP_cap_duiliu_armor_l1") ||
+        weapon.spec.weaponId.contains("aEP_cap_duiliu_armor_r1")) {
+        val controller = (weapon.effectPlugin as aEP_DecoAnimation)
+        if(effectLevel <= 0.25f){
+          val convertedLevel =  (effectLevel/0.25f).coerceAtMost(1f)
+          controller.setMoveToLevel(0f)
+          controller.setMoveToSideLevel(convertedLevel)
+          controller.setRevoToLevel(0f)
+          continue
+        }else if(effectLevel <= 0.75f){
+          val convertedLevel =  ((effectLevel-0.25f)/0.5f).coerceAtMost(1f)
+          controller.setMoveToLevel(convertedLevel)
+          controller.setMoveToSideLevel(1f)
+          controller.setRevoToLevel(convertedLevel)
+          continue
+        } else if(effectLevel <= 1f){
+          controller.setMoveToLevel(1f)
+          controller.setMoveToSideLevel(1f)
+          controller.setRevoToLevel(1f)
+          continue
         }
-        if (weapon.slot.id.contains("02") || weapon.slot.id.contains("05")) {
-          (weapon.effectPlugin as aEP_DecoAnimation).decoMoveController.range = 18f
-          (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(to)
-        }
-        if (weapon.slot.id.contains("03")) {
-          (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(effectLevel)
-          (weapon.effectPlugin as aEP_DecoAnimation).setMoveToSideLevel(effectLevel)
-          (weapon.effectPlugin as aEP_DecoAnimation).setRevoToLevel(effectLevel)
-        }
-        if (weapon.slot.id.contains("06")) {
-          (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(effectLevel)
-          (weapon.effectPlugin as aEP_DecoAnimation).setMoveToSideLevel(effectLevel)
-          (weapon.effectPlugin as aEP_DecoAnimation).setRevoToLevel(effectLevel)
-        }
+        continue
       }
-      if (weapon.slot.id.contains("LM")) {
-        val to = MathUtils.clamp((effectLevel - 0.5f) * 2f, 0f, 1f)
-        (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(to)
+      if (weapon.spec.weaponId.contains("aEP_cap_duiliu_armor_l2") ||
+        weapon.spec.weaponId.contains("aEP_cap_duiliu_armor_r2")) {
+        val controller = (weapon.effectPlugin as aEP_DecoAnimation)
+        if(effectLevel <= 0.1f){
+          controller.setMoveToLevel(0f)
+          controller.setMoveToSideLevel(0f)
+          controller.setRevoToLevel(0f)
+          continue
+        }else if(effectLevel <= 0.55f){
+          val convertedLevel =  ((effectLevel-0.1f)/0.45f).coerceAtMost(1f)
+          controller.setMoveToLevel(convertedLevel)
+          controller.setMoveToSideLevel(0f)
+          controller.setRevoToLevel(0.3f * convertedLevel)
+          continue
+        } else if(effectLevel <= 1f){
+          val convertedLevel =  ((effectLevel-0.55f)/0.45f).coerceAtMost(1f)
+          controller.setMoveToLevel(1f)
+          controller.setMoveToSideLevel(0f)
+          controller.setRevoToLevel(0.3f + 0.7f * convertedLevel)
+          continue
+        }
+        continue
       }
+      if (weapon.spec.weaponId.contains("aEP_cap_duiliu_armor_l3") ||
+        weapon.spec.weaponId.contains("aEP_cap_duiliu_armor_r3")) {
+        val controller = (weapon.effectPlugin as aEP_DecoAnimation)
+        if(effectLevel <= 0.55f){
+          controller.setMoveToLevel(0f)
+          controller.setMoveToSideLevel(0f)
+          controller.setRevoToLevel(0f)
+          continue
+        }else if(effectLevel <= 1f){
+          val convertedLevel =  ((effectLevel-0.55f)/0.45f).coerceAtMost(1f)
+          controller.setMoveToLevel(convertedLevel)
+          controller.setMoveToSideLevel(convertedLevel)
+          controller.setRevoToLevel(convertedLevel)
+          continue
+        }
+        continue
+      }
+      if (weapon.spec.weaponId.contains("aEP_cap_duiliu_limiter")) {
+        val controller = (weapon.effectPlugin as aEP_DecoAnimation)
+        if(effectLevel <= 0.65f){
+          controller.setMoveToLevel(0f)
+          controller.setMoveToSideLevel(0f)
+          controller.setRevoToLevel(0f)
+          continue
+        }else if(effectLevel <= 1f){
+          val convertedLevel =  ((effectLevel-0.65f)/0.35f).coerceAtMost(1f)
+          controller.setMoveToLevel(convertedLevel)
+          controller.setMoveToSideLevel(convertedLevel)
+          controller.setRevoToLevel(convertedLevel)
+          continue
+        }
+        continue
+      }
+
       if (weapon.slot.id.contains("GW")) {
         val to = MathUtils.clamp((effectLevel - 0.5f) * 2f, 0f, 1f)
         //((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToLevel(to);

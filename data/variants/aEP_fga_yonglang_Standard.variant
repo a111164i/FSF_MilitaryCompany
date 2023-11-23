@@ -19,8 +19,11 @@
         },
         {
             "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0010": "aEP_fga_yonglang_main"}
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0013": "aEP_fga_yonglang_main",
+                "WS0014": "aEP_fga_yonglang_main"
+            }
         },
         {
             "autofire": true,

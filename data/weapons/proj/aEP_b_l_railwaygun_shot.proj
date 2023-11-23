@@ -4,17 +4,18 @@
 	"spawnType":"BALLISTIC",
 	"collisionClass":"PROJECTILE_FF",
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
-	"length":1.0,
+	"length":80,
+	"width":16,
 	"hitGlowRadius":80,
-	"width":8.0,
-	"fadeTime":0.1,
+	"fadeTime":0.2,
 	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"fringeColor":[255,155,15,55],
 	"coreColor":[240,240,200,255],
-	"glowColor":[255,255,255,55],
+	"glowColor":[255,255,155,55],
 	"glowRadius":150,
 	"textureScrollSpeed":64.0,
 	"pixelsPerTexel":5.0,
 	"passThroughMissiles":true,
-	"bulletSprite":"graphics/weapons/aEP_zhuanzhu_cannon/proj.png"
+	"bulletSprite":"graphics/weapons/aEP_b_l_railway/proj.png"
 }

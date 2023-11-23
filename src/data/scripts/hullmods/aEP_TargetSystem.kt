@@ -10,15 +10,15 @@ class aEP_TargetSystem : aEP_BaseHullMod() {
     const val ID = "aEP_TargetSystem"
     const val RANGE_PERCENT_BONUS = 50f
     const val RANGE_PD_PERCENT_BONUS = 35f
-    const val RANGE_THRESHOLD = 1500f
+    const val RANGE_THRESHOLD = 1450f
     const val THRESHOLD_PUNISH = 0.5f
   }
 
   init {
-    haveToBeWithMod.add(aEP_MarkerDissipation.ID)
+    haveToBeWithMod.add(aEP_SpecialHull.ID)
     notCompatibleList.add(HullMods.INTEGRATED_TARGETING_UNIT)
     notCompatibleList.add(HullMods.DEDICATED_TARGETING_CORE)
-    notCompatibleList.add(HullMods.SAFETYOVERRIDES)
+    notCompatibleList.add(HullMods.ADVANCED_TARGETING_CORE)
   }
 
 

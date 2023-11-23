@@ -5,30 +5,24 @@
   "type": "MISSILE",
   "size": "SMALL",
   "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
-  "turretSprite": "graphics/weapons/aEP_FCL/cover.png",
+  "turretSprite": "graphics/weapons/aEP_fga_yonglang/br.png",
   "hardpointSprite": "",
   "renderBelowAllWeapons": true,
   "turretOffsets": [
     0,
-    38,
-    0,
-    -38,
+    0
   ],
   "turretAngleOffsets": [
-    0,
     0
   ],
   "hardpointOffsets": [
-    0,
-    38,
-    0,
-    -38,
+    0,0
   ],
   "hardpointAngleOffsets": [
-    0,
     0
   ],
   "barrelMode": "LINKED",
   "animationType": "NONE",
-  "autocharge": true
+  "autocharge": true,
+  "fireSoundTwo": "heavy_mortar_fire"
 }

@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
 import combat.util.aEP_ID;
@@ -14,6 +15,7 @@ import data.scripts.FSFModPlugin;
 import data.scripts.campaign.econ.environment.aEP_MilitaryZone;
 import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import lunalib.lunaSettings.LunaSettings;
+import org.lazywizard.lazylib.MathUtils;
 
 
 public class FSFCampaignPlugin implements EveryFrameScript {
@@ -44,12 +46,38 @@ public class FSFCampaignPlugin implements EveryFrameScript {
     FactionAPI fsf = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
     FactionAPI fsfAdv = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF_ADV);
 
-    //如果启用了跳过主线，加入memKey
+    //检测lunalib
     if(FSFModPlugin.isLunalibEnabled){
+      //如果启用了跳过主线，加入memKey
       boolean shouldSkip = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingMissionSkipAwm");
       if(shouldSkip){
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_isSkipAwmMission", true);
       }
+
+      //如果启用了辅助学说，开启辅助学说
+      boolean useFleetSkill = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingFleetSkill");
+      String skillId = "support_doctrine";
+      if(useFleetSkill){
+        if(!fsf.getFactionSpec().getFactionDoctrine().getCommanderSkills().contains(skillId))
+          fsf.getFactionSpec().getFactionDoctrine().getCommanderSkills().add(skillId);
+      }else {
+        fsf.getFactionSpec().getFactionDoctrine().getCommanderSkills().remove(skillId);
+      }
+
+      //如果启用了正常倍率刷新先进舰船，更改倍率
+      boolean spawnAdvanceShipAsNormal = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingAdvanceShipSpawnNormal");
+      float freq = 0.25f;
+      if(spawnAdvanceShipAsNormal){
+        freq = 1f;
+      }
+      fsf.getFactionSpec().getTagFrequency().put("FSF_advancebp",freq);
+      for(String id : fsf.getHullFrequency().keySet()){
+        ShipHullSpecAPI spec = Global.getSettings().getHullSpec(id);
+        if(spec.hasTag("FSF_advancebp")){
+          fsf.getHullFrequency().put(id, freq);
+        }
+      }
+
     }
 
     //check and create persons
@@ -209,7 +237,7 @@ public class FSFCampaignPlugin implements EveryFrameScript {
     }
 
     public float getLimitedTimePassed() {
-      return aEP_Tool.limitToTop(time, lifeTime, 0);
+      return MathUtils.clamp(time,0f, lifeTime);
     }
 
     public boolean checkTime() {

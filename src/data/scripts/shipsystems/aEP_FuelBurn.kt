@@ -9,17 +9,32 @@ import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.util.aEP_Tool
 import java.awt.Color
+import java.util.HashMap
 
 class aEP_FuelBurn: BaseShipSystemScript() {
+  companion object{
+    const val MAX_SPEED_BONUS = 180f
+    private val USAGE = HashMap<ShipAPI.HullSize, Float>()
+    init {
+      USAGE[ShipAPI.HullSize.FIGHTER] = 0f
+      USAGE[ShipAPI.HullSize.FRIGATE] = 2f
+      USAGE[ShipAPI.HullSize.DESTROYER] = 4f
+      USAGE[ShipAPI.HullSize.CRUISER] = 8f
+      USAGE[ShipAPI.HullSize.CAPITAL_SHIP] = 10f
+    }
+  }
+
   //这个控制一次充能可以加速多久
   var consumeTimer = IntervalUtil(1f, 1f)
-  val fuelUse = 10f;
   var activeCompensation = 1
   override fun apply(stats: MutableShipStatsAPI?, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
+
 
     //复制粘贴这行
     val ship = (stats?.entity?: return)as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
+    val fuelUse = USAGE[ship.hullSpec.hullSize]?: 5f
+
 
     consumeTimer.advance(amount * effectLevel)
     if (consumeTimer.intervalElapsed()) {
@@ -41,7 +56,7 @@ class aEP_FuelBurn: BaseShipSystemScript() {
             20f,
             Color(200, 50, 50, 240),
             ship,
-            0.25f, 120f
+            0.25f, 1f
           )
         } else {
           ship.system.ammo = 0
@@ -64,8 +79,9 @@ class aEP_FuelBurn: BaseShipSystemScript() {
     stats.maxSpeed.unmodify(id)
   }
 
-  override fun isUsable(system: ShipSystemAPI?, ship: ShipAPI?): Boolean {
-    ship?: return false
+  override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+
+    val fuelUse = USAGE[ship.hullSpec.hullSize]?: 5f
     if(aEP_Tool.isShipInPlayerFleet(ship,true)){
       var fuelNow = Global.getSector()?.playerFleet?.cargo?.fuel?:999f
       if(fuelNow <= fuelUse){
@@ -75,19 +91,16 @@ class aEP_FuelBurn: BaseShipSystemScript() {
     return true
   }
 
-  override fun getInfoText(system: ShipSystemAPI?, ship: ShipAPI?): String {
-    ship?: return ""
+  override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
+
+    val fuelUse = USAGE[ship.hullSpec.hullSize]?: 5f
     if(aEP_Tool.isShipInPlayerFleet(ship,true)){
       var fuelNow = Global.getSector()?.playerFleet?.cargo?.fuel?:999f
       if(fuelNow <= fuelUse){
         return "Out of Fuel"
       }
     }
-    return ""
-  }
-
-  companion object {
-    const val MAX_SPEED_BONUS = 180f
+    return "Ready"
   }
 
 }

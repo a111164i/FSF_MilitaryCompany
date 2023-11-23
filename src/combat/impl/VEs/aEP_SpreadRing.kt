@@ -47,7 +47,7 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
     this.endRadius = endRadius
     minRadius = startRadius
     noise = Noise()
-    radius = endRadius
+    ringRadius = startRadius
   }
 
 
@@ -127,8 +127,6 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
   override fun getRenderRadius(): Float {
     return endRadius + ringEdgeRad
   }
-
-
 
 
   companion object {

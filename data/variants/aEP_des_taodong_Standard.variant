@@ -1,0 +1,33 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 20,
+    "fluxVents": 17,
+    "goalVariant": true,
+    "hullId": "aEP_des_taodong",
+    "hullMods": [
+        "hardenedshieldemitter",
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "suppressedMods": [],
+    "variantId": "aEP_des_taodong_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_b_l_d100t",
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_m_rk107",
+                "WS0002": "aEP_b_m_rk107",
+            }
+        },
+    ],
+    "wings": [],
+    "modules": [],
+}

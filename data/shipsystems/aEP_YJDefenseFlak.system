@@ -1,0 +1,12 @@
+{
+	"id":"aEP_YJDefenseFlak",
+	"type":"WEAPON",
+	"aiType":"CANISTER_FLAK",
+	#"aiScript":"data.scripts.ai",
+	"statsScript":"data.scripts.shipsystems.aEP_YJDefenseFlak",
+
+  "runScriptWhileIdle":true,  # this means unapply() never gets called
+
+	"weaponDataId":"aEP_des_yangji_flak",
+	"outOfUsesSound":"gun_out_of_ammo",
+}

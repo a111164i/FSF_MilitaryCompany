@@ -1,17 +1,31 @@
 {
     "displayName": "Range",
-    "fluxCapacitors": 16,
-    "fluxVents": 40,
+    "fluxCapacitors": 30,
+    "fluxVents": 30,
     "goalVariant": true,
     "hullId": "aEP_cap_duiliu",
     "hullMods": [
         "targetingunit",
-        "aEP_SoftfluxDissipate"
+        "aEP_ShieldFloating"
     ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cap_duiliu_Range",
     "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "hveldriver",
+                "WS0008": "hveldriver",
+                "WS0009": "hveldriver",
+                "WS0010": "hveldriver",
+                "WS0011": "hveldriver",
+                "WS0012": "hveldriver",
+                "WS0020": "hveldriver",
+                "WS0021": "hveldriver"
+            }
+        },
         {
             "autofire": true,
             "mode": "LINKED",
@@ -21,36 +35,18 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0007": "aEP_b_m_rk107",
-                "WS0008": "aEP_b_m_rk107",
-                "WS0009": "hveldriver",
-                "WS0010": "hveldriver",
-                "WS0011": "hveldriver",
-                "WS0012": "hveldriver",
-                "WS0020": "heavymauler",
-                "WS0021": "heavymauler"
+                "WS0015": "aEP_b_s_630",
+                "WS0016": "aEP_b_s_630",
+                "WS0022": "aEP_b_s_630",
+                "WS0023": "aEP_b_s_630",
+                "WS0036": "aEP_b_s_630",
+                "WS0037": "aEP_b_s_630"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {
-                "WS0015": "vulcan",
-                "WS0016": "vulcan",
-                "WS0018": "dualflak",
-                "WS0022": "vulcan",
-                "WS0023": "vulcan",
-                "WS0036": "vulcan",
-                "WS0037": "vulcan"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0019": "aEP_b_s_pom",
-                "WS0032": "aEP_b_s_pom"
-            }
+            "weapons": {"WS0018": "aEP_b_m_mb32"}
         }
     ]
 }

@@ -1,10 +1,10 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 11,
-    "fluxVents": 11,
+    "fluxCapacitors": 8,
+    "fluxVents": 7,
     "goalVariant": true,
     "hullId": "aEP_des_youjiyan",
-    "hullMods": ["aEP_RapidDissipate"],
+    "hullMods": ["heavyarmor"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_youjiyan_Standard",

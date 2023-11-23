@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_fga_raoliu",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_raoliu.png",
+  "spriteName": "graphics/ships/aEP_fga_raoliu.png",
   "style": "aEP_FSF",
   "height": 120,
   "width": 90,
@@ -12,23 +12,13 @@
   "shieldRadius": 58.5,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation"
+    "aEP_SpecialHull",
+    "aEP_ReactiveArmor"
   ],
   "builtInWeapons": {
-    "RL_DECO01": "aEP_small_fold_armor",
-    "RL_DECO02": "aEP_small_fold_armor",
-    "RL_DECO03": "aEP_small_fold_armor",
-    "RL_DECO04": "aEP_small_fold_armor",
-    "RL_DECO07": "aEP_small_fold_hull",
-    "RL_DECO08": "aEP_small_fold_hull",
-    "RL_DECO14": "aEP_small_fold_hull",
-    "RL_DECO15": "aEP_small_fold_hull",
-    "RL_DECO09": "aEP_small_fold_bridgeshell",
-    "RL_DECO10": "aEP_small_fold_below",
-    "RL_DECO11": "aEP_small_fold_below",
-    "RL_DECO12": "aEP_small_fold_below",
-    "RL_DECO13": "aEP_small_fold_below",
-    "WS0007": "aEP_marker"
+    "SYS01": "aEP_m_s_flare3",
+    "SYS02": "aEP_m_s_flare3",
+    "SYS05": "aEP_m_s_flare2"
   },
   "weaponSlots": [
     {
@@ -38,7 +28,7 @@
       "mount": "TURRET",
       "arc": 210,
       "angle": 0,
-      "locations": [37.5, 5],
+      "locations": [35.5, 5],
       "renderOrderMod": 2
     },
     {
@@ -67,7 +57,7 @@
       "type": "HYBRID",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 180,
+      "angle": 0,
       "locations": [-24.5, -0],
       "renderOrderMod": 4
     },
@@ -82,178 +72,89 @@
       "renderOrderMod": 2
     },
     {
-      "id": "WS0007",
+      "id": "SYS03",
       "size": "SMALL",
-      "type": "DECORATIVE",
+      "type": "SYSTEM",
       "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [5.5, -8]
+      "arc": 90,
+      "angle": 45,
+      "locations": [12.5, 27]
     },
     {
-      "id": "RL_DECO08",
+      "id": "SYS04",
       "size": "SMALL",
-      "type": "DECORATIVE",
+      "type": "SYSTEM",
       "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-7, 31]
+      "arc": 90,
+      "angle": -45,
+      "locations": [12.5, -27]
     },
     {
-      "id": "RL_DECO09",
+      "id": "SYS01",
       "size": "SMALL",
       "type": "DECORATIVE",
       "mount": "TURRET",
-      "arc": 0,
+      "arc": 90,
+      "angle": 135,
+      "locations": [-20, 31]
+    },
+    {
+      "id": "SYS02",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 90,
+      "angle": -135,
+      "locations": [-20, -31]
+    },
+    {
+      "id": "SYS05",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 90,
       "angle": 0,
-      "locations": [-13, -0]
-    },
-    {
-      "id": "RL_DECO07",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-7, -31]
-    },
-    {
-      "id": "RL_DECO02",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [31, -19],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "RL_DECO01",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [31, 18.5],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "RL_DECO04",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-7, 33],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "RL_DECO03",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-7, -33],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "RL_DECO11",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-7, 28.5]
-    },
-    {
-      "id": "RL_DECO10",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-7, -28.5]
-    },
-    {
-      "id": "RL_DECO12",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": 90,
-      "locations": [31, 14]
-    },
-    {
-      "id": "RL_DECO13",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "HARDPOINT",
-      "arc": 0,
-      "angle": -90,
-      "locations": [31, -14.5]
-    },
-    {
-      "id": "RL_DECO14",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [31, 16.5]
-    },
-    {
-      "id": "RL_DECO15",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [31, -16.5]
+      "locations": [55, 7]
     }
   ],
   "engineSlots": [
     {
-      "location": [-42.5, -12],
-      "length": 30,
-      "width": 10,
+      "location": [-38.5, -22],
+      "length": 58,
+      "width": 20,
       "angle": 180,
-      "contrailSize": 30,
+      "contrailSize": 20,
       "style": "FSF_MAIN"
     },
     {
-      "location": [-42.5, 12],
-      "length": 30,
-      "width": 10,
+      "location": [-38.5, 22],
+      "length": 58,
+      "width": 20,
       "angle": -180,
-      "contrailSize": 30,
+      "contrailSize": 20,
       "style": "FSF_MAIN"
     },
     {
       "location": [-48.5, -0],
-      "length": 50,
-      "width": 17,
+      "length": 38,
+      "width": 12,
       "angle": 180,
-      "contrailSize": 17,
+      "contrailSize": 12,
       "style": "FSF_MAIN"
     }
   ],
   "bounds": [
-    -46, -9,
-    -32.5, -15,
-    -29.5, -24,
-    -17, -40,
-    -1.5, -40,
-    20.5, -21.5,
-    43.5, -22.5,
-    53.5, -14.5,
-    53.5, 14.5,
-    43.5, 22.5,
-    20.5, 21.5,
-    -1.5, 40,
-    -17, 40,
-    -29.5, 24,
-    -32.5, 15,
-    -46, 9
+    -43.5, -7,
+    -33, -15,
+    -33, -26.5,
+    5.5, -32,
+    19, -14,
+    48, -14,
+    48, 14,
+    19, 14,
+    5.5, 32,
+    -33, 26.5,
+    -33, 15,
+    -43.5, 7
   ]
 }

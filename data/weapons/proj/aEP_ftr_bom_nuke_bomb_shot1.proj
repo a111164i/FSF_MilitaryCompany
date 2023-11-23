@@ -2,7 +2,7 @@
 	"id":"aEP_ftr_bom_nuke_bomb_shot1",
 	"specClass":"missile",	
 	"missileType":"BOMB_WITH_SLOW",
-	"sprite":"graphics/weapons/aEP_fighter_nuke/proj00.png",
+	"sprite":"graphics/weapons/aEP_fighters/aEP_nuke/proj00.png",
 	"glowSprite":"",
 	"glowRadius":300,
 	"glowColor":[255,86,65,65],

@@ -1,42 +1,31 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 9,
-    "fluxVents": 9,
+    "fluxCapacitors": 13,
+    "fluxVents": 6,
     "goalVariant": true,
     "hullId": "aEP_des_lianliu",
-    "hullMods": ["aEP_RapidDissipate"],
+    "hullMods": ["unstable_injector"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_lianliu_Standard",
     "weaponGroups": [
         {
             "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0001": "miningblaster"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
+            "mode": "ALTERNATING",
             "weapons": {
-                "WS0004": "lightdualac",
-                "WS0005": "lightdualac",
-                "WS0009": "lightdualac"
+                "WS0001": "heavyneedler",
+                "WS0002": "heavyneedler",
+                "WS0003": "heavyneedler"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_b_m_mb32"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0002": "dualflak"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0008": "aEP_b_s_pom"}
+            "weapons": {
+                "WS0004": "aEP_b_s_630",
+                "WS0005": "aEP_b_s_630",
+                "WS0009": "aEP_b_s_630"
+            }
         }
     ]
 }

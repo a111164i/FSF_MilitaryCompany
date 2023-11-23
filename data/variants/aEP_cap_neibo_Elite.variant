@@ -1,7 +1,7 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 7,
-    "fluxVents": 29,
+    "fluxCapacitors": 0,
+    "fluxVents": 40,
     "goalVariant": true,
     "hullId": "aEP_cap_neibo",
     "hullMods": [
@@ -17,60 +17,45 @@
     "variantId": "aEP_cap_neibo_Elite",
     "weaponGroups": [
         {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0003": "lightneedler",
-                "WS0004": "lightneedler",
-                "WS0015": "lightneedler",
-                "WS0022": "lightneedler"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0018": "breach",
-                "WS0019": "breach",
-                "WS0020": "breach",
-                "WS0021": "breach"
-            }
-        },
-        {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {"COVER_MAIN": "aEP_cap_neibo_main"}
         },
         {
-            "autofire": true,
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0016": "aEP_b_l_aa40"}
+        },
+        {
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "lightneedler",
-                "WS0002": "lightneedler"
+                "WS0001": "railgun",
+                "WS0002": "railgun",
+                "WS0003": "railgun",
+                "WS0004": "railgun",
+                "WS0015": "railgun",
+                "WS0022": "railgun"
             }
         },
         {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0016": "devastator"}
-        },
-        {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0009": "aEP_b_s_630",
-                "WS0010": "aEP_b_s_630",
-                "WS0011": "aEP_b_s_630",
-                "WS0012": "aEP_b_s_630",
-                "WS0017": "dualflak"
+                "WS0005": "aEP_b_s_pom",
+                "WS0006": "aEP_b_s_pom",
+                "WS0009": "aEP_b_s_pom",
+                "WS0010": "aEP_b_s_pom"
             }
         },
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0005": "aEP_e_s_300k",
-                "WS0006": "aEP_e_s_300k"
+                "WS0018": "aEP_m_s_cluster",
+                "WS0019": "aEP_m_s_cluster",
+                "WS0020": "aEP_m_s_cluster",
+                "WS0021": "aEP_m_s_cluster"
             }
         }
     ]

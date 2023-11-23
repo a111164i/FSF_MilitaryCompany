@@ -2,7 +2,7 @@
 	"id":"aEP_cap_nuanchi_missile_shot",
 	"specClass":"missile",	
 	"missileType":"MIRV",
-	"sprite":"graphics/weapons/aEP_slow_missile/missile.png",
+	"sprite":"graphics/weapons/aEP_cap_nuanchi/missile.png",
 	"size":[14,50],	
 	"center":[7,25],
 	"collisionRadius":30,
@@ -19,7 +19,7 @@
                         "style":"CUSTOM",
                         "styleSpec":{
                                 "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-                                "engineColor":[40,40,150,200],
+                                "engineColor":[40,40,150,225],
                                 "contrailDuration":1,
                                 "contrailWidthMult":2,
                                 "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
@@ -27,9 +27,11 @@
                                 "contrailMaxSpeedMult":0.5f,
                                 "contrailAngularVelocityMult":0.5f,
                                 "contrailColor":[40,40,150,195],
+                                "glowSizeMult":1.2,
+                                #"glowAlternateColor":[181,121,100,255],
                                 "type":"SMOKE"},
-                        "width":6,
-                        "length":25.0,
+                        "width":8,
+                        "length":36.0,
                         "angle":180.0},	
 
                         {"id":"ES2",
@@ -37,7 +39,7 @@
                         "style":"CUSTOM",
                         "styleSpec":{
                                 "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-                                "engineColor":[40,40,150,200],
+                                "engineColor":[40,40,150,225],
                                 "contrailDuration":1.5,
                                 "contrailWidthMult":1,
                                 "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
@@ -45,15 +47,17 @@
                                 "contrailMaxSpeedMult":0.5f,
                                 "contrailAngularVelocityMult":0.5f,
                                 "contrailColor":[40,40,150,195],
+                                "glowSizeMult":1.2,
+                                #"glowAlternateColor":[181,121,100,255],
                                 "type":"SMOKE"},
-                        "width":6,
-                        "length":25.0,
+                        "width":8,
+                        "length":36.0,
                         "angle":180.0},
         ],
 
         "behaviorSpec":{"behavior":"MIRV",
                         "splitRange":300,
-                        "minTimeToSplit":2,
+                        "minTimeToSplit":0,
                         "canSplitEarly":false,
                         "splitSound":"hurricane_mirv_split",
                         "hitpoints":1000,

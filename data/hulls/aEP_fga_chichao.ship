@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_fga_chichao",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_chichao.png",
+  "spriteName": "graphics/ships/aEP_fga_chichao.png",
   "style": "aEP_FSF",
   "height": 80,
   "width": 80,
@@ -12,15 +12,16 @@
   "shieldRadius": 48,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
+    "aEP_SpecialHull",
     "aEP_HighSpeedManeuver",
     "ablative_armor",
     "distributed_fire_control",
-    "aEP_EmergencyReconstruct"
+    "aEP_EmergencyReconstruct",
+    "aEP_TitanicKiller"
   ],
   "builtInWeapons": {
     "WS 003": "aEP_e_s_300k",
-    "WS0002": "lidardish"
+    "WS0002": "aEP_fga_chichao_lidardish"
   },
   "weaponSlots": [
     {
@@ -63,18 +64,18 @@
   "engineSlots": [
     {
       "location": [-26, 16],
-      "length": 55,
-      "width": 16,
+      "length": 35,
+      "width": 6,
       "angle": 180,
-      "contrailSize": 16,
+      "contrailSize": 6,
       "style": "FSF_MAIN"
     },
     {
       "location": [-26, -16.5],
-      "length": 55,
-      "width": 16,
+      "length": 35,
+      "width": 6,
       "angle": 180,
-      "contrailSize": 16,
+      "contrailSize": 6,
       "style": "FSF_MAIN"
     },
     {
@@ -91,6 +92,14 @@
       "width": 6,
       "angle": -180,
       "contrailSize": 6,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-28, -0],
+      "length": 55,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 16,
       "style": "FSF_MAIN"
     }
   ],

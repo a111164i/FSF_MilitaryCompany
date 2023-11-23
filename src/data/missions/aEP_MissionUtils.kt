@@ -18,7 +18,6 @@ class aEP_MissionUtils{
     var DEFAULT_WEAPON_DATA = ListMap<String>()
     var DEFAULT_WING_DATA = ListMap<String>()
     var DEFAULT_HULLMOD_DATA = ListMap<String>()
-    var didChange = false
     var shouldChange = false
 
     @JvmStatic
@@ -72,12 +71,10 @@ class aEP_MissionUtils{
       }
 
 
-      didChange = true
     }
 
     @JvmStatic
     fun restore(){
-      if(!didChange) return
 
       for(spec in Global.getSettings().allWeaponSpecs){
         //先检测，如果没有就不需要getList的了
@@ -99,8 +96,9 @@ class aEP_MissionUtils{
         }
       }
       for(spec in Global.getSettings().allHullModSpecs){
+        //本体没有hidden的变量，找个凑数的，作用只是占位，实际使用set/isHidden
         var tag = Tags.THEME_HIDDEN
-        if(spec.hasTag(Tags.RESTRICTED)) {
+        if(spec.isHidden) {
           val list = DEFAULT_HULLMOD_DATA.getList(spec.id)
           if (spec.isHidden && !list.contains(tag)) {
             spec.isHidden = false
@@ -108,7 +106,6 @@ class aEP_MissionUtils{
         }
       }
 
-      didChange = false
     }
 
     @JvmStatic

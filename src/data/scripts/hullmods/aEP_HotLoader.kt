@@ -6,6 +6,7 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -14,15 +15,14 @@ import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
-import org.magiclib.util.MagicUI
 import java.awt.Color
 
 class aEP_HotLoader : aEP_BaseHullMod() {
 
   companion object {
     //private final static float RELOAD_THRESHOLD = 2;//by seconds
-    const val RELOAD_PERCENT = 0.25f
-    const val EXTRA_SPEED_ON_FIRE = 0.25f
+    const val BASE_BONUS = 50f
+
     const val SMOD_BONUS = 50f
 
     const val EXTRA_SPEED_ON_SYSTEM = 0.5f
@@ -31,25 +31,27 @@ class aEP_HotLoader : aEP_BaseHullMod() {
   }
 
   init {
-    notCompatibleList.add("magazines")
-    haveToBeWithMod.add("aEP_MarkerDissipation")
+    haveToBeWithMod.add(aEP_SpecialHull.ID)
+    notCompatibleList.add(HullMods.MAGAZINES)
+  }
+
+  override fun applyEffectsBeforeShipCreation(hullSize: HullSize, stats: MutableShipStatsAPI, id: String) {
+    stats.ballisticAmmoRegenMult.modifyPercent(ID, BASE_BONUS)
+    stats.energyAmmoRegenMult.modifyPercent(ID, BASE_BONUS)
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    if (!ship.hasListenerOfClass(AmmoReloadFaster::class.java)) {
-      ship.addListener(AmmoReloadFaster(ship))
-    }
+
 
   }
 
   override fun applySmodEffectsAfterShipCreationImpl(ship: ShipAPI, stats:MutableShipStatsAPI, id: String) {
-    stats.ballisticAmmoRegenMult.modifyPercent(id, SMOD_BONUS)
-    stats.energyAmmoRegenMult.modifyPercent(id, SMOD_BONUS)
+    stats.ballisticAmmoRegenMult.modifyPercent(ID+"_smod", SMOD_BONUS)
+    stats.energyAmmoRegenMult.modifyPercent(ID+"_smod", SMOD_BONUS)
   }
 
   internal class AmmoReloadFaster(var ship: ShipAPI) : AdvanceableListener {
     val checkTracker = IntervalUtil(0.2f,0.2f)
-    var heatLevel = 0f
     var reloadingMap: MutableMap<WeaponAPI, Float> = HashMap()
 
     override fun advance(amount: Float) {
@@ -57,8 +59,6 @@ class aEP_HotLoader : aEP_BaseHullMod() {
       //每0.25秒计算一次全武器
       if(!checkTracker.intervalElapsed()) return
       val timePassed = checkTracker.elapsed
-      heatLevel = aEP_MarkerDissipation.getBufferLevel(ship)
-      var extra = EXTRA_SPEED_ON_FIRE * heatLevel
       for (w in ship.allWeapons) {
         //排除不用子弹的，系统武器，内置武器，和系统槽位上面的普通武器
         if(!aEP_Tool.isNormalWeaponSlotType(w.slot, false)) continue
@@ -73,8 +73,7 @@ class aEP_HotLoader : aEP_BaseHullMod() {
 
         //根据不同的武器类型计算弹药恢复速度
         var ammoPerSecond = w.spec.ammoPerSecond
-        weaponTimer += ammoPerSecond * (RELOAD_PERCENT + extra) * timePassed
-
+        weaponTimer += ammoPerSecond * (BASE_BONUS/100f) * timePassed
 
         //获取该武器一轮装填的量，cap到当前最大弹药数
         val needToReload = (w.maxAmmo - w.ammo).coerceAtLeast(0).coerceAtMost(w.ammoTracker.reloadSize.toInt())
@@ -90,8 +89,10 @@ class aEP_HotLoader : aEP_BaseHullMod() {
 
   }
 
-
-
+  override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
+    if (index == 0) return "" + (BASE_BONUS * 100).toInt() + "%"
+    return ""
+  }
 
   override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return true
@@ -107,20 +108,12 @@ class aEP_HotLoader : aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ txt("aEP_HotLoader01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", RELOAD_PERCENT * 100f)+"%")
+    tooltip.addPara("{%s}"+ txt("aEP_HotLoader01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", BASE_BONUS)+"%")
+
+
     //显示不兼容插件
     tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
 
-
-    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ txt("aEP_HotLoader02") , 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", EXTRA_SPEED_ON_FIRE * 100f)+"%")
-
-  }
-
-  override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
-    if (index == 0) return "" + (RELOAD_PERCENT * 100).toInt() + "%"
-    if (index == 0) return "" + (EXTRA_SPEED_ON_FIRE * 100).toInt() + "%"
-    return ""
   }
 
   override fun hasSModEffect(): Boolean {
@@ -139,7 +132,7 @@ class aEP_HotLoader : aEP_BaseHullMod() {
     //Smod自带一个绿色的标题，不需要再来个标题
     //tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
 
-    tooltip.addPara("{%s}"+ txt("aEP_HotLoader03"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", SMOD_BONUS)+"%")
+    tooltip.addPara("{%s}"+ txt("aEP_HotLoader03"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", SMOD_BONUS + BASE_BONUS)+"%")
 
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     //tooltip.addPara("{%s}"+ txt("aEP_HotLoader02") , 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", EXTRA_SPEED_ON_FIRE * 100f)+"%")

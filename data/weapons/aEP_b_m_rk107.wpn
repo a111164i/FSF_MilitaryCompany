@@ -2,7 +2,7 @@
   "id": "aEP_b_m_rk107",
   "specClass": "projectile",
   "projectileSpecId": "aEP_b_m_rk107_shot",
-  "type": "MISSILE",
+  "type": "BALLISTIC",
   "size": "MEDIUM",
   "turretSprite": "graphics/weapons/aEP_b_m_rk107/tr.png",
   "hardpointSprite": "graphics/weapons/aEP_b_m_rk107/hp.png",

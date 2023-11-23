@@ -1,0 +1,15 @@
+{
+	"id":"aEP_RepulseMissileLaunch",
+	"type":"STAT_MOD",
+	#"aiType":"WEAPON_BOOST",
+	"aiType":"CUSTOM",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_RepulseMissileLaunchAI",
+	"statsScript":"data.scripts.shipsystems.aEP_RepulseMissileLaunch",
+
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+
+
+	"useSound":"system_ammo_feeder",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+}

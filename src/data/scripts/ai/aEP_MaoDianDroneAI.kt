@@ -6,6 +6,7 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipCommand
 import com.fs.starfarer.api.combat.ShipwideAIFlags
 import com.fs.starfarer.api.fleet.FleetMemberAPI
+import com.fs.starfarer.api.util.Misc
 import combat.impl.VEs.aEP_MovingSprite
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Tool
@@ -16,7 +17,7 @@ import java.awt.Color
 
 class aEP_MaoDianDroneAI:aEP_BaseShipAI {
   companion object{
-    const val ROTATE_SPEED = 30
+    const val ROTATE_SPEED = 45f
   }
 
   var target: ShipAPI? = null
@@ -45,7 +46,7 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
   inner class StraightToTarget() : aEP_MissileAI.Status() {
     override fun advance(amount: Float) {
       aEP_Tool.moveToPosition(ship,targetLoc!!)
-      if(MathUtils.getDistance(ship.location,targetLoc) < 50f){
+      if(MathUtils.getDistanceSquared(ship.location,targetLoc) < 5000f){
         targetLoc = null
         stat = HoldShield()
       }

@@ -4,25 +4,22 @@ import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
-import combat.util.aEP_AnimationController;
-import combat.util.aEP_DecoGlowController;
-import combat.util.aEP_DecoMoveController;
-import combat.util.aEP_DecoRevoController;
+import combat.util.*;
 
 public class aEP_DecoAnimation implements EveryFrameWeaponEffectPlugin
 {
 
-  WeaponAPI weapon;
+  public WeaponAPI weapon;
   aEP_DecoMoveController decoMoveController;
   aEP_DecoRevoController decoRevoController;
   aEP_DecoGlowController decoGlowController;
   aEP_AnimationController animeController;
 
-
   @Override
   public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
     this.weapon = weapon;
     ShipAPI ship = weapon.getShip();
+    if(weapon.getSlot().isHidden()) return;
     if (ship == null) return;
     if (animeController == null && weapon.getAnimation() != null)
       animeController = new aEP_AnimationController(weapon, weapon.getAnimation().getFrameRate());
@@ -35,6 +32,7 @@ public class aEP_DecoAnimation implements EveryFrameWeaponEffectPlugin
     decoRevoController.advance(amount);
     decoMoveController.advance(amount);
     decoGlowController.advance(amount);
+
   }
 
 

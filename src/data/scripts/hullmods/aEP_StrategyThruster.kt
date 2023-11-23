@@ -2,6 +2,7 @@ package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
@@ -10,43 +11,48 @@ import combat.util.aEP_DataTool
 import combat.util.aEP_ID
 import java.awt.Color
 
-class aEP_StrategyThruster:aEP_BaseHullMod() {
+class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
   companion object{
     const val ID = "aEP_StrategyThruster"
-    const val ALLOW_LEVEL_BONUS = 8f
+    const val ALLOW_LEVEL_BONUS = 4f
 
-    const val SHIELD_DAMAGE_TAKEN_BONUS_IN_ZERO = 50f
+    const val TIME_TO_MAX_BOOST = 3f
 
     val ZERO_FLUX_SPEED_BONUS = LinkedHashMap<ShipAPI.HullSize, Float>()
-    const val DEFAULT_BOOST_BONUS = 36f
+    const val DEFAULT_BOOST_BONUS = 32f
     init {
       ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 30f
       ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.CRUISER] = 30f
-      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.DESTROYER] = 40f
-      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.FRIGATE] = 50f
+      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.DESTROYER] = 35f
+      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.FRIGATE] = 40f
     }
+
+    const val CAP_PUNISH_MULT = 0.25f
 
   }
 
   init {
-    haveToBeWithMod.add("aEP_MarkerDissipation")
+    haveToBeWithMod.add(aEP_SpecialHull.ID)
     notCompatibleList.add(HullMods.UNSTABLE_INJECTOR)
+
+    banShipList.add("aEP_cru_hailiang3")
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     ship.mutableStats.zeroFluxMinimumFluxLevel.modifyFlat(ID, ALLOW_LEVEL_BONUS/100f)
     ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS[ship.hullSpec.hullSize]?: DEFAULT_BOOST_BONUS)
-  }
 
-  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
-    if(ship.isEngineBoostActive ){
-      ship.mutableStats.shieldAbsorptionMult.modifyPercent(ID, SHIELD_DAMAGE_TAKEN_BONUS_IN_ZERO)
+    ship.mutableStats.fluxCapacity.modifyMult(ID, 1f - CAP_PUNISH_MULT)
+
+    if(!ship.hasListenerOfClass(this::class.java)){
+      val cls = aEP_StrategyThruster()
+      cls.ship = ship
+      cls.bonus = ZERO_FLUX_SPEED_BONUS[ship.hullSpec.hullSize]?: DEFAULT_BOOST_BONUS
+      ship.addListener(cls)
     }
 
-    if(!ship.isEngineBoostActive ){
-      ship.mutableStats.shieldAbsorptionMult.modifyPercent(ID, 0f)
-    }
   }
+
 
   override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return true
@@ -78,7 +84,11 @@ class aEP_StrategyThruster:aEP_BaseHullMod() {
     //负面
     tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_StrategyThruster03"), 5f, arrayOf(Color.red,highLight, highLight),
       aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", SHIELD_DAMAGE_TAKEN_BONUS_IN_ZERO)+"%")
+      String.format("-%.0f", CAP_PUNISH_MULT*100f)+"%")
+    //负面
+    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_StrategyThruster04"), 5f, arrayOf(Color.red,highLight, highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", TIME_TO_MAX_BOOST))
 
     //显示不兼容插件
     tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
@@ -91,5 +101,35 @@ class aEP_StrategyThruster:aEP_BaseHullMod() {
 
   }
 
+
+  //----------------------------------------//
+  //往下是listener
+  //以下变量是给listener用
+  var bonus = DEFAULT_BOOST_BONUS
+  var ship:ShipAPI? = null
+  var time = 0f
+  override fun advance(amount: Float) {
+
+    ship?:return
+    val ship = ship as ShipAPI
+
+    //防止在装配页面出现数据异常
+    if(ship.fullTimeDeployed < 1f) return
+
+    val level = time/ TIME_TO_MAX_BOOST
+
+    //脱离0幅能加速或者战术系统激活时，buff消退
+    if(!ship.isEngineBoostActive || ship.system?.isActive == true){
+      time = (time - amount * 3f).coerceAtLeast(0f)
+      ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, 0f)
+    }else{
+      time = (time + amount).coerceAtMost(TIME_TO_MAX_BOOST)
+      var flatBonus = bonus * level
+      ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, flatBonus)
+      //改变颜色
+      ship.engineController.fadeToOtherColor(ID, Color.green, null,1f,0.35f * level)
+
+    }
+  }
 
 }

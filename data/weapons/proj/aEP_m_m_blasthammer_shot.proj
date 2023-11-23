@@ -1,4 +1,4 @@
-{
+ {
 	"id":"aEP_m_m_blasthammer_shot",
 	"specClass":"missile",	
 	"missileType":"MISSILE",
@@ -10,7 +10,7 @@
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"explosionColor":[243,242,241,250],  # purely visual, will get a white additively blended core on top of this color
-  "explosionRadius":150, # purely visual
+  "explosionRadius":25, # purely visual
   "explosionSpec":{"duration":0.0001f, # not visual
            "radius":80,
            "coreRadius":40, # full damage within core radius
@@ -19,24 +19,25 @@
            "particleSizeMin":10.0,
            "particleSizeRange":8.0,
             "particleDuration":1.4,
-           "particleCount":160,
+           "particleCount":100,
            "particleColor":[243,242,241,250]},
 	#"maxFlightTime":3, #一般用不上
 	"flameoutTime":0.5,  # total time from flameout to full fadeout
-	"armingTime":2, # safe range count by time 
+	"armingTime":1, # safe range count by time
 	"noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered(AKA safe range)	
 	"fadeTime":0.1, # fadeout duration
 	"alwaysAccelerate":false,
   "reduceDamageWhileFading":false,
 	"fizzleOnReachingWeaponRange":true,
+	"noCollisionWhileFading":true,
 	#will use projectile range calculation that considers range threshold (from SO etc)
   #"useProjectileRangeCalculation":false
   #defaults to 0.5 (same as what was hardcoded before)
   #"dudProbabilityOnFlameout":0.5
 	"engineSpec":{
-		"turnAcc":120,
+		"turnAcc":240,
 	  "turnRate":60,
-	  "acc":200,
+	  "acc":250,
 	  "dec":100
 	},
 	"engineSlots":[{"id":"ES1",

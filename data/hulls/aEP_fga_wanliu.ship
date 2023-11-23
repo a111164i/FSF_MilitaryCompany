@@ -2,21 +2,23 @@
   "hullName": "",
   "hullId": "aEP_fga_wanliu",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_wangliu.png",
+  "spriteName": "graphics/ships/aEP_fga_wanliu.png",
   "style": "aEP_FSF",
   "height": 150,
   "width": 140,
-  "center": [70, 80],
-  "collisionRadius": 92.5,
-  "shieldCenter": [0, -0],
+  "center": [70, 69],
+  "collisionRadius": 90,
+  "shieldCenter": [-4, -0],
   "shieldRadius": 89.5,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
+    "aEP_SpecialHull",
     "aEP_TargetSystem"
   ],
   "builtInWeapons": {
-    "WS0005": "aEP_fga_wanliu_cover"
+    "WS0003": "aEP_fga_wanliu_arm_l",
+    "WS0005": "aEP_fga_wanliu_cover",
+    "WS0006": "aEP_fga_wanliu_arm_r"
   },
   "weaponSlots": [
     {
@@ -26,41 +28,61 @@
       "mount": "HARDPOINT",
       "arc": 15,
       "angle": -0,
-      "locations": [12, -0]
+      "locations": [21.5, -0],
+      "renderOrderMod": 100
     },
     {
       "id": "WS0002",
       "size": "SMALL",
-      "type": "HYBRID",
+      "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 360,
+      "arc": 90,
       "angle": 0,
-      "locations": [-26, -12],
-      "renderOrderMod": 100
+      "locations": [40, -18],
+      "renderOrderMod": 1
     },
     {
       "id": "WS0004",
       "size": "SMALL",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 60,
+      "arc": 90,
       "angle": -0,
-      "locations": [29, 17]
+      "locations": [40, 18],
+      "renderOrderMod": 1
     },
     {
       "id": "WS0005",
+      "size": "LARGE",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-11, -0],
+      "renderOrderMod": 250
+    },
+    {
+      "id": "WS0003",
       "size": "SMALL",
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 0,
       "angle": -0,
-      "locations": [-2, 1],
-      "renderOrderMod": 10
+      "locations": [38, 28]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [38, -28]
     }
   ],
   "engineSlots": [
     {
-      "location": [-63, 17],
+      "location": [-52, 17],
       "length": 43.5,
       "width": 16,
       "angle": 180,
@@ -68,7 +90,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-63, -17],
+      "location": [-52, -17],
       "length": 43.5,
       "width": 16,
       "angle": -180,
@@ -76,7 +98,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-60, 41],
+      "location": [-49, 41],
       "length": 30,
       "width": 10,
       "angle": 180,
@@ -84,7 +106,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-60, -41],
+      "location": [-49, -41],
       "length": 30,
       "width": 10,
       "angle": -180,
@@ -93,27 +115,23 @@
     }
   ],
   "bounds": [
-    21, 12.5,
     32, 12.5,
-    36, 19.5,
-    54.5, 19.5,
-    54.5, 37.5,
-    -25.5, 40.5,
-    -41.5, 48,
-    -64.5, 36.5,
-    -65.5, 23.5,
-    -61.5, 21.5,
-    -61.5, 13.5,
-    -56.5, 9.5,
-    -56.5, -9.5,
-    -61.5, -13.5,
-    -61.5, -21.5,
-    -65.5, -23.5,
-    -64.5, -36.5,
-    -41.5, -48,
-    -25.5, -40.5,
-    54.5, -37.5,
-    54.5, -18.5,
-    21, -18.5
+    43, 12.5,
+    47, 19.5,
+    65.5, 19.5,
+    65.5, 37.5,
+    -14.5, 40.5,
+    -30.5, 48,
+    -52, 36,
+    -48.5, 14,
+    -46, 11,
+    -46, -11,
+    -48.5, -14,
+    -52, -36,
+    -30.5, -48,
+    -14.5, -40.5,
+    65.5, -37.5,
+    65.5, -18.5,
+    32, -18.5
   ]
 }

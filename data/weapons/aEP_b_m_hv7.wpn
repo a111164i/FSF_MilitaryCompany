@@ -4,22 +4,21 @@
   "projectileSpecId": "aEP_b_m_hv7_shot",
   "type": "BALLISTIC",
   "size": "MEDIUM",
-  "turretSprite": "graphics/weapons/aEP_high_speed_HE/tr.png",
-  "turretGunSprite": "graphics/weapons/aEP_high_speed_HE/trbr.png",
-  "turretUnderSprite": "graphics/weapons/aEP_high_speed_HE/base.png",
-  "hardpointSprite": "graphics/weapons/aEP_high_speed_HE/hp.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_high_speed_HE/hpbr.png",
-  #"renderHints":[RENDER_BARREL_BELOW],
+  "turretSprite": "graphics/weapons/aEP_b_m_hv7/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_m_hv7/trbr.png",
+  "turretUnderSprite": "graphics/weapons/aEP_base_m.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_m_hv7/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_m_hv7/hpbr.png",
   "visualRecoil": 6,
   "turretOffsets": [
-    22,
+    23,
     0
   ],
   "turretAngleOffsets": [
     0
   ],
   "hardpointOffsets": [
-    26,
+    25,
     0
   ],
   "hardpointAngleOffsets": [
@@ -28,12 +27,18 @@
   "barrelMode": "ALTERNATING",
   "animationType": "MUZZLE_FLASH",
   "muzzleFlashSpec": {
-    "length": 1,
-    "spread": 1,
-    "particleSizeMin": 175,
-    "particleSizeRange": 75,
-    "particleDuration": 0.2,
-    "particleCount": 2,
-    "particleColor":  [241,120,110,161]},
+    "length": 75,
+    "spread": 15,
+    "particleSizeMin": 50,
+    "particleSizeRange": 150,
+    "particleDuration": 0.25,
+    "particleCount": 8,
+    "particleColor": [
+      105,185,255,
+      75
+    ]
+  },
+
+
   "fireSoundTwo": "aEP_b_m_hv7_fire"
 }

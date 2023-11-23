@@ -4,10 +4,11 @@
 	#"aiType":"WEAPON_BOOST",
 	"aiType":"CUSTOM",
   "aiScript":"data.scripts.ai.shipsystemai.aEP_VentModeAI",
-	
 	"statsScript":"data.scripts.shipsystems.aEP_VentMode",
 
-	
+
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+
 
 	"fadeActivationSoundOnChargedown":true,
 	"useSound":"aEP_DamperTankerOnUse",

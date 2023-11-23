@@ -6,10 +6,6 @@ import com.fs.starfarer.api.impl.campaign.econ.impl.OrbitalStation;
 public class aEP_FSFOrbitalStationPlugin extends OrbitalStation
 {
 
-  @Override
-  protected void matchStationAndCommanderToCurrentIndustry() {
-    super.matchStationAndCommanderToCurrentIndustry();
-  }
 
   @Override
   public boolean isAvailableToBuild() {

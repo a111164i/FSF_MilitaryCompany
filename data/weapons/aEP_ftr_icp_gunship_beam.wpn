@@ -20,13 +20,13 @@
     8,
     -2,
     8,
-    -6,
+    -5,
     8,
-    6,
+    5,
     8,
-    -4,
+    -3.5,
     8,
-    4
+    3.5
   ],
   "turretAngleOffsets": [
     0,
@@ -57,7 +57,7 @@
   ],
   "width": 6,
   "textureType": ROUGH,
-  "textureScrollSpeed": 64,
+  "textureScrollSpeed": 256,
   "pixelsPerTexel": 1,
   "pierceSet": [
     PROJECTILE_FF,

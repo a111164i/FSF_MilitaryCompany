@@ -1,0 +1,48 @@
+{
+  "id":"aEP_fga_xiliu_main",
+  "specClass": "beam",
+  "type": "ENERGY",
+  "size": "MEDIUM",
+  "collisionClass": "RAY_FIGHTER",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "turretSprite": "graphics/weapons/aEP_fga_xiliu/main00.png",
+  "turretGlowSprite": "graphics/weapons/aEP_fga_xiliu/main_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_fga_xiliu/main00.png",
+  #"hardpointGlowSprite": "",
+  "beamEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
+  "numFrames":2,
+  "frameRate":0,
+  "turretOffsets": [
+		25,0
+  ],
+  "turretAngleOffsets": [
+		0
+  ],
+  "hardpointOffsets": [
+	  29,0
+
+  ],
+  "hardpointAngleOffsets": [
+	  0
+  ],
+  #"beamFireOnlyOnFullCharge": true,
+  #"convergeOnPoint":true,
+  #"autocharge":true, 
+  "darkCore":false,
+  "barrelMode": "LINKED",
+  #长程模式，绿光
+  "glowColor":[15,255,55,255],
+  "fringeColor":[110,255,85,225],
+  "coreColor":[235,255,205,255],
+
+  "hitGlowBrightenDuration":0,
+  "hitGlowRadius":125,
+  "width":20.0,
+  "textureType":LASER,
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":5.0,
+  "pierceSet":[],
+  "playFullFireSoundOne":true,
+  "fireSoundOne":"aEP_fga_xiliu_main_fire",
+},

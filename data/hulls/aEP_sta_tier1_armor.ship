@@ -1,0 +1,30 @@
+{
+  "hullName": "",
+  "hullId": "aEP_sta_tier1_armor",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_stations/tier1_armor.png",
+  "style": "aEP_FSF",
+  "height": 50,
+  "width": 150,
+  "center": [75, 25],
+  "collisionRadius": 100,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 95,
+  "viewOffset": 0,
+	"builtInMods": [
+		"reduced_explosion",
+    "always_detaches"
+	],
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    16, -17,
+    8.5, -56.5,
+    -14.5, -53,
+    -10, -27,
+    -10, 27,
+    -14.5, 53,
+    8.5, 56.5,
+    16, 17
+  ]
+}

@@ -49,26 +49,33 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     // These show up as items in the bulleted list under
     // "Tactical Objectives" on the mission detail screen
-    api.addBriefingItem(txt("aEP_Mission03_03"));
-    api.addBriefingItem(txt("aEP_Mission03_04"));
+    String name1 = "冰原";
+    String name2 = "暴雪";
+    api.addBriefingItem(String.format(txt("aEP_Mission03_03"), name1, name2));
+    api.addBriefingItem(String.format(txt("aEP_Mission03_04"), Float.toString(2)));
     api.addBriefingItem(txt("aEP_Mission03_05"));
-
     //在这加自己的船，用装配文件的ID，后面是船名，true和false是“是否是旗舰”的设定
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
-    String name1 = "破冰";
-    api.addToFleet(FleetSide.PLAYER, "aEP_cap_decomposer_Standard", FleetMemberType.SHIP, name1, true);
-    String name2 = "汹涌";
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_zhongliu_Standard", FleetMemberType.SHIP, name2, false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "A02",false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP,  "F4A",false);
+
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_decomposer_Standard", FleetMemberType.SHIP,name1, true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_pubu_Standard", FleetMemberType.SHIP,name2, false);
+
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP,  false);
 
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配
     // Set up the enemy fleet.
     api.addToFleet(FleetSide.ENEMY, "aEP_scintilla_Strike", FleetMemberType.SHIP,  false);
     api.addToFleet(FleetSide.ENEMY, "aEP_scintilla_Strike", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.ENEMY, "aEP_scintilla_Strike", FleetMemberType.SHIP,  false);
 
+    api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
     api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
 
     api.addToFleet(FleetSide.ENEMY, "aEP_lumen_Standard", FleetMemberType.SHIP,  false);
@@ -143,7 +150,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
             sizeDisable += 1;
           }
 
-          if(sizeDisable > 1){
+          if(sizeDisable > 2){
             engine.endCombat(0f,FleetSide.ENEMY);
             didOnce = true;
           }

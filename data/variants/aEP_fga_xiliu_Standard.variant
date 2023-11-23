@@ -1,14 +1,14 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 5,
-    "fluxVents": 10,
+    "fluxCapacitors": 10,
+    "fluxVents": 3,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
-        "aEP_VanguardHull",
-        "armoredweapons",
-        "autorepair",
-        "fluxbreakers"
+        "hardened_subsystems",
+        "targetingunit",
+        "advancedoptics",
+        "aEP_ShieldFloating"
     ],
     "permaMods": [],
     "sMods": [],
@@ -16,37 +16,29 @@
     "weaponGroups": [
         {
             "autofire": true,
-            "mode": "ALTERNATING",
-            "weapons": {"WS0002": "lightdualac"}
-        },
-        {
-            "autofire": true,
-            "mode": "ALTERNATING",
-            "weapons": {"WS0008": "lightdualac"}
-        },
-        {
-            "autofire": true,
-            "mode": "ALTERNATING",
+            "mode": "LINKED",
             "weapons": {
-                "L01": "lightmortar",
-                "L02": "lightmortar"
+                "WS0002": "aEP_fga_xiliu_main",
+                "WS0003": "aEP_fga_xiliu_main2"
             }
         },
         {
-            "autofire": false,
-            "mode": "ALTERNATING",
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
             "weapons": {
-                "R01": "lightmortar",
-                "R02": "lightmortar"
+                "L01": "aEP_b_s_630",
+                "R01": "aEP_b_s_630"
             }
         },
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {
-                "WS0007": "aEP_e_s_300k",
-                "WS0009": "aEP_e_s_300k"
-            }
+            "weapons": {"WS0009": "ioncannon"}
         }
     ]
 }

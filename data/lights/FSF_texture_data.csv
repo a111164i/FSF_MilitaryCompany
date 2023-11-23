@@ -27,7 +27,6 @@ aEP_XiLiu,ship,,1,normal,graphics/shaders/normal/ships/aEP_xiliu_normal.png
 aEP_XiLiu_p,ship,,1,normal,graphics/shaders/normal/ships/aEP_xiliu2_normal.png
 aEP_RaoLiu,ship,,1,normal,graphics/shaders/normal/ships/aEP_raoliu_normal.png
 aEP_repairing_drone,ship,,1,normal,graphics/shaders/normal/ships/aEP_repairing_drone_normal.png
-aEP_decompose_drone,ship,,1,normal,graphics/shaders/normal/ships/aEP_decompose_drone_normal.png
 aEP_defense_drone,ship,,1,normal,graphics/shaders/normal/ships/aEP_defense_drone_normal.png
 aEP_anmian_drone,ship,,1,normal,graphics/shaders/normal/ships/aEP_anmian_drone_normal.png
 aEP_HL_drone,ship,,1,normal,graphics/shaders/normal/ships/aEP_HL_drone_normal.png

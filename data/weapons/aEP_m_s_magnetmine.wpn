@@ -4,8 +4,8 @@
   "projectileSpecId": "aEP_m_s_magnetmine_shot",
   "type": "MISSILE",
   "size": "SMALL",
-  "turretSprite": "graphics/weapons/aEP_m_s_magnetmine/tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_m_s_magnetmine/hp.png",
+  "turretSprite": "graphics/weapons/aEP_missile_small_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_missile_small_hp.png",
   "renderHints": [
     RENDER_LOADED_MISSILES
   ],
@@ -42,5 +42,5 @@
       155
     ]
   },
-  "fireSoundTwo":"reaper_fire",
+  "fireSoundTwo": "reaper_fire"
 }

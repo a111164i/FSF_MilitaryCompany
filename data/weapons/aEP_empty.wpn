@@ -8,9 +8,9 @@
 	"displayArcRadius":10,
 	"everyFrameEffect": "data.scripts.weapons.aEP_EmptyWeaponAnimation",
 	"turretSprite": "",
-	"turretGolwSprite": "graphics/weapons/aEP_tearing_beam_fighter/aEP_tearing_beam_fighter_tr_glow.png",
+	"turretGolwSprite": "",
   "hardpointSprite": "",
-  "hardpointGlowSprite": "graphics/weapons/aEP_tearing_beam_fighter/aEP_tearing_beam_fighter_hp_glow.png",
+  "hardpointGlowSprite": "",
 	"turretOffsets":[0, 0],
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[-15, 0],
@@ -23,6 +23,6 @@
 	#"textureType":["graphics/fx/beam_chunky_fringe.png","graphics/fx/beam_chunky_core.png"],
 	"textureScrollSpeed":-72.0,
 	"pixelsPerTexel":4.0,
-	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER],
+	"pierceSet":[],
 
 }

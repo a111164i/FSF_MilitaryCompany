@@ -1,21 +1,26 @@
 {
 	"id":"aEP_ftr_bom_attacker_gun_shot",
 	"specClass":"projectile",
-	"spawnType":"BALLISTIC",
-	"collisionClass":"PROJECTILE_FF",
-	"collisionClassByFighter":"PROJECTILE_FIGHTER",
-	"length": 72,
-	"width": 8,
-	"fadeTime":0.1,
-	"fringeColor":[255,165,30,135],
-	"coreColor":[255,255,255,200],
-	"glowColor":[255,165,30,35],
-	"glowRadius":25,
-	"hitGlowRadius": 50,
-	"textureType":"ROUGH",  # now also used for "BALLISTIC_AS_BEAM", if specified
-	#"textureType":["graphics/fx/emp_arcs.png","graphics/fx/emp_arcs.png"],
-	"textureScrollSpeed":-256,
-	"pixelsPerTexel":1.0,
-	"bulletSprite":"graphics/missiles/shell_round_sml.png",
-	"passThroughMissiles":false,
+  "spawnType":"BALLISTIC_AS_BEAM",
+  "collisionClass":"RAY",
+  "collisionClassByFighter":"RAY_FIGHTER",
+  "length":240.0,
+  "width":11,
+  "fadeTime":0.1,
+
+  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "fringeColor":[255,165,30,135],
+  "coreColor":[255,255,255,200],
+  "glowColor":[255,165,30,45],
+  "glowRadius":25,
+  "hitGlowRadius":50,
+
+  "textureType":"SMOOTH",  # only needed for BEAM spawnType
+  #"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+  "pierceSet":[],
+  "textureScrollSpeed":-256.0,
+  "pixelsPerTexel":1,
+  "passThroughMissiles":false,
+  #"bulletSprite":"graphics/missiles/shell_small_yellow.png"
 }

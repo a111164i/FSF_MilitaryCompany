@@ -7,12 +7,14 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
+import com.fs.starfarer.api.util.Misc
 
 import combat.util.aEP_DataTool
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import data.scripts.ai.aEP_CruiseMissileAI
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel
+import data.scripts.weapons.aEP_DecoAnimation
 import java.awt.Color
 import java.util.*
 
@@ -24,15 +26,15 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin, On
     const val id = "\$aEP_CruiseMissileCarrier"
     const val SHIP_ID = "aEP_CruiseMissile"
     const val SHIP_VARIANT_ID = "aEP_CruiseMissile"
-    const val FAKE_WEAPON_ID = "aEP_cruise_missile_weapon"
-    const val FAKE_WEAPON_SHOT_ID = "aEP_cruise_missile_weapon_shot"
+    const val FAKE_WEAPON_ID = "aEP_des_shendu_mk2_cruise_missile"
+    const val FAKE_WEAPON_SHOT_ID = "aEP_des_shendu_mk2_cruise_missile_shot"
     const val EXPLODE_SHOT_WEAPON_ID = "aEP_cruise_missile_shot"
     const val EXPLODE_SHOT_WEAPON_SHOT_ID = "aEP_cruise_missile_shot"
     const val SPECIAL_ITEM_ID = "aEP_cruise_missile"
     const val CAMPAIGN_ENTITY_ID = "aEP_CruiseMissile"
     const val STATS_LOADED_ID = "aEP_aEP_CruiseMissileCarrierLoaded"
 
-    const val TARGET_KEY = "aEP_cruise_missile_weapon_shot"
+    const val TARGET_KEY = "aEP_des_shendu_mk2_cruise_missile_shot"
 
   }
 
@@ -102,14 +104,23 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin, On
     //得到模拟武器
     var toFind : WeaponAPI? = null
     for (w in ship.allWeapons) {
-      if (w.spec.weaponId == aEP_CruiseMissileCarrier.FAKE_WEAPON_ID) {
+      if (w.spec.weaponId.equals(FAKE_WEAPON_ID)) {
         toFind = w
       }
     }
-    val simWeapon = (toFind as WeaponAPI)?: return
+    val simWeapon = (toFind as WeaponAPI)
+
+    //控制装饰武器
+    for (w in ship.allWeapons) {
+      if (w.spec.weaponId.equals("aEP_des_shendu_mk2_clip")) {
+        val plugin = w.effectPlugin as aEP_DecoAnimation
+        plugin.setMoveToLevel(simWeapon.chargeLevel)
+      }
+    }
+
 
     //战斗开始时运行一次，根据是否在生涯判断要不要移除弹药
-    if (ship.fullTimeDeployed == 0f) {
+    if (ship.fullTimeDeployed <= 0f) {
       if (Global.getCombatEngine().isInCampaign
         && ship.mutableStats.dynamic.getStat(STATS_LOADED_ID).getFlatStatMod(SPECIAL_ITEM_ID).value ==1f) {
         simWeapon.maxAmmo = 1
@@ -166,7 +177,7 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin, On
   }
 
   //要在装配页面实现动态贴图变化，必须使用EveryFrameWeaponEffectPlugin
-  //在hullmods里面修改weapon的frame没有用
+  //在hullmods的everyFrame里面修改weapon的frame没有用
   override fun advance(amount: Float, engine: CombatEngineAPI?, weapon: WeaponAPI?) {
     weapon?.animation?.frame = 0
     val ship = weapon?.ship?: return
@@ -181,19 +192,39 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin, On
     val simWeapon = (toFind as WeaponAPI)?: return
 
     //调整装填数据调整贴图
-    when(aEP_CruiseMissileLoadIntel.getLoadedItemId(ship.fleetMemberId)){
+    val loadedId = aEP_CruiseMissileLoadIntel.getLoadedItemId(ship.fleetMemberId)
+    when(loadedId){
       "" -> simWeapon.animation.frame = 0
       aEP_CruiseMissileLoadIntel.S1_ITEM_ID -> simWeapon.animation.frame = 1
       aEP_CruiseMissileLoadIntel.S2_ITEM_ID -> simWeapon.animation.frame = 2
     }
+
+    //针对战役的情况
+    //如果在战役中，或者战役模拟战中
+    //生涯模拟战时，isInCampaignSim和isSimulation都是true 这里只考虑非生涯的模拟战，
+    if((Global.getCombatEngine().isMission
+          || (Global.getCombatEngine().isSimulation && !Global.getCombatEngine().isInCampaignSim))
+      && simWeapon.ammo>=1){
+      simWeapon.animation.frame = 1
+    }
+
   }
 
-  //s1 s2 巡航巡洋导弹发射装置
+  //s1 s2 巡航导弹发射装置
   //控制如何爆炸在FighterSpecial里面
   override fun onFire(projectile: DamagingProjectileAPI?, weapon: WeaponAPI?, engine: CombatEngineAPI?) {
     engine?: return
     projectile?: return
     weapon?: return
+
+    //刷点烟雾
+    aEP_Tool.spawnCompositeSmoke(weapon.location, 150f, 3f,  Color(250, 250, 250, 175),weapon.ship.velocity)
+    aEP_Tool.spawnCompositeSmoke(weapon.location, 250f, 4f,  Color(150, 150, 150, 175),weapon.ship.velocity)
+    //闪光
+    Global.getCombatEngine().addSmoothParticle(
+      weapon.location,
+      Misc.ZERO,
+      300f,1f,0.1f,0.3f,Color.yellow)
 
     //先读取本舰目前在intel里面装填的道具id
     val itemId = aEP_CruiseMissileLoadIntel.getLoadedItemId(weapon.ship.fleetMemberId)
@@ -211,11 +242,11 @@ class aEP_CruiseMissileCarrier : BaseHullMod(), EveryFrameWeaponEffectPlugin, On
         Global.getCombatEngine().removeEntity(projectile)
         return
       }
-      //如果在任务中
+      //如果在战役中
       if( Global.getCombatEngine().isMission){
         hullId = aEP_CruiseMissileLoadIntel.S1_VAR_ID
       }
-      //如果在任务模拟战中
+      //如果在战役模拟战中
       if( Global.getCombatEngine().isSimulation){
         hullId = aEP_CruiseMissileLoadIntel.S1_VAR_ID
       }

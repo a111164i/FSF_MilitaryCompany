@@ -1,0 +1,14 @@
+{
+  "variantId": "aEP_sta_tier2_structure_Standard",
+  "hullId": "aEP_sta_tier2_structure",
+  "displayName": "",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [],
+  "wings": []
+}

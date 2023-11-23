@@ -5,14 +5,11 @@
   "statsScript":"data.scripts.shipsystems.aEP_CrowdControl",
 
 
-  "range":700,
+  "range":750,
 
   "empDamage":50,
-  "damage":100,
+  "damage":150,
   "damageType":FRAGMENTATION,
-
-  "shieldRingColor":[255,255,255,255],
-  "shieldInnerColor":[125,100,255,75],
 
   "effectColor1":[255,150,255,200],
   "effectColor2":[255,175,255,255],
@@ -23,7 +20,7 @@
   "outOfUsesSound":"gun_out_of_ammo",
 
   "aiHints":{
-    "threatRange":700,
+    "threatRange":750,
     "threatAmount":2,
     "threatAngle":0,
     "threatArc":360,

@@ -48,9 +48,9 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0006": "heavyneedler",
-                "WS0009": "heavyneedler",
-                "WS0012": "heavyneedler"
+                "WS0006": "hveldriver",
+                "WS0009": "hveldriver",
+                "WS0012": "hveldriver"
             }
         },
         {
@@ -59,6 +59,14 @@
             "weapons": {
                 "WS0011": "aEP_b_s_pom",
                 "WS0013": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0010": "aEP_b_s_pom",
+                "WS0038": "aEP_cap_requan_missile"
             }
         }
     ]

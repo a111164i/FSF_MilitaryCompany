@@ -6,8 +6,6 @@
     "hullId": "aEP_cap_shangshengliu",
     "hullMods": [
         "aEP_EliteShip",
-        "aEP_ResistShield",
-        "aEP_RapidDissipate",
         "heavyarmor"
     ],
     "permaMods": [],
@@ -50,5 +48,4 @@
             "weapons": {"WS0014": "aEP_b_m_mb32"}
         }
     ],
-    "wings": ["aEP_ftr_ut_repair_wing"]
 }

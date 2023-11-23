@@ -8,22 +8,22 @@
   "quality": 1,
   "permaMods": [],
   "hullMods": [],
- 	"weaponGroups": [
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0002": "aEP_empty",        
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {  
-                "WS0001": "aEP_ftr_ut_decompose_beam",
-            }
-        },
-          ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "aEP_empty"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_ut_decompose_beam"
+      }
+    }
+  ],
   "modules": [],
   "wings": []
 }

@@ -32,6 +32,7 @@
 			"FSF_advancebp": 0.25
 		},
 		"hulls":{
+
 			"aEP_des_youjiyan":0.75,
 			"aEP_des_youjiyan_mk2":0.75,
 			"aEP_cap_shangshengliu":0.75,
@@ -183,6 +184,12 @@
 			"efficiency_overhaul",
 		],
 	},
+	"weaponSellFrequency":{
+  },
+  "fighterSellFrequency":{
+  },
+  "hullmodSellFrequency":{
+  },
 	"factionDoctrine":{
 		"warships":4,
 		"carriers":3,
@@ -206,13 +213,13 @@
 		"officerSkills":[
 			"ballistic_mastery",
 			"ordnance_expert",
+			"aEP_SkillAnalyze"
 		],
 
 		"commanderSkillsShuffleProbability":0.5,
 		"commanderSkills":[
-			"officer_management",
 			"coordinated_maneuvers",
-			"support_doctrine"
+			# "support_doctrine"
 		],
 	},
 	"illegalCommodities":[
@@ -221,7 +228,7 @@
 		"ai_cores",	
 	],
 	"music":{
-			"theme":"aEP_fsf_neutral",
+			"theme":"aEP_fsf_enemy",
 			"market_neutral":"aEP_fsf_neutral",
 			"market_hostile":"aEP_fsf_enemy",
 			"market_friendly":"aEP_fsf_friendly",
@@ -243,7 +250,8 @@
 			"graphics/portraits/portrait27.png",
 			"graphics/portraits/portrait42.png",
 			"graphics/portraits/portrait46.png",
-			"graphics/portraits/portrait_league07.png"
+			"graphics/portraits/portrait_league07.png",
+			"graphics/aEP_portraits/3.png"
 		],
 	},
 	"custom":{

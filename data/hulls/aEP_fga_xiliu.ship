@@ -2,75 +2,85 @@
   "hullName": "",
   "hullId": "aEP_fga_xiliu",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_xiliu.png",
+  "spriteName": "graphics/ships/aEP_fga_xiliu.png",
   "style": "aEP_FSF",
   "height": 140,
   "width": 80,
-  "center": [40, 65],
-  "collisionRadius": 74.5,
+  "center": [40, 70.5],
+  "collisionRadius": 75,
   "shieldCenter": [0, -0],
-  "shieldRadius": 72.5,
+  "shieldRadius": 74.5,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
-    "turretgyros",
-    "aEP_CloseTargeting",
-    "aEP_HLMultiTurret",
+    "aEP_SpecialHull",
+
+    "ground_support"
   ],
   "builtInWeapons": {
-    "LIDAR01": "aEP_fga_xiliu_lidar",
-    "LIDAR02": "aEP_fga_xiliu_lidar",
-    "WS0001": "aEP_marker",
-    "WS0003": "aEP_fga_xiliu_lidar",
-    "WS0004": "aEP_fga_xiliu_lidar",
-    "WS0005": "aEP_fga_xiliu_lidar",
-    "WS0006": "aEP_fga_xiliu_lidar"
+    "GREEN": "aEP_fga_xiliu_green",
+    "RED": "aEP_fga_xiliu_red",
+    "ROTATOR": "aEP_fga_xiliu_rotator",
+    "WS0002": "aEP_fga_xiliu_main",
+    "WS0003": "aEP_fga_xiliu_main2"
   },
   "weaponSlots": [
     {
       "id": "WS0002",
-      "size": "SMALL",
-      "type": "BALLISTIC",
+      "size": "MEDIUM",
+      "type": "BUILT_IN",
       "mount": "TURRET",
-      "arc": 180,
+      "arc": 360,
       "angle": 0,
-      "locations": [49, -0]
+      "locations": [44, -0]
+    },
+    {
+      "id": "WS0003",
+      "size": "MEDIUM",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [43.5, -0]
     },
     {
       "id": "L01",
       "size": "SMALL",
-      "type": "BALLISTIC",
+      "type": "HYBRID",
       "mount": "TURRET",
       "arc": 150,
       "angle": 45,
-      "locations": [8, 18]
+      "locations": [2.5, 18],
+      "renderOrderMod": 1
     },
     {
       "id": "R01",
       "size": "SMALL",
-      "type": "BALLISTIC",
+      "type": "HYBRID",
       "mount": "TURRET",
       "arc": 150,
       "angle": -45,
-      "locations": [8, -18]
+      "locations": [2.5, -18],
+      "renderOrderMod": 1
     },
     {
       "id": "L02",
       "size": "SMALL",
-      "type": "BALLISTIC",
+      "type": "HYBRID",
       "mount": "TURRET",
       "arc": 150,
       "angle": 135,
-      "locations": [-12, 18]
+      "locations": [-17.5, 18],
+      "renderOrderMod": 2
     },
     {
       "id": "R02",
       "size": "SMALL",
-      "type": "BALLISTIC",
+      "type": "HYBRID",
       "mount": "TURRET",
       "arc": 150,
       "angle": -135,
-      "locations": [-12, -18]
+      "locations": [-17.5, -18],
+      "renderOrderMod": 2
     },
     {
       "id": "WS0007",
@@ -79,16 +89,8 @@
       "mount": "TURRET",
       "arc": 360,
       "angle": 180,
-      "locations": [-23, -0]
-    },
-    {
-      "id": "WS0008",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "TURRET",
-      "arc": 180,
-      "angle": 180,
-      "locations": [-38, -0]
+      "locations": [-29.5, -0],
+      "renderOrderMod": 1
     },
     {
       "id": "WS0009",
@@ -97,81 +99,41 @@
       "mount": "TURRET",
       "arc": 360,
       "angle": 0,
-      "locations": [17, -0]
+      "locations": [9.5, -0]
     },
     {
-      "id": "WS0001",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-31, -16]
-    },
-    {
-      "id": "LIDAR01",
+      "id": "ROTATOR",
       "size": "SMALL",
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
       "angle": 0,
-      "locations": [10, 9],
-      "renderOrderMod": 100
+      "locations": [21.5, 23]
     },
     {
-      "id": "LIDAR02",
+      "id": "RED",
       "size": "SMALL",
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
       "angle": 0,
-      "locations": [10, -9],
-      "renderOrderMod": 100
+      "locations": [21.5, 23],
+      "renderOrderMod": 1
     },
     {
-      "id": "WS0003",
+      "id": "GREEN",
       "size": "SMALL",
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 0,
-      "locations": [-14, 9],
-      "renderOrderMod": 100
-    },
-    {
-      "id": "WS0004",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [-14, -9],
-      "renderOrderMod": 100
-    },
-    {
-      "id": "WS0005",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [-2, 9],
-      "renderOrderMod": 100
-    },
-    {
-      "id": "WS0006",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": -0,
-      "locations": [-2, -9],
-      "renderOrderMod": 100
+      "angle": -180,
+      "locations": [21.5, 23],
+      "renderOrderMod": 1
     }
   ],
   "engineSlots": [
     {
-      "location": [-57, 16],
+      "location": [-62.5, 16],
       "length": 55,
       "width": 16,
       "angle": 180,
@@ -179,7 +141,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-57, -18],
+      "location": [-62.5, -18],
       "length": 55,
       "width": 16,
       "angle": -180,
@@ -187,7 +149,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-55, 8.5],
+      "location": [-60.5, 8.5],
       "length": 34,
       "width": 6,
       "angle": 180,
@@ -195,7 +157,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-55, -8.5],
+      "location": [-60.5, -8.5],
       "length": 34,
       "width": 6,
       "angle": -180,
@@ -204,11 +166,11 @@
     }
   ],
   "bounds": [
-    -52.5, -23.5,
-    51.5, -19.5,
-    61.5, -9.5,
-    61.5, 6.5,
-    51.5, 19.5,
-    -52.5, 23.5
+    -57.5, -23,
+    51.5, -21,
+    55.5, -17,
+    55.5, 17,
+    51.5, 21,
+    -57.5, 23
   ]
 }

@@ -1,0 +1,61 @@
+{
+  "id": "aEP_fga_xiliu_mk2_missile",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_fga_xiliu_mk2_missile_shot",
+  "type": "MISSILE",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/aEP_fga_xiliu/mk2_tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_fga_xiliu/mk2_br.png",
+  "hardpointSprite": "graphics/weapons/aEP_fga_xiliu/mk2_tr.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_fga_xiliu/mk2_br.png",
+  "renderHints":[RENDER_BARREL_BELOW],
+  "visualRecoil": 7,
+  "turretOffsets": [
+    11.5,
+    5,
+    11.5,
+    0,
+    11.5,
+    -5
+  ],
+  "turretAngleOffsets": [
+    0,
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    17.5,
+    5,
+    17.5,
+    0,
+    17.5,
+    -5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0,
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "SMOKE",
+  "interruptibleBurst": true,
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 15,
+    "particleSizeRange": 10,
+    "cloudParticleCount": 6,
+    "cloudDuration": 0.8,
+    "cloudRadius": 20,
+    "blowbackParticleCount": 4,
+    "blowbackDuration": 1,
+    "blowbackLength": 40,
+    "blowbackSpread": 0,
+    "particleColor": [
+      255,
+      255,
+      255,
+      55
+    ]
+  },
+  "fireSoundTwo": "aEP_b_m_rk107_fire",
+}

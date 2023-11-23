@@ -20,11 +20,11 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
 
     init {
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FIGHTER, 25f)
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FRIGATE, 35f)
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.DESTROYER, 50f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FRIGATE, 50f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.DESTROYER, 60f)
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.CRUISER, 80f)
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.CAPITAL_SHIP, 100f)
-      ACTIVE_RANGE_BONUS.withDefault { 0.5f }
+      ACTIVE_RANGE_BONUS.withDefault { 60f }
     }
 
     val PASSIVE_BONUS = HashMap<ShipAPI.HullSize, Float>()
@@ -38,7 +38,9 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
     }
   }
 
-  var LIDAR_WINDUP = "lidar_windup"
+
+  // var LIDAR_WINDUP = "lidar_windup"
+  var LIDAR_WINDUP = "system_ammo_feeder"
 
   var WEAPON_GLOW = Color(255, 50, 50, 155)
 
@@ -66,7 +68,7 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
   fun init(ship: ShipAPI) {
     RANGE_BONUS = ACTIVE_RANGE_BONUS[ship.hullSize]?: 25f
     PASSIVE_RANGE_BONUS = PASSIVE_BONUS[ship.hullSize]?: 5f
-    if(!ship.hasListenerOfClass(this.javaClass)) ship.addListener(this)
+    if(!ship.hasListenerOfClass(aEP_LidarArray::class.java)) ship.addListener(this)
 
     //别动下面的，原版内容
     //------------------------------/
@@ -226,8 +228,10 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
     // this is the worst-case turn time required for the dishes to face front
     // doing this to keep the timing of the lidar ping sounds consistent relative
     // to when the windup sound plays
-    var fireThreshold = 0.25f / 3.25f
+    var fireThreshold = 0.25f / ship.system.chargeUpDur
     fireThreshold += 0.02f // making sure there's only 4 lidar pings; lines up with the timing of the lidardish weapon
+
+
     //fireThreshold = 0f;
     for (data in dishData) {
       var skip = data.phase % 1f > 1f / data.count
@@ -337,7 +341,7 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
         lidarRange = Math.max(lidarRange, w.range)
       }
     }
-    lidarRange += 0f
+    lidarRange += 50f
     return lidarRange
   }
 }

@@ -5,9 +5,9 @@
   "type": "BALLISTIC",
   "size": "SMALL",
   "displayArcRadius": 300,
-  "turretSprite": "graphics/weapons/aEP_vulcan/tr00.png",
-  "turretUnderSprite": "graphics/weapons/aEP_vulcan/base.png",
-  "hardpointSprite": "graphics/weapons/aEP_vulcan/hp00.png",
+  "turretSprite": "graphics/weapons/aEP_b_s_630/tr00.png",
+  "turretUnderSprite": "graphics/weapons/aEP_b_s_630/base.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_s_630/hp00.png",
   "visualRecoil": 2,
   "numFrames":4,
   "frameRate":40,
@@ -30,6 +30,8 @@
   ],
   "barrelMode": "LINKED",
   "animationType": "MUZZLE_FLASH",
+  "interruptibleBurst": true,
+  "autocharge": true,
   "muzzleFlashSpec": {
     "length": 16,
     "spread": 6,
@@ -44,5 +46,6 @@
       200
     ]
   },
-  "fireSoundTwo": "vulcan_cannon_fire"
+  "fireSoundOne": "aEP_b_s_630_intro",
+  "fireSoundTwo": "aEP_b_s_630_fire"
 }

@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_cap_shangshengliu",
   "hullSize": "CAPITAL_SHIP",
-  "spriteName": "graphics/ships/aEP_shangshengliu.png",
+  "spriteName": "graphics/ships/aEP_cap_shangshengliu.png",
   "style": "aEP_FSF",
   "height": 420,
   "width": 200,
@@ -12,7 +12,7 @@
   "shieldRadius": 221,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation",
+    "aEP_SpecialHull",
     "civgrade",
     "aEP_VanguardHull"
   ],
@@ -70,8 +70,7 @@
     "WS0010": "aEP_cap_shangshengliu_hull",
     "WS0011": "aEP_cap_shangshengliu_hull",
     "WS0012": "aEP_cap_shangshengliu_hull",
-    "WS0013": "aEP_cap_shangshengliu_hull",
-    "WS0024": "aEP_cap_shangshengliu_side_slot_cover"
+    "WS0013": "aEP_cap_shangshengliu_hull"
   },
   "weaponSlots": [
     {
@@ -81,7 +80,7 @@
       "mount": "TURRET",
       "arc": 125,
       "angle": 180,
-      "locations": [-151, 31]
+      "locations": [-150, 31]
     },
     {
       "id": "WS0002",
@@ -90,7 +89,7 @@
       "mount": "TURRET",
       "arc": 125,
       "angle": -180,
-      "locations": [-151, -31]
+      "locations": [-150, -31]
     },
     {
       "id": "WS0003",
@@ -115,9 +114,9 @@
       "size": "MEDIUM",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 270,
-      "angle": -45,
-      "locations": [40, -48.5],
+      "arc": 225,
+      "angle": -67.5,
+      "locations": [15, -29],
       "renderOrderMod": 11
     },
     {
@@ -127,7 +126,7 @@
       "mount": "TURRET",
       "arc": 225,
       "angle": 67.5,
-      "locations": [15.5, 26],
+      "locations": [15, 29],
       "renderOrderMod": 100
     },
     {
@@ -321,7 +320,7 @@
       "mount": "TURRET",
       "arc": 180,
       "angle": -45,
-      "locations": [54.5, -28],
+      "locations": [55, -28],
       "renderOrderMod": 10
     },
     {
@@ -331,7 +330,7 @@
       "mount": "TURRET",
       "arc": 180,
       "angle": 45,
-      "locations": [54.5, 28],
+      "locations": [55, 28],
       "renderOrderMod": 10
     },
     {
@@ -359,7 +358,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-162, 53]
+      "locations": [-163, 51]
     },
     {
       "id": "TOP_LV00_02",
@@ -368,7 +367,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-162, -54],
+      "locations": [-163, -51],
       "renderOrderMod": 1
     },
     {
@@ -378,7 +377,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-162, 50],
+      "locations": [-163, 49],
       "renderOrderMod": -1
     },
     {
@@ -388,7 +387,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-162, -50],
+      "locations": [-163, -49],
       "renderOrderMod": -1
     },
     {
@@ -398,7 +397,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-162, 54],
+      "locations": [-163, 53],
       "renderOrderMod": -3
     },
     {
@@ -408,7 +407,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-162, -53],
+      "locations": [-163, -53],
       "renderOrderMod": -3
     },
     {
@@ -418,7 +417,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-102, 53]
+      "locations": [-102, 51]
     },
     {
       "id": "TOP_LV00_04",
@@ -427,7 +426,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-102, -53],
+      "locations": [-102, -51],
       "renderOrderMod": 1
     },
     {
@@ -437,7 +436,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-102, 50],
+      "locations": [-102, 49],
       "renderOrderMod": -1
     },
     {
@@ -447,7 +446,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-102, -50],
+      "locations": [-102, -49],
       "renderOrderMod": -1
     },
     {
@@ -457,7 +456,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-102, 54],
+      "locations": [-102, 53],
       "renderOrderMod": -2
     },
     {
@@ -467,7 +466,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-102, -54],
+      "locations": [-102, -53],
       "renderOrderMod": -2
     },
     {
@@ -477,7 +476,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-42, 53]
+      "locations": [-43, 51]
     },
     {
       "id": "TOP_LV00_06",
@@ -486,7 +485,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-42, -53],
+      "locations": [-43, -51],
       "renderOrderMod": 1
     },
     {
@@ -496,7 +495,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-42, 50],
+      "locations": [-43, 49],
       "renderOrderMod": -1
     },
     {
@@ -506,7 +505,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-42, -50],
+      "locations": [-43, -49],
       "renderOrderMod": -1
     },
     {
@@ -516,7 +515,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [-42, 54],
+      "locations": [-43, 53],
       "renderOrderMod": -2
     },
     {
@@ -526,7 +525,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-42, -54],
+      "locations": [-43, -53],
       "renderOrderMod": -2
     },
     {
@@ -536,7 +535,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [18, 53]
+      "locations": [18, 51]
     },
     {
       "id": "TOP_LV00_08",
@@ -545,7 +544,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [18, -53],
+      "locations": [18, -51],
       "renderOrderMod": 1
     },
     {
@@ -555,7 +554,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [18, 50],
+      "locations": [18, 49],
       "renderOrderMod": -1
     },
     {
@@ -565,7 +564,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [18, -50],
+      "locations": [18, -49],
       "renderOrderMod": -1
     },
     {
@@ -575,7 +574,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [18, 54],
+      "locations": [18, 53],
       "renderOrderMod": -2
     },
     {
@@ -585,7 +584,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [18, -54],
+      "locations": [18, -53],
       "renderOrderMod": -2
     },
     {
@@ -595,7 +594,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [78, 53]
+      "locations": [77, 51]
     },
     {
       "id": "TOP_LV00_10",
@@ -604,7 +603,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [78, -53],
+      "locations": [77, -51],
       "renderOrderMod": 1
     },
     {
@@ -614,7 +613,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [78, 50],
+      "locations": [77, 49],
       "renderOrderMod": -1
     },
     {
@@ -624,7 +623,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [78, -50],
+      "locations": [77, -49],
       "renderOrderMod": -1
     },
     {
@@ -634,7 +633,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [78, 54],
+      "locations": [77, 53],
       "renderOrderMod": -2
     },
     {
@@ -644,7 +643,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [78, -54],
+      "locations": [77, -53],
       "renderOrderMod": -2
     },
     {
@@ -654,7 +653,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [138, 53]
+      "locations": [138, 51]
     },
     {
       "id": "TOP_LV00_12",
@@ -663,7 +662,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [138, -53],
+      "locations": [138, -51],
       "renderOrderMod": 1
     },
     {
@@ -673,7 +672,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [138, 50],
+      "locations": [138, 49],
       "renderOrderMod": -1
     },
     {
@@ -683,7 +682,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [138, -50],
+      "locations": [138, -49],
       "renderOrderMod": -1
     },
     {
@@ -693,7 +692,7 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 90,
-      "locations": [138, 54],
+      "locations": [138, 53],
       "renderOrderMod": -2
     },
     {
@@ -703,18 +702,8 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [138, -54],
+      "locations": [138, -53],
       "renderOrderMod": -2
-    },
-    {
-      "id": "WS0024",
-      "size": "LARGE",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 0,
-      "locations": [40, -48],
-      "renderOrderMod": 10
     }
   ],
   "engineSlots": [

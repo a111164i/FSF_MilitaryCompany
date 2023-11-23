@@ -4,9 +4,12 @@
   "projectileSpecId": "aEP_ftr_bom_nuke_bomb_shot2",
   "type": "MISSILE",
   "size": "SMALL",
-  "everyFrameEffect": "data.scripts.weapons.aEP_NoWhenNotReadyAnimation",
-  "turretSprite": "graphics/weapons/aEP_fighter_nuke/proj00.png",
-  "hardpointSprite": "graphics/weapons/aEP_fighter_nuke/00.png",
+  #"everyFrameEffect": "data.scripts.weapons.aEP_NoWhenNotReadyAnimation",
+  "turretSprite": "",
+  "hardpointSprite": "",
+  "renderHints": [
+    RENDER_LOADED_MISSILES
+  ],
   "turretOffsets": [
     0,
     0
@@ -21,7 +24,6 @@
   "hardpointAngleOffsets": [
     0
   ],
-  "numFrames":2,	
   "barrelMode": "ALTERNATING",
   "animationType": "SMOKE",
   "smokeSpec": {

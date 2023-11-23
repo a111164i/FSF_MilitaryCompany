@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.WeaponAPI
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -45,9 +46,31 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     const val FORGE_ACTIVE_TIME = 15f
     const val FORGE_TOTAL_TIME = 20f
     const val FORGE_THRESHOLD = 0.35f
+
+    //如果安装超级战机，会受到冷却时间的惩罚
+    const val PUNISH_START_OP = 15f
+    const val PUNISH_PER_OP = 0.4f
+
+    fun computePunish(ship: ShipAPI?):Float{
+      ship ?: return 0f
+      var punish = 0f
+      for(wingId in ship.variant.fittedWings){
+        val op = Global.getSettings().getFighterWingSpec(wingId).getOpCost(null)
+        if(op > PUNISH_START_OP){
+          punish += (op - PUNISH_START_OP) * PUNISH_PER_OP
+        }
+      }
+      return punish
+    }
   }
   val ID = "aEP_AttackCarrier"
   val ID_FORGE = "aEP_Forge"
+
+
+  init {
+    notCompatibleList.add(HullMods.UNSTABLE_INJECTOR)
+
+  }
 
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI, ship: ShipAPI, ids: String) {
@@ -59,7 +82,6 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     if(turnRate >= TURNRATE_THRESHOLD) return
     fighter.mutableStats.maxTurnRate.modifyFlat(ID,(TURNRATE_THRESHOLD - turnRate) * TURNRATE_GAP_BONUS )
   }
-
 
 
   override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, idd: String?) {
@@ -91,7 +113,10 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
 
     //检测是否需要激活锻炉(如果锻炉就绪的话)
     //舰船刚生成的时候，战机还没有生成，会里启用锻炉并且打断生成过程，加一个cd避免这个情况
-    if(ship.fullTimeDeployed < 5f) return
+    if(ship.fullTimeDeployed < 5f) {
+      updateIndicators(ship, 1f)
+      return
+    }
     if(!ship.customData.containsKey(ID)){
       //不装战机时默认不激活，所以分子为1，造成比例虚高
       var fighterOpAround = 1f
@@ -118,8 +143,9 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
           bay.fastReplacements = bay.numLost
         }
         //放音效
+        val p = computePunish(ship)
         Global.getSoundPlayer().playSound(FORGE_ACTIVE_SOUND_ID,0.25f,0.8f,ship.location,aEP_ID.VECTOR2F_ZERO)
-        aEP_CombatEffectPlugin.addEffect(ForgeOn(FORGE_TOTAL_TIME,ship))
+        aEP_CombatEffectPlugin.addEffect(ForgeOn(FORGE_TOTAL_TIME + p,ship))
       }
     }
 
@@ -139,9 +165,10 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
 
-
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier01"), 5f, arrayOf(Color.green), HULLMOD_POINT, SPEED_BONUS_RANGE.toString(), SPEED_THRESHOLD.toString())
+    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier01"), 5f, arrayOf(Color.green),
+      HULLMOD_POINT,
+      SPEED_BONUS_RANGE.toString(), SPEED_THRESHOLD.toString())
 
     for(wings in ship?.variant?.fittedWings?:ArrayList()) {
       val spec = Global.getSettings().getFighterWingSpec(wings)
@@ -160,6 +187,16 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       HULLMOD_POINT,
       fluxLevelString,
       FORGE_TOTAL_TIME.toInt().toString())
+
+    val p = computePunish(ship)
+    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier05"), 5f, arrayOf(Color.red),
+      HULLMOD_POINT,
+      String.format("%.0f", PUNISH_START_OP),
+      String.format("%.1f", PUNISH_PER_OP),
+      String.format("%.1f", p))
+
+    //显示不兼容插件
+    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
 
   }
 
@@ -229,6 +266,8 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
         ship.setJitterUnder(ship, jitterColor, 1f, 24,  40f)
       }
 
+      //控制灯
+      updateIndicators(weapon.ship, time/lifeTime)
     }
 
     override fun readyToEnd() {
@@ -272,7 +311,8 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
         aEP_Tool.getColorWithAlpha(initColor,alpha))
 
       //必须要求的数据是Color，先设置lifetime后设置fadeIn，autoFadeOut，intenseLevel，location，add进shader
-      val light = StandardLight(weapon.location,aEP_ID.VECTOR2F_ZERO,aEP_ID.VECTOR2F_ZERO,null)
+      //注意StandardLight自带的anchor只能绑在entity正中心，这里用不到
+      val light = StandardLight(weapon.location, Misc.ZERO, Misc.ZERO,null)
       val lightLifetime = 0.1f
       light.setColor(Color(255,50,50,25))
       light.intensity = 1f * useLevel
@@ -285,5 +325,59 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       val anchored = aEP_AnchorStandardLight(light,weapon.ship,lightLifetime)
       aEP_CombatEffectPlugin.addEffect(anchored)
     }
+
   }
+
+  fun updateIndicators(ship: ShipAPI, level: Float){
+    var l1 : aEP_DecoAnimation? = null
+    var l2 : aEP_DecoAnimation? = null
+    var l3 : aEP_DecoAnimation? = null
+    var l4 : aEP_DecoAnimation? = null
+
+    for(w in ship.allWeapons){
+      if(w.slot.id.equals("ID_L1")) l1 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L2")) l2 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L3")) l3 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L4")) l4 = w.effectPlugin as aEP_DecoAnimation
+    }
+
+    l1?:return
+    l2?:return
+    l3?:return
+    l4?:return
+
+    //左侧的弹药数量指示灯
+    if(level <= 0){
+      l1.setGlowToLevel(0f)
+      l2.setGlowToLevel(0f)
+      l3.setGlowToLevel(0f)
+      l4.setGlowToLevel(0f)
+    }
+    else if(level <= 0.25f){
+      l1.setGlowToLevel(level/0.25f)
+      l2.setGlowToLevel(0f)
+      l3.setGlowToLevel(0f)
+      l4.setGlowToLevel(0f)
+    }
+    else if(level <= 0.5f){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel((level-0.25f)/0.25f)
+      l3.setGlowToLevel(0f)
+      l4.setGlowToLevel(0f)
+    }
+    else if(level <=0.75f){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel(1f)
+      l3.setGlowToLevel((level-0.5f)/0.25f)
+      l4.setGlowToLevel(0f)
+    }
+    else if(level <= 1f){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel(1f)
+      l3.setGlowToLevel(1f)
+      l4.setGlowToLevel((level-0.75f)/0.25f)
+    }
+
+  }
+
 }

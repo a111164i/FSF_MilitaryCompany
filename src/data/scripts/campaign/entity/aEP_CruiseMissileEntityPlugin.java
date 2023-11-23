@@ -84,7 +84,7 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
       newAngle = newAngle + 360;
     }
     token.setFacing(newAngle);
-    speed = aEP_Tool.limitToTop(speed, maxSpeed, 0);
+    speed = MathUtils.clamp(speed,0 , maxSpeed);
     velocity = aEP_Tool.Util.speed2Velocity(token.getFacing(), speed);
 
     //set a new location due to velocity
@@ -396,6 +396,9 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
   class MissileCombatPlugin extends BaseEveryFrameCombatPlugin {
     CombatEngineAPI engine;
     boolean isEnemy = false;
+    ShipAPI missile;
+
+    boolean didSetting = false;
 
     MissileCombatPlugin(boolean isEnemy){
       this.isEnemy = isEnemy;
@@ -404,15 +407,14 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
 
     @Override
     public void advance(float amount, List<InputEventAPI> events) {
-      ShipAPI missile = null;
-      FleetSide which = FleetSide.PLAYER;
-      if(isEnemy == true){
+       FleetSide which = FleetSide.PLAYER;
+      if(isEnemy){
         which = FleetSide.ENEMY;
       }
       //第一次退出选船画面
       if (!engine.getCombatUI().isShowingDeploymentDialog() ) {
         //若没有部署，强制部署
-        if(engine.getFleetManager(which).getReservesCopy().size() > 0){
+        if(!engine.getFleetManager(which).getReservesCopy().isEmpty()){
           for (FleetMemberAPI member : engine.getFleetManager(which).getReservesCopy()) {
             if (member.getHullSpec().getHullId().contains(aEP_CruiseMissileCarrier.SHIP_ID)) {
               missile = engine.getFleetManager(which).spawnFleetMember(member, new Vector2f(0f, -engine.getMapHeight() / 2f + 5f), 90f, 0f);
@@ -424,11 +426,23 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
           missile = Global.getCombatEngine().getFleetManager(which).getAllEverDeployedCopy().get(0).getShip();
         }
       }
+
+      //从这往下一定已经找到missile了
       if(missile == null) return;
-      missile.setInvalidTransferCommandTarget(true);
-      missile.resetDefaultAI();
-      //做好任务以后可以结束了
-      engine.removePlugin(this);
+
+      if(!didSetting){
+        didSetting = true;
+        missile.setInvalidTransferCommandTarget(true);
+        missile.resetDefaultAI();
+      }
+
+      if(aEP_Tool.Util.isDead(missile)){
+        engine.endCombat(7.5f);
+
+        //做好任务以后可以结束了
+        engine.removePlugin(this);
+      }
+
     }
 
     @Override

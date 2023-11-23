@@ -1,53 +1,51 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 8,
-    "fluxVents": 9,
+    "fluxCapacitors": 15,
+    "fluxVents": 17,
     "goalVariant": true,
     "hullId": "aEP_des_yangji",
-    "hullMods": ["targetingunit"],
+    "hullMods": [
+        "heavyarmor",
+        "aEP_ShieldControlled",
+        "frontemitter",
+        "pointdefenseai"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_yangji_Elite",
     "weaponGroups": [
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0005": "railgun",
-                "WS0007": "railgun",
-                "WS0012": "railgun"
+                "SIDEL01": "heavymg",
+                "SIDER01": "heavymg",
+                "WS0002": "aEP_b_m_h88"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {"WS0003": "aEP_b_s_630"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL04": "aEP_ftr_sup_shield_gun",
+                "SIDER04": "aEP_ftr_sup_shield_gun",
+                "WS0004": "aEP_ftr_sup_shield_gun",
+                "WS0005": "aEP_ftr_sup_shield_gun",
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun",
+                "WS0011": "aEP_ftr_sup_shield_gun",
+                "WS0012": "aEP_ftr_sup_shield_gun"
             }
         },
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0002": "aEP_b_m_rk107"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "SIDEL01": "aEP_des_yangji_sidegun",
-                "SIDEL04": "aEP_des_yangji_sidegun",
-                "SIDER01": "aEP_des_yangji_sidegun",
-                "SIDER04": "aEP_des_yangji_sidegun"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0004": "aEP_b_s_630",
-                "WS0011": "aEP_b_s_630"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "aEP_e_s_300k",
-                "WS0003": "aEP_e_s_300k"
-            }
+            "weapons": {"WS0001": "aEP_b_s_pom"}
         }
     ]
 }

@@ -7,7 +7,7 @@
   "height": 40,
   "width": 80,
   "center": [40, 20.5],
-  "collisionRadius": 35.5,
+  "collisionRadius": 53.5,
   "shieldCenter": [-8, -0],
   "shieldRadius": 46.5,
   "viewOffset": 0,
@@ -18,7 +18,6 @@
     "aEP_ProjectileDenialShield"
   ],
   "builtInWeapons": {
-    "WS0003": "aEP_ftr_sup_shield_hatch",
     "WS0005": "aEP_empty"
   },
   "weaponSlots": [
@@ -29,7 +28,7 @@
       "mount": "TURRET",
       "arc": 124,
       "angle": 0,
-      "locations": [-0.5, 20.5]
+      "locations": [-2.5, 20]
     },
     {
       "id": "WS0002",
@@ -38,25 +37,7 @@
       "mount": "TURRET",
       "arc": 124,
       "angle": -0,
-      "locations": [-0.5, -19.5]
-    },
-    {
-      "id": "WS0003",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -0,
-      "locations": [9.5, -0]
-    },
-    {
-      "id": "WS0004",
-      "size": "SMALL",
-      "type": "UNIVERSAL",
-      "mount": "HIDDEN",
-      "arc": 90,
-      "angle": 0,
-      "locations": [12.5, -0]
+      "locations": [-2.5, -20]
     },
     {
       "id": "WS0005",
@@ -70,35 +51,34 @@
   ],
   "engineSlots": [
     {
-      "location": [-11, 30.5],
-      "length": 8.132303,
-      "width": 5.046049,
+      "location": [-14.5, 28],
+      "length": 14.758004,
+      "width": 8.112045,
       "angle": 157,
-      "contrailSize": 5.046049,
-      "style": "MIDLINE"
+      "contrailSize": 8.112045,
+      "style": "FSF_MAIN_CLEAN"
     },
     {
-      "location": [-11, -30.5],
-      "length": 8.132303,
-      "width": 5.046049,
+      "location": [-14.5, -28],
+      "length": 14.758004,
+      "width": 8.112045,
       "angle": -157,
-      "contrailSize": 5.046049,
-      "style": "LOW_TECH"
+      "contrailSize": 8.112045,
+      "style": "FSF_MAIN"
     },
     {
-      "location": [-11.5, -0],
-      "length": 10.5,
-      "width": 6,
+      "location": [-13.5, -0],
+      "length": 17,
+      "width": 9,
       "angle": -180,
-      "contrailSize": 6,
-      "style": "MIDLINE"
+      "contrailSize": 9,
+      "style": "FSF_MAIN_CLEAN"
     }
   ],
   "bounds": [
-    -11.5, -31,
-    11.5, -31,
-    11.5, -31.5,
-    11.5, 32,
-    -11.5, 32
+    -9, -31.5,
+    10.5, -31.5,
+    10.5, 31.5,
+    -9, 31.5
   ]
 }

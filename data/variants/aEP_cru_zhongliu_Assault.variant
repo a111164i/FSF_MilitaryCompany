@@ -1,14 +1,10 @@
 {
     "displayName": "Assault",
-    "fluxCapacitors": 0,
-    "fluxVents": 27,
+    "fluxCapacitors": 18,
+    "fluxVents": 18,
     "goalVariant": true,
     "hullId": "aEP_cru_zhongliu",
-    "hullMods": [
-        "aEP_SoftfluxDissipate",
-        "targetingunit"
-    ],
-    "modules": [{"MD01": "aEP_cru_zhongliu_armor_Standard"}],
+    "hullMods": ["targetingunit"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_zhongliu_Assault",
@@ -25,7 +21,7 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "heatseeker",
+                "WS0007": "aEP_cru_zhongliu_slide_l",
                 "WS0008": "heatseeker",
                 "WS0009": "heatseeker",
                 "WS0010": "heatseeker"
@@ -35,11 +31,11 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "dualflak",
-                "WS0004": "vulcan",
-                "WS0005": "aEP_b_s_pom",
-                "WS0006": "vulcan",
-                "WS0011": "vulcan"
+                "WS0003": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630",
+                "WS0005": "aEP_b_s_630",
+                "WS0006": "aEP_b_s_630",
+                "WS0011": "aEP_b_s_630"
             }
         }
     ]

@@ -1,0 +1,50 @@
+{
+  "id": "aEP_cru_pingding_torpedo",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_cru_pingding_torpedo_shot",
+  "type": "MISSILE",
+  "size": "MEDIUM",
+  "displayArcRadius": 4000,
+  "turretSprite": "graphics/weapons/aEP_cru_pingding/torpedo.png",
+  "hardpointSprite": "graphics/weapons/aEP_cru_pingding/torpedo.png",
+  "renderAboveAllWeapons": 0,
+  "everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "renderHints": [
+    #RENDER_LOADED_MISSILES
+  ],
+  "turretOffsets": [
+    0,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    0,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "SMOKE",
+  "smokeSpec": {
+    "particleSizeMin": 30,
+    "particleSizeRange": 15,
+    "cloudParticleCount": 10,
+    "cloudDuration": 2,
+    "cloudRadius": 20,
+    "blowbackParticleCount": 8,
+    "blowbackDuration": 1,
+    "blowbackLength": 30,
+    "blowbackSpread": 10,
+    "particleColor": [
+      105,
+      105,
+      105,
+      105
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "reaper_fire"
+}

@@ -51,6 +51,7 @@ public class aEP_SimpleMissileShipAI implements ShipAIPlugin
       if (textTimer > 4f) {
         textTimer = 0;
         Global.getCombatEngine().addFloatingText(ship.getLocation(), "Target Searching", 10f, Color.white, ship, 1, 0.4f);
+
       }
 
     }

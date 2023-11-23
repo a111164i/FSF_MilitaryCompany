@@ -1,7 +1,9 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.campaign.BuffManagerAPI.Buff
+import com.fs.starfarer.api.campaign.FleetDataAPI
 import com.fs.starfarer.api.fleet.FleetMemberAPI
+import com.fs.starfarer.campaign.fleet.FleetData
 import combat.util.aEP_Tool.Util.addDebugLog
 import org.lazywizard.lazylib.MathUtils
 import java.util.ArrayList
@@ -10,7 +12,7 @@ class aEP_Tugboat: aEP_BaseHullMod() {
 
   companion object{
     const val ID = "aEP_Tugboat"
-    const val MAX_SPEED_BONUS = 4f
+    const val MAX_SPEED_BONUS = 8f
   }
 
   override fun advanceInCampaign(member: FleetMemberAPI?, amount: Float) {
@@ -37,7 +39,7 @@ class aEP_Tugboat: aEP_BaseHullMod() {
       if(m.isMothballed){
         toRemoveList.add(m)
       }
-      addDebugLog(m.shipName + m.stats.maxBurnLevel.modifiedValue)
+      //addDebugLog(m.shipName + m.stats.maxBurnLevel.modifiedValue)
 
     }
     allMemberList.removeAll(toRemoveList)
@@ -76,21 +78,20 @@ class aEP_Tugboat: aEP_BaseHullMod() {
     private var maxDur = 0f
     private var shouldEnd = false
 
-    lateinit var tug:FleetMemberAPI
-    lateinit var slowest:FleetMemberAPI
+
+    //绝对不要在任何进入存档的类里面放类似fleetMember等生涯类
+    lateinit var tugId:String
+    lateinit var slowestId:String
 
 
     constructor(tug: FleetMemberAPI,slowest: FleetMemberAPI, lifeTime: Float):this(){
-      this.tug = tug
-      this.slowest = slowest
+      this.tugId = tug.id
+      this.slowestId = slowest.id
       this.maxDur = lifeTime
     }
 
     override fun isExpired(): Boolean {
-      if(shouldEnd){
-        slowest.stats.maxBurnLevel.unmodify(ID)
-        //aEP_Tool.addDebugLog(slowest.hullId+" end")
-      }
+
       return shouldEnd
     }
 
@@ -98,12 +99,28 @@ class aEP_Tugboat: aEP_BaseHullMod() {
       return ID
     }
 
+    fun getFleetMember(fleetMemberId:String, fleetData: FleetDataAPI):FleetMemberAPI?{
+      for(m in fleetData.membersListWithFightersCopy){
+        if(m.id.equals(fleetMemberId)){
+          return m
+        }
+      }
+      return null
+    }
+
     //当任何一个新buff加进去，所有的老buff都会执行一次apply
     //buff会同时施加给拖船和被拖的船，这里不要使用member
+    //不需要手动cleanup
     override fun apply(member: FleetMemberAPI) {
+
+      val fleetData = member.fleetData?: return
+      val tug = getFleetMember(tugId,fleetData)?:return
+      val slowest = getFleetMember(slowestId,fleetData)?:return
+
+      //先清空自己的buff
+      slowest.stats.maxBurnLevel.unmodify(ID)
       val tugSpeedNow = tug.stats.maxBurnLevel.modifiedValue
       val slowestSpeedNow = slowest.stats.maxBurnLevel.modifiedValue
-
       //速度差大于0
       if(tugSpeedNow - slowestSpeedNow > 0f){
         slowest.stats.maxBurnLevel.modifyFlat(ID, (tugSpeedNow - slowestSpeedNow).coerceAtMost(MAX_SPEED_BONUS))
@@ -113,11 +130,6 @@ class aEP_Tugboat: aEP_BaseHullMod() {
 
     override fun advance(days: Float) {
 
-      //如果拖船和被拖船不在同个舰队中，取消buff
-      if(tug.fleetData != slowest.fleetData){
-        shouldEnd = true
-      }
-
       if(this.days >= maxDur){
         shouldEnd = true
         return
@@ -125,6 +137,7 @@ class aEP_Tugboat: aEP_BaseHullMod() {
       this.days += days
       this.days = this.days.coerceAtMost(maxDur)
     }
+
   }
 }
 

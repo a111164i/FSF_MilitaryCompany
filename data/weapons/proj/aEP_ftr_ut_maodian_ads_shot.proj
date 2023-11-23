@@ -1,24 +1,36 @@
 {
 	"id":"aEP_ftr_ut_maodian_ads_shot",
 	"specClass":"missile",
-	"missileType":"MISSILE",
+	"missileType":"BOMB",
+  "collisionClass": "MISSILE_NO_FF",
+  "collisionClassByFighter": "PROJECTILE_FIGHTER",
+  "length":80,
+  "width":5,
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":5.0,
+  #"bulletSprite":"graphics/missiles/shell_small_yellow.png",
 	"sprite":"graphics/weapons/aEP_m_l_harpoon/bomblet.png",
 	"glowSprite":"",
-  "glowColor":[135,110,250,125],
+  "glowColor":[135,110,250,105],
   "glowRadius":35,
 	"size":[8,10],
   "center":[4,5],
-	"collisionRadius":40,
-  "collisionClass":"MISSILE_NO_FF",
+	"collisionRadius":60,
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"explosionColor":[141,80,245,225],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[141,80,245,205],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":50, # purely visual
+
+	#模板
   "armingTime":0, # safe range count by time
   "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
+  #如果要弹丸严格按照最大距离飞行，这几个参数一定得是0，fadeTime这段时间如果不填默认不是0而且不属于maxFlightTime
+  #如果不填，此时弹丸结束时的flightTime会大于maxFlightTime，且此段时间最大速度不受限制，默认fadeTime + flameoutTime为3.5秒
+  #flameoutTime一般最小写0.1，再低经过测试会有问题
   "fadeTime":0, # 熄火后能漂移多久
   "flameoutTime":0.1,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
-  "alwaysAccelerate":false,
+
+  "alwaysAccelerate":true,
   "reduceDamageWhileFading":false,
   "useProjectileRangeCalculation":true,
   "passThroughMissiles":false,
@@ -43,8 +55,8 @@
 			"sound":"system_emp_emitter_impact"},
   },
   "engineSpec":{
-    "turnAcc":0,
-    "turnRate":0,
+    "turnAcc":20,
+    "turnRate":20,
     "acc":20,
     "dec":20
   },

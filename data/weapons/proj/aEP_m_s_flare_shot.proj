@@ -8,7 +8,7 @@
 	"collisionRadius":8,
 	#"collisionClass":"MISSILE_NO_FF",
 	"collisionClass":"FIGHTER",
-	"explosionColor":[255,125,75,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[255,75,25,255],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":75, # purely visual
 	#"maxFlightTime":3,
 	"flameoutTime":1, # total time from flameout to full fadeout
@@ -32,7 +32,6 @@
 			"loc":[0, 0],
 	    "style":"CUSTOM",
 	    "styleSpec":{
-        #"engineColor":[255,50,50,255],
         "engineColor":[255,75,25,255],
         "contrailParticleSizeMult":6,
         "contrailParticleDuration":2,

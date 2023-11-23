@@ -7,12 +7,11 @@
     "hullMods": [
         "targetingunit",
         "ballistic_rangefinder",
-        "aEP_BurstDissipate",
         "magazines"
     ],
     "permaMods": [
         "automated",
-        "aEP_EmergencyReconstructAi",
+        "aEP_EmergencyReconstruct",
     ],
     "tags":["unboardable"],
     "sMods": [],

@@ -5,9 +5,13 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CargoAPI
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.campaign.ids.Tags
+import com.fs.starfarer.api.impl.campaign.ids.Tags.VARIANT_FX_DRONE
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
+import com.fs.starfarer.api.impl.combat.dem.DEMEffect
+import com.fs.starfarer.api.loading.ProjectileSpecAPI
 import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.util.Misc
+import com.fs.starfarer.combat.entities.BallisticProjectile
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
@@ -21,11 +25,10 @@ import org.lazywizard.lazylib.ui.LazyFont
 import org.lwjgl.opengl.Display
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.plugins.MagicRenderPlugin
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import kotlin.math.abs
-import kotlin.math.asin
-import kotlin.math.roundToInt
+import kotlin.math.*
 
 class aEP_Tool {
 
@@ -320,8 +323,8 @@ class aEP_Tool {
       val arcDistSq = 3.14f * 3.14f * 4f * rSq
       val timeArcSq = arcDistSq/(angleAndSpeed.y * angleAndSpeed.y + 1)
       val timeTurn = abs(velAngleDiff/(entity.angularVelocity+1))
-      //如果船飞过圆弧需要时间小于转向需要时间,即转向时间不足，减速
-      if( timeArcSq < timeTurn*timeTurn ){
+      //如果船飞过圆弧需要时间小于转向需要时间,即转向时间不足，减速，提前0.5秒转向当缓冲
+      if( timeArcSq < (timeTurn+0.5f).pow(2) ){
         entity.giveCommand(ShipCommand.DECELERATE, null, 0)
       }else{//差别在容忍范围内
         //如果靠近目标点，开始减速
@@ -420,14 +423,12 @@ class aEP_Tool {
      * */
     @JvmStatic
     fun setToPosition(ship: ShipAPI, toPosition: Vector2f?) {
-      val entity = ship
-      val directionVec =  VectorUtils.resize(VectorUtils.getDirectionalVector(entity.location, toPosition),ship.maxSpeed)
-      val directionAngle = VectorUtils.getFacing(directionVec)
+      val directionVec =  VectorUtils.resize(VectorUtils.getDirectionalVector(ship.location, toPosition),ship.maxSpeed)
       val velDirectDiff = Vector2f(directionVec.x-ship.velocity.x,directionVec.y-ship.velocity.y)
-      val diffAngle = aEP_Tool.angleAdd(VectorUtils.getFacing(velDirectDiff),-ship.facing)
-      val distSq = MathUtils.getDistanceSquared(entity.location, toPosition)
-      val angleAndSpeed = velocity2Speed(entity.velocity)
-      val timeToSlowDown = angleAndSpeed.y / entity.deceleration //time to slow down to zero speed(by seconds,squared)
+      val diffAngle = angleAdd(VectorUtils.getFacing(velDirectDiff),-ship.facing)
+      val distSq = MathUtils.getDistanceSquared(ship.location, toPosition)
+      val angleAndSpeed = velocity2Speed(ship.velocity)
+      val timeToSlowDown = angleAndSpeed.y / ship.deceleration //time to slow down to zero speed(by seconds,squared)
 
       //求当前速度向量和理想速度向量（全速指向目标方向）的差，在前后左右4个方向投影，哪个方向投影最大说明当前最需要加速哪个方向
       val sin = FastTrig.sin(Math.toRadians(diffAngle.toDouble())).toFloat()
@@ -440,8 +441,45 @@ class aEP_Tool {
       list.sort()
 
       //如果靠近目标点，开始减速
-      if (distSq <= (angleAndSpeed.y * timeToSlowDown + 10) * (angleAndSpeed.y * timeToSlowDown + 10)) {
-        entity.giveCommand(ShipCommand.DECELERATE, null, 0)
+      if (distSq <= (angleAndSpeed.y * timeToSlowDown + 10).pow(2)) {
+        ship.giveCommand(ShipCommand.DECELERATE, null, 0)
+        return
+      }
+
+      if(list[3]==f){
+        ship.giveCommand(ShipCommand.ACCELERATE,null,0)
+      }else if(list[3]==b){
+        ship.giveCommand(ShipCommand.ACCELERATE_BACKWARDS,null,0)
+      }else if(list[3]==r){
+        ship.giveCommand(ShipCommand.STRAFE_RIGHT,null,0)
+      }else if(list[3]==l){
+        ship.giveCommand(ShipCommand.STRAFE_LEFT,null,0)
+      }
+
+    }
+    @JvmStatic
+    fun setToPositionHighAccuracy(ship: ShipAPI, toPosition: Vector2f?) {
+
+      val directionVec =  VectorUtils.resize(VectorUtils.getDirectionalVector(ship.location, toPosition),ship.maxSpeed)
+      val velDirectDiff = Vector2f(directionVec.x-ship.velocity.x,directionVec.y-ship.velocity.y)
+      val diffAngle = angleAdd(VectorUtils.getFacing(velDirectDiff),-ship.facing)
+      val distSq = MathUtils.getDistanceSquared(ship.location, toPosition)
+      val angleAndSpeed = velocity2Speed(ship.velocity)
+      val timeToSlowDown = angleAndSpeed.y / ship.deceleration //time to slow down to zero speed(by seconds,squared)
+
+      //求当前速度向量和理想速度向量（全速指向目标方向）的差，在前后左右4个方向投影，哪个方向投影最大说明当前最需要加速哪个方向
+      val sin = FastTrig.sin(Math.toRadians(diffAngle.toDouble())).toFloat()
+      val cos = FastTrig.cos(Math.toRadians(diffAngle.toDouble())).toFloat()
+      val f = cos * velDirectDiff.length()
+      val b = -f
+      val l = sin * velDirectDiff.length()
+      val r = -l
+      val list = floatArrayOf(f,b,r,l)
+      list.sort()
+
+      //如果靠近目标点，开始减速
+      if (distSq <= (angleAndSpeed.y * timeToSlowDown + 0.1).pow(2)) {
+        ship.giveCommand(ShipCommand.DECELERATE, null, 0)
         return
       }
 
@@ -495,10 +533,24 @@ class aEP_Tool {
      * */
     @JvmStatic
     fun velocity2Speed(velocity: Vector2f): Vector2f {
+      if(velocity.x == 0f && velocity.y == 0f){
+        return Vector2f(0f,0f)
+      }
+
       val x = VectorUtils.getFacing(velocity)
       val y = Math.sqrt((velocity.getX() * velocity.getX() + velocity.getY() * velocity.getY()).toDouble()).toFloat()
       return Vector2f(x, y)
     }
+
+    fun velocity2SpeedSq(velocity: Vector2f): Vector2f {
+      if(velocity.x == 0f && velocity.y == 0f){
+        return Vector2f(0f,0f)
+      }
+      val x = VectorUtils.getFacing(velocity)
+      val y = (velocity.getX() * velocity.getX() + velocity.getY() * velocity.getY())
+      return Vector2f(x, y)
+    }
+
 
     fun speed2Velocity(angle: Float, speed: Float): Vector2f {
       val xAxis = FastTrig.cos(Math.toRadians(angle.toDouble())).toFloat() * speed
@@ -845,24 +897,6 @@ class aEP_Tool {
       }
     }
 
-    fun getWeaponOffsetInAbsoluteCoo(w: WeaponAPI): List<Vector2f> {
-      val absCoo: MutableList<Vector2f> = ArrayList()
-      if (w.slot.isTurret) {
-        for (offset in w.spec.turretFireOffsets) {
-          var absOffset = getExtendedLocationFromPoint(w.location, w.currAngle, offset.x)
-          absOffset = getExtendedLocationFromPoint(absOffset, angleAdd(w.currAngle, 90f), offset.y)
-          absCoo.add(absOffset)
-        }
-      } else {
-        for (offset in w.spec.hardpointFireOffsets) {
-          var absOffset = getExtendedLocationFromPoint(w.location, w.currAngle, offset.x)
-          absOffset = getExtendedLocationFromPoint(absOffset, angleAdd(w.currAngle, 90f), offset.y)
-          absCoo.add(absOffset)
-        }
-      }
-      return absCoo
-    }
-
     // +x = to top, -y = to right
     fun getWeaponOffsetInAbsoluteCoo(relativeCoo: Vector2f, w: WeaponAPI): Vector2f {
       var absOffset = getExtendedLocationFromPoint(w.location, w.currAngle, relativeCoo.x)
@@ -882,27 +916,6 @@ class aEP_Tool {
       }
     }
 
-    fun limitToTop(input: Float, limit: Float): Float {
-      return if (input > limit) {
-        limit
-      } else input
-    }
-
-    @JvmStatic
-    fun limitToTop(input: Float, limitMax: Float, limitMin: Float): Float {
-      if (input > limitMax) {
-        return limitMax
-      }
-      return if (input < limitMin) {
-        limitMin
-      } else input
-    }
-
-    fun getFirstDecimal(input: Float): Float {
-      val input2string = java.lang.Float.toString(input)
-      val allString = input2string.split("\\.".toRegex()).toTypedArray()
-      return allString[1].toFloat()
-    }
 
     /**
      * 不会为空，没有找到时弹出一个提示
@@ -953,21 +966,21 @@ class aEP_Tool {
 
     @JvmStatic
     fun getNearestEnemyCombatShip(e: CombatEntityAPI): ShipAPI? {
-      var distMost = Float.MAX_VALUE
+      var distMostSq = Float.MAX_VALUE
       var returnShip: ShipAPI? = null
 
       val ships = Global.getCombatEngine().ships
 
       for (s in ships) {
-        if (s.owner == e.owner) continue
+        if (s == e) continue
         //entity处于玩家侧时，还得排除黄圈的友军，不能只用owner
-        if (s.isAlly && e.owner == 0) continue
+        if(isEnemy(e, s) == false) continue
         if (!s.isFrigate && !s.isDestroyer && !s.isCruiser && !s.isCapital) continue
 
-        val dist = MathUtils.getDistance(s, e)
-        if (dist < distMost) {
+        val distSq = MathUtils.getDistanceSquared(s, e)
+        if (distSq < distMostSq) {
           returnShip = s
-          distMost = dist
+          distMostSq = distSq
         }
       }
 
@@ -1027,13 +1040,6 @@ class aEP_Tool {
       } else false
     }
 
-    @JvmStatic
-    fun getRandomPointAround(center: Vector2f, range: Float): Vector2f {
-      val angle = MathUtils.getRandomNumberInRange(0, 360).toFloat()
-      val dist = MathUtils.getRandomNumberInRange(0f, range)
-      return getExtendedLocationFromPoint(center, angle, dist)
-    }
-
     fun getOutOfRangeWeaponCostPercent(group: WeaponGroupAPI?, toTargetPo: Vector2f?, rangeFix: Float): Float {
       if (group == null) {
         return 1f
@@ -1048,7 +1054,7 @@ class aEP_Tool {
           }
         }
       }
-      return limitToTop(ableToFireCost / allCost, 1f, 0f)
+      return MathUtils.clamp(ableToFireCost / allCost, 0f, 1f)
     }
 
     @JvmStatic
@@ -1079,24 +1085,32 @@ class aEP_Tool {
     }
 
     @JvmStatic
-    fun applyImpulse(entity: CombatEntityAPI, applyAngle: Float, impulse: Float) {
+    fun applyImpulse(entity: CombatEntityAPI, applyAngle: Float, impulse: Float, maxSpeed: Float) {
       val mass = Math.max(1f, entity.mass)
-      val addVel = speed2Velocity(applyAngle, impulse / mass)
+      val currAas = velocity2Speed(entity.velocity)
+      val angleDist = MathUtils.getShortestRotation(applyAngle, currAas.x).absoluteValue
+      val rad = Math.toRadians(angleDist.toDouble())
+
+      val cos = FastTrig.cos(rad).toFloat()
+      val projCurrSpeed = currAas.y * cos
+      val level = ((maxSpeed - projCurrSpeed)/maxSpeed).coerceAtLeast(-1f).coerceAtMost(1f)
+      if(level <= 0f) return
+
+      val addVel = speed2Velocity(applyAngle,  impulse / mass)
       var newVel = Vector2f(entity.velocity.x + addVel.x, entity.velocity.y + addVel.y)
-      //转换为速度
-      var angleAndSpeed = velocity2Speed(newVel)
 
-      //游戏限速599
-      angleAndSpeed.setY(Math.min(599f, angleAndSpeed.y))
-
-      newVel = speed2Velocity(angleAndSpeed)
       entity.velocity.set(newVel)
     }
 
-
     @JvmStatic
-    fun isWithinArc(target: ShipAPI?, weapon: WeaponAPI): Boolean {
-      return CollisionUtils.getCollisionPoint(weapon.location, getExtendedLocationFromPoint(weapon.location, weapon.currAngle, weapon.range), target) != null
+    fun setMovement(entity: CombatEntityAPI, applyAngle: Float, impulse: Float, amount: Float) {
+      val mass = Math.max(1f, entity.mass)
+      val vel = speed2Velocity(applyAngle, impulse / mass)
+      vel.scale(amount)
+
+
+     entity.location.set(entity.location.x + vel.x, entity.location.y + vel.y)
+
     }
 
     fun getLongestNormalWeapon(ship: ShipAPI): WeaponAPI? {
@@ -1142,29 +1156,15 @@ class aEP_Tool {
         true, 0f, 0.5f, 0.1f)
     }
 
-    fun getColorWithAlphaChange(ori: Color, alphaLevel: Float): Color {
-      return Color(ori.red, ori.green, ori.blue, (ori.alpha * alphaLevel).toInt().coerceAtMost(255))
+    fun getColorWithAlphaChange(ori: Color, alphaMult: Float): Color {
+      return Color(ori.red,
+        ori.green,
+        ori.blue,
+        (ori.alpha * alphaMult).toInt().coerceAtLeast(0).coerceAtMost(255))
     }
 
-    fun getColorWithAlpha(ori: Color, alphaLevel: Float): Color {
-      return Color(ori.red, ori.green, ori.blue, MathUtils.clamp((255f * alphaLevel).toInt(),0,255))
-    }
-
-    fun getColorWithChange(ori: Color, alphaLevel: Float): Color {
-      return Color((ori.blue * alphaLevel).toInt(), (ori.blue * alphaLevel).toInt(), (ori.blue * alphaLevel).toInt(), (ori.alpha * alphaLevel).toInt())
-    }
-
-    fun getPointRotateVector(point: Vector2f?, center: Vector2f, angle: Float): Vector2f {
-      val dist = MathUtils.getDistance(point, center)
-      var angleNow = VectorUtils.getAngle(center, point)
-      angleNow = angleAdd(angleNow, angle)
-      return getExtendedLocationFromPoint(center, angleNow, dist)
-    }
-
-    fun getPointRotateVector(point: Vector2f?, dist: Float, center: Vector2f, angle: Float): Vector2f {
-      var angleNow = VectorUtils.getAngle(center, point)
-      angleNow = angleAdd(angleNow, angle)
-      return getExtendedLocationFromPoint(center, angleNow, dist)
+    fun getColorWithAlpha(ori: Color, newAlphaLevel: Float): Color {
+      return Color(ori.red, ori.green, ori.blue, MathUtils.clamp((255f * newAlphaLevel).toInt(),0,255))
     }
 
     fun getHitPoint(t: CombatEntityAPI, range: Float, facing: Float, point: Vector2f): Vector2f? {
@@ -1227,7 +1227,9 @@ class aEP_Tool {
       var distance: Float
       var closestDistance = Float.MAX_VALUE
       for (tmp in AIUtils.getAlliesOnMap(entity)) {
-        if (tmp.isFighter || tmp.owner != entity.owner) continue
+
+        if (aEP_Tool.isEnemy(entity,tmp)) continue
+        if(tmp.isFighter) continue
         distance = MathUtils.getDistance(tmp, entity.location)
         if (distance < closestDistance) {
           closest = tmp
@@ -1235,14 +1237,6 @@ class aEP_Tool {
         }
       }
       return closest
-    }
-
-    //angle, length
-    fun getAngleAndDist(point: Vector2f, center: Vector2f, centerFacing: Float): Vector2f {
-      val x = -VectorUtils.getAngle(center, point) - 90 - centerFacing
-      val dist = Vector2f(point.x - center.x, point.y - center.y)
-      val y = Math.sqrt((dist.getX() * dist.getX() + dist.getY() * dist.getY()).toDouble()).toFloat()
-      return Vector2f(x, y)
     }
 
     fun getAbsPos(angleAndLength: Vector2f, basePoint: Vector2f): Vector2f {
@@ -1254,7 +1248,7 @@ class aEP_Tool {
     }
 
     fun getAbsPos(angleAndLength: Vector2f, basePoint: Vector2f, baseAngle: Float): Vector2f {
-      val angle = angleAndLength.x
+      val angle = angleAndLength.x + baseAngle
       val length = angleAndLength.y
       val xAxis = FastTrig.cos(Math.toRadians(angle.toDouble())).toFloat() * length
       val yAxis = FastTrig.sin(Math.toRadians(angle.toDouble())).toFloat() * length
@@ -1266,7 +1260,7 @@ class aEP_Tool {
       val smokeRange = param.smokeSizeRange
       val smokeEndSizeMult = param.smokeEndSizeMult
 
-      val smokeSpread = param.smokeSpread
+      val smokeSpread = param.smokeSpread.coerceAtLeast(1f)
       val maxSpreadRange = param.maxSpreadRange
 
       val smokeTime = param.smokeTime
@@ -1346,14 +1340,6 @@ class aEP_Tool {
       return false
     }
 
-    fun getShipSpecName(spec:String):String{
-      return Global.getSettings().getHullSpec(spec).hullName
-    }
-
-    fun getHullModName(spec: String):String{
-      return Global.getSettings().getHullModSpec(spec).displayName
-    }
-
     /**
      * 加上自身的碰撞半径但是不加上对面的碰撞半径
      * @return 距离进入系统范围还有多远
@@ -1409,6 +1395,11 @@ class aEP_Tool {
       return range
     }
 
+    fun getRealDissipation(stats: MutableShipStatsAPI?):Float{
+      stats?:return 0f
+      return stats.fluxDissipation.modifiedValue ?:0f
+    }
+
     fun getRealDissipation(ship: ShipAPI?):Float{
       ship?:return 0f
       return ship.mutableStats.fluxDissipation.modifiedValue ?:0f
@@ -1423,8 +1414,7 @@ class aEP_Tool {
         0f,
         0f,
         lifeTime,
-        getColorWithAlpha(c, 0.2f *(c.alpha/255f))
-      )
+        getColorWithAlpha(c, 0.2f *(c.alpha/255f)))
 
 
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
@@ -1462,6 +1452,7 @@ class aEP_Tool {
         i += 30
       }
     }
+
     fun spawnCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?, vel:Vector2f){
       val c = color?: Color(240,240,240)
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
@@ -1642,9 +1633,9 @@ class aEP_Tool {
             projShieldDamageTakenMult * beamShieldDamgeTakenMult)
     }
 
-    fun applyPureArmorDamage(weapon: WeaponAPI?, d: Float, target: ShipAPI?, point: Vector2f?) {
+    fun applyPureArmorDamage(weapon: WeaponAPI?, d: Float, target: ShipAPI, point: Vector2f) {
       val engine = Global.getCombatEngine()
-      val grid = target?.armorGrid ?: return
+      val grid = target.armorGrid
       val cell = grid.getCellAtLocation(point) ?: return
       val gridWidth = grid.grid.size
       val gridHeight: Int = grid.grid[0].size
@@ -1715,7 +1706,7 @@ class aEP_Tool {
                           canAimNoneCollision:Boolean,
                           canAimFighter:Boolean): Boolean{
       if(!Global.getCombatEngine().isEntityInPlay(target)) return false
-      if(target.isHulk) return false
+      if(target.isHulk || !target.isAlive || !Global.getCombatEngine().isEntityInPlay(target)) return false
       if(!target.isTargetable) return false
       if(target.hasTag(Tags.VARIANT_FX_DRONE)) return false
       if(target.isPhased && !canAimPhased) return false
@@ -1737,9 +1728,9 @@ class aEP_Tool {
 
     /**
      * @param convertRate 单个格子每次loop的最大维修量，越低单次维修的越均匀，一般为5不会造成棋盘状装甲，不可为0
-     * @return 维修剩余百分比，0代表完全用于维修，1代表不需要维修
+     * @return 维修剩余百分比，0f代表完全用于维修，1f代表不需要维修，本次维修值完全溢出
      * */
-    fun findToRepair(ship: ShipAPI, repairAmount: Float, armorMaxPercent: Float, hpMaxPercent: Float, maxRepairPerGrid: Float, convertRate: Float): Float{
+    fun findToRepair(ship: ShipAPI, repairAmount: Float, armorMaxPercent: Float, hpMaxPercent: Float, maxRepairPerGrid: Float, convertRate: Float, sparkEvenNotRepairing: Boolean): Float{
       //维修装甲
       val engine = Global.getCombatEngine()
       val xSize = ship.armorGrid.leftOf + ship.armorGrid.rightOf
@@ -1796,22 +1787,28 @@ class aEP_Tool {
         }
       }
 
-      //如果之前没有修到东西，就随机抽一个点刷闪光
-      if(!didSpark){
-        val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
-        spawnRepairSpark(randomLoc,ship.velocity)
-        didSpark = true
-      }
-
       //如果装甲修好了，维修点数还有省的就加结构
       if(toRepair > 0){
         val hullDamagedBelowThreshold = ship.maxHitpoints * hpMaxPercent - ship.hitpoints
         if(hullDamagedBelowThreshold > 0) {
+          //如果之前没有修到装甲，目前需要修结构，就随机抽一个点刷闪光
+          if(!didSpark ){
+            val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
+            spawnRepairSpark(randomLoc,ship.velocity)
+            didSpark = true
+          }
 
           val repairToHull = (toRepair * convertRate).coerceAtMost(hullDamagedBelowThreshold)
           ship.hitpoints += repairToHull
           toRepair -= repairToHull / convertRate
         }
+      }
+
+      //如果结构也没修，装甲也没修，看看是否强制刷一个火花
+      if(!didSpark && sparkEvenNotRepairing){
+        val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
+        spawnRepairSpark(randomLoc,ship.velocity)
+        didSpark = true
       }
 
       toRepair = toRepair.coerceAtLeast(0f)
@@ -1890,6 +1887,257 @@ class aEP_Tool {
       return secondChoice
     }
 
+    fun computeCurrentManeuveringDir(ship: ShipAPI):Float{
+      var angle = 0f
+      //如果正在后退
+      if(ship.engineController.isAcceleratingBackwards){
+        angle = 180f
+        if(ship.engineController.isStrafingLeft){
+          angle = 135f
+        }else if (ship.engineController.isStrafingRight){
+          angle = 225f
+        }
+        //如果正在前进
+      }else if(ship.engineController.isAccelerating){
+        angle = 0f
+        if(ship.engineController.isStrafingLeft){
+          angle = 45f
+        }else if (ship.engineController.isStrafingRight){
+          angle = 315f
+        }
+        //如果只在进行侧向漂移
+      }else{
+        if(ship.engineController.isStrafingLeft){
+          angle = 90f
+        }else if (ship.engineController.isStrafingRight){
+          angle = 270f
+        }
+      }
+      //引擎相对角度加上舰船本身的角度，变成战场绝对角度
+      angle = aEP_Tool.angleAdd(angle,ship.facing)
+
+      //如果正在进行减速，方向为当前速度的逆方向
+      if(ship.engineController.isDecelerating && (ship.velocity.x > 0 || ship.velocity.y > 0)){
+        val angleAndSpeed = velocity2Speed(ship.velocity)
+        angle = angleAndSpeed.x - 180f
+      }
+
+      return angle
+    }
+
+    fun ignoreSlow(ship: ShipAPI, on:Boolean){
+      val ID = "aEP_Tool_ignoreSlow"
+      ship.mutableStats.maxSpeed.unmodify(ID)
+      ship.mutableStats.acceleration.unmodify(ID)
+      ship.mutableStats.deceleration.unmodify(ID)
+      ship.mutableStats.maxTurnRate.unmodify(ID)
+      ship.mutableStats.turnAcceleration.unmodify(ID)
+      if(!on) return
+
+      val modifiedMaxSpeed = ship.mutableStats.maxSpeed.modified+ 0.1f
+      val baseMaxSpeed = ship.mutableStats.maxSpeed.baseValue
+      if(modifiedMaxSpeed < baseMaxSpeed){
+        ship.mutableStats.maxSpeed.modifyMult(ID, baseMaxSpeed/modifiedMaxSpeed)
+      }
+
+      ship.mutableStats.acceleration.unmodify(ID)
+      val modifiedAcc = ship.mutableStats.acceleration.modified+ 0.1f
+      val baseAcc = ship.mutableStats.acceleration.baseValue
+      if(modifiedAcc < baseAcc) {
+        ship.mutableStats.acceleration.modifyMult(ID, baseAcc / modifiedAcc)
+      }
+
+      ship.mutableStats.deceleration.unmodify(ID)
+      val modifiedDec = ship.mutableStats.deceleration.modified+ 0.1f
+      val baseDec = ship.mutableStats.deceleration.baseValue
+      if(modifiedDec < baseDec) {
+        ship.mutableStats.deceleration.modifyMult(ID, baseDec / modifiedDec)
+      }
+
+      ship.mutableStats.maxTurnRate.unmodify(ID)
+      val modifiedTr = ship.mutableStats.maxTurnRate.modified+ 0.1f
+      val baseTr = ship.mutableStats.maxTurnRate.baseValue
+      if(modifiedTr < baseTr) {
+        ship.mutableStats.maxTurnRate.modifyMult(ID, baseTr / modifiedTr)
+      }
+
+      ship.mutableStats.turnAcceleration.unmodify(ID)
+      val modifiedTacc = ship.mutableStats.turnAcceleration.modified+ 0.1f
+      val baseTacc = ship.mutableStats.turnAcceleration.baseValue
+      if(modifiedTacc  < baseTacc) {
+        ship.mutableStats.turnAcceleration.modifyMult(ID, baseTacc / modifiedTacc)
+      }
+    }
+
+    fun ignoreShipInitialVel(entity: CombatEntityAPI, shipVel: Vector2f): Vector2f{
+      val toReturn = Vector2f(0f,0f)
+      toReturn.set(Vector2f.sub(entity.velocity, shipVel,null))
+      return toReturn
+    }
+
+    fun addSmoothParticle(point: Vector2f, vel: Vector2f, size:Float, brightness:Float, durIn:Float,duration:Float, color: Color){
+      val sprite = Global.getSettings().getSprite("aEP_FX","smooth_particle")
+      sprite.setSize(size,size)
+      sprite.color = getColorWithAlpha(color, brightness)
+      sprite.setAdditiveBlend()
+      MagicRenderPlugin.addBattlespace(
+        sprite, Vector2f(point), Vector2f(vel),
+        Misc.ZERO, 0f,
+        durIn,0f, duration, CombatEngineLayers.ABOVE_PARTICLES)
+    }
+
+    fun addSmoothParticle(point: Vector2f, vel: Vector2f, size:Float, brightness:Float, durIn:Float, duration:Float, durOut:Float, color: Color){
+      val sprite = Global.getSettings().getSprite("aEP_FX","smooth_particle")
+      sprite.setSize(size,size)
+      sprite.color = getColorWithAlpha(color, brightness)
+      sprite.setAdditiveBlend()
+      MagicRenderPlugin.addBattlespace(
+        sprite, Vector2f(point), Vector2f(vel),
+        Misc.ZERO, 0f,
+        durIn,duration, durOut, CombatEngineLayers.ABOVE_PARTICLES)
+    }
+
+    fun addHitParticle(point: Vector2f, vel: Vector2f, size:Float, brightness:Float, durIn:Float, duration:Float, color: Color){
+      val sprite = Global.getSettings().getSprite("aEP_FX","hit_particle")
+      sprite.setSize(size,size)
+      sprite.color = getColorWithAlpha(color, brightness)
+      sprite.setAdditiveBlend()
+      MagicRenderPlugin.addBattlespace(
+        sprite, Vector2f(point), Vector2f(vel),
+        Misc.ZERO, 0f,
+        durIn,0f, duration, CombatEngineLayers.ABOVE_PARTICLES)
+    }
+
+    fun addHitParticle(point: Vector2f, vel: Vector2f, size:Float, brightness:Float, durIn:Float, duration:Float, durOut:Float, color: Color){
+      val sprite = Global.getSettings().getSprite("aEP_FX","hit_particle")
+      sprite.setSize(size,size)
+      sprite.color = getColorWithAlpha(color, brightness)
+      sprite.setAdditiveBlend()
+      MagicRenderPlugin.addBattlespace(
+        sprite, Vector2f(point), Vector2f(vel),
+        Misc.ZERO, 0f,
+        durIn, duration, durOut, CombatEngineLayers.ABOVE_PARTICLES)
+
+    }
+
+    fun addLensFlare(point: Vector2f,vel: Vector2f, size:Vector2f, growth:Vector2f, angle: Float, color: Color, durIn:Float,duration: Float){
+      //横杠闪光
+      val sprite = Global.getSettings().getSprite("graphics/fx/starburst_glow1.png")
+      sprite.setSize(size.x,size.y)
+      sprite.angle = angle
+      sprite.color = color
+      sprite.setAdditiveBlend()
+      MagicRenderPlugin.addBattlespace(
+        sprite, Vector2f(point), Vector2f(vel),
+        growth, 0f,
+        durIn, 0f, duration, CombatEngineLayers.ABOVE_PARTICLES)
+
+    }
+
+    fun addExplosionParticleCloud(point: Vector2f, maxRad:Float, coreRad:Float, sizeMin:Float,  sizeMax:Float, num:Int, duration:Float, color: Color){
+     for ( i in 0 until num){
+       var speed = maxRad/(duration+0.1f)
+       val angle = MathUtils.getRandomNumberInRange(0f, 360f)
+       val loc = getExtendedLocationFromPoint(point,angle,coreRad * MathUtils.getRandomNumberInRange(0f,1f))
+
+       speed *= MathUtils.getRandomNumberInRange(0.25f,1.5f)
+       val vel = speed2Velocity(angle, speed)
+
+       val size = MathUtils.getRandomNumberInRange(sizeMin, sizeMax)
+       val time = duration * MathUtils.getRandomNumberInRange(0.25f,1.5f)
+       addSmoothParticle(loc,vel,size,(color.alpha/255.1f),
+         0f,time * 0.25f,time * 0.75f ,color)
+     }
+
+    }
+
+    fun spawnDirectionalExplosion(
+      point: Vector2f, facing: Float , num: Int, minSize:Float, maxSize:Float, color: Color,
+      minDur:Float, maxDur:Float, spreadArc:Float, scatter:Float, minVel:Float, maxVel:Float,
+      endSizeMultMin:Float,  endSizeMultMax:Float) {
+      if (Global.getCombatEngine().viewport.isNearViewport(point, maxVel * maxDur + maxSize * endSizeMultMax + 100f)) {
+
+        val spawnPoint = Vector2f(point)
+        for (i in 0 until num) {
+          var angleOffset = Math.random().toFloat()
+          if (angleOffset > 0.2f) {
+            angleOffset *= angleOffset
+          }
+          var speedMult = 1f - angleOffset
+          speedMult = 0.5f + speedMult * 0.5f
+          angleOffset *= sign((Math.random().toFloat() - 0.5f))
+          angleOffset *= spreadArc / 2f
+          val theta = Math.toRadians((facing + angleOffset).toDouble()).toFloat()
+          val r = (Math.random() * Math.random() * scatter).toFloat()
+          val x = cos(theta.toDouble()).toFloat() * r
+          val y = sin(theta.toDouble()).toFloat() * r
+          val pLoc = Vector2f(spawnPoint.x + x, spawnPoint.y + y)
+          var speed = minVel + (maxVel - minVel) * Math.random().toFloat()
+          speed *= speedMult
+          val pVel = Misc.getUnitVectorAtDegreeAngle(Math.toDegrees(theta.toDouble()).toFloat())
+          pVel.scale(speed)
+          val pSize = minSize + (maxSize - minSize) * Math.random().toFloat()
+          val pDur = minDur + (maxDur - minDur) * Math.random().toFloat()
+          val endSize = endSizeMultMin + (endSizeMultMax - endSizeMultMin) * Math.random().toFloat()
+          Global.getCombatEngine().addNebulaParticle(pLoc, pVel, pSize, endSize, 0.1f, 0.5f, pDur, color)
+        }
+      }
+    }
+
+    /**
+     * 如果武器下线，把血量修到离满只差10滴血，下一帧让电脑自动修复
+    * */
+    fun keepWeaponAlive(w: WeaponAPI){
+      if(w.isDisabled && w.currHealth < w.maxHealth-10f){
+        w.currHealth = w.maxHealth-10f
+      }
+    }
+
+    fun attachMissileToProj(entity: MissileAPI, range: Float, speed: Float){
+      val spec = (Global.getSettings().getWeaponSpec("aEP_ut_missile_attacher").projectileSpec as ProjectileSpecAPI)
+      spec.maxRange = range
+      spec.setMoveSpeed(speed)
+      val attachProj = Global.getCombatEngine().spawnProjectile(
+        null,null,"aEP_ut_missile_attacher",entity.location,entity.facing,null) as BallisticProjectile
+
+      aEP_CombatEffectPlugin.addEffect(object : aEP_BaseCombatEffect(0f, attachProj){
+        val missile = entity
+
+        override fun advanceImpl(amount: Float) {
+          missile.velocity.set(attachProj.velocity)
+          missile.location.set(attachProj.location)
+
+          if(!Global.getCombatEngine().isEntityInPlay(missile)){
+            shouldEnd = true
+          }
+        }
+
+        override fun readyToEnd() {
+          Global.getCombatEngine().removeEntity(attachProj)
+          if(Global.getCombatEngine().isEntityInPlay(missile) && !missile.isFizzling){
+            missile.flameOut()
+          }
+        }
+      })
+
+      spec.maxRange = 1f
+      spec.setMoveSpeed(1f)
+    }
+
+    fun compensateMissileInitialSpeed(projectile: MissileAPI){
+      val speedNow = projectile.spec.launchSpeed
+      val maxSpeed = projectile.maxSpeed
+      val range = projectile.maxRange
+      var acc = projectile.acceleration
+      if(maxSpeed <= speedNow) return
+      if(acc <= 0) return
+      if(range <= 0) return
+      val speedDiff = maxSpeed - speedNow
+      val timeToAcc = speedDiff/acc
+      val timeCompensation = timeToAcc/2f
+      projectile.maxFlightTime = range/maxSpeed
+      projectile.maxFlightTime += timeCompensation
+    }
   }
   class FiringSmokeParam{
     var smokeSize = 0f
@@ -1921,6 +2169,8 @@ class aEP_ID{
     const val CANCEL = "Cancel"
     const val RETURN = "Return"
     const val SELECT = "Select"
+
+    const val SYSTEM_SHIP_TARGET_KEY = "aEP_systemShipTargetKey"
   }
 }
 
@@ -1996,6 +2246,10 @@ class aEP_Combat{
     }
   }
 
+
+  /**
+   * 一个单纯的计数类，加入时给key加1f，结束时给key减1f，用于各种防止不同舰船的同一系统使用在同一目标上
+   * */
   class MarkTarget(liftime:Float, val id:String, val addOrRemove:Float, val target:CombatEntityAPI)
     : aEP_BaseCombatEffect(liftime, target){
 
@@ -2012,7 +2266,10 @@ class aEP_Combat{
     }
   }
 
-  class RecallFighterJitter: aEP_BaseCombatEffect{
+  /**
+   * onRecall()可以自由修改，特效部分不需要飞机存在母舰
+   * */
+  open class RecallFighterJitter: aEP_BaseCombatEffect{
     companion object{
       const val ID = "aEP_RecallFighter"
     }
@@ -2024,10 +2281,30 @@ class aEP_Combat{
     }
 
     override fun advance(amount: Float) {
-      super.advance(amount)
+      //若 entity不为空，则进行 entity检测，不过就直接结束
+      if(entity != null) {
+        loc.set(entity?.location?:Vector2f(0f,0f))
 
+        if(!Global.getCombatEngine().isEntityInPlay(entity)){
+          shouldEnd = true
+        }
+
+        if(entity is ShipAPI){
+          val ship = entity as ShipAPI
+          if(!ship.isAlive || ship.isHulk){
+            shouldEnd = true
+          }
+        }
+      }
+
+      if(shouldEnd) return
+
+      time += amount
+      MathUtils.clamp(time,0f,lifeTime)
+      advanceImpl(amount)
+
+      //播放特效
       val fighter = entity as ShipAPI
-
       val effectLevel = time/lifeTime
       val maxRangeBonus = fighter.collisionRadius * 1f
       val jitterRangeBonus: Float = 5f + effectLevel * maxRangeBonus
@@ -2038,9 +2315,13 @@ class aEP_Combat{
       val alpha = 1f - effectLevel * 0.5f
       fighter.extraAlphaMult = alpha
 
-      if(effectLevel >= 1f){
-        onRecall()
+      if(time >= lifeTime && lifeTime > 0){
+        //不可以在这里removeEntity，会造成jitter异常，很怪
+        //onRecall()
+        shouldEnd = true
+
       }
+
 
     }
 
@@ -2053,12 +2334,17 @@ class aEP_Combat{
       fighter.isPhased = false
       fighter.extraAlphaMult = 1f
       fighter.removeCustomData(ID)
+
+      if(!aEP_Tool.isDead(fighter)){
+        onRecall()
+      }
+
     }
   }
 
-  class StandardTeleport(lifeTime: Float, ship:ShipAPI, val toLoc: Vector2f, val facing:Float): aEP_BaseCombatEffect(lifeTime, ship){
+  open class StandardTeleport(lifeTime: Float, ship:ShipAPI, val toLoc: Vector2f, val facing:Float): aEP_BaseCombatEffect(lifeTime, ship){
     companion object{
-      const val ID = "StandardTeleport"
+      const val ID = "aEP_StandardTeleport"
     }
 
     var color = RecallDeviceStats.JITTER_COLOR
@@ -2097,15 +2383,6 @@ class aEP_Combat{
       val alpha = 1f - effectLevel * 0.5f
       fighter.extraAlphaMult = alpha
 
-      if(time >= lifeTime){
-        fighter.location.set(toLoc)
-        Global.getCombatEngine().addHitParticle(
-          toLoc,Misc.ZERO,fighter.collisionRadius+200f,
-          1f,0.1f,0.15f,c)
-        Global.getCombatEngine().addHitParticle(
-          toLoc,Misc.ZERO,fighter.collisionRadius+200f,
-          1f,0.1f,0.15f,c)
-      }
 
     }
 
@@ -2114,6 +2391,48 @@ class aEP_Combat{
       fighter.isPhased = false
       fighter.extraAlphaMult = 1f
       fighter.removeCustomData(ID)
+
+      //如果是正常通过时间导致的结束
+      if(time >= lifeTime && !aEP_Tool.isDead(fighter)){
+        val c = Misc.setAlpha(color,255)
+
+        fighter.location.set(toLoc)
+        Global.getCombatEngine().addHitParticle(
+          toLoc,Misc.ZERO,fighter.collisionRadius+200f,
+          1f,0.1f,0.2f,c)
+        Global.getCombatEngine().addHitParticle(
+          toLoc,Misc.ZERO,fighter.collisionRadius+200f,
+          1f,0.1f,0.4f,c)
+
+        for(i in 1..3){
+          val relativeLoc = VectorUtils.getDirectionalVector(fighter.velocity, Vector2f(0f,0f))
+          var velocity = Vector2f(-relativeLoc.x, -relativeLoc.y)
+          val dist = (fighter.collisionRadius)/i
+          relativeLoc.scale(dist)
+          velocity.scale(dist * 3f)
+          val dur = 0.233f
+          val out = 0.1f
+
+          fighter.addAfterimage(
+            c,
+            relativeLoc.x, relativeLoc.y,
+            velocity.x, velocity.y, 5f, 0f,
+            dur,
+            out, true, false, true)
+
+          fighter.shipAI?.cancelCurrentManeuver()
+          fighter.shipAI?.forceCircumstanceEvaluation()
+        }
+
+        onTel()
+      }
+    }
+
+    /**
+     * 在舰船的坐标已经移动，特效已经生成，ai被强制重新索敌之后
+     * */
+    open fun onTel(){
+
     }
   }
 
@@ -2218,4 +2537,104 @@ class aEP_Combat{
       var timeElapsed = 0f
     }
   }
+
+  class AddDamageReduction(lifeTime: Float, damageReduceMult: Float, val target: CombatEntityAPI) : aEP_BaseCombatEffect(0f,target){
+    companion object{
+      const val ID = "aEP_DamageReduce"
+    }
+
+    val allData = ArrayList<Data>()
+
+    init {
+      if(target is ShipAPI || target is DamagingProjectileAPI) {
+        val data = Data()
+        data.fullTime = lifeTime
+        data.damageReduceMult = damageReduceMult
+
+        //正在处于别的buff中
+        if(target.customData.containsKey(ID)){
+          val manager = target.customData[ID] as AddDamageReduction
+          manager.allData.add(data)
+        }else{ //第一次被施加debuff
+          target.setCustomData(ID, this)
+          allData.add(data)
+          aEP_CombatEffectPlugin.addEffect(this)
+        }
+      }
+    }
+
+    override fun advanceImpl(amount: Float) {
+      var maxReduceMult = 0f
+
+      val expired = HashSet<Data>()
+      for(d in allData) {
+        var reduce = d.damageReduceMult
+        //找到当前最大的减速值
+        if(reduce > maxReduceMult) maxReduceMult = reduce
+        //advance计时器
+        d.timeElapsed += amount
+        if(d.timeElapsed >= d.fullTime) expired.add(d)
+      }
+      allData.removeAll(expired)
+      maxReduceMult = maxReduceMult.coerceAtMost(1f)
+
+
+      //修改数据
+      if(target is ShipAPI){
+        target.mutableStats.damageToFighters.modifyMult(ID, 1f - maxReduceMult)
+        target.mutableStats.damageToFrigates.modifyMult(ID, 1f - maxReduceMult)
+        target.mutableStats.damageToDestroyers.modifyMult(ID, 1f - maxReduceMult)
+        target.mutableStats.damageToCruisers.modifyMult(ID, 1f - maxReduceMult)
+        target.mutableStats.damageToCapital.modifyMult(ID, 1f - maxReduceMult)
+      }
+      if(target is DamagingProjectileAPI){
+        target.damage.modifier.modifyMult(ID,1f - maxReduceMult)
+      }
+      //对于dem，找到距离完全为0的fxdrone，施加减低伤害的buff
+      if(target is MissileAPI){
+        if(target.weapon != null && target.projectileSpec?.onFireEffect is DEMEffect){
+          for(f in Global.getCombatEngine().ships){
+            if(!f.variant.hasTag(VARIANT_FX_DRONE)) continue
+            //距离完全为0
+            if(MathUtils.getDistance(f.location, target.location) > 0) continue
+            AddDamageReduction(0.25f, maxReduceMult , f)
+          }
+        }
+      }
+
+      if(allData.size <= 0){
+        shouldEnd = true
+      }
+
+      //一艘船只能同时存在一个manager类
+      if(target.customData.containsKey(ID) && target.customData[ID] != this){
+        shouldEnd = true
+      }
+    }
+
+    override fun readyToEnd() {
+      //修改数据
+      if(target is ShipAPI){
+        target.mutableStats.damageToFighters.unmodify(ID)
+        target.mutableStats.damageToFrigates.unmodify(ID)
+        target.mutableStats.damageToDestroyers.unmodify(ID)
+        target.mutableStats.damageToCruisers.unmodify(ID)
+        target.mutableStats.damageToCapital.unmodify(ID)
+      }
+      if(target is DamagingProjectileAPI){
+        target.damage.modifier.unmodify(ID)
+      }
+
+      if(target.customData.containsKey(ID) && target.customData[ID] == this){
+        target.customData.remove(ID)
+      }
+    }
+
+    class Data{
+      var damageReduceMult = 0f
+      var fullTime = 0.5f
+      var timeElapsed = 0f
+    }
+  }
+
 }

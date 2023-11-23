@@ -13,13 +13,14 @@ public class aEP_AnimationController
   static final Map<String, Float[]> mag = new HashMap<>();
 
   static {
-    //rate
-    mag.put("aEP_", new Float[]{1f});
+    //变化速度，一秒钟能播放几遍
+    mag.put("aEP_des_yangji_flak", new Float[]{1f});
   }
 
   public float effectiveLevel = 0;
   float toLevel = 0;
-  float speed = 0;
+  //播放速度，一秒能循环几遍
+  float speed = 1;
   AnimationAPI animation;
   WeaponAPI weapon;
 
@@ -30,6 +31,8 @@ public class aEP_AnimationController
   }
 
   public void advance(float amount) {
+    //glow贴图也存在2帧，为了防止和glow冲突，animation必须在mag中声明才能使用
+    if(!mag.containsKey(weapon.getSpec().getWeaponId())) return;
     if (speed <= 0) return;
     //aEP_Tool.addDebugText("1");
     float toMove;

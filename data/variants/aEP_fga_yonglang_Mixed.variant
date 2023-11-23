@@ -1,7 +1,7 @@
 {
     "displayName": "Mixed",
-    "fluxCapacitors": 8,
-    "fluxVents": 8,
+    "fluxCapacitors": 7,
+    "fluxVents": 7,
     "goalVariant": true,
     "hullId": "aEP_fga_yonglang",
     "hullMods": [
@@ -13,24 +13,21 @@
     "variantId": "aEP_fga_yonglang_Mixed",
     "weaponGroups": [
         {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0005": "lightdualac",
-                "WS0006": "lightdualac"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0010": "aEP_fga_yonglang_main"}
-        },
-        {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
                 "WS0001": "vulcan",
-                "WS0002": "vulcan"
+                "WS0002": "vulcan",
+                "WS0005": "aEP_b_s_pom",
+                "WS0006": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0013": "aEP_fga_yonglang_main",
+                "WS0014": "aEP_fga_yonglang_main"
             }
         },
         {

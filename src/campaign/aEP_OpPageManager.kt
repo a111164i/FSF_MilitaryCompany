@@ -2,7 +2,7 @@ package campaign
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.InteractionDialogAPI
-import combat.util.aEP_Tool.Util.limitToTop
+import org.lazywizard.lazylib.MathUtils
 import java.util.ArrayList
 
 class aEP_OpPageManager(allOpts: List<String>, num: Int, returnOpt: String) {
@@ -41,11 +41,11 @@ class aEP_OpPageManager(allOpts: List<String>, num: Int, returnOpt: String) {
   }
 
   fun next() {
-    currPage = limitToTop((currPage + 1).toFloat(), maxPage.toFloat(), 0f).toInt()
+    currPage = MathUtils.clamp((currPage + 1).toFloat(), 0f, maxPage.toFloat()).toInt()
   }
 
   fun previous() {
-    currPage = limitToTop((currPage - 1).toFloat(), maxPage.toFloat(), 0f).toInt()
+    currPage = MathUtils.clamp((currPage - 1).toFloat(), 0f, maxPage.toFloat(),).toInt()
   }
 
   init {

@@ -12,27 +12,28 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lwjgl.util.vector.Vector2f
+import kotlin.math.pow
 
 class aEP_DroneGuardAI: aEP_BaseSystemAI() {
   companion object{
     const val ALERT_TIME = 0.9f
     const val ID = "aEP_DroneGuardAI"
     const val THRESHOLD = 450f
-    const val BLINK_TIME_BEFORE_HIT = 0.3f
+    const val BLINK_TIME_BEFORE_HIT = 0.25f
   }
 
   var currProj:DamagingProjectileAPI? = null
   var currBeam:BeamAPI? = null
 
   override fun initImpl() {
-    thinkTracker.setInterval(0.05f,0.05f)
+    thinkTracker.setInterval(0.01f,0.07f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
     shouldActive = false
     val systemRange = aEP_Tool.getSystemRange(ship,MAX_DIST)
     val nearShips = AIUtils.getNearbyAllies(ship, systemRange)
-    val nearEntities = CombatUtils.getEntitiesWithinRange(ship.location, systemRange * 2f)
+    val nearEntities = CombatUtils.getEntitiesWithinRange(ship.location, systemRange * 1.5f)
 
     //检查是否可以拦截弹丸
     for(proj in nearEntities){
@@ -44,9 +45,9 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
       //modifier基础值是1
       var damageAmount = proj.damage.modifier.modifiedValue * proj.damage.damage
       when(proj.damage.type){
-        DamageType.ENERGY-> damageAmount  *= 0.8f
+        DamageType.ENERGY-> damageAmount  *= 0.75f
         DamageType.KINETIC-> damageAmount *= 0.75f
-        DamageType.FRAGMENTATION-> damageAmount *= 0.5f
+        DamageType.FRAGMENTATION-> damageAmount *= 0.4f
         else -> {}
       }
       if(damageAmount < THRESHOLD) continue
@@ -61,8 +62,9 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
         if(s.collisionClass == CollisionClass.NONE) continue
         if(s.owner == proj.owner) continue
         //排除已经进入友军碰撞圈的导弹，不可能拦截了
+        //这个需要用于计算拦截点，不能只算Sq
         val distProj2Target = MathUtils.getDistance(proj.location, s.location)
-        if(distProj2Target < s.collisionRadius) continue
+        if(distProj2Target <= s.collisionRadius) continue
 
         //如果目标弹丸会在飞行ALERT_TIME后划过任意友军的碰撞圈，启动系统
         val willHit = CollisionUtils.getCollides(proj.location, hitPoint,s.location, s.collisionRadius)
@@ -73,15 +75,16 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
             angleAndVel.x,
             BLINK_TIME_BEFORE_HIT * angleAndVel.y + ship.collisionRadius)
           //如果目标弹丸飞的太快，第一位置已经处于保护友军碰撞圈的范围内了，就使用第二位置，直接在舰体碰撞圈和弹丸的交点处
-          val distPoint2Target = MathUtils.getDistance(interceptPoint, s.location)
-          if(distPoint2Target < s.collisionRadius) {
+          val distPoint2TargetSq = MathUtils.getDistanceSquared(interceptPoint, s.location)
+          if(distPoint2TargetSq <= (s.collisionRadius + 10f ).pow(2)) {
             interceptPoint.set(aEP_Tool.getExtendedLocationFromPoint(
               proj.location,
               angleAndVel.x,
               distProj2Target - s.collisionRadius))
           }
 
-          if(MathUtils.getDistance(interceptPoint, ship.location) < aEP_Tool.getSystemRange(ship, MAX_DIST)){
+          val distInterceptPoint2ShipSq = MathUtils.getDistanceSquared(interceptPoint, ship.location)
+          if(distInterceptPoint2ShipSq < aEP_Tool.getSystemRange(ship, MAX_DIST).pow(2)){
             ship.mouseTarget.set(interceptPoint)
             proj.setCustomData(ID,1f)
             currProj = proj

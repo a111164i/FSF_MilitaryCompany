@@ -1,14 +1,13 @@
 {
     "displayName": "Boardside",
-    "fluxCapacitors": 0,
-    "fluxVents": 19,
+    "fluxCapacitors": 17,
+    "fluxVents": 5,
     "goalVariant": true,
     "hullId": "aEP_cru_zhongliu",
     "hullMods": [
-        "targetingunit",
-        "ballistic_rangefinder"
+        "ballistic_rangefinder",
+        "targetingunit"
     ],
-    "modules": [{"MD01": "aEP_cru_zhongliu_armor_Standard"}],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_zhongliu_Broadside",
@@ -20,9 +19,8 @@
         },
         {
             "autofire": false,
-            "mode": "ALTERNATING",
+            "mode": "LINKED",
             "weapons": {
-                "WS0007": "breach",
                 "WS0008": "breach",
                 "WS0009": "breach",
                 "WS0010": "breach"
@@ -45,12 +43,10 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_b_m_mb32"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0011": "vulcan"}
+            "weapons": {
+                "WS0003": "aEP_b_s_630",
+                "WS0011": "aEP_b_s_630"
+            }
         }
     ]
 }

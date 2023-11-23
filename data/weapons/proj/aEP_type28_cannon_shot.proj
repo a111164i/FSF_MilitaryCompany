@@ -16,5 +16,7 @@
 	"textureScrollSpeed":55.0,
 	"pixelsPerTexel":5.0,
 	"passThroughMissiles":true,
+	"passThroughFighters":true,
+	"passThroughFightersOnlyWhenDestroyed":false,
 	"bulletSprite":"graphics/missiles/shell_gauss_cannon.png",
 }

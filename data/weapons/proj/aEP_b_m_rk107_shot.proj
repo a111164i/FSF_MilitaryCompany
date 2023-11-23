@@ -1,64 +1,92 @@
 {
 	"id":"aEP_b_m_rk107_shot",
-	"specClass": "missile",
-	"missileType":"ROCKET",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+  "sprite":"graphics/weapons/aEP_b_m_rk107/proj.png",
+  "glowSprite":"",
+	"fringeColor":[240,120,100,255], # 默认拖尾颜色
+	"coreColor":[255,255,255,255], # 弹体颜色
+  "glowColor":[175,140,50,255], # 发光的颜色
+  "glowRadius":10,
+	"hitGlowRadius":60,
+  "size":[8,10],
+  "center":[4,5],
+  "length":72.0,
+  "width":6,
+  "collisionRadius":50,
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"sprite":"graphics/weapons/aEP_b_m_rk107/proj.png",
-	"size":[5,18],
-	"center":[2.5,9],
-	"collisionRadius":12,
-	"collisionClass":"MISSILE_FF",
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "explosionColor":[255,80,35,205],  # purely visual, will get a white additively blended core on top of this color
+  "explosionRadius":50, # purely visual
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":5.0,
+  "bulletSprite":"graphics/weapons/aEP_b_m_rk107/proj.png",
+
+  #模板
   "armingTime":0, # safe range count by time
-  "noEngineGlowTime":0.5, # time spent after fired without the engine glow being rendered
-  "fadeTime":0.3, # 熄火后能漂移多久
-	"flameoutTime":0.5,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+  "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
+  #如果要弹丸严格按照最大距离飞行，这几个参数一定得是0，fadeTime这段时间如果不填默认不是0而且不属于maxFlightTime
+  #如果不填，此时弹丸结束时的flightTime会大于maxFlightTime，且此段时间最大速度不受限制，默认fadeTime + flameoutTime为3.5秒
+  #flameoutTime一般最小写0.1，再低经过测试会有问题
+  "fadeTime":0.25, # 熄火后能漂移多久
+  "flameoutTime":0.1,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+
   "alwaysAccelerate":true,
   "reduceDamageWhileFading":false,
   "useProjectileRangeCalculation":true,
-	"passThroughMissiles":false,
-	"noCollisionWhileFading":true,
-  "noDebrisWhenDestroyed": true,
-	#"explosionColor":[233,122,100,50],  # purely visual, will get a white additively blended core on top of this color
-	#"explosionRadius":40, # purely visual
-	"explosionSpec":{"duration":0.0001f,
-                   "radius":40,
-                   "coreRadius":10, # full damage within core radius - also equal to proximity fuse range
-                   "collisionClass":PROJECTILE_FF,
-                   "collisionClassByFighter":PROJECTILE_FIGHTER,
-                   "particleSizeMin":5.0,
-                   "particleSizeRange":5.0,
-                   "particleDuration":1,
-                   "particleCount":40,
-                   "particleColor":[255,155,155,255],
-                   "sound":"explosion_flak"},
+  "passThroughMissiles":false,
+  "renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
+  "noCollisionWhileFading":true,
+  "useHitGlowWhenDestroyed":true, # instead of the default explosion
+ 	"explosionSpec":{
+ 	  "duration":0.0001f,
+    "radius":40,
+    "coreRadius":15, # full damage within core radius - also equal to proximity fuse range
+    "collisionClass":PROJECTILE_FF,
+    "collisionClassByFighter":PROJECTILE_FIGHTER,
+    "particleSizeMin":5.0,
+    "particleSizeRange":5.0,
+    "particleDuration":1,
+    "particleCount":40,
+    "particleColor":[255,155,155,255],
+    "sound":"explosion_flak"
+  },
+
 	"engineSpec":{
-				#"maxSpeed":700,
-				"turnAcc":0,
-				"turnRate":0,
-				"acc":400,
-				"dec":0},
+		#"maxSpeed":700,
+		"turnAcc":0,
+		"turnRate":0,
+		"acc":400,
+		"dec":0
+	},
+
 	"engineSlots":[
-						{"id":"ES1",
-						"loc":[-10, 0],
-						"style":"CUSTOM",
-						"styleSpec":{
-							"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-							"engineColor":[150,150,100,215],
-							"contrailDuration":1,
-							"contrailWidthMult":0.75,
-							"contrailWidthAddedFractionAtEnd":-0.8,  # can be negative. makes trail spread out/narrow at the end
-							"contrailMinSeg":5, # min segment length, in pixels
-							"contrailMaxSpeedMult":0f,
-							"contrailAngularVelocityMult":0.5f,
-							"contrailSpawnDistMult":0f, # how far away from engine it starts
-							"contrailColor":[255,155,155,232],
-							"glowSizeMult":0.75,
-							"glowAlternateColor":[255,192,123,234],
-							"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
-						},
-				    "width":12.0,
-				    "length":120.0,
-				    "angle":180.0},
-				   ]
+		{
+			"id":"ES1",
+			"loc":[-10, 0],
+			"style":"CUSTOM",
+			"styleSpec":{
+				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+				"engineColor":[150,150,100,215],
+				"contrailDuration":1,
+				"contrailWidthMult":0.75,
+				"contrailWidthAddedFractionAtEnd":-0.8,  # can be negative. makes trail spread out/narrow at the end
+				"contrailMinSeg":5, # min segment length, in pixels
+				"contrailMaxSpeedMult":0f,
+				"contrailAngularVelocityMult":0.5f,
+				"contrailSpawnDistMult":0f, # how far away from engine it starts
+				"contrailColor":[255,155,155,232],
+				"glowSizeMult":0.75,
+				"glowAlternateColor":[255,192,123,234],
+				"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
+			},
+	    "width":12.0,
+	    "length":120.0,
+	    "angle":180.0
+	  },
+
+	]
 }
 			

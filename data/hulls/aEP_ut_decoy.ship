@@ -1,0 +1,71 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ut_decoy",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/aEP_fighters/ut_decoy.png",
+  "style": "aEP_FSF",
+  "height": 24,
+  "width": 24,
+  "center": [12, 11],
+  "collisionRadius": 13,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 12.5,
+  "viewOffset": 0,
+  "builtInMods":[
+    "aEP_ProjectileDenialShield",
+  ],
+  "weaponSlots": [
+    {
+      "id": "LH",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [1, 5]
+    },
+    {
+      "id": "RH",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [1, -5]
+    },
+    {
+      "id": "M",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 0,
+      "angle": 0,
+      "locations": [4, -0]
+    },
+    {
+      "id": "MH",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-0.5, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-10, -0],
+      "length": 8.5,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 6,
+      "style": "FSF_MAIN_CLEAN"
+    }
+  ],
+  "bounds": [
+    -6.5, -6.5,
+    4.5, -6.5,
+    4.5, 6.5,
+    -6.5, 6.5
+  ]
+}

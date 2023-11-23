@@ -12,15 +12,18 @@ import com.fs.starfarer.api.combat.ShipAPI
 import combat.util.aEP_Tool
 import org.lwjgl.util.vector.Vector2f
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
+import com.fs.starfarer.api.combat.WeaponAPI
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.util.aEP_Tool.Util.velocity2Speed
+import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
 
 class aEP_NBFiringJet : BaseShipSystemScript() {
 
   companion object {
-    const val MAX_SPEED_FLAT = 300f
+    const val MAX_SPEED_FLAT = 375f
 
     const val ACC_MULT = 0.25f
 
@@ -49,7 +52,12 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
   var engineFrontRight1Active = false
   var engineFrontRight2Active = false
 
+  var leftFin : WeaponAPI? = null
+  var rightFin : WeaponAPI? = null
+
   var smokeTrailTimer = IntervalUtil(0.1f, 0.1f)
+
+  var actived = false;
 
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
@@ -60,6 +68,27 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
         findEngines(ship)
       }
     }
+
+    if(effectLevel > 0f){
+      //aEP_Tool.ignoreSlow(ship,true)
+    }else{
+      //aEP_Tool.ignoreSlow(ship,false)
+    }
+
+    //控制装饰武器
+    updateDecos(ship, effectLevel)
+    updateIndicators(ship)
+    //技能不激活就不往下走了
+    if(state == ShipSystemStatsScript.State.IDLE || state == ShipSystemStatsScript.State.COOLDOWN){
+      //如果曾经激活过，unapply一次，会自动把actived改为false
+      if(actived){
+        unapply(stats,id)
+      }
+      return
+    }
+
+
+    actived = true
     val useLevel = (effectLevel * 0.9f) + 0.1f
     ship.isJitterShields = false
     ship.setJitterUnder(id, Color(240, 100, 50, 200), 1f, 4, 14f)
@@ -73,37 +102,13 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
     stats.maxTurnRate.modifyPercent(id, MAX_TURN_RATE_PERCENT)
     stats.weaponTurnRateBonus.modifyPercent(id, WEAPON_TURN_RATE_PERCENT)
 
-    var angle = 0f
-    //如果正在前进
-    if(ship.engineController.isDecelerating || ship.engineController.isAcceleratingBackwards){
-      angle = 180f
-      if(ship.engineController.isStrafingLeft){
-        angle = 135f
-      }else if (ship.engineController.isStrafingRight){
-        angle = 225f
-      }
-    //如果正在后退
-    }else if(ship.engineController.isAccelerating){
-      angle = 0f
-      if(ship.engineController.isStrafingLeft){
-        angle = 45f
-      }else if (ship.engineController.isStrafingRight){
-        angle = 315f
-      }
-    //如果只在进行侧向漂移
-    }else{
-      if(ship.engineController.isStrafingLeft){
-        angle = 90f
-      }else if (ship.engineController.isStrafingRight){
-        angle = 270f
-      }
-    }
-    //引擎相对角度加上舰船本身的角度，变成战场绝对角度
-    angle = aEP_Tool.angleAdd(angle,ship.facing)
+    var angle = aEP_Tool.computeCurrentManeuveringDir(ship)
+
 
     //烟雾拖尾
     smokeTrailTimer.advance(getAmount(null))
     if (smokeTrailTimer.intervalElapsed()) createSmokeTrail(ship, 1f - effectLevel)
+
 
     //降低主引擎和没被激活副引擎的火光
     for (e in ship.engineController.shipEngines) {
@@ -169,7 +174,7 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
 
   override fun unapply(stats: MutableShipStatsAPI, id: String) {
     val ship = (stats?.entity?: return) as ShipAPI
-
+    actived = false
     if(engineBackLeft1 == null || engineBackLeft2 == null || engineFrontLeft1 == null || engineFrontLeft2 == null){
       if(engineBackRight1 == null || engineBackRight2 == null || engineFrontRight1 == null || engineFrontRight2 == null){
         findEngines(ship)
@@ -195,6 +200,17 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
     val angleAndSpeed = velocity2Speed(ship.velocity)
     val toClamp = angleAndSpeed.y/(ship.mutableStats.maxSpeed.modifiedValue+30f)
     ship.velocity.scale(MathUtils.clamp(1f/toClamp,0.25f,1f))
+
+    //控制装饰武器
+    updateDecos(ship, 0f)
+  }
+
+  /**
+   * 这个方法只有在玩家开才会每帧调用，不能在这取巧
+   *
+   * */
+  override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+    return super.isUsable(system, ship)
   }
 
   fun createSmokeTrail(ship: ShipAPI, level:Float) {
@@ -333,5 +349,154 @@ class aEP_NBFiringJet : BaseShipSystemScript() {
       engineBackLeft1Active = true
       engineBackLeft2Active = true
     }
+  }
+
+  fun updateDecos(ship: ShipAPI, level: Float){
+    //第一次运行时，寻找装饰武器
+    if(leftFin == null || rightFin == null){
+      for(w in ship.allWeapons){
+        if(w.spec.weaponId.equals("aEP_cap_neibo_fin_l")) leftFin = w
+        if(w.spec.weaponId.equals("aEP_cap_neibo_fin_r")) rightFin = w
+      }
+      return
+    }
+    val leftController = leftFin?.effectPlugin as aEP_DecoAnimation
+    val rightController = rightFin?.effectPlugin as aEP_DecoAnimation
+
+    leftController.setRevoToLevel(level)
+    rightController.setRevoToLevel(level)
+  }
+
+  fun updateIndicators(ship: ShipAPI){
+    var l1 : aEP_DecoAnimation? = null
+    var l2 : aEP_DecoAnimation? = null
+    var l3 : aEP_DecoAnimation? = null
+    var l4 : aEP_DecoAnimation? = null
+
+    var r1 : aEP_DecoAnimation? = null
+    var r2 : aEP_DecoAnimation? = null
+    var r3 : aEP_DecoAnimation? = null
+    var r4 : aEP_DecoAnimation? = null
+    var r5 : aEP_DecoAnimation? = null
+
+    for(w in ship.allWeapons){
+      if(w.slot.id.equals("ID_L1")) l1 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L2")) l2 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L3")) l3 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_L4")) l4 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_R1")) r1 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_R2")) r2 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_R3")) r3 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_R4")) r4 = w.effectPlugin as aEP_DecoAnimation
+      if(w.slot.id.equals("ID_R5")) r5 = w.effectPlugin as aEP_DecoAnimation
+    }
+
+    l1?:return
+    l2?:return
+    l3?:return
+    l4?:return
+    r1?:return
+    r2?:return
+    r3?:return
+    r4?:return
+    r5?:return
+
+    val currCharge = ship.system.ammo
+    val currNextCharge = ship.system.ammoReloadProgress.coerceAtLeast(0f).coerceAtMost(1f)
+
+    //左侧的弹药数量指示灯
+    val c1 = Color.green
+    l1.decoGlowController.c = c1
+    l2.decoGlowController.c = c1
+    l3.decoGlowController.c = c1
+    l4.decoGlowController.c = c1
+    if(currCharge <= 0){
+      l1.setGlowToLevel(0f)
+      l2.setGlowToLevel(0f)
+      l3.setGlowToLevel(0f)
+      l4.setGlowToLevel(0f)
+
+    }
+    else if(currCharge <=1){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel(0f)
+      l3.setGlowToLevel(0f)
+      l4.setGlowToLevel(0f)
+
+    }
+    else if(currCharge <=2){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel(1f)
+      l3.setGlowToLevel(0f)
+      l4.setGlowToLevel(0f)
+
+    }
+    else if(currCharge <=3){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel(1f)
+      l3.setGlowToLevel(1f)
+      l4.setGlowToLevel(0f)
+
+    }
+    else if(currCharge <=4){
+      l1.setGlowToLevel(1f)
+      l2.setGlowToLevel(1f)
+      l3.setGlowToLevel(1f)
+      l4.setGlowToLevel(1f)
+
+    }
+
+
+    //右侧的装填进度指示灯
+    var c2 = Color.red
+    if(currNextCharge <= 0f) c2 = Color.green
+    if(currNextCharge >= 0.4f) c2 = Color.orange
+    if(currNextCharge >= 0.75f) c2 = Color.yellow
+    r1.decoGlowController.c = c2
+    r2.decoGlowController.c = c2
+    r3.decoGlowController.c = c2
+    r4.decoGlowController.c = c2
+    r5.decoGlowController.c = c2
+    if(currNextCharge <= 0.2f){
+      r1.setGlowToLevel(1f)
+      r2.setGlowToLevel(0f)
+      r3.setGlowToLevel(0f)
+      r4.setGlowToLevel(0f)
+      r5.setGlowToLevel(0f)
+
+    }
+    else if(currNextCharge <= 0.4f){
+      r1.setGlowToLevel(1f)
+      r2.setGlowToLevel(1f)
+      r3.setGlowToLevel(0f)
+      r4.setGlowToLevel(0f)
+      r5.setGlowToLevel(0f)
+
+    }
+    else if(currNextCharge <= 0.6f){
+      r1.setGlowToLevel(1f)
+      r2.setGlowToLevel(1f)
+      r3.setGlowToLevel(1f)
+      r4.setGlowToLevel(0f)
+      r5.setGlowToLevel(0f)
+
+    }
+    else if(currNextCharge <= 0.8f){
+      r1.setGlowToLevel(1f)
+      r2.setGlowToLevel(1f)
+      r3.setGlowToLevel(1f)
+      r4.setGlowToLevel(1f)
+      r5.setGlowToLevel(0f)
+
+    }
+    else if(currNextCharge <= 1f){
+      r1.setGlowToLevel(1f)
+      r2.setGlowToLevel(1f)
+      r3.setGlowToLevel(1f)
+      r4.setGlowToLevel(1f)
+      r5.setGlowToLevel(1f)
+
+    }
+
   }
 }

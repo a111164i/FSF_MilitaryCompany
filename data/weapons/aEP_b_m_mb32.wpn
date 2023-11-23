@@ -20,11 +20,11 @@
     17,
     5,
     17,
-    -5,
+    -5
   ],
   "turretAngleOffsets": [
     0,
-    0,
+    -0
   ],
   "hardpointOffsets": [
     16,
@@ -34,15 +34,16 @@
     18,
     5,
     18,
-    -5,z
+    -5
   ],
   "hardpointAngleOffsets": [
     0,
     0,
-
+    0,
+    0
   ],
-  "separateRecoilForLinkedBarrels":true,
   "barrelMode": "LINKED",
+  "separateRecoilForLinkedBarrels": true,
   "animationType": "MUZZLE_FLASH",
   "muzzleFlashSpec": {
     "length": 16,

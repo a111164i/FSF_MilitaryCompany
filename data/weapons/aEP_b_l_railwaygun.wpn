@@ -2,26 +2,30 @@
   "id": "aEP_b_l_railwaygun",
   "specClass": "projectile",
   "projectileSpecId": "aEP_b_l_railwaygun_shot",
-  "type":"BALLISTIC",
+  "type": "BALLISTIC",
   "size": "LARGE",
-  "turretSprite": "graphics/weapons/aEP_zhuanzhu_cannon/tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_zhuanzhu_cannon/hp.png",
+  "turretSprite": "graphics/weapons/aEP_b_l_railway/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_l_railway/trbr.png",
+  "turretUnderSprite": "graphics/weapons/aEP_b_l_railway/base.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_l_railway/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_l_railway/hpbr.png",
   "glowColor": [
     255,
     150,
     150,
     255
   ],
+  "visualRecoil": 8,
   "turretOffsets": [
-    41,
-    0
+    44,
+    -0.5
   ],
   "turretAngleOffsets": [
     0
   ],
   "hardpointOffsets": [
-    43.5,
-    0
+    48.5,
+    -0.5
   ],
   "hardpointAngleOffsets": [
     0
@@ -43,5 +47,5 @@
       255
     ]
   },
-  "fireSoundTwo":"aEP_RW_fire2",
+  "fireSoundTwo": "aEP_RW_fire2"
 }

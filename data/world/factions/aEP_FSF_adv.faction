@@ -155,7 +155,8 @@
 		"officerSkills":[
 			"ballistic_mastery",
 			"ordnance_expert",
-			"missile_specialization"
+			"missile_specialization",
+			"aEP_SkillAnalyze"
 		],
 
 
@@ -202,7 +203,8 @@
 			"graphics/portraits/portrait27.png",
 			"graphics/portraits/portrait42.png",
 			"graphics/portraits/portrait46.png",
-			"graphics/portraits/portrait_league07.png"
+			"graphics/portraits/portrait_league07.png",
+			"graphics/aEP_portraits/3.png"
 		],
 	},
 	"custom":{

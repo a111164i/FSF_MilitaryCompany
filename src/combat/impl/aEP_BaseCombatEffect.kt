@@ -72,23 +72,16 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
     //若 entity不为空，则进行 entity检测，不过就直接结束
     if(entity != null) {
       loc.set(entity?.location?:Vector2f(0f,0f))
-
-      if(!Global.getCombatEngine().isEntityInPlay(entity)){
+      if(aEP_Tool.isDead(entity as CombatEntityAPI)){
         shouldEnd = true
       }
 
-      if(entity is ShipAPI){
-        val ship = entity as ShipAPI
-        if(!ship.isAlive || ship.isHulk){
-          shouldEnd = true
-        }
-      }
     }
 
     if(shouldEnd) return
 
     time += amount
-    MathUtils.clamp(time,0f,lifeTime)
+    time = MathUtils.clamp(time,0f,lifeTime)
     advanceImpl(amount)
     if(time >= lifeTime && lifeTime > 0){
       shouldEnd = true

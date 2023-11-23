@@ -4,9 +4,15 @@
   "projectileSpecId": "aEP_b_l_dg3_shot",
   "type": "BALLISTIC",
   "size": "LARGE",
-  "everyFrameEffect": "data.scripts.weapons.aEP_ChaingunAnimation",
-  "turretSprite": "graphics/weapons/aEP_b_l_dg3/aEP_long_barrel_chaingun_turret_base00.png",
-  "hardpointSprite": "graphics/weapons/aEP_b_l_dg3/aEP_long_barrel_chaingun_hardpoint_base00.png",
+  "turretSprite": "graphics/weapons/aEP_b_l_dg3/tr00.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_l_dg3/trbr.png",
+  "turretUnderSprite": "graphics/weapons/aEP_base_l.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_l_dg3/hp00.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_l_dg3/hpbr.png",
+  "visualRecoil": 11,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
   "turretOffsets": [
     24,
     -8,
@@ -23,13 +29,13 @@
     0
   ],
   "hardpointOffsets": [
-    25,
+    25.5,
     -8,
-    25,
+    25.5,
     8,
-    23,
+    23.5,
     -13,
-    23,
+    23.5,
     13
   ],
   "hardpointAngleOffsets": [
@@ -38,26 +44,24 @@
     0
   ],
   "barrelMode": "DUAL",
-  "numFrames": 4,
-  "frameRate": 28,
-  "autocharge": true,
   "animationType": "SMOKE",
-    "smokeSpec": {
-      "particleSizeMin": 10,
-      "particleSizeRange": 5,
-      "cloudParticleCount": 0,
-      "cloudDuration": 0,
-      "cloudRadius": 0,
-      "blowbackParticleCount": 6,
-      "blowbackDuration": 0.9,
-      "blowbackLength": -20, #散布后能飞多远
-      "blowbackSpread": 10, #初始在多少距离内散布
-      "particleColor": [
-  			235,
-  			225,
-  			215,
-  			85
-      ]
+  "autocharge": true,
+  "smokeSpec": {
+    "particleSizeMin": 10,
+    "particleSizeRange": 5,
+    "cloudParticleCount": 0,
+    "cloudDuration": 0,
+    "cloudRadius": 0,
+    "blowbackParticleCount": 6,
+    "blowbackDuration": 0.9,
+    "blowbackLength": -20,
+    "blowbackSpread": 10,
+    "particleColor": [
+      235,
+      225,
+      215,
+      85
+    ]
   },
   "fireSoundTwo": "aEP_b_l_dg3_fire"
 }

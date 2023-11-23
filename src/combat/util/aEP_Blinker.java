@@ -18,8 +18,8 @@ public class aEP_Blinker extends aEP_BaseCombatEffect
   @Override
   public void advance(float amount) {
     super.advance(amount);
-    if (blinkUp && blinkLevel >= 0.99) blinkUp = false;
-    else if (!blinkUp && blinkLevel <= 0.01) blinkUp = true;
+    if (blinkUp && blinkLevel >= 1f) blinkUp = false;
+    else if (!blinkUp && blinkLevel <= 0f) blinkUp = true;
 
     if (blinkUp) blinkLevel = blinkLevel + blinkSpeed * amount;
     else blinkLevel = blinkLevel - blinkSpeed * amount;

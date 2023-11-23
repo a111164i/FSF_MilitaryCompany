@@ -4,24 +4,24 @@
   "projectileSpecId": "aEP_ftr_bom_attacker_gun_shot",
   "type": "BALLISTIC",
   "size": "SMALL",
-  "turretSprite": "graphics/weapons/aEP_attacker_drone/wp.png",
-  "turretGunSprite": "graphics/weapons/aEP_attacker_drone/br.png",
-  "hardpointSprite": "graphics/weapons/aEP_attacker_drone/hp.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_attacker_drone/br.png",
-  "visualRecoil": 4,
+  "turretSprite": "",
+  "turretGunSprite": "",
+  "hardpointSprite": "",
+  "hardpointGunSprite": "",
+  "visualRecoil": 0,
   "renderHints": [
-    RENDER_BARREL_BELOW
+    #RENDER_BARREL_BELOW
   ],
   "turretOffsets": [
-    14.5,
-    -0.5
+    0,
+    0
   ],
   "turretAngleOffsets": [
     0
   ],
   "hardpointOffsets": [
-    20,
-    -0.5
+    0,
+    0
   ],
   "hardpointAngleOffsets": [
     0

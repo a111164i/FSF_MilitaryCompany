@@ -63,7 +63,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
 
   override fun advance(amount: Float) {
     //如果本体已经死亡，不再运行ai
-    if(!ship.isAlive || ship.isHulk || !engine.isEntityInPlay(ship) ){
+    if(aEP_Tool.isDead(ship) ){
       return
     }
 

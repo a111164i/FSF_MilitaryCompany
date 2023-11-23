@@ -2,106 +2,125 @@
   "hullName": "",
   "hullId": "aEP_fga_xiliu_mk2",
   "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_xiliu2.png",
+  "spriteName": "graphics/ships/aEP_fga_xiliu_mk2.png",
   "style": "aEP_FSF",
   "height": 140,
   "width": 80,
-  "center": [40, 61],
-  "collisionRadius": 84,
+  "center": [40, 70.5],
+  "collisionRadius": 75,
   "shieldCenter": [0, -0],
-  "shieldRadius": 83,
+  "shieldRadius": 74.5,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation"
+    "aEP_SpecialHull",
+    "missleracks"
   ],
   "builtInWeapons": {
-    "WS0001": "aEP_marker",
-    "WS0008": "aEP_revo_missile"
+    "WS0001": "aEP_fga_xiliu_mk2_missile",
+    "WS0003": "aEP_fga_xiliu_mk2_missile"
   },
   "weaponSlots": [
     {
       "id": "WS0002",
       "size": "MEDIUM",
       "type": "COMPOSITE",
-      "mount": "TURRET",
-      "arc": 90,
+      "mount": "HARDPOINT",
+      "arc": 15,
       "angle": 0,
-      "locations": [49.5, -0]
+      "locations": [51.5, -0]
     },
     {
-      "id": "WS0005",
+      "id": "L01",
       "size": "SMALL",
       "type": "BALLISTIC",
-      "mount": "TURRET",
-      "arc": 25,
+      "mount": "HARDPOINT",
+      "arc": 15,
       "angle": -0,
-      "locations": [-8, 17.5]
+      "locations": [7.5, 19]
     },
     {
-      "id": "WS0006",
+      "id": "R01",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [7.5, -19]
+    },
+    {
+      "id": "L02",
       "size": "SMALL",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 25,
-      "angle": 0,
-      "locations": [-8, -17.5]
+      "arc": 210,
+      "angle": 90,
+      "locations": [-16.5, 18]
     },
     {
-      "id": "WS0007",
+      "id": "R02",
       "size": "SMALL",
-      "type": "HYBRID",
+      "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 270,
-      "angle": 180,
-      "locations": [-18.5, 0]
-    },
-    {
-      "id": "WS0008",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 180,
-      "locations": [-33.5, 0]
+      "arc": 210,
+      "angle": -90,
+      "locations": [-16.5, -18]
     },
     {
       "id": "WS0009",
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 270,
+      "arc": 360,
       "angle": 0,
-      "locations": [20.5, 0]
+      "locations": [9.5, -0]
     },
     {
       "id": "WS0001",
       "size": "SMALL",
-      "type": "DECORATIVE",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-34, 16.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "BUILT_IN",
       "mount": "TURRET",
       "arc": 0,
       "angle": -90,
-      "locations": [-27, -16]
+      "locations": [-34, -16.5]
+    },
+    {
+      "id": "ID_01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-29.5, -0]
     }
   ],
   "engineSlots": [
     {
-      "location": [-53, 16],
-      "length": 55.5,
+      "location": [-62.5, 16],
+      "length": 55,
       "width": 16,
       "angle": 180,
       "contrailSize": 16,
       "style": "FSF_MAIN"
     },
     {
-      "location": [-53, -18],
-      "length": 55.5,
+      "location": [-62.5, -18],
+      "length": 55,
       "width": 16,
       "angle": -180,
       "contrailSize": 16,
       "style": "FSF_MAIN"
     },
     {
-      "location": [-51, 8.5],
+      "location": [-60.5, 8.5],
       "length": 34,
       "width": 6,
       "angle": 180,
@@ -109,7 +128,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-51, -8.5],
+      "location": [-60.5, -8.5],
       "length": 34,
       "width": 6,
       "angle": -180,
@@ -118,11 +137,11 @@
     }
   ],
   "bounds": [
-    -48, -23,
-    55.5, -19.5,
-    65.5, -9.5,
-    65.5, 6.5,
-    55.5, 19.5,
-    -48, 24
+    -57.5, -23,
+    51.5, -21,
+    55.5, -17,
+    55.5, 17,
+    51.5, 21,
+    -57.5, 23
   ]
 }

@@ -6,9 +6,10 @@ import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
+import com.fs.starfarer.api.util.IntervalUtil;
 import combat.impl.VEs.aEP_MovingSprite;
 import combat.plugin.aEP_CombatEffectPlugin;
-import data.scripts.hullmods.aEP_MarkerDissipation;
+import data.scripts.hullmods.aEP_SpecialHull;
 
 import combat.util.aEP_Tool;
 import org.dark.shaders.distortion.DistortionShader;
@@ -53,10 +54,12 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
 
   private AnimationAPI anime;
   private int openState = 0;//initial open state
-  private float timer = 0;
-  private float glowTimer = 0f;
+  private IntervalUtil timer = new IntervalUtil(0.1f,0.1f);
+  private IntervalUtil glowTimer =  new IntervalUtil(0.001f,0.001f);
+  private IntervalUtil distortionTimer = new IntervalUtil(0.2f,0.2f);
   private float animeTimer = 0f;
   private boolean shouldOpen = false;
+  Random rand = new Random();
 
   @Override
   public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
@@ -64,7 +67,7 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
       return;
     }
     ShipAPI ship = weapon.getShip();
-    float level = aEP_MarkerDissipation.getBufferLevel(ship);
+    float level = MathUtils.clamp((ship.getFluxLevel()-0.85f)*10000f,0f,1f);
     anime = weapon.getAnimation();
     int numOfFrame = anime.getNumFrames();
     float softFlux = ship.getFluxTracker().getCurrFlux() - ship.getFluxTracker().getHardFlux();
@@ -95,19 +98,19 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
     }
 
 
-    //spawn sprites
     if (effectiveLevel > 0.5f) {
       //add sprite timer
-      timer = timer + amount;
-      glowTimer = glowTimer + amount;
       float offset1 = 1f;
       float offset2 = 5f;
       float offset3 = 5f;
 
+
+      timer.advance(amount);
+      glowTimer.advance(amount);
+      distortionTimer.advance(amount);
+
       //create sprite
-      if (timer > 0.1f) {
-        timer = 0f;
-        Random rand = new Random();
+      if (timer.intervalElapsed()) {
         if (smokeSprites.size() >= 3) {
           //SpriteAPI s = (SpriteAPI)smokeSprites.get(rand.nextInt(smokeSprites.size()));
           String s = (String) smokeSprites.get(rand.nextInt(smokeSprites.size()));
@@ -170,9 +173,7 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
 
       }
 
-
-      if (weapon.getSpec().getWeaponId().equals("aEP_marker")) {
-
+      if (glowTimer.intervalElapsed()) {
 
         //create glow when dissipate at difference speed
         float colorMult = effectiveLevel;
@@ -182,7 +183,7 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
           aEP_Tool.Util.speed2Velocity(weapon.getCurrAngle(), 0f),//Vector2f vel,
           10f,//float size,
           1f,//float brightness
-          amount,//float duration,
+                amount*2f,//float duration,
           new Color(glow.getRed(), glow.getGreen(), glow.getBlue(), (int) (120 * colorMult)));//java.awt.Color color)
 
 
@@ -190,7 +191,7 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
           aEP_Tool.Util.speed2Velocity(weapon.getCurrAngle(), 0f),//Vector2f vel,
           10f,//float size,
           1f,//float brightness
-          amount,//float duration,
+                amount*2f,//float duration,
           new Color(glow.getRed(), glow.getGreen(), glow.getBlue(), (int) (120 * colorMult)));//java.awt.Color color)
 
 
@@ -198,26 +199,26 @@ public class aEP_MarkerAnimation implements EveryFrameWeaponEffectPlugin
           aEP_Tool.Util.speed2Velocity(weapon.getCurrAngle(), 0f),//Vector2f vel,
           10f,//float size,
           1f,//float brightness
-          amount,//float duration,
+                amount*2f,//float duration,
           new Color(glow.getRed(), glow.getGreen(), glow.getBlue(), (int) (120 * colorMult)));//java.awt.Color color)
 
-        RippleDistortion ripple;
-        ripple = new RippleDistortion(aEP_Tool.getRandomPointAround(weaponLoc, 10f), new Vector2f(MathUtils.getRandomNumberInRange(0, 10), MathUtils.getRandomNumberInRange(0, 10)));
-        ripple.setSize(10f);
-        ripple.setAutoFadeSizeTime(amount);
-        ripple.setLifetime(amount * 10f);
-        ripple.flip(true);
-        ripple.setIntensity(1 * colorMult);
-        DistortionShader.addDistortion(ripple);
 
       }
 
-    }
-    else {
-      timer = 0f;
-      glowTimer = 0f;
-    }
+      if(distortionTimer.intervalElapsed()){
+        float colorMult = effectiveLevel;
+        Vector2f weaponLoc = aEP_Tool.getExtendedLocationFromPoint(weapon.getLocation(), weapon.getCurrAngle(), offset1);
 
+        RippleDistortion ripple;
+        ripple = new RippleDistortion(MathUtils.getRandomPointInCircle(weaponLoc, 10f), new Vector2f(MathUtils.getRandomNumberInRange(0, 10), MathUtils.getRandomNumberInRange(0, 10)));
+        ripple.setSize(10f);
+        ripple.setAutoFadeSizeTime(amount);
+        ripple.setLifetime(0.15f);
+        ripple.flip(true);
+        ripple.setIntensity(1 * colorMult);
+        DistortionShader.addDistortion(ripple);
+      }
+    }
 
     anime.setFrame(openState);
     return;

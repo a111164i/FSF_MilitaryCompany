@@ -5,10 +5,10 @@
   "type": "BALLISTIC",
   "size": "SMALL",
   "displayArcRadius": 600,
-  "turretSprite": "graphics/weapons/aEP_pompom_small/tr.png",
-  "turretGunSprite": "graphics/weapons/aEP_pompom_small/tr_brl.png",
-  "hardpointSprite": "graphics/weapons/aEP_pompom_small/hp.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_pompom_small/hp_brl.png",
+  "turretSprite": "graphics/weapons/aEP_b_s_pom/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_s_pom/tr_brl.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_s_pom/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_s_pom/hp_brl.png",
   "visualRecoil": 2,
   "renderHints": [
     RENDER_BARREL_BELOW

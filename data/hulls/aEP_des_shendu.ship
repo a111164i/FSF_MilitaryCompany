@@ -2,26 +2,27 @@
   "hullName": "",
   "hullId": "aEP_des_shendu",
   "hullSize": "DESTROYER",
-  "spriteName": "graphics/ships/aEP_shenceng.png",
+  "spriteName": "graphics/ships/aEP_des_shenceng.png",
   "style": "aEP_FSF",
   "height": 211,
   "width": 129,
-  "center": [64.5, 105.5],
-  "collisionRadius": 131,
-  "shieldCenter": [0, 0],
-  "shieldRadius": 128,
+  "center": [65.5, 105.5],
+  "collisionRadius": 124.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 123,
   "viewOffset": 0,
   "builtInMods": [
-    "aEP_MarkerDissipation"
+    "aEP_SpecialHull",
+    "missleracks"
   ],
   "builtInWeapons": {
-    "ARMOR": "aEP_des_shendu_armor",
-    "COVER": "aEP_des_shendu_cover",
-    "FIGHTER": "aEP_des_shendu_fighter",
-    "HOLD_1": "aEP_des_shendu_hold",
-    "HOLD_2": "aEP_des_shendu_hold2",
-    "TOWER": "aEP_antenna_binker",
-    "WS0006": "aEP_marker"
+    "ID_L1": "aEP_cap_decomposer_round_indicator",
+    "ID_L2": "aEP_cap_decomposer_round_indicator",
+    "ID_L3": "aEP_cap_decomposer_round_indicator",
+    "ID_L4": "aEP_cap_decomposer_round_indicator",
+    "TOWER": "aEP_des_shendu_antenna_blinker",
+    "WS0006": "aEP_des_shendu_door_l",
+    "WS0007": "aEP_des_shendu_door_r"
   },
   "weaponSlots": [
     {
@@ -31,25 +32,25 @@
       "mount": "TURRET",
       "arc": 180,
       "angle": 90,
-      "locations": [-5.5, 58.5]
+      "locations": [-12.5, 57.5]
     },
     {
       "id": "WS0003",
       "size": "SMALL",
-      "type": "HYBRID",
+      "type": "BALLISTIC",
       "mount": "TURRET",
       "arc": 180,
       "angle": 45,
-      "locations": [88.5, 22.5]
+      "locations": [71.5, 19.5]
     },
     {
       "id": "WS0004",
       "size": "SMALL",
-      "type": "HYBRID",
+      "type": "BALLISTIC",
       "mount": "TURRET",
       "arc": 180,
       "angle": -45,
-      "locations": [74.5, -40.5],
+      "locations": [66.5, -34.5],
       "renderOrderMod": 10
     },
     {
@@ -59,7 +60,7 @@
       "mount": "TURRET",
       "arc": 240,
       "angle": -120,
-      "locations": [-80.5, -22.5]
+      "locations": [-41.5, -40.5]
     },
     {
       "id": "WS0005",
@@ -68,7 +69,7 @@
       "mount": "HARDPOINT",
       "arc": 0,
       "angle": 0,
-      "locations": [-13.5, -12.5],
+      "locations": [-15.5, -6.5],
       "renderOrderMod": 10
     },
     {
@@ -79,8 +80,8 @@
       "arc": 360,
       "angle": 0,
       "locations": [
-        19.5, -7.5,
-        34.5, -7.5
+        19.5, -6.5,
+        34.5, -6.5
       ]
     },
     {
@@ -91,8 +92,8 @@
       "arc": 360,
       "angle": 0,
       "locations": [
-        19.5, -17.5,
-        34.5, -17.5
+        19.5, -16.5,
+        34.5, -16.5
       ]
     },
     {
@@ -103,8 +104,8 @@
       "arc": 360,
       "angle": 0,
       "locations": [
-        52.5, -18.5,
-        76, -18.5
+        52.5, -17.5,
+        76, -17.5
       ]
     },
     {
@@ -115,67 +116,9 @@
       "arc": 360,
       "angle": 0,
       "locations": [
-        52.5, -6.5,
-        76, -6.5
+        52.5, -5.5,
+        76, -5.5
       ]
-    },
-    {
-      "id": "WS0006",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-37.5, -40.5]
-    },
-    {
-      "id": "ARMOR",
-      "size": "MEDIUM",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 0,
-      "locations": [37.5, -52],
-      "renderOrderMod": 5
-    },
-    {
-      "id": "COVER",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [43, -35.5],
-      "renderOrderMod": 6
-    },
-    {
-      "id": "HOLD_1",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [42.5, -44]
-    },
-    {
-      "id": "HOLD_2",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [42, -53],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "FIGHTER",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [42, -48],
-      "renderOrderMod": 3
     },
     {
       "id": "TOWER",
@@ -184,12 +127,75 @@
       "mount": "TURRET",
       "arc": 0,
       "angle": 180,
-      "locations": [101.5, -38.5]
+      "locations": [94.5, -33]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [44.5, -43]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [30.5, -43]
+    },
+    {
+      "id": "BAY",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [37.5, -26.5]
+    },
+    {
+      "id": "ID_L4",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-26, 32]
+    },
+    {
+      "id": "ID_L3",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-22, 32]
+    },
+    {
+      "id": "ID_L2",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-18, 32]
+    },
+    {
+      "id": "ID_L1",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-14, 32]
     }
   ],
   "engineSlots": [
     {
-      "location": [-106, 18.5],
+      "location": [-94.5, 36],
       "length": 81,
       "width": 24,
       "angle": 180,
@@ -197,37 +203,42 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-87.5, -42.5],
+      "location": [-94.5, -36.5],
       "length": 81,
       "width": 24,
       "angle": 180,
       "contrailSize": 24,
       "style": "FSF_MAIN"
+    },
+    {
+      "location": [-88.5, 15.5],
+      "length": 50,
+      "width": 9,
+      "angle": 180,
+      "contrailSize": 9,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-88.5, -15.5],
+      "length": 50,
+      "width": 9,
+      "angle": -180,
+      "contrailSize": 9,
+      "style": "FSF_MAIN"
     }
   ],
   "bounds": [
-    -16.5, -63,
-    83, -63,
-    101, -44.5,
-    101, 8.5,
-    105, 27.5,
-    86.5, 47.5,
-    21.5, 47.5,
-    3.5, 49.5,
-    0, 57,
-    -11, 57,
-    -15, 49,
-    -55, 47,
-    -59, 50.5,
-    -83.5, 50.5,
-    -105.5, 29,
-    -105.5, 8.5,
-    -97.5, 6.5,
-    -89.5, -6.5,
-    -100.5, -18,
-    -100.5, -27.5,
-    -86.5, -39,
-    -86.5, -53,
-    -22.5, -56.5
+    -57.5, -8,
+    -85.5, -11,
+    -85, -44.5,
+    -48.5, -50.5,
+    75, -50.5,
+    88, -38.5,
+    88, 38.5,
+    75, 50.5,
+    -48.5, 50.5,
+    -85, 44.5,
+    -85.5, 11,
+    -57.5, 8
   ]
 }

@@ -1,82 +1,89 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.ShipAPI.HullSize
+import com.fs.starfarer.api.combat.WeaponAPI.*
+import com.fs.starfarer.api.combat.listeners.DamageDealtModifier
+import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
+import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
+import combat.util.aEP_Tool
+import data.scripts.skills.aEP_SkillAnalyze
+import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import java.util.HashMap
+import kotlin.math.pow
 
-class aEP_CloseTargeting : aEP_BaseHullMod() {
+class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier {
 
   companion object{
     const val ID = "aEP_CloseTargeting"
 
-    const val DAMAGE_MISSILE_PERCENT_BONUS = 50f
-    const val DAMAGE_FTR_PERCENT_BONUS = 50f
+    var PROJECTILE_SPEED_BONUS = 50f
+    var SPREAD_REDUCE_MULT = 0.5f
 
-    const val TURRET_DAMAGE_REDUCE_MULT = 0.5f
-
-    private val WEAPON_RANGE_FLAT_BONUS: MutableMap<ShipAPI.HullSize, Float> = HashMap()
+    val PD_WEAPON_RANGE_BONUS = HashMap<HullSize, Float>()
     init {
-      WEAPON_RANGE_FLAT_BONUS[ShipAPI.HullSize.FIGHTER] = 0f
-      WEAPON_RANGE_FLAT_BONUS[ShipAPI.HullSize.FRIGATE] = 50f
-      WEAPON_RANGE_FLAT_BONUS[ShipAPI.HullSize.DESTROYER] = 75f
-      WEAPON_RANGE_FLAT_BONUS[ShipAPI.HullSize.CRUISER] = 150f
-      WEAPON_RANGE_FLAT_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 200f
+      PD_WEAPON_RANGE_BONUS[HullSize.CAPITAL_SHIP] = 60f
+      PD_WEAPON_RANGE_BONUS[HullSize.CRUISER] = 60f
+      PD_WEAPON_RANGE_BONUS[HullSize.DESTROYER] = 55f
+      PD_WEAPON_RANGE_BONUS[HullSize.FRIGATE] = 50f
     }
+
   }
 
   init {
-    haveToBeWithMod.add(aEP_MarkerDissipation.ID)
+    haveToBeWithMod.add(aEP_SpecialHull.ID)
     notCompatibleList.add(HullMods.INTEGRATED_TARGETING_UNIT)
     notCompatibleList.add(HullMods.DEDICATED_TARGETING_CORE)
-    notCompatibleList.add(HullMods.SAFETYOVERRIDES)
+    notCompatibleList.add(HullMods.ADVANCED_TARGETING_CORE)
+
+  }
+
+
+  override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize, stats: MutableShipStatsAPI, id: String) {
+    stats.beamPDWeaponRangeBonus.modifyPercent(ID, PD_WEAPON_RANGE_BONUS[hullSize]?:60f)
+    stats.nonBeamPDWeaponRangeBonus.modifyPercent(ID, PD_WEAPON_RANGE_BONUS[hullSize]?:60f)
+
+    stats.ballisticProjectileSpeedMult.modifyPercent(ID, PROJECTILE_SPEED_BONUS)
+    stats.energyProjectileSpeedMult.modifyPercent(ID, PROJECTILE_SPEED_BONUS)
+
+    stats.recoilPerShotMult.modifyMult(ID,1f - SPREAD_REDUCE_MULT)
+    stats.maxRecoilMult.modifyMult(ID,1f - SPREAD_REDUCE_MULT)
+
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-
-    ship.mutableStats.weaponDamageTakenMult.modifyMult(ID, 1f - TURRET_DAMAGE_REDUCE_MULT)
-
-    ship.mutableStats.damageToMissiles.modifyPercent(ID, DAMAGE_MISSILE_PERCENT_BONUS)
-    ship.mutableStats.damageToFighters.modifyPercent(ID, DAMAGE_FTR_PERCENT_BONUS)
-
-    ship.mutableStats.ballisticWeaponRangeBonus.modifyFlat(ID, WEAPON_RANGE_FLAT_BONUS[ship.hullSize]?:50f)
-    ship.mutableStats.energyWeaponRangeBonus.modifyFlat(ID, WEAPON_RANGE_FLAT_BONUS[ship.hullSize]?:50f)
-
+    if(!ship.hasListenerOfClass(aEP_CloseTargeting::class.java)){
+      //因为listener里面不需要变量，所以直接加入this
+      ship.addListener(this)
+    }
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
+  override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize): String? {
+    if (index == 0) return String.format("%.0f", PD_WEAPON_RANGE_BONUS[hullSize]?: 60f) +"%"
+    if (index == 1) return String.format("%.0f", SPREAD_REDUCE_MULT * 100f) +"%"
+    if (index == 2) return String.format("%.0f", PROJECTILE_SPEED_BONUS) +"%"
+    return null
   }
 
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
 
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_CloseTargeting01"), 5f, arrayOf(Color.green, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", WEAPON_RANGE_FLAT_BONUS[hullSize]))
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_CloseTargeting02"), 5f, arrayOf(Color.green, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", DAMAGE_FTR_PERCENT_BONUS) +"%")
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_CloseTargeting03"), 5f, arrayOf(Color.green, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", TURRET_DAMAGE_REDUCE_MULT*100f) +"%")
-    //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight),
-      aEP_ID.HULLMOD_POINT,
-      showModName(notCompatibleList))
+  override fun modifyDamageDealt(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
+    var source : ShipAPI? = null
+
+    if(param is BeamAPI) source = param.weapon?.ship
+    if(param is DamagingProjectileAPI) source = param.weapon?.ship
+    source ?: return null
+
+    if(target is ShipAPI && target.owner == source.owner){
+      damage.modifier.modifyMult(ID, 0.01f)
+      return ID
+    }
+    return null
   }
-
 }

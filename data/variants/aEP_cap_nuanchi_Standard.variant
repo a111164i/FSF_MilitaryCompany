@@ -1,13 +1,10 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 0,
-    "fluxVents": 4,
+    "fluxCapacitors": 8,
+    "fluxVents": 49,
     "goalVariant": true,
     "hullId": "aEP_cap_nuanchi",
-    "hullMods": [
-        "heavyarmor",
-        "hardenedshieldemitter"
-    ],
+    "hullMods": [],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cap_nuanchi_Standard",
@@ -16,24 +13,24 @@
             "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0018": "hurricane",
-                "WS0019": "hurricane"
+                "WS0018": "squall",
+                "WS0019": "squall"
             }
         },
         {
             "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "harpoonpod",
-                "WS0003": "harpoonpod",
-                "WS0004": "harpoonpod",
-                "WS0005": "harpoonpod",
-                "WS0014": "harpoon",
-                "WS0015": "harpoon",
-                "WS0016": "harpoon",
-                "WS0017": "harpoon",
-                "WS0020": "harpoon",
-                "WS0021": "harpoon"
+                "WS0001": "aEP_m_m_breachdoor",
+                "WS0003": "aEP_m_m_breachdoor",
+                "WS0004": "aEP_m_m_breachdoor",
+                "WS0005": "aEP_m_m_breachdoor",
+                "WS0014": "aEP_m_s_breachdoor",
+                "WS0015": "aEP_m_s_breachdoor",
+                "WS0016": "aEP_m_s_breachdoor",
+                "WS0017": "aEP_m_s_breachdoor",
+                "WS0020": "aEP_m_s_breachdoor",
+                "WS0021": "aEP_m_s_breachdoor"
             }
         },
         {
@@ -54,11 +51,17 @@
         },
         {
             "autofire": false,
-            "mode": "ALTERNATING",
+            "mode": "LINKED",
             "weapons": {
-                "WS0006": "flak",
-                "WS0009": "flak"
+                "WS0006": "aEP_b_m_mb32",
+                "WS0009": "aEP_b_m_mb32",
+                "WS0012": "aEP_b_m_mb32"
             }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0038": "aEP_cap_requan_missile"}
         }
     ]
 }

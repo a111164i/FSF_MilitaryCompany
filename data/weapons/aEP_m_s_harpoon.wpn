@@ -5,8 +5,8 @@
   "type": "MISSILE",
   "size": "SMALL",
   "displayArcRadius": 3000,
-  "turretSprite": "graphics/weapons/aEP_m_l_harpoon/small_tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_m_l_harpoon/small_hp.png",
+  "turretSprite": "graphics/weapons/aEP_missile_small_tr2.png",
+  "hardpointSprite": "graphics/weapons/aEP_missile_small_hp2.png",
   "renderHints": [
     RENDER_LOADED_MISSILES
   ],

@@ -1,37 +1,87 @@
 {
 	"id":"aEP_b_l_aa40_shot",
-	"specClass":"projectile",
-	"spawnType":"BALLISTIC",
-	"collisionClass":"PROJECTILE_FF",
-	"collisionClassByFighter":"PROJECTILE_FIGHTER",
-	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"bulletSprite":"graphics/missiles/shell_large_green.png",
-	"collisionRadius":1,
-	"length":50.0,
-	"width":10,
-	"hitGlowRadius":100,
-	"fadeTime":0.25,
-	"fringeColor":[205,235,215,235],
-	"coreColor":[255,255,255,200],	
+  "specClass": "projectile",
+  "spawnType":"BALLISTIC_AS_BEAM",
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "length":80,
+  "width":20,
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":1.0,
+  #"textureType":"ROUGH",  # now also used for "BALLISTIC_AS_BEAM", if specified
+  "textureType":["graphics/fx/beamfringeb.png","graphics/fx/beamcore.png"],
+  #"bulletSprite":"graphics/missiles/shell_large_green.png",
+	#"sprite":"graphics/weapons/aEP_m_l_harpoon/bomblet.png",
+	#"glowSprite":"",
+	"fringeColor":[255,155,50,255],
+  "coreColor":[215,255,170,155],
+  #"glowColor":[255,255,255,255],
+  #"glowRadius":25,
+  "hitGlowRadius":80,
+	#"size":[8,10],
+  #"center":[4,5],
+	#"collisionRadius":60,
+  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"explosionColor":[0,0,0,0],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":0, # purely visual
+
+	#模板
+  "armingTime":0, # safe range count by time
+  "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
+  #如果要弹丸严格按照最大距离飞行，这几个参数一定得是0，fadeTime这段时间如果不填默认不是0而且不属于maxFlightTime
+  #如果不填，此时弹丸结束时的flightTime会大于maxFlightTime，且此段时间最大速度不受限制，默认fadeTime + flameoutTime为3.5秒
+  #flameoutTime一般最小写0.1，再低经过测试会有问题
+  "fadeTime":0.2, # 熄火后能漂移多久，对于弹丸是淡出时间
+  "flameoutTime":0.1,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+
+  "alwaysAccelerate":true,
+  "reduceDamageWhileFading":false,
+  "useProjectileRangeCalculation":true,
+  "passThroughMissiles":false,
+  "renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
+  "noCollisionWhileFading":true,
+  "useHitGlowWhenDestroyed":true, # instead of the default explosion
+  # 不是PHASE_MINE/PHASE_CHARGE不会读取这个behavior PROXIMITY_FUSE
 	"behaviorSpec":{
 		"behavior":"PROXIMITY_FUSE",
+		"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
-		"range":35,
+		"range":30,
 		#"vsMissileRange":100,
 		"explosionSpec":{
-			"duration":0.0001f,
-      "radius":70,
-      "coreRadius":35, # full damage within core radius - also equal to proximity fuse range
+			"duration":0.00001f,
+      "radius":60,
+      "coreRadius":40, # full damage within core radius - also equal to proximity fuse range
       "collisionClass":PROJECTILE_NO_FF,
       "collisionClassByFighter":PROJECTILE_FIGHTER,
-      "particleSizeMin":6,
-      "particleSizeRange":6,
-      "particleDuration":0.5,
-      "particleCount":50,
-      "particleColor":[240,240,225,105],
+      "particleSizeMin":5,
+      "particleSizeRange":5,
+      "particleDuration":0.4,
+      "particleCount":12,
+      "particleColor":[255,175,25,255],
+
+			"explosionColor":[255,125,25,55],
+
+			"useDetailedExplosion":true,
+			"useDetailedExplosionColorAlpha":true,
+			"detailedExplosionRadius":100,
+			"detailedExplosionFlashRadius":175,
+			"detailedExplosionFlashDuration":0.12,
+			"detailedExplosionFlashColorFringe":[255,220,50,255],
+			"detailedExplosionFlashColorCore":[255,220,200,255],
+
       "sound":"aEP_kinetic_flak_hit02"
     },
-	}
+	},
+  "engineSpec":{
+    "turnAcc":20,
+    "turnRate":20,
+    "acc":20,
+    "dec":20
+  },
+  "engineSlots":[
+
+  ]
 	
 }

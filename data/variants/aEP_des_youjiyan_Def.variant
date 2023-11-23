@@ -1,13 +1,12 @@
 {
     "displayName": "Defense",
-    "fluxCapacitors": 10,
-    "fluxVents": 10,
+    "fluxCapacitors": 13,
+    "fluxVents": 12,
     "goalVariant": true,
     "hullId": "aEP_des_youjiyan",
     "hullMods": [
-        "heavyarmor",
-        "aEP_EliteShip",
-        "aEP_ResistShield"
+        "aEP_ShieldFloating",
+        "aEP_EliteShip"
     ],
     "permaMods": [],
     "sMods": [],

@@ -2,7 +2,7 @@
 	"id":"aEP_ftr_bom_nuke_bomb_shot2",
 	"specClass":"missile",	
 	"missileType":"PHASE_MINE",
-	"sprite":"graphics/weapons/aEP_fighter_nuke/proj00.png",
+	"sprite":"graphics/weapons/aEP_fighters/aEP_nuke/proj00.png",
 	"glowSprite":"",
 	"glowRadius":300,
   "glowColor":[255,86,65,65],
@@ -27,6 +27,7 @@
 	"behaviorSpec":{
 		"behavior":"PROXIMITY_FUSE",
 		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+		#为了防止被导弹触发，引信写在weaponEffect里面
 		"range":0,
 		"vsMissileRange":0,
 		"slowToMaxSpeed":false,
@@ -41,8 +42,8 @@
 		"windupDelay": 1.9,
 		"explosionSpec":{
 			"duration":0.15f,
-			"radius":240,
-			"coreRadius":80, # full damage within core radius
+			"radius":300,
+			"coreRadius":200, # full damage within core radius
 			"collisionClass":MISSILE_FF,
 			"collisionClassByFighter":MISSILE_NO_FF,
 			"particleSizeMin":5.0,

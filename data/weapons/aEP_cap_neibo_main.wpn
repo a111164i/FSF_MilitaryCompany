@@ -5,8 +5,8 @@
   "type": "BALLISTIC",
   "size": "LARGE",
   "everyFrameEffect": "data.scripts.weapons.aEP_NeiBoMainAnimation",
-  "turretSprite": "graphics/weapons/aEP_neibo/gun00.png",
-  "hardpointSprite": "graphics/weapons/aEP_neibo/gun00.png",
+  "turretSprite": "graphics/weapons/aEP_cap_neibo/gun00.png",
+  "hardpointSprite": "graphics/weapons/aEP_cap_neibo/gun00.png",
   "turretOffsets": [
     69.5,
     2.5,

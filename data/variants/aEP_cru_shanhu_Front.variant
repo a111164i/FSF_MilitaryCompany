@@ -1,60 +1,41 @@
 {
-  "variantId": "aEP_cru_shanhu_Front",
-  "hullId": "aEP_cru_shanhu",
-  "displayName": "Support",
-  "goalVariant": true,
-  "fluxCapacitors": 0,
-  "fluxVents": 0,
-  "quality": 1,
-  "permaMods": [],
-  "hullMods": [],
-  "weaponGroups": [
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0005": "cyclone",
-        "WS0007": "aEP_m_s_harpoon",
-        "WS0012": "aEP_m_s_harpoon",
-        "WS0014": "aEP_ftr_ut_maodian_ads"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "ALTERNATING",
-      "weapons": {
-        "WS0004": "sabotpod",
-        "WS0008": "sabotpod"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "ALTERNATING",
-      "weapons": {
-        "WS0001": "aEP_b_s_630",
-        "WS0002": "aEP_b_s_630"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0003": "aEP_b_s_pom"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0006": "aEP_b_s_pom"
-      }
-    }
-  ],
-  "modules": [],
-  "wings": [
-    "aEP_ftr_ut_supply_wing",
-    "aEP_ftr_sup_tank_wing",
-    "aEP_ftr_ut_repair_wing",
-    "aEP_ftr_sup_guardian_wing"
-  ]
+    "displayName": "Support",
+    "fluxCapacitors": 20,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_cru_shanhu",
+    "hullMods": ["aEP_ShieldFloating"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_shanhu_Front",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightac",
+                "WS0006": "lightac",
+                "WS0010": "lightac",
+                "WS0013": "lightac",
+                "WS0014": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "typhoon",
+                "WS0005": "cyclone",
+                "WS0007": "aEP_m_s_fluxtube",
+                "WS0008": "typhoon",
+                "WS0012": "aEP_m_s_fluxtube"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_sup_tank_wing",
+        "aEP_ftr_sup_tank_wing",
+        "aEP_ftr_ut_repair_wing",
+        "aEP_ftr_sup_guardian_wing"
+    ]
 }

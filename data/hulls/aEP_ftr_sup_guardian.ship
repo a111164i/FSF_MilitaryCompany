@@ -7,7 +7,7 @@
   "height": 50,
   "width": 50,
   "center": [25, 25],
-  "collisionRadius": 46,
+  "collisionRadius": 46.5,
   "shieldCenter": [0, 0],
   "shieldRadius": 45.5,
   "viewOffset": 0,
@@ -25,19 +25,19 @@
       "id": "WS0001",
       "size": "SMALL",
       "type": "UNIVERSAL",
-      "mount": "HARDPOINT",
+      "mount": "HIDDEN",
       "arc": 0,
       "angle": 0,
-      "locations": [3, 9.5]
+      "locations": [12, 9.5]
     },
     {
       "id": "WS0002",
       "size": "SMALL",
       "type": "UNIVERSAL",
-      "mount": "HARDPOINT",
+      "mount": "HIDDEN",
       "arc": 0,
-      "angle": -0,
-      "locations": [3, -9.5]
+      "angle": 0,
+      "locations": [12, -9.5]
     },
     {
       "id": "WING_L",
@@ -60,27 +60,27 @@
   ],
   "engineSlots": [
     {
-      "location": [-17.5, 5.5],
-      "length": 22,
-      "width": 6,
+      "location": [-16.5, 7],
+      "length": 17.5,
+      "width": 4,
       "angle": 180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
+      "contrailSize": 4,
+      "style": "FSF_MAIN_CLEAN"
     },
     {
-      "location": [-17.5, -5.5],
-      "length": 22,
-      "width": 6,
+      "location": [-16.5, -7],
+      "length": 17.5,
+      "width": 4,
       "angle": 180,
-      "contrailSize": 6,
+      "contrailSize": 4,
       "style": "FSF_MAIN"
     },
     {
       "location": [-19, -0],
-      "length": 30,
-      "width": 10,
+      "length": 28.5,
+      "width": 5,
       "angle": 180,
-      "contrailSize": 30,
+      "contrailSize": 5,
       "style": "FSF_MAIN"
     }
   ],

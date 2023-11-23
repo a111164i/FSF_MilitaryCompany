@@ -63,7 +63,11 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
       if(radar == null) return 0f;
 
       //雷达下线时禁用射程加成
-      if(radar.isDisabled()) return 0f;
+      if(radar.isDisabled()) {
+        //radar.disable(false);
+        radar.repair();
+        return 0f;
+      }
 
       //无论雷达是否开火，朝向雷达方向的非PD武器获得射程加成
       if(weapon.hasAIHint(WeaponAPI.AIHints.PD)) return 0f;

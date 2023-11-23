@@ -52,7 +52,7 @@ class aEP_MovingSmoke : aEP_BaseCombatEffect{
   constructor(loc:Vector2f) {
     aEP_BaseCombatEffect()
     angle = MathUtils.getRandomNumberInRange(0f,360f)
-    angleSpeed = MathUtils.getRandomNumberInRange(-30f,30f)
+    angleSpeed = MathUtils.getRandomNumberInRange(-25f,25f)
     this.loc = Vector2f(loc.x,loc.y)
     layers = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
   }

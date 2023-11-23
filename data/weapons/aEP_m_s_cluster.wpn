@@ -5,20 +5,20 @@
   "type": "MISSILE",
   "size": "SMALL",
   "displayArcRadius": 3000,
-  "turretSprite": "graphics/weapons/aEP_m_s_magnetmine/tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_m_s_magnetmine/hp.png",
+  "turretSprite": "graphics/weapons/aEP_missile_small_tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_missile_small_hp.png",
   "renderHints": [
     RENDER_LOADED_MISSILES
   ],
   "turretOffsets": [
-    2,
+    -3,
     0
   ],
   "turretAngleOffsets": [
     0
   ],
   "hardpointOffsets": [
-    5,
+    0,
     0
   ],
   "hardpointAngleOffsets": [

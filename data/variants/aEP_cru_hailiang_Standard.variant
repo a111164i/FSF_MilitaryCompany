@@ -1,13 +1,10 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 10,
-    "fluxVents": 30,
+    "fluxCapacitors": 15,
+    "fluxVents": 29,
     "goalVariant": true,
     "hullId": "aEP_cru_hailiang",
-    "hullMods": [
-        "hardenedshieldemitter",
-        "reinforcedhull"
-    ],
+    "hullMods": ["aEP_ShieldControlled"],
     "modules": [
         {"MD01": "aEP_cru_hailiang3_Standard"},
         {"MD03": "aEP_cru_hailiang4_Standard"},
@@ -16,13 +13,20 @@
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_hailiang_Standard",
-    "weaponGroups": [{
-        "autofire": true,
-        "mode": "LINKED",
-        "weapons": {
-            "WS0005": "dualflak",
-            "WS0006": "dualflak"
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_b_l_d100t"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "hveldriver",
+                "WS0006": "hveldriver"
+            }
         }
-    }],
-    "wings": []
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
 }

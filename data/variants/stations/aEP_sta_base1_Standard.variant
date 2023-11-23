@@ -1,0 +1,22 @@
+{
+  "variantId": "aEP_sta_base1_Standard",
+  "hullId": "aEP_sta_base1",
+  "displayName": "T1",
+  "goalVariant": true,
+  "fluxCapacitors": 1,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [
+    {"TIER1_BATTERY_B": "aEP_sta_tier1_battery_Standard"},
+    
+    {"TIER1_HANGER_R": "aEP_sta_tier1_hanger1_Standard"},
+
+    {"TIER2_HULL_F": "aEP_sta_tier2_hull1_Standard"},
+    {"TIER2_STRUT_F": "aEP_sta_tier2_structure_Standard"},
+    {"TIER2_STRUT_L": "aEP_sta_tier2_structure_Standard"},
+  ],
+  "wings": []
+}

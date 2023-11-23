@@ -2,10 +2,10 @@
   "id":"aEP_cap_nuanchi_missile_shot2",
   "specClass":"missile",
   "missileType":"ROCKET",
-  "sprite":"graphics/weapons/aEP_slow_missile/missile.png",
+  "sprite":"graphics/weapons/aEP_cap_nuanchi/missile.png",
   "size":[14,50],
   "center":[7,25],
-  "collisionRadius":35,
+  "collisionRadius":30,
   "collisionClass":"MISSILE_NO_FF",
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "explosionColor":[40,40,150,255],  # purely visual, will get a white additively blended core on top of this color
@@ -34,7 +34,7 @@
                         "style":"CUSTOM",
                         "styleSpec":{
                                 "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-                                "engineColor":[255,40,100,200],
+                                "engineColor":[255,40,100,245],
                                 "contrailDuration":1,
                                 "contrailWidthMult":1.5,
                                 "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
@@ -42,9 +42,10 @@
                                 "contrailMaxSpeedMult":0.5f,
                                 "contrailAngularVelocityMult":0.5f,
                                 "contrailColor":[255,40,50,75],
+                                "glowSizeMult":1.6,
                                 "type":"SMOKE"},
                         "width":10,
-                        "length":25.0,
+                        "length":40.0,
                         "angle":180.0},	
 
                         {"id":"ES2",
@@ -52,7 +53,7 @@
                         "style":"CUSTOM",
                         "styleSpec":{
                                 "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-                                "engineColor":[255,40,100,200],
+                                "engineColor":[255,40,100,245],
                                 "contrailDuration":1.5,
                                 "contrailWidthMult":1,
                                 "contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
@@ -60,9 +61,10 @@
                                 "contrailMaxSpeedMult":0.5f,
                                 "contrailAngularVelocityMult":0.5f,
                                 "contrailColor":[255,40,50,75],
+                                "glowSizeMult":1.6,
                                 "type":"SMOKE"},
                         "width":10,
-                        "length":25.0,
+                        "length":40.0,
                         "angle":180.0},				 			 					
 	],
 

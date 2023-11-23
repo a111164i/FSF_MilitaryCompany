@@ -49,7 +49,7 @@
 				"useDetailedExplosion":true,
 				"useDetailedExplosionColorAlpha":true,
 				"detailedExplosionRadius":180,
-				"detailedExplosionFlashRadius":600,
+				"detailedExplosionFlashRadius":800,
 				"detailedExplosionFlashDuration":0.25,
 				"detailedExplosionFlashColorFringe":[255,148,81,239],
 				"detailedExplosionFlashColorCore":[235,40,251,255],

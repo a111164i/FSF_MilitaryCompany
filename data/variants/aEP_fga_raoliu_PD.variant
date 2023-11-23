@@ -1,13 +1,14 @@
 {
     "displayName": "PD",
-    "fluxCapacitors": 3,
-    "fluxVents": 2,
+    "fluxCapacitors": 5,
+    "fluxVents": 0,
     "goalVariant": true,
     "hullId": "aEP_fga_raoliu",
     "hullMods": [
-        "heavyarmor",
         "aEP_VanguardHull",
-        "aEP_RapidDissipate"
+        "aEP_ShieldControlled",
+        "aEP_StrategyThruster",
+        "aEP_EliteShip"
     ],
     "permaMods": [],
     "sMods": [],
@@ -16,19 +17,23 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0001": "railgun"}
+            "weapons": {"WS0001": "lightneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_b_s_pom"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0002": "aEP_b_s_pom",
-                "WS0003": "vulcan",
-                "WS0006": "vulcan"
+                "WS0003": "aEP_b_s_630",
+                "WS0006": "aEP_b_s_630"
             }
         },
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {"WS0005": "aEP_e_s_300k"}
         }

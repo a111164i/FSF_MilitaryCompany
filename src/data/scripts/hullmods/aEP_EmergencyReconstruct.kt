@@ -15,6 +15,7 @@ import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Combat
 import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
@@ -31,32 +32,34 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     const val ID = "aEP_EmergencyReconstruct"
     const val ACTIVE_KEY = "aEP_EmergencyReconstructActive"
     const val ACTIVE_FRIENDLY_RANGE = 1600f
+    const val REPAIR_TIME_BASE = 10f
+    const val REPAIR_TIME_PER_DP = 1f
 
-    val CHANGE_DROP_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
+    val CHANGE_FAIL_INCREASE_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
     init {
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.33f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.15f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.25f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.33f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.5f)
-      CHANGE_DROP_HULLSIZE.withDefault { 0.5f }
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.33f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.15f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.25f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.33f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.5f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.withDefault { 0.5f }
     }
 
-    val FIRST_CHANGE_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
+    val FIRST_CHANGE_FAIL_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
     init {
-      FIRST_CHANGE_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 1f)
-      FIRST_CHANGE_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 1f)
-      FIRST_CHANGE_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 1f)
-      FIRST_CHANGE_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 1f)
-      FIRST_CHANGE_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 1f)
-      FIRST_CHANGE_HULLSIZE.withDefault { 0.5f }
+      FIRST_CHANGE_FAIL_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.01f)
+      FIRST_CHANGE_FAIL_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.01f)
+      FIRST_CHANGE_FAIL_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.01f)
+      FIRST_CHANGE_FAIL_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.01f)
+      FIRST_CHANGE_FAIL_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.01f)
+      FIRST_CHANGE_FAIL_HULLSIZE.withDefault { 0.5f }
     }
 
   }
 
   //这些变量都是作为listener时使用的
-  var activeChance = 1f
-  var activeChanceDropPerUse = 0f
+  var failChance = 0f
+  var failChanceUpPerUse = 0f
   var repairTimeTotal = 20f
 
   val repairTimer = IntervalUtil(0.2f,0.8f)
@@ -70,18 +73,67 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    if(!ship.hasListenerOfClass(this.javaClass)){
+    if(!ship.hasListenerOfClass(aEP_EmergencyReconstruct::class.java)){
       val listenerClass = aEP_EmergencyReconstruct(ship)
       val dp =  ship.mutableStats.dynamic.getMod(Stats.DEPLOYMENT_POINTS_MOD).computeEffective(ship.hullSpec.suppliesToRecover)
-      listenerClass.repairTimeTotal = aEP_EmergencyReconstructAi.REPAIR_TIME_BASE + aEP_EmergencyReconstructAi.REPAIR_TIME_PER_DP * dp
-      listenerClass.activeChance = 1f
-      listenerClass.activeChanceDropPerUse =  CHANGE_DROP_HULLSIZE[ship.hullSpec.hullSize]?:0.5f
+      listenerClass.repairTimeTotal = REPAIR_TIME_BASE + REPAIR_TIME_PER_DP * dp
+      listenerClass.failChance = FIRST_CHANGE_FAIL_HULLSIZE[ship.hullSpec.hullSize] ?: 0.01f
+      listenerClass.failChanceUpPerUse =  CHANGE_FAIL_INCREASE_HULLSIZE[ship.hullSpec.hullSize]?:0.5f
       ship.addListener(listenerClass)
     }
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
 
+  }
+
+  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
+    return true
+  }
+
+  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highLight = Misc.getHighlightColor()
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+    val barBgColor = faction.getDarkUIColor()
+    val factionColor: Color = faction.getBaseUIColor()
+    val titleTextColor: Color = faction.getColor()
+
+    //主效果
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
+
+    tooltip.addPara("{%s}"+ txt("aEP_EmergencyReconstruct01"), 5f,
+      arrayOf(Color.green,highLight),
+      aEP_ID.HULLMOD_POINT)
+    val firstChanceFail = FIRST_CHANGE_FAIL_HULLSIZE[hullSize]?:1f
+    tooltip.addPara(
+      aEP_ID.HULLMOD_BULLET + txt("aEP_EmergencyReconstruct02"), 5f,
+      highLight,
+      txt("aEP_EmergencyReconstruct03"),
+      String.format("%.0f", firstChanceFail*100f))
+    val failChanceUp = CHANGE_FAIL_INCREASE_HULLSIZE[hullSize]?:0.5f
+    tooltip.addPara(aEP_ID.HULLMOD_BULLET + txt("aEP_EmergencyReconstruct04"), 5f,
+      arrayOf(highLight,highLight, highLight),
+      txt("aEP_EmergencyReconstruct03"),
+      String.format("+%.0f",failChanceUp*100f))
+
+    val dp =  ship?.mutableStats?.dynamic?.getMod(Stats.DEPLOYMENT_POINTS_MOD)?.computeEffective(ship.hullSpec.suppliesToRecover)?:20f
+    val time = REPAIR_TIME_BASE + REPAIR_TIME_PER_DP * dp
+    tooltip.addPara("{%s}" + txt("aEP_EmergencyReconstruct05"), 5f, arrayOf(highLight, highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", time))
+
+
+
+    //显示不兼容插件
+    //tooltip.addPara("{%s}"+ txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
+
+    //预热完全后额外效果
+    //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
+
+    //灰字额外说明
+    tooltip.addPara(aEP_DataTool.txt("aEP_EmergencyReconstruct06"), grayColor, 5f)
   }
 
   /**
@@ -96,6 +148,25 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 
     }else if(didRepair ){//退出维修模式时运行一次
       onceWhenOutRepair()
+    }
+
+    //维持左下角状态栏
+    if(Global.getCombatEngine().playerShip == ship){
+      if(reconstructTimer > 0f){
+        Global.getCombatEngine().maintainStatusForPlayerShip(
+          ID,
+          Global.getSettings().getSpriteName("aEP_ui","marker_dissipation"),
+          Global.getSettings().getHullModSpec(ID).displayName,
+          String.format("Repairing: %.0f", reconstructTimer),
+          false)
+      }else{
+        Global.getCombatEngine().maintainStatusForPlayerShip(
+          ID,
+          Global.getSettings().getSpriteName("aEP_ui","marker_dissipation"),
+          Global.getSettings().getHullModSpec(ID).displayName,
+          String.format("Active Chance: %.0f", MathUtils.clamp(100f-failChance*100f,0f,100f) ) +" %",
+          false)
+      }
 
     }
 
@@ -115,22 +186,23 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 //      aEP_CombatEffectPlugin.addEffect(aEP_Combat.StandardTeleport(1f,ship,
 //        Vector2f(Global.getCombatEngine().playerShip.mouseTarget),ship.facing))
       val test = MathUtils.getRandomNumberInRange(0f,100f)
-      val threshold = (activeChance * 100f)
-      if(test <= threshold){
-
+      val threshold = (failChance * 100f)
+      if(test >= threshold){
+        //通过测试
+        failChance += failChanceUpPerUse
+        failChance.coerceAtLeast(0f).coerceAtMost(1f)
         onceWhenInRepair()
-        //这里存在即使过了检测，但周围没有队友导致无法复活的情况，多一道检测
         if(reconstructTimer > 0f){
           var txt = String.format("Reconstruct Test: %.0f",test)
-          if(threshold < 100) txt += String.format(" + %.0f",100-threshold)
+          txt += String.format(" (>= %.0f)",threshold)
           Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.green, ship, 1f,5f)
         }
 
       }else{
-
+        //失败测试
         onceWhenFailTest()
         var txt = String.format("Reconstruct Test: %.0f",test)
-        if(threshold < 100) txt += String.format(" + %.0f",100-threshold)
+        txt += String.format(" (<= %.0f)",threshold)
         Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.red, ship, 1f,5f)
 
       }
@@ -150,13 +222,12 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 
     for(e in ship.engineController.shipEngines){
       if(!e.isDisabled){
-        e.applyDamage(999f, ship)
-        e.disable()
+        e.applyDamage(100f, ship)
       }
     }
     for(w in ship.allWeapons){
       if(!w.isDisabled) {
-        w.disable()
+        w.setForceNoFireOneFrame(true)
       }
     }
 
@@ -195,7 +266,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
       val repaired = aEP_Tool.findToRepair(
         ship,
         ((ship.armorGrid.maxArmorInCell * (ship.armorGrid.grid.size * ship.armorGrid.grid[0].size) + ship.maxHitpoints) * 0.5f)/ repairTimeTotal,
-        1f, 1f, 100f, 1f
+        1f, 1f, 100f, 1f, true
       )
       if(repaired >= 1f){
         //reconstructTime = 0.1f
@@ -214,10 +285,16 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     ship.removeCustomData(ACTIVE_KEY)
 
     for(e in ship.engineController.shipEngines){
-      if(e.isDisabled) e.repair()
+      if(e.isDisabled) {
+        //e.disable(false)
+        e.repair()
+      }
     }
     for(w in ship.allWeapons){
-      if(w.isDisabled) w.repair()
+      if(w.isDisabled){
+        //w.disable(false)
+        w.repair()
+      }
     }
 
     //取消相位效果
@@ -236,12 +313,21 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 
   open fun onceWhenInRepair(){
 
-    activeChance -= activeChanceDropPerUse
-    activeChance.coerceAtLeast(0f).coerceAtMost(1f)
-
     ship.setCustomData(ACTIVE_KEY,true)
 
-    var distNow = 99999f
+    for(e in ship.engineController.shipEngines){
+      if(!e.isDisabled){
+        e.disable()
+      }
+    }
+    for(w in ship.allWeapons){
+      if(!w.isDisabled) {
+        w.disable()
+      }
+    }
+
+    //取消需要传送到队友身边这个设定
+ /*   var distNow = 99999f
     var nearest : ShipAPI? = null
     for(target in Global.getCombatEngine().ships){
       if(target.owner != ship.owner) continue
@@ -264,7 +350,8 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
       reconstructTimer = 0f
       ship.removeListener(this)
       return
-    }
+    }*/
+
     ship.hitpoints = 1f
     reconstructTimer = repairTimeTotal
     ship.engineController.forceFlameout(true)
@@ -321,61 +408,17 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     ship.removeListener(this)
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
-  }
 
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
-
-    //主效果
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EmergencyReconstruct01"), 5f, arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT)
-    tooltip.addPara(
-      aEP_ID.HULLMOD_BULLET + aEP_DataTool.txt("aEP_EmergencyReconstruct02"), 5f, highLight,
-      ACTIVE_FRIENDLY_RANGE.toInt().toString())
-    val firstChance = FIRST_CHANGE_HULLSIZE[hullSize]?:1f
-    tooltip.addPara(
-      aEP_ID.HULLMOD_BULLET + aEP_DataTool.txt("aEP_EmergencyReconstruct03"), 5f, highLight,
-      aEP_DataTool.txt("aEP_EmergencyReconstruct04"),
-      String.format("%.0f",firstChance*100f))
-
-    //中立
-    tooltip.addPara("{%s}" + aEP_DataTool.txt("aEP_EmergencyReconstruct05"), 5f, arrayOf(highLight, highLight),
-      aEP_ID.HULLMOD_POINT)
-    val dp =  ship?.mutableStats?.dynamic?.getMod(Stats.DEPLOYMENT_POINTS_MOD)?.computeEffective(ship.hullSpec.suppliesToRecover)?:20f
-    val time = aEP_EmergencyReconstructAi.REPAIR_TIME_BASE + aEP_EmergencyReconstructAi.REPAIR_TIME_PER_DP * dp
-    tooltip.addPara("{%s}" + aEP_DataTool.txt("aEP_EmergencyReconstruct08"), 5f, arrayOf(highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", time))
-
-    //负面
-    val chanceDrop = CHANGE_DROP_HULLSIZE[hullSize]?:0.5f
-    tooltip.addPara("{%s}" + aEP_DataTool.txt("aEP_EmergencyReconstruct06"), 5f, arrayOf(Color.red,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      aEP_DataTool.txt("aEP_EmergencyReconstruct04"),
-      String.format("+%.0f",chanceDrop*100f))
-
-    //显示不兼容插件
-    //tooltip.addPara("{%s}"+ txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
-
-    //预热完全后额外效果
-    //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
-
-    //灰字额外说明
-    tooltip.addPara(aEP_DataTool.txt("aEP_EmergencyReconstruct07"), grayColor, 5f)
-  }
 }
 
-class RepairScaffoldUp(val moveTime : Float,val expandTime: Float, val stayTime: Float, val ship:ShipAPI, val xOffset: Float , val yOffset: Float, val startLocRelativeData: Vector2f) : aEP_BaseCombatEffect((stayTime), ship){
+class RepairScaffoldUp(
+  val moveTime : Float,
+  val expandTime: Float,
+  val stayTime: Float,
+  val ship:ShipAPI,
+  val xOffset: Float ,
+  val yOffset: Float,
+  val startLocRelativeData: Vector2f) : aEP_BaseCombatEffect((stayTime), ship){
   val smokeTimer = IntervalUtil(1f,5f)
 
   override fun advanceImpl(amount: Float) {
@@ -456,7 +499,15 @@ class RepairScaffoldUp(val moveTime : Float,val expandTime: Float, val stayTime:
   }
 
 }
-class RepairSideFrameUp(val moveTime : Float,val expandTime: Float, val stayTime: Float, val ship:ShipAPI, val xOffset: Float , val yOffset: Float, val expandRange:Float, val startLocRelativeData: Vector2f) : aEP_BaseCombatEffect((stayTime), ship){
+class RepairSideFrameUp(
+  val moveTime : Float,
+  val expandTime: Float,
+  val stayTime: Float,
+  val ship:ShipAPI,
+  val xOffset: Float ,
+  val yOffset: Float,
+  val expandRange:Float
+  , val startLocRelativeData: Vector2f) : aEP_BaseCombatEffect((stayTime), ship){
   val sparkTimer = IntervalUtil(2f,6f)
 
   override fun advanceImpl(amount: Float) {
@@ -637,7 +688,11 @@ class RepairSideFrameUp(val moveTime : Float,val expandTime: Float, val stayTime
   }
 
 }
-class RepairSideMoving(val moveTime : Float, val stayTime: Float, val ship:ShipAPI, var startLocRelativeData: Vector2f) : aEP_BaseCombatEffect((stayTime), ship){
+class RepairSideMoving(
+  val moveTime : Float,
+  val stayTime: Float,
+  val ship:ShipAPI,
+  var startLocRelativeData: Vector2f) : aEP_BaseCombatEffect((stayTime), ship){
   val sparkTimer = IntervalUtil(2f,6f)
   var xOffset = 0f
   var yOffset = 0f

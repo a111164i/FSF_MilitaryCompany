@@ -73,7 +73,7 @@
    #"miningVariantsOrWings":["gonodactylus_assault", "gonodactylus_cc", "gonodactylus_CS", "gonodactylus_elite"],
    
     "defenceStations":[
-        {"ids":["orbitalstation_mid", "battlestation_mid", "starfortress_mid"]},
+        {"ids":["aEP_station_tier1", "aEP_station_tier2", "aEP_station_tier3"]},
     ],
 	
     "industrySeeds":[

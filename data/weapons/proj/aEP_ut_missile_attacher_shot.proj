@@ -1,0 +1,24 @@
+{
+	"id":"aEP_ut_missile_attacher_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"NONE",
+	"collisionClassByFighter":"NONE",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"length": 1,
+	"hitGlowRadius": 0,
+	"width": 1,
+	"fadeTime":0.0001,
+	"fringeColor":[0,0,0,0],
+	"coreColor":[0,0,0,0],
+	"glowColor":[255,255,255,255],
+	"glowRadius":0,
+	"textureScrollSpeed":55.0,
+	"pixelsPerTexel":5.0,
+  "passThroughMissiles":true,
+	"passThroughFighters":true,
+	"passThroughFightersOnlyWhenDestroyed":false,
+	"applyOnHitEffectWhenPassThrough":false,
+  "renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
+	#"bulletSprite":"graphics/missiles/pilum_stage2.png"
+}

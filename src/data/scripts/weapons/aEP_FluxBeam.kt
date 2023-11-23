@@ -3,16 +3,14 @@ package data.scripts.weapons
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.util.aEP_Tool
-import data.scripts.hullmods.aEP_MarkerDissipation
+import data.scripts.hullmods.aEP_SpecialHull
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
-import java.awt.Color
 
 class aEP_FluxBeam : BeamEffectPlugin {
 
   companion object{
-    const val FSF_BONUS = 2f
+    const val FSF_BONUS = 3f
     const val MAX_SPEED_DIS_CAP = 1f
 
   }
@@ -75,7 +73,7 @@ class aEP_FluxBeam : BeamEffectPlugin {
           val fluxRest = beam.source.maxFlux - beam.source.currFlux
           val targetFlux = target.currFlux
           //计算fsf加成
-          if(beam.source.variant?.hasHullMod(aEP_MarkerDissipation.ID) == true){
+          if(beam.source.variant?.hasHullMod(aEP_SpecialHull.ID) == true){
             fluxDecrease *= FSF_BONUS
             fluxDecrease = fluxDecrease.coerceAtMost(fluxRest)
             fluxDecrease = fluxDecrease.coerceAtMost(targetFlux)
@@ -120,6 +118,7 @@ class aEP_FluxBeam : BeamEffectPlugin {
       checkShipList.add(ship)
       checkShipList.addAll(ship.childModulesCopy)
     }
+    if(checkShipList.isEmpty()) checkShipList.add(ship)
 
     //找当前幅能最高的模块，如果本体的幅能超过50%直接优先选择本体
     var maxFluxLevel = 0f

@@ -6,7 +6,7 @@
 	"aiScript":"data.scripts.ai.shipsystemai.aEP_AntiPhaseDroneAI",
 	"statsScript":"data.scripts.shipsystems.aEP_AntiPhaseDrone",
    
-	"runScriptWhileIdle":false,  # this means unapply() never gets called	
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
 	"useSound":"gun_out_of_ammo",
 	"outOfUsesSound":"gun_out_of_ammo",
 	

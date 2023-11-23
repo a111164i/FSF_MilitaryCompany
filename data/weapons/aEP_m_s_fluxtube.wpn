@@ -6,9 +6,8 @@
   "size": "SMALL",
   "displayArcRadius": 250,
   "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
-  "turretSprite": "graphics/weapons/aEP_m_m_fluxtube/small_tr.png",
-  "turretUnderSprite": "graphics/weapons/aEP_m_m_fluxtube/small_tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_m_m_fluxtube/small_hp.png",
+  "turretSprite": "graphics/weapons/aEP_missile_small_tr2.png",
+  "hardpointSprite": "graphics/weapons/aEP_missile_small_hp2.png",
   "renderHints": [
       RENDER_LOADED_MISSILES
    ],

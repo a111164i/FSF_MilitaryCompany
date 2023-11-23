@@ -1,0 +1,76 @@
+{
+	"id":"aEP_des_lianliu_grenade_thrower_shot",
+	"specClass":"missile",
+	#而且BOMB_WITH_SLOW是快速强制被clamp到最大速度，而不是读取加速度，这样减速的太快了视觉效果极差
+	#BOMB, BOMB_WITH_SLOW, PHASE_CHARGE, PHASE_MINE
+	"missileType":"BOMB",
+	"sprite":"graphics/weapons/aEP_m_l_harpoon/bomblet.png",
+	"size":[9,11],	
+	"center":[4.5,5.5],
+	"collisionRadius":6,
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"collisionClass":"MISSILE_NO_FF",
+	"glowColor":[255,187,140,55],
+	"glowRadius":17,
+	"explosionColor":[255,225,50,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":100, # purely visual
+
+	#模板
+  "armingTime":0.5, # 触炸的最小安全时间，不影响proximity_fuse
+  "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered
+  #如果要弹丸严格按照最大距离飞行，这几个参数一定得是0，fadeTime这段时间如果不填默认不是0而且不属于maxFlightTime
+  #如果不填，此时弹丸结束时的flightTime会大于maxFlightTime，且此段时间最大速度不受限制，默认fadeTime + flameoutTime为3.5秒
+  #flameoutTime一般最小写0.1，再低经过测试会有问题
+  "fadeTime":0.1, # 熄火后能漂移多久，这里为0不会触发近炸引信
+  "flameoutTime":0.1,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+
+	"noCollisionWhileFading":false,
+  "noDebrisWhenDestroyed": false,
+  "useProjectileRangeCalculation":false,
+	"explosionSpec":{
+		"duration":0.01f, # not visual
+		"radius":75,
+		"coreRadius":25, # full damage within core radius
+		"collisionClass": HITS_SHIPS_AND_ASTEROIDS,
+		"collisionClassByFighter": HITS_SHIPS_AND_ASTEROIDS},
+	"engineSpec":{
+		"turnAcc":0,
+		"turnRate":0,
+		"acc":100,
+		"dec":100},
+	#只有PHASE_MINE/CHARGE才会启用proximity_fuse参数
+	"behaviorSpec":{
+		"behavior":"PROXIMITY_FUSE",
+		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+		#这俩参数对空雷没用
+    #"shotRangeVariance":0.5,
+    #"probOfVariance":0.5,
+    "slowToMaxSpeed":true,
+    "range":30,
+    # 只有phase_mine才触发以下参数
+    "delay":0.8,
+    "explosionSpec":{"duration":0.0001f,
+             "radius":100,
+             "coreRadius":50, # full damage within core radius - at least equal to proximity fuse range
+             "collisionClass":PROJECTILE_NO_FF,
+             "collisionClassByFighter":PROJECTILE_FIGHTER,
+             "particleSizeMin":7.0,
+             "particleSizeRange":4.0,
+             "particleDuration":0.5,
+             "particleCount":5,
+             "particleColor":[255,225,125,255],
+             "explosionColor":[255,225,125,125],
+
+             "useDetailedExplosion":true,
+             "useDetailedExplosionColorAlpha":true,
+             "detailedExplosionRadius":100,
+             "detailedExplosionFlashRadius":250,
+             "detailedExplosionFlashDuration":0.2,
+             "detailedExplosionFlashColorFringe":[255,125,55,55],
+             "detailedExplosionFlashColorCore":[155,155,155,55],
+             "sound":"devastator_explosion"},
+
+    },
+  }
+}

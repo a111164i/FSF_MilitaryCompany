@@ -74,7 +74,8 @@ class aEP_ApproachThrusterScript : BaseShipSystemScript() {
         oilL?: continue
         if(on){
           oilL.animation.frame = 1
-          val ms = aEP_MovingSprite(oilL.location, Vector2f(18f,62f),ship.facing-90f, "graphics/weapons/aEP_hailiang/Oil00.png")
+          val ms = aEP_MovingSprite(oilL.location, Vector2f(18f,62f),ship.facing-90f,
+            "graphics/weapons/aEP_cru_hailiang/Oil00.png")
           ms.setInitVel(aEP_Tool.speed2Velocity(ship.facing, -180f))
           ms.setInitVel(ship.velocity)
           ms.stopSpeed = 0.9f
@@ -96,7 +97,8 @@ class aEP_ApproachThrusterScript : BaseShipSystemScript() {
         oilR?: continue
         if(on){
           oilR.animation.frame = 1
-          val ms = aEP_MovingSprite(oilR.location, Vector2f(18f,62f),ship.facing-90f, "graphics/weapons/aEP_hailiang/Oil00.png")
+          val ms = aEP_MovingSprite(oilR.location, Vector2f(18f,62f),ship.facing-90f,
+            "graphics/weapons/aEP_cru_hailiang/Oil00.png")
           ms.setInitVel(aEP_Tool.speed2Velocity(ship.facing, -180f))
           ms.setInitVel(ship.velocity)
           ms.stopSpeed = 0.9f

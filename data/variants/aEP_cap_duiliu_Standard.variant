@@ -1,78 +1,54 @@
 {
-  "variantId": "aEP_cap_duiliu_Standard",
-  "hullId": "aEP_cap_duiliu",
-  "displayName": "Standard",
-  "goalVariant": true,
-  "fluxCapacitors": 10,
-  "fluxVents": 36,
-  "quality": 1,
-  "permaMods": [],
-  "hullMods": [
-    "targetingunit",
-    "ballistic_rangefinder",
-    "aEP_ControledShield"
-  ],
-  "weaponGroups": [
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "MAIN": "aEP_cap_duiliu_main",
-        "WS0022": "lightac",
-        "WS0023": "lightac",
-        "WS0034": "lightac",
-        "WS0035": "lightac",
-        "WS0036": "lightac",
-        "WS0037": "lightac",
-        "WS0038": "lightac",
-        "WS0040": "lightac"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0020": "aEP_b_m_h88",
-        "WS0021": "aEP_b_m_h88"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0011": "aEP_b_m_hv7",
-        "WS0012": "aEP_b_m_hv7"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0009": "aEP_b_m_rk107",
-        "WS0010": "aEP_b_m_rk107"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0018": "flak"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0007": "dualflak",
-        "WS0008": "dualflak"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {}
-    }
-  ],
-  "modules": [],
-  "wings": []
+    "displayName": "Standard",
+    "fluxCapacitors": 40,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_cap_duiliu",
+    "hullMods": [
+        "targetingunit",
+        "ballistic_rangefinder"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_duiliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightac",
+                "WS0004": "lightac",
+                "WS0005": "lightac",
+                "WS0006": "lightac",
+                "WS0007": "aEP_b_m_h88",
+                "WS0008": "aEP_b_m_h88",
+                "WS0009": "aEP_b_m_hv7",
+                "WS0010": "aEP_b_m_hv7",
+                "WS0011": "aEP_b_m_hv7",
+                "WS0012": "aEP_b_m_hv7",
+                "WS0021": "aEP_b_m_h88",
+                "WS0022": "lightac",
+                "WS0023": "lightac",
+                "WS0034": "lightac",
+                "WS0035": "lightac",
+                "WS0036": "lightac",
+                "WS0037": "lightac",
+                "WS0038": "lightac",
+                "WS0040": "lightac"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_cap_duiliu_main"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0018": "flak",
+                "WS0020": "aEP_b_m_mb32"
+            }
+        }
+    ]
 }

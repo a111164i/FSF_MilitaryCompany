@@ -48,7 +48,8 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     this.token = whereToSpawn;
 
     //add Fleet
-    FleetParamsV3 para = new FleetParamsV3(null,
+    FleetParamsV3 para = new FleetParamsV3(
+            null,
             aEP_ID.FACTION_ID_FSF,
             1f,// qualityMod
             FleetTypes.TASK_FORCE,
@@ -372,11 +373,21 @@ public class aEP_AWM3Intel extends aEP_BaseMission
 
   class EntityWantToMissileAttackPlayer implements EveryFrameScript {
     CampaignFleetAPI token;
+    //几天装填一发
+    float reloadTime = 1.5f;
+    //玩家持续在视野中出现几秒就会发射
+    float timeNeedToAim = 0.2f;
     //by day
-    float launchInterval = 0f;
-    float prepareTime = 0f;
+
+
+    float timeAfterLastLaunch = 0f;
+    float timeAiming = 0f;
 
     EntityWantToMissileAttackPlayer(CampaignFleetAPI fleet) {
+
+      reloadTime = 1.5f;
+      //玩家持续在视野中出现几秒就会发射
+      timeNeedToAim = 0.2f;
       token = fleet;
     }
 
@@ -408,15 +419,15 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     public void advance(float amount) {
       CampaignFleetAPI fleet = token;
       float amountToDay = Misc.getDays(amount);
-      launchInterval += amountToDay;
+      timeAfterLastLaunch += amountToDay;
       if (Global.getSector().getPlayerFleet().isVisibleToSensorsOf(fleet)
               && MathUtils.getDistance(fleet.getLocation(), Global.getSector().getPlayerFleet().getLocation()) < 1200
-              && launchInterval > 2f){
-        prepareTime += amountToDay;
-        if(prepareTime > 0.25f){
+              && timeAfterLastLaunch > reloadTime){
+        timeAiming += amountToDay;
+        if(timeAiming > timeNeedToAim){
           launchToPlayer(fleet);
-          launchInterval = 0f;
-          prepareTime = 0f;
+          timeAfterLastLaunch = 0f;
+          timeAiming = 0f;
         }
       }
     }

@@ -34,6 +34,9 @@ class aEP_FirstDeck:aEP_BaseHullMod() {
     const val RR_DRAIN_THRESHOLD = 0.70f
     const val RR_DRAIN_PEC_SECOND = 5f
 
+    //非f甲板的伤害惩罚
+    const val NON_F_DECK_DAMAGE_REDUCE_MULT = 0.5f
+
   }
 
   init {
@@ -79,7 +82,6 @@ class aEP_FirstDeck:aEP_BaseHullMod() {
         fighter.mutableStats.acceleration.modifyPercent(ID, SPEED_BONUS_PERCENT/2f)
         fighter.mutableStats.deceleration.modifyPercent(ID, SPEED_BONUS_PERCENT/2f)
       }
-
       if(!wing.spec.isBomber){
         //因为是飞机已经生成后才触发，需要手动修改最大备弹并把当前备弹加到和最大一样
         fighter.mutableStats.ballisticAmmoBonus.modifyPercent(ID, AMMO_BONUS_PERCENT)
@@ -104,6 +106,14 @@ class aEP_FirstDeck:aEP_BaseHullMod() {
         fighter.mutableStats.fluxCapacity.modifyPercent(ID, CAP_BONUS_PERCENT)
         fighter.mutableStats.fluxDissipation.modifyPercent(ID, VENT_BONUS_PERCENT)
       }
+
+    }else{
+      //不是最后一个甲板，受到惩罚
+      fighter.mutableStats.damageToFighters.modifyMult(ID, 1f - NON_F_DECK_DAMAGE_REDUCE_MULT)
+      fighter.mutableStats.damageToFrigates.modifyMult(ID, 1f - NON_F_DECK_DAMAGE_REDUCE_MULT)
+      fighter.mutableStats.damageToDestroyers.modifyMult(ID, 1f - NON_F_DECK_DAMAGE_REDUCE_MULT)
+      fighter.mutableStats.damageToCruisers.modifyMult(ID, 1f - NON_F_DECK_DAMAGE_REDUCE_MULT)
+      fighter.mutableStats.damageToCapital.modifyMult(ID, 1f - NON_F_DECK_DAMAGE_REDUCE_MULT)
     }
   }
 
@@ -147,6 +157,11 @@ class aEP_FirstDeck:aEP_BaseHullMod() {
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", RR_DRAIN_THRESHOLD * 100f) +"%",
       String.format("%.0f", RR_DRAIN_PEC_SECOND) +"%")
+
+    //负面
+    tooltip.addPara("{%s}"+ txt("aEP_FirstDeck07"), 5f, arrayOf(Color.red,highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", NON_F_DECK_DAMAGE_REDUCE_MULT * 100f) +"%")
 
     //不兼容
     //tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))

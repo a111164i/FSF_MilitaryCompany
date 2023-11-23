@@ -19,17 +19,15 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
     private val mag1 = HashMap<String, Float>()
 
     init {
-      mag1["aEP_cru_hailiang3"] = 40f
+      mag1["aEP_cru_hailiang3"] = 30f
       mag1["aEP_cap_neibo_turret"] = 60f
     }
 
   }
 
   init {
-    notCompatibleList.add(HullMods.SAFETYOVERRIDES)
     notCompatibleList.add(HullMods.DEDICATED_TARGETING_CORE)
     notCompatibleList.add(HullMods.INTEGRATED_TARGETING_UNIT)
-    notCompatibleList.add(HullMods.CONVERTED_HANGAR)
   }
 
   /**

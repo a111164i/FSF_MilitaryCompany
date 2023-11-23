@@ -4,22 +4,22 @@
   "projectileSpecId": "aEP_b_m_lighting_shot",
   "type": "BALLISTIC",
   "size": "MEDIUM",
-  "turretSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/tr.png",
-  "turretGunSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/trbr.png",
-  "hardpointSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/hp.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_long_barrel_chaingunAP/hpbr.png",
+  "turretSprite": "graphics/weapons/aEP_b_m_lighting/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_m_lighting/trbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_m_lighting/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_m_lighting/hpbr.png",
   "visualRecoil": 5,
   "renderHints": [
     RENDER_BARREL_BELOW
   ],
   "turretOffsets": [
-    22,
+    21,
     6,
-    24,
+    23,
     2,
-    24,
+    23,
     -2,
-    22,
+    21,
     -6
   ],
   "turretAngleOffsets": [
@@ -29,13 +29,13 @@
     0
   ],
   "hardpointOffsets": [
-    25,
+    21.5,
     6,
-    27,
+    23.5,
     2,
-    27,
+    23.5,
     -2,
-    25,
+    21.5,
     -6
   ],
   "hardpointAngleOffsets": [
@@ -49,8 +49,8 @@
   "muzzleFlashSpec": {
     "length": 15,
     "spread": 5,
-    "particleSizeMin": 6,
-    "particleSizeRange": 6,
+    "particleSizeMin": 18,
+    "particleSizeRange": 12,
     "particleDuration": 0.1,
     "particleCount": 8,
     "particleColor": [

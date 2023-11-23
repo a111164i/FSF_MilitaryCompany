@@ -1,4 +1,28 @@
 id,name,cost mult,build time,income,upkeep,downgrade,upgrade,tags,data,image,plugin,desc,order
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
+aEP_station_tier1,轨道站 - FSF,50,90,,3,,aEP_station_tier2,"station, sub_item, unraidable, structure","{
+radius:55,
+variant:aEP_sta_base1_Standard,
+fleetName:Orbital Station,
+}",graphics/icons/industry/orbital_station.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"公司所设计的轨道站，拥有无与伦比的投射量
+
+它的存在将阻止任何轰炸行动的发生。",,
+,,,,,,,,,,,,,
+aEP_station_tier2,作战基地 - FSF,100,120,,4,aEP_station_tier1,aEP_station_tier3,"station, battlestation, unraidable, structure","{
+radius:65,
+variant:aEP_sta_base2_Standard,
+fleetName:Battlestation,
+}",graphics/icons/industry/battlestation.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"升级过的轨道站.
+
+它的存在将阻止任何轰炸行动的发生。",,
+,,,,,,,,,,,,,
+aEP_station_tier3,星际要塞 - FSF,200,180,,5,aEP_station_tier2,,"station, starfortress, unraidable, structure","{
+radius:70,
+variant:aEP_sta_base3_Standard,
+fleetName:Star Fortress
+}",graphics/icons/industry/battlestation.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"全副武装的作战基地，在原有基础上增建了大量的外挂装甲，
+
+它的存在将阻止任何轰炸行动的发生。",,
+,,,,,,,,,,,,,
 aEP_AdvanceHq,精英设计部,90,60,,6,,,"military, unraidable, tactical_bombardment, structure",,graphics/aEP_icons/industry/design_department.png,data.scripts.campaign.econ.industries.aEP_AdvanceHqPlugin,很难去猜测为什么FSF会在近期进行大量的军备扩建，但只有通过背景调查，拥有数年服役经验且成绩优秀的军官才能进入这个部门，外界对此的认知仅限严苛的入选条件和对工作内容高度保密。公司这种短时间内不惜资源的军备扩张普遍被认为在为即将发生的混乱做准备,

@@ -13,6 +13,8 @@ import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
 import combat.util.aEP_Tool.Util.getRelativeLocationData
 import combat.util.aEP_Tool.Util.isDead
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
+import data.scripts.weapons.aEP_FluxBeam
+import data.scripts.weapons.aEP_RepairBeam.Companion.FSF_BONUS
 import data.scripts.weapons.aEP_RepairBeam.Companion.HULL_REPAIR_THRESHOLD
 import data.scripts.weapons.aEP_RepairBeam.Companion.REPAIR_THRESHOLD
 import org.lazywizard.lazylib.CollisionUtils
@@ -29,7 +31,7 @@ import kotlin.math.absoluteValue
 import kotlin.math.cos
 
 
-class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI()) {
+class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI()) {
 
   companion object{
     const val ID = "aEP_DroneSupplyShipAI"
@@ -103,6 +105,14 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
         val aroundShips = AIUtils.getNearbyAllies(ship, ship.wing.range)
         val targetPicker = WeightedRandomPicker<ShipAPI>()
         for(ally in aroundShips){
+
+          if(!aEP_Tool.isShipTargetable(ally,
+              false,
+              false,
+              true,
+              false,
+              false)) continue
+
           //跳过非常规舰船
           if (ally.hullSize != ShipAPI.HullSize.CAPITAL_SHIP
             && ally.hullSize != ShipAPI.HullSize.CRUISER
@@ -306,7 +316,9 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     override fun onReturn() {
       if(parentShip != null && !isDead(parentShip!!)){
         val parentShip = parentShip as ShipAPI
-        val maxToAdd = (ship.fluxTracker.currFlux * FLUX_RETURN_PARENT).coerceAtMost(parentShip.maxFlux - parentShip.currFlux)
+        var maxToAdd = (ship.fluxTracker.currFlux * FLUX_RETURN_PARENT).coerceAtMost(parentShip.maxFlux - parentShip.currFlux -1f)
+        maxToAdd *= aEP_FluxBeam.FSF_BONUS
+
         parentShip.fluxTracker.increaseFlux(maxToAdd,false)
       }
     }

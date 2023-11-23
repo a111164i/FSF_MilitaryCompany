@@ -1,31 +1,27 @@
 {
-    "displayName": "AntiSmall",
-    "fluxCapacitors": 12,
-    "fluxVents": 12,
+    "displayName": "Attack",
+    "fluxCapacitors": 10,
+    "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_des_lianliu",
-    "hullMods": ["targetingunit"],
+    "hullMods": ["aEP_ShieldFloating"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_lianliu_AntiSmall",
     "weaponGroups": [
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_b_m_k125",
-                "WS0002": "aEP_b_m_k125"
+                "WS0001": "heavymg",
+                "WS0002": "heavymg",
+                "WS0003": "chaingun"
             }
         },
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_b_m_hv7"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0008": "aEP_e_s_300k"}
+            "weapons": {"WS0008": "aEP_b_s_pom"}
         },
         {
             "autofire": true,
@@ -34,6 +30,19 @@
                 "WS0004": "aEP_b_s_630",
                 "WS0005": "aEP_b_s_630"
             }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "amblaster"}
         }
     ]
 }

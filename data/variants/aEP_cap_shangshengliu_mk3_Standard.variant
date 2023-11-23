@@ -1,21 +1,12 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 11,
-    "fluxVents": 33,
+    "fluxCapacitors": 25,
+    "fluxVents": 39,
     "goalVariant": true,
     "hullId": "aEP_cap_shangshengliu_mk3",
     "hullMods": [
-        "targetingunit",
         "hardenedshieldemitter",
         "armoredweapons"
-    ],
-    "modules": [
-        {"M01": "aEP_cap_shangshengliu_mk3_armor_Standard"},
-        {"M02": "aEP_cap_shangshengliu_mk3_armor_Standard"},
-        {"M03": "aEP_cap_shangshengliu_mk3_armor_Standard"},
-        {"M04": "aEP_cap_shangshengliu_mk3_armor_Standard"},
-        {"M05": "aEP_cap_shangshengliu_mk3_armor_Standard"},
-        {"M06": "aEP_cap_shangshengliu_mk3_armor_Standard"}
     ],
     "permaMods": [],
     "sMods": [],
@@ -24,48 +15,51 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0008": "hephag"}
+            "weapons": {"WS0017": "multineedler"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L01": "lightac",
-                "L02": "lightac",
-                "L03": "lightac",
-                "L04": "lightac",
-                "L05": "lightac",
-                "L06": "lightac",
-                "R01": "lightac",
-                "R02": "lightac",
-                "R03": "lightac",
-                "R04": "lightac",
-                "R05": "lightac",
-                "R06": "lightac"
+                "WS0003": "lightneedler",
+                "WS0004": "lightac",
+                "WS0005": "lightneedler",
+                "WS0006": "lightac",
+                "WS0007": "lightneedler",
+                "WS0009": "lightneedler",
+                "WS0010": "lightac",
+                "WS0016": "lightac"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L07": "aEP_b_m_h88",
-                "L08": "aEP_b_m_h88",
-                "L09": "aEP_b_m_h88",
-                "R07": "aEP_b_m_h88",
-                "R08": "aEP_b_m_h88",
-                "R09": "aEP_b_m_h88"
+                "WS0013": "aEP_b_m_h88",
+                "WS0015": "aEP_b_m_h88",
+                "WS0019": "aEP_b_m_h88"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0018": "devastator"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0002": "aEP_b_s_630",
+                "WS0011": "aEP_b_s_630"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "vulcan",
-                "WS0002": "vulcan",
-                "WS0003": "vulcan",
-                "WS0004": "vulcan",
-                "WS0005": "flak",
-                "WS0007": "flak"
+                "WS0014": "aEP_b_m_mb32",
+                "WS0020": "aEP_b_m_mb32"
             }
         }
     ]

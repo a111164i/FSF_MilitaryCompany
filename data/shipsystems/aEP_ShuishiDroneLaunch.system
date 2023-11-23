@@ -1,0 +1,22 @@
+{
+	"id":"aEP_ShuishiDroneLaunch",
+	"type":"STAT_MOD",
+	#"aiType":"MINE_STRIKE",
+	"aiType":"CUSTOM",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_ShuishiDroneLaunchAI",
+	"statsScript":"data.scripts.shipsystems.aEP_ShuishiDroneLaunch",
+
+	"canUseWhileRightClickSystemOn":true,
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+
+	"fadeActivationSoundOnChargedown":true,
+	"useSound":"system_interdictor",
+	"outOfUsesSound":"gun_out_of_ammo",
+
+	"aiHints":{
+		"threatRange":1600,
+		"threatAmount":2,
+		"threatAngle":0,
+		"threatArc":360,
+	}
+}

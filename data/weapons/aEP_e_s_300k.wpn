@@ -1,5 +1,5 @@
 {
-  "id":"aEP_e_s_300k",
+  "id": "aEP_e_s_300k",
   "specClass": "beam",
   "type": "ENERGY",
   "size": "SMALL",
@@ -7,101 +7,86 @@
   "collisionClassByFighter": "RAY_FIGHTER",
   "turretSprite": "graphics/weapons/aEP_e_s_300k/tr.png",
   "turretGlowSprite": "graphics/weapons/aEP_e_s_300k/tr_glow.png",
-  "hardpointSprite": "graphics/weapons/aEP_e_s_300k/hp.png",
+  "hardpointSprite": "graphics/weapons/aEP_e_s_300k/tr.png",
   "hardpointGlowSprite": "graphics/weapons/aEP_e_s_300k/hp_glow.png",
   #"beamEffect":"",
   #"everyFrameEffect": "data.scripts.weapons.aEP_FocusBeamAnimation",
+  "glowColor": [
+    255,
+    10,
+    10,
+    250
+  ],
+  "hitGlowRadius": 0,
   "turretOffsets": [
-	  9,
-	  7,
-	  9,
-	  4,
-		7,
-		2,
-		7,
-		0,
-		7,
     0,
-		7,
-		-2,
-	  9,
-	  -4,
-	  9,
-	  -7
+    5,
+    -1,
+    3,
+    0,
+    -5,
+    -1,
+    -3,
+    -2,
+    -1,
+    -2,
+    1
   ],
   "turretAngleOffsets": [
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0
-
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
   "hardpointOffsets": [
-	  11,
-	  6,
-	  11,
-	  4,
-		9,
-		2,
-		9,
-    0,
     9,
-    0,
-		9,
-		-2,
-	  11,
-	  -4,
-	  11,
-	  -6
+    5,
+    9,
+    -5,
+    8,
+    3,
+    8,
+    -3,
+    7,
+    1,
+    7,
+    -1
   ],
   "hardpointAngleOffsets": [
-	  0,
     0,
     0,
     0,
     0,
-	  0,
-	  0,
-	  0
+    0,
+    0
   ],
-  #"beamFireOnlyOnFullCharge": true,
-  "convergeOnPoint":true,
-  #"autocharge":true, 
-  "darkCore":true,
-  "barrelMode": "LINKED",
   "fringeColor": [
-	  255,
-	  150,
-	  10,
-		20
-	],
+    255,
+    150,
+    10,
+    20
+  ],
   "coreColor": [
-	  255,
-	  10,
-	  10,
-	  20
+    255,
+    10,
+    10,
+    20
   ],
-  "glowColor": [
-	  255,
-	  10,
-	  10,
-	  250
-  ],
-  #聚焦光束不要低于10，会导致击不中某些导弹
+  "darkCore": true,
+  "convergeOnPoint": true,
   "width": 10,
   #"textureType": ROUGH,
-  "textureType":["graphics/weapons/aEP_e_s_300k/core.png","graphics/weapons/aEP_e_s_300k/core.png"],#fringe, core
+  "textureType":["graphics/weapons/aEP_e_s_300k/core.png","graphics/weapons/aEP_e_s_300k/core.png"],
+  #fringe, core
   "textureScrollSpeed": 480,
-  "pixelsPerTexel": 1,##bigger,  longer
-  "pierceSet":[
-  	PROJECTILE_FF,
-  	PROJECTILE_NO_FF,
-  	PROJECTILE_FIGHTER
+  "pixelsPerTexel": 1,
+  "pierceSet": [
+    PROJECTILE_FF,
+    PROJECTILE_NO_FF,
+    PROJECTILE_FIGHTER
   ],
-  "fireSoundOne":"aEP_e_s_300k_fire",
-	"fireSoundTwo":"pd_laser_loop"
-},
+  "fireSoundOne": "aEP_e_s_300k_fire",
+  "fireSoundTwo": "pd_laser_loop"
+}

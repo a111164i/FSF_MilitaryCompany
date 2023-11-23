@@ -75,7 +75,9 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
       "aEP_FSF_DefStation",// type id in planets.json
       "aEP_FSF");//faction id
     //设置实体的运动轨道
-    FSF_DefStation.setCircularOrbit(FSF_CompanyPlanet, 0, 450, 30);//which to orbit, starting angle, radius, orbit days
+    FSF_DefStation.setCircularOrbitPointingDown(FSF_CompanyPlanet, 0, 450, 30);//which to orbit, starting angle, radius, orbit days
+    //FSF_DefStation.setCircularOrbit(FSF_CompanyPlanet, 0, 450, 30);//which to orbit, starting angle, radius, orbit days
+
 
     //创造市场，绑在上面创建的实体上
     MarketAPI FSF_DefMarket = Global.getFactory().createMarket("aEP_FSF_DefStation", FSF_DefStation.getName(), 5);//id, name, size
@@ -88,7 +90,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
     FSF_DefMarket.addIndustry("megaport");
     FSF_DefMarket.addIndustry("highcommand");
     FSF_DefMarket.addIndustry("fuelprod");
-    FSF_DefMarket.addIndustry("starfortress_mid");
+    FSF_DefMarket.addIndustry("aEP_station_tier3");
     FSF_DefMarket.addSubmarket("open_market");
     FSF_DefMarket.addSubmarket("generic_military");
     FSF_DefMarket.addSubmarket("storage");
@@ -102,7 +104,9 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
       null,// name
       "aEP_FSF_SaleStation",// type id in planets.json
       "aEP_FSF");//faction id
-    FSF_SaleStation.setCircularOrbit(FSF_HomePlanet, 0, 650, 45);//which to orbit, starting angle, radius, orbit days
+    FSF_SaleStation.setCircularOrbitPointingDown(FSF_HomePlanet, 0, 650, 45);//which to orbit, starting angle, radius, orbit days
+    //FSF_SaleStation.setCircularOrbit(FSF_HomePlanet, 0, 650, 4,);//which to orbit, starting angle, radius, orbit days
+
 
     MarketAPI FSF_SaleMarket = Global.getFactory().createMarket("aEP_FSF_SaleStation", FSF_SaleStation.getName(), 6);//id, name, size
     FSF_SaleMarket.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
@@ -116,7 +120,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
     FSF_SaleMarket.addIndustry("patrolhq");
     FSF_SaleMarket.addIndustry("lightindustry");
     FSF_SaleMarket.addIndustry("orbitalworks", new ArrayList(Arrays.asList(Items.CORRUPTED_NANOFORGE)));
-    FSF_SaleMarket.addIndustry("starfortress_mid");
+    FSF_SaleMarket.addIndustry("aEP_station_tier3");
     FSF_SaleMarket.addSubmarket("open_market");
     FSF_SaleMarket.addSubmarket("generic_military");
     //FSF_SaleMarket.addSubmarket("aEP_FSFMarket");
@@ -133,6 +137,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
       "FSF Relay",// name
       "aEP_FSF_Relay",// type id in planets.json
       "aEP_FSF");//faction id
+    //FSF_Relay.setCircularOrbitPointingDown(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
     FSF_Relay.setCircularOrbit(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
 
 
@@ -229,7 +234,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
     FSF_DefMarket.addIndustry("megaport");
     FSF_DefMarket.addIndustry("highcommand");
     FSF_DefMarket.addIndustry("fuelprod");
-    FSF_DefMarket.addIndustry("starfortress_mid");
+    FSF_DefMarket.addIndustry("aEP_station_tier3");
     FSF_DefMarket.addSubmarket("open_market");
     FSF_DefMarket.addSubmarket("generic_military");
     FSF_DefMarket.addSubmarket("storage");
@@ -257,7 +262,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
     FSF_SaleMarket.addIndustry("patrolhq");
     FSF_SaleMarket.addIndustry("lightindustry");
     FSF_SaleMarket.addIndustry("orbitalworks", new ArrayList(Arrays.asList(Items.CORRUPTED_NANOFORGE)));
-    FSF_SaleMarket.addIndustry("starfortress_mid");
+    FSF_SaleMarket.addIndustry("aEP_station_tier3");
     FSF_SaleMarket.addSubmarket("open_market");
     FSF_SaleMarket.addSubmarket("generic_military");
     //FSF_SaleMarket.addSubmarket("aEP_FSFMarket");

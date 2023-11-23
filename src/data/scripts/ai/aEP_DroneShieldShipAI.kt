@@ -19,15 +19,22 @@ import combat.util.aEP_Tool.Util.findNearestFriendyShip
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import combat.util.aEP_Tool.Util.isDead
 import data.scripts.ai.aEP_DroneShieldShipAI
+import data.scripts.hullmods.aEP_FighterSpecial
+import data.scripts.hullmods.aEP_ProjectileDenialShield
+import data.scripts.hullmods.aEP_ProjectileDenialShield.Companion.keepExplosionProtectListenerToParent
 import org.lazywizard.lazylib.FastTrig
+import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import java.util.*
+import kotlin.math.pow
 
-class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShipAI(ship) {
+class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseShipAI(ship) {
 
   companion object {
     private const val DRONE_WIDTH_MULT = 0.9f // 1 means by default no gap between, 2 means gap as big as 1 drone
-    private const val FAR_FROM_PARENT = 30f // 30su far from parent's collisionRadius
+    private const val DRONE_COLLISION_RAD= 35f //有多个不同的drone会用本ai，设置一个通用的
+
+    const val FAR_FROM_PARENT = 45f // 30su far from parent's collisionRadius
     private const val KEY2 = "aEP_AroundDroneList"
     private const val KEY3 = "aEP_MyTarget"
   }
@@ -41,13 +48,16 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       stat = ProtectParent(ship.wing.sourceShip)
     }else{
       val nearest = findNearestFriendyShip(ship)
-      nearest?.run { stat = ProtectParent(nearest) }?.run { stat = SelfExplode()}
+      nearest?.run {
+        stat = ProtectParent(nearest)
+      }?:run {
+        stat = SelfExplode()
+      }
     }
   }
 
 
   override fun advanceImpl(amount: Float) {
-    super.advanceImpl(amount)
 
     if(stat is ProtectParent){
       //把自己的目标存入自己的customMap，用于检测需不需要踢掉
@@ -69,7 +79,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     var droneWidthInAngle = 5f
 
     init {
-      droneWidthInAngle = (FastTrig.atan2(ship.collisionRadius.toDouble(),
+      droneWidthInAngle = (FastTrig.atan2(DRONE_COLLISION_RAD.toDouble(),
         (toProtect.collisionRadius + FAR_FROM_PARENT).toDouble())).toFloat()//得到是rad
 
       droneWidthInAngle *= 57.296f // 把rad换成degree
@@ -80,9 +90,9 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     override fun advance(amount: Float) {
       //母舰挂了就找最近的队友
       if(isDead(toProtect)){
-        stat = ProtectParent(findNearestFriendyShip(ship)?:return)
+        forceCircumstanceEvaluation()
+        return
       }
-
 
       //这个部分管加不管踢，在findNum()里面
       //如果目标之前没有支援机，为目标创建一个支援机位置表
@@ -104,7 +114,17 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       val currNum = findNum(toProtect,dronePosition)
       val totalNum = dronePosition.size
 
-      val aimPoint = toProtect.shipTarget?.location?: toProtect.mouseTarget
+      var aimPoint:Vector2f? = toProtect.shipTarget?.location
+      if(aimPoint == null && toProtect.aiFlags != null && toProtect.aiFlags.hasFlag(ShipwideAIFlags.AIFlags.MANEUVER_TARGET)){
+        if(toProtect.aiFlags.getCustom(ShipwideAIFlags.AIFlags.MANEUVER_TARGET) is ShipAPI){
+          aimPoint = Vector2f((toProtect.aiFlags.getCustom(ShipwideAIFlags.AIFlags.MANEUVER_TARGET) as ShipAPI).location)
+        }
+      }
+      if(aimPoint == null){
+        aimPoint = toProtect.mouseTarget
+      }
+      aimPoint = aimPoint?:aEP_Tool.getExtendedLocationFromPoint(toProtect.location,toProtect.facing, 100f+toProtect.collisionRadius)
+
       val aimMidAngle = VectorUtils.getFacing(VectorUtils.getDirectionalVector(toProtect.location, aimPoint))
       var aimAngle = aimMidAngle
       //找到第一架无人机的角度，左起
@@ -119,10 +139,10 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
 
 
       //shield check
-      if (ship.fluxLevel > 0.9) {
+      if (ship.fluxLevel >= 0.9f) {
         shouldDissipate = true
       }
-      if (ship.fluxLevel <= 0.1) {
+      if (ship.fluxLevel <= 0.1f) {
         shouldDissipate = false
       }
       if (!shouldDissipate) {
@@ -130,6 +150,8 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
       } else {
         ship.shield.toggleOff()
       }
+
+      keepExplosionProtectListenerToParent(ship,toProtect)
 
     }
   }
@@ -157,4 +179,12 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI, ship: ShipAPI) : aEP_BaseShi
     return i
   }
 
+  override fun forceCircumstanceEvaluation() {
+    val nearest = findNearestFriendyShip(ship)
+    nearest?.run {
+      stat = ProtectParent(nearest)
+    }?:run {
+      stat = SelfExplode()
+    }
+  }
 }

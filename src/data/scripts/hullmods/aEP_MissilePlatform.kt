@@ -36,7 +36,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     private const val MISSILE_MAX_PERCENT = 20
 
     private const val MIN_RATE = 0.35f //by percent
-    private const val MAX_RATE_MULT = 14f //池子大小等于所有武器装配点/100的总和的多少倍（多少秒消耗干净）
+    private const val MAX_RATE_MULT = 15f //池子大小等于所有武器装配点/100的总和的多少倍（多少秒消耗干净）
     private const val RATE_INCREASE_SPEED_MULT = 0.6667f //每个武器提供的回复速度等于自身装配点的多少倍
     private const val RATE_DECREASE_SPEED_MULT = 1f //每个武器消耗总装率的速度是实际装填量的几倍
     const val ID = "aEP_MissilePlatform"
@@ -55,8 +55,6 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       INDICATOR_SIZE[WeaponAPI.WeaponSize.MEDIUM] =Vector2f(28f,28f)
       INDICATOR_SIZE[WeaponAPI.WeaponSize.SMALL] = Vector2f(18f,18f)
     }
-
-
 
     fun drawChargeBar(absLoc: Vector2f, ship: ShipAPI?, size:WeaponAPI.WeaponSize?, percent:Float){
       if(ship != Global.getCombatEngine().playerShip) return
@@ -168,7 +166,8 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     tooltip.addPara("{%s}" + txt("aEP_MissilePlatform05"), 5f,arrayOf(Color.red), HULLMOD_POINT, MISSILE_MAX_MULT.toString(), "$MISSILE_MAX_PERCENT%")
     tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), HULLMOD_POINT,  showModName(notCompatibleList))
     //灰色额外说明
-    tooltip.addPara(txt("MP_des08"), grayColor, 5f)
+    tooltip.addPara(txt("aEP_MissilePlatform09"), grayColor, 5f)
+    tooltip.addPara(txt("aEP_MissilePlatform11"), grayColor, 5f)
   }
 
   public inner class LoadingMap constructor(var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {
@@ -178,21 +177,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     var currRate = maxRate
 
     override fun advance(amount: Float) {
-      if (ship.currentCR < 0.5f) {
+      if (ship.currentCR < 0.4f || aEP_Tool.isDead(ship)) {
         return
       }
-
-
-//      aEP_Render.openGL11ForText()
-//      aEP_Render.FONT1.text = "sdsds32353462356b234sdfh4523d"
-//      aEP_Render.FONT1.baseColor = Color.white
-//      aEP_Render.FONT1.fontSize = 50f
-//      aEP_Render.FONT1.maxHeight = 50f
-//      aEP_Render.FONT1.maxWidth = 200f
-//      //相对于屏幕的位置
-//      aEP_Render.FONT1.draw(Vector2f(100f,100f))
-//      aEP_Render.closeGL11ForText()
-
 
       ammoLoaderTracker.advance(amount)
       val level = currRate/maxRate
@@ -217,9 +204,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         val loadingProgress = opNow/ammoPerRegenConvertToOp
         drawChargeBar(w.location, ship, w.size,loadingProgress)
 
-
       }
-
 
       //维持玩家左下角的提示
       if (Global.getCombatEngine().playerShip == ship) {
@@ -233,6 +218,10 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         )
       }
 
+      //画出装填率指示器
+      val decoSlot = ship.hullSpec.getWeaponSlot("MP_ID")?:return
+      val loc = decoSlot.computePosition(ship)
+      createIndicator(loc, decoSlot.computeMidArcAngle(ship), level)
 
     }
 
@@ -257,8 +246,8 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
       } else {
 
-        val level = currRate/maxRate
-        val data = MPTimerMap[w] as kotlin.Array<Float>
+        val level = (currRate/maxRate).coerceAtLeast(MIN_RATE)
+        val data = MPTimerMap[w] as Array<Float>
 
         val opNow = data[0]
         val ammoPerFire = data[1].toInt()
@@ -296,14 +285,14 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         currRate += w.spec.getOrdnancePointCost(null) / 100f * amount * RATE_INCREASE_SPEED_MULT
 
         //限最低整备率
-        currRate = MathUtils.clamp(currRate,MIN_RATE* maxRate, maxRate)
+        currRate = MathUtils.clamp(currRate,0f, maxRate)
       }
     }
 
   }
 
   private fun isMissileWeapon(w:WeaponAPI):Boolean{
-    //槽位不是导弹槽或者复合槽，不行
+    //槽位既不是导弹槽也不是复合槽的，不行
     if (w.slot.weaponType != WeaponAPI.WeaponType.MISSILE && w.slot.weaponType != WeaponAPI.WeaponType.COMPOSITE) return false
     //武器不是导弹武器，不行
     if (w.type != WeaponAPI.WeaponType.MISSILE) return false
@@ -311,6 +300,8 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     if (w.ammoTracker == null) return false
     //武器没有弹药，不行，原版里面不适用弹药的武器，这个数为maxValue
     if (w.ammo == Int.MAX_VALUE) return false
+    //武器拥有基础的自装填速度的，不行
+    if (w.spec.ammoPerSecond > 0f) return false
     return true
   }
 
@@ -346,5 +337,29 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     return totalNumPerBurst
   }
 
+  private fun createIndicator(loc:Vector2f, facing:Float, rateLevel: Float){
+    val useLevel = (rateLevel- MIN_RATE) * (1f/ (1f-MIN_RATE))
+    val step = 0.15f
+    val maxStep = 6
+    for( i in 1..maxStep){
+      var level = 1f
+      if(useLevel < 1f - step * (i-1)){
+        if(useLevel > 1f - step * i){
+          level = (useLevel - (1f - step * i))/step
+        }else{
+          level = 0f
+        }
+      }
+
+      val c = Color( 1f-level, level,0f)
+      val sprite = Global.getSettings().getSprite("aEP_FX","missile_platform_indicator")
+      val renderLoc = aEP_Tool.getExtendedLocationFromPoint(loc,facing, 10.5f - 3f * i)
+      renderLoc.set(MathUtils.getRandomPointInCircle(renderLoc,0.36f))
+      MagicRender.singleframe(
+        sprite, renderLoc, Vector2f(sprite.width,sprite.height),facing + 90f,
+        c,true)
+
+    }
+  }
 }
 

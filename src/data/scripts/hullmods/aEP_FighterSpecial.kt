@@ -4,37 +4,34 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CampaignUIAPI
 import com.fs.starfarer.api.campaign.econ.MarketAPI
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.combat.listeners.*
+import com.fs.starfarer.api.combat.ShipAPI.HullSize
+import com.fs.starfarer.api.combat.listeners.AdvanceableListener
+import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
+import com.fs.starfarer.api.combat.listeners.HullDamageAboutToBeTakenListener
 import com.fs.starfarer.api.fleet.FleetMemberAPI
-import com.fs.starfarer.api.impl.campaign.ids.Stats
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_DAMAGE_MULT
 import com.fs.starfarer.api.impl.campaign.ids.Stats.EXPLOSION_RADIUS_MULT
-import com.fs.starfarer.api.impl.campaign.ids.Tags
-import com.fs.starfarer.api.impl.combat.DamperFieldOmegaStats
 import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.loading.HullModSpecAPI
-import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.combat.entities.DamagingExplosion
+import com.fs.starfarer.combat.systems.EmpArcEntity
 import combat.impl.VEs.aEP_MovingSmoke
-import combat.impl.aEP_BaseCombatEffect
+import combat.impl.VEs.aEP_SpreadRing
 import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.*
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_Tool.Util.REPAIR_COLOR
-import combat.util.aEP_Tool.Util.REPAIR_COLOR2
-import combat.util.aEP_Tool.Util.addDebugLog
-import combat.util.aEP_Tool.Util.addDebugPoint
+import combat.util.aEP_ID
+import combat.util.aEP_Render
+import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.angleAdd
-import combat.util.aEP_Tool.Util.findToRepair
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.getRelativeLocationData
+import combat.util.aEP_Tool.Util.isDead
+import data.scripts.ai.aEP_DroneShieldShipAI
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
@@ -42,7 +39,7 @@ import org.magiclib.util.MagicLensFlare
 import org.magiclib.util.MagicRender
 import org.magiclib.util.MagicUI
 import java.awt.Color
-import kotlin.math.abs
+import kotlin.math.pow
 
 /**
 * 不知道为什么游戏中不显示基础描述，这里只放一些玩家看不到的插件
@@ -78,13 +75,11 @@ class aEP_FighterSpecial: BaseHullMod() {
   }
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
-
     hullmod?: return
     hullmod!!.applyEffectsAfterShipCreation(ship, id)
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?): String {
-
     return hullmod?.getDescriptionParam(index, hullSize)?:""
   }
 
@@ -160,7 +155,7 @@ class aEP_FighterSpecial: BaseHullMod() {
    * @return
    */
   override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return false
+    return true
   }
 
   /**
@@ -282,149 +277,318 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
     val TIME_TO_EXTEND = 1f
     //ship文件里的护盾半径也要改，否则护盾中心在屏幕外的时候不会渲染护盾
     val MAX_SHIELD_RADIUS = Global.getSettings().getHullSpec("aEP_ftr_ut_maodian").shieldSpec.radius
-    val MAX_MOVE_TIME = 12f
-    val FLUX_INCREASE = 100f
+    val MAX_MOVE_TIME = 30f
+    val MAX_SHIELD_TIME = 12f
     val RADAR_SPEED = -90f
-    val EXPLODSION_DAMAGE_MULT = 0.005f
-    val EXPLODSION_RANGE_MULT = 0.5f
+    val TIME_MULT_BNUS =  3f
+    //护盾减伤，防止被动能直接灌爆，这部分代码归属吞弹盾了
   }
 
+  //强行加速到更高境界
+  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+    val angAndSpdSq = aEP_Tool.velocity2SpeedSq(ship.velocity)
+    val accAngle = aEP_Tool.computeCurrentManeuveringDir(ship)
+    val baseMaxSpeedSq = ship.maxSpeed.pow(2)
+    val angleDistAbs = Math.abs(MathUtils.getShortestRotation(angAndSpdSq.x, accAngle))
+
+    //加速度方向和速度方向相同，速度已经加速到最大速度
+    //满足条件给一个小时流
+    if(angleDistAbs < 15f && angAndSpdSq.y > baseMaxSpeedSq - 25f){
+      ship.mutableStats.timeMult.modifyMult(ID, TIME_MULT_BNUS)
+      ship.mutableStats.ballisticRoFMult.modifyMult(ID, 1f/TIME_MULT_BNUS)
+    }else{
+      ship.mutableStats.timeMult.modifyMult(ID, 1f)
+      ship.mutableStats.ballisticRoFMult.modifyMult(ID, 1f)
+    }
+  }
 
   /**
    * 使用这个
    **/
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    ship.mutableStats.empDamageTakenMult.modifyMult(ID,0f)
+    ship.collisionClass = CollisionClass.FIGHTER
+
+    ship.mutableStats.damageToFighters.modifyMult(ID, 0.33f)
+    ship.mutableStats.damageToFrigates.modifyMult(ID, 0.33f)
+    ship.mutableStats.damageToDestroyers.modifyMult(ID, 0.33f)
+    ship.mutableStats.damageToCruisers.modifyMult(ID, 0.33f)
+    ship.mutableStats.damageToCapital.modifyMult(ID, 0.33f)
     if(!ship.hasListenerOfClass(ShieldListener::class.java)){
       ship.addListener(ShieldListener(ship))
     }
-    ship.mutableStats.dynamic.getStat(EXPLOSION_DAMAGE_MULT).modifyMult(id,EXPLODSION_DAMAGE_MULT)
-    ship.mutableStats.dynamic.getStat(EXPLOSION_RADIUS_MULT).modifyMult(id,EXPLODSION_RANGE_MULT)
+
+    ship.mutableStats.dynamic.getStat(EXPLOSION_DAMAGE_MULT).modifyMult(id,0.01f)
+
+    ship.mutableStats.shieldUnfoldRateMult.modifyFlat(ID, 1f)
   }
 
-  inner class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifier, HullDamageAboutToBeTakenListener{
-    var time = 0f
-    var shieldTime =0f
-    var moveTime = 0f
-    val empArcTracker = IntervalUtil(0.1f,0.6f)
-    val particleTracker = IntervalUtil(0.1f,0.2f)
+}
+//锚点自爆监听器
+class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifier {
+  var time = 0f
+  var shieldTime = 0f
+  var moveTime = 0f
+  val empArcTracker = IntervalUtil(0.1f, 0.6f)
+  val particleTracker = IntervalUtil(0.1f, 0.2f)
 
-    var shouldEnd = false
-    override fun advance(amount: Float) {
+  var shouldEnd = false
+  override fun advance(amount: Float) {
 
-      time = MathUtils.clamp(time + aEP_Tool.getAmount(ship),0f,999f)
-      val shieldLevel = shieldTime/TIME_TO_EXTEND
-      val fluxLevel = MathUtils.clamp(ship.fluxLevel,0f,1f)
+    if(isDead(ship)){
+      ship.removeListener(this)
+    }
 
-      //如果有盾，就产生效果
-      if(ship.shield != null){
-        //改变盾大小，和只改radius冲突，需要每帧调用，别动最好，因为盾的外圈是最先渲染的，动态调整会影响ring的贴图
-        /*
-        val rad = MAX_SHIELD_RADIUS * MagicAnim.smooth(shieldLevel)
-        ship.shield?.setRadius(rad,
-          Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_inner03"),
-          Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_outer03"))
-        //顺便改变船碰撞圈的大小
-        ship.collisionRadius = MathUtils.clamp(rad,40f,MAX_SHIELD_RADIUS)
-         */
-        //盾颜色
-        val color = Color(
-          0.35f + 0.65f*fluxLevel,
-          0.55f,
-          0.35f + 0.65f*(1f-fluxLevel),
-          (0.2f * shieldLevel * shieldLevel) + MagicAnim.smooth((0.35f*(1f-fluxLevel))))
-        ship.shield.innerColor = color
-        ship.shield.ringColor = color
-        //若开盾强制增加软幅能，增加护盾时间。若不开盾增加机动时间，减少护盾时间，机动超时后快速涨幅能
-        if(ship.shield?.isOn == true){
-          shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
-          ship.fluxTracker.increaseFlux((FLUX_INCREASE+ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
-          for(w in ship.allWeapons){
-            if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow"){
-              //注意一下这3个存进去的类并不是初始化的时候就一起初始化的
-              (w.effectPlugin as aEP_DecoAnimation).decoGlowController.toLevel = 1f
-            }
-          }
-        }else{
-          shieldTime = MathUtils.clamp(shieldTime - aEP_Tool.getAmount(ship),0f,TIME_TO_EXTEND)
-          moveTime = MathUtils.clamp(moveTime + aEP_Tool.getAmount(ship),0f,MAX_MOVE_TIME)
-          if(moveTime >= MAX_MOVE_TIME){
-            ship.fluxTracker.increaseFlux((ship.fluxTracker.maxFlux * 0.2f + ship.mutableStats.fluxDissipation.modifiedValue)*amount,false)
-          }
-          for(w in ship.allWeapons){
-            if(w.spec.weaponId == "aEP_ftr_ut_maodian_glow") {
-              //注意一下这3个存进去的类并不是初始化的时候就一起初始化的，在开战第一帧call会报空
-              (w.effectPlugin as aEP_DecoAnimation)?.decoGlowController?.toLevel = 0f
-            }
-          }
-        }
+    val moveLevel = (moveTime / aEP_MaoDianShield.MAX_MOVE_TIME).coerceAtMost(1f)
+    val shieldLevel = (shieldTime / aEP_MaoDianShield.MAX_SHIELD_TIME).coerceAtMost(1f)
+    val fluxLevel = MathUtils.clamp(ship.fluxLevel, 0f, 1f)
+    val shieldColorLevel = Math.max(fluxLevel,shieldLevel)
+
+    time = MathUtils.clamp(time + aEP_Tool.getAmount(ship), 0f, 999f)
+
+    //这里根据是否开盾，更新护盾颜色和指示deco的颜色
+    if (ship.shield != null) {
+      //如果有盾，就产生特效，并且增加硬幅能，靠幅能爆表来终结自身
+      //改变盾大小，和只改radius冲突，需要每帧调用，别动最好，因为盾的外圈是最先渲染的，动态调整会影响ring的贴图
+      /*
+      val rad = MAX_SHIELD_RADIUS * MagicAnim.smooth(shieldLevel)
+      ship.shield?.setRadius(rad,
+        Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_inner03"),
+        Global.getSettings().getSpriteName("aEP_hullstyle","aEP_shield_outer03"))
+      //顺便改变船碰撞圈的大小
+      ship.collisionRadius = MathUtils.clamp(rad,40f,MAX_SHIELD_RADIUS)
+       */
+
+      updateStatsWhenShieldIsOn(ship, amount, shieldColorLevel)
+      if(ship.shield.isOn){
+        //开盾时，无视moveLevel
+        //根据部署时间/幅能水平，渲染中间光圈的颜色
+        updateIndicator(ship,1f - shieldColorLevel)
+      }else{
+        //不开盾时，3种限制level取大
+        val decoLevel = Math.max(Math.max(fluxLevel,shieldLevel), moveLevel)
+        updateIndicator(ship,1f - decoLevel)
       }
 
-      //旋转雷达
-      for(w in ship.allWeapons){
-        if(w.spec.weaponId == "aEP_ftr_ut_maodian_radar"){
-          w.currAngle = (w.currAngle + amount * RADAR_SPEED)
-        }
+
+    } else {
+      //如果无盾，无事发生，依靠总定时器来终结自身
+    }
+
+    //旋转雷达
+    for (w in ship.allWeapons) {
+      if (w.spec.weaponId == "aEP_ftr_ut_maodian_radar") {
+        w.currAngle = (w.currAngle + amount * aEP_MaoDianShield.RADAR_SPEED)
+      }
+    }
+
+    /* //生成粒子
+     if(ship.shield?.isOn == true && shieldLevel >= 0.35f){
+       particleTracker.advance(amount)
+       if(particleTracker.intervalElapsed()){
+         val shieldRad = MAX_SHIELD_RADIUS*shieldLevel
+         val num = 4
+         var i = 0
+         val angleChange = 360f/num
+         while (i < num){
+           val angle = MathUtils.getRandomNumberInRange(i * angleChange,i * angleChange + angleChange)
+           val range = MathUtils.getRandomNumberInRange(ship.collisionRadius,shieldRad * 1f / 6f)
+           val moveDist = shieldRad - range
+           val point = aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,range)
+           Global.getCombatEngine().addSmoothParticle(point,
+             aEP_Tool.Speed2Velocity(angle,moveDist * 1.5f),
+             10f,
+             1f,
+             0.5f,
+             aEP_Tool.getColorWithAlphaChange(ship.shield.innerColor,3f))
+           i ++
+         }
+       }
+     }*/
+
+    /*//幅能快满的时候泛红
+    if(fluxLevel > 0.35f){
+      ship.isJitterShields = false
+      var intense = (fluxLevel-0.35f)/0.65f
+      intense *= intense
+      ship.setJitter(id,Color(250,100,100,(255*intense).toInt()),intense,4,1f)
+
+      //大于0.65开始漏电
+      empArcTracker.advance(amount * (fluxLevel * 0.6f + 0.75f))
+      if(empArcTracker.intervalElapsed() && fluxLevel > 0.65f){
+        val from = MathUtils.getRandomPointInCircle(ship.location, 10f)
+        val angle = VectorUtils.getAngle(ship.location,from)
+        Global.getCombatEngine().spawnEmpArcVisual(
+          from,
+          ship,
+          MathUtils.getRandomPointInCone(ship.location,10f + 70f,aEP_Tool.angleAdd(angle,-15f),aEP_Tool.angleAdd(angle,15f)),
+          ship,
+          1f,
+          Color.magenta,
+          Color.white)
       }
 
-     /* //生成粒子
-      if(ship.shield?.isOn == true && shieldLevel >= 0.35f){
-        particleTracker.advance(amount)
-        if(particleTracker.intervalElapsed()){
-          val shieldRad = MAX_SHIELD_RADIUS*shieldLevel
-          val num = 4
-          var i = 0
-          val angleChange = 360f/num
-          while (i < num){
-            val angle = MathUtils.getRandomNumberInRange(i * angleChange,i * angleChange + angleChange)
-            val range = MathUtils.getRandomNumberInRange(ship.collisionRadius,shieldRad * 1f / 6f)
-            val moveDist = shieldRad - range
-            val point = aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,range)
-            Global.getCombatEngine().addSmoothParticle(point,
-              aEP_Tool.Speed2Velocity(angle,moveDist * 1.5f),
-              10f,
-              1f,
-              0.5f,
-              aEP_Tool.getColorWithAlphaChange(ship.shield.innerColor,3f))
-            i ++
-          }
-        }
-      }*/
+    }*/
 
-      /*//幅能快满的时候泛红
-      if(fluxLevel > 0.35f){
-        ship.isJitterShields = false
-        var intense = (fluxLevel-0.35f)/0.65f
-        intense *= intense
-        ship.setJitter(id,Color(250,100,100,(255*intense).toInt()),intense,4,1f)
 
-        //大于0.65开始漏电
-        empArcTracker.advance(amount * (fluxLevel * 0.6f + 0.75f))
-        if(empArcTracker.intervalElapsed() && fluxLevel > 0.65f){
-          val from = MathUtils.getRandomPointInCircle(ship.location, 10f)
-          val angle = VectorUtils.getAngle(ship.location,from)
-          Global.getCombatEngine().spawnEmpArcVisual(
-            from,
-            ship,
-            MathUtils.getRandomPointInCone(ship.location,10f + 70f,aEP_Tool.angleAdd(angle,-15f),aEP_Tool.angleAdd(angle,15f)),
-            ship,
-            1f,
-            Color.magenta,
-            Color.white)
-        }
+    //如果开盾时间或者机动时间任意超过了限制，强制增加幅能，快速自爆
+    if(shieldTime >= aEP_MaoDianShield.MAX_SHIELD_TIME
+      ||moveTime >= aEP_MaoDianShield.MAX_MOVE_TIME){
 
-      }*/
+      //移除耗散能力，每秒增加百分之100%的最大幅能，1秒后触发幅能上限，对自己造成伤害自爆
+      ship.mutableStats.fluxDissipation.modifyMult(aEP_MaoDianShield.ID, 0f)
+      ship.fluxTracker.increaseFlux(
+        (ship.fluxTracker.maxFlux) * amount,
+        true)
+    }
 
-      //如果本帧幅能满了，准备自毁
-      if(ship.fluxLevel > 0.98f){
-        shouldEnd = true
+    //如果任何形式幅能满了，准备自毁
+    if (ship.fluxLevel > 0.99f) {
+      shouldEnd = true
+    }
+
+    //自毁
+    if (shouldEnd) {
+      val suppressBefore = Global.getCombatEngine()?.getFleetManager(ship.owner)?.isSuppressDeploymentMessages
+      Global.getCombatEngine()?.getFleetManager(ship.owner)?.isSuppressDeploymentMessages = true
+      val spec = DamagingExplosionSpec(
+        4f,  //float duration,
+        200f,  //float radius,
+        100f,  //float coreRadius,
+        200f,  //float maxDamage,
+        100f,  //float minDamage,
+        CollisionClass.MISSILE_NO_FF,  //collisionClass,
+        CollisionClass.PROJECTILE_FIGHTER,  //collisionClassByFighter,
+        0.5f,  //float particleSizeMin,
+        1f,  //float particleSizeRange,
+        0.5f,  //float particleDuration,
+        6,  //int particleCount,
+        Color(250, 250, 100, 255),
+        Color(255, 200, 120, 255))
+      spec.damageType = DamageType.HIGH_EXPLOSIVE
+      spec.isUseDetailedExplosion = true
+      spec.detailedExplosionRadius = 300f
+      spec.detailedExplosionFlashDuration = 1.5f
+      spec.detailedExplosionFlashRadius = 500f
+      spec.detailedExplosionFlashColorCore =  Color(250, 250, 175, 255)
+      spec.detailedExplosionFlashColorFringe = Color(255, 150, 100, 255)
+      Global.getCombatEngine().spawnDamagingExplosion(spec,ship,ship.location)
+
+      val ring = aEP_SpreadRing(
+        100f,
+        100f,
+        Color(251,250,255,55),
+        100f,
+        1000f,
+        ship.location)
+      ring.initColor.setToColor(50f, 250f, 100f,0f,0.75f)
+      ring.endColor.setColor(255f, 120f, 50f,0f)
+      aEP_CombatEffectPlugin.addEffect(ring)
+
+      Global.getCombatEngine().removeEntity(ship)
+      Global.getCombatEngine()?.getFleetManager(ship.owner)?.isSuppressDeploymentMessages = suppressBefore ?: false
+    }
+  }
+
+  /**
+   * Modifications to damage should ONLY be made using damage.getModifier().
+   *
+   * param can be:
+   * null
+   * DamagingProjectileAPI
+   * BeamAPI
+   * EmpArcEntityAPI
+   * Something custom set by a script
+   *
+   * @return the id of the stat modification to damage.getModifier(), or null if no modification was made
+   */
+  override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f?, shieldHit: Boolean): String? {
+
+    return null
+  }
+
+  fun updateStatsWhenShieldIsOn(ship:ShipAPI, amount:Float, renderLevel:Float){
+
+    //盾颜色
+    val color = Color(
+      0.3f + 0.65f * renderLevel,
+      0.5f,
+      0.3f + 0.65f * (1f - renderLevel),
+      (0.2f * renderLevel * renderLevel) + MagicAnim.smooth((0.35f * (1f - renderLevel))))
+    ship.shield.innerColor = color
+    ship.shield.ringColor = color
+    //若开盾强制增加硬幅能，若不开盾增加机动时间，机动时间超时后快速涨幅能（防止有人控制飞机一直不开盾）
+    if (ship.shield?.isOn == true) {
+      shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship), 0f, aEP_MaoDianShield.MAX_SHIELD_TIME)
+    } else {
+      moveTime = MathUtils.clamp(moveTime + aEP_Tool.getAmount(ship), 0f, aEP_MaoDianShield.MAX_MOVE_TIME)
+    }
+  }
+
+  fun updateIndicator(ship: ShipAPI, level:Float){
+
+    //找一次盖板武器
+    var rotator :aEP_DecoAnimation? = null
+    var red :aEP_DecoAnimation? = null
+    var green :aEP_DecoAnimation? = null
+
+
+    for(w in ship.allWeapons){
+      if(!w.isDecorative) continue
+      if(w.spec.weaponId.equals("aEP_cru_shanhu_rotator")){
+        rotator = w.effectPlugin as aEP_DecoAnimation
+        continue
       }
+      if(w.spec.weaponId.equals("aEP_cru_shanhu_round_red")){
+        red = w.effectPlugin as aEP_DecoAnimation
+        continue
+      }
+      if(w.spec.weaponId.equals("aEP_cru_shanhu_round_green")){
+        green = w.effectPlugin as aEP_DecoAnimation
+        continue
+      }
+    }
 
-      //自毁
-      if(shouldEnd){
-        val suppressBefore = Global.getCombatEngine()?.getFleetManager(ship.owner)?.isSuppressDeploymentMessages
-        Global.getCombatEngine()?.getFleetManager(ship.owner)?.isSuppressDeploymentMessages = true
-        ship.collisionRadius = 40f
+    rotator?:return
+    red?:return
+    green?:return
+
+    //灯的旋转同步圆盘的
+    //因为飞机是半路刷出来的，第一帧listener插入时会调用到这里，此时不知道为什么weaponEffect还没有生成，所有要加个?.
+    rotator.setRevoToLevel(1f- level)
+    red.decoRevoController?.toLevel = rotator.decoRevoController?.toLevel?:0f
+    green.decoRevoController?.toLevel = rotator.decoRevoController?.toLevel?:0f
+
+    green.setGlowToLevel(level)
+    red.setGlowToLevel(1f-level)
+  }
+
+}
+
+//吞弹护盾
+class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
+  companion object{
+    const val ID = "aEP_ProjectileDenialShield"
+
+    const val KE_DAMAGE_TAKEN_MULT = 0.5f
+    const val HE_DAMAGE_TAKEN_MULT = 1.66f
+    const val EN_DAMAGE_TAKEN_MULT = 0.75f
+    //破片后续会被自动×0.33f
+    const val FRAG_DAMAGE_TAKEN_MULT = 0.75f
+
+    const val HARD_DISSI = 50f
+
+    const val BEAM_TAKEN_MULT = 0.5f
+
+    fun eatDamage(ship: ShipAPI, damage: DamageAPI, sourceModifier:Float){
+
+      var damageAmount = damage.damage * damage.modifier.modified
+      if(damage.type == DamageType.KINETIC) damageAmount *= KE_DAMAGE_TAKEN_MULT
+      if(damage.type == DamageType.ENERGY) damageAmount *= EN_DAMAGE_TAKEN_MULT
+      if(damage.type == DamageType.HIGH_EXPLOSIVE) damageAmount *= HE_DAMAGE_TAKEN_MULT
+      if(damage.type == DamageType.FRAGMENTATION) damageAmount *= (FRAG_DAMAGE_TAKEN_MULT *0.25f)
+      if(sourceModifier > 1f) damageAmount /= sourceModifier
+
+      if(ship.maxFlux - ship.currFlux < damageAmount){
         Global.getCombatEngine().applyDamage(
           ship,
           ship.location,
@@ -435,89 +599,89 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
           false,
           ship)
         Global.getCombatEngine().removeEntity(ship)
-        Global.getCombatEngine()?.getFleetManager(ship.owner)?.isSuppressDeploymentMessages = suppressBefore?:false
-      }
-    }
-
-    /**
-     * Modifications to damage should ONLY be made using damage.getModifier().
-     *
-     * param can be:
-     * null
-     * DamagingProjectileAPI
-     * BeamAPI
-     * EmpArcEntityAPI
-     * Something custom set by a script
-     *
-     * @return the id of the stat modification to damage.getModifier(), or null if no modification was made
-     */
-    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI?, point: Vector2f?, shieldHit: Boolean): String? {
-      param?:return null
-      if(!shieldHit) return null
-      //造成软幅能的伤害，和软幅能光束，都不计入
-      if(damage?.isSoftFlux?: true) return null
-      if(param is BeamAPI && !damage!!.isForceHardFlux) return null
-      var fluxToSheild = (damage?.damage?: 0.01f) * (damage?.modifier?.modifiedValue ?:1f)
-      val damageMap = HashMap<DamageType,Float >()
-      damageMap.put(DamageType.HIGH_EXPLOSIVE,1f)
-      damageMap.put(DamageType.ENERGY,1f)
-      damageMap.put(DamageType.KINETIC, 1f)
-      damageMap.put(DamageType.FRAGMENTATION,0.25f)
-      damageMap.put(DamageType.OTHER,0.5f)
-      fluxToSheild *= (damageMap[damage?.type ?: DamageType.FRAGMENTATION] ?: 1f)
-      fluxToSheild *= ship.mutableStats.shieldAbsorptionMult.computeMultMod() * ship.hullSpec.shieldSpec.fluxPerDamageAbsorbed
-      var softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
-      val afterHitFlux = softFlux - fluxToSheild
-      if(afterHitFlux >=0){
-        ship.fluxTracker.decreaseFlux(fluxToSheild)
-        ship.fluxTracker.increaseFlux(fluxToSheild,true)
-        damage?.modifier?.modifyMult(ID,0f)
-       // Global.getLogger(this.javaClass).info(fluxToSheild)
       }else{
-        val percent = MathUtils.clamp((-afterHitFlux)/fluxToSheild,0f,1f)
-        ship.fluxTracker.decreaseFlux(softFlux)
-        ship.fluxTracker.increaseFlux(fluxToSheild,true)
-        damage?.modifier?.modifyMult(ID,percent)
+        ship.fluxTracker.increaseFlux(damageAmount, true)
       }
-      return ID
     }
 
-    /**
-     * if true is returned, the hull damage to be taken is negated.
-     * @param param
-     * @param ship
-     * @param point
-     * @param damageAmount
-     * @return
-     */
-    override fun notifyAboutToTakeHullDamage(param: Any?, ship: ShipAPI?, point: Vector2f?, damageAmount: Float): Boolean {
-      if(damageAmount > ship?.hitpoints?: 999999f){
-        shouldEnd = true
-        return true
-      }
-      return false
-    }
-  }
-}
+    fun keepExplosionProtectListenerToParent(fighter: ShipAPI, toProtect: ShipAPI){
+      if(isDead(fighter) || isDead(toProtect)) return
 
-//吞弹护盾
-class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
-  companion object{
-    const val ID = "aEP_ProjectileDenialShield"
+      //给toProtect施加防爆listener
+      //给母舰维持防爆炸监听器
+      val distSq = MathUtils.getDistanceSquared(toProtect, fighter)
+      if(distSq < (aEP_DroneShieldShipAI.FAR_FROM_PARENT + 100f).pow(2)){
+        val key = GlobalExplosionDetect.ID_KEY
+        var protectTargetListener = fighter.customData[key] as GlobalExplosionDetect?
+
+        //先看看无人机的customData里面有没有handle，不存在就创建一个listener塞进飞机
+        if(protectTargetListener == null){
+          protectTargetListener = GlobalExplosionDetect(toProtect, fighter, 0.5f)
+          if(!toProtect.hasListener(protectTargetListener)){
+            toProtect.addListener(protectTargetListener)
+          }
+        }
+
+        //检查listener里面的ship是不是正在保护的toProtected
+        //如果目前这个战机防爆类保护的母舰不是当前ai保护的母舰，立刻结束这个类，并把新的listener塞进飞机
+        if(protectTargetListener.ship != toProtect){
+          //结束老的，赋值新的
+          protectTargetListener.time = protectTargetListener.lifetime
+          protectTargetListener = GlobalExplosionDetect(toProtect, fighter, 0.5f)
+          //计算完成后，把新listener的引用放入customData，顶掉老的listener
+          //老的listener会在lifeTime后自动终结，不需要关心了
+          fighter.setCustomData(key, protectTargetListener)
+          if(!toProtect.hasListener(protectTargetListener)){
+            toProtect.addListener(protectTargetListener)
+          }
+        }else{
+          //如果一切正常，延长lifetime
+          //延长
+          protectTargetListener.time = 0f
+        }
+      }
+
+
+    }
+
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+    if(isDead(ship)) return
+
+    //每次过载，给与自己一定伤害的惩罚
     if (ship.fluxTracker.isOverloaded && ship.fluxTracker.overloadTimeRemaining > 6f) {
       ship.fluxTracker.setOverloadDuration(6f)
+      Global.getCombatEngine().applyDamage(
+        ship,ship.location,
+        150f,DamageType.ENERGY,0f,
+        true,false,ship,false)
+    }
+
+    if(ship.isFighter){
+      val newHard = (ship.fluxTracker.hardFlux - HARD_DISSI * amount).coerceAtLeast(0f)
+      ship.fluxTracker.hardFlux = newHard
     }
 
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    ship.mutableStats.empDamageTakenMult.modifyMult(aEP_MaoDianShield.ID,0f)
+
+    ship.mutableStats.kineticShieldDamageTakenMult.modifyMult(id, KE_DAMAGE_TAKEN_MULT)
+    ship.mutableStats.highExplosiveShieldDamageTakenMult.modifyMult(id, HE_DAMAGE_TAKEN_MULT)
+    ship.mutableStats.energyShieldDamageTakenMult.modifyMult(id, EN_DAMAGE_TAKEN_MULT)
+    ship.mutableStats.fragmentationShieldDamageTakenMult.modifyMult(id, FRAG_DAMAGE_TAKEN_MULT)
+
+    ship.mutableStats.beamShieldDamageTakenMult.modifyMult(id, BEAM_TAKEN_MULT)
+
+
     if(!ship.customData.containsKey(ID) ){
       ship.setCustomData(ID,1f)
       ship.addListener(ProjectileRemove(ship))
     }
+
+
   }
 
   inner class ProjectileRemove(val ship: ShipAPI) :  DamageTakenModifier{
@@ -528,40 +692,65 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
     //return修改项的id
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       if(!shieldHit) return null
-      //如果proj可以穿透战机护盾，直接吞掉同时战机自爆
-      if(param is DamagingProjectileAPI){
+
+      if(param is DamagingProjectileAPI ){
+        var sourceModifier = 1f
+        if (param.source is ShipAPI){
+          sourceModifier = param.source.mutableStats.damageToFighters.modifiedValue
+        }
+
+        //如果proj可以穿透战机护盾，直接吞掉，手动加幅能
         if(param.projectileSpec?.isPassThroughFightersOnlyWhenDestroyed == false
           && param.projectileSpec?.isPassThroughFighters == true){
 
-          val damage = param.damage.damage
-          if(ship.maxFlux - ship.currFlux < damage){
-            Global.getCombatEngine().applyDamage(
-              ship,
-              ship.location,
-              (ship.hitpoints + ship.hullSpec.armorRating) * 5f,
-              DamageType.HIGH_EXPLOSIVE,
-              0f,
-              true,
-              false,
-              ship)
-            Global.getCombatEngine().removeEntity(ship)
-          }else{
-            ship.fluxTracker.increaseFlux(damage, true)
-          }
+          //手动增加幅能，然后吞弹
+          eatDamage(ship, param.damage,sourceModifier)
           Global.getCombatEngine().removeEntity(param)
+          //如果这么吞了，sourceModifier也要着增加，把本次伤害无害化
+          sourceModifier *= 4f
         }
 
+        //防止大aoe直接炸到后面的船体，类似模块护盾的问题，没办法
+        //已经在后面的爆炸监听器中修正这个问题
         if(param is MissileAPI){
-          param.spec?.explosionSpec?.minDamage?.div(10f)
-          param.spec?.explosionSpec?.maxDamage?.div(10f)
+          //param.spec?.explosionSpec?.minDamage?.div(10f)
+          //param.spec?.explosionSpec?.maxDamage?.div(10f)
         }
 
-          //能抓到近炸，但是不能修改explosionSpec所以没有意义
+        //能抓到近炸，每炸到任何一个其他拥有吞弹护盾的舰船，自己对该爆炸的伤害降低
         if(param is DamagingExplosion){
-          param.damageAmount = param.damageAmount/10f
+          var numOfDroneDamaged = 1
+          for(e in param.damagedAlready){
+            if(e is ShipAPI && e.variant.hasHullMod(ID) && e != ship){
+              numOfDroneDamaged += 1
+            }
+          }
+
+          //如果当前有超过一个其他无人机被炸，增加sourceModifier
+          var epdDamMult = 0.5f
+          if(numOfDroneDamaged > 1){
+            epdDamMult.pow(numOfDroneDamaged)
+          }
+          sourceModifier /= epdDamMult
+
+        }
+
+        if(sourceModifier > 1f){
+          damage.modifier.modifyMult(ID, (1f/sourceModifier))
+          return ID
+        }else{
+          return null
         }
       }
+
+      //对光束
       if(param is BeamAPI){
+
+        var sourceModifier = 1f
+        if (param.source is ShipAPI){
+          sourceModifier = param.source.mutableStats.damageToFighters.modifiedValue
+        }
+
         //如果光束可以穿透，最终目标不是自己但是对自己造成了伤害
         //当触发时，降低光束本帧的伤害，同时给自己涨幅能
         if(param.damageTarget is ShipAPI && param.damageTarget != target){
@@ -570,10 +759,91 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
           val beamTarget = param.damageTarget as ShipAPI
           //一切动作，比如把listener加入beamTarget都在BeamDamageReduce类的init里面，这里只管new
           BeamDamageReduce(param, beamTarget, 0.33f)
+
+        }
+
+        if(sourceModifier > 1f){
+          damage.modifier.modifyMult(ID, 1f/sourceModifier)
+          return ID
+        }else{
           return null
         }
       }
+
+      //对emp电弧
+      if(param is EmpArcEntity && param.source is ShipAPI){
+        var sourceModifier = 1f
+        val sourceShip = param.source as ShipAPI
+        sourceModifier = sourceShip.mutableStats.damageToFighters.modifiedValue
+
+        if(sourceModifier > 1f){
+          damage.modifier.modifyMult(ID, 1f/sourceModifier)
+          return ID
+        }else{
+          return null
+        }
+      }
+
+
       return null
+    }
+  }
+
+  //这个用于保护大范围aoe的类只适用于无人机，于无人机的ai中施加/维持，而不启用于锚点护盾，锚点护盾不应该可以抵挡爆炸
+  //同时也保护电弧
+  class GlobalExplosionDetect(val ship: ShipAPI, val fighter: ShipAPI, val lifetime: Float):  DamageTakenModifier, AdvanceableListener{
+    companion object{
+      const val ID_KEY = "aEP_ExplosionDetect"
+    }
+
+    var time = 0f
+    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
+      //同一个伤害不会反复受到不同来源战机listener的减伤
+      if(damage.modifier.multMods.containsKey(ID_KEY)) return null
+      //相同来源的友军伤害不抓
+      //这里抓母舰受到的爆炸伤害，然后判断受攻击点和爆心是否划过飞机(或者爆炸就处于飞机碰撞半径中)，如果划过，减伤
+      if(param is DamagingExplosion && param.owner != ship.owner){
+        val isCrossFighterPoint = CollisionUtils.getCollides(param.location, point, fighter.location,fighter.collisionRadius)
+        if(isCrossFighterPoint || MathUtils.getDistanceSquared(fighter,param.location) < 25f){
+          //如果本爆炸没有波及到这个飞机，加幅能，如果灌满就爆
+          if(!param.damagedAlready.contains(fighter)){
+            //爆炸普遍伤害溢出，这里给一个0.5的系数
+            eatDamage(ship, param.damage,0.75f)
+            param.damagedAlready.add(fighter)
+          }
+          //惩罚飞机以后，给予母舰对炸弹的减伤
+          damage.modifier.modifyMult(ID_KEY, 0.1f)
+          return ID_KEY
+        }
+      }
+
+      //相同来源的友军伤害不抓
+      if(param is EmpArcEntity && !isDead(fighter) && param.owner != ship.owner){
+        //施加一个等量伤害透明电弧对飞机的惩罚
+        if(param.source is ShipAPI){
+          Global.getCombatEngine().spawnEmpArc(
+            (param.source as ShipAPI),
+            fighter.location,fighter,
+            fighter,damage.type,damage.baseDamage,damage.fluxComponent,
+            100f,null,1f,
+            Color(1,1,1,1), Color(1,1,1,1))
+
+        }
+        //转移目标，消除对母舰的伤害
+        param.setTargetToShipCenter(fighter.location,fighter)
+        damage.modifier.modifyMult(ID_KEY, 0.1f)
+        return ID_KEY
+      }
+
+      return null
+    }
+
+    override fun advance(amount: Float) {
+      time = (time+amount).coerceAtMost(lifetime)
+
+      if(aEP_Tool.isDead(ship) || aEP_Tool.isDead(ship) || time>=lifetime){
+        ship.removeListener(this)
+      }
     }
   }
 
@@ -601,14 +871,13 @@ class BeamDamageReduce(val beam: BeamAPI, val beamTarget: ShipAPI, val lifetime:
 
   override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
     if(param == beam){
-      damage.modifier.modifyMult(aEP_ProjectileDenialShield.ID, 0.1f)
+      damage.modifier.modifyMult(aEP_ProjectileDenialShield.ID, 0.025f)
       return aEP_ProjectileDenialShield.ID
     }
 
     return null
   }
 }
-
 
 //巡洋导弹引信插件
 open class aEP_CruiseMissile : BaseHullMod() {
@@ -1099,6 +1368,7 @@ class aEP_FighterArmor : BaseHullMod() {
 
     const val EMP_TAKEN_REDUCE_MULT = 0.5f
     const val WEAPON_DAMAGE_TAKEN_REDUCE_MULT = 0.5f
+    const val REPAIR_TIME_REDUCE_MULT = 0.5f
 
   }
 
@@ -1119,6 +1389,8 @@ class aEP_FighterArmor : BaseHullMod() {
     ship.mutableStats.engineDamageTakenMult.modifyMult(id,1f - WEAPON_DAMAGE_TAKEN_REDUCE_MULT)
     ship.mutableStats.weaponDamageTakenMult.modifyMult(id,1f - WEAPON_DAMAGE_TAKEN_REDUCE_MULT)
 
+    ship.mutableStats.combatEngineRepairTimeMult.modifyMult(id,1f - REPAIR_TIME_REDUCE_MULT)
+    ship.mutableStats.combatWeaponRepairTimeMult.modifyMult(id,1f - REPAIR_TIME_REDUCE_MULT)
   }
 
 
@@ -1223,12 +1495,22 @@ class aEP_Type28Shield : BaseHullMod() {
   }
 }
 
-//模块插件，包括减伤爆炸伤害,禁止v排，同步相位状态，当玩家操控模块的母舰，或者鼠标指向时，显示模块的容量状态
+//模块插件，包括减伤爆炸伤害,禁止v排，同步相位状态，
+// 当玩家操控模块的母舰，或者鼠标指向时，显示模块的容量状态
 class aEP_Module : aEP_BaseHullMod() {
   companion object {
-    const val DAMAGE_MULT = 0.001f
-    const val DAMAGE_RANGE_MULT = 0.25f
+    const val DAMAGE_MULT = 0.0001f
+    const val DAMAGE_RANGE_MULT = 0.1f
   }
+
+  init {
+    notCompatibleList.add(HullMods.CONVERTED_HANGAR)
+    notCompatibleList.add(HullMods.MAKESHIFT_GENERATOR)
+    notCompatibleList.add(HullMods.SHIELD_SHUNT)
+    notCompatibleList.add(HullMods.FRONT_SHIELD_CONVERSION)
+    notCompatibleList.add(HullMods.OMNI_SHIELD_CONVERSION)
+  }
+
   var ID: String = "aEP_Module"
   override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, id: String) {
     stats?:return
@@ -1239,72 +1521,7 @@ class aEP_Module : aEP_BaseHullMod() {
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
-    super.advanceInCombat(ship, amount)
-
-    //如果本模块不拥有parent，重置一次状态，并从这里出去
-    if(ship.parentStation == null || aEP_Tool.isDead(ship) ) {
-      if( !ship.customData.containsKey(ID)){
-        ship.setCustomData(ID,1f)
-        ship.extraAlphaMult = 1f
-        ship.extraAlphaMult2 = 1f
-        ship.isPhased = false
-      }
-      return
-    }
-
-    val parent = ship.parentStation
-    val stats = ship.mutableStats
-    val parentStats = parent.mutableStats
-
-    //模块同步parent的相位和透明度状态
-    ship.setApplyExtraAlphaToEngines(true)
-    ship.extraAlphaMult = parent.extraAlphaMult
-    ship.extraAlphaMult2 = parent.extraAlphaMult2
-    ship.isPhased = parent.isPhased
-
-
-    if(ship.isPhased){
-      //禁止自动开火，禁止手动开火
-      ship.isHoldFireOneFrame = true
-      ship.blockCommandForOneFrame(ShipCommand.FIRE)
-    }
-
-
-    //如果玩家正在操控parent或者玩家鼠标指向了模块的碰撞圈附近，且模块撑起了护盾，在护盾的尖端显示模块当前容量（防止多个模块和本体重叠）
-    var shouldShowStatus = false
-    if(Global.getCombatEngine().playerShip == parent) shouldShowStatus = true
-    val dist = MathUtils.getDistance(Global.getCombatEngine().playerShip.mouseTarget?: aEP_ID.VECTOR2F_ZERO, ship.location)
-    if(dist < ship.collisionRadius + 10f) shouldShowStatus = true
-    if(shouldShowStatus){
-      var color = Misc.getPositiveHighlightColor()
-      if(ship.owner == 1) color = Misc.getNegativeHighlightColor()
-      if(ship.owner == 100) color = Misc.getHighlightColor()
-      val currFlux = ship.currFlux
-      val maxFlux = ship.maxFlux
-      val string = ship.hullSpec.hullName
-      //只有玩家舰船 == ship时才会显示，number是条末端的数字
-      MagicUI.drawInterfaceStatusBar(
-        parent,
-        ship.id,
-        ship.fluxLevel,
-        color,
-        color,
-        ship.hardFluxLevel,
-        string,
-        ship.hitpoints.toInt())
-      //这个方法无法叠加多个
-//      MagicUI.drawHUDStatusBar(
-//        parent,
-//        ship.fluxLevel,
-//        color,
-//        color,
-//        ship.hardFluxLevel,
-//        "1",
-//        "2",
-//        true
-//      )
-    }
-
+    //不留残骸
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
@@ -1325,14 +1542,65 @@ class aEP_Module : aEP_BaseHullMod() {
     override fun notifyAboutToTakeHullDamage(param: Any?, ship: ShipAPI?, point: Vector2f?, damageAmount: Float): Boolean {
       ship?:return false
       if(damageAmount >= ship.hitpoints && !shouldEnd){
-        ship.mutableStats.fluxCapacity.modifyMult(ID,0.05f)
-        ship.fluxTracker.currFlux = 0f
+        //不留残骸
+        ship.explosionScale = 0.5f
+        ship.explosionFlashColorOverride = Color(1f,1f,1f,0.25f)
+        Global.getCombatEngine().removeEntity(ship)
         return false
       }
       return false
     }
 
     override fun advance(amount: Float) {
+      //如果本模块不拥有parent，重置一次状态，并从这里出去
+      if(ship.parentStation == null || aEP_Tool.isDead(ship) || aEP_Tool.isDead(ship.parentStation)) {
+        ship.setApplyExtraAlphaToEngines(false)
+        ship.extraAlphaMult = 1f
+        ship.extraAlphaMult2 = 1f
+        ship.isPhased = false
+        ship.removeListenerOfClass(this::class.java)
+        return
+      }
+
+      val parent = ship.parentStation
+      val stats = ship.mutableStats
+      val parentStats = parent.mutableStats
+
+      //模块同步parent的相位和透明度状态
+      ship.setApplyExtraAlphaToEngines(true)
+      ship.extraAlphaMult = parent.extraAlphaMult
+      ship.extraAlphaMult2 = parent.extraAlphaMult2
+      ship.isPhased = parent.isPhased
+
+
+      if(ship.isPhased){
+        //禁止自动开火，禁止手动开火
+        ship.isHoldFireOneFrame = true
+        ship.blockCommandForOneFrame(ShipCommand.FIRE)
+      }
+
+
+      //如果玩家正在操控parent或者玩家鼠标指向了模块的碰撞圈附近，且模块撑起了护盾，在护盾的尖端显示模块当前容量（防止多个模块和本体重叠）
+      var shouldShowStatus = false
+      if(Global.getCombatEngine().playerShip == parent) shouldShowStatus = true
+      val dist = MathUtils.getDistance(Global.getCombatEngine().playerShip.mouseTarget?: aEP_ID.VECTOR2F_ZERO, ship.location)
+      if(dist < ship.collisionRadius + 10f) shouldShowStatus = true
+      if(shouldShowStatus){
+        var color = Misc.getPositiveHighlightColor()
+        if(ship.owner == 1) color = Misc.getNegativeHighlightColor()
+        if(ship.owner == 100) color = Misc.getHighlightColor()
+        val string = ship.hullSpec.hullName
+        //只有玩家舰船 == ship时才会显示，number是条末端的数字
+        MagicUI.drawInterfaceStatusBar(
+          parent,
+          ship.id,
+          ship.fluxLevel,
+          color,
+          color,
+          ship.hardFluxLevel,
+          string,
+          ship.hitpoints.toInt())
+      }
     }
   }
 }
@@ -1345,322 +1613,26 @@ class aEP_FlyingTank : aEP_BaseHullMod(){
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     ship?:return
-    if(!ship.hasListenerOfClass(RangeListener::class.java)) ship.addListener(RangeListener(ship))
+    if(!ship.hasListenerOfClass(RangeListener::class.java)){
+      ship.addListener(RangeListener(ship, ship.armorGrid.armorRating* REPAIR_AMOUNT_PER_SECOND/100f))
+    }
   }
 
-  class RangeListener(val ship: ShipAPI) : AdvanceableListener{
-    val armorTracker = IntervalUtil(0.1f,0.1f)
+  class RangeListener(val ship: ShipAPI, val repairPerSec:Float) : AdvanceableListener{
+    val armorTracker = IntervalUtil(0.5f,1.5f)
 
     override fun advance(amount: Float) {
 
       armorTracker.advance(amount)
       if(armorTracker.intervalElapsed()){
-        //维修装甲
-        val xSize = ship.armorGrid.leftOf + ship.armorGrid.rightOf
-        val ySize = ship.armorGrid.above + ship.armorGrid.below
-        val cellMaxArmor = ship.armorGrid.maxArmorInCell
-        var minArmorLevel = 10f
-        var minX = 0
-        var minY = 0
-
-        var toRepair = armorTracker.minInterval * REPAIR_AMOUNT_PER_SECOND
-        while (toRepair > 0f){
-          //find the lowest armor grid
-          for (x in 0..xSize - 1) {
-            for (y in 0..ySize - 1) {
-              val armorNow = ship.armorGrid.getArmorValue(x, y)
-              val armorLevel = armorNow / cellMaxArmor
-              if (armorLevel <= minArmorLevel) {
-                minArmorLevel = armorLevel
-                minX = x
-                minY = y
-              }
-            }
-          }
-
-          // 如果当前最低的一块甲不满就修复，否则不用修直接break
-          val armorAtMin = ship.armorGrid.getArmorValue(minX, minY)
-          val needRepair = cellMaxArmor - armorAtMin
-          //做不到完全回复
-          if ( needRepair > 0.1f) {
-            var toAddArmor = 0f
-            if(needRepair > toRepair){
-              toAddArmor = toRepair
-              toRepair = 0f
-            }else{
-              toAddArmor = needRepair
-              toRepair -= toAddArmor
-            }
-            ship.armorGrid.setArmorValue(minX, minY, armorAtMin + toAddArmor)
-          }else{
-            break
-          }
-        }
+       aEP_Tool.findToRepair(
+         ship,
+         repairPerSec* armorTracker.elapsed,
+         1f,0f,10f,0f, false)
       }
 
     }
   }
 }
 
-//战地重建-AI版
-class aEP_EmergencyReconstructAi() : aEP_EmergencyReconstruct(){
 
-  companion object{
-    const val ID = "aEP_EmergencyReconstructAi"
-
-    const val REPAIR_TIME_BASE = 10f
-    const val REPAIR_TIME_PER_DP = 0.5f
-
-    val CHANGE_DROP_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
-
-    init {
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.33f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.15f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.20f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.25f)
-      CHANGE_DROP_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.33f)
-      CHANGE_DROP_HULLSIZE.withDefault { 0.5f }
-    }
-
-  }
-  constructor(ship: ShipAPI):this(){
-    this.ship = ship
-  }
-
-  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-
-    if(!ship.hasListenerOfClass(this.javaClass)){
-      val listenerClass = aEP_EmergencyReconstructAi(ship)
-      val dp =  ship.mutableStats.dynamic.getMod(Stats.DEPLOYMENT_POINTS_MOD).computeEffective(ship.hullSpec.suppliesToRecover)
-      listenerClass.repairTimeTotal = REPAIR_TIME_BASE + REPAIR_TIME_PER_DP * dp
-      listenerClass.activeChanceDropPerUse = CHANGE_DROP_HULLSIZE[ship.hullSpec.hullSize]?:0.5f
-      ship.addListener(listenerClass)
-    }
-
-  }
-
-  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
-
-  }
-
-  override fun advanceInCampaign(member: FleetMemberAPI, amount: Float) {
-    if(!member.variant.hasTag(Tags.VARIANT_UNBOARDABLE)){
-      member.variant.addTag(Tags.VARIANT_UNBOARDABLE)
-    }
-  }
-
-  /**
-   * 这里开始是listener的部分，各个船独立，改变量都要在listener里面动，hullmod的advance是全局的
-   * */
-  override fun advance(amount: Float) {
-    reconstructTimer -= amount
-    reconstructTimer.coerceAtLeast(0f).coerceAtMost(99f)
-    //维修模式时
-    if(reconstructTimer > 0f){
-      duringRepairEffect(amount)
-
-    }else if(didRepair ){//退出维修模式时运行一次
-      onceWhenOutRepair()
-
-    }
-
-    if(aEP_Tool.isDead(ship)){
-      ship.removeCustomData(ACTIVE_KEY)
-      ship.removeListener(this)
-    }
-
-    //addDebugLog(reconstructTime.toString())
-  }
-
-  //if true is returned, the hull damage to be taken is negated.
-  override fun notifyAboutToTakeHullDamage(param: Any?, ship: ShipAPI, point: Vector2f, damageAmount: Float): Boolean {
-    //进入维修模式的那一刻运行一次
-    if(damageAmount >= ship.hitpoints && reconstructTimer <= 0f){
-
-//      aEP_CombatEffectPlugin.addEffect(aEP_Combat.StandardTeleport(1f,ship,
-//        Vector2f(Global.getCombatEngine().playerShip.mouseTarget),ship.facing))
-      val test = MathUtils.getRandomNumberInRange(0f,100f)
-      val threshold = (activeChance * 100f)
-      if(test <= threshold){
-        onceWhenInRepair()
-
-        var txt = String.format("Reconstruct Test: %.0f",test)
-        if(threshold < 100) txt += String.format(" + %.0f",100-threshold)
-        Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.green, ship, 1f,5f)
-
-      }else{
-
-        onceWhenFailTest()
-
-        var txt = String.format("Reconstruct Test: %.0f",test)
-        if(threshold < 100) txt += String.format(" + %.0f",100-threshold)
-        Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.red, ship, 1f,5f)
-
-      }
-    }
-
-    if(reconstructTimer > 0f) return true
-    return false
-  }
-
-  override fun duringRepairEffect(amount: Float){
-    didRepair = true
-    ship.mutableStats.hullDamageTakenMult.modifyMult(aEP_EmergencyReconstruct.ID, 0f)
-    ship.mutableStats.armorDamageTakenMult.modifyMult(aEP_EmergencyReconstruct.ID, 0f)
-    ship.mutableStats.combatWeaponRepairTimeMult.modifyFlat(aEP_EmergencyReconstruct.ID, Float.MAX_VALUE)
-    ship.mutableStats.combatEngineRepairTimeMult.modifyFlat(aEP_EmergencyReconstruct.ID, Float.MAX_VALUE)
-    ship.mutableStats.engineDamageTakenMult.modifyMult(aEP_EmergencyReconstruct.ID, 0f)
-
-    for(e in ship.engineController.shipEngines){
-      if(!e.isDisabled){
-        e.applyDamage(999f, ship)
-        e.disable()
-      }
-    }
-    for(w in ship.allWeapons){
-      if(!w.isDisabled) {
-        w.disable()
-      }
-    }
-
-    //禁止一切操作
-    ship.blockCommandForOneFrame(ShipCommand.FIRE)
-    ship.blockCommandForOneFrame(ShipCommand.VENT_FLUX)
-    ship.blockCommandForOneFrame(ShipCommand.USE_SYSTEM)
-    ship.blockCommandForOneFrame(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK)
-    ship.blockCommandForOneFrame(ShipCommand.ACCELERATE)
-    ship.blockCommandForOneFrame(ShipCommand.ACCELERATE_BACKWARDS)
-    ship.blockCommandForOneFrame(ShipCommand.PULL_BACK_FIGHTERS)
-
-    var level = 1f
-    val fadeTime = 4f
-    if(reconstructTimer > repairTimeTotal-fadeTime) level =  (repairTimeTotal - reconstructTimer)/ fadeTime
-    ship.fadeToColor(aEP_EmergencyReconstruct.ID, Color(75, 75, 75, 255), 1f, 1f, level)
-    ship.isJitterShields = false
-    ship.setCircularJitter(true)
-    ship.setJitterUnder(aEP_EmergencyReconstruct.ID, REPAIR_COLOR2, level, 36, 8f+ship.collisionRadius*0.1f)
-
-    //相位效果
-    ship.extraAlphaMult = level * 0.5f + 0.5f
-    ship.extraAlphaMult2 = level * 0.5f + 0.5f
-    ship.setApplyExtraAlphaToEngines(true)
-    if(level >= 1f){
-      if(ship.phaseCloak != null && ship.phaseCloak.isActive) ship.phaseCloak.deactivate()
-      if(ship.shield != null && ship.shield.isOn) ship.shield.toggleOff()
-      ship.isPhased = true
-      ship.collisionClass = CollisionClass.NONE
-    }
-
-    repairTimer.advance(amount)
-    if(repairTimer.intervalElapsed()){
-      ship.velocity.scale(0.75f)
-      ship.angularVelocity *= 0.75f
-      val repaired = findToRepair(ship,
-        ((ship.armorGrid.maxArmorInCell*(ship.armorGrid.grid.size * ship.armorGrid.grid[0].size)+ship.maxHitpoints) * 0.5f)/repairTimeTotal,
-        1f,1f,100f,1f)
-      if(repaired >= 1f){
-        //reconstructTime = 0.1f
-      }
-    }
-  }
-
-  override fun onceWhenOutRepair(){
-
-    ship.mutableStats.hullDamageTakenMult.unmodify(aEP_EmergencyReconstruct.ID)
-    ship.mutableStats.armorDamageTakenMult.unmodify(aEP_EmergencyReconstruct.ID)
-    ship.mutableStats.combatWeaponRepairTimeMult.unmodify(aEP_EmergencyReconstruct.ID)
-    ship.mutableStats.combatEngineRepairTimeMult.unmodify(aEP_EmergencyReconstruct.ID)
-    ship.mutableStats.engineDamageTakenMult.unmodify(aEP_EmergencyReconstruct.ID)
-
-    ship.removeCustomData(ACTIVE_KEY)
-
-    for(e in ship.engineController.shipEngines){
-      if(e.isDisabled) e.repair()
-    }
-    for(w in ship.allWeapons){
-      if(w.isDisabled) w.repair()
-    }
-
-    //取消相位效果
-    ship.isPhased = false
-    ship.collisionClass = CollisionClass.SHIP
-    ship.extraAlphaMult = 1f
-    ship.extraAlphaMult2 = 1f
-
-    //如果是因为舰船被摧毁导致的运行，不需要清除损伤贴图
-    if(didRepair ){
-      didRepair = false
-      ship.syncWeaponDecalsWithArmorDamage()
-      ship.clearDamageDecals()
-    }
-  }
-
-  override fun onceWhenInRepair(){
-
-    ship.setCustomData(ACTIVE_KEY,true)
-
-    activeChance -= activeChanceDropPerUse
-    activeChance.coerceAtLeast(0f).coerceAtMost(1f)
-
-    ship.hitpoints = 1f
-    reconstructTimer = repairTimeTotal
-    ship.engineController.forceFlameout(true)
-    for(s in Global.getCombatEngine().ships){
-      if(s.shipTarget == ship){
-        s.shipTarget = null
-      }
-    }
-
-
-    val scaffoldSize = 100f
-    val cellSize = ship.armorGrid.cellSize
-    val x = ship.armorGrid.leftOf * cellSize
-    val y = ship.armorGrid.above * cellSize
-    val leftTopAbs = Vector2f.add(VectorUtils.rotate(Vector2f(-x,y),ship.facing-90f), ship.location,null)
-
-    val leftTopRel = getRelativeLocationData(leftTopAbs,ship,false)
-    val centerRel = getRelativeLocationData(ship.location, ship,false)
-
-    val xLength = (ship.armorGrid.leftOf + ship.armorGrid.rightOf)*cellSize
-    val xNum =   (xLength/scaffoldSize).toInt() + 1
-    val xStep = xLength/xNum
-
-    val yLength = (ship.armorGrid.above + ship.armorGrid.below)*cellSize
-    val yNum =   (yLength/scaffoldSize).toInt() + 1
-    val yStep = yLength/yNum
-
-    for(i in 0..yNum){
-      val yMoveOffset = (yNum/2f - i) * yStep
-      val yTime = abs(yMoveOffset/yStep)
-      for(j in 0..xNum){
-        val xOffset = (xNum/2f - j) * xStep
-        val xTime = abs(xOffset/xStep) + yTime
-        //渲染x支架
-        aEP_CombatEffectPlugin.addEffect(RepairScaffoldUp(
-          xTime,1f, reconstructTimer - i * 0.5f,
-          ship, xOffset, yMoveOffset, centerRel))
-      }
-      //渲染水平支架，后于x支架，要盖在上面
-      aEP_CombatEffectPlugin.addEffect(RepairSideFrameUp(
-        yTime,  xNum/2f, reconstructTimer - i * 0.5f,ship,
-        0f,yMoveOffset,(xLength+scaffoldSize)/2f,centerRel))
-    }
-
-    var i = xLength * yLength
-    while (i > 0){
-      i -= scaffoldSize * scaffoldSize * 10
-      aEP_CombatEffectPlugin.addEffect(RepairSideMoving(1f,reconstructTimer - yNum * 0.5f,ship,centerRel))
-    }
-  }
-
-  override fun onceWhenFailTest(){
-    ship.removeListener(this)
-  }
-
-  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return false
-  }
-
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-  }
-}

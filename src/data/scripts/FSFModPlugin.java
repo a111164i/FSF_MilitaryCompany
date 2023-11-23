@@ -14,6 +14,8 @@ import data.scripts.ai.*;
 import data.scripts.campaign.FSFCampaignPlugin;
 import data.scripts.world.aEP_gen;
 import exerelin.campaign.SectorManager;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class FSFModPlugin extends BaseModPlugin {
@@ -93,6 +95,16 @@ public class FSFModPlugin extends BaseModPlugin {
     aEP_MissionUtils.restore();
     isNexerelinEnabled = Global.getSettings().getModManager().isModEnabled("nexerelin");
     isLunalibEnabled = Global.getSettings().getModManager().isModEnabled("lunalib");
+
+    JSONArray des;
+    {
+      try {
+        des = Global.getSettings().loadCSV("data/strings/descriptions.csv","FSF_MilitaryCorporation");
+
+      } catch (Exception e1) {
+      }
+
+    }
   }
 
   //create a sector

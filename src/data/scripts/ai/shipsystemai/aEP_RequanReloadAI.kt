@@ -79,9 +79,10 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
     willing += (reloadLevelTotal * 0.8f)
     willing += (emptyRate * 1.5f)
 
-    //保证幅能小于0.15时，光是用完内置导弹就会使用f
-    val highThreshold = 0.7f
-    val lowThreshold = 0.15f
+    //保证幅能小于0.1时，光是用完内置导弹就会使用f
+    //保证正常幅能不要超过0.5
+    val highThreshold = 0.5f
+    val lowThreshold = 0.1f
     val lowFluxBonus = (willing * 0.5f + 0.15f)
     if(ship.fluxLevel < lowThreshold){
       willing += lowFluxBonus

@@ -56,13 +56,13 @@ public class MissionDefinition implements MissionDefinitionPlugin
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
     String name1 = "涌动";
-    //String name2 = "冰绒";
     api.addToFleet(FleetSide.PLAYER, "aEP_cap_nuanchi_Standard", FleetMemberType.SHIP, name1, true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP, "R01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP, "R02", false);
-
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  "H04",false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  "H04",false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Standard", FleetMemberType.SHIP,  false);
 
 
 
@@ -72,8 +72,11 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
     api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
     api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
-    api.addToFleet(FleetSide.ENEMY, "aEP_brilliant_Standard", FleetMemberType.SHIP, false);
 
+    api.addToFleet(FleetSide.ENEMY, "aEP_lumen_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.ENEMY, "aEP_lumen_Standard", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.ENEMY, "aEP_glimmer_Assault", FleetMemberType.SHIP,  false);
+    api.addToFleet(FleetSide.ENEMY, "aEP_glimmer_Assault", FleetMemberType.SHIP,  false);
 
     api.addToFleet(FleetSide.ENEMY, "aEP_radiant_Standard", FleetMemberType.SHIP,  false);
     //设置输赢条件
@@ -87,7 +90,6 @@ public class MissionDefinition implements MissionDefinitionPlugin
     }else {
       aEP_MissionUtils.restore();
     }
-
 
     //设定地图的尺寸和贴图和里面的星云，陨石，占领点，直接粘的一个原版战役
     // Set up the map.

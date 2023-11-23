@@ -1,40 +1,45 @@
 {
   "id": "aEP_ftr_sup_shield_gun",
   "specClass": "projectile",
-  "projectileSpecId": "vulcan_shot",
+  "projectileSpecId": "aEP_ftr_sup_shield_gun_shot",
   "type": "BALLISTIC",
   "size": "SMALL",
-  "turretSprite": "graphics/weapons/aEP_fighters/aEP_gunship_drone/gun.png",
-  "hardpointSprite": "",
-  "renderAboveAllWeapons": 0,
+  "turretSprite": "graphics/weapons/aEP_fighters/aEP_shield/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_fighters/aEP_shield/tr_br.png",
+  "hardpointSprite": "graphics/weapons/aEP_fighters/aEP_shield/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_fighters/aEP_shield/hp_br.png",
+  "visualRecoil": 2,
   "turretOffsets": [
-    5,
-    1.5,
-    5,
-    -1.5
+    7,
+    4,
+    7,
+    -4
   ],
   "turretAngleOffsets": [
     0,
-    -0
-  ],
-  "hardpointOffsets": [
-    0,
     0
   ],
+  "hardpointOffsets": [
+    6,
+    4,
+    6,
+    -4
+  ],
   "hardpointAngleOffsets": [
+    0,
     0
   ],
   "barrelMode": "ALTERNATING",
   "animationType": "MUZZLE_FLASH",
-  "interruptibleBurst": true,
+  "interruptibleBurst": false,
   "autocharge": true,
   "muzzleFlashSpec": {
     "length": 10,
     "spread": 5,
-    "particleSizeMin": 4,
-    "particleSizeRange": 2,
-    "particleDuration": 0.3,
-    "particleCount": 2,
+    "particleSizeMin": 15,
+    "particleSizeRange": 10,
+    "particleDuration": 0.2,
+    "particleCount": 1,
     "particleColor": [
       255,
       255,
@@ -42,5 +47,5 @@
       255
     ]
   },
-  "textureType": ROUGH
+  "fireSoundTwo": "aEP_ftr_sup_shield_gun_fire"
 }

@@ -2,19 +2,19 @@
   "hullName": "",
   "hullId": "aEP_ftr_ut_decompose",
   "hullSize": "FIGHTER",
-  "spriteName": "graphics/ships/aEP_decompose_drone.png",
+  "spriteName": "graphics/ships/aEP_fighters/ut_decompose.png",
   "style": "aEP_FSF",
   "height": 50,
   "width": 50,
   "center": [25, 22],
-  "collisionRadius": 19,
+  "collisionRadius": 22,
   "shieldCenter": [0, -0],
-  "shieldRadius": 22,
+  "shieldRadius": 21,
   "viewOffset": 0,
   "builtInMods": [
     "autorepair",
     "insulatedengine",
-    "armoredweapons",
+    "armoredweapons"
   ],
   "builtInWeapons": {
     "WS0002": "aEP_empty"
@@ -25,9 +25,9 @@
       "size": "SMALL",
       "type": "UNIVERSAL",
       "mount": "TURRET",
-      "arc": 360,
+      "arc": 15,
       "angle": 0,
-      "locations": [7, -0]
+      "locations": [15, -0]
     },
     {
       "id": "WS0002",
@@ -36,41 +36,41 @@
       "mount": "HARDPOINT",
       "arc": 360,
       "angle": 0,
-      "locations": [4, -0]
+      "locations": [3, -0]
     }
   ],
   "engineSlots": [
     {
-      "location": [-8.5, 11.5],
+      "location": [-10, 7.5],
       "length": 12,
       "width": 4,
       "angle": 180,
       "contrailSize": 4,
-      "style": "MIDLINE"
+      "style": "FSF_MAIN_CLEAN"
     },
     {
-      "location": [-8.5, -11.5],
+      "location": [-10, -7.5],
       "length": 12,
       "width": 4,
       "angle": 180,
       "contrailSize": 4,
-      "style": "MIDLINE"
+      "style": "FSF_MAIN_CLEAN"
     },
     {
-      "location": [-7.5, -0],
+      "location": [-9, -0],
       "length": 16,
       "width": 4,
       "angle": 180,
       "contrailSize": 4,
-      "style": "MIDLINE"
+      "style": "FSF_MAIN_CLEAN"
     }
   ],
   "bounds": [
-    -8.5, -14.5,
-    2, -18,
-    14, -6.5,
-    14, 6.5,
-    2, 18,
-    -8.5, 14.5
+    -5.5, -12.5,
+    8, -10,
+    11, -4,
+    11, 4,
+    8, 10,
+    -5.5, 12.5
   ]
 }

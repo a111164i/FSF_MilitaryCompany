@@ -1,16 +1,14 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 0,
-    "fluxVents": 10,
+    "fluxCapacitors": 9,
+    "fluxVents": 8,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
-        "fluxbreakers",
         "aEP_VanguardHull",
-        "armoredweapons",
-        "autorepair",
-        "aEP_EliteShip",
-        "heavyarmor"
+        "aEP_ShieldControlled",
+        "heavyarmor",
+        "advancedoptics"
     ],
     "permaMods": [],
     "sMods": [],
@@ -19,28 +17,24 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0009": "lightdualac"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0007": "lightdualac"}
+            "weapons": {
+                "WS0002": "aEP_fga_xiliu_main",
+                "WS0003": "aEP_fga_xiliu_main2"
+            }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L02": "vulcan",
-                "R01": "vulcan"
+                "L01": "aEP_ftr_sup_shield_gun",
+                "R01": "aEP_ftr_sup_shield_gun",
+                "WS0009": "aEP_ftr_sup_shield_gun"
             }
         },
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {
-                "L01": "aEP_b_s_pom",
-                "R02": "aEP_b_s_pom"
-            }
+            "weapons": {"WS0007": "aEP_b_s_h37"}
         }
     ]
 }

@@ -5,6 +5,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import lunalib.backend.ui.settings.LunaSettingsLoader;
 import lunalib.lunaSettings.LunaSettings;
+import org.lazywizard.lazylib.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class aEP_DataTool
     }
 
     public void renewData(float thisFrameData) {
-      accumulatedData = aEP_Tool.limitToTop(accumulatedData + thisFrameData - lastFrameData, 9999999f, 0f);
+      accumulatedData = MathUtils.clamp(accumulatedData + thisFrameData - lastFrameData, 0f,Float.MAX_VALUE);
 
       lastFrameData = thisFrameData;
     }
@@ -107,7 +108,7 @@ public class aEP_DataTool
 
     public float normalization(float max, float min, float X) {
       float output = getY(X);
-      output = aEP_Tool.limitToTop(output, max, min);
+      output = MathUtils.clamp(output, min, max);
       return (output - min) / (max - min);
 
     }

@@ -1,0 +1,39 @@
+{
+	"id":"aEP_fga_xiliu_mk2_missile_shot",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	"sprite":"graphics/weapons/aEP_fga_xiliu/mk2_missile.png",
+	"size":[3,10],	
+	"center":[1.5,5],
+	"collisionRadius":5,
+	"collisionClass":"MISSILE_NO_FF",
+	"explosionColor":[240,80,220,185],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":75, # purely visual
+	"maxFlightTime":10,	
+	"engineSpec":{"turnAcc":960,
+				  "turnRate":240,
+				  "acc":600,
+				  "dec":600},
+	"engineSlots":[{"id":"ES1",
+					"loc":[-7.5, 0],
+						    #"style":"MISSILE_HIGH_TECH",
+						    "style":"CUSTOM",
+					"styleSpec":{
+								"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+								"engineColor":[238,110,80,255],
+								"contrailDuration":1,
+								"contrailWidthMult":2,
+								"contrailWidthAddedFractionAtEnd":-1,  # can be negative. makes trail spread out/narrow at the end
+								"contrailMinSeg":5, # min segment length, in pixels
+								"contrailMaxSpeedMult":1f,
+								"contrailAngularVelocityMult":1f,
+								"contrailColor":[240,80,220,161],
+								"glowSizeMult":1,
+								"glowAlternateColor":[220,200,80,160],
+								"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
+					},
+				    "width":5,
+				    "length":30.0,
+				    "angle":180.0},],
+				   			 
+}

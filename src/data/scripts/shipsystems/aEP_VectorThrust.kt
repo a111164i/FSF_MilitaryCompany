@@ -12,13 +12,14 @@ import java.awt.Color
 class aEP_VectorThrust : BaseShipSystemScript() {
 
   companion object{
-    const val SLOW_FACTOR = 5f
-    const val MAX_PERCENT_BUFF = 250f
-    const val MAX_PERCENT_FORWARD_BUFF = 50f
-    const val ACC_PERCENT_BUFF = 1000f
 
-    const val MAX_TURN_PERCENT_BUFF = 200f
-    const val ACC_TURN_PERCENT_BUFF = 400f
+    const val MAX_FLAT_BUFF = 75f
+    const val MAX_FLAT_FORWARD_BUFF = 20f
+
+    const val ACC_FLAT_BUFF = 400f
+
+    const val MAX_TURN_FLAT_BUFF = 30f
+    const val ACC_TURN_FLAT_BUFF = 100f
 
     val AFTER_IMAGE_COLOR = Color(190,100,93,30)
   }
@@ -31,23 +32,6 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     val angleAndSpeed = aEP_Tool.velocity2Speed(ship.velocity)
     val angleDist = MathUtils.getShortestRotation(angleAndSpeed.x,ship.facing)
     val amount = aEP_Tool.getAmount(ship)
-
-    val slowFactor = MathUtils.clamp(1f - SLOW_FACTOR *amount,0f,1f)
-    if((ship.engineController.isAccelerating) && (angleDist> 135 || angleDist <- 135)){
-      ship.velocity.scale(slowFactor)
-    }else if(ship.engineController.isStrafingLeft && (angleDist> 45 && angleDist < 135)) {
-      //手动给左右飘逸加上加速度
-      ship.velocity.scale(slowFactor)
-    }else if(ship.engineController.isStrafingRight && (angleDist < -45 && angleDist > -135)) {
-      ship.velocity.scale(slowFactor)
-    }else if(ship.engineController.isAcceleratingBackwards && (angleDist < 45 && angleDist > - 45)) {
-      ship.velocity.scale(slowFactor)
-    }
-
-
-    if(!ship.engineController.isTurningLeft && !ship.engineController.isTurningRight){
-      ship.angularVelocity = ship.angularVelocity*slowFactor
-    }
 
     //比较神奇，按加速，会覆盖掉setFlameLevel，同时setFlameLevel的尾焰会莫名的粗短
     for(e in ship.engineController.shipEngines){
@@ -71,23 +55,25 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     }
 
 
-    ship.mutableStats.maxTurnRate.modifyPercent(id, MAX_TURN_PERCENT_BUFF)
-    ship.mutableStats.turnAcceleration.modifyPercent(id, ACC_TURN_PERCENT_BUFF)
+    ship.mutableStats.maxTurnRate.modifyFlat(id, MAX_TURN_FLAT_BUFF)
+    ship.mutableStats.turnAcceleration.modifyFlat(id, ACC_TURN_FLAT_BUFF)
 
-    //前进后退时效果削弱
     if(ship.engineController.isAcceleratingBackwards || ship.engineController.isAccelerating){
-      //如果在全力前进或者后退，没有同时侧移时，削弱更多
       if(!ship.engineController.isStrafingLeft && ship.engineController.isStrafingRight){
-        ship.mutableStats.maxSpeed.modifyPercent(id, MAX_PERCENT_FORWARD_BUFF *0.5f)
+        //如果在全力前进或者后退，没有同时侧移时，削弱更多
+        ship.mutableStats.maxSpeed.modifyFlat(id, MAX_FLAT_FORWARD_BUFF * 0.5f)
       }else{
-        ship.mutableStats.maxSpeed.modifyPercent(id, MAX_PERCENT_FORWARD_BUFF)
+        //前进后退时效果削弱
+        ship.mutableStats.maxSpeed.modifyFlat(id, MAX_FLAT_FORWARD_BUFF)
       }
+
     }else{
-      ship.mutableStats.maxSpeed.modifyPercent(id, MAX_PERCENT_BUFF)
+      ship.mutableStats.maxSpeed.modifyFlat(id, MAX_FLAT_BUFF)
     }
 
-    ship.mutableStats.deceleration.modifyPercent(id, ACC_PERCENT_BUFF)
-    ship.mutableStats.acceleration.modifyPercent(id, ACC_PERCENT_BUFF)
+    ship.mutableStats.deceleration.modifyFlat(id, ACC_FLAT_BUFF)
+    ship.mutableStats.acceleration.modifyFlat(id, ACC_FLAT_BUFF)
+
   }
 
   override fun unapply(stats: MutableShipStatsAPI?, id: String?) {

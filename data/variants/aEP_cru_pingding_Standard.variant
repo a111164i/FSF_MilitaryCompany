@@ -1,14 +1,12 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 0,
-    "fluxVents": 17,
+    "fluxCapacitors": 18,
+    "fluxVents": 30,
     "goalVariant": true,
     "hullId": "aEP_cru_pingding",
     "hullMods": [
-        "targetingunit",
-        "solar_shielding",
-        "aEP_SoftfluxDissipate",
-        "missleracks"
+        "aEP_ShieldControlled",
+        "auxiliarythrusters"
     ],
     "permaMods": [],
     "sMods": [],
@@ -20,20 +18,31 @@
             "weapons": {"MAIN": "aEP_cru_pingding_main"}
         },
         {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0002": "aEP_m_l_harpoon"}
-        },
-        {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "vulcan",
-                "WS0004": "vulcan",
-                "WS0006": "dualflak",
-                "WS0007": "vulcan",
-                "WS0008": "vulcan"
+                "WS0002": "gauss",
+                "WS0008": "aEP_cru_pingding_armor1"
             }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0011": "aEP_cru_pingding_torpedo"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_ftr_sup_shield_gun",
+                "WS0004": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_b_m_flak"}
         }
     ]
 }

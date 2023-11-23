@@ -5,18 +5,17 @@
   "type": "MISSILE",
   "size": "MEDIUM",
   "displayArcRadius": 300,
-  "turretSprite": "graphics/weapons/aEP_hive_bay/hive_bay_tr.png",
-  "hardpointSprite": "graphics/weapons/aEP_hive_bay/hive_bay_hp.png",
-  "renderAboveAllWeapons": 0,
+  "turretSprite": "graphics/weapons/aEP_m_m_expander/tr.png",
+  "hardpointSprite": "graphics/weapons/aEP_m_m_expander/hp.png",
   "turretOffsets": [
-    13.5,
-    6.5,
-    13.5,
+    12,
+    6,
+    12,
     2.5,
-    13.5,
+    12,
     -2.5,
-    13.5,
-    -6.5
+    12,
+    -6
   ],
   "turretAngleOffsets": [
     0,
@@ -25,14 +24,14 @@
     0
   ],
   "hardpointOffsets": [
-    18,
-    6.5,
-    18,
+    15,
+    6,
+    15,
     2.5,
-    18,
+    15,
     -2.5,
-    18,
-    -6.5
+    15,
+    -6
   ],
   "hardpointAngleOffsets": [
     0,
@@ -60,6 +59,5 @@
       80
     ]
   },
-  "textureType": ROUGH,
   "fireSoundTwo": "harpoon_fire"
 }

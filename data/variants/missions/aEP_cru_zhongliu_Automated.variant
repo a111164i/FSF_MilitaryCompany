@@ -5,13 +5,12 @@
     "goalVariant": true,
     "hullId": "aEP_cru_zhongliu",
     "hullMods": [
-        "aEP_BurstDissipate",
+
         "aEP_HotLoader"
     ],
-    "modules": [{"MD01": "aEP_cru_zhongliu_armor_Standard"}],
     "permaMods": [
         "automated",
-        "aEP_EmergencyReconstructAi",
+        "aEP_EmergencyReconstruct",
     ],
     "tags":["unboardable"],
     "sMods": [],

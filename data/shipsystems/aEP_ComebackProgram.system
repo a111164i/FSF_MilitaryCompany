@@ -1,0 +1,16 @@
+{
+	"id":"aEP_ComebackProgram",
+	"type":"STAT_MOD",
+	"aiType":"CUSTOM",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_ComebackProgramAI",
+	"statsScript":"data.scripts.shipsystems.aEP_ComebackProgram",
+
+	
+	"runScriptWhileIdle":true,  # this means unapply() never gets called	
+	"outOfUsesSound":"gun_out_of_ammo",
+	"aiHints":{
+	}
+}
+
+
+

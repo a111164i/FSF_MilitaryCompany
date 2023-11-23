@@ -1,0 +1,52 @@
+{
+  "hullName": "",
+  "hullId": "aEP_ut_sta_main_side_l",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/weapons/aEP_cap_sta/side_exhaust_l.png",
+  "style": "aEP_FSF",
+  "height": 30,
+  "width": 9,
+  "center": [5, 15],
+  "collisionRadius": 18,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 17,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_ProjectileDenialShield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [4, 1]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-13, 2.5],
+      "length": 7.778174,
+      "width": 2.828427,
+      "angle": 180,
+      "contrailSize": 2.828427,
+      "style": "FSF_MAIN_CLEAN"
+    },
+    {
+      "location": [-13, -1.5],
+      "length": 7.778174,
+      "width": 2.828427,
+      "angle": 180,
+      "contrailSize": 2.828427,
+      "style": "FSF_MAIN_CLEAN"
+    }
+  ],
+  "bounds": [
+    4.5, 4.5,
+    2.5, -3.5,
+    -9.5, -3.5,
+    -7.5, 4.5
+  ]
+}

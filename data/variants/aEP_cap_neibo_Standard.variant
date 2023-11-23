@@ -1,12 +1,13 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 0,
-    "fluxVents": 25,
+    "fluxCapacitors": 12,
+    "fluxVents": 30,
     "goalVariant": true,
     "hullId": "aEP_cap_neibo",
     "hullMods": [
         "targetingunit",
-        "ballistic_rangefinder"
+        "ballistic_rangefinder",
+        "hardenedshieldemitter"
     ],
     "modules": [
         {"TR_MOD": "aEP_cap_neibo_turret_Standard"},
@@ -19,16 +20,38 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {
-                "WS0003": "railgun",
-                "WS0004": "railgun",
-                "WS0015": "railgun",
-                "WS0022": "railgun"
-            }
+            "weapons": {"COVER_MAIN": "aEP_cap_neibo_main"}
         },
         {
             "autofire": false,
             "mode": "ALTERNATING",
+            "weapons": {
+                "WS0001": "lightac",
+                "WS0002": "lightac",
+                "WS0003": "lightac",
+                "WS0004": "lightac",
+                "WS0005": "lightac",
+                "WS0006": "lightac",
+                "WS0015": "lightac",
+                "WS0022": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0016": "devastator"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "aEP_b_s_630",
+                "WS0010": "aEP_b_s_630"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
             "weapons": {
                 "WS0018": "aEP_m_s_expander",
                 "WS0019": "aEP_m_s_expander",
@@ -39,39 +62,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"COVER_MAIN": "aEP_cap_neibo_main"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0016": "mark9"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0001": "railgun",
-                "WS0002": "railgun"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0009": "vulcan",
-                "WS0010": "vulcan",
-                "WS0011": "vulcan",
-                "WS0012": "vulcan",
-                "WS0017": "dualflak"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0005": "aEP_e_s_300k",
-                "WS0006": "aEP_e_s_300k"
-            }
+            "weapons": {"WS0017": "dualflak"}
         }
     ]
 }

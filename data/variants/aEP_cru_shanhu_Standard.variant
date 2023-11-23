@@ -1,10 +1,10 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 7,
-    "fluxVents": 8,
+    "fluxCapacitors": 14,
+    "fluxVents": 0,
     "goalVariant": true,
     "hullId": "aEP_cru_shanhu",
-    "hullMods": [],
+    "hullMods": ["aEP_ShieldControlled"],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_shanhu_Standard",
@@ -12,36 +12,26 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0005": "aEP_m_l_harpoon"}
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "aEP_m_s_expander",
-                "WS0012": "aEP_m_s_expander"
+                "WS0003": "lightdualac",
+                "WS0010": "lightdualac",
+                "WS0013": "lightdualac",
+                "WS0014": "lightdualac"
             }
         },
         {
             "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "WS0004": "aEP_m_m_expander",
-                "WS0008": "aEP_m_m_expander"
-            }
+            "mode": "LINKED",
+            "weapons": {"WS0005": "cyclone"}
         },
         {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0002": "lightdualac"}
-        },
-        {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "vulcan",
-                "WS0003": "vulcan",
-                "WS0006": "aEP_b_s_pom"
+                "WS0004": "aEP_m_m_breachdoor",
+                "WS0007": "aEP_m_s_breachdoor",
+                "WS0008": "aEP_m_m_breachdoor",
+                "WS0012": "aEP_m_s_breachdoor"
             }
         }
     ],

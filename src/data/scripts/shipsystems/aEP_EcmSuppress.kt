@@ -31,13 +31,13 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
     val PUNISH_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
     const val SELF_BONUS = 1f
     init {
-      PUNISH_HULLSIZE[ShipAPI.HullSize.DEFAULT] = -2f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.DEFAULT] = -3f
       PUNISH_HULLSIZE[ShipAPI.HullSize.FIGHTER] = -0f
 
-      PUNISH_HULLSIZE[ShipAPI.HullSize.FRIGATE] = -1f
-      PUNISH_HULLSIZE[ShipAPI.HullSize.DESTROYER] = -2f
-      PUNISH_HULLSIZE[ShipAPI.HullSize.CRUISER] = -3f
-      PUNISH_HULLSIZE[ShipAPI.HullSize.CAPITAL_SHIP] = -4f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.FRIGATE] = -2f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.DESTROYER] = -3f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.CRUISER] = -4f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.CAPITAL_SHIP] = -6f
     }
 
   }

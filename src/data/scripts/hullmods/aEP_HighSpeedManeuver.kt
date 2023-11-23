@@ -1,6 +1,7 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.combat.BeamAPI
 import com.fs.starfarer.api.combat.CollisionClass
 import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.DamageAPI
@@ -18,6 +19,7 @@ import combat.util.aEP_Tool
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.DODGE_FADE_COLOR
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.DODGE_JITTER_COLOR
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.ID
+import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.IGNORE_DAMAGE
 import data.scripts.weapons.aEP_m_s_era
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
@@ -30,18 +32,28 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
     val DODGE_JITTER_COLOR = Color(245,255,255,150)
     val DODGE_FADE_COLOR = Color(75,75,75,150)
 
-    const val DODGE_TIME = 0.35f
+    const val DODGE_TIME = 0.3334f
     const val MAX_DODGE_CHANCE = 0.9f
     const val MAX_DODGE_CHANCE_DROP = 0.1f
     const val DODGE_CHANCE_REFILL_SPEED = 0.1f
     const val REFILL_AFTER_DELAY= 1f
+
+    const val IGNORE_DAMAGE = 20f
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    ship.mutableStats.combatEngineRepairTimeMult.modifyMult(ID,0.5f)
+
     if(!ship.hasListenerOfClass(DodgeAttack::class.java)){
       ship.addListener(DodgeAttack(ship,
         MAX_DODGE_CHANCE,MAX_DODGE_CHANCE_DROP,DODGE_CHANCE_REFILL_SPEED,REFILL_AFTER_DELAY,DODGE_TIME))
     }
+  }
+
+  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+
+    //aEP_Tool.ignoreSlow(ship,true)
+
   }
 
   override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
@@ -62,6 +74,7 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
 
     tooltip.addPara("{%s}"+ txt("aEP_HighSpeedManeuver01"), 5f, arrayOf(Color.green,highLight),
       aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", IGNORE_DAMAGE),
       String.format("%.0f", MAX_DODGE_CHANCE * 100)+"%",
       txt("aEP_HighSpeedManeuver02"))
     tooltip.addPara("{%s}"+txt("aEP_HighSpeedManeuver03"), 5f,  arrayOf(Color.green,highLight),
@@ -69,14 +82,15 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
       txt("aEP_HighSpeedManeuver02"),
       String.format("%.2f", DODGE_TIME ))
 
-
+    tooltip.addPara("{%s}"+txt("aEP_HighSpeedManeuver06"), 5f,  arrayOf(Color.green,highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("-%.0f", 50f )+"%")
     //中立
 //    tooltip.addPara("{%s}" + aEP_DataTool.txt("aEP_EmergencyReconstruct05"), 5f, arrayOf(highLight, highLight),
 //      aEP_ID.HULLMOD_POINT)
 
 
     //负面
-    val chanceDrop = aEP_EmergencyReconstruct.CHANGE_DROP_HULLSIZE[hullSize]?:0.5f
     tooltip.addPara("{%s}"+ txt("aEP_HighSpeedManeuver04"), 5f, arrayOf(Color.red,highLight),
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", MAX_DODGE_CHANCE_DROP * 100f )+"%",
@@ -102,7 +116,8 @@ class DodgeAttack(val ship: ShipAPI, val maxDodgeChance:Float, val maxDodgeChanc
   override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
 
     //没伤害的，比如维修光束，不需要闪避
-    if(damage.baseDamage <= 0f) return null
+    if(damage.baseDamage <= IGNORE_DAMAGE) return null
+    if(param is BeamAPI && damage.baseDamage <= IGNORE_DAMAGE * 2f) return null
 
     val test = MathUtils.getRandomNumberInRange(0f,100f)
     timeElapsedSinceDodge = 0f
@@ -130,7 +145,7 @@ class DodgeAttack(val ship: ShipAPI, val maxDodgeChance:Float, val maxDodgeChanc
       Global.getCombatEngine().maintainStatusForPlayerShip(ID,
         Global.getSettings().getSpriteName("aEP_ui","high_speed_maneuver"),
         Global.getSettings().getHullModSpec(ID).displayName,
-        String.format(txt("aEP_HighSpeedManeuver05"),(dodgeChance*100f).toInt().toString()+"%"),
+        String.format("Active Chance: %.0f",(dodgeChance*100f))+"%",
         false)
     }
 

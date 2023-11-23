@@ -13,6 +13,7 @@ import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.combat.BeamAPI
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.util.IntervalUtil
@@ -51,8 +52,8 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
   }
 
   init {
-    haveToBeWithMod.add("aEP_MarkerDissipation")
-    notCompatibleList.add("reinforcedhull")
+    haveToBeWithMod.add(aEP_SpecialHull.ID)
+    notCompatibleList.add(HullMods.REINFORCEDHULL)
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
@@ -62,24 +63,18 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
       if(isSMod(ship)){
         ship.addListener(aEP_VanguardDamageTaken(
           SMOD_REDUCE_AMOUNT[ship.hullSize]?:0f,
-          SMOD_REDUCE_PERCENT,
-          SMOD_FLUX_REDUCE_PER_HIT,
-          ship))
+          SMOD_REDUCE_PERCENT, ship))
 
       }else{
         ship.addListener(aEP_VanguardDamageTaken(
           REDUCE_AMOUNT[ship.hullSize]?:0f,
-          REDUCE_PERCENT,
-          FLUX_REDUCE_PER_HIT,
-          ship))
+          REDUCE_PERCENT, ship))
       }
 
     }
   }
 
-  internal class aEP_VanguardDamageTaken(val reduceAmount: Float,val reduceChance: Float, val fluxReduce: Float, val ship: ShipAPI) : DamageTakenModifier, AdvanceableListener {
-    val checkTracker = IntervalUtil(0.25f,0.25f)
-    var heatingLevel = 0f
+  internal class aEP_VanguardDamageTaken(val reduceAmount: Float,val reduceChance: Float, val ship: ShipAPI) : DamageTakenModifier {
 
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       if (shieldHit) return null
@@ -103,19 +98,9 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
         null
       )
 
-      //如果舰船预热完全，每次生效都会减少幅能
-      if (heatingLevel >= 0.95f){
-        ship.fluxTracker.decreaseFlux(fluxReduce)
-      }
       return ID
     }
 
-    override fun advance(amount: Float) {
-      checkTracker.advance(amount)
-      if(!checkTracker.intervalElapsed()) return
-      //根据受益者的预热程度，更新转换率
-      heatingLevel = aEP_MarkerDissipation.getBufferLevel(ship)
-    }
 
   }
 
@@ -146,10 +131,10 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
     tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
 
 
-    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull02"), 5f, arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.1f", FLUX_REDUCE_PER_HIT))
+//    tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
+//    tooltip.addPara("{%s}"+ txt("aEP_VanguardHull02"), 5f, arrayOf(Color.green,highLight),
+//      aEP_ID.HULLMOD_POINT,
+//      String.format("%.1f", FLUX_REDUCE_PER_HIT))
   }
 
   override fun addSModEffectSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {

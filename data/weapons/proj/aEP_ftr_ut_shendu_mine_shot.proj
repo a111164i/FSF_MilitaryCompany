@@ -2,7 +2,7 @@
 	"id":"aEP_ftr_ut_shendu_mine_shot",
 	"specClass":"missile",	
 	"missileType":"BOMB",
-	"sprite":"graphics/weapons/aEP_shenceng/proj.png",
+	"sprite":"graphics/weapons/aEP_des_shendu/proj.png",
 	"glowSprite":"graphics/missiles/heavy_mine3_glow.png",
 	"glowColor":[240,185,135,55],
 	"glowRadius": 100,

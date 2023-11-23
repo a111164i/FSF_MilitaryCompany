@@ -19,7 +19,8 @@
       "mount": "TURRET",
       "arc": 360,
       "angle": 0,
-      "locations": [3, -0]
+      "locations": [-1.5, -0],
+      "renderOrderMod": 10
     },
     {
       "id": "WS0002",
@@ -28,7 +29,7 @@
       "mount": "TURRET",
       "arc": 240,
       "angle": -30,
-      "locations": [4, -3]
+      "locations": [6.5, -4.5]
     },
     {
       "id": "FLAK01",
@@ -73,12 +74,12 @@
       "mount": "TURRET",
       "arc": 240,
       "angle": 30,
-      "locations": [4, 3]
+      "locations": [6.5, 4.5]
     }
   ],
   "engineSlots": [
     {
-      "location": [-12, 10.5],
+      "location": [-12, 11],
       "length": 9.899495,
       "width": 4.242641,
       "angle": 135,
@@ -86,7 +87,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [-12, -10.5],
+      "location": [-12, -11],
       "length": 9.899495,
       "width": 4.242641,
       "angle": -135,
@@ -94,7 +95,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [4, 10.5],
+      "location": [5, 11],
       "length": 9.899495,
       "width": 4.242641,
       "angle": 135,
@@ -102,7 +103,7 @@
       "style": "FSF_MAIN"
     },
     {
-      "location": [4, -10.5],
+      "location": [5, -11],
       "length": 9.899495,
       "width": 4.242641,
       "angle": -135,

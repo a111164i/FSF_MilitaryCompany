@@ -3,7 +3,7 @@
 	"id":"aEP_m_s_expander_shot",
 	"specClass":"missile",	
 	"missileType":"MISSILE",
-	"sprite":"graphics/weapons/aEP_hive_bay/hive_missile_warhead.png",
+	"sprite":"graphics/weapons/aEP_m_m_expander/proj.png",
 	"size":[7,15],	
 	"center":[3.5,7.5],
 	"collisionRadius":8,
