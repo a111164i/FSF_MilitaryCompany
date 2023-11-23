@@ -1,0 +1,11 @@
+{
+	"id":"aEP_Rapture",
+	"type":"STAT_MOD",
+	"aiType":"WEAPON_BOOST",
+  "statsScript":"data.scripts.shipsystems.aEP_Rapture",
+
+
+	"runScriptWhileIdle":false,  # this means unapply() never gets called
+	"useSound":"gun_out_of_ammo",
+	"outOfUsesSound":"gun_out_of_ammo",
+}

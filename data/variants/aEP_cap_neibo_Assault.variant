@@ -1,0 +1,64 @@
+{
+    "displayName": "Assault",
+    "fluxCapacitors": 15,
+    "fluxVents": 45,
+    "goalVariant": true,
+    "hullId": "aEP_cap_neibo",
+    "hullMods": [
+        "targetingunit",
+        "aEP_EliteShip",
+        "aEP_VanguardHull",
+    ],
+    "modules": [
+        {"TR_MOD": "aEP_cap_neibo_turret_Standard"},
+        {"ARMOR": "aEP_cap_neibo_armor_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_neibo_Assault",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {"COVER_MAIN": "aEP_cap_neibo_main"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0016": "multineedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_b_s_h37",
+                "WS0004": "aEP_b_s_h37",
+                "WS0015": "aEP_b_s_h37",
+                "WS0022": "aEP_b_s_h37"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0002": "aEP_b_s_630",
+                "WS0005": "aEP_b_s_630",
+                "WS0006": "aEP_b_s_630",
+                "WS0009": "aEP_b_s_630",
+                "WS0010": "aEP_b_s_630",
+                "WS0017": "dualflak"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0018": "aEP_m_s_expander",
+                "WS0019": "aEP_m_s_expander",
+                "WS0020": "aEP_m_s_expander",
+                "WS0021": "aEP_m_s_expander"
+            }
+        }
+    ]
+}

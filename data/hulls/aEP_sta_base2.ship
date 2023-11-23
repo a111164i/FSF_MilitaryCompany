@@ -1,0 +1,233 @@
+{
+  "hullName": "",
+  "hullId": "aEP_sta_base2",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/aEP_stations/base.png",
+  "style": "aEP_FSF",
+  "height": 600,
+  "width": 600,
+  "center": [300, 300],
+  "collisionRadius": 484.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 479.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "vastbulk",
+    "axialrotation",
+    "supercomputer",
+    "shared_flux_sink"
+  ],
+  "builtInWeapons": {
+    "WS0001": "aEP_blinker_green",
+    "WS0002": "aEP_blinker_green",
+    "WS0003": "aEP_blinker_green",
+    "WS0004": "aEP_blinker_green"
+  },
+  "weaponSlots": [
+    {
+      "id": "MAIN",
+      "size": "LARGE",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": -0,
+      "locations": [0, 0]
+    },
+    {
+      "id": "TIER1_HANGER_L",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": 45,
+      "locations": [150, 150]
+    },
+    {
+      "id": "TIER1_HANGER_R",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -135,
+      "locations": [-150, -150]
+    },
+    {
+      "id": "TIER1_BATTERY_F",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -45,
+      "locations": [125, -125]
+    },
+    {
+      "id": "TIER2_STRUT_L",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": 90,
+      "locations": [0, 1]
+    },
+    {
+      "id": "TIER2_STRUT_R",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -90,
+      "locations": [0, -1]
+    },
+    {
+      "id": "TIER2_STRUT_F",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -0,
+      "locations": [1, -0]
+    },
+    {
+      "id": "TIER2_STRUT_B",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": 180,
+      "locations": [-1, -0]
+    },
+    {
+      "id": "TIER2_HULL_F",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": 45,
+      "locations": [1, 1]
+    },
+    {
+      "id": "TIER2_HULL_B",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -135,
+      "locations": [-1, -1]
+    },
+    {
+      "id": "TIER1_BATTERY_F_ARMOR_L",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -22.5,
+      "locations": [235, -110],
+      "renderOrderMod": 10
+    },
+    {
+      "id": "TIER1_BATTERY_F_ARMOR_R",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -67.5,
+      "locations": [110, -235],
+      "renderOrderMod": 10
+    },
+    {
+      "id": "TIER2_HULL_B_ARMOR_R2",
+      "size": "SMALL",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -162,
+      "locations": [-1, -1]
+    },
+    {
+      "id": "TIER2_HULL_B_ARMOR_R1",
+      "size": "SMALL",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -147,
+      "locations": [-1, -1]
+    },
+    {
+      "id": "TIER2_HULL_B_ARMOR_L1",
+      "size": "SMALL",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -123,
+      "locations": [-1, -1]
+    },
+    {
+      "id": "TIER2_HULL_B_ARMOR_L2",
+      "size": "SMALL",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 4,
+      "angle": -108,
+      "locations": [-1, -1]
+    },
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-50, 50]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-50, -50]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [50, 50]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [50, -50]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    -259, -21,
+    -166, -32,
+    -126, -126,
+    -31, -166,
+    -21, -259,
+    21, -259,
+    31, -166,
+    126, -126,
+    166, -31,
+    259, -21,
+    259, 21,
+    166, 31,
+    126, 126,
+    31, 166,
+    21, 259,
+    -21, 259,
+    -31, 166,
+    -126, 126,
+    -166, 32,
+    -259, 21
+  ]
+}

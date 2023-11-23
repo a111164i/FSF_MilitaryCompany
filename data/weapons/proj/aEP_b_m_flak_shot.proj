@@ -1,0 +1,43 @@
+{
+	"id":"aEP_b_m_flak_shot",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"collisionClass":"RAY_FIGHTER",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	#"collisionRadius":15,
+	"length":64,
+	"width":8,
+	"fadeTime":0.2,
+	"fringeColor":[255,50,50,255],
+  "coreColor":[255,255,200,250],
+	"glowColor":[255,65,30,35],
+	"glowRadius":50,
+	"hitGlowRadius":80,
+	#"textureType":"ROUGH",  # now also used for "BALLISTIC_AS_BEAM", if specified
+  "textureType":["graphics/fx/beamfringec.png","graphics/fx/beam_weave_core.png"],
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	#"bulletSprite":"graphics/missiles/shell_large_blue.png",
+	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
+					"range":45,
+					#"vsMissileRange":100,
+					#要在爆炸中使用onHit一定要同时使用onExplosion，在onExplosion中将projectileId放入customData
+					"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+          "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+					"explosionSpec":{"duration":0.0001f,
+						"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+						"radius":120,
+						"coreRadius":45, # full damage within core radius - also equal to proximity fuse range
+						"collisionClass":PROJECTILE_FF,
+						"collisionClassByFighter":PROJECTILE_FIGHTER,
+						"particleSizeMin":5.0,
+						"particleSizeRange":5.0,
+						"particleDuration":0.8,
+						"particleCount":10,
+						"particleColor":[255,155,155,85],
+						"sound":"aEP_high_speed_HE_flak"},
+	}
+
+}
