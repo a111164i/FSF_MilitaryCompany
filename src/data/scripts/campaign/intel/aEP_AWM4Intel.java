@@ -7,6 +7,7 @@ import com.fs.starfarer.api.ui.IntelUIAPI;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import combat.util.aEP_ID;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -78,12 +79,19 @@ public class aEP_AWM4Intel extends aEP_BaseMission
   @Override
   public void createSmallDescription(TooltipMakerAPI info, float width, float height) {
     Color highLight = Misc.getHighlightColor();
-    Color grayColor = Misc.getGrayColor();
-    Color whiteColor = Misc.getTextColor();
-    Color barColor = faction.getDarkUIColor();
-    Color titleTextColor = faction.getColor();
+    FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    Color highlight = Misc.getHighlightColor();
+    Color negativeHighlight = Misc.getNegativeHighlightColor();
 
-    info.addPara(txt("AWM04_mission02"), 10f, whiteColor);
+    Color grayColor = Misc.getGrayColor();
+    Color txtColor = Misc.getTextColor();
+
+    Color titleTextColor = faction.getColor();
+    Color factionColor = faction.getBaseUIColor();
+    Color factionDarkColor = faction.getDarkUIColor();
+    Color factionBrightColor = faction.getBrightUIColor();
+
+    info.addPara(txt("AWM04_mission02"), 10f, txtColor);
 
 
     if (Global.getSettings().isDevMode()) {

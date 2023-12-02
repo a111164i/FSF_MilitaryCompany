@@ -11,9 +11,7 @@ class aEP_LimitedTurret: aEP_BaseHullMod() {
     private val WEAPON_RANGE_BONS: MutableMap<String, Float> = HashMap()
 
     init {
-
       WEAPON_RANGE_BONS["aEP_cap_shangshengliu_mk3"] = 30f
-
 
     }
   }
@@ -28,9 +26,9 @@ class aEP_LimitedTurret: aEP_BaseHullMod() {
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String {
 
-    if (index == 0) return String.format("%.0f", WEAPON_RANGE_BONS[ship?.hullSpec?.baseHullId?:""]?:25f) +"%"
-    if (index == 1) return String.format("%.0f", WEAPON_HEALTH_PERCENT_BONHS ) +"%"
-    if (index == 2) return String.format("%.0f", WEAPON_REPAIR_TIME_REDUCE_MULT * 100f) +"%"
+    if (index == 0) return String.format("+%.0f", WEAPON_RANGE_BONS[ship?.hullSpec?.baseHullId?:""]?:25f) +"%"
+    if (index == 1) return String.format("+%.0f", WEAPON_HEALTH_PERCENT_BONHS ) +"%"
+    if (index == 2) return String.format("-%.0f", WEAPON_REPAIR_TIME_REDUCE_MULT * 100f) +"%"
     else return ""
 
   }

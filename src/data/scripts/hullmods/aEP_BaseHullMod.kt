@@ -17,10 +17,18 @@ import java.lang.StringBuffer
 
 open class aEP_BaseHullMod : BaseHullMod() {
 
-  public val notCompatibleList = HashSet<String>()
-  public val haveToBeWithMod = HashSet<String>()
-  public val allowOnHullsize = HashMap<ShipAPI.HullSize, Boolean>()
-  public val banShipList = HashSet<String>()
+  companion object{
+    const val PARAGRAPH_PADDING_SMALL = 5f
+    const val PARAGRAPH_PADDING_BIG = 10f
+
+    const val TEXT_HEIGHT_SMALL = 20f
+  }
+
+  val notCompatibleList = HashSet<String>()
+  val haveToBeWithMod = HashSet<String>()
+  val allowOnHullsize = HashMap<ShipAPI.HullSize, Boolean>()
+  val banShipList = HashSet<String>()
+  var canInstallOnModule = true
 
   init {
     allowOnHullsize[ShipAPI.HullSize.DEFAULT] = false
@@ -64,6 +72,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
         shouldRemove = true
       }
     }
+
     //自定义的安装条件
     if (!isApplicableToShip(ship)) {
       shouldRemove = true
@@ -163,17 +172,25 @@ open class aEP_BaseHullMod : BaseHullMod() {
     return  true
   }
 
+
   /**
    * 在船插还是物品的的时候，ship的参数可能为null
    **/
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    super.addPostDescriptionSection(tooltip, hullSize, ship, width, isForModSpec)
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
 
-    val highLight = Misc.getHighlightColor()
-    //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 8f, arrayOf(Color.red),
-      aEP_ID.HULLMOD_POINT,
-      showModName(notCompatibleList))
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
+
+    super.addPostDescriptionSection(tooltip, hullSize, ship, width, isForModSpec)
+    showIncompatible(tooltip)
   }
 
   /**
@@ -181,6 +198,14 @@ open class aEP_BaseHullMod : BaseHullMod() {
    */
   open fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
 
+  }
+
+  open fun showIncompatible(tooltip: TooltipMakerAPI){
+    val highLight = Misc.getNegativeHighlightColor()
+    //显示不兼容插件
+    tooltip.addPara(" %s "+ aEP_DataTool.txt("not_compatible") +" %s ", 8f, arrayOf(Color.red, highLight),
+      aEP_ID.HULLMOD_POINT,
+      showModName(notCompatibleList))
   }
 
   open fun showModName(list: Set<String>): String {
@@ -197,6 +222,40 @@ open class aEP_BaseHullMod : BaseHullMod() {
       toReturn.append("None")
     }
     return toReturn.toString()
+  }
+
+  open fun addPositivePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
+    val highLight = Misc.getHighlightColor()
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Color.green, highLight),
+      aEP_ID.HULLMOD_POINT,
+      *data)
+  }
+
+  open fun addDoubleEdgePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
+    val highLight = Misc.getHighlightColor()
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Color.yellow, highLight),
+      aEP_ID.HULLMOD_POINT,
+      *data)
+  }
+
+  open fun addNegativePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
+    val highLight = Misc.getHighlightColor()
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Color.red, highLight),
+      aEP_ID.HULLMOD_POINT,
+      *data)
+  }
+
+  open fun addGrayPara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
+    val gray = Misc.getGrayColor()
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, Color.gray , gray,
+      aEP_ID.HULLMOD_POINT,
+      *data)
+  }
+
+  open fun addSubBulletPara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
+    val highLight = Misc.getHighlightColor()
+    tooltip.addPara(aEP_ID.HULLMOD_BULLET+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(highLight),
+      *data)
   }
 
   /**

@@ -4,6 +4,8 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
+import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
+import combat.util.aEP_Combat
 import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_DroneGuard.Companion.MAX_DIST
 import org.lazywizard.lazylib.CollisionUtils
@@ -26,7 +28,7 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
   var currBeam:BeamAPI? = null
 
   override fun initImpl() {
-    thinkTracker.setInterval(0.01f,0.07f)
+    thinkTracker.setInterval(0.01f,0.05f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
@@ -73,20 +75,21 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
           val interceptPoint = aEP_Tool.getExtendedLocationFromPoint(
             proj.location,
             angleAndVel.x,
-            BLINK_TIME_BEFORE_HIT * angleAndVel.y + ship.collisionRadius)
-          //如果目标弹丸飞的太快，第一位置已经处于保护友军碰撞圈的范围内了，就使用第二位置，直接在舰体碰撞圈和弹丸的交点处
+            BLINK_TIME_BEFORE_HIT * angleAndVel.y + ship.collisionRadius + 20f)
+          //如果目标弹丸飞的太快，第一位置已经处于保护友军碰撞圈的范围内了，就使用第二位置，直接在撞在导弹上
           val distPoint2TargetSq = MathUtils.getDistanceSquared(interceptPoint, s.location)
-          if(distPoint2TargetSq <= (s.collisionRadius + 10f ).pow(2)) {
+          if(distPoint2TargetSq <= (s.collisionRadius).pow(2)) {
             interceptPoint.set(aEP_Tool.getExtendedLocationFromPoint(
               proj.location,
               angleAndVel.x,
-              distProj2Target - s.collisionRadius))
+              20f))
           }
 
           val distInterceptPoint2ShipSq = MathUtils.getDistanceSquared(interceptPoint, ship.location)
           if(distInterceptPoint2ShipSq < aEP_Tool.getSystemRange(ship, MAX_DIST).pow(2)){
             ship.mouseTarget.set(interceptPoint)
-            proj.setCustomData(ID,1f)
+            //每个弹丸不会重复被拦截
+            addEffect(aEP_Combat.MarkTarget(2f,ID,1f,proj))
             currProj = proj
             shouldActive = true
             return

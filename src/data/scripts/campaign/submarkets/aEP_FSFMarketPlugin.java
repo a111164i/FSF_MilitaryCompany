@@ -13,6 +13,7 @@ import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.submarkets.BaseSubmarketPlugin;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
+import com.fs.starfarer.api.util.Highlights;
 import com.fs.starfarer.api.util.Misc;
 import combat.util.aEP_DataTool;
 import combat.util.aEP_ID;
@@ -202,6 +203,13 @@ public class aEP_FSFMarketPlugin extends BaseSubmarketPlugin {
     }
     return "";
   }
+
+  @Override
+  public String getName() {
+    return super.getName();
+  }
+
+
 
   private void addNormalShipList(){
     FactionDoctrineAPI doctrineOverrided = submarket.getFaction().getDoctrine().clone();

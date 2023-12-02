@@ -175,12 +175,16 @@
 	
 	"designTypeColors":{
 		"FSF制造":[180,180,150,255],
+		"FSF Manufacture":[180,180,150,255],
 		"FSF设计":[180,180,150,255],
+		"FSF Design": [180,180,150,255],
 		"FSF先进武器计划":[180,180,150,255],
+		"FSF Advanced Weapon Program": [180,180,150,255],
 		"FSF胡乱改造":[255,120,100,255],
+		"FSF Private Convertion":[255,120,100,255],
 		"FSF":[180,180,150,255]
 	},
 
 
-	"aEP_UseEnString": false
+	"aEP_UseEnString": true
 }

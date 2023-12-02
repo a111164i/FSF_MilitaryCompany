@@ -81,7 +81,9 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
     if(shouldEnd) return
 
     time += amount
-    time = MathUtils.clamp(time,0f,lifeTime)
+    if(lifeTime > 0f){
+      time = MathUtils.clamp(time,0f,lifeTime)
+    }
     advanceImpl(amount)
     if(time >= lifeTime && lifeTime > 0){
       shouldEnd = true

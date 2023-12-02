@@ -17,7 +17,7 @@ class aEP_BBAdjustRange : aEP_BaseHullMod() {
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?): String {
-    if(index == 0) return "40%"
+    if(index == 0) return "+40%"
     return ""
   }
 }

@@ -1,0 +1,12 @@
+name,id,tech/manufacturer,baseRaidDanger,desc
+,,,,
+FSF Common Ship Blueprint,FSF_openbp ,FSF Manufacture,,Allow to produce common FSF ships
+FSF Rare Ship Blueprint,FSF_rarebp ,FSF Manufacture,,Allow to produce rare FSF ships
+,,,,
+,,,,
+S-1 Cruise Missile,aEP_cruise_missile,FSF Advanced Weapon Program,,"S-serious cruise missile is a remote controlled, frigate hullsize, campaign level weapon, after launch it will search the closest hostile fleet within 60 degrees of the heading direction
+
+S-1 is designed to destroy large area of small ships with huge blaster radius"
+S-2 Cruise Missile,aEP_cruise_missile2,FSF Advanced Weapon Program,,"S-serious cruise missile is a remote controlled, frigate hullsize, campaign level weapon, after launch it will search the closest hostile fleet within 60 degrees of the heading direction
+
+S-2 is designed to bomb pump a serious of deadly energy plasma jet destroying one big target ahead"

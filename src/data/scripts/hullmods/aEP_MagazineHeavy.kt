@@ -63,21 +63,19 @@ class aEP_MagazineHeavy(): aEP_BaseHullMod() {
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String? {
     ship ?: return ""
 
-    val realDissi = aEP_Tool.getRealDissipation(ship.mutableStats)
     val baseDissi = ship.mutableStats.fluxDissipation.base
 
     val startingThreshold = baseDissi * STARTING_POINT
     val bonusFlat = FLAT_NEEDED_PER_TRIGGER
 
-    var excessed = realDissi - startingThreshold
 
     val bonus = computeBonus(ship.mutableStats)
 
     if (index == 0) return String.format("%.0f", startingThreshold)
     if (index == 1) return String.format("%.0f", bonusFlat)
-    if (index == 2) return String.format("%.0f", PER_BONUS) +"%"
-    if (index == 3) return String.format("%.0f", MAX_BONUS) +"%"
-    if (index == 4) return String.format("%.0f", bonus) + "%"
+    if (index == 2) return String.format("+%.0f", PER_BONUS) +"%"
+    if (index == 3) return String.format("+%.0f", MAX_BONUS) +"%"
+    if (index == 4) return String.format("+%.0f", bonus) + "%"
     else return ""
   }
 

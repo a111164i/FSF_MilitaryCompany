@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static combat.util.aEP_DataTool.txt;
+
 public class aEP_FSF_Heng implements SectorGeneratorPlugin {
   @Override
   public void generate(SectorAPI sector) {
@@ -71,7 +73,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
     //创造地图实体
     SectorEntityToken FSF_DefStation = system.addCustomEntity("aEP_FSF_DefStation",// id
-      null,// name
+      txt("aEP_custom_entity_names","aEP_FSF_DefStation"),// name
       "aEP_FSF_DefStation",// type id in planets.json
       "aEP_FSF");//faction id
     //设置实体的运动轨道
@@ -101,7 +103,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
 
     SectorEntityToken FSF_SaleStation = system.addCustomEntity("aEP_FSF_SaleStation",// id
-      null,// name
+      txt("aEP_custom_entity_names","aEP_FSF_SaleStation"),// name
       "aEP_FSF_SaleStation",// type id in planets.json
       "aEP_FSF");//faction id
     FSF_SaleStation.setCircularOrbitPointingDown(FSF_HomePlanet, 0, 650, 45);//which to orbit, starting angle, radius, orbit days

@@ -93,39 +93,41 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
 
     //主效果
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
 
-    tooltip.addPara("{%s}"+ txt("aEP_EmergencyReconstruct01"), 5f,
-      arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT)
+    //正面
+    addPositivePara(tooltip, "aEP_EmergencyReconstruct01", arrayOf())
+
     val firstChanceFail = FIRST_CHANGE_FAIL_HULLSIZE[hullSize]?:1f
-    tooltip.addPara(
-      aEP_ID.HULLMOD_BULLET + txt("aEP_EmergencyReconstruct02"), 5f,
-      highLight,
+    addSubBulletPara(tooltip, "aEP_EmergencyReconstruct02", arrayOf(
       txt("aEP_EmergencyReconstruct03"),
-      String.format("%.0f", firstChanceFail*100f))
-    val failChanceUp = CHANGE_FAIL_INCREASE_HULLSIZE[hullSize]?:0.5f
-    tooltip.addPara(aEP_ID.HULLMOD_BULLET + txt("aEP_EmergencyReconstruct04"), 5f,
-      arrayOf(highLight,highLight, highLight),
-      txt("aEP_EmergencyReconstruct03"),
-      String.format("+%.0f",failChanceUp*100f))
+      String.format("%.0f", firstChanceFail*100f)
+    ))
 
     val dp =  ship?.mutableStats?.dynamic?.getMod(Stats.DEPLOYMENT_POINTS_MOD)?.computeEffective(ship.hullSpec.suppliesToRecover)?:20f
     val time = REPAIR_TIME_BASE + REPAIR_TIME_PER_DP * dp
-    tooltip.addPara("{%s}" + txt("aEP_EmergencyReconstruct05"), 5f, arrayOf(highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", time))
+    addSubBulletPara(tooltip, "aEP_EmergencyReconstruct05", arrayOf(
+      String.format("%.0f", time)
+    ))
 
-
-
+    // 负面
+    val chanceDropPerUse = CHANGE_FAIL_INCREASE_HULLSIZE[hullSize]?:0.25f
+    addNegativePara(tooltip, "aEP_EmergencyReconstruct04", arrayOf(
+      txt("aEP_EmergencyReconstruct03"),
+      String.format("+%.0f", chanceDropPerUse * 100f)
+    ))
     //显示不兼容插件
     //tooltip.addPara("{%s}"+ txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
 
@@ -133,7 +135,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
 
     //灰字额外说明
-    tooltip.addPara(aEP_DataTool.txt("aEP_EmergencyReconstruct06"), grayColor, 5f)
+    addGrayPara(tooltip,"aEP_EmergencyReconstruct06", arrayOf())
   }
 
   /**

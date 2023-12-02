@@ -61,46 +61,61 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
 
     //主效果
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
-
-    tooltip.addPara("{%s}"+ txt("aEP_HighSpeedManeuver01"), 5f, arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT,
+    addPositivePara(tooltip, "aEP_HighSpeedManeuver01", arrayOf(
       String.format("%.0f", IGNORE_DAMAGE),
-      String.format("%.0f", MAX_DODGE_CHANCE * 100)+"%",
-      txt("aEP_HighSpeedManeuver02"))
-    tooltip.addPara("{%s}"+txt("aEP_HighSpeedManeuver03"), 5f,  arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT,
-      txt("aEP_HighSpeedManeuver02"),
-      String.format("%.2f", DODGE_TIME ))
+      txt("aEP_HighSpeedManeuver03"),
+      String.format("%.2f", DODGE_TIME),
+    ))
+    addPositivePara(tooltip, "aEP_HighSpeedManeuver02", arrayOf(
+      String.format("%.0f", REFILL_AFTER_DELAY),
+    ))
 
-    tooltip.addPara("{%s}"+txt("aEP_HighSpeedManeuver06"), 5f,  arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("-%.0f", 50f )+"%")
-    //中立
-//    tooltip.addPara("{%s}" + aEP_DataTool.txt("aEP_EmergencyReconstruct05"), 5f, arrayOf(highLight, highLight),
-//      aEP_ID.HULLMOD_POINT)
+    val col2W0 = width * 0.33f
+    val col3W0 = width * 0.33f
+    //第一列显示的名称，尽可能可能的长
+    val col1W0 = (width - col2W0 - col3W0 - PARAGRAPH_PADDING_BIG)
+    tooltip.beginTable(
+      factionColor, factionDarkColor, factionBrightColor,
+      TEXT_HEIGHT_SMALL, true, true,
+      *arrayOf<Any>(
+        txt("max")+" "+ txt("chance"), col1W0,
+        txt("chance")+" "+ txt("decrease"), col2W0,
+        txt("recover")+" "+ txt("speed"), col3W0,
+      )
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight, String.format("%.0f", MAX_DODGE_CHANCE * 100f)+"%",
+      Alignment.MID, highlight, String.format("%.0f", MAX_DODGE_CHANCE_DROP * 100f)+"%",
+      Alignment.MID, highlight, String.format("%.0f", DODGE_CHANCE_REFILL_SPEED * 100f)+"%/s",
+    )
+    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
 
-    //负面
-    tooltip.addPara("{%s}"+ txt("aEP_HighSpeedManeuver04"), 5f, arrayOf(Color.red,highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", MAX_DODGE_CHANCE_DROP * 100f )+"%",
-      String.format("%.1f", REFILL_AFTER_DELAY ))
+
+    addPositivePara(tooltip, "aEP_HighSpeedManeuver04", arrayOf(
+      String.format("-%.0f", 50f )+"%"
+    ))
+
 
     //显示不兼容插件
+    showIncompatible(tooltip)
     //tooltip.addPara("{%s}"+ txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
 
-    //预热完全后额外效果
-    //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
 
     //灰字额外说明
     //tooltip.addPara(aEP_DataTool.txt("aEP_EmergencyReconstruct07"), grayColor, 5f)

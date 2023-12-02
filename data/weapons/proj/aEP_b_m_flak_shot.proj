@@ -28,7 +28,7 @@
           "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 					"explosionSpec":{"duration":0.0001f,
 						"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-						"radius":120,
+						"radius":125,
 						"coreRadius":45, # full damage within core radius - also equal to proximity fuse range
 						"collisionClass":PROJECTILE_FF,
 						"collisionClassByFighter":PROJECTILE_FIGHTER,

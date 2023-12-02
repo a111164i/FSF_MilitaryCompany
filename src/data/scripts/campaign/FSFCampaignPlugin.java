@@ -130,10 +130,10 @@ public class FSFCampaignPlugin implements EveryFrameScript {
         PersonAPI person = market.getFaction().createRandomPerson();
         String rankId = Ranks.GROUND_MAJOR;
         if (market.getSize() >= 6) {
-          rankId = "aEP_manager";
+          rankId = Ranks.SPACE_LIEUTENANT;
         }
         else {
-          rankId = "aEP_employee";
+          rankId = Ranks.SPACE_ENSIGN;
         }
         person.setPostId("aEP_consultant");
         person.setRankId(rankId);
@@ -171,7 +171,7 @@ public class FSFCampaignPlugin implements EveryFrameScript {
       person.setName(new FullName("Lili", "Yang", FullName.Gender.FEMALE));
       person.setPortraitSprite("graphics/aEP_portraits/1.png");
       person.setPostId("aEP_researcher");
-      person.setRankId("aEP_director");
+      person.setRankId(Ranks.SPACE_CAPTAIN);
       //一定要写true，不能是1f或者其他的占位，因为在rules里面检测的true/false
       person.getMemoryWithoutUpdate().set("$isaEP_Researcher", true);
       market.getCommDirectory().addPerson(person);

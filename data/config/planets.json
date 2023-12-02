@@ -1,6 +1,6 @@
 {
 	"aEP_FSF_Homestar":{
-		"name":"褐矮星",
+		"name":"Brown Dwarf",
 		"tilt":-16, # left-right (>0 tilts to the left)
 		"pitch":10, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-5, # degrees/second
@@ -22,7 +22,7 @@
 		"doNotShowInCombat":false
 	},
 	"aEP_FSF_Homeplanet":{
-		"name":"冰冻",
+		"name":"Frozen",
 		"aOrAn":"",
 		"tilt":0, # left-right (>0 tilts to the left)
 		"pitch":0, # towards-away from the viewer (>0 pitches towards)
@@ -38,7 +38,7 @@
 		"lightPosition":[12,-2,-3], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
 	"aEP_FSF_Companyplanet":{
-		"name":"荒芜",
+		"name":"Barren",
 		"tilt":-27, # left-right (>0 tilts to the left)
 		"pitch":2, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -54,7 +54,7 @@
 	},
 	
 	"aEP_IND_Homestar":{
-		"name":"红矮星",
+		"name":"Red Dwarf",
 		"tilt":-10, # left-right (>0 tilts to the left)
 		"pitch":0, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -88,7 +88,7 @@
 		"lightPosition":[12,-2,-3], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
 	"aEP_IND_Pirateplanet":{
-		"name":"荒芜",
+		"name":"Barren",
 		"tilt":-27, # left-right (>0 tilts to the left)
 		"pitch":2, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -103,7 +103,7 @@
 		"lightPosition":[-2,-8,10], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
 	"aEP_FSF_Earthstar":{
-		"name":"蓝巨星",
+		"name":"Blue Giant",
 		"tilt":0, # left-right (>0 tilts to the left)
 		"pitch":0, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -121,7 +121,7 @@
 		"lightPosition":[0,0,10], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
 	"aEP_FSF_Stationplanet":{
-		"name":"沙漠-剧毒",
+		"name":"Radioactive-Desert",
 		"tilt":30, # left-right (>0 tilts to the left)
 		"pitch":0, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -139,7 +139,7 @@
 		"cloudRotation":-10, # degrees/second, optional
 	},
 	"aEP_FSF_Earth":{
-		"name":"异常类地",
+		"name":"Eccentric-Terran",
 		"tilt":-25, # left-right (>0 tilts to the left)
 		"pitch":-20, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second

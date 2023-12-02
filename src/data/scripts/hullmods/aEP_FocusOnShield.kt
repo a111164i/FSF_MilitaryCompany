@@ -35,8 +35,8 @@ class aEP_FocusOnShield : aEP_BaseHullMod(){
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String {
-    if (index == 0) return String.format("%.0f", SHIELD_DAMAGE_TAKEN_REDUCE_MULT * 100f) +"%"
-    if (index == 1) return String.format("%.0f", WEAPON_FLUX_USE_PERCENT_BONUS) +"%"
+    if (index == 0) return String.format("-%.0f", SHIELD_DAMAGE_TAKEN_REDUCE_MULT * 100f) +"%"
+    if (index == 1) return String.format("+%.0f", WEAPON_FLUX_USE_PERCENT_BONUS) +"%"
     if (index == 2) return String.format("%.0f", MAX_SHIELD_ANGLE)
     return ""
   }

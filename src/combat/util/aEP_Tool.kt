@@ -10,6 +10,7 @@ import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
 import com.fs.starfarer.api.loading.WeaponSlotAPI
+import com.fs.starfarer.api.ui.Fonts
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import combat.impl.VEs.aEP_MovingSmoke
@@ -1071,6 +1072,20 @@ class aEP_Tool {
       }
     }
 
+    @JvmStatic
+    fun toggleShieldControl(systemShip: ShipAPI, shouldOn: Boolean) {
+      val shield = systemShip.shield?: return
+      if(shouldOn && shield.isOff) {
+        systemShip.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
+        return
+      }
+
+      if(!shouldOn && shield.isOn){
+        systemShip.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
+        return
+      }
+    }
+
 
     fun getShipLength(s: CombatEntityAPI): Float {
       if (s is ShipAPI && s.getExactBounds() != null) {
@@ -1737,7 +1752,7 @@ class aEP_Tool {
       val ySize = ship.armorGrid.above + ship.armorGrid.below
       val cellMaxArmor = ship.armorGrid.maxArmorInCell
 
-      var toRepair = repairAmount
+      var toRepair = repairAmount.coerceAtLeast(0f)
       var didSpark = false
 
       while (toRepair > 0f){
@@ -2164,22 +2179,30 @@ class aEP_ID{
     const val FACTION_ID_FSF = "aEP_FSF"
     const val FACTION_ID_FSF_ADV = "aEP_FSF_adv"
     const val HULLMOD_POINT = "#"
-    const val HULLMOD_BULLET = "     --"
+    const val HULLMOD_BULLET = "    -- "
     const val CONFIRM = "Confirm"
     const val CANCEL = "Cancel"
     const val RETURN = "Return"
     const val SELECT = "Select"
 
     const val SYSTEM_SHIP_TARGET_KEY = "aEP_systemShipTargetKey"
+
+    const val FACTION_NAME_EN = "FSF Military Corporation"
+
+    const val FACTION_RANK_FACTION_LEADER = "Board Representative"
+
+    const val FACTION_POST_PROGRAM_DIRECTOR = "Program Director"
+    const val FACTION_POST_FACTION_LEADER = "Board Representative"
+    const val FACTION_POST_BUSINESS_MANAGER = "Business Manager"
+
   }
 }
-
 
 class aEP_Render{
   companion object{
     //保持引用，节约资源
-    val FONT1 = LazyFont.loadFont("graphics/fonts/victor14.fnt").createText()
-
+    val FONT1 = LazyFont.loadFont("graphics/fonts/victor14.fnt")
+    var drawableString = FONT1.createText()
 
     /**
      * 在combatLayerRenderingPlugin里面必须使用战场绝对坐标
@@ -2234,6 +2257,7 @@ class aEP_Render{
       GL11.glPopMatrix()
       GL11.glPopAttrib()
     }
+
   }
 
 }
@@ -2308,6 +2332,7 @@ class aEP_Combat{
       val effectLevel = time/lifeTime
       val maxRangeBonus = fighter.collisionRadius * 1f
       val jitterRangeBonus: Float = 5f + effectLevel * maxRangeBonus
+      fighter.isJitterShields = true
       fighter.setJitter(ID, color, effectLevel, 10, 0f, jitterRangeBonus)
 
       //被召回是一种相位，需要持续维持

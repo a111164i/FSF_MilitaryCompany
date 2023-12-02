@@ -41,8 +41,9 @@ open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
     shouldFire = false
 
     //没有目标/目标已经死亡/不再是武器的目标对象，就重新索敌
-    if(aimEntity == null ||
-      (aimEntity != null && (aEP_Tool.isDead(aimEntity!!) || !checkIsValid(aimEntity!!))) ){
+    if(aimEntity == null
+      || isDead(aimEntity!!)
+      || !checkIsValid(aimEntity!!) ){
       interceptPoint = null
       search(amount)
     }
@@ -104,6 +105,7 @@ open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
 
   /**
    * 本武器会自动瞄准哪些目标
+   * 不需要检测目标是否被摧毁，在advance部分会自动检测
    * 这里默认的检测包括是否还处于射界中，是否是敌人的弹丸，如果有特殊的ai需求，override本方法，也可以在search()中使用
    * */
   open fun checkIsValid(target: CombatEntityAPI) : Boolean{
@@ -201,7 +203,7 @@ open class aEP_BaseAutoFireAI(val w: WeaponAPI) : AutofireAIPlugin {
     //超出射界的不需要拦截
     if(weapon.distanceFromArc(point) - extraArc > 0f) return false
     //超出射程的不需要拦截
-    val maxRangeSq: Float = ((weapon.range + extraRange).pow(2)).coerceAtLeast(0f)
+    val maxRangeSq: Float = (weapon.range + extraRange).coerceAtLeast(0f).pow(2)
     val distanceSq = MathUtils.getDistanceSquared(point, weapon.location)
     if (distanceSq > maxRangeSq) return false
     return true
@@ -265,7 +267,7 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
       if(it.damage.type == DamageType.HIGH_EXPLOSIVE && it.damage.baseDamage < 50) continue
 
       //拦截点不能在武器射界外面
-      if(!isPointWithinRange(interceptPoint!!, 0f,0f)) continue
+      if(!isPointWithinRange(interceptPoint!!, -50f,0f)) continue
 
       //弹丸本身，还有拦截点都不能处于队友的碰撞圈内（都已经打到队友了还拦啥）
       //弹丸必须指向某个友军

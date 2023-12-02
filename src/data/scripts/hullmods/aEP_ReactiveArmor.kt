@@ -20,13 +20,13 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     const val DAMAGE_THRESHOLD = 600f
     const val ARMOR_THRESHOLD = 0.8f
     const val REDUCE_MULT = 0.9f
-    private val MAX_TRIGGER: MutableMap<ShipAPI.HullSize, Int> = HashMap()
+    private val MAX_TRIGGER: MutableMap<ShipAPI.HullSize, Float> = HashMap()
     init {
-      MAX_TRIGGER[ShipAPI.HullSize.FIGHTER] = 2
-      MAX_TRIGGER[ShipAPI.HullSize.FRIGATE] = 6
-      MAX_TRIGGER[ShipAPI.HullSize.DESTROYER] = 8
-      MAX_TRIGGER[ShipAPI.HullSize.CRUISER] = 10
-      MAX_TRIGGER[ShipAPI.HullSize.CAPITAL_SHIP] = 12
+      MAX_TRIGGER[ShipAPI.HullSize.FIGHTER] = 2f
+      MAX_TRIGGER[ShipAPI.HullSize.FRIGATE] = 6f
+      MAX_TRIGGER[ShipAPI.HullSize.DESTROYER] = 8f
+      MAX_TRIGGER[ShipAPI.HullSize.CRUISER] = 10f
+      MAX_TRIGGER[ShipAPI.HullSize.CAPITAL_SHIP] = 12f
     }
 
     /**
@@ -69,48 +69,19 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     if(!ship.hasListenerOfClass(aEP_ReactiveArmor::class.java)){
       val listener = aEP_ReactiveArmor()
       listener.ship = ship
-      listener.maxTrigger = MAX_TRIGGER[ship.hullSpec.hullSize]?:10
+      listener.maxTrigger = (MAX_TRIGGER[ship.hullSpec.hullSize]?:10f).toInt()
       ship.addListener(listener)
     }
   }
 
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+  override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String? {
+    val damageThres = computeThreshold(DAMAGE_THRESHOLD, ship, ARMOR_THRESHOLD)
 
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
-
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-
-    val damageThreshold = computeThreshold(DAMAGE_THRESHOLD, ship, ARMOR_THRESHOLD)
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ReactiveArmor01"), 5f, arrayOf(Color.green, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.1f", damageThreshold),
-      String.format("%.0f", REDUCE_MULT *100f) +"%")
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ReactiveArmor02"), 5f, arrayOf(Color.red, highLight),
-      aEP_ID.HULLMOD_POINT,
-      MAX_TRIGGER[hullSize].toString())
-
-    //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight),
-      aEP_ID.HULLMOD_POINT,
-      showModName(notCompatibleList))
-
-
-    //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
-    //val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
-
-    //tooltip.addImageWithText(5f)
-
-    //额外灰色说明
-    //tooltip.addPara(aEP_DataTool.txt("aEP_RapidDissipate02"), Color.gray, 5f)
-
+    if (index == 0) return String.format("%.0f",damageThres)
+    if (index == 1) return String.format("-%.0f", 90f) +"%"
+    if (index == 2) return String.format("%.0f", MAX_TRIGGER[hullSize]?:10f)
+    return null
   }
-
 
   //以下都是listener的部分
   //--------------------------------------------//
@@ -130,7 +101,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getHullModSpec(ID).spriteName,  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("aEP_ReactiveArmor03")  + (maxTrigger-triggered),  //data
+          aEP_DataTool.txt("charge")+": "  + (maxTrigger-triggered),  //data
           false)
       }
     }else{

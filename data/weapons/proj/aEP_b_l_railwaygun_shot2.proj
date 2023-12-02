@@ -12,7 +12,7 @@
   "fadeTime":0.4,
   "fringeColor":[252,185,45,100],# 拖尾和爆炸的颜色
   "coreColor":[242,222,200,80], # 弹体的颜色
-	"glowColor":[250,144,72,50],
-	"glowRadius":35,
+	"glowColor":[250,144,72,15],
+	"glowRadius":15,
 	"bulletSprite":"graphics/aEP_empty.png",
 }

@@ -32,7 +32,6 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
     stat = StraightToTarget()
   }
 
-
   inner class Searching() : aEP_MissileAI.Status(){
     override fun advance(amount: Float){
       if(targetLoc == null){

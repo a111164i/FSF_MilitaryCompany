@@ -439,12 +439,13 @@ class OnHitSplit() : DamageDealtModifier{
 
       //计算弹体剩余血量
       val lostLevel = (1f-missile.hullLevel).coerceAtLeast(0f).coerceAtMost(1f)
-      val factor = 1f - DAMAGE_DROP_PERCENT * lostLevel
+      val factor = 1f //- DAMAGE_DROP_PERCENT * lostLevel
       //生成弹丸
       for (i in 1..FRAG_SHOT_NUM){
-        val cls = spawnProjDelayed(
+        val cls = SpawnProjDelayed(
           Global.getCombatEngine().elapsedInLastFrame*(1f+i),
-          missile,
+          missile, missile.location,
+          aEP_m_m_blasthammer_shot::class.java.simpleName.replace("_shot","")+"3",
           DamageType.FRAGMENTATION,missile.baseDamageAmount * FRAG_PERCENT * factor)
         addEffect(cls)
       }
@@ -487,25 +488,25 @@ class ApproximatePrimer(val missile: MissileAPI, val explodeSize : Float) : aEP_
   }
 }
 // 延迟一帧后生成弹丸
-class spawnProjDelayed(lifeTime: Float,val missile:DamagingProjectileAPI,val damageType:DamageType,val damageAmount:Float): aEP_BaseCombatEffect(lifeTime){
+class SpawnProjDelayed(lifeTime: Float,val missile:DamagingProjectileAPI, val spawnPoint: Vector2f?, val toSpawnWeaponId:String,val damageType:DamageType,val damageAmount:Float): aEP_BaseCombatEffect(lifeTime){
   override fun readyToEnd() {
     //生成动能弹丸
     //注意一下BALLISTIC_AS_BEAM并不能被修改初始速度哦
-    val jetWeaponId = aEP_m_m_blasthammer_shot::class.java.simpleName.replace("_shot","")
-
+    val jetWeaponId = toSpawnWeaponId
+    val spawnLoc = Vector2f(missile.location)
+    if(spawnPoint != null) spawnLoc.set(spawnPoint)
     //生成破片弹丸
     val pro3 = Global.getCombatEngine().spawnProjectile(
       missile.source,  //source ship
       missile.weapon,  //source weapon,
-      jetWeaponId+"3",  //whose proj to be use
-      missile.location,  //loc
+      jetWeaponId,  //whose proj to be use
+      spawnLoc,  //loc
       missile.facing,  //facing
       null) as DamagingProjectileAPI
     //神奇alex，setDamage要输入baseDamage但是getDamage得到的是加成后的数（但未计入stats里面的加成）
     pro3.damage.damage = damageAmount
   }
 }
-
 
 //气钉枪导弹
 class aEP_m_s_harpoon_shot: Effect(){
@@ -1616,26 +1617,36 @@ class aEP_cap_neibo_main_shot : Effect(){
   var chance = 0.25f
   var damage = 100f
   init {
-    val spec = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.replace("_shot",""))
-    chance = spec?.customPrimaryHL?.split("|")?.get(0)?.toFloat()?.div(100f) ?: 0.25f
-    damage = spec?.customPrimaryHL?.split("|")?.get(1)?.toFloat() ?: 100f
+    //把customHL一位一位读char，计算 “|”的情况
+    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
+    var i = 0
+    for(num in hlString.split("|")){
+      if(i == 0){
+        chance =  num.replace("%","").toFloat()
+      }
+      if(i == 1){
+        damage =  num.toFloat()
+      }
+
+      i += 1
+    }
   }
 
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
     if(shieldHit) return
     if(target !is ShipAPI) return
     if(MathUtils.getRandomNumberInRange(0f,1f) > chance) return
-    engine?.applyDamage(
+    engine.applyDamage(
       target,point,
       damage,DamageType.FRAGMENTATION,
       0f,
       false,false,
       projectile?.source,false)
     //红色爆炸特效
-    engine?.addSmoothParticle(point,aEP_ID.VECTOR2F_ZERO,160f,1f,0.5f,0.2f,Color.red)
+    engine.addSmoothParticle(point,aEP_ID.VECTOR2F_ZERO,160f,1f,0.5f,0.2f,Color.red)
     var randomVel = MathUtils.getRandomPointInCone(point,75f, angleAdd(projectile?.facing?:0f,-200f),angleAdd(projectile?.facing?:0f,160f))
     randomVel = Vector2f(randomVel.x- (point?.x?:0f),randomVel.y-(point?.y?:0f))
-    engine?.spawnExplosion(point, Vector2f(target.velocity.x + randomVel.x,target.velocity.y+ randomVel.y) , aEP_b_l_dg3_shot.EXPLOSION_COLOR,120f,0.8f)
+    engine.spawnExplosion(point, Vector2f(target.velocity.x + randomVel.x,target.velocity.y+ randomVel.y) , aEP_b_l_dg3_shot.EXPLOSION_COLOR,120f,0.8f)
   }
 }
 
@@ -2189,7 +2200,7 @@ class aEP_cru_pingding_torpedo_shot : Effect(){
     ring.endColor.setColor(250f,250f,250f,0f)
     aEP_CombatEffectPlugin.addEffect(ring)
 
-    aEP_CombatEffectPlugin.addEffect(ExplosionCore(point,3f,400f,200f))
+    aEP_CombatEffectPlugin.addEffect(ExplosionCore(point,3f,400f,300f))
 
     //节约资源
     if (!Global.getCombatEngine().viewport.isNearViewport(point, 1200f)) return
@@ -2500,117 +2511,43 @@ class aEP_b_l_railwaygun_shot : Effect(){
     createFanSmoke(projectile.spawnLocation, aEP_Tool.angleAdd(weapon.currAngle, 90f), weapon.ship)
     createFanSmoke(projectile.spawnLocation, aEP_Tool.angleAdd(weapon.currAngle, -90f), weapon.ship)
 
-    //弱智alex，getDamage是加成后damage，setDamage实际是baseDamage
-    projectile.damage.damage = projectile.damage.baseDamage / 2f
-    projectile.damage.type = DamageType.KINETIC
-
-    val toUseWeaponId = aEP_b_l_railwaygun_shot::class.java.simpleName.replace("_shot","2")
-    val newProj = engine.spawnProjectile(
-      weapon.ship,  //source ship
-      weapon,  //source weapon,
-      toUseWeaponId,  //whose proj to be use
-      aEP_Tool.getExtendedLocationFromPoint(projectile.location, projectile.facing, -26f),  //loc
-      projectile.facing,  //facing
-      null
-    )
-    val proj2 = (newProj as DamagingProjectileAPI)
-    //之前已经减半过了
-    proj2.damage.damage = projectile.damage.baseDamage
-    proj2.damage.type = DamageType.HIGH_EXPLOSIVE
-    proj2.velocity.set(projectile.velocity)
 
     //apply impulse
     aEP_Tool.applyImpulse(weapon.ship, weapon.currAngle - 180f, 5000f,300f)
 
     //消除初速度
     // projectile.velocity.set(aEP_Tool.ignoreShipInitialVel(projectile, weapon.ship.velocity))
-    // proj2.velocity.set(aEP_Tool.ignoreShipInitialVel(proj2, weapon.ship.velocity))
   }
 
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
-    engine?: return
-    point?: return
-    val projId = projectile?.projectileSpecId?: return
-    val ship = projectile.source?: return
-    val weapon = projectile.weapon?: return
+
     //Global.getCombatEngine().addFloatingText(projectile.getLocation(),projectile.getDamageAmount() + "", 20f ,new Color(100,100,100,100),projectile, 0.25f, 120f);
     var hitColor = Color(240, 120, 50, 200)
 
-    if (target is ShipAPI) {
-      //create sparks
-      var num = 1
-      while (num <= 8) {
-        var onHitAngle = VectorUtils.getAngle(target.getLocation(), point)
-        onHitAngle += MathUtils.getRandomNumberInRange(-60, 60)
-        val speed = MathUtils.getRandomNumberInRange(100, 200).toFloat()
-        val lifeTime = MathUtils.getRandomNumberInRange(1f, 3f)
-        addEffect(Spark(point, aEP_Tool.speed2Velocity(onHitAngle, speed), aEP_Tool.speed2Velocity(onHitAngle - 180f, speed / lifeTime), lifeTime))
-        num ++
-      }
+      if (shieldHit && target is ShipAPI) {
+      //击中护盾并造成过载，不生成音效特效，原地刷新一个新弹丸，然后从这里出去
+      if(target.fluxTracker.isOverloaded){
+        addEffect(SpawnProjDelayed(
+          Global.getCombatEngine().elapsedInLastFrame*1f,
+          projectile,
+          Vector2f(projectile.location),
+          aEP_b_l_railwaygun_shot::class.java.simpleName.replace("_shot",""),
+          projectile.damage.type,
+          projectile.damage.baseDamage))
 
-      //create smokes
-      num = 1
-      while (num <= 28) {
-        val loc = MathUtils.getRandomPointInCircle(point, 300f)
-        val sizeGrowth = MathUtils.getRandomNumberInRange(0, 100).toFloat()
-        val sizeAtMin = MathUtils.getRandomNumberInRange(100, 400).toFloat()
-        val moveSpeed = MathUtils.getRandomNumberInRange(50, 100).toFloat()
-        val ms = aEP_MovingSmoke(loc)
-        ms.setInitVel(aEP_Tool.speed2Velocity(VectorUtils.getAngle(point, loc), moveSpeed))
-        ms.lifeTime = 3f
-        ms.fadeIn = 0f
-        ms.fadeOut = 1f
-        ms.size = sizeAtMin
-        ms.sizeChangeSpeed = sizeGrowth
-        ms.color = Color(100, 100, 100, MathUtils.getRandomNumberInRange(80, 180))
-        addEffect(ms)
-        num ++
+        return
       }
-
-      //create explode
-      engine!!.spawnExplosion(
-        point,  //color
-        Vector2f(0f, 0f),  //vel
-        hitColor,  //color
-        400f,  //size
-        1f
-      ) //duration
-      engine.addNegativeParticle(
-        point,
-        Vector2f(0f, 0f),
-        200f,
-        0.5f,
-        0.5f,
-        Color(240, 240, 240, 200)
-      )
-      engine.addSmoothParticle(
-        point,
-        Vector2f(0f, 0f),
-        300f,
-        0.5f,
-        0.2f,
-        hitColor
-      )
     }
 
+    spawnVisualEffect(point, hitColor, target)
 
     //play sound
     Global.getSoundPlayer().playSound(
       "aEP_RW_hit",
       1f, 2f,  // pitch,volume
       projectile.location,  //location
-      Vector2f(0f, 0f)
-    ) //velocity
+      Vector2f(0f, 0f)) //velocity
 
-    //add hit glow if it pass through missiles
-    engine.addHitParticle(
-      point,
-      Vector2f(0f, 0f),
-      400f,
-      1f,
-      1f,
-      hitColor
-    )
   }
 
   fun createFanSmoke(loc: Vector2f, facing: Float, ship: ShipAPI) {
@@ -2652,6 +2589,65 @@ class aEP_b_l_railwaygun_shot : Effect(){
     param.smokeNum = 20
     param.smokeAlpha = 0.2f
     firingSmoke(loc,facing,param, ship)
+  }
+
+  fun spawnVisualEffect(point: Vector2f, hitColor:Color, target: CombatEntityAPI){
+    val engine = Global.getCombatEngine()
+
+    //create sparks
+    var num = 1
+    while (num <= 8) {
+      var onHitAngle = VectorUtils.getAngle(target.getLocation(), point)
+      onHitAngle += MathUtils.getRandomNumberInRange(-60, 60)
+      val speed = MathUtils.getRandomNumberInRange(100, 200).toFloat()
+      val lifeTime = MathUtils.getRandomNumberInRange(1f, 3f)
+      addEffect(Spark(point, aEP_Tool.speed2Velocity(onHitAngle, speed), aEP_Tool.speed2Velocity(onHitAngle - 180f, speed / lifeTime), lifeTime))
+      num ++
+    }
+
+    //create smokes
+    num = 1
+    while (num <= 28) {
+      val loc = MathUtils.getRandomPointInCircle(point, 300f)
+      val sizeGrowth = MathUtils.getRandomNumberInRange(0, 100).toFloat()
+      val sizeAtMin = MathUtils.getRandomNumberInRange(100, 400).toFloat()
+      val moveSpeed = MathUtils.getRandomNumberInRange(50, 100).toFloat()
+      val ms = aEP_MovingSmoke(loc)
+      ms.setInitVel(aEP_Tool.speed2Velocity(VectorUtils.getAngle(point, loc), moveSpeed))
+      ms.lifeTime = 3f
+      ms.fadeIn = 0f
+      ms.fadeOut = 1f
+      ms.size = sizeAtMin
+      ms.sizeChangeSpeed = sizeGrowth
+      ms.color = Color(100, 100, 100, MathUtils.getRandomNumberInRange(80, 180))
+      addEffect(ms)
+      num ++
+    }
+
+    //create explode
+    engine.spawnExplosion(
+      point,  //color
+      Vector2f(0f, 0f),  //vel
+      hitColor,  //color
+      500f,  //size
+      1f
+    ) //duration
+    engine.addNegativeParticle(
+      point,
+      Vector2f(0f, 0f),
+      300f,
+      0.25f,
+      1.5f,
+      Color(240, 240, 240, 200)
+    )
+    engine.addSmoothParticle(
+      point,
+      Vector2f(0f, 0f),
+      300f,
+      0.5f,
+      0.2f,
+      hitColor
+    )
   }
 }
 class Spark(var location: Vector2f,var velocity: Vector2f,var acceleration: Vector2f, lifeTime: Float) : aEP_BaseCombatEffect(lifeTime) {
@@ -3596,17 +3592,17 @@ class aEP_b_l_dg3_shot : Effect(){
       val armorLevel = DefenseUtils.getArmorLevel(target,point)
       if(armorLevel <= 0.05f){
         //不能通过此种方式将hp减到负数或者0
-        if(target.hitpoints > damage) target.hitpoints -= damage
+        if(target.hitpoints > damage + 1f) target.hitpoints -= damage
         //跳红字代码伤害
-        engine?.addFloatingDamageText(point,damage,EXPLOSION_COLOR,target,projectile?.source)
+        engine.addFloatingDamageText(point,damage,EXPLOSION_COLOR,target,projectile?.source)
 
         //百分之25的概率触发一次爆炸特效，这样特效能做夸张一点
         if(MathUtils.getRandomNumberInRange(0f,1f) > 0.25f) return
         //红色爆炸特效
-        engine?.addSmoothParticle(point,aEP_ID.VECTOR2F_ZERO,160f,1f,0.5f,0.2f,Color.red)
+        engine.addSmoothParticle(point,aEP_ID.VECTOR2F_ZERO,160f,1f,0.5f,0.2f,Color.red)
         var randomVel = MathUtils.getRandomPointInCone(point,75f, angleAdd(projectile?.facing?:0f,-200f),angleAdd(projectile?.facing?:0f,160f))
         randomVel = Vector2f(randomVel.x- (point?.x?:0f),randomVel.y-(point?.y?:0f))
-        engine?.spawnExplosion(point, Vector2f(target.velocity.x + randomVel.x,target.velocity.y+ randomVel.y) , EXPLOSION_COLOR,120f,0.8f)
+        engine.spawnExplosion(point, Vector2f(target.velocity.x + randomVel.x,target.velocity.y+ randomVel.y) , EXPLOSION_COLOR,120f,0.8f)
       }
     }
   }
@@ -5465,8 +5461,8 @@ open class aEP_m_s_era :EveryFrame(){
   companion object{
     const val KEY = "aEP_m_s_era"
     const val RANGE = 75f
-    var DAMAGE_THRESHOLD = 749f
-    var ARMOR_THRESHOLD = 1f
+    var DAMAGE_THRESHOLD = 600f
+    var ARMOR_THRESHOLD = 0.8f
   }
 
   init {
@@ -5479,7 +5475,10 @@ open class aEP_m_s_era :EveryFrame(){
     }
   }
 
+  //------------------------------//
+  // everyFrame每个武器一个
   var inList = false
+
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
     weapon.ship?:return
     val ship = weapon.ship
@@ -5491,32 +5490,32 @@ open class aEP_m_s_era :EveryFrame(){
 
     //第一个被读取的武器把listener放进customData
     if (!ship.customData.containsKey(KEY)) {
-      ship.addListener(DamageTakenModifier())
+      val listr = EraDamageTakenModifier()
+      listr.ship = ship
       ship.setCustomData(KEY,1f)
     }
 
     //不会下线
     aEP_Tool.keepWeaponAlive(weapon)
 
-
     //大概显示一下触发半径
     //addDebugPoint(getExtendedLocationFromPoint(weapon.location,ship.fullTimeDeployed * 180f,70f))
 
-    //如果自己不在listener的list里面，塞进去，同时脱离武器组
+    //如果自己不在listener的list里面，塞进去
     if(!inList){
-      if(ship.hasListenerOfClass(DamageTakenModifier::class.java)){
-        ship.listenerManager.getListeners(DamageTakenModifier::class.java)[0].allEra.add(weapon)
+      if(ship.hasListenerOfClass(EraDamageTakenModifier::class.java)){
+        ship.listenerManager.getListeners(EraDamageTakenModifier::class.java)[0].allEra.add(weapon)
         inList = true
       }
     }
   }
 
-  inner class DamageTakenModifier: com.fs.starfarer.api.combat.listeners.DamageTakenModifier{
+  class EraDamageTakenModifier: com.fs.starfarer.api.combat.listeners.DamageTakenModifier{
     val allEra = ArrayList<WeaponAPI>()
-    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI?, point: Vector2f?, shieldHit: Boolean): String? {
-      point?:return null
-      damage?:return null
-      if(target !is ShipAPI) return null
+    var ship:ShipAPI? = null
+    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
+      ship?:return null
+      val ship = ship as ShipAPI
       if(shieldHit) return null
       val engine = Global.getCombatEngine()
       for(w in allEra){
@@ -5525,7 +5524,7 @@ open class aEP_m_s_era :EveryFrame(){
         if(w.ammo < 1) continue
         if(dist > RANGE ) continue
 
-        val didMod = aEP_ReactiveArmor.damageModify(damage, target, param, DAMAGE_THRESHOLD, ARMOR_THRESHOLD)
+        val didMod = aEP_ReactiveArmor.damageModify(damage, ship, param, DAMAGE_THRESHOLD, ARMOR_THRESHOLD)
         if(didMod > 0f){
           //文字提示
           Global.getCombatEngine().addFloatingText(
@@ -5535,15 +5534,10 @@ open class aEP_m_s_era :EveryFrame(){
 
           //产生炮口烟，刷出弹丸，立刻引爆
           engine.spawnMuzzleFlashOrSmoke(
-            w.ship,
-            w.slot,
-            w.spec,
-            0,
+            w.ship, w.slot, w.spec, 0,
             w.currAngle)
           val proj = engine.spawnProjectile(
-            w.ship,
-            w,
-            w.spec.weaponId,
+            w.ship, w, w.spec.weaponId,
             w.getFirePoint(0),  //FirePoint得到的是绝对位置
             w.currAngle,
             w.ship?.velocity?: VECTOR2F_ZERO) as MissileAPI

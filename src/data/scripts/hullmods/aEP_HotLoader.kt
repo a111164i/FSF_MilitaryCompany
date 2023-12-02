@@ -25,7 +25,6 @@ class aEP_HotLoader : aEP_BaseHullMod() {
 
     const val SMOD_BONUS = 50f
 
-    const val EXTRA_SPEED_ON_SYSTEM = 0.5f
     const val ID = "aEP_HotLoader"
 
   }
@@ -89,53 +88,13 @@ class aEP_HotLoader : aEP_BaseHullMod() {
 
   }
 
-  override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
-    if (index == 0) return "" + (BASE_BONUS * 100).toInt() + "%"
-    return ""
+  override fun getDescriptionParam(index: Int, hullSize: HullSize): String? {
+    if (index == 0) return "" + String.format("+%.0f",BASE_BONUS ) + "%"
+    return null
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
-  }
-
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
-
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ txt("aEP_HotLoader01"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", BASE_BONUS)+"%")
-
-
-    //显示不兼容插件
-    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
-
-  }
-
-  override fun hasSModEffect(): Boolean {
-    return true
-  }
-
-  override fun addSModEffectSection(tooltip: TooltipMakerAPI, hullSize: HullSize?, ship: ShipAPI?, width: Float, isForModSpec: Boolean, isForBuildInList: Boolean) {
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
-
-    //Smod自带一个绿色的标题，不需要再来个标题
-    //tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
-
-    tooltip.addPara("{%s}"+ txt("aEP_HotLoader03"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", SMOD_BONUS + BASE_BONUS)+"%")
-
-    //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    //tooltip.addPara("{%s}"+ txt("aEP_HotLoader02") , 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", EXTRA_SPEED_ON_FIRE * 100f)+"%")
-
+  override fun getSModDescriptionParam(index: Int, hullSize: HullSize): String? {
+    if (index == 0) return "" +  String.format("+%.0f",(BASE_BONUS+ SMOD_BONUS))+ "%"
+    return null
   }
 }

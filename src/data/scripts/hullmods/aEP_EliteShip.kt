@@ -22,7 +22,7 @@ import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 import kotlin.math.abs
 
-class aEP_EliteShip:aEP_BaseHullMod() {
+class aEP_EliteShip : aEP_BaseHullMod() {
 
   companion object{
     const val ID = "aEP_EliteShip"
@@ -71,10 +71,10 @@ class aEP_EliteShip:aEP_BaseHullMod() {
     val SHIELD_AMOUNT = LinkedHashMap<ShipAPI.HullSize, Float>()
     const val DEFAULT_SHIELD_AMOUNT = 8000f
     init {
-      SHIELD_AMOUNT[ShipAPI.HullSize.CAPITAL_SHIP] = 40000f
-      SHIELD_AMOUNT[ShipAPI.HullSize.CRUISER] = 30000f
-      SHIELD_AMOUNT[ShipAPI.HullSize.DESTROYER] = 20000f
-      SHIELD_AMOUNT[ShipAPI.HullSize.FRIGATE] = 10000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.CAPITAL_SHIP] = 20000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.CRUISER] = 12000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.DESTROYER] = 8000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.FRIGATE] = 6000f
     }
 
   }
@@ -84,6 +84,7 @@ class aEP_EliteShip:aEP_BaseHullMod() {
     notCompatibleList.add(HullMods.CONVERTED_HANGAR)
     notCompatibleList.add(HullMods.HEAVYARMOR)
     notCompatibleList.add(HullMods.HARDENED_SHIELDS)
+    notCompatibleList.add(aEP_Module.ID)
 
     banShipList.add("aEP_cru_hailiang3")
   }
@@ -171,10 +172,10 @@ class aEP_EliteShip:aEP_BaseHullMod() {
         drone.shield.ringColor = Color(150,150,150,205)
         drone.mutableStats.fluxCapacity.baseValue = SHIELD_AMOUNT[ship.hullSize]?: DEFAULT_SHIELD_AMOUNT
         drone.mutableStats.fluxDissipation.baseValue = 100f
-        drone.mutableStats.shieldUnfoldRateMult.modifyFlat(ID, 1000f)
+        drone.mutableStats.shieldUnfoldRateMult.modifyFlat(ID, 10f)
         drone.location.set(Vector2f(ship.location))
         Global.getCombatEngine().addEntity(drone)
-        aEP_CombatEffectPlugin.addEffect(aEP_Combat.RecallFighterJitter(0.33f,drone))
+        aEP_CombatEffectPlugin.addEffect(aEP_Combat.RecallFighterJitter(0.2f,drone))
         aEP_CombatEffectPlugin.addEffect(ProtectionDrone(time, drone, ship))
 
       }else{
@@ -184,103 +185,54 @@ class aEP_EliteShip:aEP_BaseHullMod() {
     }
   }
 
-  /**
-    Ship may be null from autofit.
-  */
-  override fun canBeAddedOrRemovedNow(ship: ShipAPI?, marketOrNull: MarketAPI?, mode: CampaignUIAPI.CoreUITradeMode?): Boolean {
-    ship?:return true
-
-    var unusedOpTotal = 0
-    unusedOpTotal += ship.variant.getUnusedOP(ship.fleetMember?.fleetCommanderForStats?.stats)
-    val hullCost = spec.getCostFor(ship.hullSpec.hullSize)
-    if(unusedOpTotal < abs(hullCost)) return false
-    return super.canBeAddedOrRemovedNow(ship, marketOrNull, mode)
-  }
-
-  override fun getCanNotBeInstalledNowReason(ship: ShipAPI?, marketOrNull: MarketAPI?, mode: CampaignUIAPI.CoreUITradeMode?): String {
-    ship?:return ""
-
-    var unusedOpTotal = 0
-    unusedOpTotal += ship.variant.getUnusedOP(ship.fleetMember?.fleetCommanderForStats?.stats)
-    val hullCost = spec.getCostFor(ship.hullSpec.hullSize)
-    if(unusedOpTotal < abs(hullCost)) return txt("aEP_EliteShip09")
-
-    return super.getCanNotBeInstalledNowReason(ship, marketOrNull, mode)
-  }
-
-  override fun isApplicableToShip(ship: ShipAPI): Boolean {
-    //如果之前已经判断不能装了，直接返回false
-    val toReturn = super.isApplicableToShip(ship)
-    if(!toReturn) return false
-
-    //检查模块
-    //因为在装配页面模块其实还没有算作模块，此处没有用，使用的是模块自带的黑名单
-    //可以用作特殊情况的示范代码
-    if(ship.isStationModule ){
-      return false
-    }
-
-    //默认为true
-    return true
-  }
-
-  override fun getUnapplicableReason(ship: ShipAPI): String {
-    //得到默认理由
-    val toReturn = super.getUnapplicableReason(ship)
-
-    //检查模块，如果不符合，加上额外的理由
-    if(ship.isStationModule ){
-      return toReturn + " " + aEP_DataTool.txt("not_module")
-    }
-
-    return toReturn
-  }
-
   override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return true
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.darkUIColor
-    val factionColor: Color = faction.baseUIColor
+
     val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
 
     //主效果
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip01"), 5f, arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT*100f) +"%")
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip02"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("+%.0f", ARMOR_BONUS_FLAT) +" " + String.format("+%.0f", ARMOR_BONUS_PERCENT)+"%")
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip06"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("+%.0f", HULL_BONUS_FLAT) +" "+ String.format("+%.0f", HULL_BONUS_PERCENT)+"%")
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip05"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("+%.0f", SPEED_BONUS[hullSize]?: 5f))
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip10"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("+%.0f",  PEAK_CR_DURATION_FLAT ))
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip07"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
+    addPositivePara(tooltip, "aEP_EliteShip01", arrayOf(
+      String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT*100f) +"%"
+    ))
+    addPositivePara(tooltip, "aEP_EliteShip02", arrayOf(
+      String.format("+%.0f", ARMOR_BONUS_FLAT) +" " + String.format("+%.0f", ARMOR_BONUS_PERCENT)+"%"
+    ))
+    addPositivePara(tooltip, "aEP_EliteShip06", arrayOf(
+      String.format("+%.0f", HULL_BONUS_FLAT) +" "+ String.format("+%.0f", HULL_BONUS_PERCENT)+"%"
+    ))
+    addPositivePara(tooltip, "aEP_EliteShip05", arrayOf(
+      String.format("+%.0f", SPEED_BONUS[hullSize]?: 5f)
+    ))
+    addPositivePara(tooltip, "aEP_EliteShip10", arrayOf(
+      String.format("+%.0f",  PEAK_CR_DURATION_FLAT )
+    ))
+    addPositivePara(tooltip, "aEP_EliteShip07", arrayOf(
       String.format("%.0f",  HP_LOSS_PERCENT_TO_CHECK * 100f)+"%",
       aEP_DataTool.txt("aEP_EliteShip08"),
       String.format("%.0f",  SHIELD_CHANCE * 100f),
-      String.format("%.0f",  SHIELD_AMOUNT[ship?.hullSize?:ShipAPI.HullSize.FRIGATE]?: DEFAULT_SHIELD_AMOUNT))
+      String.format("%.0f",  SHIELD_AMOUNT[ship?.hullSize?:ShipAPI.HullSize.FRIGATE]?: DEFAULT_SHIELD_AMOUNT)
+    ))
 
     //负面
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_EliteShip03"), 5f, arrayOf(Color.red,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
+    addNegativePara(tooltip, "aEP_EliteShip03", arrayOf(
       String.format("+%.0f", DP_INCREASE[hullSize]?: DEFAULT_DP_INCREASE) +"%",
-      String.format("+%.0f", DP_INCREASE_MIN))
+      String.format("+%.0f", DP_INCREASE_MIN)
+    ))
     //不兼容
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
-
+    showIncompatible(tooltip)
     //预热完全后额外效果
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
 
@@ -337,9 +289,9 @@ class aEP_EliteShip:aEP_BaseHullMod() {
       Global.getCombatEngine().spawnExplosion(
         fighter.location,
         fighter.velocity,
-        Color(201,160,60),
-        fighter.collisionRadius*5f,
-        2.4f)
+        Color(101,160,200,160),
+        fighter.collisionRadius*4f,
+        2f)
       fighter.shield.toggleOff()
       Global.getCombatEngine().removeEntity(fighter)
     }

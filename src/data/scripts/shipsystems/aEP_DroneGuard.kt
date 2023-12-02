@@ -18,7 +18,6 @@ class aEP_DroneGuard: BaseShipSystemScript(){
   companion object{
     const val ID = "aEP_DroneGuard"
     const val MAX_DIST = 800f
-    const val OVERLOAD_DAMAGE = 500f
   }
   var didBlink = false
   var didOverload = false
@@ -94,16 +93,6 @@ class aEP_DroneGuard: BaseShipSystemScript(){
       //刚好吞弹护盾也有减伤
       stats.beamShieldDamageTakenMult.modifyMult(ID, 0.5f)
 
-    }
-
-    //检测过载
-    if(ship.fluxTracker.isOverloaded ){
-      ship.fluxTracker.stopOverload()
-      Global.getCombatEngine().applyDamage(
-        ship, ship.location,
-        OVERLOAD_DAMAGE, DamageType.ENERGY,
-        0f,
-        true, true, ship, false)
     }
 
     //控制装饰武器

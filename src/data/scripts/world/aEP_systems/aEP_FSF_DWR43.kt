@@ -50,7 +50,6 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
 
     //中心的恒星
     val FSF_EarthStar = system.initStar("FSF_EarthStar", "aEP_FSF_Earthstar", 1200f, 120f)
-    FSF_EarthStar.location.set(0f,0f)
 
     //先把星系绑定在超空间，因为没有调用自带生成重力井，所以尚未绑定
     system.generateAnchorIfNeeded()
@@ -117,7 +116,8 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     //创造军备空间站
     val FSF_SpaceFactory: SectorEntityToken = system.addCustomEntity(
       FACTORY_STATION_MARKET_ID,  // id
-      null,  // name
+      // id
+      txt("aEP_custom_entity_names", "aEP_FSF_SpaceFactory"),  // name
       "aEP_FSF_SpaceFactory",  // type id in planets.json
       aEP_ID.FACTION_ID_FSF
     ) //faction id

@@ -10,6 +10,7 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.util.ColorShifter
 import combat.util.aEP_DataTool
+import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
@@ -100,33 +101,54 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
 
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
 
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ShieldFloating01"), 5f, arrayOf(Color.green),
-      aEP_ID.HULLMOD_POINT,
-      aEP_DataTool.txt("aEP_ShieldFloating04"))
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ShieldFloating02"), 5f, arrayOf(Color.green),
-      aEP_ID.HULLMOD_POINT,
-      aEP_DataTool.txt("aEP_ShieldFloating04"),
-      String.format("%.0f", MAX_THRESHOLD[hullSize]?:1000f),
-      String.format("%.0f", MAX_SHUNT_PERCENT)+"%",
-      String.format("%.0f", DISS_BONUS[hullSize]))
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ShieldFloating03"), 5f, arrayOf(Color.green),
-      aEP_ID.HULLMOD_POINT,
-      aEP_DataTool.txt("aEP_ShieldFloating04"),
-      String.format("%.0f", (DROP_SPEED[hullSize]?:1000f)))
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
+
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
+    //正面
+    addPositivePara(tooltip, "aEP_ShieldFloating02", arrayOf(
+      txt("aEP_ShieldFloating01"),
+      String.format("+%.0f", DISS_BONUS[hullSize]),
+      String.format("+%.0f", MAX_SHUNT_PERCENT) +"%"
+    ))
+
+    //列表展示关于波动值的数据
+    val col2W0 = width * 0.5f
+    //第一列显示的名称，尽可能可能的长
+    val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
+    tooltip.beginTable(
+      factionColor, factionDarkColor, factionBrightColor,
+      TEXT_HEIGHT_SMALL, true, true,
+      *arrayOf<Any>(
+        txt("aEP_ShieldFloating01"), col1W0,
+        "Statistics", col2W0)
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight, txt("max"),
+      Alignment.MID, highlight, String.format("%.0f", CAP[hullSize]),
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight, txt("aEP_ShieldFloating03"),
+      Alignment.MID, highlight, String.format("%.0f", MAX_THRESHOLD[hullSize]),
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight,  txt("decrease")+" "+txt("speed"),
+      Alignment.MID, negativeHighlight, String.format("-%.0f /s", DROP_SPEED[hullSize]),
+    )
+    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+
+
 
     //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight),
-      aEP_ID.HULLMOD_POINT,
-      showModName(notCompatibleList))
+    showIncompatible(tooltip)
 
 
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)

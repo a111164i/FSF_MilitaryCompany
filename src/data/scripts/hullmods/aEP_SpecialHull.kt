@@ -15,6 +15,7 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
+import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.floatDataRecorder
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
@@ -111,29 +112,33 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
+
 
     //主效果
-    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+txt("aEP_MarkerDissipation01"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", SPEED_BONUS),
-      String.format("%.0f", ACC_BONUS))
-    tooltip.addPara("{%s}"+txt("aEP_MarkerDissipation02"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%")
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
 
+    // 正面
+    addPositivePara(tooltip, "aEP_SpecialHull01", arrayOf(
+      String.format("+%.0f", SPEED_BONUS),
+      String.format("+%.0f", ACC_BONUS)))
 
-    //负面
+    // 负面
+    addNegativePara(tooltip, "aEP_SpecialHull02", arrayOf(
+      String.format("+%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%"))
     //显示不兼容插件
-    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
-
+    showIncompatible(tooltip)
 
     //灰字额外说明
     //tooltip.addPara(aEP_DataTool.txt("aEP_MarkerDissipation03"), grayColor, 5f)

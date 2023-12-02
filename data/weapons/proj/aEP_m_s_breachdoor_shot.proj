@@ -43,7 +43,7 @@
     "behavior":"CUSTOM",
     #"circleRadius":[0,50],
     #"angledApproachDist":[900,1200],
-    "minDelayBeforeTriggering":1,
+    "minDelayBeforeTriggering":0.5,
     "triggerDistance":[600,600],
     "triggerAngle":180,
 		"preferredMinFireDistance":0,

@@ -3,11 +3,20 @@ package data.scripts;
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.PluginPick;
-import com.fs.starfarer.api.campaign.CampaignPlugin;
-import com.fs.starfarer.api.campaign.SectorAPI;
+import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
+import com.fs.starfarer.api.campaign.econ.SubmarketSpecAPI;
+import com.fs.starfarer.api.characters.MarketConditionSpecAPI;
+import com.fs.starfarer.api.characters.SkillSpecAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
+import com.fs.starfarer.api.loading.Description;
+import com.fs.starfarer.api.loading.HullModSpecAPI;
+import com.fs.starfarer.api.loading.IndustrySpecAPI;
+import com.fs.starfarer.api.loading.WeaponSpecAPI;
+import combat.util.aEP_DataTool;
+import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
 import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
@@ -16,6 +25,9 @@ import data.scripts.world.aEP_gen;
 import exerelin.campaign.SectorManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.Writer;
+import java.util.ArrayList;
 
 
 public class FSFModPlugin extends BaseModPlugin {
@@ -88,6 +100,11 @@ public class FSFModPlugin extends BaseModPlugin {
       aEP_Tool.Util.addDebugLog(this.getClass().getSimpleName()+" onApplicationLoad, mission filter initiation error");
     }
 
+    //以英文模式启动时，替换名称
+    if(Global.getSettings().getBoolean("aEP_UseEnString")) {
+      updateLanguage();
+    }
+
   }
 
   @Override
@@ -96,15 +113,6 @@ public class FSFModPlugin extends BaseModPlugin {
     isNexerelinEnabled = Global.getSettings().getModManager().isModEnabled("nexerelin");
     isLunalibEnabled = Global.getSettings().getModManager().isModEnabled("lunalib");
 
-    JSONArray des;
-    {
-      try {
-        des = Global.getSettings().loadCSV("data/strings/descriptions.csv","FSF_MilitaryCorporation");
-
-      } catch (Exception e1) {
-      }
-
-    }
   }
 
   //create a sector
@@ -150,4 +158,193 @@ public class FSFModPlugin extends BaseModPlugin {
 
   }
 
+  private void updateLanguage() {
+    try {
+
+      // faction name
+      FactionSpecAPI factionSpec = Global.getSettings().getFactionSpec(aEP_ID.FACTION_ID_FSF);
+      factionSpec.setDisplayName(aEP_ID.FACTION_NAME_EN);
+      factionSpec.setDisplayNameWithArticle(aEP_ID.FACTION_NAME_EN);
+      factionSpec.setDisplayNameLong(aEP_ID.FACTION_NAME_EN);
+      factionSpec.setDisplayNameLongWithArticle(aEP_ID.FACTION_NAME_EN);
+      FactionSpecAPI factionSpec2 = Global.getSettings().getFactionSpec(aEP_ID.FACTION_ID_FSF_ADV);
+      factionSpec2.setDisplayName(aEP_ID.FACTION_NAME_EN);
+      factionSpec2.setDisplayNameWithArticle(aEP_ID.FACTION_NAME_EN);
+      factionSpec2.setDisplayNameLong(aEP_ID.FACTION_NAME_EN);
+      factionSpec2.setDisplayNameLongWithArticle(aEP_ID.FACTION_NAME_EN);
+
+      // commodities
+      JSONArray allCommoditiesString = Global.getSettings().loadCSV("data/campaign/commodities_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> commoditiesData = aEP_DataTool.jsonToList(allCommoditiesString);
+      if (!commoditiesData.isEmpty()) {
+        for (CommoditySpecAPI spec : Global.getSettings().getAllCommoditySpecs()) {
+          String id = spec.getId();
+          String engName = aEP_DataTool.getValueById(commoditiesData, id, "name");
+          if (!engName.isEmpty()) {
+            spec.setName(engName);
+          }
+        }
+      }
+
+      // special items
+      JSONArray allSpecialItemsString = Global.getSettings().loadCSV("data/campaign/special_items_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allSpecialItemsData = aEP_DataTool.jsonToList(allSpecialItemsString);
+      if (!allSpecialItemsData.isEmpty()) {
+        for (SpecialItemSpecAPI spec : Global.getSettings().getAllSpecialItemSpecs()) {
+          String id = spec.getId();
+          String engName = aEP_DataTool.getValueById(allSpecialItemsData, id, "name");
+          String engDesc = aEP_DataTool.getValueById(allSpecialItemsData, id, "desc");
+          String engManufacture = aEP_DataTool.getValueById(allSpecialItemsData, id, "tech/manufacturer");
+          if (!engName.isEmpty()) {
+            spec.setName(engName);
+            spec.setDesc(engDesc);
+            spec.setManufacturer(engManufacture);
+          }
+        }
+      }
+
+      // colony conditions
+      JSONArray allConditionString = Global.getSettings().loadCSV("data/campaign/market_conditions_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allConditionsData = aEP_DataTool.jsonToList(allConditionString);
+      if (!allConditionsData.isEmpty()) {
+        for (MarketConditionSpecAPI spec : Global.getSettings().getAllMarketConditionSpecs()) {
+          String id = spec.getId();
+          String engName = aEP_DataTool.getValueById(allConditionsData, id, "name");
+          String engDesc = aEP_DataTool.getValueById(allConditionsData, id, "desc");
+          if (!engName.isEmpty()) {
+            spec.setName(engName);
+            spec.setDesc(engDesc);
+          }
+        }
+      }
+
+      // skills
+      JSONArray allSkillsString = Global.getSettings().loadCSV("data/characters/skills/skill_data_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allSkillsData = aEP_DataTool.jsonToList(allSkillsString);
+      if (!allSkillsData.isEmpty()) {
+        for (String id : Global.getSettings().getSkillIds()) {
+          String engName = aEP_DataTool.getValueById(allSkillsData, id, "name");
+          String engDesc = aEP_DataTool.getValueById(allSkillsData, id, "description");
+          String engAuthor = aEP_DataTool.getValueById(allSkillsData, id, "author");
+          if (!engName.isEmpty()) {
+            SkillSpecAPI spec = Global.getSettings().getSkillSpec(id);
+            spec.setName(engName);
+            spec.setDescription(engDesc);
+            spec.setAuthor(engAuthor);
+          }
+        }
+      }
+
+      // hullmods
+      JSONArray allHullmodsString = Global.getSettings().loadCSV("data/hullmods/hull_mods_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allHullmodsData = aEP_DataTool.jsonToList(allHullmodsString);
+      if (!allHullmodsData.isEmpty()) {
+        for (HullModSpecAPI spec : Global.getSettings().getAllHullModSpecs()) {
+          String id = spec.getId();
+          String engName = aEP_DataTool.getValueById(allHullmodsData, id, "name");
+          String engDesign = aEP_DataTool.getValueById(allHullmodsData, id, "tech/manufacturer");
+          String engDesc= aEP_DataTool.getValueById(allHullmodsData, id, "desc");
+          String engDescSmod= aEP_DataTool.getValueById(allHullmodsData, id, "sModDesc");
+
+          if (!engName.isEmpty()) {
+            spec.setDisplayName(engName);
+            spec.setManufacturer(engDesign);
+            spec.setDescriptionFormat(engDesc);
+            spec.setSModEffectFormat(engDescSmod);
+          }
+        }
+      }
+
+      // ships
+      JSONArray allShipsString = Global.getSettings().loadCSV("data/hulls/ship_data_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allHullsData = aEP_DataTool.jsonToList(allShipsString);
+      if (!allHullsData.isEmpty()) {
+        for (ShipHullSpecAPI spec : Global.getSettings().getAllShipHullSpecs()) {
+          String id = spec.getBaseHullId();
+          String engName = aEP_DataTool.getValueById(allHullsData, id, "name");
+          String engDesign = aEP_DataTool.getValueById(allHullsData, id, "tech/manufacturer");
+          String engDestination = aEP_DataTool.getValueById(allHullsData, id, "designation");
+
+          if (!engName.isEmpty()) {
+            spec.setHullName(engName);
+            spec.setManufacturer(engDesign);
+            spec.setDesignation(engDestination);
+          }
+        }
+      }
+
+      // ship system names
+      JSONArray allSystemsString = Global.getSettings().loadCSV("data/shipsystems/ship_systems_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> systemsData = aEP_DataTool.jsonToList(allSystemsString);
+      if (!systemsData.isEmpty()) {
+        for (ShipSystemSpecAPI spec : Global.getSettings().getAllShipSystemSpecs()) {
+          String systemId = spec.getId();
+          String engName = aEP_DataTool.getValueById(systemsData, systemId, "name");
+          if (!engName.isEmpty()) {
+            spec.setName(engName);
+          }
+        }
+      }
+
+      // weapons
+//      JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
+//      ArrayList<aEP_DataTool.RowData> allWeaponsData = aEP_DataTool.jsonToList(allWeaponsString);
+//      if (!allWeaponsData.isEmpty()) {
+//        for (WeaponSpecAPI spec : Global.getSettings().getAllWeaponSpecs()) {
+//          String id = spec.getWeaponId();
+//          String engName = aEP_DataTool.getValueById(allWeaponsData, id, "name");
+//          String engDesign = aEP_DataTool.getValueById(allWeaponsData, id, "tech/manufacturer");
+//          String engUsage = aEP_DataTool.getValueById(allWeaponsData, id, "primaryRoleStr");
+//          String engEffectDesc = aEP_DataTool.getValueById(allWeaponsData, id, "customPrimary");
+//
+//          if (!engName.isEmpty()) {
+//            spec.setWeaponName(engName);
+//            spec.setManufacturer(engDesign);
+//            spec.setPrimaryRoleStr(engUsage);
+//            spec.setCustomPrimary(engEffectDesc);
+//          }
+//        }
+//      }
+      JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allWeaponsData = aEP_DataTool.jsonToList(allWeaponsString);
+      if (!allWeaponsData.isEmpty()) {
+        for (aEP_DataTool.RowData row : allWeaponsData) {
+          String id = row.getId();
+          if(!id.isEmpty() && !id.startsWith("#")){
+            WeaponSpecAPI spec = Global.getSettings().getWeaponSpec(id);
+            String engName = row.getProperty("name");
+            String engDesign = row.getProperty("tech/manufacturer");
+            String engUsage = row.getProperty("primaryRoleStr");
+            String engEffectDesc =row.getProperty("customPrimary");
+            spec.setWeaponName(engName);
+            spec.setManufacturer(engDesign);
+            spec.setPrimaryRoleStr(engUsage);
+            spec.setCustomPrimary(engEffectDesc);
+          }
+        }
+
+      }
+
+      // description
+      JSONArray allDesString = Global.getSettings().loadCSV("data/strings/descriptions_EN.csv", "FSF_MilitaryCorporation");
+      ArrayList<aEP_DataTool.RowData> allDesData = aEP_DataTool.jsonToList(allDesString);
+      if (!allDesData.isEmpty()) {
+        for (aEP_DataTool.RowData row : allDesData) {
+          String id = row.getId();
+          if(!id.isEmpty() && !id.startsWith("#")){
+            Description.Type type = Description.Type.valueOf(row.getProperty("type"));
+            Description d = Global.getSettings().getDescription(id, type);
+            d.setText1(row.getProperty("text1"));
+            d.setText2(row.getProperty("text2"));
+            d.setText3(row.getProperty("text3"));
+            d.setText4(row.getProperty("text4"));
+          }
+        }
+      }
+
+
+    }catch (Exception e){
+      Global.getLogger(this.getClass()).info("Fail to swap language to Eng");
+    }
+  }
 }

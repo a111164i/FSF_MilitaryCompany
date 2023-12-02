@@ -10,7 +10,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="D:\Starsector096\mods\VIC\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="D:\Starsector096\mods\tahlan-shipworks-1.2.4\data\config\modFiles\magicTrail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector096\mods\trailer-moments\data\config\modFiles\magicTrail_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -269,6 +283,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\commodities_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\industries.csv">
           <value>
             <Attribute>
@@ -277,6 +298,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -304,6 +332,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>
@@ -325,6 +360,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\special_items_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\submarkets.csv">
           <value>
             <Attribute>
@@ -332,7 +374,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\submarkets_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\characters\skills\skill_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -402,21 +458,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hullmods\ref_hullmod.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\hulls\ref.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\hulls\ref_wing.csv">
+        <entry key="\data\hullmods\hull_mods_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -424,6 +466,13 @@
           </value>
         </entry>
         <entry key="\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\hulls\ship_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -458,14 +507,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\shipsystems\reference.csv">
+        <entry key="\data\shipsystems\ship_systems.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\shipsystems\ship_systems.csv">
+        <entry key="\data\shipsystems\ship_systems_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -479,7 +528,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\weapons\reference.csv">
+        <entry key="\data\strings\descriptions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -493,7 +542,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\weapons\weapon_data_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="_EN-main\data\hulls\ship_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

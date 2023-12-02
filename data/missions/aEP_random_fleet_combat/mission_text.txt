@@ -1,4 +1,4 @@
-﻿地点: 不详
-日期: 不详
+﻿Location: Unknown
+Date: Unknown
 
-观赏舰队模拟战
+Watch random faction fleet combat

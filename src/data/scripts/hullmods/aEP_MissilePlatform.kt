@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.loading.MissileSpecAPI
+import com.fs.starfarer.api.loading.WeaponSpecAPI
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -14,23 +15,18 @@ import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
-import combat.util.aEP_ID.Companion.HULLMOD_BULLET
 import combat.util.aEP_ID.Companion.HULLMOD_POINT
-import combat.util.aEP_Render
 import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
-import org.lwjgl.opengl.Display
-import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
-import org.magiclib.util.MagicUI
 import java.awt.Color
 import kotlin.math.roundToInt
 
 class aEP_MissilePlatform : aEP_BaseHullMod() {
 
   companion object {
-    private const val MISSILE_HITPOINT_BUFF = 10f //by percent
+    private const val MISSILE_HITPOINT_BUFF = 0f //by percent
     //武器的最大备弹量卡在2轮或者20%备弹
     private const val MISSILE_MAX_MULT = 2
     private const val MISSILE_MAX_PERCENT = 20
@@ -71,12 +67,8 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         val sprite = Global.getSettings().getSprite("aEP_FX","loading_ring")
         val ringSize = INDICATOR_SIZE[size]?: Vector2f(20f,20f)
         MagicRender.singleframe(
-          sprite,
-          absLoc,
-          ringSize,
-          startingAngle,
-          UI_COLOR1,
-          true,
+          sprite, absLoc, ringSize,
+          startingAngle, UI_COLOR1, true,
           CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
 
         level -= 0.125f
@@ -86,6 +78,20 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       //aEP_Render.closeGL11()
     }
 
+    fun isMissileWeapon(w:WeaponAPI):Boolean{
+      //槽位既不是导弹槽也不是复合槽的，不行
+      if (w.slot.weaponType != WeaponAPI.WeaponType.MISSILE
+        && w.slot.weaponType != WeaponAPI.WeaponType.COMPOSITE) return false
+      //武器不是导弹武器，不行
+      if (w.type != WeaponAPI.WeaponType.MISSILE) return false
+      //武器没有弹药，不行
+      if (w.ammoTracker == null) return false
+      //武器没有弹药，不行，原版里面不适用弹药的武器，这个数为maxValue
+      if (w.ammo == Int.MAX_VALUE) return false
+      //武器拥有基础的自装填速度的，不行
+      if (w.spec.ammoPerSecond > 0f) return false
+      return true
+    }
   }
 
   init {
@@ -98,6 +104,11 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     return ""
   }
 
+  //变宽！！！
+  //原版测距仪是412，这里也用412
+  override fun getTooltipWidth(): Float {
+    return 412f
+  }
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     if (ship.mutableStats == null) return
 
@@ -133,41 +144,180 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
 
 
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
-    //tooltip.addGrid( 5 * 5f + 10f);
-    //奖励项
-    tooltip.addPara("{%s}"+txt("aEP_MissilePlatform07"), 5f, arrayOf(Color.green), HULLMOD_POINT, txt("aEP_MissilePlatform01"), String.format("%.0f", 100f)+"%")
-    tooltip.addPara(HULLMOD_BULLET + txt("aEP_MissilePlatform02"), 5f ,highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?.times(100) ?: 0))
-    tooltip.addPara(HULLMOD_BULLET + txt("aEP_MissilePlatform03"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?.times(100) ?: 0))
-    tooltip.addPara(HULLMOD_BULLET + txt("aEP_MissilePlatform04"), 5f, highLight, String.format("%.1f", MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?.times(100) ?: 0))
+    // 正面
+    // 概述总装填率
+    addPositivePara(tooltip, "aEP_MissilePlatform02", arrayOf()) // 说明总装填率的储备值和回复值
+
+
+    //统计全船的导弹数据，用于后面的表格
     var totalOp = 0f
+    var totalConsumption = 0f
+    val allLargeSpec = ArrayList<WeaponSpecAPI>()
+    val allMediumSpec = ArrayList<WeaponSpecAPI>()
+    val allSmallSpec = ArrayList<WeaponSpecAPI>()
     ship?.run {
-      for (w in ship.allWeapons) {
-        if (!isMissileWeapon(w)) continue
-        val opMissileWeapon = w.spec.getOrdnancePointCost(null)
-        totalOp += opMissileWeapon * RATE_INCREASE_SPEED_MULT
+      for(w in ship.allWeapons) {
+        if(!isMissileWeapon(w)) continue
+        val spec = w.spec
+        totalOp += spec.getOrdnancePointCost(null)
+        totalConsumption += MAX_RELOAD_SPEED[spec.size]?:0f
+        when (spec.size){
+          WeaponAPI.WeaponSize.LARGE -> {
+            if (!allLargeSpec.contains(spec)) allLargeSpec.add(spec)
+          }
+          WeaponAPI.WeaponSize.MEDIUM ->{
+            if (!allMediumSpec.contains(spec)) allMediumSpec.add(spec)
+          }
+          WeaponAPI.WeaponSize.SMALL -> {
+            if (!allSmallSpec.contains(spec)) allSmallSpec.add(spec)
+          }
+        }
+      }
+
+    }
+
+
+    //用表格显示总装填率的最大值，回复速度，最大消耗速度
+    val col2W0 = width * 0.5f
+    //第一列显示的名称，尽可能可能的长
+    val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
+    tooltip.beginTable(
+      factionColor, factionDarkColor, factionBrightColor,
+      TEXT_HEIGHT_SMALL, true, true,
+      *arrayOf<Any>( txt("aEP_MissilePlatform01"), col1W0,
+        "Statistics", col2W0)
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight, txt("total"),
+      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP",totalOp * MAX_RATE_MULT),
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight, txt("recover")+" "+txt("speed"),
+      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalOp * RATE_INCREASE_SPEED_MULT),
+    )
+    tooltip.addRow(
+      Alignment.MID, highlight, txt("max")+" "+txt("consumption") ,
+      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalConsumption * 100f),
+    )
+    val minLevel = (totalOp * RATE_INCREASE_SPEED_MULT/(totalConsumption * 100f + 0.01f)).coerceAtLeast(0f).coerceAtMost(1f)
+      tooltip.addRow(
+      Alignment.MID, highlight, txt("min")+" "+txt("level") ,
+      Alignment.MID, highlight, String.format("%.0f",minLevel * 100f)+"%",
+    )
+    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+
+
+    addPositivePara(tooltip, "aEP_MissilePlatform07", arrayOf())
+
+    //表格显示最大导弹回复速度
+    //只显示可预期长度的数字的列，写一个固定的列宽度，
+    val col2W = width * 0.70f
+    //第一列显示的名称，尽可能可能的长
+    val col1W = (width - col2W - PARAGRAPH_PADDING_BIG)
+    tooltip.beginTable(
+      factionColor, factionDarkColor, factionBrightColor,
+      TEXT_HEIGHT_SMALL, true, true,
+      *arrayOf<Any>("Missile Size", col1W,
+        "Ammo Production per 100s", col2W))
+    tooltip.addRow(
+      Alignment.MID, highlight, "Large",
+      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?:0.2f) * 100f))
+    tooltip.addRow(
+      Alignment.MID, highlight, "Medium",
+      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?:0.2f) * 100f))
+    tooltip.addRow(
+      Alignment.MID, highlight, "Small",
+      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?:0.2f) * 100f))
+    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+
+    //表格显示每个武器的 弹药/OP比
+    val col2W2 = 60f
+    val col3W2 = 60f
+    val col4W2 = 80f
+    val col1W2 = (width - col2W2 - col3W2 - col4W2 - PARAGRAPH_PADDING_BIG)
+    tooltip.beginTable(
+      factionColor, factionDarkColor, factionBrightColor,
+      TEXT_HEIGHT_SMALL, true, true,
+      *arrayOf<Any>("Missile Spec", col1W2,
+        "OP", col3W2,
+        "Ammo", col2W2,
+        "OP per A.", col4W2))
+
+    //val label = tooltip.createLabel( "Large", highlight)
+    //label.autoSizeToWidth(10f)
+    if(!allLargeSpec.isEmpty()){
+      tooltip.addRow(
+        Alignment.MID, highlight, "Large")
+      for(spec in allLargeSpec){
+        val op =  spec.getOrdnancePointCost(null)
+        val ammo =spec.maxAmmo.toFloat()
+        tooltip.addRow(
+          Alignment.MID, txtColor, spec.weaponName,
+          Alignment.MID, txtColor, String.format("%.0f", op),
+          Alignment.MID, txtColor, String.format("%.0f", ammo),
+          Alignment.MID, txtColor, String.format("%.1f", op/ammo),
+        )
       }
     }
-    tooltip.addPara("{%s}"+ txt("aEP_MissilePlatform08"), 5f, arrayOf(Color.green, highLight), HULLMOD_POINT,String.format("%.1f", totalOp))
-
-    tooltip.addPara("{%s}" + txt("aEP_MissilePlatform10"), 5f,arrayOf(Color.green), HULLMOD_POINT, MISSILE_HITPOINT_BUFF.toInt().toString() + "%")
+    if(!allMediumSpec.isEmpty()) {
+      tooltip.addRow(
+        Alignment.MID, highlight, "Medium"
+      )
+      for (spec in allMediumSpec) {
+        val op = spec.getOrdnancePointCost(null)
+        val ammo = spec.maxAmmo.toFloat()
+        tooltip.addRow(
+          Alignment.MID, txtColor, spec.weaponName,
+          Alignment.MID, txtColor, String.format("%.0f", op),
+          Alignment.MID, txtColor, String.format("%.0f", ammo),
+          Alignment.MID, txtColor, String.format("%.1f", op / ammo),
+        )
+      }
+    }
+    if(!allSmallSpec.isEmpty()) {
+      tooltip.addRow(
+        Alignment.MID, highlight, "Small"
+      )
+      for (spec in allSmallSpec) {
+        val op = spec.getOrdnancePointCost(null)
+        val ammo = spec.maxAmmo.toFloat()
+        tooltip.addRow(
+          Alignment.MID, txtColor, spec.weaponName,
+          Alignment.MID, txtColor, String.format("%.0f", op),
+          Alignment.MID, txtColor, String.format("%.0f", ammo),
+          Alignment.MID, txtColor, String.format("%.1f", op / ammo),
+        )
+      }
+    }
+    tooltip.addRow(
+      Alignment.MID, highlight, "Total",
+      Alignment.MID, highlight, String.format("%.0f",totalOp),
+    )
+    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
     //实际上就是把原本扩展架的量慢慢给玩家
-    //惩罚项
-    tooltip.addPara("{%s}" + txt("aEP_MissilePlatform05"), 5f,arrayOf(Color.red), HULLMOD_POINT, MISSILE_MAX_MULT.toString(), "$MISSILE_MAX_PERCENT%")
-    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), HULLMOD_POINT,  showModName(notCompatibleList))
+    // 负面
+    tooltip.addPara(" %s " + txt("aEP_MissilePlatform05"), 5f,arrayOf(Color.red), HULLMOD_POINT, MISSILE_MAX_MULT.toString(), "$MISSILE_MAX_PERCENT%")
+    showIncompatible(tooltip)
+
     //灰色额外说明
-    tooltip.addPara(txt("aEP_MissilePlatform09"), grayColor, 5f)
-    tooltip.addPara(txt("aEP_MissilePlatform11"), grayColor, 5f)
+    addGrayPara(tooltip, "aEP_MissilePlatform09", arrayOf())
+    addGrayPara(tooltip, "aEP_MissilePlatform11", arrayOf())
   }
 
   public inner class LoadingMap constructor(var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {
@@ -212,8 +362,8 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         Global.getCombatEngine().maintainStatusForPlayerShip(
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui",ID),  //sprite name,full, must be registed in setting first
-          Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("aEP_MissilePlatform06")  + (level * 100f).toInt() + "%",  //data
+          spec.displayName,  //title
+          aEP_DataTool.txt("aEP_MissilePlatform01") +": "  + (level * 100f).toInt() + "%",  //data
           false
         )
       }
@@ -289,20 +439,6 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       }
     }
 
-  }
-
-  private fun isMissileWeapon(w:WeaponAPI):Boolean{
-    //槽位既不是导弹槽也不是复合槽的，不行
-    if (w.slot.weaponType != WeaponAPI.WeaponType.MISSILE && w.slot.weaponType != WeaponAPI.WeaponType.COMPOSITE) return false
-    //武器不是导弹武器，不行
-    if (w.type != WeaponAPI.WeaponType.MISSILE) return false
-    //武器没有弹药，不行
-    if (w.ammoTracker == null) return false
-    //武器没有弹药，不行，原版里面不适用弹药的武器，这个数为maxValue
-    if (w.ammo == Int.MAX_VALUE) return false
-    //武器拥有基础的自装填速度的，不行
-    if (w.spec.ammoPerSecond > 0f) return false
-    return true
   }
 
   private fun getAmmoPerFire(w:WeaponAPI): Int{

@@ -182,8 +182,6 @@ class aEP_OpenFieldHangar: aEP_BaseHullMod(), AdvanceableListener {
   }
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI, ship: ShipAPI, id: String) {
-    fighter.mutableStats.damageToMissiles.modifyMult(ID, 0.5f)
-    fighter.mutableStats.damageToFighters.modifyMult(ID, 0.5f)
     fighter.mutableStats.damageToFrigates.modifyMult(ID, 0.5f)
     fighter.mutableStats.damageToDestroyers.modifyMult(ID, 0.5f)
     fighter.mutableStats.damageToCruisers.modifyMult(ID, 0.5f)
@@ -193,7 +191,7 @@ class aEP_OpenFieldHangar: aEP_BaseHullMod(), AdvanceableListener {
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String? {
     //if (index == 0) return String.format("%.0f", ACTIVE_COOLDOWN)
     if (index == 0) return String.format("%.0f", 100f) +"%"
-    if (index == 1) return String.format("%.0f", 50f) +"%"
+    if (index == 1) return String.format("-%.0f", 50f) +"%"
     else return null
   }
 }

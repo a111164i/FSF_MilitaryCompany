@@ -66,9 +66,9 @@ class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier {
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize): String? {
-    if (index == 0) return String.format("%.0f", PD_WEAPON_RANGE_BONUS[hullSize]?: 60f) +"%"
-    if (index == 1) return String.format("%.0f", SPREAD_REDUCE_MULT * 100f) +"%"
-    if (index == 2) return String.format("%.0f", PROJECTILE_SPEED_BONUS) +"%"
+    if (index == 0) return String.format("+%.0f", PD_WEAPON_RANGE_BONUS[hullSize]?: 60f) +"%"
+    if (index == 1) return String.format("-%.0f", SPREAD_REDUCE_MULT * 100f) +"%"
+    if (index == 2) return String.format("+%.0f", PROJECTILE_SPEED_BONUS) +"%"
     return null
   }
 

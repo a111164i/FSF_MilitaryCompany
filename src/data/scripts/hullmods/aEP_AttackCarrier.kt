@@ -4,7 +4,9 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.WeaponAPI
+import com.fs.starfarer.api.combat.WeaponAPI.WeaponSize
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
+import com.fs.starfarer.api.impl.hullmods.BallisticRangefinder
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -17,8 +19,8 @@ import combat.util.aEP_ID
 import combat.util.aEP_ID.Companion.HULLMOD_BULLET
 import combat.util.aEP_ID.Companion.HULLMOD_POINT
 import combat.util.aEP_Tool
-import data.scripts.weapons.aEP_DecoAnimation
 import data.scripts.shipsystems.aEP_FighterLaunch
+import data.scripts.weapons.aEP_DecoAnimation
 import org.dark.shaders.light.LightShader
 import org.dark.shaders.light.StandardLight
 import org.lazywizard.lazylib.MathUtils
@@ -27,9 +29,9 @@ import java.awt.Color
 class aEP_AttackCarrier:aEP_BaseHullMod() {
 
   companion object{
-    const val RANGE_INCREASE_PERCENT = 0
-    const val SPEED_BONUS_RANGE = 1000
-    const val SPEED_THRESHOLD = 200
+    const val RANGE_INCREASE_PERCENT = 0f
+    const val SPEED_BONUS_RANGE = 1000f
+    const val SPEED_THRESHOLD = 200f
     const val SPEED_GAP_BONUS = 0.7f
 
     const val TURNRATE_THRESHOLD = 90
@@ -83,13 +85,11 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     fighter.mutableStats.maxTurnRate.modifyFlat(ID,(TURNRATE_THRESHOLD - turnRate) * TURNRATE_GAP_BONUS )
   }
 
-
   override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, idd: String?) {
     stats?: return
     //延长战机的作战半径
     stats.fighterWingRange.modifyPercent(ID, RANGE_INCREASE_PERCENT.toFloat())
   }
-
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
     if(!ship.isAlive || ship.isHulk)return
@@ -156,19 +156,37 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
 
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
 
-    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier01"), 5f, arrayOf(Color.green),
-      HULLMOD_POINT,
-      SPEED_BONUS_RANGE.toString(), SPEED_THRESHOLD.toString())
+    //主效果
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
+
+    // 正面
+    addPositivePara(tooltip, "aEP_AttackCarrier01", arrayOf(
+      String.format("%.0f", SPEED_BONUS_RANGE),
+      String.format("%.0f", SPEED_THRESHOLD)))
+
+    //第二列只用显示速度加成，写一个固定的列宽度，
+    val col2W = 80f
+    //第一列显示战机联队的名称，尽可能可能的长
+    val col1W = (width - col2W - PARAGRAPH_PADDING_BIG)
+
+    tooltip.beginTable(
+      factionColor, factionDarkColor, factionBrightColor,
+      TEXT_HEIGHT_SMALL, true, true,
+      *arrayOf<Any>("Wing Spec", col1W, "Bonus", col2W)
+    )
 
     for(wings in ship?.variant?.fittedWings?:ArrayList()) {
       val spec = Global.getSettings().getFighterWingSpec(wings)
@@ -176,28 +194,28 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       val speed = spec.variant.hullSpec.engineSpec.maxSpeed
       //速度大于200或者不存在的联队就跳过
       if(speed >= SPEED_THRESHOLD) continue
-      val string = StringBuffer()
-      string.append("$HULLMOD_BULLET{$name}{%s}")
-      val bonus = "+" + ((SPEED_THRESHOLD - speed) * SPEED_GAP_BONUS).toInt().toString()
-      tooltip.addPara(string.toString(), 5f, txtColor, highLight, bonus)
+      tooltip.addRow(
+        Alignment.MID, txtColor, name,
+        Alignment.MID, highlight, String.format("+%.0f", SPEED_THRESHOLD - speed),
+      )
     }
+    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
     val fluxLevelString= (100f* MAX_ACTIVE_FLUX_LEVEL).toInt().toString()+"%"
-    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier02"), 5f, arrayOf(Color.green),
-      HULLMOD_POINT,
+    addPositivePara(tooltip, "aEP_AttackCarrier02", arrayOf(
       fluxLevelString,
-      FORGE_TOTAL_TIME.toInt().toString())
+      FORGE_TOTAL_TIME.toInt().toString()))
 
+
+    // 负面
     val p = computePunish(ship)
-    tooltip.addPara("{%s}"+txt("aEP_AttackCarrier05"), 5f, arrayOf(Color.red),
-      HULLMOD_POINT,
+    addNegativePara(tooltip, "aEP_AttackCarrier05", arrayOf(
       String.format("%.0f", PUNISH_START_OP),
-      String.format("%.1f", PUNISH_PER_OP),
-      String.format("%.1f", p))
+      String.format("+%.1f", PUNISH_PER_OP),
+      String.format("+%.1f", p)))
 
     //显示不兼容插件
-    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
-
+    showIncompatible(tooltip)
   }
 
   inner class ForgeOn : aEP_BaseCombatEffect{
@@ -237,8 +255,8 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
       if(Global.getCombatEngine().playerShip == weapon.ship){
         Global.getCombatEngine().maintainStatusForPlayerShip(ID,
          Global.getSettings().getSpriteName("aEP_ui","heavy_fighter_carrier"),
-          txt("aEP_AttackCarrier03"),
-          String.format(txt("aEP_AttackCarrier04"),(lifeTime-time).toInt().toString()),
+          spec.displayName,
+          String.format(txt("cooldown") +": %.1f",lifeTime-time),
           true)
       }
 

@@ -54,28 +54,14 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
 
   }
 
-  override fun getDescriptionParam(index: Int, hullSize: HullSize, ship: ShipAPI?): String {
-    return ""
+  override fun getDescriptionParam(index: Int, hullSize: HullSize, ship: ShipAPI?): String? {
+    ship ?: return "0%"
+    if (index == 0) return String.format("+%.0f", mag1[ship.hullSpec.baseHullId]?: 40f) +"%"
+    return null
   }
 
   override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return true
   }
 
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
-
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+txt("aEP_ModuleTargeting02")+"{%s}", 5f, arrayOf(Color.green, highLight), aEP_ID.HULLMOD_POINT, (mag1[ship?.hullSpec?.hullId?:""]?:0).toInt().toString()+"%")
-
-    //显示不兼容插件
-    tooltip.addPara("{%s}"+txt("not_compatible")+"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
-
-  }
 }

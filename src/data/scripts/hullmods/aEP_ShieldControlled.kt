@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.WeaponBaseRangeModifier
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
+import com.fs.starfarer.api.loading.WeaponSpecAPI
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import org.lwjgl.util.vector.Vector2f
@@ -23,6 +24,7 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
 import kotlin.math.pow
 
@@ -40,14 +42,22 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     private const val MIN_DAMAGE_RANGE = 0f
 
     //REDUCE_MULT 是 1 - x
-    private const val REDUCE_MULT = 0.55f
+    private const val REDUCE_MULT = 0.65f
     private const val UPKEEP_PUNISH = 0f
     private const val MAX_WEAPON_RANGE_CAP = 900f
     val SHIFT_COLOR = Color(105,155,255,205)
     private const val COLOR_RECOVER_INTERVAL = 0.025f //by seconds
     //基础降低来自导弹和光束的伤害
-    private const val BASE_DAMAGE_REDUCE_MULT = 0.05f //by seconds
+    private const val BASE_DAMAGE_REDUCE_MULT = 0f //by seconds
     const val ID = "aEP_ShieldControlled"
+
+    fun shouldModRange(w: WeaponAPI): Boolean{
+      val spec = w.spec
+      val slot = w.slot
+      if(spec.maxRange <= MAX_WEAPON_RANGE_CAP) return false
+      if(w.type != WeaponAPI.WeaponType.BALLISTIC && w.type != WeaponAPI.WeaponType.ENERGY ) return false
+      return true
+    }
 
   }
 
@@ -123,31 +133,62 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
 
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
 
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ShieldControlled01"), 5f, arrayOf(Color.green, highLight),
-      aEP_ID.HULLMOD_POINT,
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
+
+    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
+
+    // 正面
+    addPositivePara(tooltip, "aEP_ShieldControlled01", arrayOf(
       String.format("%.0f", mag[hullSize]?:1000f),
-      // String.format("%.0f", MIN_DAMAGE_RANGE),
-      String.format("%.0f", REDUCE_MULT*100f) +"%")
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ShieldControlled03"), 5f, arrayOf(Color.green, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", BASE_DAMAGE_REDUCE_MULT*100f)+"%")
+      String.format("-%.0f", REDUCE_MULT*100f) +"%"))
 
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_ShieldControlled02"), 5f, arrayOf(Color.red, highLight),
-      aEP_ID.HULLMOD_POINT,
+    // 负面
+    addNegativePara(tooltip, "aEP_ShieldControlled02", arrayOf(
       aEP_DataTool.txt("base"),
-      String.format("%.0f", MAX_WEAPON_RANGE_CAP))
+      String.format("%.0f", MAX_WEAPON_RANGE_CAP)))
+
+    //表格显示所有受到射程惩罚的武器
+    //用表格显示总装填率的最大值，回复速度，最大消耗速度
+    val affectedWeaponList = ArrayList<WeaponSpecAPI>()
+    ship?.run {
+      for(w in ship.allWeapons){
+        if(!shouldModRange(w)) continue
+        if(!affectedWeaponList.contains(w.spec)) affectedWeaponList.add(w.spec)
+      }
+    }
+    if(!affectedWeaponList.isEmpty()){
+      val col2W0 = 120f
+      //第一列显示的名称，尽可能可能的长
+      val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
+      tooltip.beginTable(
+        factionColor, factionDarkColor, factionBrightColor,
+        TEXT_HEIGHT_SMALL, true, true,
+        *arrayOf<Any>(
+          "Weapon Spec", col1W0,
+          "Punish", col2W0)
+      )
+      for(spec in affectedWeaponList){
+        val punish = spec.maxRange - MAX_WEAPON_RANGE_CAP
+        tooltip.addRow(
+          Alignment.MID, highlight, spec.weaponName,
+          Alignment.MID, negativeHighlight, String.format("-%.0f", punish),
+        )
+      }
+      tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+    }
+
+    //tooltip.beginTable(factionColor, )
     //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight),
-      aEP_ID.HULLMOD_POINT,
-      showModName(notCompatibleList))
+    showIncompatible(tooltip)
 
 
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
@@ -238,9 +279,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
 
     override fun getWeaponBaseRangeFlatMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
       weapon?:return 0f
-      if(weapon.slot.isSystemSlot) return 0f
-      if(weapon.slot.isBuiltIn) return 0f
-      if(weapon.type == WeaponAPI.WeaponType.MISSILE) return 0f
+      if(!shouldModRange(weapon)) return 0f
 
       val baseRange = weapon.spec?.maxRange ?: MAX_WEAPON_RANGE_CAP
       if(baseRange > MAX_WEAPON_RANGE_CAP){
@@ -250,6 +289,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     }
 
     override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
+
       if(Global.getCombatEngine().playerShip == ship
         && ship.shield?.isOn == true){
 

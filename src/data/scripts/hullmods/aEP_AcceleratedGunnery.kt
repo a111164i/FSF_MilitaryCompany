@@ -24,8 +24,8 @@ class aEP_AcceleratedGunnery: aEP_BaseHullMod() {
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String? {
-    if (index == 0) return String.format("%.0f", 20f) +"%"
-    if (index == 1) return String.format("%.0f", 50f) +"%"
+    if (index == 0) return String.format("+%.0f", 20f) +"%"
+    if (index == 1) return String.format("+%.0f", 50f) +"%"
     return null
   }
 }

@@ -15,9 +15,9 @@
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 	"aEP_FSF_SaleStation":{
-		"defaultName":"FSF 商业中心",# used if name=null in addCustomEntity()
-		"nameInText":"FSF 商业中心",
-		"shortName":"FSF 商业中心",
+		"defaultName":"FSF Commercial Center",# used if name=null in addCustomEntity()
+		"nameInText":"FSF Commercial Center",
+		"shortName":"FSF Commercial Center",
 		"defaultRadius":110,# used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_FSF_SaleStation",
 		"interactionImage":"graphics/illustrations/orbital.jpg",
@@ -38,9 +38,9 @@
 		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 	"aEP_FSF_DefStation":{
-		"defaultName":"FSF 星系中心防御站",# used if name=null in addCustomEntity()
-		"nameInText":"FSF 星系中心防御站",
-		"shortName":"FSF 防御站",
+		"defaultName":"FSF System Defense Station",# used if name=null in addCustomEntity()
+		"nameInText":"FSF System Defense Station",
+		"shortName":"FSF System Defense Station",
 		"defaultRadius":80,# used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_FSF_DefStation",
 		"interactionImage":"graphics/illustrations/orbital.jpg",
@@ -74,12 +74,12 @@
 		"interactionImage":"graphics/illustrations/comm_relay.jpg",
 		"tags":["comm_relay", "neutrino_high", "objective"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin",
+		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin"
 	},
 	"aEP_FSF_SpaceFactory":{
-		"defaultName":"FSF 军备工厂", # used if name=null in addCustomEntity()
-		"nameInText":"FSF 军备工厂",
-		"shortName":"FSF 军备工厂",
+		"defaultName":"FSF Hidden Factory", # used if name=null in addCustomEntity()
+		"nameInText":"FSF Hidden Factory",
+		"shortName":"FSF Hidden Factory",
 		"defaultRadius":150, # used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_SpaceFactory",
 		"interactionImage":"graphics/illustrations/coronal_tap.jpg",
@@ -100,13 +100,13 @@
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
 		"renderCircleIndicator":true,
 		"renderCircleIndicatorSelectionFlash":true,
-		#"pluginClass":"com.fs.starfarer.api.impl.campaign.BaseCustomEntityPlugin",
+		#"pluginClass":"com.fs.starfarer.api.impl.campaign.BaseCustomEntityPlugin"
 	},
 	# 必须hullspecId相同
 	"aEP_CruiseMissile":{
-		"defaultName":"巡航导弹", # used if name=null in addCustomEntity()
-		"nameInText":"巡航导弹",
-		"shortName":"巡航导弹",
+		"defaultName":"S-1 Cruise Missile", # used if name=null in addCustomEntity()
+		"nameInText":"S-1 Cruise Missile",
+		"shortName":"S-1 CM",
 		"defaultRadius":15,# used if radius<0 in addCustomEntity()
 		"icon":"graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
 		"iconWidth":24,
@@ -123,13 +123,13 @@
 		"interactionImage":"graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
 		"tags":["neutrino"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin",
+		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
 	},
 	# 必须hullspecId相同
 	"aEP_CruiseMissile2":{
-		"defaultName":"巡航导弹", # used if name=null in addCustomEntity()
-		"nameInText":"巡航导弹",
-		"shortName":"巡航导弹",
+		"defaultName":"S-2 Cruise Missile", # used if name=null in addCustomEntity()
+		"nameInText":"S-2 Cruise Missile",
+		"shortName":"S-2 CM",
 		"defaultRadius":15,# used if radius<0 in addCustomEntity()
 		"icon":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
 		"iconWidth":24,
@@ -146,7 +146,7 @@
 		"interactionImage":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
 		"tags":["neutrino_high"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin",
+		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
 	},
 	"aEP_IND_Piratestation":{
 		"defaultName":"the Dark's Flavor", # used if name=null in addCustomEntity()
@@ -168,7 +168,7 @@
 		"scaleIconWithZoom":true,
 		"tags":["neutrino_high"],
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-	},
+	}
 
 	
 }

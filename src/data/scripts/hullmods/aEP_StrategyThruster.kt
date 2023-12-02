@@ -59,39 +59,48 @@ class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
   }
 
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highLight = Misc.getHighlightColor()
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
     val grayColor = Misc.getGrayColor()
     val txtColor = Misc.getTextColor()
-    val barBgColor = faction.getDarkUIColor()
-    val factionColor: Color = faction.getBaseUIColor()
-    val titleTextColor: Color = faction.getColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
 
     //主效果
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
     val bonus = ZERO_FLUX_SPEED_BONUS[hullSize]?: DEFAULT_BOOST_BONUS
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_StrategyThruster01"), 5f, arrayOf(Color.green,highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", bonus),
-      String.format("%.0f", ship?.mutableStats?.zeroFluxSpeedBoost?.modifiedValue?:bonus))
+    var nowSpeed = bonus+50f
+    if(ship?.mutableStats?.zeroFluxSpeedBoost?.flatMods?.containsKey(ID) == true){
+      nowSpeed = ship.mutableStats?.zeroFluxSpeedBoost?.modifiedValue?:nowSpeed
+    }
+
+    addPositivePara(tooltip,"aEP_StrategyThruster01", arrayOf(
+      String.format("+%.0f", bonus),
+      String.format("%.0f", nowSpeed))
+    )
+
     val level = ALLOW_LEVEL_BONUS
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_StrategyThruster02"), 5f, arrayOf(Color.green,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
-      String.format("%.0f", level)+"%",
+    addPositivePara(tooltip,"aEP_StrategyThruster02", arrayOf(
+      String.format("+%.0f", level)+"%",
       String.format("%.0f", ship?.mutableStats?.zeroFluxMinimumFluxLevel?.modifiedValue?.times(100f)?:level)+"%")
-
+    )
 
     //负面
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_StrategyThruster03"), 5f, arrayOf(Color.red,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
+    addNegativePara(tooltip,"aEP_StrategyThruster03", arrayOf(
       String.format("-%.0f", CAP_PUNISH_MULT*100f)+"%")
-    //负面
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("aEP_StrategyThruster04"), 5f, arrayOf(Color.red,highLight, highLight),
-      aEP_ID.HULLMOD_POINT,
+    )
+    addNegativePara(tooltip,"aEP_StrategyThruster04", arrayOf(
       String.format("%.0f", TIME_TO_MAX_BOOST))
+    )
 
     //显示不兼容插件
-    tooltip.addPara("{%s}"+ aEP_DataTool.txt("not_compatible") +"{%s}", 5f, arrayOf(Color.red, highLight), aEP_ID.HULLMOD_POINT,  showModName(notCompatibleList))
+    showIncompatible(tooltip)
 
     //预热完全后额外效果
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)

@@ -40,7 +40,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
   }
 
 
-  private var shouldDissipate = false
+  private var shouldShieldOn = true
 
 
   init {
@@ -139,17 +139,13 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
 
       //shield check
-      if (ship.fluxLevel >= 0.9f) {
-        shouldDissipate = true
+      if (ship.fluxLevel >= 0.99f) {
+        shouldShieldOn = false
       }
-      if (ship.fluxLevel <= 0.1f) {
-        shouldDissipate = false
+      if (ship.fluxLevel <= 0.01f) {
+        shouldShieldOn = true
       }
-      if (!shouldDissipate) {
-        ship.shield.toggleOn()
-      } else {
-        ship.shield.toggleOff()
-      }
+      aEP_Tool.toggleShieldControl(ship, shouldShieldOn)
 
       keepExplosionProtectListenerToParent(ship,toProtect)
 

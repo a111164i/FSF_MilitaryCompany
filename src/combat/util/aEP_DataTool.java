@@ -3,14 +3,16 @@ package combat.util;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
-import lunalib.backend.ui.settings.LunaSettingsLoader;
-import lunalib.lunaSettings.LunaSettings;
+import com.fs.starfarer.api.util.ListMap;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.lazywizard.lazylib.MathUtils;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import static data.scripts.FSFModPlugin.isLunalibEnabled;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class aEP_DataTool
 {
@@ -22,6 +24,69 @@ public class aEP_DataTool
     }
     return Global.getSettings().getString("aEP", id);
   }
+
+  public static String txt(String category, String id) {
+    try {
+      if(Global.getSettings().getBoolean("aEP_UseEnString")) {
+        return Global.getSettings().getString(category.replace("aEP_","aEP_EN_"), id);
+      }else {
+        return Global.getSettings().getString(category, id);
+      }
+    } catch (Exception e){
+      return "";
+    }
+  }
+
+  public static ArrayList<RowData> jsonToList(JSONArray jsonArray) {
+    ArrayList<RowData> dataList = new ArrayList<>();
+    try {
+      //JSONArray jsonArray = new JSONArray(jsonString);
+      for (int i = 0; i < jsonArray.length(); i++) {
+        JSONObject jsonObject = jsonArray.getJSONObject(i);
+        RowData dataInOneRow = new RowData(jsonObject);
+        if(dataInOneRow.getId().isEmpty()) continue;
+        dataList.add(dataInOneRow);
+      }
+    }catch (Exception ignored){
+
+    }
+    return dataList;
+  }
+
+  public static String getValueById(ArrayList<RowData> allRows, String id, String columnName) {
+    for (RowData person : allRows) {
+      if (person.getId().equals(id)) {
+        return (String) person.getProperty(columnName) ;
+      }
+    }
+    return "";
+  }
+
+  public static class RowData {
+    private final Map<String, String> properties;
+
+    public RowData(JSONObject jsonObject) {
+      this.properties = new HashMap<>();
+      try{
+        Iterator it = jsonObject.keys();
+        while (it.hasNext()) {
+          String key = (String) it.next();
+          properties.put(key, (String) jsonObject.get(key));
+        }
+      }catch (Exception ignored){}
+    }
+
+    // Getters
+    public String getId() {
+      if(getProperty("id") == null) return "";
+      return getProperty("id");
+    }
+
+    public String getProperty(String key) {
+      return properties.get(key);
+    }
+  }
+
 
   public static class floatDataRecorder
   {
@@ -93,37 +158,6 @@ public class aEP_DataTool
 
   }
 
-  public static class Polynomial
-  {
-    List<Float> terms = new ArrayList<Float>();
 
-    public Polynomial(String terms) {
-      String[] id = terms.split(",");
-      int num = 0;
-      while (num + 1 <= id.length) {
-        this.terms.add(num, Float.parseFloat(id[num]));
-        num = num + 1;
-      }
-    }
-
-    public float normalization(float max, float min, float X) {
-      float output = getY(X);
-      output = MathUtils.clamp(output, min, max);
-      return (output - min) / (max - min);
-
-    }
-
-    public float getY(float X) {
-      float outPut = 0f;
-      int num = 0;
-      while (num + 1 <= terms.size()) {
-        outPut = (float) (outPut + terms.get(num) * Math.pow(X, num));
-        num = num + 1;
-      }
-      return outPut;
-    }
-
-
-  }
 }
 
