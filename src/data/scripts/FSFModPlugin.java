@@ -286,25 +286,7 @@ public class FSFModPlugin extends BaseModPlugin {
         }
       }
 
-      // weapons
-//      JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
-//      ArrayList<aEP_DataTool.RowData> allWeaponsData = aEP_DataTool.jsonToList(allWeaponsString);
-//      if (!allWeaponsData.isEmpty()) {
-//        for (WeaponSpecAPI spec : Global.getSettings().getAllWeaponSpecs()) {
-//          String id = spec.getWeaponId();
-//          String engName = aEP_DataTool.getValueById(allWeaponsData, id, "name");
-//          String engDesign = aEP_DataTool.getValueById(allWeaponsData, id, "tech/manufacturer");
-//          String engUsage = aEP_DataTool.getValueById(allWeaponsData, id, "primaryRoleStr");
-//          String engEffectDesc = aEP_DataTool.getValueById(allWeaponsData, id, "customPrimary");
-//
-//          if (!engName.isEmpty()) {
-//            spec.setWeaponName(engName);
-//            spec.setManufacturer(engDesign);
-//            spec.setPrimaryRoleStr(engUsage);
-//            spec.setCustomPrimary(engEffectDesc);
-//          }
-//        }
-//      }
+
       JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
       ArrayList<aEP_DataTool.RowData> allWeaponsData = aEP_DataTool.jsonToList(allWeaponsString);
       if (!allWeaponsData.isEmpty()) {
@@ -325,22 +307,22 @@ public class FSFModPlugin extends BaseModPlugin {
 
       }
 
-      // description
-      JSONArray allDesString = Global.getSettings().loadCSV("data/strings/descriptions_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allDesData = aEP_DataTool.jsonToList(allDesString);
-      if (!allDesData.isEmpty()) {
-        for (aEP_DataTool.RowData row : allDesData) {
-          String id = row.getId();
-          if(!id.isEmpty() && !id.startsWith("#")){
-            Description.Type type = Description.Type.valueOf(row.getProperty("type"));
-            Description d = Global.getSettings().getDescription(id, type);
-            d.setText1(row.getProperty("text1"));
-            d.setText2(row.getProperty("text2"));
-            d.setText3(row.getProperty("text3"));
-            d.setText4(row.getProperty("text4"));
-          }
-        }
-      }
+//      // description
+//      JSONArray allDesString = Global.getSettings().loadCSV("data/strings/descriptions_EN.csv", "FSF_MilitaryCorporation");
+//      ArrayList<aEP_DataTool.RowData> allDesData = aEP_DataTool.jsonToList(allDesString);
+//      if (!allDesData.isEmpty()) {
+//        for (aEP_DataTool.RowData row : allDesData) {
+//          String id = row.getId();
+//          if(!id.isEmpty() && !id.startsWith("#")){
+//            Description.Type type = Description.Type.valueOf(row.getProperty("type"));
+//            Description d = Global.getSettings().getDescription(id, type);
+//            d.setText1(row.getProperty("text1"));
+//            d.setText2(row.getProperty("text2"));
+//            d.setText3(row.getProperty("text3"));
+//            d.setText4(row.getProperty("text4"));
+//          }
+//        }
+//      }
 
 
     }catch (Exception e){
