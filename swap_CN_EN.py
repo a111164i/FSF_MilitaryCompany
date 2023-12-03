@@ -73,7 +73,9 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
 
                 # Parse JSON if the value is not empty and can be loaded as JSON
                 # both values contains '{' and '}'
-                if value_now and value_other and '{' in value_now and '}' in value_now and '{' in value_other and '}' in value_other:
+                if (value_now and value_other 
+                    and value_now.startswith("{") and value_now.endswith("}") 
+                    and value_other.startswith("{") and value_other.endswith("}") ):
                     value_now = json.loads(value_now)
                     value_other = json.loads(value_other)
 
@@ -145,5 +147,9 @@ if __name__ == "__main__":
     #swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
     #swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
     #swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
-    swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
+    #swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
+    #swap_file_csv("data/campaign/commodities.csv", "commodities", ['name'])
+    #swap_file_csv("data/campaign/market_conditions.csv", "market_conditions", ['name','desc'])
     #swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
+    #swap_file_csv("data/characters/skills/skill_data.csv", "skill_data", ['name','description','author'])
+    swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])

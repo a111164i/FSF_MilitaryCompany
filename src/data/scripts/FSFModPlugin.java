@@ -173,50 +173,6 @@ public class FSFModPlugin extends BaseModPlugin {
       factionSpec2.setDisplayNameLong(aEP_ID.FACTION_NAME_EN);
       factionSpec2.setDisplayNameLongWithArticle(aEP_ID.FACTION_NAME_EN);
 
-      // commodities
-      JSONArray allCommoditiesString = Global.getSettings().loadCSV("data/campaign/commodities_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> commoditiesData = aEP_DataTool.jsonToList(allCommoditiesString);
-      if (!commoditiesData.isEmpty()) {
-        for (CommoditySpecAPI spec : Global.getSettings().getAllCommoditySpecs()) {
-          String id = spec.getId();
-          String engName = aEP_DataTool.getValueById(commoditiesData, id, "name");
-          if (!engName.isEmpty()) {
-            spec.setName(engName);
-          }
-        }
-      }
-
-      // colony conditions
-      JSONArray allConditionString = Global.getSettings().loadCSV("data/campaign/market_conditions_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allConditionsData = aEP_DataTool.jsonToList(allConditionString);
-      if (!allConditionsData.isEmpty()) {
-        for (MarketConditionSpecAPI spec : Global.getSettings().getAllMarketConditionSpecs()) {
-          String id = spec.getId();
-          String engName = aEP_DataTool.getValueById(allConditionsData, id, "name");
-          String engDesc = aEP_DataTool.getValueById(allConditionsData, id, "desc");
-          if (!engName.isEmpty()) {
-            spec.setName(engName);
-            spec.setDesc(engDesc);
-          }
-        }
-      }
-
-      // skills
-      JSONArray allSkillsString = Global.getSettings().loadCSV("data/characters/skills/skill_data_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allSkillsData = aEP_DataTool.jsonToList(allSkillsString);
-      if (!allSkillsData.isEmpty()) {
-        for (String id : Global.getSettings().getSkillIds()) {
-          String engName = aEP_DataTool.getValueById(allSkillsData, id, "name");
-          String engDesc = aEP_DataTool.getValueById(allSkillsData, id, "description");
-          String engAuthor = aEP_DataTool.getValueById(allSkillsData, id, "author");
-          if (!engName.isEmpty()) {
-            SkillSpecAPI spec = Global.getSettings().getSkillSpec(id);
-            spec.setName(engName);
-            spec.setDescription(engDesc);
-            spec.setAuthor(engAuthor);
-          }
-        }
-      }
 
       // hullmods
       JSONArray allHullmodsString = Global.getSettings().loadCSV("data/hullmods/hull_mods_EN.csv", "FSF_MilitaryCorporation");
@@ -238,7 +194,7 @@ public class FSFModPlugin extends BaseModPlugin {
         }
       }
 
-      // ships
+      // ships names
       JSONArray allShipsString = Global.getSettings().loadCSV("data/hulls/ship_data_EN.csv", "FSF_MilitaryCorporation");
       ArrayList<aEP_DataTool.RowData> allHullsData = aEP_DataTool.jsonToList(allShipsString);
       if (!allHullsData.isEmpty()) {
@@ -256,20 +212,7 @@ public class FSFModPlugin extends BaseModPlugin {
         }
       }
 
-      // ship system names
-      JSONArray allSystemsString = Global.getSettings().loadCSV("data/shipsystems/ship_systems_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> systemsData = aEP_DataTool.jsonToList(allSystemsString);
-      if (!systemsData.isEmpty()) {
-        for (ShipSystemSpecAPI spec : Global.getSettings().getAllShipSystemSpecs()) {
-          String systemId = spec.getId();
-          String engName = aEP_DataTool.getValueById(systemsData, systemId, "name");
-          if (!engName.isEmpty()) {
-            spec.setName(engName);
-          }
-        }
-      }
-
-
+      // weapons
       JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
       ArrayList<aEP_DataTool.RowData> allWeaponsData = aEP_DataTool.jsonToList(allWeaponsString);
       if (!allWeaponsData.isEmpty()) {
