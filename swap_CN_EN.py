@@ -16,9 +16,13 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     CN_file_full_name = f"{file_name_without_extension}_CN.csv"
 
     file_path = os.path.join(file_path)
-    file_path_EN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_EN"))
-    file_path_CN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN"))
+    file_path_EN = file_path
+    file_path_CN = file_path
+    if file_name_without_extension in file_path:
+        file_path_EN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_EN"))
+        file_path_CN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN"))
 
+    assert file_path != file_path_EN, "Check file name and file path input"
     # Read CSV files into dictionaries
     diction_rows_now: [List[Dict[str, str]]] = []
     diction_rows_other: [List[Dict[str, str]]] = []
@@ -141,5 +145,5 @@ if __name__ == "__main__":
     #swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
     #swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
     #swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
-    swap_file_csv("data/campaign/special_items.csv", "special23_items", ['name','tech/manufacturer','desc'])
+    swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
     #swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
