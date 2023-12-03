@@ -1,7 +1,7 @@
 name,id,tech/manufacturer,baseRaidDanger,desc
 ,,,,
-FSF Common Ship Blueprint,FSF_openbp ,FSF Manufacture,,Allow to produce common FSF ships
-FSF Rare Ship Blueprint,FSF_rarebp ,FSF Manufacture,,Allow to produce rare FSF ships
+FSF Common Ship Blueprint,FSF_openbp ,FSF Design,,Allow to produce common FSF ships
+FSF Rare Ship Blueprint,FSF_rarebp ,FSF Design,,Allow to produce rare FSF ships
 ,,,,
 ,,,,
 S-1 Cruise Missile,aEP_cruise_missile,FSF Advanced Weapon Program,,"S-serious cruise missile is a remote controlled, frigate hullsize, campaign level weapon, after launch it will search the closest hostile fleet within 60 degrees of the heading direction

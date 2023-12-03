@@ -39,14 +39,15 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
                 diction_rows_other.append(row)             
     except FileNotFoundError as e:
         # if fail to read _EN path, go into EN_to_CN mode, load _CN, save old data to _EN
-        if EN_file_full_name in str(e):
-            EN_to_CN = True
-            with open(file_path_CN, 'r', encoding='utf-8') as file:
-                csv_reader = csv.DictReader(file)    
-                for row in csv_reader:
-                    diction_rows_other.append(row)  
-        else:
-            print('Failed to load csv')
+        try:
+            if EN_file_full_name in str(e):
+                EN_to_CN = True
+                with open(file_path_CN, 'r', encoding='utf-8') as file:
+                    csv_reader = csv.DictReader(file)    
+                    for row in csv_reader:
+                        diction_rows_other.append(row)  
+        except Exception as e:
+            print('Failed to load both EN/CN csv')
             return
 
     # find common ids  between two diction list
@@ -137,7 +138,8 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     print(f'Swap Done {file_name_without_extension}')
 
 if __name__ == "__main__":
-    swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
-    swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
-    swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
-    swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
+    #swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
+    #swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
+    #swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
+    swap_file_csv("data/campaign/special_items.csv", "special23_items", ['name','tech/manufacturer','desc'])
+    #swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])

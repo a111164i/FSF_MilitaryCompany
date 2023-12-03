@@ -186,23 +186,6 @@ public class FSFModPlugin extends BaseModPlugin {
         }
       }
 
-      // special items
-      JSONArray allSpecialItemsString = Global.getSettings().loadCSV("data/campaign/special_items_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allSpecialItemsData = aEP_DataTool.jsonToList(allSpecialItemsString);
-      if (!allSpecialItemsData.isEmpty()) {
-        for (SpecialItemSpecAPI spec : Global.getSettings().getAllSpecialItemSpecs()) {
-          String id = spec.getId();
-          String engName = aEP_DataTool.getValueById(allSpecialItemsData, id, "name");
-          String engDesc = aEP_DataTool.getValueById(allSpecialItemsData, id, "desc");
-          String engManufacture = aEP_DataTool.getValueById(allSpecialItemsData, id, "tech/manufacturer");
-          if (!engName.isEmpty()) {
-            spec.setName(engName);
-            spec.setDesc(engDesc);
-            spec.setManufacturer(engManufacture);
-          }
-        }
-      }
-
       // colony conditions
       JSONArray allConditionString = Global.getSettings().loadCSV("data/campaign/market_conditions_EN.csv", "FSF_MilitaryCorporation");
       ArrayList<aEP_DataTool.RowData> allConditionsData = aEP_DataTool.jsonToList(allConditionString);
@@ -306,24 +289,6 @@ public class FSFModPlugin extends BaseModPlugin {
         }
 
       }
-
-//      // description
-//      JSONArray allDesString = Global.getSettings().loadCSV("data/strings/descriptions_EN.csv", "FSF_MilitaryCorporation");
-//      ArrayList<aEP_DataTool.RowData> allDesData = aEP_DataTool.jsonToList(allDesString);
-//      if (!allDesData.isEmpty()) {
-//        for (aEP_DataTool.RowData row : allDesData) {
-//          String id = row.getId();
-//          if(!id.isEmpty() && !id.startsWith("#")){
-//            Description.Type type = Description.Type.valueOf(row.getProperty("type"));
-//            Description d = Global.getSettings().getDescription(id, type);
-//            d.setText1(row.getProperty("text1"));
-//            d.setText2(row.getProperty("text2"));
-//            d.setText3(row.getProperty("text3"));
-//            d.setText4(row.getProperty("text4"));
-//          }
-//        }
-//      }
-
 
     }catch (Exception e){
       Global.getLogger(this.getClass()).info("Fail to swap language to Eng");
