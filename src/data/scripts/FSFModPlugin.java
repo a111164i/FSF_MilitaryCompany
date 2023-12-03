@@ -194,23 +194,6 @@ public class FSFModPlugin extends BaseModPlugin {
         }
       }
 
-      // ships names
-      JSONArray allShipsString = Global.getSettings().loadCSV("data/hulls/ship_data_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allHullsData = aEP_DataTool.jsonToList(allShipsString);
-      if (!allHullsData.isEmpty()) {
-        for (ShipHullSpecAPI spec : Global.getSettings().getAllShipHullSpecs()) {
-          String id = spec.getBaseHullId();
-          String engName = aEP_DataTool.getValueById(allHullsData, id, "name");
-          String engDesign = aEP_DataTool.getValueById(allHullsData, id, "tech/manufacturer");
-          String engDestination = aEP_DataTool.getValueById(allHullsData, id, "designation");
-
-          if (!engName.isEmpty()) {
-            spec.setHullName(engName);
-            spec.setManufacturer(engDesign);
-            spec.setDesignation(engDestination);
-          }
-        }
-      }
 
       // weapons
       JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
