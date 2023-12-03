@@ -15,14 +15,17 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     EN_file_full_name = f"{file_name_without_extension}_EN.csv"
     CN_file_full_name = f"{file_name_without_extension}_CN.csv"
 
+
+    # check does file_path containing file_name_without_extension, it should have
+    # if it does not, meaning the file_name_without_extension is incorrectly input
     file_path = os.path.join(file_path)
     file_path_EN = file_path
     file_path_CN = file_path
     if file_name_without_extension in file_path:
         file_path_EN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_EN"))
         file_path_CN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN"))
-
     assert file_path != file_path_EN, "Check file name and file path input"
+    
     # Read CSV files into dictionaries
     diction_rows_now: [List[Dict[str, str]]] = []
     diction_rows_other: [List[Dict[str, str]]] = []
@@ -143,14 +146,79 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
         os.remove(file_path_EN)
     print(f'Swap Done {file_name_without_extension}')
 
+def swap_json(file_path: str, file_name_without_extension: str):
+    
+    # Define the file paths
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+
+    # Change the working directory to the script's directory
+    os.chdir(script_directory)
+
+    EN_file_full_name = f"{file_name_without_extension}_EN.json"
+    CN_file_full_name = f"{file_name_without_extension}_CN.json"
+
+    # check does file_path containing file_name_without_extension, it should have
+    # if it does not, meaning the file_name_without_extension is incorrectly input
+    file_path = os.path.join(file_path)
+    file_path_EN = file_path
+    file_path_CN = file_path
+    if file_name_without_extension in file_path:
+        file_path_EN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_EN"))
+        file_path_CN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN"))
+    assert file_path != file_path_EN, "Check file name and file path input"
+    
+
+    EN_to_CN = False
+    data1 = None
+    data2 = None
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file1:
+            print(f'Swap Load {file_name_without_extension}')
+            data1 = json.load(file1)
+        with open(file_path_EN, 'r', encoding='utf-8') as file2:
+            data2 = json.load(file2)            
+    except FileNotFoundError as e:
+        # if fail to read _EN path, go into EN_to_CN mode, load _CN, save old data to _EN
+        try:
+            if EN_file_full_name in str(e):
+                EN_to_CN = True
+                with open(file_path_CN, 'r', encoding='utf-8') as file3:
+                    data2 = json.load(file3)   
+        except Exception as e:
+            print('Failed to load both EN/CN json')
+            return
+    assert data1
+    assert data2
+
+    # Swap common fields
+    for key in data1:
+        if key in data2:
+            temp = data2[key]
+            data2[key] = data1[key]
+            data1[key] = temp
+
+    with open(file_name_without_extension+".json", 'w', encoding='utf-8') as output:
+            json.dump(data1, output, ensure_ascii=False, indent=2)
+
+    # Save the 
+    if(EN_to_CN):
+        with open(EN_file_full_name, 'w', encoding='utf-8') as output:
+            json.dump(data2, output, ensure_ascii=False, indent=2)
+        os.remove(file_path_CN)
+    else:
+        with open(CN_file_full_name, 'w', encoding='utf-8') as output:
+            json.dump(data2, output, ensure_ascii=False, indent=2)  
+        os.remove(file_path_EN)    
+      
 if __name__ == "__main__":
-    swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
-    swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
-    swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
-    swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
-    swap_file_csv("data/campaign/commodities.csv", "commodities", ['name'])
-    swap_file_csv("data/campaign/market_conditions.csv", "market_conditions", ['name','desc'])
-    swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
-    swap_file_csv("data/characters/skills/skill_data.csv", "skill_data", ['name','description','author'])
-    swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])
-    swap_file_csv("data/hulls/ship_data.csv", "ship_data", ['name','tech/manufacturer','designation'])
+    #swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
+    #swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
+    #swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
+    #swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
+    #swap_file_csv("data/campaign/commodities.csv", "commodities", ['name'])
+    #swap_file_csv("data/campaign/market_conditions.csv", "market_conditions", ['name','desc'])
+    #swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
+    #swap_file_csv("data/characters/skills/skill_data.csv", "skill_data", ['name','description','author'])
+    #swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])
+    #swap_file_csv("data/hulls/ship_data.csv", "ship_data", ['name','tech/manufacturer','designation'])
+    swap_json("mod_info.json","mod_info")

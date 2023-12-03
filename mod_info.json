@@ -9,9 +9,18 @@
     "jars/FSF_MilitaryCorporation.jar"
   ],
   "dependencies": [
-    {"id": "lw_lazylib", "name": "LazyLib"},
-    {"id": "MagicLib", "name": "MagicLib"},
-    {"id": "shaderLib", "name": "GraphicsLib"}
+    {
+      "id": "lw_lazylib",
+      "name": "LazyLib"
+    },
+    {
+      "id": "MagicLib",
+      "name": "MagicLib"
+    },
+    {
+      "id": "shaderLib",
+      "name": "GraphicsLib"
+    }
   ],
   "modPlugin": "data.scripts.FSFModPlugin"
 }

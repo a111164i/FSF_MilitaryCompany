@@ -1,6 +1,6 @@
 id,trigger,conditions,script,text,options,notes
 ,,,,,,
-# 通用的舰队招呼，因为openCommLink用的是指挥官人物的memory，所以获取舰队的状态是entity.xxx,
+# 通用的舰队招呼，因为openCommLink用的是指挥官人物的memory，所以获取舰队的状态是entity.xxx,,,,,,
 greetingFSFFriendly,OpenCommLink,"$faction.id == aEP_FSF
 $faction.friendlyToPlayer","$menuState = fleetConvMain 0
 FireAll PopulateOptions","$personName looks a little nervous, but relaxes after seeing your image. ""Please proceed, Captain, with your matters.""
