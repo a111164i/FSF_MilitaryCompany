@@ -269,4 +269,5 @@ open class aEP_BaseHullMod : BaseHullMod() {
     if(haveToBeWithMod.contains(aEP_SpecialHull.ID) && !ship.variant.hasHullMod(aEP_SpecialHull.ID)) return false
     return super.showInRefitScreenModPickerFor(ship)
   }
+
 }

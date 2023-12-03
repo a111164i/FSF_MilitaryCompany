@@ -93,9 +93,9 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
       factionColor, factionDarkColor, factionBrightColor,
       TEXT_HEIGHT_SMALL, true, true,
       *arrayOf<Any>(
-        txt("max")+" "+ txt("chance"), col1W0,
-        txt("chance")+" "+ txt("decrease"), col2W0,
-        txt("recover")+" "+ txt("speed"), col3W0,
+        txt("max")+ txt("chance"), col1W0,
+        txt("chance")+ txt("decrease"), col2W0,
+        txt("recover")+ txt("speed"), col3W0,
       )
     )
     tooltip.addRow(

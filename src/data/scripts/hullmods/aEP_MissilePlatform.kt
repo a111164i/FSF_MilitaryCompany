@@ -207,16 +207,16 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP",totalOp * MAX_RATE_MULT),
     )
     tooltip.addRow(
-      Alignment.MID, highlight, txt("recover")+" "+txt("speed"),
+      Alignment.MID, highlight, txt("recover")+txt("speed"),
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalOp * RATE_INCREASE_SPEED_MULT),
     )
     tooltip.addRow(
-      Alignment.MID, highlight, txt("max")+" "+txt("consumption") ,
+      Alignment.MID, highlight, txt("max")+txt("consumption") ,
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalConsumption * 100f),
     )
     val minLevel = (totalOp * RATE_INCREASE_SPEED_MULT/(totalConsumption * 100f + 0.01f)).coerceAtLeast(0f).coerceAtMost(1f)
       tooltip.addRow(
-      Alignment.MID, highlight, txt("min")+" "+txt("level") ,
+      Alignment.MID, highlight, txt("min")+txt("level") ,
       Alignment.MID, highlight, String.format("%.0f",minLevel * 100f)+"%",
     )
     tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)

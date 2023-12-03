@@ -60,7 +60,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     }
 
     fun computeThreshold(thres:Float, ship: ShipAPI?, armor_level_thres:Float): Float{
-      val damageThreshold = Math.max(thres, (ship?.armorGrid?.armorRating?:1000f) * armor_level_thres)
+      val damageThreshold = Math.min(thres, (ship?.armorGrid?.armorRating?:1000f) * armor_level_thres)
       return damageThreshold
     }
   }

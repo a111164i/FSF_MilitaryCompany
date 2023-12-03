@@ -140,7 +140,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       Alignment.MID, highlight, String.format("%.0f", MAX_THRESHOLD[hullSize]),
     )
     tooltip.addRow(
-      Alignment.MID, highlight,  txt("decrease")+" "+txt("speed"),
+      Alignment.MID, highlight,  txt("decrease")+txt("speed"),
       Alignment.MID, negativeHighlight, String.format("-%.0f /s", DROP_SPEED[hullSize]),
     )
     tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)

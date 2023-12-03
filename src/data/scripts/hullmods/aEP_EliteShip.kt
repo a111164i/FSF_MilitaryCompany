@@ -72,9 +72,9 @@ class aEP_EliteShip : aEP_BaseHullMod() {
     const val DEFAULT_SHIELD_AMOUNT = 8000f
     init {
       SHIELD_AMOUNT[ShipAPI.HullSize.CAPITAL_SHIP] = 20000f
-      SHIELD_AMOUNT[ShipAPI.HullSize.CRUISER] = 12000f
-      SHIELD_AMOUNT[ShipAPI.HullSize.DESTROYER] = 8000f
-      SHIELD_AMOUNT[ShipAPI.HullSize.FRIGATE] = 6000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.CRUISER] = 15000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.DESTROYER] = 10000f
+      SHIELD_AMOUNT[ShipAPI.HullSize.FRIGATE] = 10000f
     }
 
   }

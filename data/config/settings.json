@@ -162,16 +162,11 @@
 	},
 
 
-	
 	"plugins":{
 		"aEP_CampaignPlugin":"data.scripts.campaign.FSFCampaignPlugin",
-		"aEP_CombatEffectPlugin": "combat.plugin.aEP_CombatEffectPlugin",
-
-		#"aEP_MissionPlugin": "combat.plugin.aEP_MissionPlugin",
-		#"aEP_RotateSlot": "data.scripts.plugins.aEP_RotateSlot"
+		"aEP_CombatEffectPlugin": "combat.plugin.aEP_CombatEffectPlugin"
 	},
-	
-	
+
 	
 	"designTypeColors":{
 		"FSF制造":[180,180,150,255],

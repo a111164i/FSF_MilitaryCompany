@@ -47,13 +47,14 @@
 
 		"aEP_AttackCarrier01":"处于母舰{%s}范围内，最大速度<{%s}的战机联队提供速度加成: ",
 		"aEP_AttackCarrier02":"当本舰的非轰炸战机存量较低且幅能<={%s}时，发动锻炉立刻补满所有损失的非轰炸战机，本能力具有{%s}秒的冷却并产生大量幅能",
-		"aEP_AttackCarrier05":"安装超过{%s}OP的战机联队时，每超过一点，本能力冷却时间被延长{%s}秒，当前惩罚为{%s}",
+		"aEP_AttackCarrier05":"安装超过{%s}OP的战机联队时，每超过一点，本能力冷却时间{%s}秒，当前惩罚为{%s}",
 
 		"aEP_ShieldControlled01": "对发射点和命中点之间距离超过{%s}的弹丸和光束，对护盾的伤害{%s}",
 		"aEP_ShieldControlled02": "舰船所有实弹和能量武器的{%s}射程超过{%s}的部分会被扣除",
 
 		"aEP_ShieldFloating01": "波动值",
-		"aEP_ShieldFloating02": "当护盾承受伤害时会积累等同于伤害量的{%s}，随着波动值上升幅能耗散{%s}，磁通分流比例{%s}。波动值随时间自然下降",
+		"aEP_ShieldFloating02": "当护盾承受伤害时会积累等同于伤害量的{%s}，随着波动值上升，最多幅能耗散{%s}，磁通分流比例{%s}。波动值随时间自然下降",
+		"aEP_ShieldFloating03": "最大加成所需",
 
 		"aEP_StrategyThruster01": "零幅能加速值{%s}，现在为{%s}",
 		"aEP_StrategyThruster02": "零幅能加速的启用阈值{%s}，现在为{%s}",
@@ -74,7 +75,7 @@
 		"aEP_EmergencyReconstruct03": "重建测试",
 		"aEP_EmergencyReconstruct04": "每次成功发起重建都会使下一次通过{%s}需要的最低结果{%s}",
 		"aEP_EmergencyReconstruct05": "完成重建消耗的时间为{%s}秒",
-		"aEP_EmergencyReconstruct06": "重建的过程中舰船处于相位状态并无碰撞体积，拥有100%的对护盾/装甲/船体伤害的减免",
+		"aEP_EmergencyReconstruct06": "重建的过程中舰船处于相位状态并无碰撞体积，拥有百分之100的对护盾/装甲/船体伤害的减免",
 
 		"aEP_TitanicKiller01": "起始部署点",
 		"aEP_TitanicKiller02": "每超过 x 部署",
@@ -250,7 +251,7 @@
 		"increase": "Increase",
 
 		#############################
-		"aEP_SpecialHull01": "While accelerating towards or rotating around a friendly ship with this hullmod and its hullsize >= this ship, max speed %s, acceleration %s",
+		"aEP_SpecialHull01": "When accelerating towards or rotating around a friendly ship with this hullmod and its hullsize >= this ship, max speed %s, acceleration %s",
 		"aEP_SpecialHull02": "Flux level threshold for zero flux boost to active increased by %s",
 
 		"aEP_MissilePlatform01":"Forge Output",
