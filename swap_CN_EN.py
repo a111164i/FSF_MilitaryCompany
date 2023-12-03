@@ -138,6 +138,6 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
 
 if __name__ == "__main__":
     swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
-    #swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
+    swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
     swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
     swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
