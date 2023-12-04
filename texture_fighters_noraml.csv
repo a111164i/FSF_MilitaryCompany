@@ -1,0 +1,17 @@
+id,type,frame,magnitude,map,path
+bom_attacker,ship,,1,normal,graphics/shaders/normals/fighters/bom_attacker_normal.png
+bom_lancer,ship,,1,normal,graphics/shaders/normals/fighters/bom_lancer_normal.png
+bom_nuke,ship,,1,normal,graphics/shaders/normals/fighters/bom_nuke_normal.png
+ftr_helicop,ship,,1,normal,graphics/shaders/normals/fighters/ftr_helicop_normal.png
+ftr_hvfighter,ship,,1,normal,graphics/shaders/normals/fighters/ftr_hvfighter_normal.png
+icp_gunship,ship,,1,normal,graphics/shaders/normals/fighters/icp_gunship_normal.png
+sup_guardian,ship,,1,normal,graphics/shaders/normals/fighters/sup_guardian_normal.png
+sup_shield,ship,,1,normal,graphics/shaders/normals/fighters/sup_shield_normal.png
+sup_supply,ship,,1,normal,graphics/shaders/normals/fighters/sup_supply_normal.png
+sup_tank,ship,,1,normal,graphics/shaders/normals/fighters/sup_tank_normal.png
+ut_decompose,ship,,1,normal,graphics/shaders/normals/fighters/ut_decompose_normal.png
+ut_decoy,ship,,1,normal,graphics/shaders/normals/fighters/ut_decoy_normal.png
+ut_maodian00,ship,,1,normal,graphics/shaders/normals/fighters/ut_maodian00_normal.png
+ut_repair,ship,,1,normal,graphics/shaders/normals/fighters/ut_repair_normal.png
+ut_shendu,ship,,1,normal,graphics/shaders/normals/fighters/ut_shendu_normal.png
+ut_shuishi,ship,,1,normal,graphics/shaders/normals/fighters/ut_shuishi_normal.png

@@ -220,11 +220,11 @@
 		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（对于舰队指挥官则是超过{%s}）的舰船，每高出一级本舰对其的伤害增加{%s}，最高增加{%s}"
 
 	},
-    "aEP_custom_entity_names":{
+	"aEP_custom_entity_names":{
 		"aEP_FSF_DefStation": "FSF 星系中心防御站",
 		"aEP_FSF_SaleStation": "FSF 商业中心",
 		"aEP_FSF_SpaceFactory": "FSF 隐秘工厂"
-    },
+	},
 	"aEP_En":{
 
 		"not_module":"Can not be installed on ship modules",
@@ -251,30 +251,30 @@
 		"increase": "Increase",
 
 		#############################
-		"aEP_SpecialHull01": "When accelerating towards or rotating around a friendly ship with this hullmod and its hullsize >= this ship, max speed %s, acceleration %s",
+		"aEP_SpecialHull01": "While accelerating towards or rotating around a friendly ship with this hullmod and a equal or larger hull size, max speed %s, acceleration %s",
 		"aEP_SpecialHull02": "Flux level threshold for zero flux boost to active increased by %s",
 
 		"aEP_MissilePlatform01":"Forge Output",
-		"aEP_MissilePlatform02":"Whenever missiles' ammo are not full, equal amount of the Forge Output will be consumed to produce. As the Forge Output goes down, production speed goes down",
-		"aEP_MissilePlatform07":"When the Forge Output is full, ammo production speed (equals to the Forge Output comsumption speed) of different size missiles are shown as follow: ",
-		"aEP_MissilePlatform05":"All missile weapon's ammo will be limited to: %s rounds of fire or %s of the base ammo, which is larger",
-		"aEP_MissilePlatform09":"E.g. a missile weapon of 30 OP with the base ammo of 10, the OP per Ammo is 3",
-		"aEP_MissilePlatform11":"Missile weaoon with base regen speed does not applied by this hullmod",
+		"aEP_MissilePlatform02":"Whenever missile weapon's ammo are not full, equal amount of the Forge Output will be consumed to replenish ammo. As the Forge Output goes down, production speed goes down",
+		"aEP_MissilePlatform07":"When the Forge Output is full, ammo production speed (equals to the Forge Output comsumption speed) of different size missiles are shown as follows: ",
+		"aEP_MissilePlatform05":"All missile weapon's ammuniation will be limited to: ammo for %s rounds of fire or %s of the base ammo, whichever is greater",
+		"aEP_MissilePlatform09":"E.g. a missile weapon of 30 OP with the base ammo of 10, will cost 3 OP per ammo",
+		"aEP_MissilePlatform11":"Missile weaoon with base ammo regen speed is not affected by this hullmod",
 
-		"aEP_HighSpeedManeuver01": "When the ship takes a damage >= %s, has a chance going into %s, lasts for %s seconds, during that time the ship is in no-collision state",
-		"aEP_HighSpeedManeuver02": "Each time goes into Evasion Mode, the chance decreases. If the ship takes no damage in the past %s sec, the chance starts recover",
+		"aEP_HighSpeedManeuver01": "When the ship takes a damaging hit >= %s, has a chance going into %s, lasting for %s seconds, during that time the ship is in no-collision state",
+		"aEP_HighSpeedManeuver02": "Each time goes into Evasion Mode, the chance for subsequent Evasion Mode trigger decreases. If the ship has taken no damage for %s sec, the trigger chance starts recover",
 		"aEP_HighSpeedManeuver03": "Evadsion Mode",
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
 
-		"aEP_AttackCarrier01":"All of its wings that within %s range, whose max speed < %s, get max speed bonus: ",
-		"aEP_AttackCarrier02":"When its remaining non-bomber wings number are low and flux level <= %s, the forge is activated to replace all lost immediately. This ability has %s seconds cooldown and produce large soft flux overtime",
-		"aEP_AttackCarrier05":"When installing a wing cost > %s OP, for each OP above, cooldown of the forge %s, currently %s",
+		"aEP_AttackCarrier01":"All wings of this ship that is within %s range of this ship and whose max speed < %s, get max speed bonus: ",
+		"aEP_AttackCarrier02":"When this ship's remaining non-bomber wings number are low and the ship's flux level <= %s, the forge is activated to replace all lost non-bombers immediately. This ability has %s seconds cooldown and produce large soft flux overtime",
+		"aEP_AttackCarrier05":"When installing a wing costing more than %s OP, for each OP above that amount, cooldown of the forge is increased by %s, currently %s",
 
-		"aEP_ShieldControlled01": "Any projectile or beam that spawned at %s away from the hit point, its damage to shield %s",
-		"aEP_ShieldControlled02": "All ballistic/energy weapons of this ship, the %s range part above %s is subtracted",
+		"aEP_ShieldControlled01": "Any projectile or beam that spawned at %s away from hit location will do %s damage to shield",
+		"aEP_ShieldControlled02": "All ballistic/energy weapons of this ship will have their %s range limited to %s.",
 
 		"aEP_ShieldFloating01": "Fluctuation Level",
-		"aEP_ShieldFloating02": "Each time shield takes a damage, %s equals to damage is accumulated, as Fluctuation Level goes high, flux dissipation %s, flux shunt percentage %s. Fluctuation Level contrantly drop overtime",
+		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, as Fluctuation Level increase, flux dissipation increase up to %s, flux shunt percentage increase up to %s. Fluctuation Level contrantly drop overtime",
 		"aEP_ShieldFloating03": "To Reach Max Bonus",
 
 		"aEP_StrategyThruster01": "Zero flux boost speed %s, currently %s",
@@ -283,11 +283,11 @@
 		"aEP_StrategyThruster04": "After zero flux activating, it takes %s seconds to reach max bonus",
 
 		"aEP_EliteShip01": "Shield damage taken %s",
-		"aEP_EliteShip02": "Armor bonus %s",
-		"aEP_EliteShip06": "Hitpoints bonus %s",
-		"aEP_EliteShip05": "Max speed bonus %s",
+		"aEP_EliteShip02": "Armor %s",
+		"aEP_EliteShip06": "Hullpoint %s",
+		"aEP_EliteShip05": "Max speed %s",
 		"aEP_EliteShip10": "Peak CR duration %s",
-		"aEP_EliteShip07": "Each time this ship overloaded or lost %s hitpoints, do a %s of 0-100, if result >= %s, a fighter is launched and generates a shield protecting this ship, the shield has %s damage absorption",
+		"aEP_EliteShip07": "Each time this ship overloaded or lost %s hull points, roll a %s on a roll between 0-100, if result >= %s, a shield drone is launched and generates a shield protecting this ship, the shield has %s damage absorption",
 		"aEP_EliteShip08": "Protect Test",
 		"aEP_EliteShip03": "Deployment cost in combat %s or %s, which higher",
 
@@ -296,21 +296,21 @@
 		"aEP_CruiseMissileCarrier03":"Nothing is loading",
 		"aEP_CruiseMissileCarrier04":"Loading process: %s",
 
-		"aEP_EmergencyReconstruct01": "Each time this ship taken a lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover its armor and hitpoints: ",
-		"aEP_EmergencyReconstruct02": "Do a %s of 0-100, the result >= %s",
+		"aEP_EmergencyReconstruct01": "Each time this ship has taken lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover its armor and hullpioint: ",
+		"aEP_EmergencyReconstruct02": "Do a %s roll between 0-100 and the result >= %s",
 		"aEP_EmergencyReconstruct03": "Reconstruct Test",
-		"aEP_EmergencyReconstruct04": "Each time a succeed %s will let result needed for the next test %s",
+		"aEP_EmergencyReconstruct04": "Each time a successful %s will cause the result needed for the next test to %s",
 		"aEP_EmergencyReconstruct05": "Time to reconstruct is %s seconds",
 		"aEP_EmergencyReconstruct06": "During the reconstruction, the ship is phased and get 100 percent damage reduction to shield/armor/structure",
 
-		"aEP_TitanicKiller01": "Start Point",
+		"aEP_TitanicKiller01": "Start DP",
 		"aEP_TitanicKiller02": "For every x DP above",
 
 
 		#############################
 		"aEP_VentMode01":"Flux dissipation increased: %s / Hard flux gen per second: %s",
 		"aEP_VentMode02":"Shield damage taken: %s",
-		"aEP_VentMode07":"Hitpoints damage taken: %s",
+		"aEP_VentMode07":"Hullpoint damage taken: %s",
 		"aEP_VentMode08":"Max speed reduced by: %s",
 		"aEP_VentMode06":"Not enough soft flux",
 
@@ -406,10 +406,10 @@
 		"MissileEntity_after":"After sparks and flashes, the space back to dark",
 		"aEP_ApproachingTo":"Approaching!",
 
-		"CruiseMissileItem01":"Right click this item will shoot one to the front of your fleet. Be noticed that firing cruise missile at campaign layer will not destroy any ship, only damage it's CR and Hull integrity",
-		"CruiseMissileItem02":"Non of your missile carrier completed loading process",
+		"CruiseMissileItem01":"Right click this item launch the missile towards the front of your fleet. Be noticed that firing cruise missile at campaign layer will not destroy any ship, only damage it's CR and Hull integrity",
+		"CruiseMissileItem02":"None of your missile carrier has completed loading process",
 		"CruiseMissileItem03":"Currently loaded missiles number: %s",
-		"CruiseMissileItem04":"Can only be right click at cargo page",
+		"CruiseMissileItem04":"Can be used from the cargo page",
 
 		"aEP_CruiseMissileLoadIntel01":"Cruise Missile Management Page",
 		"aEP_CruiseMissileLoadIntel02":"Load and unload cruise missile at this page",
@@ -431,16 +431,16 @@
 
 		"aEP_Mission04_01": "DWR43 Remnant Elimination Fleet",
 		"aEP_Mission04_02": "Remnant Fleet",
-		"aEP_Mission04_03": "Don't not lose <%s>",
+		"aEP_Mission04_03": "Don't lose <%s>",
 
 		"aEP_Mission05_02": "Remnant Fleet",
-		"aEP_Mission05_03": "Don't not lose <%s>",
+		"aEP_Mission05_03": "Don't lose <%s>",
 
 		#############################
-		"aEP_UndergroundStorage01": "When the stability of colony is lower than %s, get stability bonus up to %s",
-		"aEP_UndergroundStorage02": "Get ground defense bonus",
-		"aEP_UndergroundStorage03": "Get patrol fleet size bonus",
-		"aEP_UndergroundStorage04": "Get max patrol fleet number bonus",
+		"aEP_UndergroundStorage01": "When the stability of colony is lower than %s, Gain stability bonus up to %s",
+		"aEP_UndergroundStorage02": "Gain ground defense bonus",
+		"aEP_UndergroundStorage03": "Gain patrol fleet size bonus",
+		"aEP_UndergroundStorage04": "Gain bonus to number of large patrols",
 
 
 		#############################
@@ -448,9 +448,9 @@
 
 	},
 	"aEP_EN_custom_entity_names":{
-      	"aEP_FSF_DefStation": "FSF System Defense Station",
+		"aEP_FSF_DefStation": "FSF System Defense Station",
 		"aEP_FSF_SaleStation": "FSF Commercial Center",
 		"aEP_FSF_SpaceFactory": "FSF Hidden Site"
-    },
+	},
 
 }

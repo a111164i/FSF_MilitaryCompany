@@ -6379,7 +6379,7 @@ class aEP_des_lianliu_grenade_thrower_shot: Effect(), AdvanceableListener, Damag
     Global.getCombatEngine().addSmoothParticle(
       projectile.location,
       shipVel,
-      600f,1f,0f,0.45f,Color(255,215,50,5))
+      600f,1f,0f,0.6f,Color(255,215,50,4))
 
   }
 

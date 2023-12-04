@@ -1,0 +1,13 @@
+name,id,desc
+Under Ground Storage,aEP_UndergroundStorage,"The is an underground base deep down this planet, the resource reserves allow it to self-sustain several cycles without outside connection.
+
+Provides stability bonus to the colony"
+Miliatary Zone,aEP_MilitaryZone,"A military restricted colony, denying all needs to <Drag> <Luxuries> <Organs>, the max num of industries <+2>"
+Space Farm,aEP_SpaceFarm,"This place has a artifact ecosystem, with inputting energy and inorganic compounds, it can continuously produce organic production
+
+Provides <Food> <Organic> production according to colony size"
+Extinctive Virus,aEP_ExtinctiveVirus,"The environment is ruined by a synthetic virus aimed destroying all organic life, all outdoor activities must be conducted under full protection
+
+Greatly decrease production of all industries"
+,,
+,,

@@ -209,9 +209,10 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui", ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("aEP_ShieldFloating05") +String.format("%.0f", accumlated)
-              +"  " +String.format("%.0f", level * MAX_SHUNT_PERCENT)+"%"
-              +" "+String.format("+%.0f", level*dissipationBonus),  //data
+          aEP_DataTool.txt("level")
+            +": "+String.format("%.0f", level * MAX_SHUNT_PERCENT)+"%"
+            +" "+String.format("+%.0f", level*dissipationBonus)
+            +" "+String.format("%.0f / %.0f", accumlated, max),  //data
           false
         )
       }

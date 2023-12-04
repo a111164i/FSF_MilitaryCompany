@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_cap_biaobing",
   "hullSize": "CAPITAL_SHIP",
-  "spriteName": "graphics/ships/aEP_biaobing.png",
+  "spriteName": "graphics/ships/aEP_cap_biaobing.png",
   "style": "HIGH_TECH",
   "height": 385,
   "width": 280,

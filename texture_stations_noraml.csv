@@ -1,0 +1,9 @@
+id,type,frame,magnitude,map,path
+base,ship,,1,normal,graphics/shaders/normals/stations/base_normal.png
+tier1_armor,ship,,1,normal,graphics/shaders/normals/stations/tier1_armor_normal.png
+tier1_battery,ship,,1,normal,graphics/shaders/normals/stations/tier1_battery_normal.png
+tier1_hanger1,ship,,1,normal,graphics/shaders/normals/stations/tier1_hanger1_normal.png
+tier1_hanger2,ship,,1,normal,graphics/shaders/normals/stations/tier1_hanger2_normal.png
+tier2_armor,ship,,1,normal,graphics/shaders/normals/stations/tier2_armor_normal.png
+tier2_hull1,ship,,1,normal,graphics/shaders/normals/stations/tier2_hull1_normal.png
+tier2_structure,ship,,1,normal,graphics/shaders/normals/stations/tier2_structure_normal.png

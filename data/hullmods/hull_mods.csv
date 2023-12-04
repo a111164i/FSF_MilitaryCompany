@@ -72,7 +72,6 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Type28护盾发生器,aEP_Type28Shield,0,unknown,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,一个逻辑计算错误的伽马核心为舰体加装了独立的护盾发生器模块，几乎等同于驱逐舰的体积的模块大小给予了其极好的护盾效率，作为代价拥有对等的维持消耗。此发射器模块无法安装任何插件,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,,,,,,,,,,,,,,,,,,,
 FSF模块,aEP_Module,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,graphics/aEP_hullmods/aEP_self_rotate.png,,,,,,,,,,,,,,,,,,,,
 锚点护盾,aEP_MaoDianShield,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,独特的护盾系统，展开会持续产生软幅能。但遭到攻击时，如果当前软幅能高于硬幅能，会优先将软幅能转化为硬幅能，而非产生硬幅能。,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,,,,,,,,,,,,,,,,,,,
