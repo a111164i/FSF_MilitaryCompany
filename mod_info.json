@@ -1,9 +1,9 @@
 {
   "id": "FSF_MilitaryCorporation",
-  "name": "FSF军事公司[FSF_MilitaryCorporation]",
-  "author": "a111164 && 北冰洋大海豹 && 阿朴君",
+  "name": "FSF_MilitaryCorporation",
+  "author": "a111164 && 北冰洋大海豹 && 阿朴君 // translation: iriscoral",
   "version": "4.2rc7",
-  "description": "一个大崩溃后成立，拥有星球级殖民地的军事组织，提供包括成员训练与安全指导等一系列服务，也是星域中的主要武器供应商之一。对外他们遵循人之领遗留的法律将自己认证为巨型企业，而内部正在疯狂扩展自己的军备。外界把其视为野心，但是至少到现在还尚未宣布自己的意图",
+  "description": "A post-collapse-funded, planet-wise governing military organization provides services like crew training and security guidance, also play as one of the major weapon sellers in the sector. Externally, they adhere the laws left by the Domain era legalising themself as a mega corp, while internally, they are rapidly expanding their military capabilities. Regarded by the outside world as ambitious, they have yet to officially declare their intentions—at least not until now.",
   "gameVersion": "0.96a-RC10",
   "jars": [
     "jars/FSF_MilitaryCorporation.jar"
