@@ -1,13 +1,12 @@
-﻿地点: DWR43星系跳跃点
-日期: 201.1.12
+﻿Location: DWR43 jump point
+Date: 201.1.12
 
-"边缘测绘舰队019200号，旗舰破冰号，舰队指挥官开始记录。我们原本认为DWR43星系只是一个普通的蓝巨星星系，但在穿越了跳跃点后我们发现了未被霸主标记的余辉舰队。在刚刚脱离超空间后探测器立刻显示数个余辉舰队环绕在跳跃点附近，正处于沉睡状态。"
+"Edge Mapping Fleet 019200, Flagship Icebreaker, Fleet Commander - begin recording. We originally thought the DWR43 system was just a normal blue giant system, but after crossing the jump point we found an unmarked Remnant presence. Immediately after just exiting hyperspace the probe showed several afterglow fleets orbiting the jump point and were in a dormant state."
+
+"Based on data from the Second AI War, activating the fleet's active tracking systems has a greater than 80% chance of causing Remnant units to enter patrol mode, so after a judgement of this fleet's staff council that direct contact with this Remnant fleet is manageable, we have unanimously decided to stay near the jump point and actively destroy these Remnants."
+
+"If the operation goes well, this fleet will use an active scan after resupply and decide on subsequent actions based on the results. End of recording."
+
+You can hold F and re-select this mission to restrict unusable equipments. If you want to restore the original setting, please select this mission again without holding F. Please note, the restriction will affect everything. If you want to remove the restriction, you must select this mission without holding down any buttons.
 
 
-"基于第二次AI战争中的数据，如果我们激活主动探测有超过80%的概率使余辉进入巡逻模式，在经过本舰队参谋团会议的一致判断后认为，与该余辉集团的接触会全程保持可控，我们决定停留在跳跃点附近主动消灭该余辉集团。"
-
-
-"如果作战顺利，本舰队将在重备后使用一次主动扫描，根据结果决定后续的行为，记录完毕。"
-
-
-你可以通过按住 F 并重新选择这个任务屏蔽掉不可使用的军备，要恢复则不按住直接重新选择这个任务。注意，屏蔽是全局的，需要消除屏蔽，就不按住任何按键重新选择本任务
