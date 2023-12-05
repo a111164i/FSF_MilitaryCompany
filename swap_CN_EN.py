@@ -209,6 +209,34 @@ def swap_json(file_path: str, file_name_without_extension: str):
         with open(CN_file_full_name, 'w', encoding='utf-8') as output:
             json.dump(data2, output, ensure_ascii=False, indent=2)  
         os.remove(file_path_EN)    
+ 
+def swap_name(file_path: str, file_name_with_ext: str):
+    # Split the file name and extension
+    base_name, extension = os.path.splitext(file_name_with_ext)
+    
+    # Form the names for both "_CN.txt" and "_EN.txt"
+    cn_file_name = f"{base_name}_CN{extension}"
+    en_file_name = f"{base_name}_EN{extension}"
+    
+    # Get the directory of the file
+    file_directory = os.path.dirname(file_path)
+    
+    # Check if the files exist in the directory
+    cn_file_path = os.path.join(file_directory, cn_file_name)
+    en_file_path = os.path.join(file_directory, en_file_name)
+    
+    if os.path.exists(cn_file_path):
+        # Swap names
+        os.rename(file_path, en_file_path)
+        os.rename(cn_file_path, file_path)
+        print(f"Swapped names: {file_name_with_ext} <-> {cn_file_name}")
+    elif os.path.exists(en_file_path):
+        # Swap names
+        os.rename(file_path, cn_file_path)
+        os.rename(en_file_path, file_path)
+        print(f"Swapped names: {file_name_with_ext} <-> {en_file_name}")
+    else:
+        print(f"No corresponding {file_name} found.")
       
 if __name__ == "__main__":
     #swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
@@ -222,6 +250,12 @@ if __name__ == "__main__":
     #swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])
     #swap_file_csv("data/hulls/ship_data.csv", "ship_data", ['name','tech/manufacturer','designation'])
     #swap_file_csv("data/hullmods/hull_mods.csv","hull_mods",['name','tech/manufacturer','uiTags','desc','short','sModDesc'])
-    swap_file_csv("data/weapons/weapon_data.csv","weapon_data",['name','tech/manufacturer','primaryRoleStr','customPrimary'])
+    #swap_file_csv("data/weapons/weapon_data.csv","weapon_data",['name','tech/manufacturer','primaryRoleStr','customPrimary'])
     #swap_json("mod_info.json","mod_info")
+    swap_name("data/missions/aEP_eliminate_mission/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_eliminate_mission/mission_text.txt", "mission_text.txt")
+    swap_name("data/missions/aEP_first_contact/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_first_contact/mission_text.txt", "mission_text.txt")
+    swap_name("data/missions/aEP_planet_investigation/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
     
