@@ -1,4 +1,4 @@
 ﻿Location: Unknown
 Date: Unknown
 
-Watch random faction fleet combat
+Play against a random fleet

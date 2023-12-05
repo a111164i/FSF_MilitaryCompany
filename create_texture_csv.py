@@ -1,16 +1,31 @@
 import os
 import csv
 
-def read_image_names(folder_path, type, map):
+def read_image_names(folder_path, type, map, folder_name = ''):
     data = []
 
     # Iterate through files in the folder
     for filename in os.listdir(folder_path):
         if filename.endswith(f"_{map}.png"):
             file_path = os.path.join(folder_path, filename)
-
+            file_path = file_path.replace('\\','/')
             # Extract information from the file name
-            file_id = filename.replace(f"_{map}.png", "")
+            filename_no_ext = filename.replace(f"_{map}.png", "")
+            
+            file_id = ''
+            if (('aEP_b_') in file_path 
+                or ('aEP_e_') in file_path
+                or ('aEP_m_') in file_path):
+                file_id = folder_name
+            else:
+                file_id = folder_name + '_' + filename_no_ext
+            
+            
+            
+            if file_id.endswith('01'): 
+                file_id = file_id.replace('01','')
+            if file_id.endswith('00'): 
+                file_id = file_id.replace('00','')
             file_type = type
             file_frame = ""  # Assuming no specific frame information in the file name
             file_magnitude = 1
@@ -20,6 +35,18 @@ def read_image_names(folder_path, type, map):
             data.append([file_id, file_type, file_frame, file_magnitude, file_map, file_path])
 
     return data
+
+def process_folders(base_folder, type, map_type, csv_name):
+    all_data = []
+
+    for root, dirs, files in os.walk(base_folder):
+        for folder in dirs:
+            folder_path = os.path.join(root, folder)
+            folder_path = folder_path.replace('\\','/')
+            if folder.endswith(''):  # Check if it's a folder with images (adjust as needed)
+                folder_data = read_image_names(folder_path, type, map_type, folder)
+                all_data.extend(folder_data)
+    write_to_csv(all_data, os.path.join(''), csv_name)
 
 def write_to_csv(data, output_path, csv_name):
     # Define the CSV header
@@ -45,25 +72,27 @@ if __name__ == "__main__":
     os.chdir(mod_root_path)
 
     # Output CSV file path (within the current directory, named "texture.csv")
-    input_folder = os.path.join("graphics/shaders/normals/ships/")
-    output_csv_path = write_to_csv(
-        read_image_names(input_folder,'ship', 'normal'), os.path.join(''), "ships_noraml")
+    #input_folder = os.path.join("graphics/shaders/normal/ships/")
+    #write_to_csv(
+    #    read_image_names(input_folder,'ship', 'normal'), os.path.join(''), "ships_noraml")
+    #
+    #input_folder = os.path.join("graphics/shaders/normal/fighters/")
+    #write_to_csv(
+    #    read_image_names(input_folder,'ship', 'normal'), os.path.join(''), "fighters_noraml")
     
-    input_folder = os.path.join("graphics/shaders/normals/fighters/")
-    output_csv_path = write_to_csv(
-        read_image_names(input_folder,'ship', 'normal'), os.path.join(''), "fighters_noraml")
+    #input_folder = os.path.join("graphics/shaders/normal/stations/")
+    #write_to_csv(
+    #    read_image_names(input_folder,'ship', 'normal'), os.path.join(''), "stations_noraml")
 
-    input_folder = os.path.join("graphics/shaders/normals/stations/")
-    output_csv_path = write_to_csv(
-        read_image_names(input_folder,'ship', 'normal'), os.path.join(''), "stations_noraml")
+    #
+    #input_folder = os.path.join("graphics/shaders/material/ships/")
+    #write_to_csv(
+    #    read_image_names(input_folder,'ship', 'material'), os.path.join(''), "ships_material")
+    #
+    #input_folder = os.path.join("graphics/shaders/surface/ships/")
+    #write_to_csv(
+    #    read_image_names(input_folder,'ship', 'surface'), os.path.join(''), "ships_surface")
 
-   
-    input_folder = os.path.join("graphics/shaders/material/ships/")
-    output_csv_path = write_to_csv(
-        read_image_names(input_folder,'ship', 'material'), os.path.join(''), "ships_material")
-    
-    input_folder = os.path.join("graphics/shaders/surface/ships/")
-    output_csv_path = write_to_csv(
-        read_image_names(input_folder,'ship', 'surface'), os.path.join(''), "ships_surface")
-
+    input_folder = os.path.join("graphics/shaders/normal/weapons")
+    output_csv_path = process_folders(input_folder, 'weapon', 'normal',"all_weapon")
     print(f"CSV file has been created with the extracted data in the script's directory.")

@@ -5,10 +5,10 @@
    "type": "BALLISTIC",
    "size": "LARGE",
    "turretSprite": "graphics/weapons/aEP_b_l_railway/tr.png",
-   "turretGunSprite": "graphics/weapons/aEP_b_l_railway/trbr.png",
+   "turretGunSprite": "graphics/weapons/aEP_b_l_railway/tr_br.png",
    "turretUnderSprite": "graphics/weapons/aEP_b_l_railway/base.png",
    "hardpointSprite": "graphics/weapons/aEP_b_l_railway/hp.png",
-   "hardpointGunSprite": "graphics/weapons/aEP_b_l_railway/hpbr.png",
+   "hardpointGunSprite": "graphics/weapons/aEP_b_l_railway/hp_br.png",
    "glowColor": [
      255,
      150,

@@ -23,6 +23,9 @@ import data.scripts.ai.*;
 import data.scripts.campaign.FSFCampaignPlugin;
 import data.scripts.world.aEP_gen;
 import exerelin.campaign.SectorManager;
+import org.dark.shaders.light.LightData;
+import org.dark.shaders.util.ShaderLib;
+import org.dark.shaders.util.TextureData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -105,6 +108,13 @@ public class FSFModPlugin extends BaseModPlugin {
       updateLanguage();
     }
 
+
+    boolean hasGraphicsLib = Global.getSettings ().getModManager ().isModEnabled ( "shaderLib" );
+    if ( hasGraphicsLib ) {
+      ShaderLib.init();
+      LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv");
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data.csv");
+    }
   }
 
   @Override
@@ -173,48 +183,6 @@ public class FSFModPlugin extends BaseModPlugin {
       factionSpec2.setDisplayNameLong(aEP_ID.FACTION_NAME_EN);
       factionSpec2.setDisplayNameLongWithArticle(aEP_ID.FACTION_NAME_EN);
 
-
-      // hullmods
-      JSONArray allHullmodsString = Global.getSettings().loadCSV("data/hullmods/hull_mods_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allHullmodsData = aEP_DataTool.jsonToList(allHullmodsString);
-      if (!allHullmodsData.isEmpty()) {
-        for (HullModSpecAPI spec : Global.getSettings().getAllHullModSpecs()) {
-          String id = spec.getId();
-          String engName = aEP_DataTool.getValueById(allHullmodsData, id, "name");
-          String engDesign = aEP_DataTool.getValueById(allHullmodsData, id, "tech/manufacturer");
-          String engDesc= aEP_DataTool.getValueById(allHullmodsData, id, "desc");
-          String engDescSmod= aEP_DataTool.getValueById(allHullmodsData, id, "sModDesc");
-
-          if (!engName.isEmpty()) {
-            spec.setDisplayName(engName);
-            spec.setManufacturer(engDesign);
-            spec.setDescriptionFormat(engDesc);
-            spec.setSModEffectFormat(engDescSmod);
-          }
-        }
-      }
-
-
-      // weapons
-      JSONArray allWeaponsString = Global.getSettings().loadCSV("data/weapons/weapon_data_EN.csv", "FSF_MilitaryCorporation");
-      ArrayList<aEP_DataTool.RowData> allWeaponsData = aEP_DataTool.jsonToList(allWeaponsString);
-      if (!allWeaponsData.isEmpty()) {
-        for (aEP_DataTool.RowData row : allWeaponsData) {
-          String id = row.getId();
-          if(!id.isEmpty() && !id.startsWith("#")){
-            WeaponSpecAPI spec = Global.getSettings().getWeaponSpec(id);
-            String engName = row.getProperty("name");
-            String engDesign = row.getProperty("tech/manufacturer");
-            String engUsage = row.getProperty("primaryRoleStr");
-            String engEffectDesc =row.getProperty("customPrimary");
-            spec.setWeaponName(engName);
-            spec.setManufacturer(engDesign);
-            spec.setPrimaryRoleStr(engUsage);
-            spec.setCustomPrimary(engEffectDesc);
-          }
-        }
-
-      }
 
     }catch (Exception e){
       Global.getLogger(this.getClass()).info("Fail to swap language to Eng");

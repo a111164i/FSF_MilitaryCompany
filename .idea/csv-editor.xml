@@ -45,13 +45,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="D:\Starsector096\mods\tahlan-shipworks-1.2.4\data\config\modFiles\magicTrail_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="D:\Starsector096\mods\trailer-moments\data\config\modFiles\magicTrail_data.csv">
           <value>
             <Attribute>
@@ -318,13 +311,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\industries_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\campaign\market_conditions.csv">
           <value>
             <Attribute>
@@ -353,6 +339,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>
@@ -375,6 +368,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\submarkets_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -430,6 +430,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\config\lights\FSF_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\config\modFiles\magicTrail_data.csv">
           <value>
             <Attribute>
@@ -451,6 +465,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hullmods\hull_mods_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hullmods\hull_mods_EN.csv">
           <value>
             <Attribute>
@@ -465,7 +486,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hulls\ship_data_EN.csv">
+        <entry key="\data\hulls\ship_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -507,7 +528,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\shipsystems\ship_systems_EN.csv">
+        <entry key="\data\shipsystems\ship_systems_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -521,7 +542,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\strings\descriptions_EN.csv">
+        <entry key="\data\strings\descriptions_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -529,6 +550,13 @@
           </value>
         </entry>
         <entry key="\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\weapons\weapon_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -549,20 +577,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\graphics\shaders\texture.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\graphics\shaders\texture_ships.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\lights\FSF_lights.csv">
           <value>
             <Attribute>
@@ -577,49 +591,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\texture_fighters_noraml.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_ships.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_ships_material.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_ships_noraml.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_ships_noramls.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_ships_surface.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_stations_noraml.csv">
+        <entry key="\texture_all_weapon.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

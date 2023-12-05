@@ -200,12 +200,15 @@
 		"aEP_Mission03_01": "边缘测绘舰队019200号",
 		"aEP_Mission03_02": "余辉巡逻队",
 		"aEP_Mission03_03": "不能损失<%s>，<%s>",
+		"aEP_Mission03_name1": "冰原",
+		"aEP_Mission03_name2": "暴雪",
 		"aEP_Mission03_04": "最多损失 %s 艘战舰",
 		"aEP_Mission03_05": "不可以使用FSF势力未拥有的武器，战机联队，插件",
 
 		"aEP_Mission04_01": "DWR43余辉歼灭舰队",
 		"aEP_Mission04_02": "余辉舰队",
 		"aEP_Mission04_03": "不能损失<%s>",
+		"aEP_Mission04_name1": "涌动",
 
 		"aEP_Mission05_02": "余辉舰队",
 		"aEP_Mission05_03": "不能损失<%s>",
@@ -426,12 +429,15 @@
 		"aEP_Mission03_01": "Fringe Systems Observation Fleet: 019200",
 		"aEP_Mission03_02": "Remnant patrol",
 		"aEP_Mission03_03": "Don't not lose <%s>，<%s>",
+		"aEP_Mission03_name1": "Ice Field",
+		"aEP_Mission03_name2": "Blizzard",
 		"aEP_Mission03_04": "Can lost at most %s ships in combat",
 		"aEP_Mission03_05": "Can not use any weapon, wing, hullmod that FSF do not know",
 
 		"aEP_Mission04_01": "DWR43 Remnant Elimination Fleet",
 		"aEP_Mission04_02": "Remnant Fleet",
 		"aEP_Mission04_03": "Don't lose <%s>",
+		"aEP_Mission04_name1": "Surge",
 
 		"aEP_Mission05_02": "Remnant Fleet",
 		"aEP_Mission05_03": "Don't lose <%s>",

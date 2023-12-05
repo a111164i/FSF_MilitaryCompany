@@ -2,7 +2,7 @@
   "hullName": "Decomposer",
   "hullId": "aEP_cap_decomposer",
   "hullSize": "CAPITAL_SHIP",
-  "spriteName": "graphics/ships/aEP_cap_decomposer_Proto.png",
+  "spriteName": "graphics/ships/aEP_cap_decomposer.png",
   "style": "aEP_FSF",
   "height": 440,
   "width": 280,

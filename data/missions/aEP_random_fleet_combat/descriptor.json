@@ -4,5 +4,5 @@
   "icon": "icon.png",
   "background": "graphics/backgrounds/hyperspace1.jpg",
   "player_prefix": "aEP_",
-  "enemy_prefix": "FM_"
+  "enemy_prefix": ""
 }

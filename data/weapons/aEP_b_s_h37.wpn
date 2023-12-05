@@ -5,9 +5,9 @@
   "type": "BALLISTIC",
   "size": "SMALL",
   "turretSprite": "graphics/weapons/aEP_b_s_h37/tr.png",
-  "turretGunSprite": "graphics/weapons/aEP_b_s_h37/trbr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_s_h37/tr_br.png",
   "hardpointSprite": "graphics/weapons/aEP_b_s_h37/hp.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_b_s_h37/hpbr.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_s_h37/hp_br.png",
   "visualRecoil": 5,
   "turretOffsets": [
     12,

@@ -4,11 +4,11 @@
   "projectileSpecId": "aEP_b_l_dg3_shot",
   "type": "BALLISTIC",
   "size": "LARGE",
-  "turretSprite": "graphics/weapons/aEP_b_l_dg3/tr00.png",
-  "turretGunSprite": "graphics/weapons/aEP_b_l_dg3/trbr.png",
+  "turretSprite": "graphics/weapons/aEP_b_l_dg3/tr.png",
+  "turretGunSprite": "graphics/weapons/aEP_b_l_dg3/tr_br.png",
   "turretUnderSprite": "graphics/weapons/aEP_base_l.png",
-  "hardpointSprite": "graphics/weapons/aEP_b_l_dg3/hp00.png",
-  "hardpointGunSprite": "graphics/weapons/aEP_b_l_dg3/hpbr.png",
+  "hardpointSprite": "graphics/weapons/aEP_b_l_dg3/hp.png",
+  "hardpointGunSprite": "graphics/weapons/aEP_b_l_dg3/hp_br.png",
   "visualRecoil": 11,
   "renderHints": [
     RENDER_BARREL_BELOW

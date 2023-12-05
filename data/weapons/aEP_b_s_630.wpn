@@ -6,7 +6,7 @@
   "size": "SMALL",
   "displayArcRadius": 300,
   "turretSprite": "graphics/weapons/aEP_b_s_630/tr00.png",
-  "turretUnderSprite": "graphics/weapons/aEP_b_s_630/base.png",
+  "turretUnderSprite": "graphics/weapons/aEP_base_s.png",
   "hardpointSprite": "graphics/weapons/aEP_b_s_630/hp00.png",
   "visualRecoil": 2,
   "numFrames":4,

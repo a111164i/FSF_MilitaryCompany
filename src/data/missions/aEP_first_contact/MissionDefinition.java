@@ -49,10 +49,10 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     // These show up as items in the bulleted list under
     // "Tactical Objectives" on the mission detail screen
-    String name1 = "冰原";
-    String name2 = "暴雪";
+    String name1 = txt("aEP_Mission03_name1");
+    String name2 = txt("aEP_Mission03_name2");
     api.addBriefingItem(String.format(txt("aEP_Mission03_03"), name1, name2));
-    api.addBriefingItem(String.format(txt("aEP_Mission03_04"), Float.toString(2)));
+    api.addBriefingItem(String.format(txt("aEP_Mission03_04"), String.format("%.0f",2f)));
     api.addBriefingItem(txt("aEP_Mission03_05"));
     //在这加自己的船，用装配文件的ID，后面是船名，true和false是“是否是旗舰”的设定
     // Set up the player's fleet.  Variant names come from the

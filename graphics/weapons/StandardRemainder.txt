@@ -1,0 +1,3 @@
+Standard Size: h37, h88, aa40
+Naming Standard: tr, tr_br, tr_glow, hp, hp_br, hp_glow
+For decos: aEP_cap_duiliu_gun_cover -> aEP_cap_duiliu/gun_cover.png

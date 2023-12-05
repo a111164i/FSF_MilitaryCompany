@@ -2,11 +2,11 @@ package combat.plugin
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.input.InputEventAPI
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_Tool
-import data.scripts.hullmods.aEP_MissilePlatform
+import org.dark.shaders.light.LightData
 import java.util.*
+
 /**
  * 自由特效类，实现自定义特效渲染
  * */
@@ -35,6 +35,8 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin(), CombatLayeredRenderi
     //清理列表，每次战斗结束挂起时总会剩很多没结束的effect
     effects.clear()
     Global.getLogger(this.javaClass).info("aEP_CombatEffectPlugin register in EveryFrameCombatPlugin")
+
+    LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv")
   }
 
   /**
