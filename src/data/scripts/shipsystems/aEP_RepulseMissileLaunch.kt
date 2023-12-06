@@ -39,7 +39,7 @@ class aEP_RepulseMissileLaunch : BaseShipSystemScript() {
     //更新充能提示圈
     updateIndicator(ship, effectLevel)
 
-    //死了强行使用一次
+    //死后强行使用一次
     if (!ship.isAlive && !disablePermanent) {
       if(!ship.system.isActive){
         //舰船死后，effectiveLevel会被锁到0，所以使用一个forceUse跳过下面的系统未激活检测
@@ -111,6 +111,13 @@ class aEP_RepulseMissileLaunch : BaseShipSystemScript() {
   }
 
   fun updateStats(ship: ShipAPI, effectLevel: Float){
+    if(forceUse){
+      val toAdd = FLUX_REDUCE_FLAT + ship.fluxTracker.currFlux * FLUX_REDUCE_CURR_PERCENT
+      ship.mutableStats.fluxDissipation.modifyFlat(ID, toAdd )
+      ship.mutableStats.hardFluxDissipationFraction.modifyFlat(ID, 1f)
+      return
+    }
+
     if(effectLevel <= 0.1f){
       ship.mutableStats.fluxDissipation.unmodify(ID)
       ship.mutableStats.hardFluxDissipationFraction.unmodify(ID)
