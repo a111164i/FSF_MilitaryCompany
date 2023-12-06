@@ -28,7 +28,7 @@ Built-in Flak Gun,aEP_des_yangji_flak,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",FRA
 Built-in Grenade Thrower,aEP_des_lianliu_grenade_thrower,"SYSTEM, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,1,425,0,,300,,,,,50,,3,0,1,6,0.025,,,,TRUE,45,45,45,45,75,500,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 Built-in Micro DEM,aEP_des_taodong_dem,SYSTEM,ENERGY,1,1000,0,,50,,,0,,500,,3.5,0,0.4,2,0.4,,,,,0,0,0,0,100,300,FSF Manufacture,General,4 | 200,"The missile will fires a beam at target at close range, within %s seconds dealing around %s EN damage. This damage is affected by modifier that affect missile weapon damage instead of energy weapon damage.",,,,,,,,,,,,,,,
 --Payload,aEP_des_taodong_dem_payload,SYSTEM,ENERGY,1,600,360,50,,,0,,,,1000000,,0,0.25,1,,,,,,0,0,0,0,,,,,,,,,fires_one_burst,,,,,,,,,,,,
-"""Migratory"" Repulse Missile",aEP_fga_xiliu_mk2_missile,"SYSTEM,MISSILE_SPREAD,DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,3,1600,30,0,150,,,,,400,,5.5,0,0.1,30,0.3333,3,0,3,,5,5,5,5,100,600,FSF Manufacture,General,,,,,,,,,,,,,,,,,
+"""Migratory"" Repulse Missile",aEP_fga_xiliu_mk2_missile,"SYSTEM,MISSILE_SPREAD,DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,3,1600,30,0,150,,,,,400,,5,0,0.1,30,0.3333,3,0,3,,5,5,5,5,100,600,FSF Manufacture,General,,,,,,,,,,,,,,,,,
 """Recoil"" Gun",aEP_fga_yonglang_main,"SYSTEM, DANGEROUS",KINETIC,1,900,0,,500,1000,,200,,450,,2,1,3,,,3,0.08333,1,TRUE,0,0,0,0,450,600,FSF Manufacture,Anti-shield,,"When hitting shield, deals extra KE damage equals to EMP damage dealt, however these damage only cause soft flux. ",,,,,aEP_YLM_only,,,,,,,,,,
 """Boiling"" Laser - High Output",aEP_fga_xiliu_main,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,1050,75,1200,320,,4000,,1,,1000000,,0,0.3,0.2,2.5,,,,,,,,,,,FSF Manufacture,PD,300 | 6 | 250,"On hitting shield, generate hard flux, also spawns emp arcs jumping around a distance of %s , hitting up to %s enemies, and deals %s EN damage to each of them.
 
@@ -97,7 +97,7 @@ If the hit causes an overload, the overload only last %s seconds",1,200,"strike7
 
 If the hit causes an overload, the overload only last %s seconds",1,1000,"strike12, rocket10, FSF_bp",,,2,,,,,,,,,
 """Blast Hammer"" LRM Pod",aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,2750,8,,2400,,,,,675,,7,0,18,,,5,,,TRUE,0,0,0,0,450,200,FSF Manufacture,Finisher,25% | 2 | 50% | 50%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
---Jet,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,800,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
+--Payload,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,800,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
 """Blast Hammer"" LRM System",aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,2750,6,,3600,,,,,600,,8,0,18,,,7,,,TRUE,0,0,0,0,600,150,FSF Manufacture,Finisher,25% | 2 | 50% | 50%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
 Disposal Flux Tube,aEP_m_s_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,4,200,12,,200,,,-1000,,200,,5,1,20,,,7,,,,15,15,15,15,200,100,FSF Manufacture,Support,50% | 1000,"When flux level of this ship is above %s, the weapon will fire one shot and reduce flux by %s .
 
@@ -108,7 +108,7 @@ This weapon can't be fired manually",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
 """Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
 If the hit causes an overload, the overload only last %s seconds",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
-"""Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,700,,,250,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,320,0,FSF Manufacture,Anti-shield,700,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
+"""Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,700,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,320,0,FSF Manufacture,Anti-shield,700,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
 If the hit causes an overload, the overload only last %s seconds",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
 """Percussion Drill"" Bombardment LRM",aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF Manufacture,Anti-armor,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,

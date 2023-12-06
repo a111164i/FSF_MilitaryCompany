@@ -2,12 +2,11 @@ package data.scripts.weapons
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.util.IntervalUtil
 import data.scripts.hullmods.aEP_SpecialHull
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 
-class aEP_FluxBeam : BeamEffectPlugin {
+class aEP_BeamFlux : BeamEffectPlugin {
 
   companion object{
     const val FSF_BONUS = 3f

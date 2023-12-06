@@ -265,9 +265,10 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
       if(it.damage.type == DamageType.FRAGMENTATION && it.damage.baseDamage < 100) continue
       if(it.damage.type == DamageType.KINETIC && it.damage.baseDamage < 25) continue
       if(it.damage.type == DamageType.HIGH_EXPLOSIVE && it.damage.baseDamage < 50) continue
+      if(it.damage.type == DamageType.ENERGY && it.damage.baseDamage < 30) continue
 
       //拦截点不能在武器射界外面
-      if(!isPointWithinRange(interceptPoint!!, -50f,0f)) continue
+      if(!isPointWithinRange(interceptPoint!!, -100f,0f)) continue
 
       //弹丸本身，还有拦截点都不能处于队友的碰撞圈内（都已经打到队友了还拦啥）
       //弹丸必须指向某个友军

@@ -22,8 +22,7 @@ import data.scripts.shipsystems.aEP_Rapture.Companion.OVERLOAD_TIME
 import data.scripts.shipsystems.aEP_Rapture.Companion.SPEED_SLOW_PER_TICK
 import data.scripts.shipsystems.aEP_Rapture.Companion.TICK_DIST
 import data.scripts.weapons.PredictionStripe
-import data.scripts.weapons.aEP_RepairBeam
-import data.scripts.weapons.aEP_TeslaBeam
+import data.scripts.weapons.aEP_BeamRepair
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
@@ -225,7 +224,7 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffect(lifetim
     target.removeCustomData(KEY)
     chain.lifeTime = 100f
     chain.time = 99.9f
-    Global.getCombatEngine().spawnExplosion(ballLocation, Misc.ZERO, aEP_RepairBeam.REPAIR_COLOR2,100f*sizeMult,0.5f)
+    Global.getCombatEngine().spawnExplosion(ballLocation, Misc.ZERO, aEP_BeamRepair.REPAIR_COLOR2,100f*sizeMult,0.5f)
   }
 }
 

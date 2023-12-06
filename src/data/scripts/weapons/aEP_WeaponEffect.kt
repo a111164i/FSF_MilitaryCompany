@@ -4347,6 +4347,8 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
     var FRAG_GLOW_C = Color(155, 175, 255, 120)
   }
 
+  var didIntercet = false
+
   override fun advanceImpl(amount: Float) {
     //找到触发了碰撞，并且用于穿越导弹能力的所有弹丸
     val projs: MutableList<DamagingProjectileAPI> = java.util.ArrayList()
@@ -4357,7 +4359,7 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
       //检测到可以穿越导弹的弹丸
       if(hit.projectileSpec?.isPassThroughMissiles != true) continue
 
-      if (MathUtils.isWithinRange(proj, hit, proj.collisionRadius)) {
+      if (isWithinRange(proj, hit, proj.collisionRadius)) {
         projs.add(hit)
       }
     }
@@ -4387,6 +4389,8 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
         proj.spec.glowColor,
         Color.white)
 
+      didIntercet = true
+
       //proj.explode()
       Global.getCombatEngine().removeEntity(proj)
     }
@@ -4394,6 +4398,8 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
   }
 
   override fun readyToEnd() {
+    if(!didIntercet && proj.hitpoints >= proj.maxHitpoints) return
+
     //创造一坨碎屑特效
     val facing = proj.facing
     for(i in 0 until 6) {

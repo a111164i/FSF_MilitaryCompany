@@ -472,13 +472,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hullmods\hull_mods_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\hulls\ship_data.csv">
           <value>
             <Attribute>
@@ -494,20 +487,6 @@
           </value>
         </entry>
         <entry key="\data\hulls\wing_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\lights\FSF_light_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\lights\FSF_texture_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -563,28 +542,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\weapons\weapon_data_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\world\factions\factions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\lights\FSF_lights.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\lights\FSF_texture_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

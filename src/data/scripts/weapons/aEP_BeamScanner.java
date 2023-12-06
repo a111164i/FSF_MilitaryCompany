@@ -8,7 +8,7 @@ import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;
 import org.lwjgl.util.vector.Vector2f;
 
-public class aEP_FocusBeamAnimation implements EveryFrameWeaponEffectPlugin
+public class aEP_BeamScanner implements EveryFrameWeaponEffectPlugin
 {
   static final float ROTATE_SPEED = 5f;
   static final float SPREAD_ANGLE = 2.5f;

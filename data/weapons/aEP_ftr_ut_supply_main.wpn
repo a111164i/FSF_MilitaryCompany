@@ -9,7 +9,7 @@
   "turretGlowSprite": "graphics/weapons/aEP_FCL/tesla_tr_glow.png",
   "hardpointSprite": "",
   "hardpointGlowSprite": "graphics/weapons/aEP_FCL/tesla_hp_glow.png",
-  "beamEffect":"data.scripts.weapons.aEP_FluxBeam",
+  "beamEffect":"data.scripts.weapons.aEP_BeamFlux",
   #"everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
   "turretOffsets": [
 	  0,

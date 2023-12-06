@@ -7,14 +7,14 @@ import combat.impl.aEP_BaseCombatEffect;
 import combat.plugin.aEP_CombatEffectPlugin;
 import org.lazywizard.lazylib.MathUtils;
 
-public class aEP_TeslaBeam implements BeamEffectPlugin {
+public class aEP_BeamTesla implements BeamEffectPlugin {
     static final float DAMAGE_PER_TICK = 20f;
     static final float EMP_PER_TICK = 50f;
 
     static final float MANEUVER_MULT = 0.5f;
     static final float MAX_SPEED_MULT = 0.5f;
 
-    static final String ID = "aEP_TeslaBeam";
+    static final String ID = "aEP_BeamTesla";
     IntervalUtil arcTracker = new IntervalUtil(0.2f,0.2f);
 
     @Override

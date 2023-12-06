@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class aEP_DecomposeDroneBeam implements BeamEffectPlugin
+public class aEP_BeamScrape implements BeamEffectPlugin
 {
 
   static final float PARTS_CHANCE = 0.2f;

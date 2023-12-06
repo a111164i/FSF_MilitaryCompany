@@ -10,7 +10,7 @@
   "hardpointSprite": "graphics/weapons/aEP_e_s_300k/tr.png",
   "hardpointGlowSprite": "graphics/weapons/aEP_e_s_300k/hp_glow.png",
   #"beamEffect":"",
-  #"everyFrameEffect": "data.scripts.weapons.aEP_FocusBeamAnimation",
+  #"everyFrameEffect": "data.scripts.weapons.aEP_BeamScanner",
   "glowColor": [
     255,
     10,

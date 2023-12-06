@@ -2,7 +2,6 @@
 //by a111164
 package data.scripts.ai
 
-import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -11,13 +10,12 @@ import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
 import combat.util.aEP_Tool.Util.getRelativeLocationData
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
-import data.scripts.weapons.aEP_RepairBeam.Companion.HULL_REPAIR_THRESHOLD
-import data.scripts.weapons.aEP_RepairBeam.Companion.REPAIR_THRESHOLD
+import data.scripts.weapons.aEP_BeamRepair.Companion.HULL_REPAIR_THRESHOLD
+import data.scripts.weapons.aEP_BeamRepair.Companion.REPAIR_THRESHOLD
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
-import org.lwjgl.util.vector.Vector
 import org.lwjgl.util.vector.Vector2f
 import kotlin.math.absoluteValue
 

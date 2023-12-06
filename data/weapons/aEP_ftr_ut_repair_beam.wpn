@@ -12,7 +12,7 @@
   "numFrames":10,	
 	"frameRate":20,
   "renderAboveAllWeapons": 0,
-  "beamEffect":"data.scripts.weapons.aEP_RepairBeam",
+  "beamEffect":"data.scripts.weapons.aEP_BeamRepair",
   "everyFrameEffect": "data.scripts.weapons.aEP_RepairAnimation",
   "glowColor": [100,100,200,200],
   "hitGlowRadius": 50,
