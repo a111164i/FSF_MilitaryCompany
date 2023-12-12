@@ -40,10 +40,7 @@
     "particleDuration": 0.15,
     "particleCount": 4,
     "particleColor": [
-      255,
-      240,
-      165,
-      200
+      255,240,165,200
     ]
   },
   "fireSoundOne": "aEP_b_s_630_intro",

@@ -12,7 +12,7 @@
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"fringeColor":[255,155,15,200],
 	"coreColor":[240,240,200,255],
-	"glowColor":[255,255,155,60],
+	"glowColor":[251,247,146,60],
 	"glowRadius":150,
 	"textureScrollSpeed":64.0,
 	"pixelsPerTexel":5.0,

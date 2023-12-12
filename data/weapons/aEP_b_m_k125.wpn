@@ -31,17 +31,17 @@
   "animationType": "MUZZLE_FLASH",
   "interruptibleBurst": true,
   "muzzleFlashSpec": {
-    "length": 1,
+    "length": 75,
     "spread": 1,
-    "particleSizeMin": 150,
-    "particleSizeRange": 50,
+    "particleSizeMin": 50,
+    "particleSizeRange": 100,
     "particleDuration": 0.12,
-    "particleCount": 1,
+    "particleCount": 5,
     "particleColor": [
       255,
       240,
       160,
-      185
+      55
     ]
   },
   "fireSoundTwo": "aEP_b_m_k125_fire"

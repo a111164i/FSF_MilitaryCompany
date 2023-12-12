@@ -19,9 +19,12 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 热泉长程导弹发射舱,aEP_cru_requan_missile,FSF制造,反装甲,
 热泉长程导弹发射系统,aEP_cap_requan_missile,FSF制造,反装甲,
 巡航导弹发射装置,aEP_des_shendu_mk2_cruise_missile,FSF制造,终结,
-洋脊弹幕阵列,aEP_des_yangji_flak,FSF制造,,爆炸击中时，对每个目标造成一次{%s}额外破片伤害
-BT-01炸弹抛洒器,aEP_des_lianliu_grenade_thrower,FSF制造,反装甲,
-渔群 DEM,aEP_des_taodong_dem,FSF制造,通用,导弹在接近目标时会发射光束，在 %s 秒内造成约 %s 能量伤害。此伤害受导弹武器伤害效果影响，而不受能量武器伤害效果影响。
+内置弹幕炮,aEP_des_yangji_flak,FSF制造,,爆炸击中时，对每个目标造成一次{%s}额外破片伤害
+内置水雷发射架,aEP_m_m_phasemine_system,FSF制造,反装甲,"导弹拥有极长的滞空时间，并且在引信触发前处于相位空间中没有碰撞体积
+
+同场最多存在{%s}颗，已部署舰船中每存在一个此武器，同场数量上限增加{%s}"
+内置炸弹抛洒器,aEP_des_lianliu_grenade_thrower,FSF制造,反装甲,
+内置微型DEM,aEP_des_taodong_dem,FSF制造,通用,导弹在接近目标时会发射光束，在 %s 秒内造成约 %s 能量伤害。此伤害受导弹武器伤害效果影响，而不受能量武器伤害效果影响。
 --光束,aEP_des_taodong_dem_payload,,,
 """洄游""导弹",aEP_fga_xiliu_mk2_missile,FSF制造,通用,
 反冲力炮,aEP_fga_yonglang_main,FSF制造,反护盾,"击中护盾时，造成等同emp伤害的额外动能伤害,但额外部分只造成软幅能"

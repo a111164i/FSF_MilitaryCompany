@@ -112,8 +112,15 @@ public class FSFModPlugin extends BaseModPlugin {
     boolean hasGraphicsLib = Global.getSettings ().getModManager ().isModEnabled ( "shaderLib" );
     if ( hasGraphicsLib ) {
       ShaderLib.init();
-      LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv");
-      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data.csv");
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data_normal_ships.csv");
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data_material_ships.csv");
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data_surface_ships.csv");
+
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data_normal_weapons.csv");
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data_material_weapons.csv");
+      TextureData.readTextureDataCSV("data/config/lights/FSF_texture_data_surface_weapons.csv");
+
+      loadLightData();
     }
   }
 
@@ -187,5 +194,10 @@ public class FSFModPlugin extends BaseModPlugin {
     }catch (Exception e){
       Global.getLogger(this.getClass()).info("Fail to swap language to Eng");
     }
+  }
+
+  public static void loadLightData(){
+    LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv");
+
   }
 }

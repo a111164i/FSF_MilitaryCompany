@@ -12,10 +12,7 @@
   "renderAboveAllWeapons": 0,
   "everyFrameEffect":"data.scripts.weapons.aEP_BBRadarEffect",
   "glowColor": [
-    100,
-    100,
-    100,
-    250
+    90,95,125,250
   ],
   "hitGlowRadius": 0,
   "turretOffsets": [
@@ -37,9 +34,7 @@
   ],
   "beamFireOnlyOnFullCharge": false,
   "fringeColor": [
-    50,
-    50,
-    250,
+    50,50,250,
     20
   ],
   "coreColor": [

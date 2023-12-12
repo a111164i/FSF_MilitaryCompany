@@ -42,12 +42,12 @@
   "separateRecoilForLinkedBarrels":"false",
   "animationType": "MUZZLE_FLASH",
    "muzzleFlashSpec": {
-     "length": 1,
+     "length": 100,
      "spread": 1,
-     "particleSizeMin": 200,
+     "particleSizeMin": 50,
      "particleSizeRange": 100,
-     "particleDuration": 0.2,
-     "particleCount": 1,
-     "particleColor":  [255,240,160,185]},
+     "particleDuration": 0.15,
+     "particleCount": 6,
+     "particleColor":  [255,240,160,55]},
   "fireSoundTwo": "aEP_b_l_aa40_fire"
 }

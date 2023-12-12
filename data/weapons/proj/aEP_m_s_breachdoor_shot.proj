@@ -17,7 +17,7 @@
   "alwaysAccelerate":false,
   "reduceDamageWhileFading":false,
   #"useProjectileRangeCalculation":true,
-	"explosionColor":[100,100,100,191],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[100,105,115,191],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":250, # purely visual
 	"explosionSpec":{
 		"duration":0.0001f, # not visual
@@ -71,7 +71,7 @@
 			"style":"CUSTOM",
 			"styleSpec":{
 				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-				"engineColor":[150,150,100,255],
+				"engineColor":[140,150,100,255],
 				"contrailDuration":2,
 				"contrailWidthMult":2,
 				"contrailWidthAddedFractionAtEnd":0.5,  # can be negative. makes trail spread out/narrow at the end
@@ -95,7 +95,7 @@
 			"style":"CUSTOM",
 			"styleSpec":{
 				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-				"engineColor":[150,150,100,255],
+				"engineColor":[140,150,100,255],
 				"contrailDuration":0,
 				"contrailWidthMult":1,
 				"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end
@@ -119,7 +119,7 @@
 	    "style":"CUSTOM",
 			"styleSpec":{
 				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-				"engineColor":[150,150,100,255],
+				"engineColor":[140,150,100,255],
 				"contrailDuration":0,
 				"contrailWidthMult":1,
 				"contrailWidthAddedFractionAtEnd":1,  # can be negative. makes trail spread out/narrow at the end

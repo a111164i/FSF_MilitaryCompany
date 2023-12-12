@@ -95,4 +95,10 @@ if __name__ == "__main__":
 
     input_folder = os.path.join("graphics/shaders/normal/weapons")
     output_csv_path = process_folders(input_folder, 'weapon', 'normal',"all_weapon")
+    
+    input_folder = os.path.join("graphics/shaders/material/weapons")
+    output_csv_path = process_folders(input_folder, 'weapon', 'material',"all_weapon")
+    
+    input_folder = os.path.join("graphics/shaders/surface/weapons")
+    output_csv_path = process_folders(input_folder, 'weapon', 'surface',"all_weapon")
     print(f"CSV file has been created with the extracted data in the script's directory.")

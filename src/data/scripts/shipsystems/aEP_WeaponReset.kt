@@ -23,6 +23,8 @@ import combat.util.aEP_Tool.Util.isNormalWeaponSlotType
 import data.scripts.hullmods.aEP_ReactiveArmor
 import data.scripts.hullmods.aEP_Strafe
 import data.scripts.weapons.aEP_DecoAnimation
+import org.dark.shaders.light.LightShader
+import org.dark.shaders.light.StandardLight
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.MathUtils.clamp
@@ -197,6 +199,9 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         GLOW_COLOR,
         EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
 
+      //武器修复
+      stats.combatWeaponRepairTimeMult.modifyMult(id, 0.25f)
+
       val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 50f
 
       //ballistic weapon buff
@@ -256,6 +261,9 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
     //还原护盾维持
     ship.mutableStats.shieldUpkeepMult.unmodify(id)
+
+    //取消武器维修
+    stats.combatWeaponRepairTimeMult.unmodify(id)
 
     spawnSmoke(ship, 30)
 
@@ -371,7 +379,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       vent_2.setGlowToLevel(1f)
     }
 
-    //创造散热红色电子烟雾
+    //创造散热红色电子烟雾 以及散热口闪光
     redSmokeTracker.advance(amount)
     if (redSmokeTracker.intervalElapsed()) {
       if (effectLevel > 0.9f){
@@ -400,6 +408,29 @@ class aEP_WeaponReset: BaseShipSystemScript() {
           0.1f, 0.4f,
           lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
           aEP_Tool.getColorWithAlpha(initColor,alpha))
+
+        //散热口闪光
+        val sparkLoc1 = vent_1.weapon.location
+        val sparkLoc2 = vent_2.weapon.location
+        val sparkRad = 25f * effectLevel
+        val brightness = MathUtils.getRandomNumberInRange(0.25f, 0.5f) * effectLevel
+        // vent 1 light
+        var light = StandardLight(sparkLoc1, Misc.ZERO, Misc.ZERO, null)
+        light.setColor(Color(250, 50, 50))
+        light.setLifetime(redSmokeTracker.elapsed * 3f)
+        //light.fadeOut(0.1f)
+        light.size = sparkRad
+        light.intensity = brightness
+        LightShader.addLight(light)
+        // vent 2 light
+        light = StandardLight(sparkLoc2, Misc.ZERO, Misc.ZERO, null)
+        light.setColor(Color(250, 50, 50))
+        light.setLifetime(redSmokeTracker.elapsed * 3f)
+        //light.fadeOut(0.1f)
+        light.size = sparkRad
+        light.intensity = brightness
+        LightShader.addLight(light)
+
 
       }
     }

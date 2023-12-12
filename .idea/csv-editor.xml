@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="D:\Starsector096\mods\GraphicsLib\data\lights\core_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="D:\Starsector096\mods\VIC\data\hulls\ship_data.csv">
           <value>
             <Attribute>
@@ -437,7 +444,42 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\config\lights\FSF_texture_data.csv">
+        <entry key="\data\config\lights\FSF_texture_data_material_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_texture_data_material_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_texture_data_normal_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_texture_data_normal_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_texture_data_surface_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_texture_data_surface_weapons.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

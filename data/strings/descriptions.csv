@@ -13,7 +13,7 @@ aEP_ManeuverThruster,SHIP_SYSTEM,"Toggleable. When activated, massively increase
 ,,,,,,
 ,,,,,,
 aEP_MaodianDroneLaunch,SHIP_SYSTEM,"When activated, send a ADS drone to mouse location. The drone will deploy a shield at location to intercepting nearby projectiles, self destructs after some time.",,,,
-aEP_WeaponReset,SHIP_SYSTEM,"Toggleable. When activated, increase ballistic/energy weapon rate of fire and ammo regen speed, all generated soft flux will be absorbed into a buffer, which will be slowly returned after the end of the system's effect.",,,,
+aEP_WeaponReset,SHIP_SYSTEM,"Toggleable. When activated, increase ballistic/energy weapon rate of fire and ammo regen speed, fast repair all weapons, all generated soft flux will be absorbed into a buffer, which will be slowly returned after the end of the system's effect.",,,,
 aEP_ApproachThruster,SHIP_SYSTEM,"Toggleable, when activated, massively increase max speed and cause the ship to accelerate forward, prohibits turning. The total time of use is limited",,,,
 aEP_EcmSuppress,SHIP_SYSTEM,"When activated, reduce electric warfare points of enemy ships within 2000 range by 2% / 3% / 4% / 6% , based on to hullsize from Frigate to Capital, ",Electric warfare,"When activated, for each enemy ship within 2000 range, according to hullsize from Frigate to Capital, reduce its electric warfare points by 2% / 3% / 4% / 6% ",2000 | 2% / 3% / 4% / 6%,
 aEP_RQReload,SHIP_SYSTEM,"When activated, generate large amount of flux and massively reduce all missile weapons' remaining cooldown, reload built-in Hydrothermal LRM and recover ""Forge Output""",,,,

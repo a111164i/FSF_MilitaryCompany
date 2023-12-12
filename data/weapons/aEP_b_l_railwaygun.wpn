@@ -10,9 +10,7 @@
   "hardpointSprite": "graphics/weapons/aEP_b_l_railway/hp.png",
   "hardpointGunSprite": "graphics/weapons/aEP_b_l_railway/hp_br.png",
   "glowColor": [
-    255,
-    150,
-    150,
+    249,157,155,
     255
   ],
   "visualRecoil": 8,

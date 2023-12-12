@@ -5,8 +5,8 @@
   "type": "BALLISTIC",
   "size": "LARGE",
   "everyFrameEffect": "data.scripts.weapons.aEP_NeiBoMainAnimation",
-  "turretSprite": "graphics/weapons/aEP_cap_neibo/gun00.png",
-  "hardpointSprite": "graphics/weapons/aEP_cap_neibo/gun00.png",
+  "turretSprite": "graphics/weapons/aEP_cap_neibo/main00.png",
+  "hardpointSprite": "graphics/weapons/aEP_cap_neibo/main00.png",
   "turretOffsets": [
     69.5,
     2.5,
@@ -40,7 +40,7 @@
 					   "particleSizeRange":20.0,
 					   "particleDuration":0.12,
 					   "particleCount":10,
-					   "particleColor":[255,50,50,180]},		
+					   "particleColor":[255,55,50,180]},
   "fireSoundOne":"aEP_blackstar_fire",
 	"fireSoundTwo":"aEP_blackstar",
 }

@@ -41,10 +41,7 @@
     "particleDuration": 0.2,
     "particleCount": 1,
     "particleColor": [
-      255,
-      255,
-      255,
-      255
+      245,246,255,255
     ]
   },
   "fireSoundTwo": "aEP_ftr_sup_shield_gun_fire"

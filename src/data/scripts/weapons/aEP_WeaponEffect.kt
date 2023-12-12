@@ -1283,6 +1283,7 @@ class aEP_cap_nuanchi_glow : aEP_DecoAnimation() {
   var glowLevel = 0f
 
   val smokeTracker = IntervalUtil(0.25f,0.25f)
+  val glowTimer = IntervalUtil(0.1f,0.1f)
 
   val bonusRingSpeed = 2f
 
@@ -1371,6 +1372,21 @@ class aEP_cap_nuanchi_glow : aEP_DecoAnimation() {
     //发光
     val ring1Loc = getExtendedLocationFromPoint(weapon.location, weapon.currAngle -25f, -25f)
     val ring4Loc = getExtendedLocationFromPoint(weapon.location, weapon.currAngle +25f, -25f)
+    glowTimer.advance(amount)
+    if(glowTimer.intervalElapsed()){
+      val sparkLoc2 = weapon.location
+      val sparkRad2 = 45f * glowLevel
+      val brightness2 = MathUtils.getRandomNumberInRange(0.2f, 0.4f) * glowLevel
+      val light = StandardLight(sparkLoc2, Misc.ZERO, Misc.ZERO, null)
+      val c = Color(253, 115, 5)
+      light.setColor(c)
+      light.setLifetime(glowTimer.elapsed)
+      light.size = sparkRad2
+      light.intensity = brightness2
+      LightShader.addLight(light)
+    }
+
+
     //val mid1Loc = getExtendedLocationFromPoint(weapon.location, weapon.currAngle, 15f)
 
     //烟雾
@@ -3616,7 +3632,7 @@ class aEP_b_l_dg3_shot : Effect(){
     Global.getCombatEngine().addHitParticle(
       projectile.location,
       speed2Velocity(weapon.currAngle, 60f),
-      MathUtils.getRandomNumberInRange(25f,125f),0.75f ,0.05f, 0.1f,
+      MathUtils.getRandomNumberInRange(20f,80f),0.75f ,0.05f, 0.1f,
       Color(255,125,60))
 
   }

@@ -31,14 +31,13 @@
   "barrelMode": "LINKED",
   "autocharge": true,
   "animationType": "GLOW_AND_FLASH",
-  "muzzleFlashSpec": {
-    "length": 1,
-    "spread": 1,
-    "particleSizeMin": 200,
-    "particleSizeRange": 0,
-    "particleDuration": 0.35,
-    "particleCount": 1,
-    "particleColor":  [241,231,221,199]},
+      "length": 50,
+      "spread": 5,
+      "particleSizeMin": 25,
+      "particleSizeRange": 100,
+      "particleDuration": 0.35,
+      "particleCount": 5,
+      "particleColor":  [241,231,221,105]},
   "textureType": ROUGH,
   "fireSoundTwo": "aEP_m_l_blasthammer_fire"
 }

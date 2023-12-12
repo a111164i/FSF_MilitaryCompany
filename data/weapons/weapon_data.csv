@@ -24,7 +24,9 @@ Projectile is considered a missile and can be intercepted",,,,,,,,,,,,,,,
 """Hydrothermal"" LRM Launch System",aEP_cap_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,12,0.1,12,,,,0,0,0,1,125,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 Cruise Missile Launch Rack,aEP_des_shendu_mk2_cruise_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_3",ENERGY,,10000,5,,4000,,,0,,1000,,50,1.5,9999,1,,1,,,,0,0,0,0,2000,500,FSF Manufacture,Finisher,,,,,,,,,,,,,,,,,
 Built-in Flak Gun,aEP_des_yangji_flak,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",FRAGMENTATION,,800,0,,150,,,0,,800,,,0,0.1,2,0.25,16,0,,,120,120,120,120,,,FSF Manufacture,,150,"When explosion hit a target, deals extra %s FRAG damage",,,"fixed_range, fires_one_burst",,,,,,,,,,,,
-内置破胎水雷发射架,aEP_m_m_phasemine_system,"SYSTEM, DO_NOT_CONSERVE, DO_NOT_AIM",HIGH_EXPLOSIVE,1,1600,6,,1500,,,,,50,,48,0,0.5,,,2,2,1,TRUE,10,30,30,15,375,250,FSF制造,反装甲,,导弹拥有极长的滞空时间，并且在引信触发前处于相位空间中没有碰撞体积,,,,,,,,,,,,,,,
+Built-in Phase Mine,aEP_m_m_phasemine_system,"SYSTEM, DO_NOT_CONSERVE, DO_NOT_AIM",HIGH_EXPLOSIVE,1,1600,6,,1500,,,,,50,,48,0,0.5,,,2,2,1,TRUE,10,30,30,15,375,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
+
+At most %s mine can co-exist in the battlefield at one time. For each of this weapon mounted on deployed ships, that limitation is increased by %s",,,,,,,,,,,,,,,
 Built-in Grenade Thrower,aEP_des_lianliu_grenade_thrower,"SYSTEM, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,1,425,0,,300,,,,,50,,3,0,1,6,0.025,,,,TRUE,45,45,45,45,75,500,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 Built-in Micro DEM,aEP_des_taodong_dem,SYSTEM,ENERGY,1,1000,0,,50,,,0,,500,,3.5,0,0.4,2,0.4,,,,,0,0,0,0,100,300,FSF Manufacture,General,4 | 200,"The missile will fires a beam at target at close range, within %s seconds dealing around %s EN damage. This damage is affected by modifier that affect missile weapon damage instead of energy weapon damage.",,,,,,,,,,,,,,,
 --Payload,aEP_des_taodong_dem_payload,SYSTEM,ENERGY,1,600,360,50,,,0,,,,1000000,,0,0.25,1,,,,,,0,0,0,0,,,,,,,,,fires_one_burst,,,,,,,,,,,,
@@ -41,7 +43,7 @@ This weapon will automatically repair itself
 
 Beam can go through allies",,,,,aEP_XLM_only,,,,,,,,,,
 Lidardish,aEP_fga_chichao_lidardish,SYSTEM,ENERGY,,100,200,100,,,0,,,,1000000,,0.2,0.3,0.5,0.1,1000,1000,1000,,,,,,,,,,,,,,lidar,,,,,,,,,,,,
-DF-2 Heavy ERA,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,1,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,500 | 1 | 90%,"When armor around this weapon has recieved a single hit that would either %s damage or damage exceeding %s of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
+DF-2 Heavy ERA,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,1,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,500 | 1 | 90%,"When armor around this weapon has received a single hit that would either %s damage or damage exceeding %s of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
 This weapon will immediately repair itself if brought offline.
 
@@ -67,7 +69,7 @@ K-9 Fighter LMG,aEP_ftr_sup_shield_gun,"PD, PD_ONLY",KINETIC,2,450,75,,12,,,5,,1
 107 Rocket Launcher,aEP_b_m_rk107,USE_LESS_VS_SHIELDS,FRAGMENTATION,15,900,9,,400,,,300,,800,,,0,0.25,4,0.25,8,0.8,4,,0,6,0.8,10,300,600,FSF Manufacture,Finisher,3 | 450,"On hitting shield, deals twice the damage but in soft flux
 
 On hitting armor, the damage increased by %s times of target's minimum calculated armor, up to %s .",0.5,1600,"strike15, he10, FSF_bp, rare_bp",,,3,,,,,,,,,
-HV7 Smart Cannon,aEP_b_m_hv7,,ENERGY,14,900,12,,360,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF Manufacture,General,3 | 120 | 800,"When projectile comes near to a Desto\6aSDasryer or Frigate, it will split to %s submunition, each one dealing %s EN damage, targetting a random enemy within %s distance.",0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
+HV7 Smart Cannon,aEP_b_m_hv7,,ENERGY,14,900,12,,360,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF Manufacture,General,3 | 120 | 800,"When projectile comes near to a Destroyer or Frigate, it will split to %s submunition, each one dealing %s EN damage, targeting a random enemy within %s distance.",0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
 --Split Shot,aEP_b_m_hv7_2,SYSTEM,ENERGY,,800,0,,150,,,0,,1500,,,1,1,1,1,,,,,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
 ZT-125 Revolver Autocannon,aEP_b_m_k125,,KINETIC,12,800,8,,180,,,230,,800,,,0,0.5667,2,0.1,6,1,6,,0,12,1,15,,,FSF Manufacture,Anti-shield,2% | 2% | 200,"On hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher).",1,1000,"kinetic13, FSF_bp",,,1,,,,,,,,,
 MB32 Dual-purpose MG,aEP_b_m_mb32,"PD ,NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,12,800,90,,30,,,4.5,,900,,,0,0.125,,,,,,,0,2,0.01,10,,,FSF Manufacture,PD,50% | 50%,"All projectiles can reach a range of %s , however, only %s of projectiles can reach full range.
@@ -124,7 +126,7 @@ Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,
 """Pushpin"" Magnet Bomb Cluster Pod",aEP_m_m_magnetmine,CONSERVE_1,HIGH_EXPLOSIVE,13,2000,12,,1000,,,,,250,,8.5,0,12,,,6,0,1,TRUE,5,15,30,15,350,400,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
 
 Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,1200,"missile13, strike8, FSF_bp",,,1,,,,,,,,,
-"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,325,250,FSF Manufacture,Anti-armor,100 | 50,"The projectile has extremely long lifetime, and will stay in phase space with no collison until the fuse is armed.
+"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,325,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
 
 At most %s mine can co-exist in the battlefield at one time. For each of this weapon mounted on deployed ships, that limitation is increased by %s",1,1000,"missile12, FSF_bp",,,2,,,,,,,,,
 --Triggered,aEP_m_m_phasemine2,SYSTEM,HIGH_EXPLOSIVE,1,300,0,,1500,,,,,200,,5,0,1,,,1,0,1,TRUE,0,0,0,0,375,0,,,,,,,,,,,,,,,,,,,

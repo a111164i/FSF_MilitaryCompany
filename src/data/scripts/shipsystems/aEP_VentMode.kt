@@ -3,6 +3,7 @@ package data.scripts.shipsystems
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
+import com.fs.starfarer.api.impl.combat.LightsEffect
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
@@ -14,6 +15,9 @@ import combat.util.aEP_DecoMoveController
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
+import org.dark.shaders.light.LightAPI
+import org.dark.shaders.light.LightShader
+import org.dark.shaders.light.StandardLight
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
@@ -46,6 +50,7 @@ class aEP_VentMode: BaseShipSystemScript() {
   private val smokeTracker = IntervalUtil(0.2f, 0.2f)
   private val smokeTracker2 = IntervalUtil(0.1f, 0.1f)
   private val sparkTracker = IntervalUtil(0.1f, 0.5f)
+  private val sparkTracker2 = IntervalUtil(0.05f, 0.05f)
 
   var timeElapsedAfterIn = 0f;
   var timeElapsedAfterVenting = 0f;
@@ -64,15 +69,25 @@ class aEP_VentMode: BaseShipSystemScript() {
     } else{
       timeElapsedAfterIn -= amount
     }
+
     //增减进入venting后的时间
     if(ship.fluxTracker.isVenting){
       timeElapsedAfterVenting += amount
     } else{
       timeElapsedAfterVenting -= amount
     }
+
     //把时间累计卡在2秒
     timeElapsedAfterIn = timeElapsedAfterIn.coerceAtLeast(0f).coerceAtMost(2f)
     timeElapsedAfterVenting = timeElapsedAfterVenting.coerceAtLeast(0f).coerceAtMost(2f)
+
+    //move deco weapon
+    //进入系统的时间/venting的时间，两者取大
+    // 0.5秒达到100%
+    val systemLevel = (timeElapsedAfterIn/2f).coerceAtMost(1f)
+    val ventLevel = (timeElapsedAfterVenting/2f).coerceAtMost(1f)
+    val decoLevel = max(systemLevel, ventLevel)
+
     forceDown = false
 
     //在这里修改数值
@@ -113,7 +128,9 @@ class aEP_VentMode: BaseShipSystemScript() {
     }
 
     //激活后才会产生的特效
-    if(timeElapsedAfterIn > 0.5f){
+    if(decoLevel > 0.2f) {
+      val glowLevel = decoLevel
+
       //创造散热器烟雾
       smokeTracker.advance(amount)
       if (smokeTracker.intervalElapsed()) {
@@ -126,7 +143,7 @@ class aEP_VentMode: BaseShipSystemScript() {
             smoke.stopSpeed = 0.975f
             smoke.fadeIn = 0f
             smoke.fadeOut = 1f
-            smoke.lifeTime = 1f + 1f * effectLevel
+            smoke.lifeTime = 1f + 1f * glowLevel
             smoke.size = 10f
             smoke.sizeChangeSpeed = 25f
             smoke.color = SMOKE_EMIT_COLOR
@@ -142,7 +159,7 @@ class aEP_VentMode: BaseShipSystemScript() {
           if (!s.isSystemSlot) continue
           val smokeLoc = s.computePosition(ship)
           val smoke = aEP_MovingSmoke(smokeLoc)
-          smoke.lifeTime = 0.5f + 0.25f * effectLevel
+          smoke.lifeTime = 0.5f + 0.25f * glowLevel
           smoke.fadeIn = 0.5f
           smoke.fadeOut = 0.5f
           smoke.size = 20f
@@ -161,56 +178,52 @@ class aEP_VentMode: BaseShipSystemScript() {
         for (weapon in ship.allWeapons) {
           if (!weapon.isDecorative) continue
           if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter1")) continue
-          if (effectLevel <= 0.9f) continue
+          if (glowLevel <= 0.9f) continue
 
-          var initColor = Color(250,50,50)
-          var alpha = 0.3f * effectLevel
-          var lifeTime = 3f * effectLevel
-          var size = 35f
-          var endSizeMult = 1.5f
-          var vel = aEP_Tool.speed2Velocity(weapon.currAngle,30f)
-          Vector2f.add(vel,ship.velocity,vel)
+          val initColor = Color(250, 50, 50)
+          val alpha = 0.3f * glowLevel
+          val lifeTime = 3f * glowLevel
+          val size = 35f
+          val endSizeMult = 1.5f
+          val vel = aEP_Tool.speed2Velocity(weapon.currAngle, 30f)
+          Vector2f.add(vel, ship.velocity, vel)
           vel.scale(0.5f)
-          val loc = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle,20f)
+          val loc = aEP_Tool.getExtendedLocationFromPoint(weapon.location, weapon.currAngle, 20f)
           Global.getCombatEngine().addNebulaParticle(
-            MathUtils.getRandomPointInCircle(loc,20f),
+            MathUtils.getRandomPointInCircle(loc, 20f),
             vel,
             size, endSizeMult,
             0.1f, 0.4f,
-            lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
-            aEP_Tool.getColorWithAlpha(initColor,alpha))
+            lifeTime * MathUtils.getRandomNumberInRange(0.5f, 0.75f),
+            aEP_Tool.getColorWithAlpha(initColor, alpha)
+          )
 
         }
       }
 
-      //散热栓闪光
-      for (weapon in ship.allWeapons) {
-        if (!weapon.isDecorative) continue
-        if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter1")) continue
-        val glowLevel = ((timeElapsedAfterIn-1.85f)/0.3f).coerceAtLeast(0f).coerceAtMost(1f)
-        for (i in 1..5){
 
-          val sparkLoc = aEP_Tool.getExtendedLocationFromPoint(weapon.location,weapon.currAngle,i*5f)
-          sparkLoc.set(MathUtils.getRandomPointInCircle(sparkLoc, 0.5f))
-          val sparkRad = MathUtils.getRandomNumberInRange(15f,20f) * glowLevel
-          val brightness = MathUtils.getRandomNumberInRange(0.5f, 0.75f) * glowLevel
-          //闪光
-          Global.getCombatEngine().addSmoothParticle(
-            sparkLoc,
-            Misc.ZERO,
-            sparkRad,brightness,0.5f,Global.getCombatEngine().elapsedInLastFrame*2f,
-            Color(250,50,50))
+      //散热口闪光
+      sparkTracker2.advance(amount)
+      if (sparkTracker2.intervalElapsed()) {
+        for (weapon in ship.allWeapons) {
+          if (!weapon.isDecorative) continue
+          if (!weapon.spec.weaponId.equals("aEP_cap_duiliu_limiter1")) continue
+
+          val sparkLoc2 = weapon.location
+          val sparkRad2 = 30f * glowLevel
+          val brightness2 = MathUtils.getRandomNumberInRange(0.2f, 0.4f) * glowLevel
+          val light = StandardLight(sparkLoc2, Misc.ZERO, Misc.ZERO, null)
+          light.setColor(Color(250, 50, 50))
+          light.setLifetime(sparkTracker2.elapsed)
+          light.size = sparkRad2
+          light.intensity = brightness2
+          LightShader.addLight(light)
         }
 
       }
+
     }
 
-
-    //move deco weapon
-    //进入系统的时间/venting的时间，两者取大
-    val systemLevel = (timeElapsedAfterIn/2f).coerceAtMost(1f)
-    val ventLevel = (timeElapsedAfterVenting/2f).coerceAtMost(1f)
-    val decoLevel = max(systemLevel, ventLevel)
     openDeco(ship, decoLevel)
 
     ship.isJitterShields = true

@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_Tool
+import data.scripts.FSFModPlugin
 import org.dark.shaders.light.LightData
 import java.util.*
 
@@ -36,7 +37,7 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin(), CombatLayeredRenderi
     effects.clear()
     Global.getLogger(this.javaClass).info("aEP_CombatEffectPlugin register in EveryFrameCombatPlugin")
 
-    LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv")
+    FSFModPlugin.loadLightData()
   }
 
   /**

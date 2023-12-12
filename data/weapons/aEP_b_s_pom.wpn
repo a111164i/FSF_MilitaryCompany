@@ -56,10 +56,7 @@
     "particleDuration": 0.15,
     "particleCount": 4,
     "particleColor": [
-      255,
-      240,
-      165,
-      200
+      225,200,125,200
     ]
   },
   "fireSoundTwo": "aEP_pompom_fire"

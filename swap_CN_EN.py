@@ -147,68 +147,64 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     print(f'Swap Done {file_name_without_extension}')
 
 def swap_json(file_path: str, file_name_without_extension: str):
-    
-    # Define the file paths
-    script_directory = os.path.dirname(os.path.abspath(__file__))
+    def read_json_with_comments(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+        clean_lines = [line for line in lines if not line.strip().startswith('#')]
+        return json.loads(''.join(clean_lines))
 
-    # Change the working directory to the script's directory
+    script_directory = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_directory)
 
     EN_file_full_name = f"{file_name_without_extension}_EN.json"
     CN_file_full_name = f"{file_name_without_extension}_CN.json"
 
-    # check does file_path containing file_name_without_extension, it should have
-    # if it does not, meaning the file_name_without_extension is incorrectly input
     file_path = os.path.join(file_path)
     file_path_EN = file_path
     file_path_CN = file_path
     if file_name_without_extension in file_path:
         file_path_EN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_EN"))
         file_path_CN = os.path.join(file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN"))
-    assert file_path != file_path_EN, "Check file name and file path input"
-    
 
     EN_to_CN = False
     data1 = None
     data2 = None
     try:
-        with open(file_path, 'r', encoding='utf-8') as file1:
-            print(f'Swap Load {file_name_without_extension}')
-            data1 = json.load(file1)
-        with open(file_path_EN, 'r', encoding='utf-8') as file2:
-            data2 = json.load(file2)            
+        data1 = read_json_with_comments(file_path)
+        data2 = read_json_with_comments(file_path_EN)            
     except FileNotFoundError as e:
-        # if fail to read _EN path, go into EN_to_CN mode, load _CN, save old data to _EN
-        try:
-            if EN_file_full_name in str(e):
-                EN_to_CN = True
-                with open(file_path_CN, 'r', encoding='utf-8') as file3:
-                    data2 = json.load(file3)   
-        except Exception as e:
+        if EN_file_full_name in str(e):
+            EN_to_CN = True
+            data2 = read_json_with_comments(file_path_CN)
+        else:
             print('Failed to load both EN/CN json')
             return
-    assert data1
-    assert data2
 
-    # Swap common fields
-    for key in data1:
-        if key in data2:
-            temp = data2[key]
-            data2[key] = data1[key]
-            data1[key] = temp
+    def swap_nested_json_values(data1, data2):
+        for key in data2:
+            # If the value is a nested dictionary, call this function recursively
+            if isinstance(data2[key], dict):
+                swap_nested_json_values(data1[key], data2[key])
+            # Swap values for non-dictionary items
+            else:
+                temp = data2[key]
+                data2[key] = data1[key]
+                data1[key] = temp
+    swap_nested_json_values(data1, data2)
 
-    with open(file_name_without_extension+".json", 'w', encoding='utf-8') as output:
-            json.dump(data1, output, ensure_ascii=False, indent=2)
+    with open(file_path, 'w', encoding='utf-8') as output:
+        json.dump(data1, output, ensure_ascii=False, indent=2)
 
-    # Save the 
-    if(EN_to_CN):
-        with open(EN_file_full_name, 'w', encoding='utf-8') as output:
+    if EN_to_CN:
+        with open(file_path_EN, 'w', encoding='utf-8') as output:
             json.dump(data2, output, ensure_ascii=False, indent=2)
+        print(f'Swap Done {file_name_without_extension}')
         os.remove(file_path_CN)
     else:
-        with open(CN_file_full_name, 'w', encoding='utf-8') as output:
+        with open(file_path_CN, 'w', encoding='utf-8') as output:
             json.dump(data2, output, ensure_ascii=False, indent=2)  
-        os.remove(file_path_EN)    
+        print(f'Swap Done {file_name_without_extension}')
+        os.remove(file_path_EN)
  
 def swap_name(file_path: str, file_name_with_ext: str):
     # Split the file name and extension
@@ -258,4 +254,5 @@ if __name__ == "__main__":
     swap_name("data/missions/aEP_first_contact/mission_text.txt", "mission_text.txt")
     swap_name("data/missions/aEP_planet_investigation/descriptor.json", "descriptor.json")
     swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
+    swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
     

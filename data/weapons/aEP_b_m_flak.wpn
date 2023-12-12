@@ -37,10 +37,7 @@
     "particleDuration": 0.15,
     "particleCount": 15,
     "particleColor": [
-      255,
-      165,
-      90,
-      255
+      255,165,90,255
     ]
   },
   "fireSoundTwo": "autocannon_fire"
