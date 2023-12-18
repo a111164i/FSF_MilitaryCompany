@@ -290,7 +290,7 @@
 		"aEP_EliteShip06": "Hullpoint %s",
 		"aEP_EliteShip05": "Max speed %s",
 		"aEP_EliteShip10": "Peak CR time %s",
-		"aEP_EliteShip07": "Each time this ship overloaded or lost %s hull points, roll a %s on a roll between 0-100, if result >= %s, a shield drone is launched and generates a shield protecting this ship, the shield has %s damage absorption",
+		"aEP_EliteShip07": "Each time this ship overloaded or lost %s hullpoints, roll a %s between 0-100, if result >= %s, a shield drone is launched to generate shield protecting this ship for a while, the shield has %s damage absorption",
 		"aEP_EliteShip08": "Protect Test",
 		"aEP_EliteShip03": "Deployment cost in combat %s or %s, which higher",
 
