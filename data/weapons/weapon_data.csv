@@ -107,12 +107,8 @@ This weapon can't be fired manually",1,300,"utility7, FSF_bp",,,0,,,,,,,,,
 Disposal Flux Tube Pod,aEP_m_m_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,10,200,12,,200,,,-1000,,200,,5,1,8,,,16,,,,15,15,15,15,200,100,FSF Manufacture,Support,50% | 1000,"When flux level of this ship is above %s, the weapon will fire one shot and reduce flux by %s .
 
 This weapon can't be fired manually",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
-"""Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
-
-If the hit causes an overload, the overload only last %s seconds",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
-"""Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,700,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,320,0,FSF Manufacture,Anti-shield,700,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
-
-If the hit causes an overload, the overload only last %s seconds",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
+"""Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra %s KE damage in soft flux",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
+"""Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,700,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,320,0,FSF Manufacture,Anti-shield,700,"When hitting shield, deals extra %s KE damage in soft flux",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
 """Percussion Drill"" Bombardment LRM",aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF Manufacture,Anti-armor,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,
 DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that would either %s damage or damage exceeding %s of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
@@ -170,7 +166,7 @@ Works better to FSF ships",,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 """Drake"" Flame Thrower",aEP_e_s_flamer,ANTI_FTR,HIGH_EXPLOSIVE,9,300,9,,50,,,30,,500,,,0,0.1,10,0.1,50,2,10,,0,0,0,15,,,FSF Private Conversion,Anti-armor,,,,400,"he9, restricted",,,0,,,,,,,,,
-"""Boom"" Lance",aEP_m_s_bomblance,"STRIKE, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,2,250,5,,4000,,,0,,100,,0.01,0,20,,,1,0,1,TRUE,0,0,0,15,500,1000,FSF Private Conversion,Anti-armor,,"Fires automatically if the tip touchs a ship
+"""Boom"" Lance",aEP_m_s_bomblance,"STRIKE, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,2,250,5,,4000,,,0,,100,,0.01,0,20,,,1,0,1,TRUE,0,0,0,15,500,1000,FSF Private Conversion,Anti-armor,,"Fires automatically if the tip touches a ship
 
 This weapon will immediately repair itself if brought offline.",,200,"strike8, restricted",,,0,,,,,,,,,
 """Lightening"" Disturb Gun",aEP_b_m_lighting,,ENERGY,13,800,12,,10,8,,10,0,600,,,0,0.125,2,0.125,240,6,8,,0,15,1,15,,,FSF Advanced Weapon Program,Anti-shield,8 | 16 ,"When hit shield, apply a stackable debuff to target: For the next %s second, as long as the target's shield is on, increase the target's soft flux by %s per sec",0,6000,"energy11, restricted",,,,,,,,,,,,
