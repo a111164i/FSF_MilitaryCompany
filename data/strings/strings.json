@@ -2,7 +2,8 @@
 	"aEP":{
 
 		"not_module":"不能安装在模块上",
-		"not_right_hullsize": "无法安装在此种舰体级别上",
+		"must_have_shield": "舰船没有护盾",
+		"not_right_hullsize": "不能安装在此种舰体级别上",
 		"effect":"效果",
 		"not_compatible":"不兼容",
 		"HaveToBeWith":"需要",
@@ -231,6 +232,7 @@
 	"aEP_En":{
 
 		"not_module":"Can not be installed on ship modules",
+		"must_have_shield": "Ship has no shields",
 		"not_right_hullsize": "Can not be installed on this hullsize",
 		"effect":"Effect",
 		"not_compatible":"Not compatible",

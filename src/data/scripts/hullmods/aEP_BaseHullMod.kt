@@ -29,6 +29,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
   val allowOnHullsize = HashMap<ShipAPI.HullSize, Boolean>()
   val banShipList = HashSet<String>()
   var canInstallOnModule = true
+  var requireShield = false
 
   init {
     allowOnHullsize[ShipAPI.HullSize.DEFAULT] = false
@@ -54,14 +55,6 @@ open class aEP_BaseHullMod : BaseHullMod() {
         conflictId = it
       }
     }
-    if (shouldRemove) {
-      //如果本 mod 是 built-in的话，移除发生冲突的另一个，反之移除本 mod
-      if (!ship.variant.nonBuiltInHullmods.contains(id)) {
-        removeHullmodWithWarning(ship.variant, conflictId, id)
-      } else {
-        removeHullmodWithWarning(ship.variant, id, conflictId)
-      }
-    }
 
     //遍历必须安装的船插表，若任何一个未安装，返回false，移除自己
     //如果不满足其他安装条件，也移除自己
@@ -77,8 +70,16 @@ open class aEP_BaseHullMod : BaseHullMod() {
     if (!isApplicableToShip(ship)) {
       shouldRemove = true
     }
+
+    //如果检测到需要remove，这里开始执行
     if (shouldRemove) {
-      ship.variant.removeMod(id)
+      //如果本 mod 是 built-in的话，移除发生冲突的另一个，反之移除本 mod
+      if (!ship.variant.nonBuiltInHullmods.contains(id)) {
+        removeHullmodWithWarning(ship.variant, conflictId, id)
+      } else {
+        removeHullmodWithWarning(ship.variant, id, conflictId)
+      }
+      return
     }
 
     //在对话的预览界面，会出现战斗未开始，但是已经生成船的情况
@@ -98,6 +99,11 @@ open class aEP_BaseHullMod : BaseHullMod() {
   }
 
   override fun isApplicableToShip(ship: ShipAPI): Boolean {
+
+    //检查是否能装无盾船上面
+    if(requireShield && ship.shield == null){
+      return false
+    }
 
     //检查尺寸
     if(allowOnHullsize[ship.hullSize] != true){
@@ -129,6 +135,11 @@ open class aEP_BaseHullMod : BaseHullMod() {
   }
 
   override fun getUnapplicableReason(ship: ShipAPI): String {
+
+    //检查是否能装无盾船上面
+    if(requireShield && ship.shield == null){
+      return aEP_DataTool.txt("must_have_shield")
+    }
 
     if(allowOnHullsize[ship.hullSize] != true){
       return aEP_DataTool.txt("not_right_hullsize")
@@ -259,7 +270,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
   }
 
   /**
-   * 使用这个
+   * 使用这个。原版的Base类里面没有分离，s-mod的加成直接写在普通的applyEffect里面，这样很不好
    */
   open fun applySmodEffectsAfterShipCreationImpl(ship: ShipAPI, stats: MutableShipStatsAPI, id: String) {
 

@@ -71,6 +71,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     allowOnHullsize[HullSize.CRUISER] = true
     allowOnHullsize[HullSize.CAPITAL_SHIP] = true
 
+    requireShield = true
   }
 
   /**

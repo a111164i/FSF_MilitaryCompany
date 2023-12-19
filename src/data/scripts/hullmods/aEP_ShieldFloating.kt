@@ -75,6 +75,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     allowOnHullsize[ShipAPI.HullSize.CRUISER] = true
     allowOnHullsize[ShipAPI.HullSize.CAPITAL_SHIP] = true
 
+    requireShield = true
   }
 
 

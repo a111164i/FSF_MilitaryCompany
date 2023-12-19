@@ -224,7 +224,7 @@ aEP_researcher_stage1_talk04,DialogOptionSelected,$option == aEP_researcher_stag
 
 Seeing your half-hearted look, $personFirstName doesn't show you any more information, but continues, ""Aside from the unreasonable shields, the rest of the ship, like its counterparts in the sector, can simply be called 'serviceable' - which means it shouldn't be too difficult for you to take it apart.""
 ",,
-aEP_researcher_stage1_talk05,DialogOptionSelected,$option == aEP_researcher_stage1_talk05,aEP_HandInParts aEP_long_barrel_chaingunAP -2 none 0,"""Because of this, I'll hand your 'payment' in advance - just note it's something that hasn't been put into mass production and the Company doesn't have a lot of samples.""","0:aEP_researcher_stage1_AskAccept:""Thank you very much.""",
+aEP_researcher_stage1_talk05,DialogOptionSelected,$option == aEP_researcher_stage1_talk05,aEP_HandInParts aEP_b_m_lighting -2 none 0,"""Because of this, I'll hand your 'payment' in advance - just note it's something that hasn't been put into mass production and the Company doesn't have a lot of samples.""","0:aEP_researcher_stage1_AskAccept:""Thank you very much.""",
 aEP_researcher_stage1_AskAccept,DialogOptionSelected,$option == aEP_researcher_stage1_AskAccept,"ShowPersonVisual
 
 ","""Are you willing to take this job on?""","0:aEP_researcher_stage1_Accept:Accept
