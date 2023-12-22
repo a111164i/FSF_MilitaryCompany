@@ -51,7 +51,7 @@
 				"detailedExplosionRadius":180,
 				"detailedExplosionFlashRadius":800,
 				"detailedExplosionFlashDuration":0.25,
-				"detailedExplosionFlashColorFringe":[255,148,81,239],
+				"detailedExplosionFlashColorFringe":[255,148,81,255],
 				"detailedExplosionFlashColorCore":[235,40,251,255],
 
 				"sound":"devastator_explosion"

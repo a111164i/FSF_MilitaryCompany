@@ -1858,46 +1858,58 @@ class aEP_Tool {
       }
     }
 
-    fun findEmptyLocationAroundShip(ship: ShipAPI, checkStep: Float):Vector2f{
+    fun findEmptyLocationAroundPoint(point: Vector2f, checkStep: Float, maxCheckRange : Float):Vector2f{
 
-      val startLoc = Vector2f(ship.location)
-      var currLoc = startLoc
+      val startLoc = Vector2f(point)
       //当找不到完全不冲突的点时，使用次要选择
-      //找到尽可能离其他船远的点
+      //找到尽可能离其他船远的点，并且尽可能贴近原中心的点
+      var emptyLocs = ArrayList<Vector2f>()
       var secondChoice = startLoc
-      var nearestDist = 0f
 
       val startAngle = Math.random().toFloat() * 360f
-      var angle = 0f
-      var didFind = true
-      while (angle < 360) {
-        for ( i in 1..5){
-          currLoc = getExtendedLocationFromPoint(startLoc,angle+startAngle,ship.collisionRadius + checkStep*i)
-          //aEP_Tool.addDebugPoint(currLoc)
+
+      var maxSearch = maxCheckRange
+      var i = 0
+      var extend = 0f
+
+      //周围360每个点都过一遍，从内圈到外圈，内圈如果找到了任何一个，就不用再找外圈了
+      while (extend < maxSearch){
+        i += 1
+        extend = i * checkStep
+        var angle = 0f
+        val angleStep = 360f / (7f * extend/checkStep).toInt()
+        while (angle < 360) {
+          val currLoc = getExtendedLocationFromPoint(startLoc,angle+startAngle,  extend)
+          //aEP_Tool.addDebugText(i.toString(),currLoc)
+          //搜索一下距离这个点最近的舰船
+          var didCollide = false
           for (other in Global.getCombatEngine().ships) {
             if(other.isPhased || other.collisionClass == CollisionClass.NONE) continue
             if(other.isFighter || other.collisionClass == CollisionClass.FIGHTER) continue
-            val dist = MathUtils.getDistance(other, currLoc)
-            if (dist < checkStep) {
-              if(dist >= nearestDist){
-                secondChoice = currLoc
-              }
-              didFind = false
+            val dist = MathUtils.getDistanceSquared(other, currLoc)
+            //与任何其他一个船相碰，就跳过这个点
+            if (dist <= 0f) {
+              //如果这个碰撞的船半径比最大搜索半径都大，动态放大搜索半径
+              if(other.collisionRadius > maxSearch) maxSearch = other.collisionRadius
+              didCollide = true
               break
             }
-
           }
-          if(didFind) break
-
+          //搜了全部的船都没有碰撞的，就认为这个点是备选点
+          if(!didCollide) {
+            emptyLocs.add(currLoc)
+            break
+          }
+          angle += angleStep
+        }
+        if(!emptyLocs.isEmpty()) {
+          break
         }
 
-        if (didFind) break
-
-        angle += 30f
       }
 
-      if (didFind) {
-        return currLoc
+      if (!emptyLocs.isEmpty()) {
+        return emptyLocs[MathUtils.getRandomNumberInRange(0,emptyLocs.size-1)]
       }
       return secondChoice
     }
@@ -2392,7 +2404,7 @@ class aEP_Combat{
       //在落点来几个残影，最后一个在正中心不抖动
       val sprite = Global.getSettings().getSprite(fighter.hullSpec.spriteName)
       val size = Vector2f( sprite.width,sprite.height)
-      val renderLoc = MathUtils.getRandomPointInCircle(toLoc,20f * (1f-effectLevel))
+      val renderLoc = MathUtils.getRandomPointInCircle(toLoc,20f * (0.1f + 0.9f*(1f-effectLevel)) )
       val c = Misc.setAlpha(color,(255 * effectLevel).toInt())
       for(i in 0 until 4){
         MagicRender.singleframe(sprite,
@@ -2460,6 +2472,40 @@ class aEP_Combat{
 
     }
   }
+
+  open class AddJitterBlink(val up: Float, val full:Float, val down: Float, val ship:ShipAPI): aEP_BaseCombatEffect(up+full+down, ship){
+
+    init {
+      aEP_CombatEffectPlugin.addEffect(this)
+    }
+
+    companion object{
+      const val ID = "aEP_JitterBlink"
+    }
+
+    var color = RecallDeviceStats.JITTER_COLOR
+    var jitterUnder = false
+    var jitterShield = false
+    var maxRange = 10f
+    var maxRangePercent = 0.2f
+    var copyNum = 5
+
+    override fun advanceImpl(amount: Float) {
+      var level = 1f
+      if(time < up) level = time/up
+      if(time > up + full) level = 1f-((time -up-full)/down)
+      val c = Misc.scaleAlpha(color,level)
+      if(jitterUnder){
+        ship.isJitterShields = jitterShield
+        ship.setJitterUnder(ID, c, level, copyNum, (maxRange + ship.collisionRadius * maxRangePercent) * level)
+      }else{
+        ship.isJitterShields = jitterShield
+        ship.setJitter(ID, c, level, copyNum, (maxRange + ship.collisionRadius * maxRangePercent) * level)
+      }
+    }
+
+  }
+
 
   /**
    * 在init里面包含将自己加入plugin的部分，使用只需要new。多个不同来源的减速效果取最大值

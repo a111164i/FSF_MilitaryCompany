@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_des_taodong_Standard",
-  "hullId": "aEP_des_taodong",
+  "variantId": "aEP_fga_shuangshen_Standard",
+  "hullId": "aEP_fga_shuangshen",
   "displayName": "Standard",
   "goalVariant": true,
   "fluxCapacitors": 0,
@@ -9,6 +9,6 @@
   "permaMods": [],
   "hullMods": [],
   "weaponGroups": [],
-  "modules": [],
+  "modules": [{"FRONT": "aEP_fga_shuangshen2_Standard"}],
   "wings": []
 }

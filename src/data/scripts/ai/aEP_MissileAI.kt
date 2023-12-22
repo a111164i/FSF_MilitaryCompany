@@ -11,7 +11,7 @@ class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {
   var t: CombatEntityAPI? = null
   val m: MissileAPI
   var s: ShipAPI? = null
-  var stat: Status = Status()
+  var stat: Status = Empty()
 
   constructor(m:MissileAPI, ship: ShipAPI?){
     this.m = m
@@ -46,6 +46,8 @@ class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {
       time += amount
     }
   }
+
+  class Empty:Status()
 
   inner class StraightToTarget() : Status() {
 

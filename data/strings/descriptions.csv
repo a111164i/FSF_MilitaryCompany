@@ -31,6 +31,13 @@ aEP_GrenadeThrower,SHIP_SYSTEM,"When activated, fires proximity bombs at front c
 aEP_Rapture,SHIP_SYSTEM,"When activated, lock this ship's target with a gravity anchor, as long as the target tries to moves away from the anchor, it will suffer a speed reduction and generate soft flux.",,,,
 aEP_FortressShield,SHIP_SYSTEM,"Toggleable. When activated, massively reduce shield damage taken but generate hardflux and prevent use of weapons.",,,,
 aEP_LidarArray,SHIP_SYSTEM,"When activated, non-beam weapon in ballistic/energy weapon slots gain range, rate of fire, accuracy and projectile speed. When not activated, still provide a small range bonus to ballistic/energy weapon.",,,,
+aEP_CoordinatedCombat,SHIP_SYSTEM,"When activated, recall and increase shield radius/max arc of its 'Scout' Fighter to block incoming damage, CD:5
+Guided Assault: When activated with holding key Num 1, increase the ship's weapon hit strength by a small fixed amount, CD:6
+Decoy Trick: When activated with holding key Num 2, greatly reduce its 'Scout' Fighter's max speed, ballistic weapon RoF, shield/hull damage taken, CD:6
+Backline Infiltration: When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1",,"When activated, recall and increase shield radius/max arc of its 'Scout' Fighter to block incoming damage, CD:5
+Guided Assault : When activated with holding key Num 1, increase the ship's weapon hit strength by a small fixed amount, CD:6
+Decoy Trick : When activated with holding key Num 2, greatly reduce its 'Scout' Fighter's max speed, ballistic weapon RoF and shield/hull damage taken, CD:6
+Backline Infiltration : When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1","Guided Assault | Decoy Trick | Backline Infiltration"
 aEP_SwitchPowerMode,SHIP_SYSTEM,"Activation allows toggle between the built in main-gun's focused and rapid fire mode, allowing one and preventing the other from firing. ",,,,
 aEP_RepulseMissileLaunch,SHIP_SYSTEM,"When activated,continuously fire some built in micro missiles, get extra flux dissipation and flux shunt percentage, until flux has been cleared or the system times out. The system will be forced to activate once this ship destroyed",,,,
 aEP_FlareLaunch,SHIP_SYSTEM,"When activated, fires different type of flares around the ship to distract enemy missile targeting.",,,,
@@ -131,6 +138,8 @@ aEP_fga_raoliu,SHIP,"Known for survivability at cheap price, the Turbulence-clas
 aEP_fga_chichao,SHIP,"Born in the era when humanity first extended warfare into space, the design of the  Redtide-class pioneered the use of a groundbreaking standardized weapon slot system, earning the ship type 'Dreadnought'. Not only did it surpass all the old-style warships of its time in size, but it also far exceeded them in combat performance, becoming the representative for the new generation of warships.
 
 The Redtide-class still has a certain aerodynamic profile, because at that time combat within the atmosphere was a big part of space warfare. Although, from a contemporary perspective, this once colossal vessel might seem little, like a shuttle, but one must not forget that it was once the largest weapon humanity could construct. Now, after modernization, it still has a role to fit in modern warfare",,,,
+aEP_fga_shuangshen,SHIP,"A giant space fighter that can be piloted by two people, the remaining cabin space can carry an entire elite special forces and their equipments. Relying on its superior stealth capabilities and single-ship combat performance, it often appears as the main character's vehicle in video games. Inspired by leaked data sheets of Windstring-Class Frigate by some hardcore players of a military vehicle shooter game named 'Wra Thnunder'",,,,
+aEP_fga_shuangshen3,SHIP,"A rare fighter system designed specifically for a single ship type, including all technical modules to achieve complex tactical missions. This small-production, special LPC was even eliminated before the collapse due to its inability to amortize costs",,,,
 ,,,,,,
 aEP_typeB28,SHIP,"A fully automated derelict mining machine dated back to Domain era, other information remains unknown ",,,,
 ,,,,,,
@@ -260,7 +269,7 @@ The existence of this place with tons of weapons and ship raw materials sealed i
 ,,,,,,
 ,,,,,,
 aEP_remain_part,RESOURCE,"Some non-standard, unique components remain recovered by Decomposer-class's scrape drones, most of which can only be recycled as raw materials, but FSF is very interested in reverse engineering and can exchange blueprints at the business center. Of course, selling them directly to any market is also a source of income",,,,
-aEP_FSF_CruiseMissile,CUSTOM,"High speed target closing in, evade!!",,,,
+aEP_FSF_CruiseMissile,CUSTOM,"High speed object closing in, evade!!!",,,,
 ,,,,,,
 aEP_SpaceFactoryMarket,CUSTOM,,,,,
 ,,,,,,

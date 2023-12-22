@@ -2295,6 +2295,7 @@ class SearchLight(val m:MissileAPI) : aEP_BaseCombatEffect(0f,m){
   }
 }
 open class PredictionStripe(val m:CombatEntityAPI) : aEP_BaseCombatEffect(0f,m){
+  var key = "aEP_PredictionStripe"
 
   //正数为向后，负数向前
   var scrollSpeed = 4f
@@ -2317,8 +2318,12 @@ open class PredictionStripe(val m:CombatEntityAPI) : aEP_BaseCombatEffect(0f,m){
   var texLength = 12f
   var halfWidth = 6f
   var color = Color(255,25,5,205)
-  override fun advanceImpl(amount: Float) {
 
+  var noAutoTimeFade = false
+  var extraColorAlphaMult = 1f
+
+  override fun advanceImpl(amount: Float) {
+    m.setCustomData(key,this)
     linePoints.clear()
     createLineNodes()
 
@@ -2395,16 +2400,20 @@ open class PredictionStripe(val m:CombatEntityAPI) : aEP_BaseCombatEffect(0f,m){
       }
 
       //计算因为时间的淡入淡出
-      if(lifeTime > fadeIn + fadeOut){
-        if(time < fadeIn){
-          fadeLevel *= time/fadeIn
-        }
-        if((lifeTime - time) < fadeOut){
-          fadeLevel *= (lifeTime - time)/fadeOut
+      if(!noAutoTimeFade){
+        if(lifeTime > fadeIn + fadeOut){
+          if(time < fadeIn){
+            fadeLevel *= time/fadeIn
+          }
+          if((lifeTime - time) < fadeOut){
+            fadeLevel *= (lifeTime - time)/fadeOut
+          }
         }
       }
 
-      val c = aEP_Tool.getColorWithAlphaChange(color, fadeLevel)
+      var c = aEP_Tool.getColorWithAlphaChange(color, fadeLevel)
+      c = Misc.scaleAlpha(c, extraColorAlphaMult)
+
       GL11.glTexCoord2f(0f, texY)
       GL11.glColor4ub(c.red.toByte(), c.green.toByte(), c.blue.toByte(), c.alpha.toByte())
       GL11.glVertex2f(leftPoint.x, leftPoint.y)
@@ -2439,6 +2448,10 @@ open class PredictionStripe(val m:CombatEntityAPI) : aEP_BaseCombatEffect(0f,m){
       linePoints.add(Vector2f.add(startPoint,toAdd,null))
       m += step
     }
+  }
+
+  override fun readyToEnd() {
+    m.customData.remove(key)
   }
 }
 class ExplosionCore(val point: Vector2f, lifeTime:Float,val range:Float,val size:Float) : aEP_BaseCombatEffect(lifeTime){
@@ -5514,6 +5527,7 @@ open class aEP_m_s_era :EveryFrame(){
     if (!ship.customData.containsKey(KEY)) {
       val listr = EraDamageTakenModifier()
       listr.ship = ship
+      ship.addListener(listr)
       ship.setCustomData(KEY,1f)
     }
 

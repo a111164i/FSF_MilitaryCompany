@@ -81,6 +81,9 @@
 		"aEP_TitanicKiller01": "起始部署点",
 		"aEP_TitanicKiller02": "每超过 x 部署",
 
+		"aEP_TwinFighter01": "进入战斗后，通过{%s}键选择让战机自由攻击或者固定在舰首",
+		"aEP_TwinFighter02": "固定在舰首时，以每秒{%s}的速度修复战机",
+		"aEP_TwinFighter03": "若本舰被摧毁，内置战机也会立刻被摧毁",
 
 		#############################
 		"aEP_VentMode01":"幅能耗散增加: %s 硬幅能产生: %s",
@@ -105,6 +108,14 @@
 		"aEP_WeaponReset01":"武器射速增加",
 
 		"aEP_FortressShieldStats01": "护盾承受伤害降低: %s",
+
+		"aEP_CoordinatedCombat01": "伴生战机不可用",
+		"aEP_CoordinatedCombat02": "系统正在启用",
+		"aEP_CoordinatedCombat03": "伴生战机需要被释放",
+		"aEP_CoordinatedCombat04": "引导强攻",
+		"aEP_CoordinatedCombat05": "诱饵夹击",
+		"aEP_CoordinatedCombat06": "战线渗透",
+		"aEP_CoordinatedCombat07": "协同作战",
 
 		#############################
 		"AWM01_title":"AWM01:搜集武器",
@@ -271,9 +282,9 @@
 		"aEP_HighSpeedManeuver03": "Evadsion Mode",
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
 
-		"aEP_AttackCarrier01":"All wings of this ship that is within %s range of this ship and whose max speed < %s, get max speed bonus: ",
-		"aEP_AttackCarrier02":"When this ship's remaining non-bomber wings number are low and the ship's flux level <= %s, the forge is activated to replace all lost non-bombers immediately. This ability has %s seconds cooldown and produce large soft flux overtime",
-		"aEP_AttackCarrier05":"When installing a wing costing more than %s OP, for each OP above that amount, cooldown of the forge is increased by %s, currently %s",
+		"aEP_AttackCarrier01":"All fighters of this ship that is within %s range and have max speed < %s, get max speed bonus: ",
+		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge is activated to fast replace all lost non-bomber fighters. This ability has %s seconds cooldown time and produce large soft flux overtime",
+		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, cooldown time of the forge %s, currently %s seconds",
 
 		"aEP_ShieldControlled01": "Any projectile or beam that spawned at %s away from hit location will do %s damage to shield",
 		"aEP_ShieldControlled02": "All ballistic/energy weapons of this ship will have their %s range limited to %s.",
@@ -311,6 +322,10 @@
 		"aEP_TitanicKiller01": "Start DP",
 		"aEP_TitanicKiller02": "For every x DP above",
 
+		"aEP_TwinFighter01": "In combat, using key %s to toggle whether let the fighter free attack or fixed at front",
+		"aEP_TwinFighter02": "When fixed at front, the fighter repairs itself at speed of %s per second",
+		"aEP_TwinFighter03": "When the ship is destroyed, the fighter will be destroyed too",
+
 
 		#############################
 		"aEP_VentMode01":"Flux dissipation increased: %s / Hard flux gen per second: %s",
@@ -335,6 +350,14 @@
 		"aEP_WeaponReset01":"Weapon RoF bonus: ",
 
 		"aEP_FortressShieldStats01": "Shield damage taken reduced by %s",
+
+		"aEP_CoordinatedCombat01": "Twin fighter is not available",
+		"aEP_CoordinatedCombat02": "One of the systems is activating",
+		"aEP_CoordinatedCombat03": "Twin fighter must be released",
+		"aEP_CoordinatedCombat04": "Guided Assault",
+		"aEP_CoordinatedCombat05": "Decoy Trick",
+		"aEP_CoordinatedCombat06": "Backline Infiltration",
+		"aEP_CoordinatedCombat07": "Coordinated Combat",
 
 		#############################
 		"AWM01_title":"AWM01: Search for weapons",

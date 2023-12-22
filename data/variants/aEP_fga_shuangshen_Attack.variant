@@ -1,0 +1,18 @@
+{
+  "variantId": "aEP_fga_shuangshen_Attack",
+  "hullId": "aEP_fga_shuangshen",
+  "displayName": "Attack",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [
+    {
+      "FRONT": "aEP_fga_shuangshen2_Elite"
+    }
+  ],
+  "wings": []
+}

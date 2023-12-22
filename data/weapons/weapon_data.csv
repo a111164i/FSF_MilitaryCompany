@@ -1,6 +1,6 @@
 name,id,hints,type,OPs,range,turn rate,damage/second,damage/shot,emp,energy/second,energy/shot,impact,proj speed,beam speed,flight time,chargeup,chargedown,burst size,burst delay,ammo,ammo/sec,reload size,noDPSInTooltip,min spread,max spread,spread/shot,spread decay/sec,proj hitpoints,launch speed,tech/manufacturer,primaryRoleStr,customPrimaryHL,customPrimary,rarity,base value,tags,,groupTag,tier,autofireAccBonus,extraArcForAI,speedStr,trackingStr,turnRateStr,accuracyStr,customAncillary,customAncillaryHL,number
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"""Typhoon"" Hyper Caliber Multistage Acceleration Electromagnet Hybrid Propulsion Cannon",aEP_cap_sta_main,"SYSTEM, DANGEROUS,  NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,1,1500,20,,8000,,,7500,4000,700,,,5,25,,,,,1,,0,2,2,10,4000,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+"""Typhoon"" Hyper Caliber Multistage Acceleration Electromagnet Hybrid Propulsion Cannon",aEP_cap_sta_main,"SYSTEM, DANGEROUS,  NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,1,1500,20,,10000,,,8000,4000,700,,,5,25,,,,,1,,0,2,2,10,4000,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 """Exemplar"" Mounted Radar",aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,1,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF Manufacture,Support,45% | 100 ,"All non-PD weapons of this ship gains up %s range if those weapon's facing is aligned with this radar
 
 All Medium Energy Weapon gains %s extra range.",,,,,,,,,,,,,,,
@@ -43,7 +43,7 @@ This weapon will automatically repair itself
 
 Beam can go through allies",,,,,aEP_XLM_only,,,,,,,,,,
 Lidardish,aEP_fga_chichao_lidardish,SYSTEM,ENERGY,,100,200,100,,,0,,,,1000000,,0.2,0.3,0.5,0.1,1000,1000,1000,,,,,,,,,,,,,,lidar,,,,,,,,,,,,
-DF-2 Heavy ERA,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,1,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,500 | 1 | 90%,"When armor around this weapon has received a single hit that would either %s damage or damage exceeding %s of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
+DF-2 Heavy ERA,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,1,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,500 | 1 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
 This weapon will immediately repair itself if brought offline.
 
@@ -110,7 +110,7 @@ This weapon can't be fired manually",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
 """Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra %s KE damage in soft flux",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
 """Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,700,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,320,0,FSF Manufacture,Anti-shield,700,"When hitting shield, deals extra %s KE damage in soft flux",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
 """Percussion Drill"" Bombardment LRM",aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF Manufacture,Anti-armor,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,
-DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that would either %s damage or damage exceeding %s of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
+DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
 This weapon will immediately repair itself if brought offline.
 
@@ -173,6 +173,7 @@ This weapon will immediately repair itself if brought offline.",,200,"strike8, r
 """Sea Roar"" Super-heavy Railway Cannon",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,3000,,,3000,1000,1000,,,0.5,1.5,1,,1,0.1667,1,,0,8,4,8,,,FSF Advanced Weapon Program,General,,"If hit costs overload on hitting shield, spawn a identical projectile at location of the hit.",0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Laser,aEP_fga_shuangshen2_lidardish,SYSTEM,ENERGY,,25,120,50,,,0,,,,2000,,0.5,0.5,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
 Binding-shot,aEP_ut_missile_attacher,SYSTEM,FRAGMENTATION,,100,0,,1,,,,,100,,,0,1,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
 dem beam,aEP_ut_targeting_laser1,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",ENERGY,,800,720,50,,,0,,,,1000000,,0,0.1,0.1,,1000,1000,1000,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_thruster,aEP_thruster,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -261,6 +262,7 @@ aEP_marker,aEP_marker,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_fga_xiliu_rotator,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_fga_xiliu_red,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_fga_xiliu_green,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_fga_shuangshen_main_cover,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_ftr_sup_guardian_cover_l,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,62 @@
+{
+  "hullName": "",
+  "hullId": "aEP_fga_shuangshen2",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_fga_shuangshen2.png",
+  "style": "aEP_FSF",
+  "height": 60,
+  "width": 40,
+  "center": [20, 23],
+  "collisionRadius": 38.5,
+  "shieldCenter": [5, -0],
+  "shieldRadius": 33,
+  "viewOffset": 0,
+  "builtInMods": [
+    "reduced_explosion",
+    "always_detaches",
+    "aEP_Module",
+  ],
+  "builtInWeapons": {
+    "COVER": "aEP_fga_shuangshen_main_cover",
+    "LIDAR": "aEP_cru_pingding_lidardish"
+  },
+  "weaponSlots": [
+    {
+      "id": "MAIN",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [11, -0]
+    },
+    {
+      "id": "COVER",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [7, -0],
+      "renderOrderMod": 10
+    },
+    {
+      "id": "LIDAR",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [28, 8]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    22.5, -4.5,
+    -5.5, -15,
+    -14, -10,
+    -14, 10,
+    -5.5, 15,
+    22.5, 4.5
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "variantId": "aEP_fga_shuangshen2_Attack",
+  "hullId": "aEP_fga_shuangshen2",
+  "displayName": "Attack",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "MAIN": "aEP_b_m_k125"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

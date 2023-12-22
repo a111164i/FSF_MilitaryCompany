@@ -100,8 +100,9 @@
 			"d100t_sabot_l": "graphics/weapons/aEP_b_l_d100t/sabot_l.png",
 			"d100t_sabot_r": "graphics/weapons/aEP_b_l_d100t/sabot_r.png",
 
-			"des_taodong_glow": "graphics/ships/aEP_des_taodong_glow1.png"
-
+			"des_taodong_glow": "graphics/ships/aEP_des_taodong_glow1.png",
+			"fga_shuangshen_full": "graphics/ships/aEP_fga_shuangshen_full.png",
+			"fga_shuangshen": "graphics/ships/aEP_fga_shuangshen.png"
 		},
 		"fx":{
 			"aEP_trail_smoke":"graphics/aEP_FX/trails/3.png",

@@ -1,8 +1,10 @@
 package combat.impl
 
+import campaign.aEP_OpPageManager
 import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
 import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
@@ -11,9 +13,20 @@ import java.util.*
 
 open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
+  companion object{
+    fun addOrRefreshEffect(entity: CombatEntityAPI, effectKey:String, toRefresh:(c:aEP_BaseCombatEffect)-> Unit, toNew:()-> Unit){
+      if(entity.customData.containsKey(effectKey)){
+        val c = entity.customData[effectKey] as aEP_BaseCombatEffect
+        toRefresh(c)
+      }else{
+        toNew()
+      }
+    }
+  }
+
   var time = 0f
   var lifeTime = 0f
-  var entity : CombatEntityAPI? = null
+  open var entity : CombatEntityAPI? = null
 
   var shouldEnd = false;
   var layers: EnumSet<CombatEngineLayers> = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_LAYER)
@@ -35,6 +48,10 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
   constructor(lifeTime: Float, entity: CombatEntityAPI?){
     this.lifeTime = lifeTime
+    init(entity)
+  }
+
+  constructor(entity: CombatEntityAPI){
     init(entity)
   }
 
@@ -135,5 +152,30 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
   }
 
+
+}
+
+open class aEP_BaseCombatEffectWithKey : aEP_BaseCombatEffect{
+
+   var key = ""
+
+  constructor() : super()
+  constructor(entity: CombatEntityAPI) : super(entity)
+  constructor(lifeTime: Float, entity: CombatEntityAPI) : super(lifeTime, entity)
+
+  fun setKeyAndPutInData(id : String){
+    key = id
+    entity?.setCustomData(key, this)
+  }
+
+  override fun readyToEnd() {
+    readyToEndImpl()
+    super.readyToEnd()
+    entity?.customData?.remove(key)
+  }
+
+  open fun readyToEndImpl(){
+
+  }
 
 }

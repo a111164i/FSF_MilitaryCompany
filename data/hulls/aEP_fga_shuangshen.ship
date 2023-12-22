@@ -1,0 +1,110 @@
+{
+  "hullName": "Symbiosis",
+  "hullId": "aEP_fga_shuangshen",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/aEP_fga_shuangshen_full.png",
+  "style": "aEP_FSF",
+  "height": 150,
+  "width": 90,
+  "center": [45, 75],
+  "collisionRadius": 48.5,
+  "shieldCenter": [-3, -0],
+  "shieldRadius": 44,
+  "viewOffset": 0,
+  "builtInMods": [
+    "aEP_SpecialHull",
+    "aEP_TwinFighter",
+    "aEP_HighSpeedManeuver"
+  ],
+  "builtInWings": [
+    "aEP_fga_shuangshen3_wing"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [16, 15],
+      "renderOrderMod": 50
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": -0,
+      "locations": [16, -15],
+      "renderOrderMod": 50
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [12, 0],
+      "renderOrderMod": 51
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        35, -0,
+        35, -0,
+        34.5, -0
+      ]
+    },
+    {
+      "id": "FRONT",
+      "size": "SMALL",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [37, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-40, 6],
+      "length": 36,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 8,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-40, -6],
+      "length": 36,
+      "width": 8,
+      "angle": -180,
+      "contrailSize": 8,
+      "style": "FSF_MAIN"
+    },
+    {
+      "location": [-40, 0],
+      "length": 50,
+      "width": 14,
+      "angle": 180,
+      "contrailSize": 14,
+      "style": "FSF_MAIN"
+    }
+  ],
+  "bounds": [
+    19, -19.5,
+    -2.5, -29,
+    -32.5, -17.5,
+    -32.5, 17.5,
+    -2.5, 29,
+    19, 19.5
+  ]
+}

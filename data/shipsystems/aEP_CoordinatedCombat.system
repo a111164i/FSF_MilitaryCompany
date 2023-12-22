@@ -1,0 +1,13 @@
+{
+	"id":"aEP_CoordinatedCombat",
+	"type":"STAT_MOD",
+	#"aiType":"WEAPON_BOOST",
+	"aiType":"NONE",
+	#"aiScript":"data.scripts.ai.shipsystemai.aEP_AntiPhaseDroneAI",
+	"statsScript":"data.scripts.shipsystems.aEP_CoordinatedCombat",
+   
+	"runScriptWhileIdle":false,  # this means unapply() never gets called
+	"useSound":"gun_out_of_ammo",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+}

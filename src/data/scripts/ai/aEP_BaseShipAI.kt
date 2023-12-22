@@ -37,7 +37,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
   var stopFiringTime = 1f
   var needsRefit = false
 
-  var stat: aEP_MissileAI.Status = aEP_MissileAI.Status()
+  var stat: aEP_MissileAI.Status = aEP_MissileAI.Empty()
 
   constructor(ship : ShipAPI){
     this.ship = ship

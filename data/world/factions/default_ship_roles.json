@@ -36,7 +36,11 @@
     "aEP_fga_raoliu_Standard":5,
 
     "aEP_fga_chichao_Standard": 5,
-    "aEP_fga_chichao_SideAtk": 5
+    "aEP_fga_chichao_SideAtk": 5,
+
+    "aEP_fga_shuangshen_Standard": 2,
+    "aEP_fga_shuangshen_Elite": 2,
+    "aEP_fga_shuangshen_Attack": 2
 },
   "combatMedium": {
 
