@@ -2,16 +2,21 @@
 package combat.util
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.campaign.CampaignFleetAPI
 import com.fs.starfarer.api.campaign.CargoAPI
+import com.fs.starfarer.api.campaign.econ.MonthlyReport
+import com.fs.starfarer.api.campaign.econ.MonthlyReport.FDNode
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.campaign.ids.Tags.VARIANT_FX_DRONE
+import com.fs.starfarer.api.impl.campaign.rulecmd.Nex_IsFactionRuler
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
 import com.fs.starfarer.api.loading.WeaponSlotAPI
-import com.fs.starfarer.api.ui.Fonts
 import com.fs.starfarer.api.util.Misc
+import com.fs.starfarer.campaign.fleet.FleetMember
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.impl.aEP_BaseCombatEffect
@@ -1345,6 +1350,7 @@ class aEP_Tool {
       }
     }
 
+    @JvmStatic
     fun isShipInPlayerFleet(ship:ShipAPI,alwaysTrueIfNotCampaign:Boolean): Boolean{
       if(Global.getCombatEngine().isInCampaign && Global.getSector().playerFleet.fleetData.membersListCopy.contains(ship.fleetMember)){
         return true
@@ -1354,6 +1360,44 @@ class aEP_Tool {
       }
       return false
     }
+
+    fun isShipInFleet(shipId:String, fleet:CampaignFleetAPI): Boolean{
+      for( v:FleetMemberAPI in fleet.membersWithFightersCopy){
+       val baseHullId = v.hullSpec.baseHullId
+        if(baseHullId.equals(shipId)){
+          return true
+        }
+      }
+      return false
+    }
+
+    /**
+     * 检测玩家是否拥有某种舰船，包括全部的仓库
+     * @return 距离进入系统范围还有多远
+     * */
+    @JvmStatic
+    fun isShipInPlayerHand(shipId:String): Boolean{
+      if(Global.getSector() == null) return false
+      val sector = Global.getSector()
+      if(Global.getSector().playerFleet == null) return false
+
+      if(isShipInFleet(shipId, sector.playerFleet)){
+        return true
+      }
+
+//      for (market in sector.economy.marketsCopy) {
+//        if (market.isPlayerOwned ||
+//          (Nex_IsFactionRuler.isRuler(market.factionId) && Misc.playerHasStorageAccess(market))
+//        ) {
+//          if(isShipInFleet(shipId, Misc.getStorage(market).cargo.mothballedShips.fleet)){
+//            return true
+//          }
+//        }
+//      }
+
+      return false
+    }
+
 
     /**
      * 加上自身的碰撞半径但是不加上对面的碰撞半径
@@ -2165,6 +2209,30 @@ class aEP_Tool {
       projectile.maxFlightTime = range/maxSpeed
       projectile.maxFlightTime += timeCompensation
     }
+
+    fun getWeaponGroupNum(group:WeaponGroupAPI) : Int{
+      var currNum = 0
+      for(g in group.ship.weaponGroupsCopy){
+        if(g == group) break
+        currNum += 1
+      }
+      return currNum
+    }
+
+    /**
+     * 以能量为基准
+     * */
+    fun  computeEffectiveDamage(damage: DamageAPI, KeFactor:Float, HeFactor:Float, EnFactor:Float, FragFactor:Float): Float{
+      var realDamage = damage.damage
+      when (damage.type){
+        DamageType.KINETIC -> realDamage *= KeFactor
+        DamageType.HIGH_EXPLOSIVE -> realDamage *= HeFactor
+        DamageType.ENERGY -> realDamage *= EnFactor
+        DamageType.FRAGMENTATION -> realDamage *= FragFactor
+
+      }
+      return realDamage
+    }
   }
   class FiringSmokeParam{
     var smokeSize = 0f
@@ -2336,7 +2404,7 @@ class aEP_Combat{
       if(shouldEnd) return
 
       time += amount
-      MathUtils.clamp(time,0f,lifeTime)
+      time = MathUtils.clamp(time,0f,lifeTime)
       advanceImpl(amount)
 
       //播放特效
@@ -2385,10 +2453,9 @@ class aEP_Combat{
     }
 
     var color = RecallDeviceStats.JITTER_COLOR
-
+    val key = ID+Math.random()
     init {
       ship.setCustomData(ID,1f)
-
     }
 
     override fun advance(amount: Float) {
@@ -2397,9 +2464,11 @@ class aEP_Combat{
       val fighter = entity as ShipAPI
 
       val effectLevel = time/lifeTime
+
+      //抖动
       val maxRangeBonus = fighter.collisionRadius * 0.25f
       val jitterRangeBonus: Float = 20f + effectLevel * maxRangeBonus
-      fighter.setJitter(ID, color, effectLevel, 10, 0f, jitterRangeBonus)
+      fighter.setJitter(key, color, effectLevel, 10, 0f, jitterRangeBonus)
 
       //在落点来几个残影，最后一个在正中心不抖动
       val sprite = Global.getSettings().getSprite(fighter.hullSpec.spriteName)
@@ -2419,7 +2488,6 @@ class aEP_Combat{
 
       val alpha = 1f - effectLevel * 0.5f
       fighter.extraAlphaMult = alpha
-
 
     }
 
@@ -2489,6 +2557,7 @@ class aEP_Combat{
     var maxRange = 10f
     var maxRangePercent = 0.2f
     var copyNum = 5
+    var key = ID + Math.random()
 
     override fun advanceImpl(amount: Float) {
       var level = 1f
@@ -2497,10 +2566,10 @@ class aEP_Combat{
       val c = Misc.scaleAlpha(color,level)
       if(jitterUnder){
         ship.isJitterShields = jitterShield
-        ship.setJitterUnder(ID, c, level, copyNum, (maxRange + ship.collisionRadius * maxRangePercent) * level)
+        ship.setJitterUnder(key, c, level, copyNum, (maxRange + ship.collisionRadius * maxRangePercent) * level)
       }else{
         ship.isJitterShields = jitterShield
-        ship.setJitter(ID, c, level, copyNum, (maxRange + ship.collisionRadius * maxRangePercent) * level)
+        ship.setJitter(key, c, level, copyNum, (maxRange + ship.collisionRadius * maxRangePercent) * level)
       }
     }
 
@@ -2510,7 +2579,7 @@ class aEP_Combat{
   /**
    * 在init里面包含将自己加入plugin的部分，使用只需要new。多个不同来源的减速效果取最大值
    * */
-  class AddStandardSlow(slowTime: Float, slowReduceMult: Float, accReduceMult: Float , val target: ShipAPI) : aEP_BaseCombatEffect(0f,target){
+  class AddStandardSlow(slowTime: Float, slowReduceMult: Float, accReduceMult: Float , val target: ShipAPI) : aEP_BaseCombatEffect(target){
     companion object{
       const val ID = "aEP_StandardSlow"
     }
@@ -2541,7 +2610,6 @@ class aEP_Combat{
       }
     }
 
-
     override fun advanceImpl(amount: Float) {
       var maxReduceMult = 0f
       var maxAccReduceMult = 0f
@@ -2560,6 +2628,7 @@ class aEP_Combat{
         if(accReduce > maxAccReduceMult) maxAccReduceMult = accReduce
         //advance计时器
         d.timeElapsed += amount
+        d.timeElapsed = MathUtils.clamp(d.timeElapsed,0f, d.fullTime)
         if(d.timeElapsed >= d.fullTime + d.fadingTime) expired.add(d)
       }
       data.removeAll(expired)
@@ -2609,7 +2678,10 @@ class aEP_Combat{
     }
   }
 
-  class AddDamageReduction(lifeTime: Float, damageReduceMult: Float, val target: CombatEntityAPI) : aEP_BaseCombatEffect(0f,target){
+  /**
+  * 减少目标对其他人造成的伤害
+  * */
+  class AddDamageReduction(lifeTime: Float, damageReduceMult: Float, val target: CombatEntityAPI) : aEP_BaseCombatEffect(target){
     companion object{
       const val ID = "aEP_DamageReduce"
     }
@@ -2644,6 +2716,7 @@ class aEP_Combat{
         if(reduce > maxReduceMult) maxReduceMult = reduce
         //advance计时器
         d.timeElapsed += amount
+        d.timeElapsed = MathUtils.clamp(d.timeElapsed,0f, d.fullTime)
         if(d.timeElapsed >= d.fullTime) expired.add(d)
       }
       allData.removeAll(expired)
@@ -2667,8 +2740,8 @@ class aEP_Combat{
           for(f in Global.getCombatEngine().ships){
             if(!f.variant.hasTag(VARIANT_FX_DRONE)) continue
             //距离完全为0
-            if(MathUtils.getDistance(f.location, target.location) > 0) continue
-            AddDamageReduction(0.25f, maxReduceMult , f)
+            if(MathUtils.getDistance(f.location, target.location) > 0.001f) continue
+            AddDamageReduction(0.1f, maxReduceMult , f)
           }
         }
       }
@@ -2705,6 +2778,89 @@ class aEP_Combat{
       var damageReduceMult = 0f
       var fullTime = 0.5f
       var timeElapsed = 0f
+    }
+  }
+
+  class AddShipTimeSlow(lifeTime: Float, timeSlowMult: Float, globalMultWhenPlayer: Float, val target: ShipAPI) : aEP_BaseCombatEffect(target){
+    companion object{
+      const val ID = "aEP_ShipTimeSlow"
+    }
+
+    val allData = ArrayList<Data>()
+
+    init {
+      val data = Data()
+      data.fullTime = lifeTime
+      data.timeSlowMult = timeSlowMult
+      data.globalMultWhenPlayer = globalMultWhenPlayer
+
+      //正在处于别的buff中
+      if(target.customData.containsKey(ID)){
+        val manager = target.customData[ID] as AddShipTimeSlow
+        manager.allData.add(data)
+      }else{ //第一次被施加debuff
+        target.setCustomData(ID, this)
+        allData.add(data)
+        aEP_CombatEffectPlugin.addEffect(this)
+      }
+    }
+
+    override fun advanceImpl(amount: Float) {
+      var totalSlowMult = 1f
+      var totalGlobalMult = 1f
+      var leftTime = 0f
+
+      val expired = HashSet<Data>()
+      for(d in allData) {
+        var mult = d.timeSlowMult
+        totalSlowMult *= mult
+
+        var globalMult = d.globalMultWhenPlayer
+        totalGlobalMult *= globalMult
+
+        //advance计时器
+        d.timeElapsed += amount
+        d.timeElapsed = MathUtils.clamp(d.timeElapsed,0f, d.fullTime)
+        if(leftTime < d.fullTime-d.timeElapsed) leftTime = d.fullTime-d.timeElapsed
+
+        if(d.timeElapsed >= d.fullTime) expired.add(d)
+      }
+      allData.removeAll(expired)
+
+      if(allData.size <= 0){
+        shouldEnd = true
+      }
+
+      target.mutableStats.timeMult.modifyMult(ID, totalSlowMult)
+      //如果玩家不再驾驶这个船，每帧解除全局时间控制
+      Global.getCombatEngine().timeMult.modifyMult(ID, 1f)
+      if(Global.getCombatEngine().playerShip == target){
+        Global.getCombatEngine().timeMult.modifyMult(ID, totalGlobalMult)
+      }
+      //之前得到的leftTime是相对于船的
+      leftTime
+
+      //一艘船只能同时存在一个manager类
+      if(target.customData.containsKey(ID) && target.customData[ID] != this){
+        shouldEnd = true
+      }
+    }
+
+    override fun readyToEnd() {
+      //修改数据
+      target.mutableStats.timeMult.modifyMult(ID, 1f)
+      Global.getCombatEngine().timeMult.modifyMult(ID, 1f)
+
+      if(target.customData.containsKey(ID) && target.customData[ID] == this){
+        target.customData.remove(ID)
+      }
+    }
+
+    class Data{
+      var timeSlowMult = 1f
+      var globalMultWhenPlayer = 1f
+      var timeElapsed = 0f
+      var fullTime = 0f
     }
   }
 

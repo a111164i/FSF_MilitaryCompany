@@ -318,7 +318,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\industries_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -346,7 +360,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\rules_CN.csv">
+        <entry key="\data\campaign\rules_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -374,6 +388,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\special_items_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\submarkets.csv">
           <value>
             <Attribute>
@@ -381,7 +402,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\submarkets_CN.csv">
+        <entry key="\data\campaign\submarkets_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -438,6 +459,20 @@
           </value>
         </entry>
         <entry key="\data\config\lights\FSF_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_light_data_e.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_light_data_m.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -507,7 +542,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hullmods\hull_mods_CN.csv">
+        <entry key="\data\hullmods\hull_mods_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -521,7 +556,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hulls\ship_data_CN.csv">
+        <entry key="\data\hulls\ship_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -549,7 +584,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\shipsystems\ship_systems_CN.csv">
+        <entry key="\data\shipsystems\ship_systems_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -563,7 +598,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\strings\descriptions_CN.csv">
+        <entry key="\data\strings\descriptions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -577,7 +612,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\weapons\weapon_data_CN.csv">
+        <entry key="\data\weapons\weapon_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -585,13 +620,6 @@
           </value>
         </entry>
         <entry key="\data\world\factions\factions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\texture_all_weapon.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

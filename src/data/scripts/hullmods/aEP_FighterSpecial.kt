@@ -284,7 +284,6 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
     val MAX_SHIELD_TIME = 12f
     val RADAR_SPEED = -90f
     val TIME_MULT_BNUS =  3f
-    //护盾减伤，防止被动能直接灌爆，这部分代码归属吞弹盾了
   }
 
   //强行加速到更高境界
@@ -371,8 +370,6 @@ class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifi
         val decoLevel = Math.max(Math.max(fluxLevel,shieldLevel), moveLevel)
         updateIndicator(ship,1f - decoLevel)
       }
-
-
     } else {
       //如果无盾，无事发生，依靠总定时器来终结自身
     }
@@ -444,7 +441,7 @@ class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifi
     }
 
     //如果任何形式幅能满了，准备自毁
-    if (ship.fluxLevel > 0.99f) {
+    if (ship.fluxLevel > 0.99f || ship.fluxTracker.isOverloaded) {
       shouldEnd = true
     }
 
@@ -572,7 +569,7 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
     const val ID = "aEP_ProjectileDenialShield"
 
     const val KE_DAMAGE_TAKEN_MULT = 0.5f
-    const val HE_DAMAGE_TAKEN_MULT = 1.66f
+    const val HE_DAMAGE_TAKEN_MULT = 1.5f
     const val EN_DAMAGE_TAKEN_MULT = 0.75f
     //破片后续会被自动×0.33f
     const val FRAG_DAMAGE_TAKEN_MULT = 0.75f
@@ -581,27 +578,25 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
 
     const val BEAM_TAKEN_MULT = 0.5f
 
-    fun eatDamage(ship: ShipAPI, damage: DamageAPI, sourceModifier:Float){
+    /**
+     * @param divider 伤害会被除以这个数
+     * */
+    fun eatDamage(ship: ShipAPI, damage: DamageAPI, divider:Float){
 
       var damageAmount = damage.damage * damage.modifier.modified
       if(damage.type == DamageType.KINETIC) damageAmount *= KE_DAMAGE_TAKEN_MULT
       if(damage.type == DamageType.ENERGY) damageAmount *= EN_DAMAGE_TAKEN_MULT
       if(damage.type == DamageType.HIGH_EXPLOSIVE) damageAmount *= HE_DAMAGE_TAKEN_MULT
       if(damage.type == DamageType.FRAGMENTATION) damageAmount *= (FRAG_DAMAGE_TAKEN_MULT *0.25f)
-      if(sourceModifier > 1f) damageAmount /= sourceModifier
+      if(divider > 1f) damageAmount /= divider
 
-      if(ship.maxFlux - ship.currFlux < damageAmount){
-        Global.getCombatEngine().applyDamage(
-          ship,
-          ship.location,
-          (ship.hitpoints + ship.hullSpec.armorRating) * 10f,
-          DamageType.HIGH_EXPLOSIVE,
-          0f,
-          true,
-          false,
-          ship)
-      }else{
+      val absorbRate = (ship.shield.fluxPerPointOfDamage * ship.mutableStats.shieldDamageTakenMult.modified).coerceAtMost(1f)
+      damageAmount *= absorbRate
+
+      if(ship.maxFlux - ship.currFlux > damageAmount){
         ship.fluxTracker.increaseFlux(damageAmount, true)
+      }else{
+        ship.fluxTracker.beginOverloadWithTotalBaseDuration(10f)
       }
 
     }
@@ -657,7 +652,7 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
     //检测飞机是否有特殊tag，更改过载时间或者每次过载给自己施加一定伤害作为惩罚
     val tags = ship.hullSpec.tags
     for (tag in tags){
-      if(tag.startsWith("aEP_ProjectileDenialShield")){
+      if(tag.startsWith("aEP_ProjectileDenialShield_")){
         val param = tag.split("_")
         maxOverloadTime = param[2].toFloat()
         punish = param[3].toFloat()
@@ -709,17 +704,23 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       if(!shieldHit) return null
 
+      //伤害会被除以这个数，sourceModifier越大实际伤害越小
+      var sourceModifier = 1f
+
+      //对弹丸-----------------------------------------------------------------//
       if(param is DamagingProjectileAPI ){
-        var sourceModifier = 1f
+        //这里抵消掉对战机的伤害加成
         if (param.source is ShipAPI){
           sourceModifier = param.source.mutableStats.damageToFighters.modifiedValue
         }
 
-        //手动增加幅能，然后吞弹
-        eatDamage(ship, param.damage,sourceModifier)
-        Global.getCombatEngine().removeEntity(param)
-        //如果这么吞了，sourceModifier也要着增加，把本次伤害无害化（越大越小）
-        sourceModifier += 1000f
+        //吞弹然后手动增加幅能（如果这个弹还存在与战场上）
+        if(Global.getCombatEngine().isEntityInPlay(param)){
+          eatDamage(ship, param.damage,sourceModifier)
+          Global.getCombatEngine().removeEntity(param)
+          //吞了弹，但是这颗弹对舰船造成的伤害并没有归零，sourceModifier跟着增加
+          sourceModifier += 10000f
+        }
 
         //防止大aoe直接炸到后面的船体，类似模块护盾的问题，没办法
         //已经在后面的爆炸监听器中修正这个问题
@@ -737,12 +738,12 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
             }
           }
 
-          //如果当前有超过一个其他无人机被炸，增加sourceModifier
-          var epdDamMult = 0.5f
+          //如果当前有超过一个其他无人机被炸，增加sourceModifier，减少伤害
+          var epdDamMult = 2f
           if(numOfDroneDamaged > 1){
             epdDamMult.pow(numOfDroneDamaged)
           }
-          sourceModifier /= epdDamMult
+          sourceModifier *= epdDamMult
 
         }
 
@@ -754,10 +755,9 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
         }
       }
 
-      //对光束
+      //对光束----------------------------------------------------------------//
       if(param is BeamAPI){
-
-        var sourceModifier = 1f
+        //抵消掉敌方对战机增伤
         if (param.source is ShipAPI){
           sourceModifier = param.source.mutableStats.damageToFighters.modifiedValue
         }
@@ -781,9 +781,8 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
         }
       }
 
-      //对emp电弧
+      //对emp电弧-------------------------------------------------------------//
       if(param is EmpArcEntity && param.source is ShipAPI){
-        var sourceModifier = 1f
         val sourceShip = param.source as ShipAPI
         sourceModifier = sourceShip.mutableStats.damageToFighters.modifiedValue
 
@@ -1517,6 +1516,7 @@ class aEP_Module : aEP_BaseHullMod() {
     notCompatibleList.add(HullMods.SHIELD_SHUNT)
     notCompatibleList.add(HullMods.FRONT_SHIELD_CONVERSION)
     notCompatibleList.add(HullMods.OMNI_SHIELD_CONVERSION)
+    notCompatibleList.add(HullMods.SAFETYOVERRIDES)
   }
 
   var ID: String = "aEP_Module"
@@ -1627,7 +1627,11 @@ class aEP_Module : aEP_BaseHullMod() {
         var color = Misc.getPositiveHighlightColor()
         if(ship.owner == 1) color = Misc.getNegativeHighlightColor()
         if(ship.owner == 100) color = Misc.getHighlightColor()
-        val string = ship.hullSpec.hullName
+        var string = ship.hullSpec.hullName
+        for(tag in ship.hullSpec.tags){
+          if(tag.startsWith("aEP_Module_display_")) string = tag.replace("aEP_Module_display_","")
+
+        }
         //只有玩家舰船 == ship时才会显示，number是条末端的数字
         MagicUI.drawInterfaceStatusBar(
           parent, ship.id, ship.fluxLevel,

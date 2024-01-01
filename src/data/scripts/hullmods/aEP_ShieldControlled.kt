@@ -35,7 +35,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
       mag[HullSize.FIGHTER] = 800f
       mag[HullSize.FRIGATE] = 900f
       mag[HullSize.DESTROYER] = 950f
-      mag[HullSize.CRUISER] = 1100f
+      mag[HullSize.CRUISER] = 1050f
       mag[HullSize.CAPITAL_SHIP] = 1150f
     }
 

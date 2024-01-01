@@ -31,13 +31,21 @@ aEP_GrenadeThrower,SHIP_SYSTEM,"When activated, fires proximity bombs at front c
 aEP_Rapture,SHIP_SYSTEM,"When activated, lock this ship's target with a gravity anchor, as long as the target tries to moves away from the anchor, it will suffer a speed reduction and generate soft flux.",,,,
 aEP_FortressShield,SHIP_SYSTEM,"Toggleable. When activated, massively reduce shield damage taken but generate hardflux and prevent use of weapons.",,,,
 aEP_LidarArray,SHIP_SYSTEM,"When activated, non-beam weapon in ballistic/energy weapon slots gain range, rate of fire, accuracy and projectile speed. When not activated, still provide a small range bonus to ballistic/energy weapon.",,,,
-aEP_CoordinatedCombat,SHIP_SYSTEM,"When activated, recall and increase shield radius/max arc of its 'Scout' Fighter to block incoming damage, CD:5
-Guided Assault: When activated with holding key Num 1, increase the ship's weapon hit strength by a small fixed amount, CD:6
-Decoy Trick: When activated with holding key Num 2, greatly reduce its 'Scout' Fighter's max speed, ballistic weapon RoF, shield/hull damage taken, CD:6
-Backline Infiltration: When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1",,"When activated, recall and increase shield radius/max arc of its 'Scout' Fighter to block incoming damage, CD:5
-Guided Assault : When activated with holding key Num 1, increase the ship's weapon hit strength by a small fixed amount, CD:6
-Decoy Trick : When activated with holding key Num 2, greatly reduce its 'Scout' Fighter's max speed, ballistic weapon RoF and shield/hull damage taken, CD:6
-Backline Infiltration : When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1","Guided Assault | Decoy Trick | Backline Infiltration"
+aEP_CoordinatedCombat,SHIP_SYSTEM,"
+When activated, recall and increase shield radius/max arc of its 'Scout' Fighter to block incoming damage, CD:5
+
+Guided Assault  : When activated with holding key Num 1, increase the ship's weapon hit strength by a small fixed amount, CD:6
+
+Decoy Trick     : When activated with holding key Num 2, greatly reduce its 'Scout' Fighter's max speed, ballistic/energy weapon RoF and damage taken, CD:6
+
+Field Infiltrate: When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1",,"
+When activated, recall and increase shield radius/max arc of its 'Scout' Fighter to block incoming damage, CD:5
+
+Guided Assault  : When activated with holding key Num 1, increase the ship's weapon hit strength by a small fixed amount, CD:6
+
+Decoy Trick     : When activated with holding key Num 2, greatly reduce its 'Scout' Fighter's max speed, ballistic/energy weapon RoF and damage taken, CD:6
+
+Field Infiltrate: When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1",Guided Assault | Decoy Trick | Field Infiltrate,
 aEP_SwitchPowerMode,SHIP_SYSTEM,"Activation allows toggle between the built in main-gun's focused and rapid fire mode, allowing one and preventing the other from firing. ",,,,
 aEP_RepulseMissileLaunch,SHIP_SYSTEM,"When activated,continuously fire some built in micro missiles, get extra flux dissipation and flux shunt percentage, until flux has been cleared or the system times out. The system will be forced to activate once this ship destroyed",,,,
 aEP_FlareLaunch,SHIP_SYSTEM,"When activated, fires different type of flares around the ship to distract enemy missile targeting.",,,,
@@ -70,6 +78,7 @@ aEP_fga_xiliu_main,WEAPON,"A full-sized military-grade high-energy laser generat
 aEP_fga_xiliu_main2,WEAPON,"A full-sized military-grade high-energy laser generator, renowned for its ability to instantly vaporize entire artificial lake. It achieves switching between high power and high frequency by adjusting the wavelength and power of the beam.",,,,
 aEP_fga_xiliu_mk2_missile,WEAPON,"A highly trackable energy missile that is essentially a small flux capacitor. It inflicts damage based on the principle similar to ship self-destruct mechanisms. This unique mechanism allows ships to carry ammunition without loaded warheads. During combat, the ship's flux pressure can be transferred to these missiles, returning it to the enemy vessel",,,,
 aEP_fga_yonglang_main,WEAPON,"A cannon that fires miniature ""Door Breach"" rockets, this troublesome weapon can be used to overload enemy shields and, utilizing its recoil, retreat to a safe distance",,,,
+aEP_fga_shuangshen_pointer,WEAPON,"A laser message transmitter, can transmit information via optical carriers to the fighter in a complex electromagnetic environment.",,,,
 ,,,,,,
 ,,,,,,
 aEP_cap_duiliu,SHIP,"A recent addition to the sector, this capital ship symbolizes the company power and is a new face compared to the many seasoned designs. For a long time, the company's main warships were designed during the Domain era. Since the FSF, now a force in the sector, it became evident that a warship designed specifically for the corporation was needed. Thus, this ship was born. Sacrificing thick armor and high speed for densely packed weapon slots, when timed right, this ship can annihilate opponents purely through overwhelming firepower. It will represent FSF in a further battle against peer adversaries.

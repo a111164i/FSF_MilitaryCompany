@@ -1,0 +1,42 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 10,
+    "fluxVents": 8,
+    "hullId": "aEP_fga_xiliu",
+    "hullMods": [
+        "automated",
+        "aEP_EmergencyReconstruct",
+        "advancedoptics",
+        "aEP_EliteShip",
+        "targetingunit",
+        "aEP_ShieldControlled",
+        "armoredweapons",
+        "pointdefenseai"
+    ],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstruct"
+    ],
+    "sMods": [],
+    "variantId": "aEP_fga_xiliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_fga_xiliu_main",
+                "WS0003": "aEP_fga_xiliu_main2"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "lightac",
+                "R01": "lightac",
+                "WS0007": "lightac",
+                "WS0009": "lightac"
+            }
+        }
+    ]
+}

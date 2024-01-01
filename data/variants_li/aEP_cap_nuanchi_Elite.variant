@@ -1,0 +1,64 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 0,
+    "fluxVents": 23,
+    "goalVariant": true,
+    "hullId": "aEP_cap_nuanchi",
+    "hullMods": [
+        "unstable_injector",
+        "aEP_ShieldControlled",
+        "eccm"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_nuanchi_Elite",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_m_blasthammer",
+                "WS0003": "aEP_m_m_blasthammer",
+                "WS0004": "aEP_m_m_blasthammer",
+                "WS0005": "aEP_m_m_blasthammer",
+                "WS0018": "aEP_m_l_blasthammer",
+                "WS0019": "aEP_m_l_blasthammer"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0036": "aEP_cap_nuanchi_missile"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0014": "aEP_m_s_breachdoor",
+                "WS0015": "aEP_m_s_breachdoor",
+                "WS0016": "aEP_m_s_breachdoor",
+                "WS0017": "aEP_m_s_breachdoor",
+                "WS0020": "aEP_m_s_breachdoor",
+                "WS0021": "aEP_m_s_breachdoor"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0038": "aEP_cap_requan_missile"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0009": "aEP_ftr_sup_shield_gun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0012": "aEP_b_m_flak"}
+        }
+    ]
+}

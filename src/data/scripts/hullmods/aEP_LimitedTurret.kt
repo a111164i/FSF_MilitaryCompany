@@ -17,7 +17,8 @@ class aEP_LimitedTurret: aEP_BaseHullMod() {
   }
 
   init {
-    haveToBeWithMod.add(aEP_SpecialHull.ID)
+    //haveToBeWithMod.add(aEP_SpecialHull.ID)
+
     notCompatibleList.add(HullMods.INTEGRATED_TARGETING_UNIT)
     notCompatibleList.add(HullMods.DEDICATED_TARGETING_CORE)
     notCompatibleList.add(HullMods.ADVANCED_TARGETING_CORE)

@@ -1,0 +1,14 @@
+{
+  "variantId": "aEP_cru_lengshe_front_Standard",
+  "hullId": "aEP_cru_lengshe_front",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [],
+  "wings": []
+}

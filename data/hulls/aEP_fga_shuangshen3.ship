@@ -2,7 +2,7 @@
   "hullName": "",
   "hullId": "aEP_fga_shuangshen3",
   "hullSize": "FIGHTER",
-  "spriteName": "graphics/ships/aEP_fga_shuangshen2.png",
+  "spriteName": "graphics/ships/aEP_fga_shuangshen3.png",
   "style": "aEP_FSF",
   "height": 60,
   "width": 40,
@@ -11,16 +11,16 @@
   "shieldCenter": [5, -0],
   "shieldRadius": 33,
   "viewOffset": 0,
-  "builtInMods": [
-    "reduced_explosion",
-    "always_detaches",
-    "aEP_Module",
-    "aEP_ProjectileDenialShield"
-  ],
   "builtInWeapons": {
-    "COVER": "aEP_fga_shuangshen_main_cover",
-    "LIDAR": "aEP_cru_pingding_lidardish"
+    "LIDAR": "aEP_cru_pingding_lidardish",
+    "TRAIL_L": "aEP_fga_shuangshen3_empennage_l",
+    "TRAIL_R": "aEP_fga_shuangshen3_empennage_r",
+    "WING_L": "aEP_fga_shuangshen3_wing_l",
+    "WING_R": "aEP_fga_shuangshen3_wing_r"
   },
+  "builtInMods": [
+    "aEP_Module",
+  ],
   "weaponSlots": [
     {
       "id": "MAIN",
@@ -49,6 +49,46 @@
       "arc": 0,
       "angle": 0,
       "locations": [28, 8]
+    },
+    {
+      "id": "WING_L",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": 0,
+      "locations": [12, 4],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "WING_R",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": -0,
+      "locations": [12, -4],
+      "renderOrderMod": 2
+    },
+    {
+      "id": "TRAIL_L",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": 41,
+      "locations": [5, 7.5],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "TRAIL_R",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": -41,
+      "locations": [5, -7.5],
+      "renderOrderMod": 1
     }
   ],
   "engineSlots": [

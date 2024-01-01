@@ -40,6 +40,9 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     const val SPEED_BONUS = 15f
     const val ACC_BONUS = 45f
 
+    //航母的0幅能加速降低
+    const val CARRIER_PUNISH = 20f
+
     const val TURN_BONUS = 6f
     const val TURN_ACC_BONUS = 18f
 
@@ -69,6 +72,10 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
     //改变0幅能加速的起始
     ship.mutableStats.zeroFluxMinimumFluxLevel.modifyFlat(ID, ZERO_FLUX_EXTRA_THRESHOLD/100f)
+
+    //如果是航母，扣加速
+    if(ship.variant.nonBuiltInWings.isNotEmpty())
+      ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, -CARRIER_PUNISH)
 
     //修改护盾贴图
     if (ship.shield != null) {
@@ -125,8 +132,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     val factionDarkColor = faction.darkUIColor
     val factionBrightColor = faction.brightUIColor
 
-
-    //主效果
+    //主效果/
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
 
     // 正面
@@ -137,6 +143,8 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     // 负面
     addNegativePara(tooltip, "aEP_SpecialHull02", arrayOf(
       String.format("+%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%"))
+    addNegativePara(tooltip, "aEP_SpecialHull03", arrayOf(
+      String.format("-%.0f", CARRIER_PUNISH) ))
     //显示不兼容插件
     showIncompatible(tooltip)
 
@@ -219,8 +227,8 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
         }
 
         //如果最小角度大于90度，重新把activatingShip改回null
-        if(currAngleDist < 90f){
-          level = 1f - ((currAngleDist-20f)/90f).coerceAtLeast(0f).coerceAtMost(1f)
+        if(currAngleDist < 75f){
+          level = 1f - ((currAngleDist-15f)/75f).coerceAtLeast(0f).coerceAtMost(1f)
         }else{
           activatingShip = null
         }

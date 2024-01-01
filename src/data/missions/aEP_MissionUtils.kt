@@ -143,7 +143,7 @@ class aEP_MissionUtils{
       }
 
       //找到fsf不会的舰船插件
-      for (hullmodId in ship.getVariant().getNonBuiltInHullmods()) {
+      for (hullmodId in ship.variant.nonBuiltInHullmods) {
         if (f.knownHullMods.contains(hullmodId)) continue
         Global.getCombatEngine().applyDamage(
           ship,

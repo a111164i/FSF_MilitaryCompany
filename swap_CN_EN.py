@@ -254,5 +254,7 @@ if __name__ == "__main__":
     swap_name("data/missions/aEP_first_contact/mission_text.txt", "mission_text.txt")
     swap_name("data/missions/aEP_planet_investigation/descriptor.json", "descriptor.json")
     swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
+    swap_name("data/missions/aEP_assassination/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_assassination/mission_text.txt", "mission_text.txt")
     swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
     

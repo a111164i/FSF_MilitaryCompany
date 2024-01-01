@@ -98,6 +98,8 @@ class aEP_VentMode: BaseShipSystemScript() {
       stats.armorDamageTakenMult.unmodify(ID)
       stats.hullDamageTakenMult.unmodify(ID)
 
+
+      stats.maxSpeed.unmodify(ID)
       stats.fluxDissipation.unmodify(ID)
     }
     else{

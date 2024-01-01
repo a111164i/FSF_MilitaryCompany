@@ -1,0 +1,57 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 10,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_sta_tier2_hull1",
+    "hullMods": [
+        "armoredweapons",
+        "autorepair",
+        "eccm",
+        "ecm",
+        "fluxbreakers",
+        "nav_relay",
+        "solar_shielding",
+        "turretgyros",
+    ],
+    "permaMods": [],
+    "sMods": [
+         "magazines",
+    ],
+    "suppressedMods": [],
+    "variantId": "aEP_sta_tier2_hull1_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_b_m_rk107",
+                "WS0001": "aEP_b_m_rk107",
+                "WS0003": "aEP_b_m_rk107",
+                "WS0002": "aEP_b_m_rk107",
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0008": "aEP_e_s_300k",
+                "WS0007": "aEP_e_s_300k",
+                "WS0012": "aEP_e_s_300k",
+                "WS0011": "aEP_e_s_300k",
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "aEP_b_s_pom",
+                "WS0006": "aEP_b_s_pom",
+                "WS0005": "aEP_b_s_pom",
+                "WS0010": "aEP_b_s_pom",
+            }
+        },
+    ],
+    "wings": [],
+    "modules": [],
+}

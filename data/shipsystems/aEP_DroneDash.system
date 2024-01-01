@@ -1,13 +1,13 @@
 {
 	"id":"aEP_DroneDash",
-	"type":"ENGINE_MOD",
-	"aiType":"MANEUVERING_JETS",
+	"type":"STAT_MOD",
+	"aiType":"WEAPON_BOOST",
 	#"aiScript":"data.scripts.ai.shipsystemai.aEP_DroneDashAI",
 	"statsScript":"data.scripts.shipsystems.aEP_DroneDash",
 	
 	"engineGlowColor":[255,20,20,255],
 	"engineGlowContrailColor":[255,50,50,55],
-	"engineGlowLengthMult":10,
+	"engineGlowLengthMult":8,
 	"engineGlowWidthMult":4,
 	"engineGlowGlowMult":3,
 	
@@ -15,7 +15,7 @@
 
 	"clampTurnRateAfter":true,
 	"clampMaxSpeedAfter":true,
-	#"alwaysAccelerate":true,
+	"alwaysAccelerate":true,
 
 	"useSound":"aEP_DroneDash",
 	"loopSound":"system_burn_drive_loop",

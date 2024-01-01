@@ -15,7 +15,11 @@
     "aEP_fga_raoliu_PD":4,
     "aEP_fga_raoliu_Standard":6,
 
-    "aEP_des_yonglang_mk2_Standard":10
+    "aEP_des_yonglang_mk2_Standard":10,
+
+    "aEP_fga_shuangshen_Standard": 2,
+    "aEP_fga_shuangshen_Elite": 2,
+    "aEP_fga_shuangshen_Attack": 2
 
 },
   "combatSmall": {

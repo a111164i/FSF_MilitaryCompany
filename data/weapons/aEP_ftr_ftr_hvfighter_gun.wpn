@@ -24,17 +24,17 @@
   "interruptibleBurst": true,
   "autocharge": true,
   "muzzleFlashSpec": {
-    "length": 15,
+    "length": 30,
     "spread": 5,
-    "particleSizeMin": 32,
-    "particleSizeRange": 28,
+    "particleSizeMin": 10,
+    "particleSizeRange": 40,
     "particleDuration": 0.32,
-    "particleCount": 6,
+    "particleCount": 7,
     "particleColor": [
       255,
       240,
       155,
-      255
+      125
     ]
   },
   "fireSoundTwo":"light_dual_autocannon_fire",

@@ -237,7 +237,8 @@ open class aEP_BaseHullMod : BaseHullMod() {
 
   open fun addPositivePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
     val highLight = Misc.getHighlightColor()
-    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Color.green, highLight),
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL,
+      arrayOf(Color.green, highLight),
       aEP_ID.HULLMOD_POINT,
       *data)
   }

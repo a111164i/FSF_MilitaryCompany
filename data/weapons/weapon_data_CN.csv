@@ -20,9 +20,6 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 热泉长程导弹发射系统,aEP_cap_requan_missile,FSF制造,反装甲,
 巡航导弹发射装置,aEP_des_shendu_mk2_cruise_missile,FSF制造,终结,
 内置弹幕炮,aEP_des_yangji_flak,FSF制造,,爆炸击中时，对每个目标造成一次{%s}额外破片伤害
-内置水雷发射架,aEP_m_m_phasemine_system,FSF制造,反装甲,"导弹拥有极长的滞空时间，并且在引信触发前处于相位空间中没有碰撞体积
-
-同场最多存在{%s}颗，已部署舰船中每存在一个此武器，同场数量上限增加{%s}"
 内置炸弹抛洒器,aEP_des_lianliu_grenade_thrower,FSF制造,反装甲,
 内置微型DEM,aEP_des_taodong_dem,FSF制造,通用,导弹在接近目标时会发射光束，在 %s 秒内造成约 %s 能量伤害。此伤害受导弹武器伤害效果影响，而不受能量武器伤害效果影响。
 --光束,aEP_des_taodong_dem_payload,,,
@@ -39,6 +36,8 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 
 光束可以穿过友军"
 激光测距雷达,aEP_fga_chichao_lidardish,,,
+小激光,aEP_fga_shuangshen2_lidardish,,,
+战机指示器,aEP_fga_shuangshen_pointer,FSF制造,辅助,将内置战机引导到激光的落点
 DF-2重型反应装甲,aEP_m_s_era3,FSF制造,点防御,"本武器附近的装甲单次受到超过{%s}或本舰装甲值{%s}倍的伤害时，会自动发射，同时本次伤害减少{%s}
 
 本武器在下线后会立刻修复
@@ -168,13 +167,6 @@ BAC爆射突击炮,aEP_ftr_bom_attacker_gun,FSF制造,反装甲,
 本武器在下线后会立刻修复"
 """闪电""扰动机炮",aEP_b_m_lighting,FSF先进武器计划,反护盾,击中护盾时，为目标施加一个可叠加的负面状态：在接下来的{%s}秒内，只要护盾开启就会每秒增加{%s}点软幅能
 """海啸""重型轨道火炮",aEP_b_l_railwaygun,FSF先进武器计划,通用,击中护盾造成舰船过载时，在击中点新生成一颗相同的弹丸
-,,,,
-,,,,
-绑定弹丸,aEP_ut_missile_attacher,,,
-dem target beam1,aEP_ut_targeting_laser1,,,
-aEP_thruster,aEP_thruster,,,
-aEP_blinker,aEP_blinker_green,,,
-aEP_marker,aEP_marker,,,
 ,,,,
 ,,,,
 ,,,,

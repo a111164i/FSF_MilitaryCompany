@@ -469,7 +469,7 @@ open class aEP_BaseEveryFrame : EveryFrameScript{
     if(shouldEnd) return
 
     time += Global.getSector().clock.convertToDays(amount)
-    MathUtils.clamp(time,0f,lifeTime)
+    time = MathUtils.clamp(time,0f,lifeTime)
     advanceImpl(amount)
     if(time >= lifeTime && lifeTime > 0){
       shouldEnd = true

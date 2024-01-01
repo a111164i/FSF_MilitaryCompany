@@ -135,7 +135,7 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin(), CombatLayeredRenderi
   companion object Mod{
     fun addEffect(e: aEP_BaseCombatEffect){
       val c = Global.getCombatEngine().customData["aEP_CombatRenderPlugin"] as aEP_CombatEffectPlugin?
-      c?.newEffects?.add(e) ?:Global.getLogger(this.javaClass).info(this.javaClass.name+" failed adding to aEO_CombatEffect")
+      c?.newEffects?.add(e) ?:Global.getLogger(this.javaClass).info(this.javaClass.name+" failed adding to aEP_CombatEffect")
       //Global.getLogger(this.javaClass).info(this.javaClass.name+": added to effect list")
     }
   }

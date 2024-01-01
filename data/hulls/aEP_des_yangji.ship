@@ -14,11 +14,8 @@
   "builtInMods": [
     "aEP_SpecialHull",
     "aEP_HLMultiTurret",
-    "aEP_CloseTargeting",
+    "aEP_CloseTargeting"
   ],
-  "builtInWeapons": {
-
-  },
   "weaponSlots": [
     {
       "id": "WS0002",
@@ -192,7 +189,7 @@
       "type": "SYSTEM",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 90,
+      "angle": 100,
       "locations": [19, 35.5]
     },
     {
@@ -201,7 +198,7 @@
       "type": "SYSTEM",
       "mount": "TURRET",
       "arc": 360,
-      "angle": -90,
+      "angle": -100,
       "locations": [19, -35.5]
     },
     {
@@ -300,7 +297,7 @@
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 90,
+      "angle": 100,
       "locations": [19.5, 35.5]
     },
     {
@@ -309,7 +306,7 @@
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
-      "angle": -90,
+      "angle": -100,
       "locations": [19.5, -35.5]
     },
     {

@@ -19,6 +19,9 @@
   "builtInWings": [
     "aEP_fga_shuangshen3_wing"
   ],
+  "builtInWeapons": {
+    "POINTER": "aEP_fga_shuangshen_pointer",
+  },
   "weaponSlots": [
     {
       "id": "WS0001",
@@ -71,6 +74,15 @@
       "arc": 0,
       "angle": 0,
       "locations": [37, -0]
+    },
+    {
+      "id": "POINTER",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-7, -0]
     }
   ],
   "engineSlots": [

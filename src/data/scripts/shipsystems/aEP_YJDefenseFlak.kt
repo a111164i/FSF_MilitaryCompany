@@ -106,9 +106,9 @@ class aEP_YJDefenseFlak : BaseShipSystemScript() {
     timeEject -= amount
     timeEject = timeEject.coerceAtLeast(0f)
     if(effectLevel >= 1f){
-      timeEject = 2.5f
+      timeEject = 1.5f
     }
-    if(timeEject < 2f && timeEject > 0f){
+    if(timeEject < 1f && timeEject > 0f){
 
       smokeTracker.advance(amount)
       if(smokeTracker.intervalElapsed()) {

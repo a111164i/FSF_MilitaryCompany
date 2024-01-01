@@ -1,0 +1,39 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 0,
+    "fluxVents": 5,
+    "goalVariant": true,
+    "hullId": "aEP_des_youjiyan",
+    "hullMods": [
+        "unstable_injector",
+        "aEP_EliteShip",
+        "shield_shunt",
+        "armoredweapons",
+        "targetingunit",
+        "militarized_subsystems",
+        "assault_package"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_youjiyan_Def",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0028": "heavymauler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "flak"}
+        }
+    ]
+}

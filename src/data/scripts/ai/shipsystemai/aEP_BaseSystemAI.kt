@@ -10,6 +10,10 @@ import org.lwjgl.util.vector.Vector2f
 
 open class aEP_BaseSystemAI : ShipSystemAIScript {
 
+  companion object{
+
+  }
+
   lateinit var engine: CombatEngineAPI
   lateinit var system: ShipSystemAPI
   lateinit var ship: ShipAPI

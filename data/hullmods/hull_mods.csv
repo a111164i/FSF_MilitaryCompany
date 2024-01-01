@@ -52,7 +52,7 @@ Shield damage taken %s, all ballistic/energy weapon flux cost %s, max shield act
 Titanic Killer,aEP_TitanicKiller,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TitanicKiller,"A dreadnought is born to defeat a qualified opponent.
 
 According to hullsize, if the target's base DP is above certain start point, for every few DP above, damage %s per step, to the max of %s",,graphics/aEP_hullmods/aEP_titanic_killer.png,,
-Twin Fighter,aEP_TwinFighter,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,"The Head module at front part of this ship is a individual fighter, which can be launched to coordinately attack target at flank",,graphics/aEP_hullmods/aEP_twin_fighter.png,,
+Twin Fighter,aEP_TwinFighter,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,"The Gunnery module at front part of this ship is a individual fighter, which can be launched to coordinately attack target at flank",,graphics/aEP_hullmods/aEP_twin_fighter.png,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,,,

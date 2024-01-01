@@ -1,0 +1,47 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 17,
+    "fluxVents": 18,
+    "goalVariant": true,
+    "hullId": "aEP_cru_lengshe",
+    "hullMods": [
+        "adaptive_coils",
+        "targetingunit"
+    ],
+    "modules": [{"FRONT": "aEP_cru_lengshe_front_Standard"}],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_lengshe_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_b_l_dg3"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0010": "aEP_m_s_fluxtube",
+                "WS0011": "aEP_m_s_fluxtube"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "heavymauler",
+                "WS0008": "heavymauler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightneedler",
+                "WS0002": "lightneedler",
+                "WS0005": "lightneedler"
+            }
+        }
+    ]
+}

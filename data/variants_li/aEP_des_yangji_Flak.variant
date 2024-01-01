@@ -1,0 +1,52 @@
+{
+    "displayName": "Flak",
+    "fluxCapacitors": 20,
+    "fluxVents": 13,
+    "goalVariant": true,
+    "hullId": "aEP_des_yangji",
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "frontemitter",
+        "converted_hangar",
+        "pointdefenseai"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_yangji_Flak",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "aEP_b_s_h37"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL01": "heavymg",
+                "SIDER01": "heavymg"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_b_m_flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL04": "aEP_ftr_sup_shield_gun",
+                "SIDER04": "aEP_ftr_sup_shield_gun",
+                "WS0003": "aEP_ftr_sup_shield_gun",
+                "WS0004": "aEP_ftr_sup_shield_gun",
+                "WS0005": "aEP_ftr_sup_shield_gun",
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun",
+                "WS0011": "aEP_ftr_sup_shield_gun",
+                "WS0012": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ],
+    "wings": ["broadsword_wing"]
+}

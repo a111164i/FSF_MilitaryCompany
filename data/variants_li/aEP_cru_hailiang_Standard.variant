@@ -1,0 +1,32 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 9,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_cru_hailiang",
+    "hullMods": ["unstable_injector"],
+    "modules": [
+        {"MD01": "aEP_cru_hailiang3_Standard"},
+        {"MD03": "aEP_cru_hailiang4_Standard"},
+        {"MD02": "aEP_cru_hailiang4_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_hailiang_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "heavymauler",
+                "WS0006": "heavymauler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "devastator"}
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

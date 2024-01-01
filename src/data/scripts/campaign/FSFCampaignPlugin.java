@@ -9,6 +9,7 @@ import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
+import com.fs.starfarer.api.util.Misc;
 import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
 import data.scripts.FSFModPlugin;
@@ -106,10 +107,24 @@ public class FSFCampaignPlugin implements EveryFrameScript {
     }
 
     //检测magicBounty，给势力加入一艘新船
+    String shipId = "aEP_fga_chichao";
     if(Global.getSector().getMemoryWithoutUpdate().contains("$aEP_MagicBounty01")
-            && (boolean)Global.getSector().getMemoryWithoutUpdate().get("$aEP_MagicBounty01")){
+      && (boolean)Global.getSector().getMemoryWithoutUpdate().get("$aEP_MagicBounty01")
+      && !fsf.getMemoryWithoutUpdate().contains("$added_"+shipId)){
 
-      String shipId = "aEP_fga_chichao";
+      fsf.getMemoryWithoutUpdate().set("$added_"+shipId,true);
+      if(!fsf.getKnownShips().contains(shipId)) fsf.getKnownShips().add(shipId);
+      if(!fsfAdv.getKnownShips().contains(shipId)) fsfAdv.getKnownShips().add(shipId);
+    }
+
+    //检测玩家是否拥有双生，给势力加入一艘新船
+    shipId = "aEP_fga_shuangshen";
+    if(aEP_Tool.isShipInPlayerHand(shipId)
+        && !fsf.getMemoryWithoutUpdate().contains("$added_"+shipId)){
+
+      fsf.getMemoryWithoutUpdate().set("$added_"+shipId,true);
+      Global.getSettings().getHullSpec(shipId).addTag("FSF_bp");
+      Global.getSettings().getHullSpec(shipId).addTag("FSF_advancebp");
       if(!fsf.getKnownShips().contains(shipId)) fsf.getKnownShips().add(shipId);
       if(!fsfAdv.getKnownShips().contains(shipId)) fsfAdv.getKnownShips().add(shipId);
     }

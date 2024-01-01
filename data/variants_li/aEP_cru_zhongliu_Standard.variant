@@ -1,0 +1,44 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 29,
+    "goalVariant": true,
+    "hullId": "aEP_cru_zhongliu",
+    "hullMods": [
+        "aEP_EliteShip",
+        "targetingunit",
+        "ballistic_rangefinder",
+        "aEP_ShieldFloating"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_zhongliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "heavymauler",
+                "WS0002": "heavymauler"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0008": "aEP_m_s_fluxtube",
+                "WS0009": "aEP_m_s_fluxtube",
+                "WS0010": "aEP_m_s_fluxtube"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler",
+                "WS0006": "lightneedler"
+            }
+        }
+    ]
+}

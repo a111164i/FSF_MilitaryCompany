@@ -1,0 +1,26 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 25,
+    "fluxVents": 3,
+    "goalVariant": true,
+    "hullId": "aEP_cru_pubu",
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "frontemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_pubu_Standard",
+    "weaponGroups": [{
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {"WS0007": "aEP_b_m_flak"}
+    }],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "warthog_wing",
+        "warthog_wing"
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 23,
+    "fluxVents": 35,
+    "goalVariant": true,
+    "hullId": "aEP_cap_biaobing",
+    "hullMods": [
+        "stabilizedshieldemitter",
+        "hardenedshieldemitter",
+        "missleracks",
+        "converted_hangar"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_biaobing_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0011": "hil",
+                "WS0021": "aEP_cap_biaobing_radar"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "squall",
+                "WS0008": "squall"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0009": "hveldriver",
+                "WS0010": "hveldriver"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "gravitonbeam",
+                "WS0002": "gravitonbeam",
+                "WS0003": "gravitonbeam",
+                "WS0004": "gravitonbeam",
+                "WS0005": "ionbeam",
+                "WS0006": "ionbeam"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0012": "mininglaser",
+                "WS0013": "mininglaser",
+                "WS0014": "mininglaser",
+                "WS0015": "mininglaser",
+                "WS0016": "mininglaser",
+                "WS0019": "mininglaser",
+                "WS0020": "mininglaser",
+                "WS0022": "mininglaser"
+            }
+        }
+    ],
+    "wings": ["broadsword_wing"]
+}

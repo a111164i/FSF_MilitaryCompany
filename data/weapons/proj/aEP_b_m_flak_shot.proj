@@ -21,15 +21,15 @@
 	"pixelsPerTexel":5.0,
 	#"bulletSprite":"graphics/missiles/shell_large_blue.png",
 	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
-					"range":45,
+					"range":40,
 					#"vsMissileRange":100,
 					#要在爆炸中使用onHit一定要同时使用onExplosion，在onExplosion中将projectileId放入customData
 					"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
           "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 					"explosionSpec":{"duration":0.0001f,
 						"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-						"radius":125,
-						"coreRadius":45, # full damage within core radius - also equal to proximity fuse range
+						"radius":120,
+						"coreRadius":60, # full damage within core radius - also equal to proximity fuse range
 						"collisionClass":PROJECTILE_FF,
 						"collisionClassByFighter":PROJECTILE_FIGHTER,
 						"particleSizeMin":5.0,

@@ -1,0 +1,39 @@
+{
+    "displayName": "Support",
+    "fluxCapacitors": 20,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_des_shuishi",
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "expanded_deck_crew",
+        "unstable_injector"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_shuishi_Support",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "lightac"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_b_m_flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630"
+            }
+        }
+    ],
+    "wings": [
+        "warthog_wing",
+        "warthog_wing"
+    ]
+}

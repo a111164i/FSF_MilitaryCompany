@@ -1,12 +1,13 @@
 {
-  "id": "aEP_fga_shuangshen_main_cover",
+  "id": "aEP_fga_shuangshen3_wing_r",
   "specClass": "beam",
   "type": "DECORATIVE",
   "size": "MEDIUM",
   "collisionClass": "RAY",
   "collisionClassByFighter": "RAY_FIGHTER",
-  "turretSprite": "graphics/ships/aEP_fga_shuangshen2.png",
-  "hardpointSprite": "graphics/ships/aEP_fga_shuangshen2.png",
+  "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
+  "turretSprite": "graphics/weapons/aEP_fga_shuangsheng3/wing_r.png",
+  "hardpointSprite": "graphics/weapons/aEP_fga_shuangsheng3/wing_r.png",
   "showDamageWhenDecorative": true,
   "glowColor": [
     255,

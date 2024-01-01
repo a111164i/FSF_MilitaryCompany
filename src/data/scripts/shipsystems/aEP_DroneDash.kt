@@ -15,12 +15,11 @@ import java.awt.Color
 class aEP_DroneDash : BaseShipSystemScript() {
   companion object {
     const val MAX_SPEED_BONUS = 200f
-    const val TURN_RATE_BONUS = 250f
-    const val ROTATE_SPEED = 20f
-    const val END_BUFF_TIME = 0.5f
-    const val END_TURN_RATE_BONUS = 180f
-    const val END_ACC_BONUS = 50f
-    const val DAMAGE_TAKEN = 0.35f
+    const val TURNRATE_BONUS = 60f
+    const val DAMAGE_TAKEN = 0.25f
+    const val FLUX_PERCENT_BONUS = 100f
+
+    const val ROF_BONUS_FLAT = 2f
 
     val AFTER_MERGE_COLOR = Color(255, 155, 155, 250)
     val SMOKE_MERGE_COLOR = Color(255, 250, 250, 125)
@@ -35,27 +34,31 @@ class aEP_DroneDash : BaseShipSystemScript() {
     val amount = Global.getCombatEngine().elapsedInLastFrame * stats.timeMult.modifiedValue
     stats.maxSpeed.modifyFlat(id, Math.max(effectLevel, 0.5f) * MAX_SPEED_BONUS)
     stats.acceleration.modifyFlat(id, MAX_SPEED_BONUS * 2f)
-    stats.deceleration.modifyMult(id, 0f)
+    //stats.deceleration.modifyMult(id, 0f)
+    stats.maxTurnRate.modifyFlat(id, TURNRATE_BONUS)
+    stats.turnAcceleration.modifyFlat(id, TURNRATE_BONUS * 2f)
+
     stats.engineDamageTakenMult.modifyMult(id, DAMAGE_TAKEN)
     stats.armorDamageTakenMult.modifyMult(id, DAMAGE_TAKEN)
     stats.hullDamageTakenMult.modifyMult(id, DAMAGE_TAKEN)
-    ship.blockCommandForOneFrame(ShipCommand.ACCELERATE_BACKWARDS)
-    ship.blockCommandForOneFrame(ShipCommand.DECELERATE)
-    ship.blockCommandForOneFrame(ShipCommand.STRAFE_RIGHT)
-    ship.blockCommandForOneFrame(ShipCommand.STRAFE_LEFT)
-    ship.giveCommand(ShipCommand.ACCELERATE, null, 0)
-    val angleAndSpeed = velocity2Speed(ship.velocity)
-    angleAndSpeed.y += ship.acceleration * amount
-    ship.velocity.set(speed2Velocity(angleAndSpeed.x, angleAndSpeed.y))
+
+    stats.ballisticRoFMult.modifyFlat(id, ROF_BONUS_FLAT)
+    stats.energyRoFMult.modifyFlat(id, ROF_BONUS_FLAT)
+
+    stats.ballisticWeaponFluxCostMod.modifyMult(id, 1f/ROF_BONUS_FLAT)
+    stats.energyWeaponFluxCostMod.modifyMult(id, 1f/ROF_BONUS_FLAT)
+
+    stats.fluxDissipation.modifyPercent(ID, FLUX_PERCENT_BONUS)
 
 
     //下面只在完全激活时跑一次
     if (effectLevel < 1) return
     val engine = Global.getCombatEngine()
-    //速度归0
-    ship.velocity.set(Vector2f(0f, 0f))
+    //初始速度
+    ship.velocity.scale(0.1f)
+    ship.velocity.set(speed2Velocity(ship.facing, MAX_SPEED_BONUS))
     //加烟
-    val num = 16
+    val num = 12
     for (i in 0 until num) {
       engine.addNebulaSmokeParticle(
         MathUtils.getRandomPointInCircle(ship.location, ship.collisionRadius),
@@ -98,7 +101,6 @@ class aEP_DroneDash : BaseShipSystemScript() {
       false,
       true
     )
-    val m: MissileAPI? = null
   }
 
   override fun unapply(stats: MutableShipStatsAPI?, id: String) {
@@ -108,37 +110,24 @@ class aEP_DroneDash : BaseShipSystemScript() {
     stats.maxSpeed.unmodify(id)
     stats.acceleration.unmodify(id)
     stats.deceleration.unmodify(id)
+    //stats.deceleration.modifyMult(id, 0f)
+    stats.maxTurnRate.unmodify(id)
+    stats.turnAcceleration.unmodify(id)
+
     stats.engineDamageTakenMult.unmodify(id)
     stats.armorDamageTakenMult.unmodify(id)
     stats.hullDamageTakenMult.unmodify(id)
 
-    aEP_CombatEffectPlugin.addEffect(aEP_ExtraTurnRate(END_BUFF_TIME,ship))
+    stats.ballisticRoFMult.modifyFlat(id, 0f)
+    stats.energyRoFMult.modifyFlat(id, 0f)
+
+    stats.ballisticWeaponFluxCostMod.modifyMult(id, 1f)
+    stats.energyWeaponFluxCostMod.modifyMult(id, 1f)
+
+
+    stats.fluxDissipation.modifyPercent(ID, 0f)
 
   }
 
-  internal inner class aEP_ExtraTurnRate(time:Float,ship: ShipAPI) : aEP_BaseCombatEffect(time,ship) {
-    override fun init(entity: CombatEntityAPI?) {
-      super.init(entity)
-      val ship = (entity?: return)as ShipAPI
-      ship.mutableStats.maxTurnRate.modifyFlat(ID, END_TURN_RATE_BONUS)
-      ship.mutableStats.turnAcceleration.modifyFlat(ID, END_TURN_RATE_BONUS * 2)
-      ship.mutableStats.acceleration.modifyPercent(ID, END_ACC_BONUS)
-      ship.mutableStats.deceleration.modifyPercent(ID, END_ACC_BONUS)
-    }
-
-    override fun advanceImpl(amount: Float) {
-      val ship = (entity?: return)as ShipAPI
-      ship.setJitterUnder(ID, Color(255, 155, 155, 255), 1f, 18, 1.5f)
-    }
-
-    override fun readyToEnd() {
-      val ship = entity as ShipAPI
-      ship.mutableStats.maxTurnRate.unmodify(ID)
-      ship.mutableStats.turnAcceleration.unmodify(ID)
-      ship.mutableStats.acceleration.unmodify(ID)
-      ship.mutableStats.deceleration.unmodify(ID)
-    }
-
-  }
 
 }

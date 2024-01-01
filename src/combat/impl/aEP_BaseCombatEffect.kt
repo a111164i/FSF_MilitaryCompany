@@ -87,17 +87,21 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
    */
   override fun advance(amount: Float) {
     //若 entity不为空，则进行 entity检测，不过就直接结束
+    var timeMult = 1f
     if(entity != null) {
       loc.set(entity?.location?:Vector2f(0f,0f))
       if(aEP_Tool.isDead(entity as CombatEntityAPI)){
         shouldEnd = true
+      }
+      if(entity is ShipAPI){
+        //timeMult = (entity as ShipAPI).mutableStats.timeMult.modifiedValue
       }
 
     }
 
     if(shouldEnd) return
 
-    time += amount
+    time += amount * timeMult
     if(lifeTime > 0f){
       time = MathUtils.clamp(time,0f,lifeTime)
     }

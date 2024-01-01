@@ -1,0 +1,57 @@
+{
+  "id": "aEP_fga_shuangshen_pointer",
+  "specClass": "beam",
+  "type": "SYSTEM",
+  "size": "SMALL",
+  "collisionClass": "NONE",
+  "collisionClassByFighter": "NONE",
+  "turretSprite": "graphics/weapons/aEP_e_s_300k/tr.png",
+  "turretGlowSprite": "graphics/weapons/aEP_e_s_300k/tr_glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_e_s_300k/tr.png",
+  "hardpointGlowSprite": "graphics/weapons/aEP_e_s_300k/hp_glow.png",
+  "beamEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
+  "glowColor": [
+    50,
+    100,
+    255,
+    175
+  ],
+  "hitGlowRadius": 0,
+  "turretOffsets": [
+    0,0
+  ],
+  "turretAngleOffsets": [
+    0,
+  ],
+  "hardpointOffsets": [
+    0,0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "fringeColor": [
+    100,
+    150,
+    255,
+    255
+  ],
+  "coreColor": [
+    150,
+    200,
+    255,
+    255
+  ],
+  "darkCore": false,
+  "convergeOnPoint": true,
+  "width": 10,
+  "textureType": SMOOTH,
+ # "textureType":["graphics/weapons/aEP_e_s_300k/core.png","graphics/weapons/aEP_e_s_300k/core.png"],
+  #fringe, core
+  "textureScrollSpeed": 480,
+  "pixelsPerTexel": 1,
+  "pierceSet": [
+  ],
+  "fireSoundOne": "targeting_laser_burst",
+  "fireSoundTwo": "pd_laser_loop"
+}

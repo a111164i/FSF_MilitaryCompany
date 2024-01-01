@@ -155,8 +155,10 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
         "Energy: "  + (glowLevel * 100f ).toInt() + "%",  //data
         false)
 
+      //维持扫射magicUI
       MagicUI.drawHUDStatusBar(ship,
         glowLevel, null,null, 0f ,hullmodName, String.format("%.1f",glowLevel*100f)+"%",true )
+
     }
   }
 }

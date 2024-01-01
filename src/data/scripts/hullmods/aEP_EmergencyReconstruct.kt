@@ -611,8 +611,14 @@ class RepairSideFrameUp(
           topRailStartPoint, 180f + shipFacingOffset, expandLevel * moveDist
         )
         MagicRender.battlespace(
-          railL,railPositionL,randomVel, Vector2f(20f,60f),Misc.ZERO,-90f + shipFacingOffset,randomAngleSpeed,
-          Color.white,false,
+          railL,
+          railPositionL,
+          randomVel,
+          Vector2f(20f,60f),
+          Misc.ZERO,
+          -90f + shipFacingOffset,randomAngleSpeed,
+          Color.white,
+          false,
           0f,randomLifeTimeLeft,0.5f)
 
         val railPositionR = aEP_Tool.getExtendedLocationFromPoint(

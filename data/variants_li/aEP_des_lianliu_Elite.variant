@@ -1,0 +1,30 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 20,
+    "fluxVents": 18,
+    "goalVariant": true,
+    "hullId": "aEP_des_lianliu",
+    "hullMods": [
+        "aEP_EliteShip",
+        "targetingunit",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_lianliu_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_m_k125",
+                "WS0003": "aEP_b_m_k125"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_b_m_h88"}
+        }
+    ]
+}

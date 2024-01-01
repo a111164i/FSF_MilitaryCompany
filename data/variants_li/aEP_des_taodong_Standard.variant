@@ -1,0 +1,30 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 20,
+    "fluxVents": 9,
+    "goalVariant": true,
+    "hullId": "aEP_des_taodong",
+    "hullMods": [
+        "aEP_EliteShip",
+        "unstable_injector",
+        "aEP_ShieldFloating"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_taodong_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0004": "devastator"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "heavyneedler",
+                "WS0002": "heavyneedler"
+            }
+        }
+    ]
+}

@@ -15,6 +15,7 @@ import com.fs.starfarer.api.util.WeightedRandomPicker
 import com.fs.starfarer.combat.entities.DamagingExplosion
 import combat.impl.VEs.*
 import combat.impl.aEP_BaseCombatEffect
+import combat.impl.aEP_BaseCombatEffectWithKey
 import combat.impl.proj.aEP_StickOnHit
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
@@ -34,6 +35,7 @@ import combat.util.aEP_Tool.Util.spawnSingleCompositeSmoke
 import combat.util.aEP_Tool.Util.speed2Velocity
 import combat.util.aEP_Tool.Util.velocity2Speed
 import data.scripts.hullmods.aEP_ReactiveArmor
+import data.scripts.hullmods.aEP_TwinFighter
 import data.scripts.shipsystems.aEP_WeaponReset
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
 import data.scripts.weapons.aEP_ftr_bom_nuke_bomb_shot1.Companion.JITTER_COLOR
@@ -4965,7 +4967,6 @@ class aEP_des_yangji_flak_shot : Effect() {
 
   companion object{
     var EXTRA_DAMAGE = 100f
-
   }
 
   init{
@@ -4976,7 +4977,6 @@ class aEP_des_yangji_flak_shot : Effect() {
       i += 1
     }
   }
-
 
   var num = 1
   var speedVariant = 20f
@@ -5015,10 +5015,10 @@ class aEP_des_yangji_flak_shot : Effect() {
       0f, false, false, projectile.source)
   }
 }
-//洋脊gp80舰队防空
+//gp80舰队防空
 class aEP_b_m_flak_shot : Effect(){
   companion object{
-    var EXTRA_DAMAGE = 100f
+    var EXTRA_DAMAGE = 200f
   }
 
   init{
@@ -5050,7 +5050,7 @@ class aEP_b_m_flak_shot : Effect(){
   }
 
   fun dealExtraDamage(target: CombatEntityAPI, damage:Float, source: ShipAPI?, point: Vector2f){
-    addEffect(DelayDamage(target, getRandomNumberInRange(0.4f,0.8f), damage, source, point))
+    addEffect(DelayDamage(target, getRandomNumberInRange(0.4f,1f), damage, source, point))
   }
 }
 //弹丸拖尾+消失后的视觉特效
@@ -6470,7 +6470,6 @@ class debug(val m:MissileAPI ): aEP_BaseCombatEffect(0f,m){
   }
 }
 
-
 //战机武器无视初速度，部分战机太快同时安装的武器弹道太慢
 //铅垂
 class aEP_ftr_ftr_hvfighter_gun_shot: Effect(){
@@ -6486,4 +6485,109 @@ class aEP_ftr_bom_attacker_gun_shot : Effect(){
     projectile.velocity.set(aEP_Tool.ignoreShipInitialVel(projectile, weapon.ship.velocity))
   }
 
+}
+
+//双生 战机指示
+class aEP_fga_shuangshen_pointer :EveryFrame(), BeamEffectPluginWithReset{
+
+  //--------------------------------------------//
+  //everyFrame 部分
+  override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
+    aEP_Tool.keepWeaponAlive(weapon)
+    //非玩家操控无法开火，不在选中的武器组内也不会自动开火
+    if(weapon.ship.shipAI != null
+      || weapon.ship.getWeaponGroupFor(weapon) != weapon.ship.selectedGroupAPI){
+      weapon.setForceNoFireOneFrame(true)
+    }
+  }
+
+  //--------------------------------------------//
+  //beamPlugin 部分
+  var didPut = false
+  var burstElapsed = 0f
+  override fun advance(amount: Float, engine: CombatEngineAPI, beam: BeamAPI) {
+    burstElapsed +=amount
+
+    //闪光
+    Global.getCombatEngine().addSmoothParticle(
+      beam.to,
+      Misc.ZERO,
+      MathUtils.getRandomNumberInRange(50f,200f),
+      MathUtils.getRandomNumberInRange(0f,1f),
+      Global.getCombatEngine().elapsedInLastFrame *2f,
+      beam.fringeColor)
+    if(burstElapsed > 0.1f && !didPut){
+      didPut = true
+      val ftr = aEP_TwinFighter.getFtr(beam.source)
+      ftr?.run{
+
+        aEP_BaseCombatEffect.addOrRefreshEffect(ftr,ForceFighterTo.ID,
+          {
+
+          },
+          {
+            val c = ForceFighterTo(ftr, Vector2f(beam.to))
+            c.setKeyAndPutInData(ForceFighterTo.ID)
+            aEP_CombatEffectPlugin.addEffect(c)
+          })
+
+      }
+
+    }
+  }
+
+  override fun reset() {
+    didPut = false
+    burstElapsed = 0f
+  }
+}
+class ForceFighterTo(val ftr:ShipAPI, val toLoc:Vector2f): aEP_BaseCombatEffectWithKey(6f,ftr){
+  companion object{
+    const val ID = "aEP_ForceFighterTo"
+  }
+
+  val sprite = Global.getSettings().getSprite("aEP_FX","frame")
+  var didReach = false
+  var timeAfterReach = 0f
+  override fun advanceImpl(amount: Float) {
+    //每帧级别，优先级最高
+    ftr.shipAI = null
+
+    //如果检测到中断key，立刻中断
+    if(!ftr.customData.containsKey(ID)) {
+      shouldEnd = true
+      return
+    }
+
+    val dist = MathUtils.getDistance(ftr.location,toLoc)
+    if(dist < 50f){
+      didReach = true
+      aEP_Tool.setToPosition(ftr, toLoc)
+    }else if(dist < 250f){
+      aEP_Tool.setToPosition(ftr, toLoc)
+    }else{
+      aEP_Tool.moveToPosition(ftr, toLoc)
+    }
+
+    if(didReach){
+      timeAfterReach += amount
+      if(timeAfterReach > 0.5f){
+        shouldEnd = true
+      }
+    }
+
+    if(Global.getCombatEngine().playerShip == ftr.wing.sourceShip){
+      //渲染原图
+      val size = 50f
+      MagicRender.singleframe(sprite,toLoc,
+        Vector2f(size,size),
+        0f,
+        Color.yellow,
+        false)
+    }
+  }
+
+  override fun readyToEndImpl() {
+    ftr.resetDefaultAI()
+  }
 }

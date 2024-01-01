@@ -1,0 +1,65 @@
+{
+    "displayName": "New Variant",
+    "fluxCapacitors": 0,
+    "fluxVents": 24,
+    "goalVariant": true,
+    "hullId": "aEP_typeR28",
+    "hullMods": [
+        "solar_shielding",
+        "fluxbreakers",
+        "autorepair",
+        "converted_hangar",
+        "frontshield",
+        "adaptiveshields"
+    ],
+    "permaMods": [
+        "solar_shielding",
+        "fluxbreakers",
+        "autorepair"
+    ],
+    "sMods": [],
+    "variantId": "aEP_typeR28_variant",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0010": "aEP_m_s_era"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_m_s_era"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "mark9"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "mark9"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "heavyneedler"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0004": "arbalest"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "arbalest",
+                "WS0006": "arbalest",
+                "WS0007": "arbalest",
+                "WS0008": "lightdualac"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

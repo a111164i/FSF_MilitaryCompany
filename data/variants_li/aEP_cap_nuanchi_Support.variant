@@ -1,0 +1,60 @@
+{
+    "displayName": "Support",
+    "fluxCapacitors": 0,
+    "fluxVents": 19,
+    "goalVariant": true,
+    "hullId": "aEP_cap_nuanchi",
+    "hullMods": [
+        "unstable_injector",
+        "eccm",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_nuanchi_Support",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0018": "aEP_m_l_harpoon",
+                "WS0019": "aEP_m_l_harpoon"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "dragon",
+                "WS0003": "dragon",
+                "WS0004": "dragon",
+                "WS0005": "dragon",
+                "WS0014": "aEP_m_s_breachdoor",
+                "WS0015": "aEP_m_s_breachdoor",
+                "WS0016": "aEP_m_s_breachdoor",
+                "WS0017": "aEP_m_s_breachdoor",
+                "WS0020": "aEP_m_s_breachdoor",
+                "WS0021": "aEP_m_s_breachdoor"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0036": "aEP_cap_nuanchi_missile"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0009": "aEP_ftr_sup_shield_gun",
+                "WS0012": "aEP_b_m_flak"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0038": "aEP_cap_requan_missile"}
+        }
+    ]
+}

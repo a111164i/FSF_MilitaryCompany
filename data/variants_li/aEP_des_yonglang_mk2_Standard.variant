@@ -1,0 +1,40 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 1,
+    "goalVariant": true,
+    "hullId": "aEP_des_yonglang_mk2",
+    "hullMods": [],
+    "modules": [
+        {"L": "aEP_des_yonglang_mk2_l_Standard"},
+        {"R": "aEP_des_yonglang_mk2_r_Standard"},
+        {"M": "aEP_des_yonglang_mk2_m_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_yonglang_mk2_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS00011": "aEP_des_yonglang_mk2_teslagun",
+                "WS0002": "lightneedler",
+                "WS0003": "lightneedler",
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler",
+                "WS0010": "amblaster"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_s_bomblance",
+                "WS0006": "aEP_m_s_bomblance",
+                "WS0007": "aEP_m_s_bomblance",
+                "WS0008": "aEP_m_s_bomblance"
+            }
+        }
+    ]
+}

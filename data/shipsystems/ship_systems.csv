@@ -37,7 +37,7 @@ Crowd Control System,aEP_CrowdControl,,,,,,,,3,0.05,0.5,5,0.5,,,,,,,,,,,,,,graph
 Gravity Pin,aEP_Rapture,,,,,,,,3,0.05,0.5,0,0.5,1,,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png,
 Defense Mode,aEP_FortressShield,160,,,,,,,,,1,,1,,TRUE,,TRUE,TRUE,TRUE,,,,,,,,graphics/icons/hullsys/fortress_shield.png,
 Lidar Array,aEP_LidarArray,1,,,,,,,,,2,5,2,9,,,,,,,,,,,,,graphics/icons/hullsys/fortress_shield.png,
-Coordinated Combat,aEP_CoordinatedCombat,,,,,,,,6,1,,,0.1,0.1,,,,,,,,,,,,,graphics/icons/hullsys/fortress_shield.png,
+Coordinated Combat,aEP_CoordinatedCombat,,,,,,,,6,0.1,,,0.1,0.1,,,,,,,,,,,,,graphics/icons/hullsys/fortress_shield.png,
 Composite Flare,aEP_FlareLaunch,,,,,,,,4,0.09091,0.1,,1,1,,,,,,,,,,,,,graphics/icons/hullsys/fortress_shield.png,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,

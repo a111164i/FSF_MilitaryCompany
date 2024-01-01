@@ -1,0 +1,39 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 0,
+    "fluxVents": 17,
+    "goalVariant": true,
+    "hullId": "aEP_cap_shangshengliu",
+    "hullMods": [
+        "heavyarmor",
+        "targetingunit",
+        "shield_shunt",
+        "armoredweapons"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_shangshengliu_Def",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "heavymauler",
+                "WS0007": "heavymauler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0014": "aEP_b_m_k125",
+                "WS0015": "aEP_b_m_k125"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "devastator"}
+        }
+    ]
+}

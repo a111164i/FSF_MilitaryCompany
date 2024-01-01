@@ -2,8 +2,8 @@
 	"id":"aEP_CoordinatedCombat",
 	"type":"STAT_MOD",
 	#"aiType":"WEAPON_BOOST",
-	"aiType":"NONE",
-	#"aiScript":"data.scripts.ai.shipsystemai.aEP_AntiPhaseDroneAI",
+	"aiType":"CUSTOM",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_CoordinatedCombatAI",
 	"statsScript":"data.scripts.shipsystems.aEP_CoordinatedCombat",
    
 	"runScriptWhileIdle":false,  # this means unapply() never gets called

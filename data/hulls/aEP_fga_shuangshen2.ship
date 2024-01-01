@@ -12,13 +12,12 @@
   "shieldRadius": 33,
   "viewOffset": 0,
   "builtInMods": [
-    "reduced_explosion",
-    "always_detaches",
+    "aEP_ProjectileDenialShield",
     "aEP_Module",
   ],
   "builtInWeapons": {
-    "COVER": "aEP_fga_shuangshen_main_cover",
-    "LIDAR": "aEP_cru_pingding_lidardish"
+    "COVER": "aEP_fga_shuangshen3_main_cover",
+
   },
   "weaponSlots": [
     {

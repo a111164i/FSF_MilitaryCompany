@@ -1,0 +1,31 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 10,
+    "fluxVents": 8,
+    "goalVariant": true,
+    "hullId": "aEP_des_lianliu",
+    "hullMods": [
+        "converted_hangar",
+        "aEP_ShieldControlled",
+        "targetingunit"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_lianliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "heavymauler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_b_m_k125",
+                "WS0003": "aEP_b_m_k125"
+            }
+        }
+    ],
+    "wings": ["broadsword_wing"]
+}
