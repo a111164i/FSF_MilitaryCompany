@@ -1517,6 +1517,7 @@ class aEP_Module : aEP_BaseHullMod() {
     notCompatibleList.add(HullMods.FRONT_SHIELD_CONVERSION)
     notCompatibleList.add(HullMods.OMNI_SHIELD_CONVERSION)
     notCompatibleList.add(HullMods.SAFETYOVERRIDES)
+    notCompatibleList.add("escort_package")
   }
 
   var ID: String = "aEP_Module"

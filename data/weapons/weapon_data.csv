@@ -61,7 +61,7 @@ EB-300k Multi-purpose Laser,aEP_e_s_300k,"PD, ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_
 630 Close-in Defense,aEP_b_s_630,PD ,FRAGMENTATION,5,350,100,,45,,,2,1,1200,,,0.25,0.45,20,0.05,,,,,0,2,0.04,10,,,FSF Manufacture,PD,,,1,250,"pd7, FSF_bp",,,1,,,,,,,,,
 X20 Pom-Pom Array,aEP_b_s_pom,"PD, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,6,500,120,,75,,,20,,500,,,0,2.6,4,0.125,,,,,10,20,1,40,,,FSF Manufacture,PD,,Projectile can go through allies,1,250,"pd8, FSF_bp",,,1,,,,,,,,,
 H-37 Anti-ship Gun,aEP_b_s_h37,,HIGH_EXPLOSIVE,5,700,12,,120,,,160,5,700,,,0,1.8,2,0.2,,,,,0,15,3,30,,,FSF Manufacture,Anti-armor,,,1,250,"he7, FSF_bp",,,0,,,,,,,,,
-K-9 Fighter LMG,aEP_ftr_sup_shield_gun,"PD, PD_ONLY",KINETIC,2,450,75,,12,,,5,,1600,,,0,1.05,12,0.05,,,,,0,4,1,10,,,FSF Manufacture,PD,,,1,200,"pd4, FSF_bp",,,0,,,,,,,,,
+K-9 Fighter LMG,aEP_ftr_sup_shield_gun,PD,KINETIC,2,450,75,,12,,,5,,1600,,,0,1.05,12,0.05,,,,,0,4,1,10,,,FSF Manufacture,PD,,,1,200,"pd4, FSF_bp",,,0,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,#中武器,,,,,#双管60单管40，链炮30高打10重自7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#重迫11-针刺15,,,,,,,,,,,,
