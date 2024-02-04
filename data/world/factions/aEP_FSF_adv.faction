@@ -1,251 +1,254 @@
 {
-	id:"aEP_FSF_adv",
-	"color":[181,182,149,255],
-	"displayName":"FSF军事公司",
-	"displayNameWithArticle":"FSF军事公司",
-	"displayNameLong":"FSF军事公司",
-	"displayNameLongWithArticle":"FSF军事公司",
-	"entityNamePrefix":"FSF",
-	"personNamePrefix":"",
-	"personNamePrefixAOrAn":"a",
-	"displayNameIsOrAre":"is",
-	"logo":"graphics/aEP_factions/FSF.png",
-	"crest":"graphics/aEP_factions/crest_FSF.png",
-	"shipNamePrefix":"FSF",
-	"showInIntelTab":false,
-	"shipNameSources":{
-		"GREEK":0,
-		"CELTIC":0,
-		"SPACE":4,
-		"GENERAL":1,
-	},
-	"names":{
-		"modern":1,
-		"world":1,
-		"future":1,
-		"myth":1,
-	},
-	# variantOverrides restricts hulls to listed variants and adjusts their probability
-	# multiplier for how often hulls show up in the faction's fleets
-	"hullFrequency":{
-		"tags":{
-		},
-		"hulls":{
-			"aEP_des_youjiyan":0.25,
-			"aEP_des_youjiyan_mk2":0.25,
-			"aEP_cap_shangshengliu":0.25,
-			"aEP_cap_shangshengliu_mk2":0.25,
-
-		},
-	},
-	# ships the faction gets access to when importing S&W out-of-faction
-	# 注意更新以后要重写开档才生效，生成势力的时候读一次
-	"shipsWhenImporting":{
-		"tags":["midline_bp"],
-		"hulls":[
-		],
-	},
-	"knownShips":{
-		"tags":["base_bp","FSF_bp"],
-		"hulls":[	
-		],
-	},
-	# listing ships here will make the faction mostly use them even if other hulls become available
-	"priorityShips":{
-		"tags":["FSF_bp"],
-		"hulls":[
-				
-		],
-	},
-	"knownFighters":{
-		"tags":["base_bp", "FSF_bp"],
-		"fighters":[
-		],
-	},
-	"priorityFighters":{
-		"tags":["FSF_bp"],
-		"fighters":[
-		],
-	},
-	"knownWeapons":{
-		"tags":["base_bp", "midline_bp", "FSF_bp"],
-		"weapons":[
-			"lightneedler",
-			"railgun",
-			"vulcan",
-
-			"flak",
-			"dualflak",
-
-			"autopulse",
-			"gauss",
-			"mjolnir",
-			"devastator",
-
-			"hurricane",
-			"squall",
-			"locust",
-		],
-	},
-	"priorityWeapons":{
-		"tags":["FSF_bp"],
-		"weapons":[
-			"vulcan",
-			"dualflak",
-			"lightac",
-			"railgun",
-
-			"flak",
-
-			"mjolnir",
-		],
-	},
-	"knownHullMods":{
-		"tags":["base_bp", "independent", "FSF"],
-		"hullMods":[
-			"advancedshieldemitter", # accelerated
-			"turretgyros",
-			"armoredweapons",
-			"augmentedengines",
-			"autorepair",
-			"converted_hangar",
-			"eccm",
-			"ecm",
-			"expanded_deck_crew",
-			"magazines",
-			"missleracks",
-			"extendedshieldemitter",
-			"frontemitter",
-			"frontshield",  # makeshift
-			"hardenedshieldemitter",
-			"heavyarmor",
-			"insulatedengine",
-			"targetingunit",
-			"nav_relay",
-			"adaptiveshields", # omni
-			"operations_center",
-			"recovery_shuttles",
-			"fluxbreakers",
-			"stabilizedshieldemitter",
-			"surveying_equipment",
-			"hiressensors",
-			"efficiency_overhaul",
-			"ballistic_rangefinder",
-		],
-	},
-	"factionDoctrine":{
-		"warships":3,
-		"carriers":4,
-		"phaseShips":0,
-		
-		"officerQuality":4,
-		"shipQuality":4,
-		"numShips":3,
-		
-		"shipSize":4,
-		
-		"aggression":1,
-		
-		"combatFreighterProbability":0.25, 	# instead of some portion of the freighters in a fleet
-		"combatFreighterCombatUseFraction":0,	# as part of the normal combat lineup
-		"combatFreighterCombatUseFractionWhenPriority":0,   # as part of normal combat lineup, when marked as priority ship
-		"autofitRandomizeProbability":0.2,
-
-		"officerSkillsShuffleProbability":1f,
-		"officerSkills":[
-			"ballistic_mastery",
-			"ordnance_expert",
-			"missile_specialization",
-			"aEP_SkillAnalyze"
-		],
-
-
-		"commanderSkillsShuffleProbability":0,
-		"commanderSkills":[
-			"crew_training",
-			"officer_training",
-
-			"coordinated_maneuvers",
-			"electronic_warfare",
-
-			"carrier_group",
-			"fighter_uplink",
-
-			"flux_regulation",
-			"support_doctrine"
-		],
-	},
-	"illegalCommodities":[
-		"drugs",
-		"organs",
-		"ai_cores",	
-	],
-	"music":{
-			"theme":"aEP_fsf_enemy",
-			"market_neutral":"aEP_fsf_neutral",
-			"market_hostile":"aEP_fsf_enemy",
-			"market_friendly":"aEP_fsf_friendly",
-			"encounter_neutral":"aEP_fsf_neutral_fleet",
-			"encounter_hostile":"aEP_fsf_enemy_fleet",
-			"encounter_friendly":"aEP_fsf_friendly_fleet"
-	},
-	"internalComms":"aEP_FSF_internal",
-	"portraits":{
-		"standard_male":[	
-			"graphics/portraits/portrait_mercenary03.png",
-			"graphics/portraits/portrait43.png",
-			"graphics/portraits/portrait44.png",			
-			"graphics/portraits/portrait45.png",
-			"graphics/aEP_portraits/2.png",
-			"graphics/aEP_portraits/4.png"
-		],
-		"standard_female":[
-			"graphics/portraits/portrait_mercenary05.png",
-			"graphics/portraits/portrait27.png",
-			"graphics/portraits/portrait42.png",
-			"graphics/portraits/portrait46.png",
-			"graphics/portraits/portrait_league07.png",
-			"graphics/aEP_portraits/3.png",
-			"graphics/aEP_portraits/5.png"
-		],
-	},
-	"custom":{
-		"allowsTransponderOffTrade":false,
-		"offersCommissions":false,
-		"engagesInHostilities":true,
-		"postsNoBounties":false,
-		"buysAICores":true,
-		"AICoreValueMult":1.5,
-		"AICoreRepMult":1.5,
-		"buysSurveyData":true,
-		"hostilityImpactOnGrowth":false,
-		"caresAboutAtrocities":true,
-		"punitiveExpeditionData":{
-					"vsCompetitors":false,
-					"vsFreePort":false,
-					"canBombard":false,
-					"territorial":true,
-		},
-	},
-
-	"ranks":{
-		"ranks":{
-			"factionLeader":{"name":"Board Representative"},
-		},
-		"posts":{
-			"factionLeader":{"name":"Board Representative"},
-			"aEP_consultant":{"name":"Business Manager"},
-			"aEP_researcher":{"name":"Program Director"},
-		},
-	},
-
-	"fleetTypeNames":{
-		"patrolSmall":"Patrol Squad",
-		"patrolMedium":"Front Platoon",
-		"patrolLarge":"Defense Battalion",
-
-		"inspectionFleet":"Inspection Team",
-		"taskForce":"Special Force",
-	},
- 
-},	
+  "id": "aEP_FSF_adv",
+  "color": [
+    181,
+    182,
+    149,
+    255
+  ],
+  "displayName": "FSF Military Corporation",
+  "displayNameWithArticle": "FSF Military Corporation",
+  "displayNameLong": "FSF Military Corporation",
+  "displayNameLongWithArticle": "FSF Military Corporation",
+  "entityNamePrefix": "FSF",
+  "personNamePrefix": "FSF",
+  "personNamePrefixAOrAn": "a",
+  "displayNameIsOrAre": "is",
+  "logo": "graphics/aEP_factions/FSF.png",
+  "crest": "graphics/aEP_factions/crest_FSF.png",
+  "shipNamePrefix": "FSF",
+  "showInIntelTab": false,
+  "shipNameSources": {
+    "GREEK": 0,
+    "CELTIC": 0,
+    "SPACE": 4,
+    "GENERAL": 1
+  },
+  "names": {
+    "modern": 1,
+    "world": 1,
+    "future": 1,
+    "myth": 1
+  },
+  "hullFrequency": {
+    "tags": {},
+    "hulls": {
+      "aEP_des_youjiyan": 0.25,
+      "aEP_des_youjiyan_mk2": 0.25,
+      "aEP_cap_shangshengliu": 0.25,
+      "aEP_cap_shangshengliu_mk2": 0.25
+    }
+  },
+  "shipsWhenImporting": {
+    "tags": [
+      "midline_bp"
+    ],
+    "hulls": []
+  },
+  "knownShips": {
+    "tags": [
+      "base_bp",
+      "FSF_bp"
+    ],
+    "hulls": []
+  },
+  "priorityShips": {
+    "tags": [
+      "FSF_bp"
+    ],
+    "hulls": []
+  },
+  "knownFighters": {
+    "tags": [
+      "base_bp",
+      "FSF_bp"
+    ],
+    "fighters": []
+  },
+  "priorityFighters": {
+    "tags": [
+      "FSF_bp"
+    ],
+    "fighters": []
+  },
+  "knownWeapons": {
+    "tags": [
+      "base_bp",
+      "midline_bp",
+      "FSF_bp"
+    ],
+    "weapons": [
+      "lightneedler",
+      "railgun",
+      "vulcan",
+      "flak",
+      "dualflak",
+      "autopulse",
+      "gauss",
+      "mjolnir",
+      "devastator",
+      "hurricane",
+      "squall",
+      "locust"
+    ]
+  },
+  "priorityWeapons": {
+    "tags": [
+      "FSF_bp"
+    ],
+    "weapons": [
+      "vulcan",
+      "dualflak",
+      "lightac",
+      "railgun",
+      "flak",
+      "mjolnir"
+    ]
+  },
+  "knownHullMods": {
+    "tags": [
+      "base_bp",
+      "independent",
+      "FSF"
+    ],
+    "hullMods": [
+      "advancedshieldemitter",
+      "turretgyros",
+      "armoredweapons",
+      "augmentedengines",
+      "autorepair",
+      "converted_hangar",
+      "eccm",
+      "ecm",
+      "expanded_deck_crew",
+      "magazines",
+      "missleracks",
+      "extendedshieldemitter",
+      "frontemitter",
+      "frontshield",
+      "hardenedshieldemitter",
+      "heavyarmor",
+      "insulatedengine",
+      "targetingunit",
+      "nav_relay",
+      "adaptiveshields",
+      "operations_center",
+      "recovery_shuttles",
+      "fluxbreakers",
+      "stabilizedshieldemitter",
+      "surveying_equipment",
+      "hiressensors",
+      "efficiency_overhaul",
+      "ballistic_rangefinder"
+    ]
+  },
+  "factionDoctrine": {
+    "warships": 3,
+    "carriers": 4,
+    "phaseShips": 0,
+    "officerQuality": 4,
+    "shipQuality": 4,
+    "numShips": 3,
+    "shipSize": 4,
+    "aggression": 1,
+    "combatFreighterProbability": 0.25,
+    "combatFreighterCombatUseFraction": 0,
+    "combatFreighterCombatUseFractionWhenPriority": 0,
+    "autofitRandomizeProbability": 0.2,
+    "officerSkillsShuffleProbability": 1,
+    "officerSkills": [
+      "ballistic_mastery",
+      "ordnance_expert",
+      "missile_specialization",
+      "aEP_SkillAnalyze"
+    ],
+    "commanderSkillsShuffleProbability": 0,
+    "commanderSkills": [
+      "crew_training",
+      "officer_training",
+      "coordinated_maneuvers",
+      "electronic_warfare",
+      "carrier_group",
+      "fighter_uplink",
+      "flux_regulation",
+      "support_doctrine"
+    ]
+  },
+  "illegalCommodities": [
+    "drugs",
+    "organs",
+    "ai_cores"
+  ],
+  "music": {
+    "theme": "aEP_fsf_enemy",
+    "market_neutral": "aEP_fsf_neutral",
+    "market_hostile": "aEP_fsf_enemy",
+    "market_friendly": "aEP_fsf_friendly",
+    "encounter_neutral": "aEP_fsf_neutral_fleet",
+    "encounter_hostile": "aEP_fsf_enemy_fleet",
+    "encounter_friendly": "aEP_fsf_friendly_fleet"
+  },
+  "internalComms": "aEP_FSF_internal",
+  "portraits": {
+    "standard_male": [
+      "graphics/portraits/portrait_mercenary03.png",
+      "graphics/portraits/portrait43.png",
+      "graphics/portraits/portrait44.png",
+      "graphics/portraits/portrait45.png",
+      "graphics/aEP_portraits/2.png",
+      "graphics/aEP_portraits/4.png"
+    ],
+    "standard_female": [
+      "graphics/portraits/portrait_mercenary05.png",
+      "graphics/portraits/portrait27.png",
+      "graphics/portraits/portrait42.png",
+      "graphics/portraits/portrait46.png",
+      "graphics/portraits/portrait_league07.png",
+      "graphics/aEP_portraits/3.png",
+      "graphics/aEP_portraits/5.png"
+    ]
+  },
+  "custom": {
+    "allowsTransponderOffTrade": false,
+    "offersCommissions": false,
+    "engagesInHostilities": true,
+    "postsNoBounties": false,
+    "buysAICores": true,
+    "AICoreValueMult": 1.5,
+    "AICoreRepMult": 1.5,
+    "buysSurveyData": true,
+    "hostilityImpactOnGrowth": false,
+    "caresAboutAtrocities": true,
+    "punitiveExpeditionData": {
+      "vsCompetitors": false,
+      "vsFreePort": false,
+      "canBombard": false,
+      "territorial": true
+    }
+  },
+  "ranks": {
+    "ranks": {
+      "factionLeader": {
+        "name": "Board Representative"
+      }
+    },
+    "posts": {
+      "factionLeader": {
+        "name": "Board Representative"
+      },
+      "aEP_consultant": {
+        "name": "Business Manager"
+      },
+      "aEP_researcher": {
+        "name": "Program Director"
+      }
+    }
+  },
+  "fleetTypeNames": {
+    "patrolSmall": "Patrol Squad",
+    "patrolMedium": "Front Platoon",
+    "patrolLarge": "Defense Battalion",
+    "inspectionFleet": "Inspection Team",
+    "taskForce": "Special Force"
+  }
+}

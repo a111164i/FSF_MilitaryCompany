@@ -4,19 +4,9 @@ import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.PluginPick;
 import com.fs.starfarer.api.campaign.*;
-import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
-import com.fs.starfarer.api.campaign.econ.SubmarketSpecAPI;
-import com.fs.starfarer.api.characters.MarketConditionSpecAPI;
-import com.fs.starfarer.api.characters.SkillSpecAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
-import com.fs.starfarer.api.loading.Description;
-import com.fs.starfarer.api.loading.HullModSpecAPI;
-import com.fs.starfarer.api.loading.IndustrySpecAPI;
-import com.fs.starfarer.api.loading.WeaponSpecAPI;
-import combat.util.aEP_DataTool;
-import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
 import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
@@ -26,11 +16,6 @@ import exerelin.campaign.SectorManager;
 import org.dark.shaders.light.LightData;
 import org.dark.shaders.util.ShaderLib;
 import org.dark.shaders.util.TextureData;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.Writer;
-import java.util.ArrayList;
 
 
 public class FSFModPlugin extends BaseModPlugin {
@@ -105,7 +90,7 @@ public class FSFModPlugin extends BaseModPlugin {
 
     //以英文模式启动时，替换名称
     if(Global.getSettings().getBoolean("aEP_UseEnString")) {
-      updateLanguage();
+      //updateLanguage();
     }
 
 
@@ -174,28 +159,6 @@ public class FSFModPlugin extends BaseModPlugin {
     }
 
   }
-
-  private void updateLanguage() {
-    try {
-
-      // faction name
-      FactionSpecAPI factionSpec = Global.getSettings().getFactionSpec(aEP_ID.FACTION_ID_FSF);
-      factionSpec.setDisplayName(aEP_ID.FACTION_NAME_EN);
-      factionSpec.setDisplayNameWithArticle(aEP_ID.FACTION_NAME_EN);
-      factionSpec.setDisplayNameLong(aEP_ID.FACTION_NAME_EN);
-      factionSpec.setDisplayNameLongWithArticle(aEP_ID.FACTION_NAME_EN);
-      FactionSpecAPI factionSpec2 = Global.getSettings().getFactionSpec(aEP_ID.FACTION_ID_FSF_ADV);
-      factionSpec2.setDisplayName(aEP_ID.FACTION_NAME_EN);
-      factionSpec2.setDisplayNameWithArticle(aEP_ID.FACTION_NAME_EN);
-      factionSpec2.setDisplayNameLong(aEP_ID.FACTION_NAME_EN);
-      factionSpec2.setDisplayNameLongWithArticle(aEP_ID.FACTION_NAME_EN);
-
-
-    }catch (Exception e){
-      Global.getLogger(this.getClass()).info("Fail to swap language to Eng");
-    }
-  }
-
   public static void loadLightData(){
     LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv");
 

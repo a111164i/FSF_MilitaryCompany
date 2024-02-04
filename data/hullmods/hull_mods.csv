@@ -1,17 +1,17 @@
 name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sprite,sModDesc,
 ,,,,,,,,,,,,,,,,,,,,
-FSF Ship Design,aEP_SpecialHull,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"A higher level implement of ship-wide gravity field, the shell is designed to receive or send force to a nearby friendly ship. A fleet purely made of FSF ships can swiftly swap from formations
+FSF Ship Design,aEP_SpecialHull,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"A higher level implement of ship-wide gravity field, the shell is designed to receive or send force to a nearby friendly ship. A fleet purely made of FSF ships can swiftly swap between different formations
 
 Although many of the FSF ships have low max speed, zero flux boost can be activated for long range reposition",,graphics/aEP_hullmods/aEP_marker_dissipation.png,,
 Missile Platform,aEP_MissilePlatform,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"A integrated missile factory has taken all empty space, at the cost of max ammo, to continuously produce ammo. This applies to all missile weapons mounted on missile or composite slot.
 
-This ship has a resource named %s, it will be consumed to produce ammo if any missile weapon is not full and it recovers over time",,graphics/aEP_hullmods/aEP_missile_platform.png,,
+This ship has a resource named %s, it will be consumed to produce ammo if any missile weapon is not full and recovers over time",,graphics/aEP_hullmods/aEP_missile_platform.png,,
 FCS Radar,aEP_BBAdjustRange,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_BBAdjustRange,"The wave radar provides half of this ship's targeting ability, the other half is provided by this modification
 
 Ballistic/energy weapon range %s",,graphics/hullmods/ecm_package.png,,
 Limited Targeting System,aEP_LimitedTurret,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_LimitedTurret,"A outdated but durable targeting system with mechanic computing, strong against any type of impact, physical or EMP
 
-Ballistic/energy weapon range %s, hitpoints %s, repair time in battle %s",,graphics/aEP_hullmods/aEP_limited_turret.png,,
+Ballistic/energy weapon range %s, durability %s, repair time in battle %s",,graphics/aEP_hullmods/aEP_limited_turret.png,,
 Towline,aEP_Tugboat,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Tugboat,Vigorous engine of this ship can tow another slower friendly fleet member to its speed,,graphics/aEP_hullmods/aEP_tug_ship.png,,
 Open Field Hanger,aEP_OpenFieldHangar,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_OpenFieldHangar,"The big open deck in the central of this ship makes it possible to deploy more fighters in a wing, but doubling the work for a single LPC chip dropped its performance a little bit
 
@@ -35,7 +35,7 @@ To fully recharge strafe energy takes %s seconds, when fully charged it can elim
 If this ship's shipsystem is out of charge, immediately consume %s of strafe energy to get a charge. Each time this ship uses shipsystem, fires several low power built-in missiles to distract enemy",,graphics/aEP_hullmods/aEP_strafe.png,,
 Pre-planted Reactive Armor,aEP_ReactiveArmor,1,FSF Design,,"FSF, defensive",Defenses,10000,,TRUE,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"Planted explosive reactive armors under main armor belt, response to high damage on hit
 
-When takes a damage >= %s, the ERA triggers, consuming 1 ammo and that damage %s. The ship has %s ERAs in total",,graphics/aEP_hullmods/aEP_reactive_armor.png,,
+When the hull takes a damage >= %s, the ERA triggers, consuming 1 ammo and that damage %s. The ship has %s ERAs in total",,graphics/aEP_hullmods/aEP_reactive_armor.png,,
 Composite Targeting System,aEP_TargetSystem,0,FSF Design,,,,,,TRUE,,4,5,9,12,data.scripts.hullmods.aEP_TargetSystem,"A composite targeting system in combination of laser, radio, optic rangefinder, capable of doing capital scale range bonus
 
 Ballistic/energy non-PD weapon range %s, PD weapon %s, but the range part above %s is subtracted %s",,graphics/aEP_hullmods/aEP_target_system.png,,
@@ -59,15 +59,15 @@ Twin Fighter,aEP_TwinFighter,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmo
 Elite Ship,aEP_EliteShip,2,FSF Design,,"FSF, no_build_in, req_spaceport, defensive",Defenses,25000,,,,1,1,1,1,data.scripts.hullmods.aEP_EliteShip,"This modification aimed to maximize the defense of ship, including a total overhaul to all mechanism parts, using micro drones to detect and fix every small leak within pipelines, and replacing main armor belt with better material.
 
 Besides ordinary improvement, a backup overload respond is installed, a disposal drone will hold a ship-size shield till the ship recovers.",,graphics/aEP_hullmods/aEP_elite_ship.png,,
-Emergency Reconstruct,aEP_EmergencyReconstruct,2,FSF Design,,"FSF, defensive",Defenses,25000,,TRUE,,10,20,30,50,data.scripts.hullmods.aEP_EmergencyReconstruct,"Inspired by an automated ship design, a whole set of scaffold is put into compressed phase space. Once the ship receives a lethal damage, it initiates a emergency reconstruction progress to fully restore its hitpoints and armor",,graphics/aEP_hullmods/aEP_emergency_reconstruct.png,,
+Emergency Reconstruct,aEP_EmergencyReconstruct,2,FSF Design,,"FSF, defensive",Defenses,25000,,TRUE,,10,20,30,50,data.scripts.hullmods.aEP_EmergencyReconstruct,"Inspired by an automated ship design, a whole set of scaffold is put into compressed phase space. Once the ship receives a lethal damage, it initiates a emergency reconstruction progress to fully restore its hullpoints and armor",,graphics/aEP_hullmods/aEP_emergency_reconstruct.png,,
 Controlled Shield,aEP_ShieldControlled,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,"Specialized shield gen cooperating with targeting system, harden shield just before impact, but incapable of tracking projectiles fired close in",,graphics/aEP_hullmods/aEP_controled_shield.png,,
 Floating Shield,aEP_ShieldFloating,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,"Specialized shield gen producing liquid-like surface, harder the impact higher the efficiency, providing flux shunt ability",,graphics/aEP_hullmods/aEP_resist_shield.png,,
 Hot Loader,aEP_HotLoader,1,FSF Design,,"FSF, offensive",Weapons,20000,,,,8,12,18,25,data.scripts.hullmods.aEP_HotLoader,"Recoil recycling device designed by the company, exploit potential space for expand magazine to boost ammo regen
 
-Ballistic/energy weapons ammo regen speed %s",,graphics/aEP_hullmods/aEP_hot_loader.png,Ammo regen speed bonus change to %s,
+Ballistic/energy weapons ammo regen speed %s",,graphics/aEP_hullmods/aEP_hot_loader.png,Ammo regen speed bonus changes to %s,
 Vanguard Hull,aEP_VanguardHull,1,FSF Design,,"FSF, defensive",Defenses,10000,,,,8,12,18,20,data.scripts.hullmods.aEP_VanguardHull,"Improve the hardness of hull has been proven to be with little help to big anti-ship guns, but it does significantly reduce damage from many small impacts
 
-Each time hull takes a damage, have %s chance to reduce it by %s",,graphics/aEP_hullmods/aEP_vanguard_hull.png,"Trigger chance change to %s, damage reduction change to %s",
+Each time the hull takes a damage, have %s chance to reduce it by %s",,graphics/aEP_hullmods/aEP_vanguard_hull.png,"Trigger chance changes to %s, damage reduction changes to %s",
 Strategy Thruster,aEP_StrategyThruster,1,FSF Design,,"FSF, engines",Engines,10000,,,,5,10,15,25,data.scripts.hullmods.aEP_StrategyThruster,"Be quicker in long range reposition is the key to get strategy advantage, this engine modification improves zero flux boost ability, thought come with a price of combat performance",,graphics/aEP_hullmods/aEP_strategy_thruster.png,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,

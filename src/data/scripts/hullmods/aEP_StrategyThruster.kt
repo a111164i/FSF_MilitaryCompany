@@ -53,11 +53,6 @@ class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
 
   }
 
-
-  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
-  }
-
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
 
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)

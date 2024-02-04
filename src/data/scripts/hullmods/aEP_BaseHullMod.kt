@@ -10,6 +10,8 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
 import combat.util.aEP_ID
+import combat.util.aEP_Tool
+import org.lwjgl.input.Keyboard
 import org.magiclib.util.MagicIncompatibleHullmods.removeHullmodWithWarning
 import java.awt.Color
 import java.lang.Exception
@@ -20,8 +22,9 @@ open class aEP_BaseHullMod : BaseHullMod() {
   companion object{
     const val PARAGRAPH_PADDING_SMALL = 5f
     const val PARAGRAPH_PADDING_BIG = 10f
-
     const val TEXT_HEIGHT_SMALL = 20f
+
+    var shouldShowF1Content = false
   }
 
   val notCompatibleList = HashSet<String>()
@@ -43,7 +46,6 @@ open class aEP_BaseHullMod : BaseHullMod() {
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI?, id: String) {
     ship?:return
-
     var shouldRemove = false
     //遍历所有已经安装船插，若存在任何一个排斥，返回false
     var iterator: Iterator<*> = ship.variant.hullMods.iterator()
@@ -176,10 +178,22 @@ open class aEP_BaseHullMod : BaseHullMod() {
   }
 
   /**
+   * 包含一部分检测F1额外信息的代码，不要覆盖
    * 在船插还是物品的的时候，ship的参数可能为null
    * 默认为true，不然不显示描述
    **/
   override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
+    if(Keyboard.isKeyDown(Keyboard.KEY_F1)){
+      shouldShowF1Content = !shouldShowF1Content
+    }
+    return shouldAddDescriptionToTooltipImpl(hullSize, ship, isForModSpec)
+  }
+
+
+  /**
+   * 使用这个
+   **/
+  open fun shouldAddDescriptionToTooltipImpl(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
     return  true
   }
 
@@ -203,6 +217,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
     super.addPostDescriptionSection(tooltip, hullSize, ship, width, isForModSpec)
     showIncompatible(tooltip)
   }
+
 
   /**
    * 使用这个
@@ -281,5 +296,6 @@ open class aEP_BaseHullMod : BaseHullMod() {
     if(haveToBeWithMod.contains(aEP_SpecialHull.ID) && !ship.variant.hasHullMod(aEP_SpecialHull.ID)) return false
     return super.showInRefitScreenModPickerFor(ship)
   }
+
 
 }

@@ -60,8 +60,5 @@ class aEP_ModuleTargeting : aEP_BaseHullMod() {
     return null
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
-  }
 
 }

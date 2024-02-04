@@ -130,19 +130,23 @@ class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI, ship: ShipAPI, id: String) {
 
-    val m = ship.childModulesCopy.get(0)
+    var m : ShipAPI? = null
+    if(ship.childModulesCopy?.isNotEmpty() == true) {
+      m = ship.childModulesCopy[0]
+    }
+
 
     //每次双生战机生成时，同步一下本体模块的某些防御性数据
     //模块的进攻性数据也会同步战机，这部分在listener的advance里面
     if(fighter.hullSpec.baseHullId.equals(FIGHTER_WING_ID.replace("_wing","")) && m != null) {
-      val mStats = m.mutableStats
+      val mStat = m.mutableStats
       //同步一些速度加成
       //同步机动性加成，因为是ftr负责移动
-      fighter.mutableStats.maxSpeed.applyMods(m.mutableStats.maxSpeed)
-      fighter.mutableStats.acceleration.applyMods(m.mutableStats.acceleration)
-      fighter.mutableStats.deceleration.applyMods(m.mutableStats.deceleration)
-      fighter.mutableStats.maxTurnRate.applyMods(m.mutableStats.maxTurnRate)
-      fighter.mutableStats.turnAcceleration.applyMods(m.mutableStats.turnAcceleration)
+      fighter.mutableStats.maxSpeed.applyMods(mStat.maxSpeed)
+      fighter.mutableStats.acceleration.applyMods(mStat.acceleration)
+      fighter.mutableStats.deceleration.applyMods(mStat.deceleration)
+      fighter.mutableStats.maxTurnRate.applyMods(mStat.maxTurnRate)
+      fighter.mutableStats.turnAcceleration.applyMods(mStat.turnAcceleration)
 
     }
 

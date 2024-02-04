@@ -9,7 +9,7 @@
 	"collisionRadius":14,
 	"collisionClass":"MISSILE_NO_FF",
 	#"explosionColor":[100,100,100,25],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":120, # purely visual
+	"explosionRadius":60, # purely visual
 	"explosionSpec":{"duration":0.0001f, # not visual
 					 "radius":30,
 					 "coreRadius":30, # full damage within core radius
@@ -19,7 +19,7 @@
 					 "particleSizeRange":0,
 					 "particleDuration":1,
 					 "particleCount":1,
-					 "particleColor":[250,250,250,250],
+					 "particleColor":[250,250,250,50],
 					 #"sound":"aEP_m_l_harpoon_hit_armor"
   },
   "alwaysAccelerate":true,
@@ -33,57 +33,76 @@
 	"engineSlots":[
 		{
 			"id":"ES1",
-			"loc":[-13, 0],
+			"loc":[-14, 0],
 		  "style":"CUSTOM",
 			"styleSpec":{
 				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-				"engineColor":[150,140,243,155],
-				"contrailDuration":1,
+				"engineColor":[150,140,243,125],
+				"contrailDuration":1.2,
 				"contrailWidthMult":1,
-				"contrailWidthAddedFractionAtEnd":0,  # can be negative. makes trail spread out/narrow at the end
+				"contrailWidthAddedFractionAtEnd":2,  # can be negative. makes trail spread out/narrow at the end
 				"contrailMinSeg":5, # min segment length, in pixels
-				"contrailMaxSpeedMult":0f,
-				"contrailAngularVelocityMult":0.5f,
+				"contrailMaxSpeedMult":0,
+				"contrailAngularVelocityMult":0.5,
 				"contrailSpawnDistMult":0f, # how far away from engine it starts
-				"contrailColor":[180,180,250,220],
-				"glowSizeMult":2.5,
-				"glowAlternateColor":[90,90,115,255],
-				"type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
+				"contrailColor":[180,180,250,105],
+				"glowSizeMult":1.5,
+				"glowAlternateColor":[90,90,115,55],
+				"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
 			},
-	    "width":12.0,
-	    "length":90.0,
+	    "width":8.0,
+	    "length":80.0,
 	    "angle":180.0
     },
 
 		{
 			"id":"ES2",
-			"loc":[-13, 0],
+			"loc":[-14, 0],
 			"style":"CUSTOM",
 			"styleSpec":{
-				"mode":"PARTICLES", # PARTICLES or QUAD_STRIP, determines which params are used
-        "engineColor":[165,195,255,155],
+				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+        "engineColor":[255,125,55,75],
 
-        "contrailDuration":1.5,
-        "contrailWidthMult":1,
-        "contrailWidthAddedFractionAtEnd":-0.5,  # can be negative. makes trail spread out/narrow at the end
-        "contrailMinSeg":5, # min segment length, in pixels
-        "contrailColor":[55,55,65,179],
+				"contrailDuration":0.6,
+				"contrailWidthMult":1,
+				"contrailWidthAddedFractionAtEnd":0.5,  # can be negative. makes trail spread out/narrow at the end
+				"contrailMinSeg":5, # min segment length, in pixels
+				"contrailMaxSpeedMult":0,
+				"contrailAngularVelocityMult":1,
+				"contrailSpawnDistMult":0f, # how far away from engine it starts
+				"contrailColor":[185,165,85,59],
+				"glowSizeMult":0.5,
+				"glowAlternateColor":[255,142,83,75],
 
-        "contrailParticleSizeMult":4,
-        "contrailParticleDuration":0.6,
-        "contrailParticleFinalSizeMult":4,
-        "contrailMaxSpeedMult":0.5,
-        "contrailAngularVelocityMult":0.5,
-        "glowSizeMult":0.1,
-        "glowAlternateColor":[255,192,123,0],
-        "type":"SMOKE"
+        "type":"SMOKE" # GLOW or SMOKE; additive or regular blend mode
 			},
-			"width":12.0,
-			"length":45.0,
+			"width":8.0,
+			"length":50.0,
 			"angle":180.0
 		},
 
+		{
+			"id":"ES3",
+			"loc":[-14, 0],
+			"style":"CUSTOM",
+			"styleSpec":{
+				"mode":"PARTICLES", # PARTICLES or QUAD_STRIP, determines which params are used
+        "engineColor":[205,195,105,75],
 
-   ]
+        "contrailParticleSizeMult":1,
+        "contrailParticleDuration":2,
+        "contrailParticleFinalSizeMult":6,
+        "contrailMaxSpeedMult":0,
+        "contrailColor":[55,55,65,109],
+        "contrailAngularVelocityMult":0.5,
+        "glowSizeMult":0.1,
+        "glowAlternateColor":[221,222,83,0],
+        "type":"SMOKE"
+			},
+			"width":8.0,
+			"length":30.0,
+			"angle":180.0
+		},
+  ]
 }
 			

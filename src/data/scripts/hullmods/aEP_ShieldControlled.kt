@@ -127,10 +127,6 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     return ""
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return  true
-  }
-
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
 
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)

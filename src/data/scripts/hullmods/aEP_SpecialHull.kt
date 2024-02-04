@@ -114,10 +114,6 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     return null
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
-  }
-
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
 
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
@@ -139,10 +135,10 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     addPositivePara(tooltip, "aEP_SpecialHull01", arrayOf(
       String.format("+%.0f", SPEED_BONUS),
       String.format("+%.0f", ACC_BONUS)))
+    addPositivePara(tooltip, "aEP_SpecialHull02", arrayOf(
+      String.format("+%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%"))
 
     // 负面
-    addNegativePara(tooltip, "aEP_SpecialHull02", arrayOf(
-      String.format("+%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%"))
     addNegativePara(tooltip, "aEP_SpecialHull03", arrayOf(
       String.format("-%.0f", CARRIER_PUNISH) ))
     //显示不兼容插件

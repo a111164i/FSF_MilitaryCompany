@@ -87,10 +87,6 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: ShipAPI.HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return true
-  }
-
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
     val highlight = Misc.getHighlightColor()
@@ -204,7 +200,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
         //失败测试
         onceWhenFailTest()
         var txt = String.format("Reconstruct Test: %.0f",test)
-        txt += String.format(" (<= %.0f)",threshold)
+        txt += String.format(" (< %.0f)",threshold)
         Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.red, ship, 1f,5f)
 
       }

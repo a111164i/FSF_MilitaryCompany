@@ -146,7 +146,7 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
         os.remove(file_path_EN)
     print(f'Swap Done {file_name_without_extension}')
 
-def swap_json(file_path: str, file_name_without_extension: str):
+def swap_json(file_path: str, file_name_without_extension: str, extension: str = None):
     def read_json_with_comments(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
@@ -158,6 +158,9 @@ def swap_json(file_path: str, file_name_without_extension: str):
 
     EN_file_full_name = f"{file_name_without_extension}_EN.json"
     CN_file_full_name = f"{file_name_without_extension}_CN.json"
+    if(extension):
+        EN_file_full_name = f"{file_name_without_extension}_EN.{extension}"
+        CN_file_full_name = f"{file_name_without_extension}_CN.{extension}"
 
     file_path = os.path.join(file_path)
     file_path_EN = file_path
@@ -232,7 +235,38 @@ def swap_name(file_path: str, file_name_with_ext: str):
         os.rename(en_file_path, file_path)
         print(f"Swapped names: {file_name_with_ext} <-> {en_file_name}")
     else:
-        print(f"No corresponding {file_name} found.")
+        print(f"No corresponding {file_name_with_ext} found.")
+
+def update_setting_in_json(file_path, key, new_value):
+    try:
+        # Open the settings file in read mode to load existing data
+        with open(file_path, 'r',encoding='utf-8') as file:
+            settings = json.load(file)
+        
+        # Check if the key exists in the JSON, if so, update the value
+        if key in settings:
+            if new_value is None:
+                settings[key] = not settings[key] 
+            else:
+                settings[key] = new_value
+
+            # Open the file in write mode to update the file with new data
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump(settings, file, indent=2, ensure_ascii=False)
+            print(f"Value of '{key} in {file_path}' has been updated to {settings[key]}.")
+        else:
+            print(f"Key '{key}' not found in the settings file.")
+    
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found.")
+    except json.JSONDecodeError:
+        print(f"Error decoding JSON from file '{file_path}'.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+
+
+
       
 if __name__ == "__main__":
     swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
@@ -256,5 +290,9 @@ if __name__ == "__main__":
     swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
     swap_name("data/missions/aEP_assassination/descriptor.json", "descriptor.json")
     swap_name("data/missions/aEP_assassination/mission_text.txt", "mission_text.txt")
+    swap_name("data/config/LunaSettings.csv", "LunaSettings.csv")
     swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
+    swap_json("data/world/factions/aEP_FSF.faction", "aEP_FSF","faction")
+    swap_json("data/world/factions/aEP_FSF_adv.faction", "aEP_FSF_adv","faction")
+    update_setting_in_json("data/config/settings.json", 'aEP_UseEnString', None)
     

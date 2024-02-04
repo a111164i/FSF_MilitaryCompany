@@ -102,6 +102,14 @@ class aEP_Rapture:  BaseShipSystemScript() {
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+    ship.shipTarget?:return false
+
+    if(aEP_Tool.isShipTargetable(
+        ship.shipTarget,
+        false,false,false,
+        false,false)) return false
+
+
     //对于正在被起效的目标不能放第二个
     if(ship.shipTarget?.customData?.containsKey(KEY) == true){
       return false

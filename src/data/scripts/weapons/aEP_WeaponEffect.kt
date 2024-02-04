@@ -513,9 +513,6 @@ class SpawnProjDelayed(lifeTime: Float,val missile:DamagingProjectileAPI, val sp
 //气钉枪导弹
 class aEP_m_s_harpoon_shot: Effect(){
   companion object{
-    val HIT_COLOR = Color(165,215,255,200)
-    val FRAG_COLOR = Color(230,240,255,178)
-    val FRAG_GLOW_COLOR = Color(155,175,255,100)
     var DAMAGE = 400f
     const val KEY = "aEP_m_s_harpoon_shot"
 
@@ -535,100 +532,8 @@ class aEP_m_s_harpoon_shot: Effect(){
     projectile?:return
     point?:return
 
-    //创造一坨碎屑特效
-    val facing = projectile.facing
-    if (Global.getCombatEngine().viewport.isNearViewport(point, 800f)) {
-      val numParticles = 16
-      val minSize = 5f
-      val maxSize = 30f
-      val pc: Color = aEP_m_l_harpoon_shot.HIT_COLOR
-      val minDur = 0.2f
-      val maxDur = 0.6f
-      val arc = 0f
-      val scatter = 1f
-      val minVel = 150f
-      val maxVel = 600f
-      val endSizeMin = 5f
-      val endSizeMax = 10f
-      val spawnPoint = Vector2f(point)
-      for (i in 0 until numParticles) {
-        var angleOffset = Math.random().toFloat()
-        if (angleOffset > 0.2f) {
-          angleOffset *= angleOffset
-        }
-        var speedMult = 1f - angleOffset
-        speedMult = 0.5f + speedMult * 0.5f
-        angleOffset *= sign((Math.random().toFloat() - 0.5f))
-        angleOffset *= arc / 2f
-        val theta = Math.toRadians((facing + angleOffset).toDouble()).toFloat()
-        val r = (Math.random() * Math.random() * scatter).toFloat()
-        val x = cos(theta.toDouble()).toFloat() * r
-        val y = sin(theta.toDouble()).toFloat() * r
-        val pLoc = Vector2f(spawnPoint.x + x, spawnPoint.y + y)
-        var speed = minVel + (maxVel - minVel) * Math.random().toFloat()
-        speed *= speedMult
-        val pVel = Misc.getUnitVectorAtDegreeAngle(Math.toDegrees(theta.toDouble()).toFloat())
-        pVel.scale(speed)
-        val pSize = minSize + (maxSize - minSize) * Math.random().toFloat()
-        val pDur = minDur + (maxDur - minDur) * Math.random().toFloat()
-        val endSize = endSizeMin + (endSizeMax - endSizeMin) * Math.random().toFloat()
-        Global.getCombatEngine().addNebulaParticle(pLoc, pVel, pSize, endSize, 0.1f, 0.5f, pDur, pc)
-      }
-    }
-    for(i in 0 until 30){
-      val randomSize = getRandomNumberInRange(1f,3f)
-      val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-      val randomVel = speed2Velocity(randomAngle,400f)
-      randomVel.scale(getRandomNumberInRange(0.25f,1f))
-      val ms = aEP_MovingSprite(
-        point,
-        Vector2f(randomSize,randomSize),
-        getRandomNumberInRange(0f,360f),
-        "graphics/weapons/aEP_b_l_aa40/shell.png")
-      ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
-      ms.fadeOut = 0.35f
-      ms.color = FRAG_COLOR
-      ms.setInitVel(randomVel)
-      ms.stopSpeed = 0.925f
-      addEffect(ms)
-      //addEffect(Glow(ms,FRAG_GLOW_COLOR))
-    }
+    aEP_m_l_harpoon_shot.createVfx(projectile, point, 0.75f)
 
-    val test = getRandomNumberInRange(0,100)
-    if(test < 50){
-      //断杆2
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty2"),
-        point,
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color.white,
-        false, 0f, MathUtils.getRandomNumberInRange(2f,3f), 0.5f)
-
-      //断杆2
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty3"),
-        point,
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color.white,
-        false, 0f, MathUtils.getRandomNumberInRange(2f,3f), 0.5f)
-    }else{
-      //断杆2
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty3"),
-        point,
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color.white,
-        false, 0f, MathUtils.getRandomNumberInRange(2f,3f), 0.5f)
-    }
 
     if(shieldHit && target is ShipAPI){
       //施加伤害，只造成软幅能
@@ -645,12 +550,119 @@ class aEP_m_s_harpoon_shot: Effect(){
 }
 class aEP_m_l_harpoon_shot : Effect(){
   companion object{
-    val HIT_COLOR = Color(165,215,255,200)
+    //云的颜色
+    val HIT_COLOR = Color(165,215,255,60)
     val FRAG_COLOR = Color(230,240,255,178)
-    val FRAG_GLOW_COLOR = Color(155,175,255,100)
+    val FRAG_GLOW_COLOR = Color(155,175,255,50)
     var DAMAGE = 750f
     const val KEY = "aEP_m_l_harpoon_shot"
 
+    fun createVfx(projectile:DamagingProjectileAPI, point: Vector2f, scale:Float){
+      val facing = projectile.facing
+      //云
+      if (Global.getCombatEngine().viewport.isNearViewport(point, 800f)) {
+        val numParticles = 15
+        val minSize = 5f * scale
+        val maxSize = 40f * scale
+        val pc: Color = HIT_COLOR
+        val minDur = 0.2f
+        val maxDur = 0.8f
+        val arc = 0f
+        val scatter = 1f
+        val minVel = 200f * scale
+        val maxVel = 800f * scale
+        val endSizeMin = 5f * scale
+        val endSizeMax = 10f * scale
+        val spawnPoint = Vector2f(point)
+        for (i in 0 until numParticles) {
+          var angleOffset = Math.random().toFloat()
+          if (angleOffset > 0.2f) {
+            angleOffset *= angleOffset
+          }
+          var speedMult = 1f - angleOffset
+          speedMult = 0.5f + speedMult * 0.5f
+          angleOffset *= sign((Math.random().toFloat() - 0.5f))
+          angleOffset *= arc / 2f
+          val theta = Math.toRadians((facing + angleOffset).toDouble()).toFloat()
+          val r = (Math.random() * Math.random() * scatter).toFloat()
+          val x = cos(theta.toDouble()).toFloat() * r
+          val y = sin(theta.toDouble()).toFloat() * r
+          val pLoc = Vector2f(spawnPoint.x + x, spawnPoint.y + y)
+          var speed = minVel + (maxVel - minVel) * Math.random().toFloat()
+          speed *= speedMult
+          val pVel = Misc.getUnitVectorAtDegreeAngle(Math.toDegrees(theta.toDouble()).toFloat())
+          pVel.scale(speed)
+          val pSize = minSize + (maxSize - minSize) * Math.random().toFloat()
+          val pDur = minDur + (maxDur - minDur) * Math.random().toFloat()
+          val endSize = endSizeMin + (endSizeMax - endSizeMin) * Math.random().toFloat()
+          Global.getCombatEngine().addNebulaParticle(pLoc, pVel, pSize, endSize, 0.1f, 0.5f, pDur, pc)
+        }
+      }
+      //碎屑
+      for(i in 0 until (48 * scale).toInt()){
+        val randomSize = getRandomNumberInRange(2f,4f)
+        val randomAngle = getRandomNumberInRange(-15f,15f) + facing
+        val randomVel = speed2Velocity(randomAngle,500f)
+        randomVel.scale(getRandomNumberInRange(0.25f,1f))
+        val ms = aEP_MovingSprite(
+          point,
+          Vector2f(randomSize,randomSize),
+          getRandomNumberInRange(0f,360f),
+          "graphics/weapons/aEP_b_l_aa40/shell.png")
+        ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
+        ms.fadeOut = 0.35f
+        ms.color = FRAG_COLOR
+        ms.setInitVel(randomVel)
+        ms.stopSpeed = 0.925f
+        addEffect(ms)
+        //addEffect(Glow(ms, FRAG_GLOW_COLOR))
+      }
+      val test = getRandomNumberInRange(0,100)
+      if(test < 35){
+        //杆子
+        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty"),
+          getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
+          MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          Vector2f(11f,34f),
+          VECTOR2F_ZERO,
+          //magicRender的角度开始点比游戏多90
+          projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
+          Color.white,
+          false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
+      }else if (test < 70){
+        //断杆上
+        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty2"),
+          getExtendedLocationFromPoint(projectile.location,projectile.facing,20f),
+          MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          Vector2f(11f,34f),
+          VECTOR2F_ZERO,
+          //magicRender的角度开始点比游戏多90
+          projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
+          Color(250, 250, 250, 250),
+          false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
+        //断杆下
+        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty3"),
+          getExtendedLocationFromPoint(projectile.location,projectile.facing,-20f),
+          MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          Vector2f(11f,34f),
+          VECTOR2F_ZERO,
+          //magicRender的角度开始点比游戏多90
+          projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
+          Color.white,
+          false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
+      }else{
+        //断杆上
+        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty4"),
+          getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
+          MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          Vector2f(11f,34f),
+          VECTOR2F_ZERO,
+          //magicRender的角度开始点比游戏多90
+          projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
+          Color.white,
+          false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
+      }
+    }
   }
 
   init {
@@ -666,109 +678,7 @@ class aEP_m_l_harpoon_shot : Effect(){
     engine?:return
     projectile?:return
     point?:return
-    //创造一坨碎屑特效
-    val facing = projectile.facing
-    if (Global.getCombatEngine().viewport.isNearViewport(point, 800f)) {
-      val numParticles = 16
-      val minSize = 5f
-      val maxSize = 40f
-      val pc: Color = HIT_COLOR
-      val minDur = 0.2f
-      val maxDur = 0.8f
-      val arc = 0f
-      val scatter = 1f
-      val minVel = 200f
-      val maxVel = 800f
-      val endSizeMin = 5f
-      val endSizeMax = 10f
-      val spawnPoint = Vector2f(point)
-      for (i in 0 until numParticles) {
-        var angleOffset = Math.random().toFloat()
-        if (angleOffset > 0.2f) {
-          angleOffset *= angleOffset
-        }
-        var speedMult = 1f - angleOffset
-        speedMult = 0.5f + speedMult * 0.5f
-        angleOffset *= sign((Math.random().toFloat() - 0.5f))
-        angleOffset *= arc / 2f
-        val theta = Math.toRadians((facing + angleOffset).toDouble()).toFloat()
-        val r = (Math.random() * Math.random() * scatter).toFloat()
-        val x = cos(theta.toDouble()).toFloat() * r
-        val y = sin(theta.toDouble()).toFloat() * r
-        val pLoc = Vector2f(spawnPoint.x + x, spawnPoint.y + y)
-        var speed = minVel + (maxVel - minVel) * Math.random().toFloat()
-        speed *= speedMult
-        val pVel = Misc.getUnitVectorAtDegreeAngle(Math.toDegrees(theta.toDouble()).toFloat())
-        pVel.scale(speed)
-        val pSize = minSize + (maxSize - minSize) * Math.random().toFloat()
-        val pDur = minDur + (maxDur - minDur) * Math.random().toFloat()
-        val endSize = endSizeMin + (endSizeMax - endSizeMin) * Math.random().toFloat()
-        Global.getCombatEngine().addNebulaParticle(pLoc, pVel, pSize, endSize, 0.1f, 0.5f, pDur, pc)
-      }
-    }
-    for(i in 0 until 48){
-      val randomSize = getRandomNumberInRange(2f,4f)
-      val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-      val randomVel = speed2Velocity(randomAngle,500f)
-      randomVel.scale(getRandomNumberInRange(0.25f,1f))
-      val ms = aEP_MovingSprite(
-        point,
-        Vector2f(randomSize,randomSize),
-        getRandomNumberInRange(0f,360f),
-        "graphics/weapons/aEP_b_l_aa40/shell.png")
-      ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
-      ms.fadeOut = 0.35f
-      ms.color = FRAG_COLOR
-      ms.setInitVel(randomVel)
-      ms.stopSpeed = 0.925f
-      addEffect(ms)
-      //addEffect(Glow(ms, FRAG_GLOW_COLOR))
-    }
-    val test = getRandomNumberInRange(0,100)
-    if(test < 35){
-      //杆子
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty"),
-        getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color.white,
-        false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
-    }else if (test < 70){
-      //断杆上
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty2"),
-        getExtendedLocationFromPoint(projectile.location,projectile.facing,20f),
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color(250, 250, 250, 250),
-        false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
-      //断杆下
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty3"),
-        getExtendedLocationFromPoint(projectile.location,projectile.facing,-20f),
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color.white,
-        false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
-    }else{
-      //断杆上
-      MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty4"),
-        getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
-        MathUtils.getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-        Vector2f(11f,34f),
-        VECTOR2F_ZERO,
-        //magicRender的角度开始点比游戏多90
-        projectile.facing - 90f,MathUtils.getRandomNumberInRange(-120f,120f),
-        Color.white,
-        false, 0f, MathUtils.getRandomNumberInRange(3f,4f), 0.5f)
-    }
+    createVfx(projectile, point, 1f)
 
     if(shieldHit && target is ShipAPI){
       //施加伤害，只造成软幅能

@@ -139,10 +139,6 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     }
   }
 
-  override fun shouldAddDescriptionToTooltip(hullSize: HullSize, ship: ShipAPI?, isForModSpec: Boolean): Boolean {
-    return  true
-  }
-
   override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
 
     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
@@ -160,8 +156,10 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
     // 正面
-    // 概述总装填率
+    // 概述锻炉功率的最大值由什么决定
     addPositivePara(tooltip, "aEP_MissilePlatform02", arrayOf()) // 说明总装填率的储备值和回复值
+    // 解释锻炉功率水平的下降与回冲，如何达到最低平衡水平
+    addPositivePara(tooltip, "aEP_MissilePlatform03", arrayOf()) // 说明总装填率的储备值和回复值
 
 
     //统计全船的导弹数据，用于后面的表格
@@ -211,7 +209,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalOp * RATE_INCREASE_SPEED_MULT),
     )
     tooltip.addRow(
-      Alignment.MID, highlight, txt("max")+txt("consumption") ,
+      Alignment.MID, highlight, txt("max")+txt("consumption")+txt("speed") ,
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalConsumption * 100f),
     )
     val minLevel = (totalOp * RATE_INCREASE_SPEED_MULT/(totalConsumption * 100f + 0.01f)).coerceAtLeast(0f).coerceAtMost(1f)
@@ -223,7 +221,6 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
 
     addPositivePara(tooltip, "aEP_MissilePlatform07", arrayOf())
-
     //表格显示最大导弹回复速度
     //只显示可预期长度的数字的列，写一个固定的列宽度，
     val col2W = width * 0.70f
@@ -245,70 +242,75 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?:0.2f) * 100f))
     tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
-    //表格显示每个武器的 弹药/OP比
-    val col2W2 = 60f
-    val col3W2 = 60f
-    val col4W2 = 80f
-    val col1W2 = (width - col2W2 - col3W2 - col4W2 - PARAGRAPH_PADDING_BIG)
-    tooltip.beginTable(
-      factionColor, factionDarkColor, factionBrightColor,
-      TEXT_HEIGHT_SMALL, true, true,
-      *arrayOf<Any>("Missile Spec", col1W2,
-        "OP", col3W2,
-        "Ammo", col2W2,
-        "OP per A.", col4W2))
+    if(shouldShowF1Content){
+      //表格显示每个武器的 弹药/OP比
+      val col2W2 = 60f
+      val col3W2 = 60f
+      val col4W2 = 80f
+      val col1W2 = (width - col2W2 - col3W2 - col4W2 - PARAGRAPH_PADDING_BIG)
+      tooltip.beginTable(
+        factionColor, factionDarkColor, factionBrightColor,
+        TEXT_HEIGHT_SMALL, true, true,
+        *arrayOf<Any>("Missile Spec", col1W2,
+          "OP", col3W2,
+          "Ammo", col2W2,
+          "OP per A.", col4W2))
 
-    //val label = tooltip.createLabel( "Large", highlight)
-    //label.autoSizeToWidth(10f)
-    if(!allLargeSpec.isEmpty()){
-      tooltip.addRow(
-        Alignment.MID, highlight, "Large")
-      for(spec in allLargeSpec){
-        val op =  spec.getOrdnancePointCost(null)
-        val ammo =spec.maxAmmo.toFloat()
+      //val label = tooltip.createLabel( "Large", highlight)
+      //label.autoSizeToWidth(10f)
+      if(!allLargeSpec.isEmpty()){
         tooltip.addRow(
-          Alignment.MID, txtColor, spec.weaponName,
-          Alignment.MID, txtColor, String.format("%.0f", op),
-          Alignment.MID, txtColor, String.format("%.0f", ammo),
-          Alignment.MID, txtColor, String.format("%.1f", op/ammo),
-        )
+          Alignment.MID, highlight, "Large")
+        for(spec in allLargeSpec){
+          val op =  spec.getOrdnancePointCost(null)
+          val ammo =spec.maxAmmo.toFloat()
+          tooltip.addRow(
+            Alignment.MID, txtColor, spec.weaponName,
+            Alignment.MID, txtColor, String.format("%.0f", op),
+            Alignment.MID, txtColor, String.format("%.0f", ammo),
+            Alignment.MID, txtColor, String.format("%.1f", op/ammo),
+          )
+        }
       }
-    }
-    if(!allMediumSpec.isEmpty()) {
+      if(!allMediumSpec.isEmpty()) {
+        tooltip.addRow(
+          Alignment.MID, highlight, "Medium"
+        )
+        for (spec in allMediumSpec) {
+          val op = spec.getOrdnancePointCost(null)
+          val ammo = spec.maxAmmo.toFloat()
+          tooltip.addRow(
+            Alignment.MID, txtColor, spec.weaponName,
+            Alignment.MID, txtColor, String.format("%.0f", op),
+            Alignment.MID, txtColor, String.format("%.0f", ammo),
+            Alignment.MID, txtColor, String.format("%.1f", op / ammo),
+          )
+        }
+      }
+      if(!allSmallSpec.isEmpty()) {
+        tooltip.addRow(
+          Alignment.MID, highlight, "Small"
+        )
+        for (spec in allSmallSpec) {
+          val op = spec.getOrdnancePointCost(null)
+          val ammo = spec.maxAmmo.toFloat()
+          tooltip.addRow(
+            Alignment.MID, txtColor, spec.weaponName,
+            Alignment.MID, txtColor, String.format("%.0f", op),
+            Alignment.MID, txtColor, String.format("%.0f", ammo),
+            Alignment.MID, txtColor, String.format("%.1f", op / ammo),
+          )
+        }
+      }
       tooltip.addRow(
-        Alignment.MID, highlight, "Medium"
+        Alignment.MID, highlight, "Total",
+        Alignment.MID, highlight, String.format("%.0f",totalOp),
       )
-      for (spec in allMediumSpec) {
-        val op = spec.getOrdnancePointCost(null)
-        val ammo = spec.maxAmmo.toFloat()
-        tooltip.addRow(
-          Alignment.MID, txtColor, spec.weaponName,
-          Alignment.MID, txtColor, String.format("%.0f", op),
-          Alignment.MID, txtColor, String.format("%.0f", ammo),
-          Alignment.MID, txtColor, String.format("%.1f", op / ammo),
-        )
-      }
+      tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
     }
-    if(!allSmallSpec.isEmpty()) {
-      tooltip.addRow(
-        Alignment.MID, highlight, "Small"
-      )
-      for (spec in allSmallSpec) {
-        val op = spec.getOrdnancePointCost(null)
-        val ammo = spec.maxAmmo.toFloat()
-        tooltip.addRow(
-          Alignment.MID, txtColor, spec.weaponName,
-          Alignment.MID, txtColor, String.format("%.0f", op),
-          Alignment.MID, txtColor, String.format("%.0f", ammo),
-          Alignment.MID, txtColor, String.format("%.1f", op / ammo),
-        )
-      }
-    }
-    tooltip.addRow(
-      Alignment.MID, highlight, "Total",
-      Alignment.MID, highlight, String.format("%.0f",totalOp),
-    )
-    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+
+
+
 
     //实际上就是把原本扩展架的量慢慢给玩家
     // 负面
@@ -318,6 +320,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     //灰色额外说明
     addGrayPara(tooltip, "aEP_MissilePlatform09", arrayOf())
     addGrayPara(tooltip, "aEP_MissilePlatform11", arrayOf())
+    addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf())
   }
 
   public inner class LoadingMap constructor(var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {

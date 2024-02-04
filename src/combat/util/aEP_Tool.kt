@@ -10,7 +10,6 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.campaign.ids.Tags.VARIANT_FX_DRONE
-import com.fs.starfarer.api.impl.campaign.rulecmd.Nex_IsFactionRuler
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
@@ -2581,7 +2580,7 @@ class aEP_Combat{
    * */
   class AddStandardSlow(slowTime: Float, slowReduceMult: Float, accReduceMult: Float , val target: ShipAPI) : aEP_BaseCombatEffect(target){
     companion object{
-      const val ID = "aEP_StandardSlow"
+      const val SLOW_ID = "aEP_StandardSlow"
     }
 
     val data = ArrayList<SlowData>()
@@ -2600,11 +2599,11 @@ class aEP_Combat{
       slowData.accReduceMult = accReduceMult
 
       //正在处于别的减速buff中
-      if(target.customData.containsKey(ID)){
-        val slowManager = target.customData[ID] as AddStandardSlow
+      if(target.customData.containsKey(SLOW_ID)){
+        val slowManager = target.customData[SLOW_ID] as AddStandardSlow
         slowManager.data.add(slowData)
       }else{ //第一次被减速
-        target.setCustomData(ID, this)
+        target.setCustomData(SLOW_ID, this)
         data.add(slowData)
         aEP_CombatEffectPlugin.addEffect(this)
       }
@@ -2628,7 +2627,7 @@ class aEP_Combat{
         if(accReduce > maxAccReduceMult) maxAccReduceMult = accReduce
         //advance计时器
         d.timeElapsed += amount
-        d.timeElapsed = MathUtils.clamp(d.timeElapsed,0f, d.fullTime)
+        d.timeElapsed = MathUtils.clamp(d.timeElapsed,0f, d.fullTime + d.fadingTime)
         if(d.timeElapsed >= d.fullTime + d.fadingTime) expired.add(d)
       }
       data.removeAll(expired)
@@ -2636,36 +2635,36 @@ class aEP_Combat{
       maxReduceMult = maxReduceMult.coerceAtMost(1f)
       maxAccReduceMult = maxAccReduceMult.coerceAtMost(1f)
       //修改数据
-      target.mutableStats.maxSpeed.modifyMult(ID, 1f - maxReduceMult)
+      target.mutableStats.maxSpeed.modifyMult(SLOW_ID, 1f - maxReduceMult)
 
-      target.mutableStats.acceleration.modifyMult(ID, 1f - maxAccReduceMult)
-      target.mutableStats.deceleration.modifyMult(ID, 1f - maxAccReduceMult)
+      target.mutableStats.acceleration.modifyMult(SLOW_ID, 1f - maxAccReduceMult)
+      target.mutableStats.deceleration.modifyMult(SLOW_ID, 1f - maxAccReduceMult)
 
-      target.mutableStats.maxTurnRate.modifyMult(ID, 1f - maxAccReduceMult)
-      target.mutableStats.turnAcceleration.modifyMult(ID, 1f - maxAccReduceMult)
+      target.mutableStats.maxTurnRate.modifyMult(SLOW_ID, 1f - maxAccReduceMult)
+      target.mutableStats.turnAcceleration.modifyMult(SLOW_ID, 1f - maxAccReduceMult)
 
       if(data.size <= 0){
         shouldEnd = true
       }
 
       //一艘船只能同时存在一个manager类
-      if(target.customData.containsKey(ID) && target.customData[ID] != this){
+      if(target.customData.containsKey(SLOW_ID) && target.customData[SLOW_ID] != this){
         shouldEnd = true
       }
     }
 
     override fun readyToEnd() {
       //修改数据
-      target.mutableStats.maxSpeed.unmodify(ID)
+      target.mutableStats.maxSpeed.unmodify(SLOW_ID)
 
-      target.mutableStats.acceleration.unmodify(ID)
-      target.mutableStats.deceleration.unmodify(ID )
+      target.mutableStats.acceleration.unmodify(SLOW_ID)
+      target.mutableStats.deceleration.unmodify(SLOW_ID )
 
-      target.mutableStats.maxTurnRate.unmodify(ID )
-      target.mutableStats.turnAcceleration.unmodify(ID)
+      target.mutableStats.maxTurnRate.unmodify(SLOW_ID )
+      target.mutableStats.turnAcceleration.unmodify(SLOW_ID)
 
-      if(target.customData.containsKey(ID) && target.customData[ID] == this){
-        target.customData.remove(ID)
+      if(target.customData.containsKey(SLOW_ID) && target.customData[SLOW_ID] == this){
+        target.customData.remove(SLOW_ID)
       }
     }
 
