@@ -320,7 +320,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     //灰色额外说明
     addGrayPara(tooltip, "aEP_MissilePlatform09", arrayOf())
     addGrayPara(tooltip, "aEP_MissilePlatform11", arrayOf())
-    addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf())
+    addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf("F1"))
   }
 
   public inner class LoadingMap constructor(var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {

@@ -274,10 +274,11 @@ open class aEP_BaseHullMod : BaseHullMod() {
 
   open fun addGrayPara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
     val gray = Misc.getGrayColor()
-    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, Color.gray , gray,
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, gray , Color.LIGHT_GRAY,
       aEP_ID.HULLMOD_POINT,
       *data)
   }
+
 
   open fun addSubBulletPara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
     val highLight = Misc.getHighlightColor()
