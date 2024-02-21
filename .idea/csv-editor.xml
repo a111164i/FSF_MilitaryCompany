@@ -3,448 +3,35 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="C:\Users\a4567\Downloads\descriptions_EN.csv">
+        <entry key="F:\Starsector097\starsector-core\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="C:\Users\a4567\Downloads\hull_mods_EN.csv">
+        <entry key="F:\Starsector097\starsector-core\data\campaign\sim_opponents_dev.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="C:\Users\a4567\Downloads\special_items_EN.csv">
+        <entry key="F:\Starsector097\starsector-core\data\config\title_screen_variants.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="C:\Users\a4567\Downloads\weapon_data_EN.csv">
+        <entry key="F:\Starsector097\starsector-core\data\hulls\ship_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="D:\Starsector096\mods\Fantasy_manufacturing\data\hulls\ship_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\mods\GraphicsLib\data\lights\core_light_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\mods\VIC\data\hulls\ship_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\mods\trailer-moments\data\config\modFiles\magicTrail_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\abilities.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\bar_events.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\commodities.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\industries.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\market_conditions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\person_missions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\age_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\condition_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\drop_groups.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\location_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\name_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\objective_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\planet_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\salvage_entity_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\procgen\star_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\reports.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\rules.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\sim_opponents.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\sim_opponents_dev.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\special_items.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\campaign\submarkets.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\characters\person_names.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\characters\personalities.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\characters\skills\aptitude_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\characters\skills\skill_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\config\title_screen_variants.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\hullmods\hull_mods.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\hulls\ship_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\hulls\wing_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\missions\mission_list.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\shipsystems\ship_systems.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\strings\descriptions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\weapons\weapon_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\world\factions\factions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector096\starsector-core\data\world\generators.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\bar_events.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\commodities.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\industries.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\market_conditions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\person_missions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\procgen\drop_groups.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\procgen\name_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\procgen\planet_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\procgen\salvage_entity_gen_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\reports.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\rules.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\campaign\special_items.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\characters\person_names.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\characters\skills\aptitude_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\characters\skills\skill_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\hullmods\hull_mods.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\hulls\ship_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\hulls\wing_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\shipsystems\ship_systems.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\strings\descriptions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="D:\Starsector097\starsector-core\data\weapons\weapon_data.csv">
+        <entry key="F:\Starsector097\starsector-core\data\strings\descriptions.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -487,13 +74,6 @@
           </value>
         </entry>
         <entry key="\data\campaign\rules.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\campaign\rules_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -661,13 +241,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hullmods\hull_mods_CN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\hulls\ship_data.csv">
           <value>
             <Attribute>
@@ -703,7 +276,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\strings\descriptions_CN.csv">
+        <entry key="\data\strings\descriptions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
