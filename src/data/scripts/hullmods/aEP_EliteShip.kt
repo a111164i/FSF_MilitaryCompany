@@ -157,7 +157,7 @@ class aEP_EliteShip : aEP_BaseHullMod() {
       val random = MathUtils.getRandomNumberInRange(0f,1f)
       val toPass = 1f - ship.mutableStats.dynamic.getStat(INSV_ID).modifiedValue
       if(random >= toPass){
-        Global.getCombatEngine().addFloatingText(ship.location, String.format("Protect Test: %.0f >= %0.f",random*100f,toPass*100f), 30f, Color.green, ship, 1f,5f)
+        Global.getCombatEngine().addFloatingText(ship.location, String.format("Protect Test: %.0f >= %.0f",random *100f,toPass*100f), 30f, Color.green, ship, 1f,5f)
 
         val variant = Global.getSettings().createEmptyVariant(DRONE_ID, Global.getSettings().getHullSpec(DRONE_ID))
         variant.addMod(aEP_ProjectileDenialShield.ID)
