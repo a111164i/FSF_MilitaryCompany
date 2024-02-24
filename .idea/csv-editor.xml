@@ -276,13 +276,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\strings\descriptions_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\weapons\weapon_data.csv">
           <value>
             <Attribute>
