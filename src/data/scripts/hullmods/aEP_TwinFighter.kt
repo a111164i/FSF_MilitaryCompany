@@ -36,9 +36,9 @@ class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{
     const val FORCE_PULL_BACK_KEY = "aEP_TwinFighter_ForcePullBack"
     const val FORCE_SPLIT_KEY = "aEP_TwinFighter_ForceSplit"
     const val RECALL_SPEED_BONUS_ID = "aEP_TwinFighter_RecallSpeed"
-    const val FIGHTER_WING_ID = "aEP_fga_shuangshen3_wing"
+    const val FIGHTER_WING_ID = "aEP_ftr_ut_shuangshen3_wing"
 
-    const val MODULE_KEY_ID = "aEP_fga_shuangshen3_wing"
+    const val MODULE_KEY_ID = "aEP_ftr_ut_shuangshen3_wing"
 
     const val REPAIR_SPEED = 100f
 
@@ -287,22 +287,22 @@ class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{
     //控制战机的装饰武器
     if(shouldPullBack){
       for(w in ftr.allWeapons){
-        if(w.id.equals("aEP_fga_shuangshen3_wing_l")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_wing_l")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(0f)
           plg.setMoveToLevel(0f)
         }
-        if(w.id.equals("aEP_fga_shuangshen3_wing_r")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_wing_r")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(0f)
           plg.setMoveToLevel(0f)
         }
-        if(w.id.equals("aEP_fga_shuangshen3_empennage_l")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_empennage_l")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(0f)
           plg.setMoveToLevel(0f)
         }
-        if(w.id.equals("aEP_fga_shuangshen3_empennage_r")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_empennage_r")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(0f)
           plg.setMoveToLevel(0f)
@@ -317,22 +317,22 @@ class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{
       }
     }else {
       for(w in ftr.allWeapons){
-        if(w.id.equals("aEP_fga_shuangshen3_wing_l")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_wing_l")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(1f)
           plg.setMoveToLevel(1f)
         }
-        if(w.id.equals("aEP_fga_shuangshen3_wing_r")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_wing_r")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(1f)
           plg.setMoveToLevel(1f)
         }
-        if(w.id.equals("aEP_fga_shuangshen3_empennage_l")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_empennage_l")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(1f)
           plg.setMoveToLevel(1f)
         }
-        if(w.id.equals("aEP_fga_shuangshen3_empennage_r")){
+        if(w.id.equals("aEP_ftr_ut_shuangshen3_empennage_r")){
           val plg = w.effectPlugin as aEP_DecoAnimation
           plg.setRevoToLevel(1f)
           plg.setMoveToLevel(1f)

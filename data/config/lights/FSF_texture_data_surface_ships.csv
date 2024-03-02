@@ -42,6 +42,8 @@ aEP_fga_wanliu,ship,,,surface,graphics/shaders/surface/ships/aEP_fga_wanliu_surf
 aEP_fga_xiliu_mk2,ship,,,surface,graphics/shaders/surface/ships/aEP_fga_xiliu_mk2_surface.png
 aEP_fga_xiliu,ship,,,surface,graphics/shaders/surface/ships/aEP_fga_xiliu_surface.png
 aEP_fga_yonglang,ship,,,surface,graphics/shaders/surface/ships/aEP_fga_yonglang_surface.png
+aEP_fga_shuangshen,ship,,,surface,graphics/shaders/surface/ships/aEP_fga_shuangshen_surface.png
+aEP_fga_shuangshen2,ship,,,surface,graphics/shaders/surface/ships/aEP_fga_shuangshen2_surface.png
 aEP_typeA28,ship,,,surface,graphics/shaders/surface/ships/aEP_typeA28_surface.png
 aEP_typeB28,ship,,,surface,graphics/shaders/surface/ships/aEP_typeB28_surface.png
 aEP_typeL28,ship,,,surface,graphics/shaders/surface/ships/aEP_typeL28_surface.png
@@ -62,6 +64,7 @@ aEP_ftr_ut_maodian,ship,,1,surface,graphics/shaders/surface/fighters/ut_maodian0
 aEP_ftr_ut_repair,ship,,1,surface,graphics/shaders/surface/fighters/ut_repair_surface.png
 aEP_ftr_ut_shendu,ship,,1,surface,graphics/shaders/surface/fighters/ut_shendu_surface.png
 aEP_ftr_ut_shuishi,ship,,1,surface,graphics/shaders/surface/fighters/ut_shuishi_surface.png
+aEP_ftr_ut_shuangshen3,ship,,1,surface,graphics/shaders/surface/fighters/ut_shuangshen3_surface.png
 aEP_sta_base1,ship,,1,surface,graphics/shaders/surface/stations/base_surface.png
 aEP_sta_base2,ship,,1,surface,graphics/shaders/surface/stations/base_surface.png
 aEP_sta_base3,ship,,1,surface,graphics/shaders/surface/stations/base_surface.png

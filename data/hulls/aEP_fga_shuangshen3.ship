@@ -1,8 +1,8 @@
 {
   "hullName": "",
-  "hullId": "aEP_fga_shuangshen3",
+  "hullId": "aEP_ftr_ut_shuangshen3",
   "hullSize": "FIGHTER",
-  "spriteName": "graphics/ships/aEP_fga_shuangshen3.png",
+  "spriteName": "graphics/ships/aEP_fighters/ut_shuangshen3.png",
   "style": "aEP_FSF",
   "height": 60,
   "width": 40,
@@ -13,10 +13,10 @@
   "viewOffset": 0,
   "builtInWeapons": {
     "LIDAR": "aEP_cru_pingding_lidardish",
-    "TRAIL_L": "aEP_fga_shuangshen3_empennage_l",
-    "TRAIL_R": "aEP_fga_shuangshen3_empennage_r",
-    "WING_L": "aEP_fga_shuangshen3_wing_l",
-    "WING_R": "aEP_fga_shuangshen3_wing_r"
+    "TRAIL_L": "aEP_ftr_ut_shuangshen3_empennage_l",
+    "TRAIL_R": "aEP_ftr_ut_shuangshen3_empennage_r",
+    "WING_L": "aEP_ftr_ut_shuangshen3_wing_l",
+    "WING_R": "aEP_ftr_ut_shuangshen3_wing_r"
   },
   "builtInMods": [
     "aEP_Module",

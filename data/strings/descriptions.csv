@@ -28,7 +28,7 @@ aEP_YJDefenseFlak,SHIP_SYSTEM,"On activation, fires large amount of proximity-fu
 aEP_GrenadeThrower,SHIP_SYSTEM,"When activated, fires proximity bombs at front causing HE damage.",,,,
 ,,,,,,
 ,,,,,,
-aEP_Rapture,SHIP_SYSTEM,"When activated, lock this ship's target with a gravity anchor, as long as the target tries to moves away from the anchor, it will suffer a speed reduction and generate soft flux.",,,,
+aEP_Rupture,SHIP_SYSTEM,"When activated, lock this ship's target with a gravity anchor, as long as the target tries to moves away from the anchor, it will suffer a speed reduction and generate soft flux.",,,,
 aEP_FortressShield,SHIP_SYSTEM,"Toggleable. When activated, massively reduce shield damage taken but generate hardflux and prevent use of weapons.",,,,
 aEP_LidarArray,SHIP_SYSTEM,"When activated, non-beam weapon in ballistic/energy weapon slots gain range, rate of fire, accuracy and projectile speed. When not activated, still provide a small range bonus to ballistic/energy weapon.",,,,
 aEP_CoordinatedCombat,SHIP_SYSTEM,"
@@ -148,7 +148,7 @@ aEP_fga_chichao,SHIP,"Born in the era when humanity first extended warfare into 
 
 The Redtide-class still has a certain aerodynamic profile, because at that time combat within the atmosphere was a big part of space warfare. Although, from a contemporary perspective, this once colossal vessel might seem little, like a shuttle, but one must not forget that it was once the largest weapon humanity could construct. Now, after modernization, it still has a role to fit in modern warfare",,,,
 aEP_fga_shuangshen,SHIP,"A giant space fighter that can be piloted by two people, the remaining cabin space can carry an entire elite special forces and their equipments. Relying on its superior stealth capabilities and single-ship combat performance, it often appears as the main character's vehicle in video games. Inspired by leaked data sheets of Windstring-Class Frigate by some hardcore players of a military vehicle shooter game named 'Wra Thnunder'",,,,
-aEP_fga_shuangshen3,SHIP,"A rare fighter system designed specifically for a single ship type, including all technical modules to achieve complex tactical missions. This small-production, special LPC was even eliminated before the collapse due to its inability to amortize costs",,,,
+aEP_ftr_ut_shuangshen3,SHIP,"A rare fighter system designed specifically for a single ship type, including all technical modules to achieve complex tactical missions. This small-production, special LPC was even eliminated before the collapse due to its inability to amortize costs",,,,
 ,,,,,,
 aEP_typeB28,SHIP,"A fully automated derelict mining machine dated back to Domain era, other information remains unknown ",,,,
 ,,,,,,

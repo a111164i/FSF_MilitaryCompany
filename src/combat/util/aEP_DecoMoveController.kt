@@ -66,10 +66,10 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_fga_yonglang_glow"] = arrayOf(10f, 3f,  0f,0f)
       mag["aEP_fga_yonglang_main_br"] = arrayOf(10f, 3f,  0f,0f)
 
-      mag["aEP_fga_shuangshen3_wing_l"] = arrayOf(-5f, 4f, 0f, 0f)
-      mag["aEP_fga_shuangshen3_wing_r"] = arrayOf(-5f, 4f, 0f, 0f)
-      mag["aEP_fga_shuangshen3_empennage_l"] = arrayOf(-18f, 4f, 0f, 0f)
-      mag["aEP_fga_shuangshen3_empennage_r"] = arrayOf(-18f, 4f, 0f, 0f)
+      mag["aEP_ftr_ut_shuangshen3_wing_l"] = arrayOf(-5f, 4f, 0f, 0f)
+      mag["aEP_ftr_ut_shuangshen3_wing_r"] = arrayOf(-5f, 4f, 0f, 0f)
+      mag["aEP_ftr_ut_shuangshen3_empennage_l"] = arrayOf(-18f, 4f, 0f, 0f)
+      mag["aEP_ftr_ut_shuangshen3_empennage_r"] = arrayOf(-18f, 4f, 0f, 0f)
 
       mag["aEP_ftr_sup_guardian_cover_l"] = arrayOf(-6f, 4f, 12f,4f)
       mag["aEP_ftr_sup_guardian_cover_r"] = arrayOf(-6f, 4f, -12f,4f)

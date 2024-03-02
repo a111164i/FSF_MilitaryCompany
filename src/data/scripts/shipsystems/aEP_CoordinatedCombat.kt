@@ -530,7 +530,7 @@ class aEP_CoordinatedCombat : BaseShipSystemScript(), EveryFrameCombatPlugin {
       if (aEP_Tool.isShipTargetable(
           other, false,false,
           true,false,false)
-        || other.hullSpec.baseHullId.equals("aEP_fga_shuangshen3")) continue
+        || other.hullSpec.baseHullId.equals("aEP_ftr_ut_shuangshen3")) continue
 
 
     }

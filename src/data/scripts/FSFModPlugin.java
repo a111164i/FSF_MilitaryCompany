@@ -123,10 +123,6 @@ public class FSFModPlugin extends BaseModPlugin {
     isNexerelinEnabled = Global.getSettings().getModManager().isModEnabled("nexerelin");
     isLunalibEnabled = Global.getSettings().getModManager().isModEnabled("lunalib");
 
-    //如果开了跳过任务，加入memKey
-
-
-
     //random sector
     //corvusMode关闭代表启用随机星域
     if (isNexerelinEnabled && !SectorManager.getManager().isCorvusMode()) {

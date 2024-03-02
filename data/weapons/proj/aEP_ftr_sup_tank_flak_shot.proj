@@ -23,18 +23,18 @@
 
 	"explosionSpec":{
 		"duration":0.5f, # not visual
-		 "radius":150,
-		 "coreRadius":50, # full damage within core radius
-		 "collisionClass":PROJECTILE_NO_FF,
-		 "collisionClassByFighter":PROJECTILE_FIGHTER
+		"radius":75,
+		"coreRadius":100, # full damage within core radius
+		"collisionClass":PROJECTILE_NO_FF,
+		"collisionClassByFighter":PROJECTILE_FIGHTER
 	},
 	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
 			"slowToMaxSpeed":true,
-			"range":50,
+			"range":75,
 			"explosionSpec":{
 				"duration":0.5f,
 				"radius":150,
-				"coreRadius":50, # full damage within core radius - at least equal to proximity fuse range
+				"coreRadius":100, # full damage within core radius - at least equal to proximity fuse range
 				"collisionClass":PROJECTILE_NO_FF,
 				"collisionClassByFighter":PROJECTILE_FIGHTER,
 				"particleSizeMin":4.0,

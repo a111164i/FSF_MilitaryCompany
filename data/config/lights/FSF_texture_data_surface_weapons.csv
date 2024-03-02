@@ -23,6 +23,11 @@ aEP_cru_zhongliu_slide_r,turret,,,surface,graphics/shaders/surface/weapons/aEP_c
 aEP_cru_pingding_armor1,turret,,,surface,graphics/shaders/surface/weapons/aEP_cru_pingding/armor1_surface.png
 aEP_cru_pingding_armor2,turret,,,surface,graphics/shaders/surface/weapons/aEP_cru_pingding/armor2_surface.png
 aEP_des_taodong_cover,turret,,,surface,graphics/shaders/surface/weapons/aEP_des_taodong/cover_surface.png
+aEP_ftr_ut_shuangshen3_main_cover,turret,,1,surface,graphics/shaders/surface/ships/aEP_fga_shuangshen2_surface.png
+aEP_ftr_ut_shuangshen3_empennage_l,turret,,1,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_shuangshen3/empennage_l_surface.png
+aEP_ftr_ut_shuangshen3_empennage_r,turret,,1,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_shuangshen3/empennage_r_surface.png
+aEP_ftr_ut_shuangshen3_wing_l,turret,,1,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_shuangshen3/wing_l_surface.png
+aEP_ftr_ut_shuangshen3_wing_r,turret,,1,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_shuangshen3/wing_r_surface.png
 aEP_b_l_railway,turret,,,surface,graphics/shaders/surface/weapons/aEP_b_l_railway/tr_surface.png
 aEP_b_l_railway,turretbarrel,,,surface,graphics/shaders/surface/weapons/aEP_b_l_railway/tr_br_surface.png
 aEP_b_l_railway,hardpoint,,,surface,graphics/shaders/surface/weapons/aEP_b_l_railway/hp_surface.png

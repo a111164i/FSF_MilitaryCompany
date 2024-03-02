@@ -17,7 +17,7 @@
     "aEP_HighSpeedManeuver"
   ],
   "builtInWings": [
-    "aEP_fga_shuangshen3_wing"
+    "aEP_ftr_ut_shuangshen3_wing"
   ],
   "builtInWeapons": {
     "POINTER": "aEP_fga_shuangshen_pointer",

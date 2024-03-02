@@ -78,7 +78,9 @@ FSF Module,aEP_Module,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.
 ADS Shield,aEP_MaoDianShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
 Cruise Missile Trigger S-1,aEP_CruiseMissile,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
 Cruise Missile Trigger S-2,aEP_CruiseMissile2,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
-Fighter Armor Plate,aEP_FighterArmor,0,FSF Design,,,,,,TRUE,w,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"Fighter's armor/structure take less damage, weapons and engines are less likely to be disabled",,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
+Fighter Armor Plate,aEP_FighterArmor,0,FSF Design,,,,,,TRUE,w,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"Fighter's armor/structure take less damage, weapons and engines are less likely to be disabled
+
+Armor/structure/weapon/engine take % less damage",,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
 Tank Armor,aEP_FlyingTank,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Armor automatically repair itself to the maximum in short time,,graphics/aEP_hullmods/aEP_self_rotate.png,,
 Projectile Denial Shield,aEP_ProjectileDenialShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_ProjectileDenialShield,"When a projectile hits shield, remove it and increase hard flux equals to its damage ",,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
 ,,,,,,,,,,,,,,,,,,,,

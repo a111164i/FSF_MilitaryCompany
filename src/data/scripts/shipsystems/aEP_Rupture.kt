@@ -8,19 +8,19 @@ import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.Misc
 import combat.impl.aEP_BaseCombatEffect
+import combat.impl.aEP_BaseCombatEffectWithKey
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Blinker
 import combat.util.aEP_Combat
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
-import data.scripts.shipsystems.aEP_Rapture.Companion.DIRECTION_COLOR
-import data.scripts.shipsystems.aEP_Rapture.Companion.FLUX_PERCENT_PER_TICK
-import data.scripts.shipsystems.aEP_Rapture.Companion.FLUX_PER_TICK
-import data.scripts.shipsystems.aEP_Rapture.Companion.FREE_RANGE
-import data.scripts.shipsystems.aEP_Rapture.Companion.KEY
-import data.scripts.shipsystems.aEP_Rapture.Companion.OVERLOAD_TIME
-import data.scripts.shipsystems.aEP_Rapture.Companion.SPEED_SLOW_PER_TICK
-import data.scripts.shipsystems.aEP_Rapture.Companion.TICK_DIST
+import data.scripts.shipsystems.aEP_Rupture.Companion.DIRECTION_COLOR
+import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_PERCENT_PER_TICK
+import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_PER_TICK
+import data.scripts.shipsystems.aEP_Rupture.Companion.FREE_RANGE
+import data.scripts.shipsystems.aEP_Rupture.Companion.OVERLOAD_TIME
+import data.scripts.shipsystems.aEP_Rupture.Companion.SPEED_SLOW_PER_TICK
+import data.scripts.shipsystems.aEP_Rupture.Companion.TICK_DIST
 import data.scripts.weapons.PredictionStripe
 import data.scripts.weapons.aEP_BeamRepair
 import org.lazywizard.lazylib.MathUtils
@@ -29,10 +29,10 @@ import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
 
-class aEP_Rapture:  BaseShipSystemScript() {
+class aEP_Rupture:  BaseShipSystemScript() {
   companion object{
     //正在受到效果的目标会持续被set这个key
-    const val KEY = "aEP_Rapture"
+    const val TARGET_KEY = "aEP_RuptureTarget"
 
     val JITTER_COLOR: Color = MineStrikeStats.JITTER_UNDER_COLOR
     val DIRECTION_COLOR: Color = Misc.scaleAlpha(Color.red,1f)
@@ -51,6 +51,23 @@ class aEP_Rapture:  BaseShipSystemScript() {
     const val SPEED_SLOW_PER_TICK = 0.5f
 
     const val OVERLOAD_TIME = 1f
+
+    fun isValidTarget(t: ShipAPI?, self:ShipAPI):Boolean{
+      t?:run { return false }
+      if(!aEP_Tool.isShipTargetable(
+          t,
+          false,false,false,
+          false,false)) return false
+
+
+      //对于正在被起效的目标不能放第二个
+      if(t.customData?.containsKey(TARGET_KEY) == true){
+        return false
+      }
+
+      val dist = aEP_Tool.checkTargetWithinSystemRange(self, t.location, SYSTEM_RANGE)
+      return dist <= 0f
+    }
   }
 
   private var ship: ShipAPI? = null
@@ -102,33 +119,20 @@ class aEP_Rapture:  BaseShipSystemScript() {
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
-    ship.shipTarget?:return false
 
-    if(aEP_Tool.isShipTargetable(
-        ship.shipTarget,
-        false,false,false,
-        false,false)) return false
-
-
-    //对于正在被起效的目标不能放第二个
-    if(ship.shipTarget?.customData?.containsKey(KEY) == true){
-      return false
-    }
-
-    val dist = aEP_Tool.checkTargetWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
-    return dist <= 0f
+    return isValidTarget(ship.shipTarget,ship)
   }
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
     var string = aEP_Tool.getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
-    if(ship.shipTarget?.customData?.containsKey(KEY) == true){
+    if(ship.shipTarget?.customData?.containsKey(TARGET_KEY) == true){
       string = "Not Valid"
     }
     return string
   }
 }
 
-class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffect(lifetime){
+class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffectWithKey(lifetime, target){
   //影响锚图片的大小，链子的粗细
   var sizeMult = 2f
 
@@ -150,6 +154,8 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffect(lifetim
 
   //出场特效
   init {
+    setKeyAndPutInData("aEP_RuptureTarget")
+
     aEP_CombatEffectPlugin.addEffect(chain)
 
     sprite.setSize(sprite.width * sizeMult, sprite.height * sizeMult)
@@ -171,7 +177,7 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffect(lifetim
       return
     }
 
-    target.setCustomData(KEY,1f)
+    target.setCustomData(aEP_Rupture.TARGET_KEY,1f)
 
     moved = false
     dist2Entity = MathUtils.getDistance(target.location, ballLocation)
@@ -228,8 +234,7 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffect(lifetim
     }
   }
 
-  override fun readyToEnd() {
-    target.removeCustomData(KEY)
+  override fun readyToEndImpl() {
     chain.lifeTime = 100f
     chain.time = 99.9f
     Global.getCombatEngine().spawnExplosion(ballLocation, Misc.ZERO, aEP_BeamRepair.REPAIR_COLOR2,100f*sizeMult,0.5f)
@@ -278,3 +283,4 @@ class Chain(val target: ShipAPI,val ballDrag:DragBall): PredictionStripe(target)
     }
   }
 }
+

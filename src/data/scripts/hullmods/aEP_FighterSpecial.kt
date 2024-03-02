@@ -45,7 +45,7 @@ import java.awt.Color
 import kotlin.math.pow
 
 /**
-* 不知道为什么游戏中不显示基础描述，这里只放一些玩家看不到的插件
+* 默认的showDescription返回false，这样不会显示插件说明
 * */
 class aEP_FighterSpecial: BaseHullMod() {
 
@@ -1376,16 +1376,19 @@ class aEP_FighterArmor : BaseHullMod() {
     const val WEAPON_DAMAGE_TAKEN_REDUCE_MULT = 0.5f
     const val REPAIR_TIME_REDUCE_MULT = 0.5f
 
+    val MAP = HashMap<String, Float>()
+    init {
+      MAP["aEP_ftr_bom_nuke"] = 2.5f
+      MAP["aEP_ftr_icp_gunship"] = 2f
+      MAP["aEP_ftr_ftr_hvfighter"] = 1.5f
+      MAP["aEP_ftr_ftr_helicop"] = 1.5f
+    }
   }
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
     var modifier = 1f
-    when(ship.hullSpec.baseHullId){
-      "aEP_ftr_bom_nuke"-> modifier = 2.5f
-      "aEP_ftr_icp_gunship"-> modifier = 2.5f
-      "aEP_ftr_ftr_hvfighter"-> modifier = 1.5f
-      "aEP_ftr_ftr_helicop"-> modifier = 1.5f
-    }
+    //默认10%减伤，乘一个系数
+    modifier *= MAP[ship.hullSpec.baseHullId]?: 1f
 
     ship.mutableStats.effectiveArmorBonus.modifyPercent(id, ARMOR_COMPUTE_PERCENT_BONUS * modifier)
     ship.mutableStats.armorDamageTakenMult.modifyMult(id, 1f - DAMAGE_TAKEN_REDUCE_MULT* modifier)
@@ -1399,7 +1402,14 @@ class aEP_FighterArmor : BaseHullMod() {
     ship.mutableStats.combatWeaponRepairTimeMult.modifyMult(id,1f - REPAIR_TIME_REDUCE_MULT)
   }
 
+  override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String {
+    var reduction = 10f
+    ship?.run {
+      reduction *= MAP[ship.hullSpec.baseHullId]?: 1f
+    }
 
+    return String.format("%.0f", reduction)+"%"
+  }
 }
 
 //type28护盾插件

@@ -41,10 +41,10 @@ class aEP_DecoRevoController(var weapon: WeaponAPI) {
       mag["aEP_fga_xiliu_red"] = arrayOf(0f, 90f, 2f)
       mag["aEP_fga_xiliu_green"] = arrayOf(0f, 90f,  2f)
 
-      mag["aEP_fga_shuangshen3_wing_l"] = arrayOf(0f, -30f, 3f)
-      mag["aEP_fga_shuangshen3_wing_r"] = arrayOf(0f, 30f,  3f)
-      mag["aEP_fga_shuangshen3_empennage_l"] = arrayOf(0f, -10f, 3f)
-      mag["aEP_fga_shuangshen3_empennage_r"] = arrayOf(0f, 10f,  3f)
+      mag["aEP_ftr_ut_shuangshen3_wing_l"] = arrayOf(0f, -30f, 3f)
+      mag["aEP_ftr_ut_shuangshen3_wing_r"] = arrayOf(0f, 30f,  3f)
+      mag["aEP_ftr_ut_shuangshen3_empennage_l"] = arrayOf(0f, -10f, 3f)
+      mag["aEP_ftr_ut_shuangshen3_empennage_r"] = arrayOf(0f, 10f,  3f)
 
       mag["aEP_ftr_sup_guardian_cover_l"] = arrayOf(-5f, 75f, 4f)
       mag["aEP_ftr_sup_guardian_cover_r"] = arrayOf(5f, -75f, 4f)

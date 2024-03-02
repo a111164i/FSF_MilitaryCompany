@@ -167,6 +167,10 @@ open class aEP_BaseCombatEffectWithKey : aEP_BaseCombatEffect{
   constructor(entity: CombatEntityAPI) : super(entity)
   constructor(lifeTime: Float, entity: CombatEntityAPI) : super(lifeTime, entity)
 
+  constructor(lifeTime: Float, entity: CombatEntityAPI, key: String) : super(lifeTime, entity){
+    setKeyAndPutInData(key)
+  }
+
   fun setKeyAndPutInData(id : String){
     key = id
     entity?.setCustomData(key, this)

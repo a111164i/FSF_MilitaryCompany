@@ -1,8 +1,8 @@
 {
-	"id":"aEP_Rapture",
+	"id":"aEP_Rupture",
 	"type":"STAT_MOD",
 	"aiType":"WEAPON_BOOST",
-  "statsScript":"data.scripts.shipsystems.aEP_Rapture",
+  "statsScript":"data.scripts.shipsystems.aEP_Rupture",
 
 
 	"runScriptWhileIdle":false,  # this means unapply() never gets called
