@@ -1,7 +1,0 @@
-﻿Location: Lower Orbit of Planet DWR43-Y 
-Date: 201.6.01
-
-The battle with the target autonomous fleet has lasted a few days.
-
-
-You can hold F and re-select this mission to restrict unusable equipments. If you want to restore the original setting, please select this mission again without holding F. Please note, the restriction will affect everything. If you want to remove the restriction, you must select this mission without holding down any buttons.

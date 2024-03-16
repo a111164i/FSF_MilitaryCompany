@@ -1,174 +1,175 @@
 name,id,hints,type,OPs,range,turn rate,damage/second,damage/shot,emp,energy/second,energy/shot,impact,proj speed,beam speed,flight time,chargeup,chargedown,burst size,burst delay,ammo,ammo/sec,reload size,noDPSInTooltip,min spread,max spread,spread/shot,spread decay/sec,proj hitpoints,launch speed,tech/manufacturer,primaryRoleStr,customPrimaryHL,customPrimary,rarity,base value,tags,,groupTag,tier,autofireAccBonus,extraArcForAI,speedStr,trackingStr,turnRateStr,accuracyStr,customAncillary,customAncillaryHL,number
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"""台风""超口径多级火药电磁混合动力榴弹炮",aEP_cap_sta_main,"SYSTEM, DANGEROUS, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,1,1500,20,,8000,,,8000,4000,700,,,5,25,,,,,1,,0,2,2,10,4000,,FSF制造,通用,,,,,,,,,,,,,,,,,
-"""标兵""搭载雷达",aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,1,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF制造,辅助,45% | 100 ,本舰所有与雷达朝向相同的非PD武器获得{%s}射程提升，中能量武器获得额外{%s}基础射程,,,,,,,,,,,,,,,
-"""无光层""多级加速器",aEP_cap_duiliu_main,SYSTEM,KINETIC,1,1200,,,500,,,1000,2000,2000,,1,2,9,,,,,,,0,0,0,0,,,FSF制造,通用,1500 | 1000 | 500,"充能时，持续发射碎片流共造成大约{%s}点动能伤害，产生{%s}幅能。主弹丸会在脱离时爆炸，造成{%s}的高爆伤害
+"""Typhoon"" Hyper Caliber Multistage Acceleration Electromagnet Hybrid Propulsion Cannon",aEP_cap_sta_main,"SYSTEM, DANGEROUS, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,1,1500,20,,8000,,,8000,4000,700,,,5,25,,,,,1,,0,2,2,10,4000,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+"""Exemplar"" Mounted Radar",aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,1,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF Manufacture,Support,45% | 100 ,"All non-PD weapons of this ship gains up %s range if those weapon's facing is aligned with this radar
 
-主弹丸在附着时，会持续把目标向自身吸引",,,,,,,,,,,,,,,
--无光层碎屑,aEP_cap_duiliu_main2,SYSTEM,KINETIC,,1200,0,,15,0,,0,,800,,,0,0.5,,,,,,,0,10,5,10,,,FSF制造,,,,,,,,,,,,,,,,,,
-"""黑星改""转轮炮",aEP_cap_neibo_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,,900,18,,75,,,75,,900,,,0.5,2,50,0.05,50,5,50,,0,2,0.25,2,,,FSF制造,反装甲,30% | 250,击中装甲时，有百分之{%s}的概率造成额外{%s}点破片伤害,,,,,,,,,,,,,,,
-异象导弹,aEP_cap_nuanchi_missile,"SYSTEM, DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,1,4000,0,,1000,12000,,250,,200,,30,0.5,9.5,,,1,0.03,1,,0,0,0,1,1000,0,FSF制造,辅助,,击中时，产生数个雷云产生电弧打击附近的敌方舰船，造成巨额穿越护盾的emp伤害,,,,,,,,,,,,,,,
-异象导弹雷云,aEP_cap_nuanchi_missile3,"SYSTEM, DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,1,400,0,,100,3000,,0,,150,,2,1,1,,,,,1,,0,0,0,1,1000,0,,,,,,,,,,,,,,,,,,,
-巨型探矿脉冲,aEP_type28_cannon,SYSTEM,ENERGY,1,1000,10,,1600,,,1600,,600,,,0.5,3.5,,,,,,,0,0,0,,,1000,unknown,工程设备,,,,,,,,,,,,,,,,,
-瀑布弹射器,aEP_cru_pubu_main,SYSTEM,KINETIC,,2000,0,,100,,,0,,1000,,,0,1,,,,,,,0,0,0,0,,600,,,,,,,,,,,,,,,,,,,
-"""死海""火箭增程炮",aEP_cru_pingding_main,SYSTEM,HIGH_EXPLOSIVE,,1200,0,,2000,,,2750,1000,1200,,1.5,2,2,3,0.5,3,0.1,,,8,8,8,8,400,1200,FSF制造,反装甲,25%,"发射时，本舰的最大航速会被暂时限制到{%s}，并禁用护盾与战术系统
+All Medium Energy Weapon gains %s extra range.",,,,,,,,,,,,,,,
+"""Aphotic Zone"" Coil Accelerator",aEP_cap_duiliu_main,SYSTEM,KINETIC,1,1200,,,500,,,1000,2000,2000,,1,2,9,,,,,,,0,0,0,0,,,FSF Manufacture,General,1500 | 1000 | 500,"While charging, the weapon shoots a stream of shards dealing around %s KE damage and gernates %s soft flux.
 
-弹丸属于导弹，可以被拦截",,,,,,,,,,,,,,,
-死海-激光测距仪,aEP_cru_pingding_lidardish,SYSTEM,ENERGY,,100,60,50,,,100,,,,5000,,1,2,,,,,,,0,0,0,1,,,,,,,,,,,,,,,,,,,,,
-"""猎鲸""核动力鱼雷",aEP_cru_pingding_torpedo,"SYSTEM, STRIKE",HIGH_EXPLOSIVE,1,8000,0,,4000,,,0,,400,,30,0,20,,,,,,,0,0,0,1,600,40,FSF制造,反装甲,,,,,,,,,,,,,,,,,
-热泉长程导弹发射舱,aEP_cru_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,7,0.15,7,,,,0,0,0,1,125,150,FSF制造,反装甲,,,,,,,,,,,,,,,,,
-热泉长程导弹发射系统,aEP_cap_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,12,0.1,12,,,,0,0,0,1,125,150,FSF制造,反装甲,,,,,,,,,,,,,,,,,
-巡航导弹发射装置,aEP_des_shendu_mk2_cruise_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_3",ENERGY,,10000,5,,4000,,,0,,1000,,50,1.5,9999,1,,1,,,,0,0,0,0,2000,500,FSF制造,终结,,,,,,,,,,,,,,,,,
-内置弹幕炮,aEP_des_yangji_flak,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",FRAGMENTATION,,800,0,,150,,,0,,800,,,0,0.25,3,0.1,16,0,,,90,90,90,90,,,FSF制造,,150,爆炸击中时，对每个目标造成一次{%s}额外破片伤害,,,"fixed_range, fires_one_burst",,,,,,,,,,,,
-内置炸弹抛洒器,aEP_des_lianliu_grenade_thrower,"SYSTEM, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,1,425,0,,300,,,,,50,,3,0,1,6,0.025,,,,TRUE,60,60,60,60,75,500,FSF制造,反装甲,,,,,,,,,,,,,,,,,
-内置微型DEM,aEP_des_taodong_dem,SYSTEM,ENERGY,1,1000,0,,50,,,0,,500,,3.5,0,0.4,2,0.4,,,,,0,0,0,0,100,300,FSF制造,通用,4 | 200,导弹在接近目标时会发射光束，在 %s 秒内造成约 %s 能量伤害。此伤害受导弹武器伤害效果影响，而不受能量武器伤害效果影响。,,,,,,,,,,,,,,,
---光束,aEP_des_taodong_dem_payload,SYSTEM,ENERGY,1,600,360,50,,,0,,,,1000000,,0,0.25,1,,,,,,0,0,0,0,,,,,,,,,fires_one_burst,,,,,,,,,,,,
-"""洄游""导弹",aEP_fga_xiliu_mk2_missile,"SYSTEM,MISSILE_SPREAD,DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,3,1600,30,0,150,,,,,400,,5,0,0.1,30,0.3333,3,0,3,,5,5,5,5,100,600,FSF制造,通用,,,,,,,,,,,,,,,,,
-反冲力炮,aEP_fga_yonglang_main,"SYSTEM, DANGEROUS",KINETIC,1,900,0,,500,1000,,200,,450,,2,1,3,,,3,0.08333,1,TRUE,0,0,0,0,450,600,FSF制造,反护盾,,"击中护盾时，造成等同emp伤害的额外动能伤害,但额外部分只造成软幅能",,,,,aEP_YLM_only,,,,,,,,,,
-"""沸腾""激光器-聚焦",aEP_fga_xiliu_main,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,1050,75,1200,320,,4000,,1,,1000000,,0,0.3,0.2,2.5,,,,,,,,,,,FSF制造,点防御,300 | 6 | 250,"击中时，对护盾造成硬幅能，并产生电弧打击周围{%s}范围内最多{%s}个其他目标，每道造成{%s}点能量伤害
+Main projectile will briefly stick to the target, while attached, it will continuously pull the target towards itself.
 
-本武器在下线后会立刻修复
+Main projectile explode on detachment, dealing %s HE damage.",,,,,,,,,,,,,,,
+--Shred,aEP_cap_duiliu_main2,SYSTEM,KINETIC,,1200,0,,15,0,,0,,800,,,0,0.5,,,,,,,0,10,5,10,,,FSF Manufacture,,,,,,,,,,,,,,,,,,
+"""Black Star Mod"" Chaingun",aEP_cap_neibo_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,,900,18,,75,,,75,,900,,,0.5,2,50,0.05,50,5,50,,0,2,0.25,2,,,FSF Manufacture,Anti-armor,30% | 250,"When hit on hull, have a %s chance deals extra %s FRAG Damage",,,,,,,,,,,,,,,
+"""Anomalous"" Missile",aEP_cap_nuanchi_missile,"SYSTEM, DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,1,4000,0,,1000,12000,,250,,200,,30,0.5,9.5,,,1,0.03,1,,0,0,0,1,1000,0,FSF Manufacture,Support,,"When hit, spawn several storms that generate shield-piercing emp arc hitting any nearby enemy ship, dealing huge amounts of EMP damage.",,,,,,,,,,,,,,,
+--Storm,aEP_cap_nuanchi_missile3,"SYSTEM, DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,1,400,0,,100,3000,,0,,150,,2,1,1,,,,,1,,0,0,0,1,1000,0,,,,,,,,,,,,,,,,,,,
+Giant Mining Pulse,aEP_type28_cannon,SYSTEM,ENERGY,1,1000,10,,1600,,,1600,,600,,,0.5,3.5,,,,,,,0,0,0,,,1000,unknown,Mining,,,,,,,,,,,,,,,,,
+Waterfall Catapult,aEP_cru_pubu_main,SYSTEM,KINETIC,,2000,0,,100,,,0,,1000,,,0,1,,,,,,,0,0,0,0,,600,,,,,,,,,,,,,,,,,,,
+"""Dead Sea"" Rocket-assisted Cannon",aEP_cru_pingding_main,SYSTEM,HIGH_EXPLOSIVE,,1200,0,,2000,,,2750,1000,1200,,1.5,2,2,3,0.5,3,0.1,,,8,8,8,8,400,1200,FSF Manufacture,Anti-armor,25%,"When firing, max speed of this ship is reduced to %s, shield and ship system are turned off.
 
-光束可以穿过友军",,,,,aEP_XLM_only,,,,,,,,,,
-"""沸腾""激光器-速射",aEP_fga_xiliu_main2,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,450,180,900,150,300,0,,10,,1000000,,0,0.2,0.1,0.15,,,,,,,,,,,FSF制造,点防御,100%,"击中时，对护盾造成硬幅能，对战机和导弹的伤害提高{%s}
+Projectile is considered a missile and can be intercepted",,,,,,,,,,,,,,,
+--Measuring Laser,aEP_cru_pingding_lidardish,SYSTEM,ENERGY,,100,60,50,,,100,,,,5000,,1,2,,,,,,,0,0,0,1,,,,,,,,,,,,,,,,,,,,,
+"""Whale Hunt"" Nuclear Powered Torpedo",aEP_cru_pingding_torpedo,"SYSTEM, STRIKE",HIGH_EXPLOSIVE,1,8000,0,,4000,,,0,,400,,30,0,20,,,,,,,0,0,0,1,600,40,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+"""Hydrothermal"" LRM Launch Rail",aEP_cru_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,7,0.15,7,,,,0,0,0,1,125,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+"""Hydrothermal"" LRM Launch System",aEP_cap_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,12,0.1,12,,,,0,0,0,1,125,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+Cruise Missile Launch Rack,aEP_des_shendu_mk2_cruise_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_3",ENERGY,,10000,5,,4000,,,0,,1000,,50,1.5,9999,1,,1,,,,0,0,0,0,2000,500,FSF Manufacture,Finisher,,,,,,,,,,,,,,,,,
+Built-in Flak Gun,aEP_des_yangji_flak,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",FRAGMENTATION,,800,0,,150,,,0,,800,,,0,0.25,3,0.1,16,0,,,90,90,90,90,,,FSF Manufacture,,150,"When explosion hit a target, deals extra %s FRAG damage",,,"fixed_range, fires_one_burst",,,,,,,,,,,,
+Built-in Grenade Thrower,aEP_des_lianliu_grenade_thrower,"SYSTEM, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,1,425,0,,300,,,,,50,,3,0,1,6,0.025,,,,TRUE,60,60,60,60,75,500,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+Built-in Micro DEM,aEP_des_taodong_dem,SYSTEM,ENERGY,1,1000,0,,50,,,0,,500,,3.5,0,0.4,2,0.4,,,,,0,0,0,0,100,300,FSF Manufacture,General,4 | 200,"The missile will fires a beam at target at close range, within %s seconds dealing around %s EN damage. This damage is affected by modifier that affect missile weapon damage instead of energy weapon damage.",,,,,,,,,,,,,,,
+--Payload,aEP_des_taodong_dem_payload,SYSTEM,ENERGY,1,600,360,50,,,0,,,,1000000,,0,0.25,1,,,,,,0,0,0,0,,,,,,,,,fires_one_burst,,,,,,,,,,,,
+"""Migratory"" Repulse Missile",aEP_fga_xiliu_mk2_missile,"SYSTEM,MISSILE_SPREAD,DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,3,1600,30,0,150,,,,,400,,5,0,0.1,30,0.3333,3,0,3,,5,5,5,5,100,600,FSF Manufacture,General,,,,,,,,,,,,,,,,,
+"""Recoil"" Gun",aEP_fga_yonglang_main,"SYSTEM, DANGEROUS",KINETIC,1,900,0,,500,1000,,200,,450,,2,1,3,,,3,0.08333,1,TRUE,0,0,0,0,450,600,FSF Manufacture,Anti-shield,,"When hitting shield, deals extra KE damage equals to EMP damage dealt, however these damage only cause soft flux. ",,,,,aEP_YLM_only,,,,,,,,,,
+"""Boiling"" Laser - High Output",aEP_fga_xiliu_main,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,1050,75,1200,320,,4000,,1,,1000000,,0,0.3,0.2,2.5,,,,,,,,,,,FSF Manufacture,PD,300 | 6 | 250,"On hitting shield, generate hard flux, also spawns emp arcs jumping around a distance of %s , hitting up to %s enemies, and deals %s EN damage to each of them.
 
-本武器在下线后会立刻修复
+This weapon will automatically repair itself
 
-光束可以穿过友军",,,,,aEP_XLM_only,,,,,,,,,,
-激光测距雷达,aEP_fga_chichao_lidardish,SYSTEM,ENERGY,,100,200,100,,,0,,,,1000000,,0.2,0.3,0.5,0.1,1000,1000,1000,,,,,,,,,,,,,,lidar,,,,,,,,,,,,
-小激光,aEP_fga_shuangshen2_lidardish,"SYSTEM, DANGEROUS",ENERGY,,400,120,75,,,0,,,,2000,,0.5,0.5,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
-战机指示器,aEP_fga_shuangshen_pointer,SYSTEM,HIGH_EXPLOSIVE,,1200,720,50,,,0,,,,1000000,,0.1,0,0.2,10,,,,,,,,,,,FSF制造,辅助,,将内置战机引导到激光的落点,,,,,aEP_SS_only,,,,,,,,,,
-DF-2重型反应装甲,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,1,0,1,TRUE,0,0,0,0,100,250,FSF制造,点防御,500 | 1 | 90%,"本武器附近的装甲单次受到超过{%s}或本舰装甲值{%s}倍的伤害时，会自动发射，同时本次伤害减少{%s}
+Beam can go through allies",,,,,aEP_XLM_only,,,,,,,,,,
+"""Boiling"" Laser - Repeating",aEP_fga_xiliu_main2,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,450,180,900,150,300,0,,10,,1000000,,0,0.2,0.1,0.15,,,,,,,,,,,FSF Manufacture,PD,100%,"On hitting shield, generate hard flux, damage is increased by %s if the target is missile/fighter
 
-本武器在下线后会立刻修复
+This weapon will automatically repair itself
 
-本武器无法主动使用",1,200,,,,,,,,,,,,,
-S-1巡航导弹弹片,aEP_cruise_missile_shot,SYSTEM,HIGH_EXPLOSIVE,,2000,0,0,750,,,0,100,800,,10,0,1,1,,,,,,1,1,1,1,,0,FSF制造,,,,,,fixed_range,,,,,,,,,,,,
-S-2巡航导弹弹片,aEP_cruise_missile_shot2,SYSTEM,ENERGY,,900,0,0,5000,,,0,600,800,,10,0,1,1,,,,,,1,1,1,1,,0,FSF制造,,,,,,fixed_range,,,,,,,,,,,,
-"""特斯拉""电弧炮",aEP_des_yonglang_mk2_teslagun,SYSTEM,ENERGY,1,300,60,100,,,50,,,,2000,,0,1,,,,,,,0,0,0,15,,,FSF胡乱改造,辅助,5 | 20 | 50 | 50%,击中舰船时，每秒产生{%s}道穿越护盾的电弧，每道造成{%s}点能量伤害和{%s}点emp伤害，同时降低目标{%s}的最大速度与机动性,,,,,,,,,,,,,,,
-热诱弹空雷,aEP_des_shuishi_flare,SYSTEM,FRAGMENTATION,1,1600,10,,400,,,0,,100,,0.75,0,1,,,,,,0,1,1,1,1,800,0,FSF制造,点防御,,,,,,,,,,,,,,,,38.7,
-被动热诱弹,aEP_m_s_flare,SYSTEM,FRAGMENTATION,1,800,10,,200,,,0,,100,,6,0,0.2,4,0.1,,,,,45,45,2,45,500,400,FSF制造,点防御,,,,,,,,,,,,,,,,36,
-战机热诱弹,aEP_m_s_flare2,SYSTEM,FRAGMENTATION,1,400,10,,200,,,0,,300,,7,0,0.2,3,0.1,,,,,45,45,2,45,500,300,FSF制造,点防御,,,,,,,,,,,,,,,,36,
-追踪热诱弹,aEP_m_s_flare3,SYSTEM,FRAGMENTATION,1,800,10,,400,,,0,,450,,8,0,0.2,2,0.1,,,,,45,45,2,45,500,200,FSF制造,点防御,,,,,,,,,,,,,,,,36,
-auto,aEP_empty,SYSTEM,ENERGY,,10,0,0,0,,0,1,,,1,,9999,9999,,,,,,,,,,,,,FSF制造,,,,,,,,,,,,,,,,,,
+Beam can go through allies",,,,,aEP_XLM_only,,,,,,,,,,
+Lidardish,aEP_fga_chichao_lidardish,SYSTEM,ENERGY,,100,200,100,,,0,,,,1000000,,0.2,0.3,0.5,0.1,1000,1000,1000,,,,,,,,,,,,,,lidar,,,,,,,,,,,,
+Mini Laser ,aEP_fga_shuangshen2_lidardish,"SYSTEM, DANGEROUS",ENERGY,,400,120,75,,,0,,,,2000,,0.5,0.5,,,,,,,0,0,0,0,,,FSF Manufacture,Support,,,,,,,,,,,,,,,,,
+Fighter Pointer,aEP_fga_shuangshen_pointer,SYSTEM,HIGH_EXPLOSIVE,,1200,720,50,,,0,,,,1000000,,0.1,0,0.2,10,,,,,,,,,,,FSF Manufacture,Support,,Lead the built-in fighter to the ending point of this beam,,,,,aEP_SS_only,,,,,,,,,,
+DF-2 Heavy ERA,aEP_m_s_era3,"SYSTEM, PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,1,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,500 | 1 | 90%,"When the hull around this weapon takes a damage that >= %s or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
+
+This weapon will immediately repair itself if brought offline.
+
+This weapon can't be fired manually",1,200,,,,,,,,,,,,,
+S-1 Payload,aEP_cruise_missile_shot,SYSTEM,HIGH_EXPLOSIVE,,2000,0,0,750,,,0,100,800,,10,0,1,1,,,,,,1,1,1,1,,0,FSF Manufacture,,,,,,fixed_range,,,,,,,,,,,,
+S-2 Payload,aEP_cruise_missile_shot2,SYSTEM,ENERGY,,900,0,0,5000,,,0,600,800,,10,0,1,1,,,,,,1,1,1,1,,0,FSF Manufacture,,,,,,fixed_range,,,,,,,,,,,,
+"""Tesla"" Arc Emitter",aEP_des_yonglang_mk2_teslagun,SYSTEM,ENERGY,1,300,60,100,,,50,,,,2000,,0,1,,,,,,,0,0,0,15,,,FSF Private Conversion,Support,5 | 20 | 50 | 50%,"When hitting ship, spawns %s shield piercing emp arcs per second, each one dealing %s EN damage and %s EMP damage, as well as reducing the target's max speed by %s",,,,,,,,,,,,,,,
+Flare Mine,aEP_des_shuishi_flare,SYSTEM,FRAGMENTATION,1,1600,10,,400,,,0,,100,,0.75,0,1,,,,,,0,1,1,1,1,800,0,FSF Manufacture,PD,,,,,,,,,,,,,,,,38.7,
+Flare - Passive,aEP_m_s_flare,SYSTEM,FRAGMENTATION,1,800,10,,200,,,0,,100,,6,0,0.2,4,0.1,,,,,45,45,2,45,500,400,FSF Manufacture,PD,,,,,,,,,,,,,,,,36,
+Flare - Fighter,aEP_m_s_flare2,SYSTEM,FRAGMENTATION,1,400,10,,200,,,0,,300,,7,0,0.2,3,0.1,,,,,45,45,2,45,500,300,FSF Manufacture,PD,,,,,,,,,,,,,,,,36,
+Flare - Active,aEP_m_s_flare3,SYSTEM,FRAGMENTATION,1,800,10,,400,,,0,,450,,8,0,0.2,2,0.1,,,,,45,45,2,45,500,200,FSF Manufacture,PD,,,,,,,,,,,,,,,,36,
+Auto,aEP_empty,SYSTEM,ENERGY,,10,0,0,0,,0,1,,,1,,9999,9999,,,,,,,,,,,,,FSF Manufacture,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,#小武器,,,,,#火神炮75，pd激光100,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#轻迫6，轻针9 轻机枪这种本职pd6的可以兼带kinetic3，否则最低6,,,,,,,,,,,,
-EB-300k多用途光束,aEP_e_s_300k,"PD, ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,6,400,120,320,,,80,,,,1000000,,0.1,0,0.3,0.3,,,,,,,,,,,FSF制造,点防御,8,激光总伤害被分为{%s}束,0.5,350,"pd8, he5, FSF_bp",,,2,,,,,,,,,
-630近防炮,aEP_b_s_630,PD ,FRAGMENTATION,5,350,100,,45,,,2,1,1200,,,0.25,0.45,20,0.05,,,,,0,2,0.04,10,,,FSF制造,点防御,,,1,250,"pd7, FSF_bp",,,1,,,,,,,,,
-X20砰砰炮,aEP_b_s_pom,"PD, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,6,500,120,,75,,,20,,500,,,0,2.6,4,0.125,,,,,10,20,1,40,,,FSF制造,点防御,,弹丸可以穿过友军,1,250,"pd8, FSF_bp",,,1,,,,,,,,,
-H-37反舰炮,aEP_b_s_h37,,HIGH_EXPLOSIVE,5,700,12,,120,,,160,5,700,,,0,1.8,2,0.2,,,,,0,15,3,30,,,FSF制造,反装甲,,,1,250,"he7, FSF_bp",,,0,,,,,,,,,
-K-9机载轻机枪,aEP_ftr_sup_shield_gun,PD,KINETIC,2,450,75,,12,,,5,,1600,,,0,1.05,12,0.05,,,,,0,4,1,10,,,FSF制造,点防御,,,1,200,"pd4, FSF_bp",,,0,,,,,,,,,
+EB-300k Multi-purpose Laser,aEP_e_s_300k,"PD, ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,6,400,120,320,,,80,,,,1000000,,0.1,0,0.3,0.3,,,,,,,,,,,FSF Manufacture,PD,8,Beam damage is divided into %s small beams,0.5,350,"pd8, he5, FSF_bp",,,2,,,,,,,,,
+630 Close-in Defense,aEP_b_s_630,PD ,FRAGMENTATION,5,350,100,,45,,,2,1,1200,,,0.25,0.45,20,0.05,,,,,0,2,0.04,10,,,FSF Manufacture,PD,,,1,250,"pd7, FSF_bp",,,1,,,,,,,,,
+X20 Pom-Pom Array,aEP_b_s_pom,"PD, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,6,500,120,,75,,,20,,500,,,0,2.6,4,0.125,,,,,10,20,1,40,,,FSF Manufacture,PD,,Projectile can go through allies,1,250,"pd8, FSF_bp",,,1,,,,,,,,,
+H-37 Anti-ship Gun,aEP_b_s_h37,,HIGH_EXPLOSIVE,5,700,12,,120,,,160,5,700,,,0,1.8,2,0.2,,,,,0,15,3,30,,,FSF Manufacture,Anti-armor,,,1,250,"he7, FSF_bp",,,0,,,,,,,,,
+K-9 Fighter LMG,aEP_ftr_sup_shield_gun,PD,KINETIC,2,450,75,,12,,,5,,1600,,,0,1.05,12,0.05,,,,,0,4,1,10,,,FSF Manufacture,PD,,,1,200,"pd4, FSF_bp",,,0,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,#中武器,,,,,#双管60单管40，链炮30高打10重自7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#重迫11-针刺15,,,,,,,,,,,,
-107型火箭炮,aEP_b_m_rk107,USE_LESS_VS_SHIELDS,FRAGMENTATION,15,900,9,,400,,,300,,800,,,0,0.25,4,0.25,8,0.8,4,,0,6,0.8,10,300,600,FSF制造,终结,3 | 450,"击中护盾时，造成双倍软幅能伤害
+107 Rocket Launcher,aEP_b_m_rk107,USE_LESS_VS_SHIELDS,FRAGMENTATION,15,900,9,,400,,,300,,800,,,0,0.25,4,0.25,8,0.8,4,,0,6,0.8,10,300,600,FSF Manufacture,Finisher,3 | 450,"On hitting shield, deals twice the damage but in soft flux
 
-击中装甲时，弹丸伤害增加，增加量为目标最低装甲计算值的{%s}倍，最高为{%s}点",0.5,1600,"strike15, he10, FSF_bp, rare_bp",,,3,,,,,,,,,
-HV7智能榴弹炮,aEP_b_m_hv7,,ENERGY,14,900,12,,360,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF制造,通用,3 | 120 | 800,弹丸临近一艘护卫/驱逐舰时，分裂为{%s}颗子弹丸，单颗为{%s}点能量伤害，随机瞄准附近{%s}距离内的敌舰,0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
---子弹丸,aEP_b_m_hv7_2,SYSTEM,ENERGY,,800,0,,150,,,0,,1500,,,1,1,1,1,,,,,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
-ZT-125转膛自动炮,aEP_b_m_k125,,KINETIC,12,800,8,,180,,,230,,800,,,0,0.5667,2,0.1,6,1,6,,0,12,1,15,,,FSF制造,反护盾,2% | 2% | 200,击中护盾时，有{%s}的概率额外造成等同于目标幅能容量{%s}或{%s}点(两者取大)的额外伤害,1,1000,"kinetic13, FSF_bp",,,1,,,,,,,,,
-MB32多用途机炮,aEP_b_m_mb32,"PD ,NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,11,800,90,,30,,,4.5,,900,,,0,0.125,,,,,,,0,2,0.01,10,,,FSF制造,点防御,50% | 50%,"所有弹丸都可以到达{%s}射程，但只有{%s}的弹丸可以到达全程
+On hitting armor, the damage increased by %s times of target's minimum calculated armor, up to %s .",0.5,1600,"strike15, he10, FSF_bp, rare_bp",,,3,,,,,,,,,
+HV7 Smart Cannon,aEP_b_m_hv7,,ENERGY,14,900,12,,360,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF Manufacture,General,3 | 120 | 800,"When projectile comes near to a Destroyer or Frigate, it will split to %s submunition, each one dealing %s EN damage, targeting a random enemy within %s distance.",0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
+--Split Shot,aEP_b_m_hv7_2,SYSTEM,ENERGY,,800,0,,150,,,0,,1500,,,1,1,1,1,,,,,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
+ZT-125 Revolver Autocannon,aEP_b_m_k125,,KINETIC,12,800,8,,180,,,230,,800,,,0,0.5667,2,0.1,6,1,6,,0,12,1,15,,,FSF Manufacture,Anti-shield,2% | 2% | 200,"On hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher).",1,1000,"kinetic13, FSF_bp",,,1,,,,,,,,,
+MB32 Dual-purpose MG,aEP_b_m_mb32,"PD ,NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,11,800,90,,30,,,4.5,,900,,,0,0.125,,,,,,,0,2,0.01,10,,,FSF Manufacture,PD,50% | 50%,"All projectiles can reach a range of %s , however, only %s of projectiles can reach full range.
 
-弹丸可以穿过友军",1,900,"pd13, kinetic7, FSF_bp",,,1,,,,,,,,,
-GP-80高射炮,aEP_b_m_flak,PD,FRAGMENTATION,10,800,45,,200,,,240,,1000,,,0,2,,,,,,,0,10,1,50,,,FSF制造,点防御,200,"击中战机/导弹时，在短暂的延迟后造成额外{%s}点能量伤害
+Projectile can go through allies",1,900,"pd13, kinetic7, FSF_bp",,,1,,,,,,,,,
+GP-80 Flak,aEP_b_m_flak,PD,FRAGMENTATION,10,800,45,,200,,,240,,1000,,,0,2,,,,,,,0,10,1,50,,,FSF Manufacture,PD,200,"On hitting missile/fighter, deals extra %s EN damage after a short delay
 
-弹丸可以穿过友军",,900,"pd13, FSF_bp",,,1,,,,,,,,,
-H-88反舰炮,aEP_b_m_h88,,HIGH_EXPLOSIVE,9,800,7,,300,,,400,,600,,,0,1.67,,,,,,,0,15,3,30,,,FSF制造,反装甲,,,1,800,"he12, FSF_bp",,,0,,,,,,,,,
+Projectile can go through allies",,900,"pd13, FSF_bp",,,1,,,,,,,,,
+H-88 Anti-ship Gun,aEP_b_m_h88,,HIGH_EXPLOSIVE,9,800,7,,300,,,400,,600,,,0,1.67,,,,,,,0,15,3,30,,,FSF Manufacture,Anti-armor,,,1,800,"he12, FSF_bp",,,0,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,#大武器,,,,,#赫炮20马九10炼狱5高斯3，蹂躏12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#大锤16，马ix18，速子矛20,,,,,,,,,,,,
-AA-40行星防空炮,aEP_b_l_aa40,ANTI_FTR,KINETIC,28,900,6,,250,,,340,100,800,,,0,1.05,2,0.2,12,1.6,4,,2,10,0.5,10,,,FSF制造,反护盾,4% | 2% | 200,爆炸击中护盾时，有{%s}的概率额外造成等同于目标幅能容量{%s}或{%s}点(两者取大)的额外伤害,1,7500,"kinetic20,utility18, FSF_bp, rare_bp",,,3,,,,,,,,,
-DG-3巨型机炮,aEP_b_l_dg3,,HIGH_EXPLOSIVE,24,900,12,,50,30,,50,,800,,,0.1,0.2,8,0.1,64,8,16,,0,16,0.3125,30,,,FSF制造,终结,50,击中装甲彻底被破坏的部位时，额外移除目标{%s}的结构值,1,7500,"he16, strike18, FSF_bp, rare_bp",,,2,,,,,,,,,
-d100t-MBC,aEP_b_l_d100t,,KINETIC,22,1000,4,,2000,,,2000,2000,1500,,,0.3,6.2,,,,,,,0,5,1,5,,,FSF制造,反护盾,75% | 2% | 200 | 90% | 100,"击中护盾时，有{%s}的概率额外造成等同于目标幅能容量{%s}或{%s}点(两者取大)的额外伤害
+AA-40 Planetary Flak,aEP_b_l_aa40,ANTI_FTR,KINETIC,28,900,6,,250,,,340,100,800,,,0,1.05,2,0.2,12,1.6,4,,2,10,0.5,10,,,FSF Manufacture,Anti-shield,4% | 2% | 200,"When explosion hit shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher)",1,7500,"kinetic20,utility18, FSF_bp, rare_bp",,,3,,,,,,,,,
+DG-3 Cyclone,aEP_b_l_dg3,,HIGH_EXPLOSIVE,24,900,12,,50,30,,50,,800,,,0.1,0.2,8,0.1,64,8,16,,0,16,0.3125,30,,,FSF Manufacture,Finisher,50,"When hitting hull where armor is fully stripped, additionally cause the target to lose %s hullpoint",1,7500,"he16, strike18, FSF_bp, rare_bp",,,2,,,,,,,,,
+d100t-MBC,aEP_b_l_d100t,,KINETIC,22,1000,4,,2000,,,2000,2000,1500,,,0.3,6.2,,,,,,,0,5,1,5,,,FSF Manufacture,Anti-shield,75% | 2% | 200 | 90% | 100,"When hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher)
 
-击中舰体时，弹丸的基础伤害降低{%s}，并额外造成{%s}点无视装甲减免的伤害",1,7500,"kinetic19, FSF_bp, rare_bp",,,2,,,,,,,,,
+When hitting hull, damage reduced by %s, but also additionally deals %s armor ignoring damage.",1,7500,"kinetic19, FSF_bp, rare_bp",,,2,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,#导弹武器,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"#6-9, 11-15, 16-20",,,,,,,,,,,,
-剪扩器导弹,aEP_m_s_expander,"DO_NOT_AIM, CONSERVE_1, MISSILE_SPREAD ",FRAGMENTATION,5,2500,20,,500,250,,,10,250,,12,0,15,2,1,20,,,,0,0,0,0,225,250,FSF制造,压制,,,1,300,"missile8 ,FSF_bp",,,0,,,,,,,,,
-剪扩器导弹发射舱,aEP_m_m_expander,"DO_NOT_AIM, CONSERVE_1, MISSILE_SPREAD ",FRAGMENTATION,10,2500,15,,500,250,,,10,250,,12,0,15,2,1,40,,,,0,0,0,0,225,250,FSF制造,压制,,,0.75,1200,"missile12 ,FSF_bp",,,1,,,,,,,,,
-破门锥鱼雷,aEP_m_s_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,3,1800,15,,1000,1500,,,2000,200,,10,0,5,,,2,,,TRUE,0,0,0,0,800,100,FSF制造,鱼雷,2,"击中护盾时，造成等同emp伤害的额外动能伤害，但额外部分只造成软幅能
+"""Expander"" Hive LRM",aEP_m_s_expander,"DO_NOT_AIM, CONSERVE_1, MISSILE_SPREAD ",FRAGMENTATION,5,2500,20,,500,250,,,10,250,,12,0,15,2,1,20,,,,0,0,0,0,225,250,FSF Manufacture,Suppression,,,1,300,"missile8 ,FSF_bp",,,0,,,,,,,,,
+"""Expander"" Hive LRM Pod",aEP_m_m_expander,"DO_NOT_AIM, CONSERVE_1, MISSILE_SPREAD ",FRAGMENTATION,10,2500,15,,500,250,,,10,250,,12,0,15,2,1,40,,,,0,0,0,0,225,250,FSF Manufacture,Suppression,,,0.75,1200,"missile12 ,FSF_bp",,,1,,,,,,,,,
+"""Door Breach"" Torpedo",aEP_m_s_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,3,1800,15,,1000,1500,,,2000,200,,10,0,5,,,2,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
-本武器造成的过载最多持续{%s}秒",1,200,"strike7, rocket5, FSF_bp",,,0,,,,,,,,,
-破门锥鱼雷发射舱,aEP_m_m_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,12,1800,12,,1000,1500,,,2000,200,,10,0,12,,,8,,,TRUE,0,0,0,0,800,100,FSF制造,鱼雷,2,"击中护盾时，造成等同emp伤害的额外动能伤害，但额外部分只造成软幅能
+If the hit causes an overload, the overload only last %s seconds",1,200,"strike7, rocket5, FSF_bp",,,0,,,,,,,,,
+"""Door Breach"" Torpedo Pod",aEP_m_m_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,12,1800,12,,1000,1500,,,2000,200,,10,0,12,,,8,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
-本武器造成的过载最多持续{%s}秒",1,1000,"strike12, rocket10, FSF_bp",,,2,,,,,,,,,
-爆破锤导弹发射舱,aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,2750,8,,2400,,,,,675,,7,0,18,,,4,,,TRUE,0,0,0,0,400,200,FSF制造,终结,25% | 2 | 50% | 50%,击中舰船时，导弹只造成相当于总伤害{%s}的动能伤害，并额外生成{%s}颗射流弹丸，每颗造成总伤害{%s}的破片伤害,1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
---破片射流,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,800,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
-巨型爆破锤导弹系统,aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,2750,6,,3600,,,,,600,,8,0,18,,,6,,,TRUE,0,0,0,0,500,150,FSF制造,终结,25% | 2 | 50% | 50%,击中舰船时，导弹只造成相当于总伤害{%s}的动能伤害，并额外生成{%s}颗射流弹丸，每颗造成总伤害{%s}的破片伤害,0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
-可抛幅容管,aEP_m_s_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,4,200,12,,200,,,-1000,,200,,5,1,20,,,7,,,,15,15,15,15,200,100,FSF制造,辅助,50% | 1000,"本武器无法主动使用
+If the hit causes an overload, the overload only last %s seconds",1,1000,"strike12, rocket10, FSF_bp",,,2,,,,,,,,,
+"""Blast Hammer"" LRM Pod",aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,2750,8,,2400,,,,,675,,7,0,18,,,4,,,TRUE,0,0,0,0,400,200,FSF Manufacture,Finisher,25% | 2 | 50% | 50%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
+--Payload,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,800,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
+"""Blast Hammer"" LRM System",aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,2750,6,,3600,,,,,600,,8,0,18,,,6,,,TRUE,0,0,0,0,500,150,FSF Manufacture,Finisher,25% | 2 | 50% | 50%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
+Disposal Flux Tube,aEP_m_s_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,4,200,12,,200,,,-1000,,200,,5,1,20,,,7,,,,15,15,15,15,200,100,FSF Manufacture,Support,50% | 1000,"When flux level of this ship is above %s, the weapon will fire one shot and reduce flux by %s .
 
-本舰幅能在{%s}以上时会自动发射，每颗减少{%s}幅能",1,300,"utility7, FSF_bp",,,0,,,,,,,,,
-可抛幅容管发射舱,aEP_m_m_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,10,200,12,,200,,,-1000,,200,,5,1,8,,,16,,,,15,15,15,15,200,100,FSF制造,辅助,50% | 1000,"本武器无法主动使用
+This weapon can't be fired manually",1,300,"utility7, FSF_bp",,,0,,,,,,,,,
+Disposal Flux Tube Pod,aEP_m_m_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,10,200,12,,200,,,-1000,,200,,5,1,8,,,16,,,,15,15,15,15,200,100,FSF Manufacture,Support,50% | 1000,"When flux level of this ship is above %s, the weapon will fire one shot and reduce flux by %s .
 
-本舰幅能在{%s}以上时会自动发射，每颗减少{%s}幅能",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
-气钉枪导弹,aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,200,0,FSF制造,反护盾,400,击中护盾时，造成{%s}的额外动能伤害，但额外部分只造成软幅能,1,450,"missile8, FSF_bp",,,1,,,,,,,,,
-气钉枪导弹发射系统,aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,600,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,250,0,FSF制造,反护盾,600,击中护盾时，造成{%s}的额外动能伤害，但额外部分只造成软幅能,0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
-冲击钻轰炸导弹,aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF制造,反装甲,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,
-DF-1反应装甲,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF制造,点防御,600 | 0.8 | 90%,"本武器附近的装甲单次受到超过{%s}或本舰装甲值{%s}倍的伤害时，会自动消耗一颗备弹，同时本次伤害减少{%s}
+This weapon can't be fired manually",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
+"""Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,200,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra %s KE damage in soft flux",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
+"""Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,600,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,600,"When hitting shield, deals extra %s KE damage in soft flux",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
+"""Percussion Drill"" Bombardment LRM",aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF Manufacture,Anti-armor,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,
+DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
-本武器在下线后会立刻修复
+This weapon will immediately repair itself if brought offline.
 
-本武器无法主动使用",1,200,"pd5, FSF_bp",,,2,,,,,,,,,
---反应装甲破片,aEP_m_s_era2,SYSTEM,FRAGMENTATION,,250,0,,300,,,,,200,,1.5,0,1,,,,,,,0,0,0,0,100,300,,,,,,,,,,,,,,,,,,,
-"""图钉""集束磁吸炸弹",aEP_m_s_magnetmine,STRIKE,HIGH_EXPLOSIVE,2,1200,10,,1000,,,,,400,,3.1,0,5,,,1,0,1,TRUE,0,0,0,0,400,600,FSF制造,鱼雷,8 | 300,"弹丸临近时，分裂为{%s}个磁吸炸弹，每颗造成{%s}点高爆伤害
+This weapon can't be fired manually",1,200,"pd5, FSF_bp",,,2,,,,,,,,,
+--Payload,aEP_m_s_era2,SYSTEM,FRAGMENTATION,,250,0,,300,,,,,200,,1.5,0,1,,,,,,,0,0,0,0,100,300,,,,,,,,,,,,,,,,,,,
+"""Pushpin"" Magnet Bomb Cluster",aEP_m_s_magnetmine,STRIKE,HIGH_EXPLOSIVE,2,1200,10,,1000,,,,,400,,3.1,0,5,,,1,0,1,TRUE,0,0,0,0,400,600,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
 
-磁吸炸弹会被最近的敌方舰船吸引，包括相位中的舰船",1,300,"missile4, strike8, FSF_bp",,,0,,,,,,,,,
-"""图钉""炸弹抛射舱",aEP_m_m_magnetmine,CONSERVE_1,HIGH_EXPLOSIVE,13,2000,12,,1000,,,,,250,,8.5,0,12,,,6,0,1,TRUE,5,15,30,15,350,400,FSF制造,反装甲,8 | 300,"弹丸临近时，分裂为{%s}个磁吸炸弹，每颗造成{%s}点高爆伤害
+Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,300,"missile4, strike8, FSF_bp",,,0,,,,,,,,,
+"""Pushpin"" Magnet Bomb Cluster Pod",aEP_m_m_magnetmine,CONSERVE_1,HIGH_EXPLOSIVE,13,2000,12,,1000,,,,,250,,8.5,0,12,,,6,0,1,TRUE,5,15,30,15,350,400,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
 
-磁吸炸弹会被最近的敌方舰船吸引，包括相位中的舰船
+Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,1200,"missile13, strike8, FSF_bp",,,1,,,,,,,,,
+"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,325,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
 
-导弹的最终落点取决于发射时鼠标的位置",1,1200,"missile13, strike8, FSF_bp",,,1,,,,,,,,,
-破胎水雷发射舱,aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,325,250,FSF制造,反装甲,100 | 25,"导弹拥有极长的滞空时间，并且在引信触发前处于相位空间中没有碰撞体积
-
-同场最多存在{%s}颗，已部署舰船中每存在一个此武器，同场数量上限增加{%s}",1,1000,"missile12, FSF_bp",,,2,,,,,,,,,
---水雷上浮,aEP_m_m_phasemine2,SYSTEM,HIGH_EXPLOSIVE,1,300,0,,1500,,,,,200,,5,0,1,,,1,0,1,TRUE,0,0,0,0,375,0,,,,,,,,,,,,,,,,,,,
+At most %s mine can co-exist in the battlefield at one time. For each of this weapon mounted on deployed ships, that limitation is increased by %s",1,1000,"missile12, FSF_bp",,,2,,,,,,,,,
+--Triggered,aEP_m_m_phasemine2,SYSTEM,HIGH_EXPLOSIVE,1,300,0,,1500,,,,,200,,5,0,1,,,1,0,1,TRUE,0,0,0,0,375,0,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-H-23机载反舰炮,aEP_ftr_ftr_hvfighter_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,100,,,50,,600,,,0,1,,,,,,,0,12,4,12,,,FSF制造,反装甲,50,,,,,,,,,,,,,,,,
-K-14机载重机枪,aEP_ftr_ftr_helicop_lmg,SYSTEM,KINETIC,0,300,60,,20,,,10,,800,,,0,0.2,5,0.2,,,,,0,6,1,12,,,FSF制造,反装甲,50,,,,,,,,,,,,,,,,
-撞针火箭巢,aEP_ftr_ftr_helicop_rocket,SYSTEM,KINETIC,0,600,15,,100,,,0,,700,,1.4,0,0.1,1,,8,0.5,1,,0,12,6,12,100,200,FSF制造,反护盾,,,,,,,,,,,,,,,,,
-多用途微型长矛,aEP_ftr_icp_gunship_beam,"SYSTEM, PD",ENERGY,0,350,180,600,,,200,,,,20000,,0,0.1,0.5,0.5,,,,,0,0,0,0,,,FSF制造,通用,100,,,,,,,,,,,,,,,,
-导电体机枪,aEP_ftr_icp_gunship_gun,"SYSTEM, PD",KINETIC,0,350,180,,15,15,,7.5,,900,,,0,0.85,5,0.1,,,,,0,5,0.5,5,,,FSF制造,点防御,60,,,,,,,,,,,,,,,,
-H-12机载速射机炮,aEP_ftr_sup_guardian_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,60,,,50,,900,,,0,0.25,,,,,,,3,12,3,12,,,FSF制造,反装甲,200,,,,,,,,,,,,,,,,
-HVK狙击自动炮,aEP_ftr_sup_guardian_gun3,SYSTEM,KINETIC,0,1100,10,,65,,,50,,1200,,,0,1,,,,,,,0,4,1,4,,,FSF制造,反护盾,,,,,,,,,,,,,,,,,
-碎石坦克炮,aEP_ftr_sup_tank_main,SYSTEM,HIGH_EXPLOSIVE,0,1100,12,,200,,,200,,800,,,0,1,,,,,,,0,12,2,12,,,FSF制造,反装甲,200,,,,,,,,,,,,,,,,
-防空烟雾弹,aEP_ftr_sup_tank_flak,SYSTEM,FRAGMENTATION,,250,60,,200,,,0,,400,,1,0,1,3,0.05,,,,,120,120,120,120,,400,FSF制造,点防御,,,,,,,,,,,,,,,,,
-荡平反应炸弹,aEP_ftr_bom_nuke_bomb,"SYSTEM, BOMB",HIGH_EXPLOSIVE,0,900,0,,4500,,,0,,150,,8,0.5,0.5,,,1,,,TRUE,10,10,0,0,2500,150,FSF制造,反工事,,,,,,,,,,,,,,,,,
-BAC爆射突击炮,aEP_ftr_bom_attacker_gun,SYSTEM,HIGH_EXPLOSIVE,0,800,10,,100,,,50,,1000,,,0,4.1,5,0.1,15,,,,0,6,2,6,,,FSF制造,反装甲,,,,,,,,,,,,,,,,,
-拆解光束,aEP_ftr_ut_decompose_beam,SYSTEM,ENERGY,0,400,30,75,,,5,,500,,1000,,0.25,0,,,1,,,,0,0,0,0,,,FSF制造,辅助,,击中残骸时，造成额外伤害，飞机返航后获得补给,,,,,,,,,,,,,,,
-磁吸炸弹,aEP_ftr_ut_shendu_mine,"SYSTEM,DO_NOT_CONSERVE,DO_NOT_AIM",HIGH_EXPLOSIVE,0,2000,18,,300,,,0,,450,,20,1,0.1,,,6,,,,0,0,0,0,100,250,FSF制造,反装甲,,磁吸炸弹会被最近的敌方舰船吸引，包括相位中的舰船,,,,,,,,,,,,,,,
-机载反舰长矛,aEP_ftr_ut_shendu_beam,SYSTEM,HIGH_EXPLOSIVE,0,300,60,240,,,,,,,20000,,0.5,1,0.5,,,,,,0,0,0,0,,,FSF制造,反装甲,,,,,,,,,,,,,,,,,
-锚点ADS系统-战机,aEP_ftr_ut_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,1000,540,,500,,,,,3000,,1,0,0.25,,,10,1,1,,0,0,0,0,500,3000,FSF制造,点防御,500,"击中敌方可穿透导弹的弹丸时，降低其{%s}点伤害
+H-23 Fighter Anti-ship Gun - Fighter,aEP_ftr_ftr_hvfighter_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,100,,,50,,600,,,0,1,,,,,,,0,12,4,12,,,FSF Manufacture,Anti-armor,50,,,,,,,,,,,,,,,,
+K-14 Fighter HMG - Fighter,aEP_ftr_ftr_helicop_lmg,SYSTEM,KINETIC,0,300,60,,20,,,10,,800,,,0,0.2,5,0.2,,,,,0,6,1,12,,,FSF Manufacture,Anti-armor,50,,,,,,,,,,,,,,,,
+Pin Launcher - Fighter,aEP_ftr_ftr_helicop_rocket,SYSTEM,KINETIC,0,600,15,,100,,,0,,700,,1.4,0,0.1,1,,8,0.5,1,,0,12,6,12,100,200,FSF Manufacture,Anti-shield,,,,,,,,,,,,,,,,,
+Micro Lance Array - Fighter,aEP_ftr_icp_gunship_beam,"SYSTEM, PD",ENERGY,0,350,180,600,,,200,,,,20000,,0,0.1,0.5,0.5,,,,,0,0,0,0,,,FSF Manufacture,General,100,,,,,,,,,,,,,,,,
+Electric Shock LMG - Fighter,aEP_ftr_icp_gunship_gun,"SYSTEM, PD",KINETIC,0,350,180,,15,15,,7.5,,900,,,0,0.85,5,0.1,,,,,0,5,0.5,5,,,FSF Manufacture,PD,60,,,,,,,,,,,,,,,,
+H-12 Fighter Anti-ship Gun - Fighter,aEP_ftr_sup_guardian_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,60,,,50,,900,,,0,0.25,,,,,,,3,12,3,12,,,FSF Manufacture,Anti-armor,200,,,,,,,,,,,,,,,,
+HVK Long Range Sniper - Fighter,aEP_ftr_sup_guardian_gun3,SYSTEM,KINETIC,0,1100,10,,65,,,50,,1200,,,0,1,,,,,,,0,4,1,4,,,FSF Manufacture,Anti-shield,,,,,,,,,,,,,,,,,
+Tank Cannon - Fighter,aEP_ftr_sup_tank_main,SYSTEM,HIGH_EXPLOSIVE,0,1100,12,,200,,,200,,800,,,0,1,,,,,,,0,12,2,12,,,FSF Manufacture,Anti-armor,200,,,,,,,,,,,,,,,,
+Smoke Bomb - Fighter,aEP_ftr_sup_tank_flak,SYSTEM,FRAGMENTATION,,250,60,,200,,,0,,400,,1,0,1,3,0.05,,,,,120,120,120,120,,400,FSF Manufacture,PD,,,,,,,,,,,,,,,,,
+Nuke Mine - Fighter,aEP_ftr_bom_nuke_bomb,"SYSTEM, BOMB",HIGH_EXPLOSIVE,0,900,0,,4500,,,0,,150,,8,0.5,0.5,,,1,,,TRUE,10,10,0,0,2500,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+Burst Assault Cannon - Fighter,aEP_ftr_bom_attacker_gun,SYSTEM,HIGH_EXPLOSIVE,0,800,10,,100,,,50,,1000,,,0,4.1,5,0.1,15,,,,0,6,2,6,,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+Scrape Beam - Fighter,aEP_ftr_ut_decompose_beam,SYSTEM,ENERGY,0,400,30,75,,,5,,500,,1000,,0.25,0,,,1,,,,0,0,0,0,,,FSF Manufacture,Support,,"When hitting hulk, deals extra FRAG damage and receive supplies if the fighter successfully landed",,,,,,,,,,,,,,,
+Magnet Bomb - Fighter,aEP_ftr_ut_shendu_mine,"SYSTEM,DO_NOT_CONSERVE,DO_NOT_AIM",HIGH_EXPLOSIVE,0,2000,18,,300,,,0,,450,,20,1,0.1,,,6,,,,0,0,0,0,100,250,FSF Manufacture,Anti-armor,,"Magnet bomb will be attracted to nearby enemy ships, including phased ships.",,,,,,,,,,,,,,,
+Anti-ship Laser - Fighter,aEP_ftr_ut_shendu_beam,SYSTEM,HIGH_EXPLOSIVE,0,300,60,240,,,,,,,20000,,0.5,1,0.5,,,,,,0,0,0,0,,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+ADS System - Fighter,aEP_ftr_ut_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,1000,540,,500,,,,,3000,,1,0,0.25,,,10,1,1,,0,0,0,0,500,3000,FSF Manufacture,PD,500,"When hitting enemy projectile, reduce its damage by %s
 
-弹丸属于导弹，可以被拦截",,,,,,,10,,,,,,,,
-锚点ADS系统-舰载,aEP_cru_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,900,540,,500,,,,,3000,,1,0,0.2,,,24,2,1,,0,0,0,0,500,3000,FSF制造,点防御,500,"击中敌方可穿透导弹的弹丸时，降低其{%s}点伤害
+Projectile is missile, can be intercepted",,,,,,,10,,,,,,,,
+ADS System - Ship,aEP_cru_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,900,540,,500,,,,,3000,,1,0,0.2,,,24,2,1,,0,0,0,0,500,3000,FSF Manufacture,PD,500,"When hitting enemy projectile, reduce its damage by %s
 
-弹丸属于导弹，可以被拦截",,,,,,,10,,,,,,,,
-幅能转移光束,aEP_ftr_ut_supply_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,350,720,0,,,1,,,,20000,,0,0.5,,,,,,,0,0,0,0,,,FSF制造,辅助,500,"击中舰船时，以{%s}的速度吸取目标幅能，转化为自身的硬幅能
+Projectile is missile, can be intercepted",,,,,,,10,,,,,,,,
+Flux Absorber,aEP_ftr_ut_supply_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,350,720,0,,,1,,,,20000,,0,0.5,,,,,,,0,0,0,0,,,FSF Manufacture,Support,500,"When hitting ship, transfer target's flux into this ship as hard flux at speed of %s .
 
-如果目标正在激活不可耗散的战术系统，无法吸取任何幅能
+If the target is activating a ship system that does not allow dissipation, no transfer can take place.
 
-对FSF的舰船效果更好",,,,,,,,,,,,,,,
-修复光束,aEP_ftr_ut_repair_beam,SYSTEM,FRAGMENTATION,1,350,720,0,,,1,,,,2000,,0.1,0.1,0.3,3,3,,,,0,0,0,0,,,FSF制造,辅助,6 | 0.4% | 50% | 30%,"击中舰船时，维修{%s}+{%s}的装甲，最多恢复到满状态的{%s}
+Works better to FSF ships",,,,,,,,,,,,,,,
+Repair Beam,aEP_ftr_ut_repair_beam,SYSTEM,FRAGMENTATION,1,350,720,0,,,1,,,,2000,,0.1,0.1,0.3,3,3,,,,0,0,0,0,,,FSF Manufacture,Support,6 | 0.4% | 50% | 30%,"When hitting ship, repair its armor by %s + %s, up to %s of the maximum.
 
-如果装甲修复完成，最多可以将结构值恢复到最满状态的{%s}
+If armor has reached max repair level, restore hullpoints up to %s of maximum.
 
-对FSF的舰船效果更好
-",,,,,,,,,,,,,,,
+Works better to FSF ships",,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"""德雷克""喷火器",aEP_e_s_flamer,ANTI_FTR,HIGH_EXPLOSIVE,9,300,9,,50,,,30,,500,,,0,0.1,10,0.1,50,2,10,,0,0,0,15,,,FSF胡乱改造,反装甲,,,,400,"he9, restricted",,,0,,,,,,,,,
-"""Boom""爆炸长矛",aEP_m_s_bomblance,"STRIKE, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,2,250,5,,4000,,,0,,100,,0.01,0,20,,,1,0,1,TRUE,0,0,0,15,500,1000,FSF胡乱改造,反装甲,,"本武器在靠近敌方舰船时会自动发射
+"""Drake"" Flame Thrower",aEP_e_s_flamer,ANTI_FTR,HIGH_EXPLOSIVE,9,300,9,,50,,,30,,500,,,0,0.1,10,0.1,50,2,10,,0,0,0,15,,,FSF Private Conversion,Anti-armor,,,,400,"he9, restricted",,,0,,,,,,,,,
+"""Boom"" Lance",aEP_m_s_bomblance,"STRIKE, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,2,250,5,,4000,,,0,,100,,0.01,0,20,,,1,0,1,TRUE,0,0,0,15,500,1000,FSF Private Conversion,Anti-armor,,"Fires automatically if the tip touches a ship
 
-本武器在下线后会立刻修复",,200,"strike8, restricted",,,0,,,,,,,,,
-"""闪电""扰动机炮",aEP_b_m_lighting,,ENERGY,13,800,12,,10,8,,10,0,600,,,0,0.125,2,0.125,240,6,8,,0,15,1,15,,,FSF先进武器计划,反护盾,8 | 16 ,击中护盾时，为目标施加一个可叠加的负面状态：在接下来的{%s}秒内，只要护盾开启就会每秒增加{%s}点软幅能,0,6000,"energy11, restricted",,,,,,,,,,,,
-"""海啸""重型轨道火炮",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,3000,,,3000,1000,1000,,,0.5,1.5,1,,1,0.1667,1,,0,8,4,8,,,FSF先进武器计划,通用,,击中护盾造成舰船过载时，在击中点新生成一颗相同的弹丸,0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
+This weapon will immediately repair itself if brought offline.",,200,"strike8, restricted",,,0,,,,,,,,,
+"""Lightening"" Disturb Gun",aEP_b_m_lighting,,ENERGY,13,800,12,,10,8,,10,0,600,,,0,0.125,2,0.125,240,6,8,,0,15,1,15,,,FSF Advanced Weapon Program,Anti-shield,8 | 16 ,"When hit shield, apply a stackable debuff to target: For the next %s second, as long as the target's shield is on, increase the target's soft flux by %s per sec",0,6000,"energy11, restricted",,,,,,,,,,,,
+"""Sea Roar"" Super-heavy Railway Cannon",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,3000,,,3000,1000,1000,,,0.5,1.5,1,,1,0.1667,1,,0,8,4,8,,,FSF Advanced Weapon Program,General,,"If hit costs overload on hitting shield, spawn a identical projectile at location of the hit.",0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bind Projectile,aEP_ut_missile_attacher,SYSTEM,FRAGMENTATION,,100,0,,1,,,,,100,,,0,1,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
