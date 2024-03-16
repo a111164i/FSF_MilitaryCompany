@@ -1,10 +1,10 @@
-﻿Location: System DWR43
-Date: 201.5.29
+﻿地点: DWR43星系
+日期: 201.5.29
 
-Fringe survey fleet received information suggesting that there exists an inactive coronal hypershunt in Sector DWR43. The Company decides to dispatch an elimination fleet to destroy the roaming Remnant forces around the hypershunt, and that task falls to you, commander.
-
-
-There are something off about these autonomous warships, they cleansed the population of DWR43X without instruction. To ensure success, the company will dispatch the most resource intensive flagship for this operation.
+边缘测绘舰队得到的星系情报显示DWR43星系存在一个没有活动信号的恒星提取站，公司决定派出一只歼灭舰队清理掉环绕于提取站的游荡余辉舰队，现在将这个任务指派给你，指挥官。
 
 
-You can hold F and re-select this mission to restrict unusable equipments. If you want to restore the original setting, please select this mission again without holding F. Please note, the restriction will affect everything. If you want to remove the restriction, you must select this mission without holding down any buttons.
+这些无人战舰有古怪，它们在没有接受指示的情况下主动执行了对DWR43X星球人口的清洗。为了以防万一这次行动公司会出动资源消耗最大的旗舰。
+
+
+你可以通过按住 F 并重新选择这个任务屏蔽掉不可使用的军备，要恢复则不按住直接重新选择这个任务。注意，屏蔽是全局的，需要消除屏蔽，就不按住任何按键重新选择本任务

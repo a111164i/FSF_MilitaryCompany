@@ -1,7 +1,7 @@
-﻿Location: Lower Orbit of Planet DWR43-Y 
-Date: 201.6.01
+﻿地点: DWR43-Y 行星近地轨道
+日期: 201.6.01
 
-The battle with the target autonomous fleet has lasted a few days.
+与目标无人机舰队的战斗已经持续数天
 
 
-You can hold F and re-select this mission to restrict unusable equipments. If you want to restore the original setting, please select this mission again without holding F. Please note, the restriction will affect everything. If you want to remove the restriction, you must select this mission without holding down any buttons.
+你可以通过按住 F 并重新选择这个任务屏蔽掉不可使用的军备，要恢复则不按住直接重新选择这个任务。注意，屏蔽是全局的，需要消除屏蔽，就不按住任何按键重新选择本任务

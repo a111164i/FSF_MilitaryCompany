@@ -1,5 +1,4 @@
 id,name,faction,desc,script,icon,order,Unnamed: 7
-aEP_FSFMarket,"Advanced
-Program Office",aEP_FSF,"This is special departments dedicated to ""Advanced Weapon Program""
+aEP_FSFMarket,先进武器计划开发部,aEP_FSF,"开发""先进武器计划""的特殊部门
 
-those prototype ships can not be recovered after battle due to confidential mechanism",data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799,
+保密自毁机制让这些舰船均无法战后被恢复",data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799,

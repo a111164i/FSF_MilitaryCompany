@@ -1,87 +1,87 @@
 name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sprite,sModDesc,
 ,,,,,,,,,,,,,,,,,,,,
-FSF Ship Design,aEP_SpecialHull,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"A higher level implement of ship-wide gravity field, the shell is designed to receive or send force to a nearby friendly ship. A fleet purely made of FSF ships can swiftly swap between different formations
+FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"一种对舰内重力生成器更高级的运用，预制在船壳中的引力机关允许其接受或者发送力场推动附近拥有相同插件的舰船，公司的舰船能在密集阵型中更迅速的穿行
 
-Although many of the FSF ships have low max speed, zero flux boost can be activated for long range reposition",,graphics/aEP_hullmods/aEP_marker_dissipation.png,,
-Missile Platform,aEP_MissilePlatform,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"A integrated missile factory has taken all empty space, at the cost of max ammo, to continuously produce ammo. This applies to all missile weapons mounted on missile or composite slot.
+尽管普遍拥有较低的最大速度，若舰船处于安全位置，系统可以启用引擎加力，执行长距离移动",,graphics/aEP_hullmods/aEP_marker_dissipation.png,,
+发射平台设计,aEP_MissilePlatform,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"本舰内置的先进导弹工厂占据了原本用于储存导弹的空间，使其能以牺牲初始载弹量为代价，源源不断的生产高质量导弹。对所有安装在导弹槽位，复合槽位上的导弹武器生效。
 
-This ship has a resource named %s, it will be consumed to produce ammo if any missile weapon is not full and recovers over time",,graphics/aEP_hullmods/aEP_missile_platform.png,,
-FCS Radar,aEP_BBAdjustRange,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_BBAdjustRange,"The wave radar provides half of this ship's targeting ability, the other half is provided by this modification
+舰船拥有一种叫{%s}的资源，每当一个导弹武器弹药不满时，会消耗该资源为其生产弹药。锻炉功率会随着时间自然回复。锻炉功率越高，弹药产生速度越快。",,graphics/aEP_hullmods/aEP_missile_platform.png,,
+标兵武器校准雷达,aEP_BBAdjustRange,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_BBAdjustRange,"标兵级舰体中央的激光雷达以一种另辟蹊径的方式为这艘战舰提供的所需的射程，当然也不兼容常规的目标定位系统
 
-Ballistic/energy weapon range %s",,graphics/hullmods/ecm_package.png,,
-Limited Targeting System,aEP_LimitedTurret,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_LimitedTurret,"A outdated but durable targeting system with mechanic computing, strong against any type of impact, physical or EMP
+实弹/能量武器射程{%s}",,graphics/hullmods/ecm_package.png,,
+有限定位系统,aEP_LimitedTurret,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_LimitedTurret,"一种复古的分布式目标定位仪，大量使用机械计算器而不是电子系统，一是显著的提升了武器系统对冲击的抗性，二是允许船员使用手持工具修复其下线的大部分功能
 
-Ballistic/energy weapon range %s, durability %s, repair time in battle %s",,graphics/aEP_hullmods/aEP_limited_turret.png,,
-Towline,aEP_Tugboat,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Tugboat,Vigorous engine of this ship can tow another slower friendly fleet member to its speed,,graphics/aEP_hullmods/aEP_tug_ship.png,,
-Open Field Hanger,aEP_OpenFieldHangar,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_OpenFieldHangar,"The big open deck in the central of this ship makes it possible to deploy more fighters in a wing, but doubling the work for a single LPC chip dropped its performance a little bit
+实弹/能量武器射程{%s}，所有武器的生命值{%s}，战斗中修复时间{%s}。不兼容常规的定位系统",,graphics/aEP_hullmods/aEP_limited_turret.png,,
+拖拽连接器,aEP_Tugboat,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Tugboat,本舰充足的动力足以拖动其他舰船，将舰队中宇宙航速最低的一艘舰船的最大速度提升至与本舰相同,,graphics/aEP_hullmods/aEP_tug_ship.png,,
+平原机坪,aEP_OpenFieldHangar,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_OpenFieldHangar,"中央大到可以称之为平原的开放式甲板能在在一个联队中同时运行更多的战机而不用考虑起降与整备的空间问题，尽管这样剥削一张LPC会让它的性能略微下降
 
-All non built-in wings will be infinitely extra deployed to %s, but all fighters of this ship deal %s damage to enemy ships",,graphics/aEP_hullmods/aEP_open_field.png,,
-Accelerated Gunnery,aEP_AcceleratedGunnery,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AcceleratedGunnery,"Fine-tuned control chip accelerates every movement related to weapon cycling, only ships pre-built with above average steel can long-term stand its side effects
+本舰非内置甲板上的战机联队会不限时的被额外部署到{%s}的数量，但所有战机对敌方舰船的伤害{%s}",,graphics/aEP_hullmods/aEP_open_field.png,,
+神速芯控,aEP_AcceleratedGunnery,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AcceleratedGunnery,"调整过的机控芯片加速了所有武器相关机械系统的工作频率，增加武器的射击速度。这种内置超载协议的机控芯片只有少数在建造时就使用更昂贵合金制造武器底座的舰船上才能长期稳定运行
 
-Ballistic/energy weapon rate of fire %s. When the shipsystem is activating that bonus changes to %s",,graphics/aEP_hullmods/aEP_accelerated_gunnery.png,,
-Boosted Magazine,aEP_MagazineHeavy,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MagazineHeavy,"Flux motivated self-loading magazine, the more flux supply, the faster it loads
+所有实弹/能量武器的射速{%s}，在战术系统激活时上述加成变为{%s}",,graphics/aEP_hullmods/aEP_accelerated_gunnery.png,,
+快填弹仓,aEP_MagazineHeavy,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MagazineHeavy,"先进的一体化弹仓，舰船的能源供应越强，运行效率越高
 
-If flux dissipation is more than %s, for each %s above, Ballistic/energy weapon ammo regen speed %s, to the maximum of %s, currently %s",,graphics/aEP_hullmods/aEP_flux_magazine.png,,
-Cruise Missile Carrier,aEP_CruiseMissileCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CruiseMissileCarrier,"A specialized cruise missile vessel, letting you load cruise missile in intel page",,graphics/aEP_hullmods/aEP_CM_carrier.png,,
-Anchored Self Rotate,aEP_SelfRotate,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SelfRotate,This module constantly rotates around its axis,,graphics/aEP_hullmods/aEP_self_rotate.png,,
-Module Targeting Unit,aEP_ModuleTargeting,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,"Uncommon targeting solution for ship modules to base some of the sensors on its parent, also makes some of the modification not available
+当本舰的幅能耗散超过{%s}时，每高出{%s}点，所有实弹/能量武器获得{%s}的弹药回复速度加成，最高为{%s}，当前加成为{%s}",,graphics/aEP_hullmods/aEP_flux_magazine.png,,
+巡航导弹运载舰,aEP_CruiseMissileCarrier,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CruiseMissileCarrier,随时间装载货舱中的巡航导弹，完成装载后可以于战斗中发射,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
+自旋模块,aEP_SelfRotate,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SelfRotate,本舰的模块将以一定速度绕母舰旋转,,graphics/aEP_hullmods/aEP_self_rotate.png,,
+模块定位,aEP_ModuleTargeting,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,"并非使用星域中常见的模块化插件，而是量身定制的目标定位系统。借助母舰更大的空间使得模块能够获得超过自己舰体级别的射程，但同时也使得一些极端的改装无法进行
 
-Ballistic/energy weapon range %s",,graphics/aEP_hullmods/aEP_small_target_core.png,,
-Attack Carrier,aEP_AttackCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,"To send fighters faster and further away, all fighters of this ship is equipped with induction coil to receive a boost",,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,,
-Strafe,aEP_Strafe,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"This ship slowly recover strafe energy. Whenever a large weapon in this ship is in cooldown, consume strafe energy to eliminate cooldown remaining
+本舰的实弹/能量武器射程{%s}",,graphics/aEP_hullmods/aEP_small_target_core.png,,
+进攻性母舰,aEP_AttackCarrier,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,本舰为了将重型战机投送到远距离做了特殊适配，战机预先安装了共振模块，可以在远距离接受母舰导轨产生的驱动立场,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,,
+扫射,aEP_Strafe,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"本舰会随时间补充扫射能量，如果任何大槽武器处于冷却状态，就会消耗扫射能量抵消武器的冷却时间
 
-To fully recharge strafe energy takes %s seconds, when fully charged it can eliminate %s seconds of cooldown time, shortest firing interval is %s
+完全补充扫射能量需要{%s}秒，充满时最多抵消{%s}秒的大槽武器冷却时间，冷却时间抵消后武器射击间隔最短为{%s}秒
 
-If this ship's shipsystem is out of charge, immediately consume %s of strafe energy to get a charge. Each time this ship uses shipsystem, fires several low power built-in missiles to distract enemy",,graphics/aEP_hullmods/aEP_strafe.png,,
-Pre-planted Reactive Armor,aEP_ReactiveArmor,1,FSF Design,,"FSF, defensive",Defenses,10000,,TRUE,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"Planted explosive reactive armors under main armor belt, response to high damage on hit
+当本舰的战术系统充能次数耗尽时，会立刻消耗{%s}的扫射能量补充一次系统充能。本舰每次使用战术系统后，会从内置的导弹发射器发射数波干扰目标点防御的低威力导弹",,graphics/aEP_hullmods/aEP_strafe.png,,
+预制反应装甲,aEP_ReactiveArmor,1,FSF设计,,"FSF, defensive",Defenses,10000,,TRUE,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"在装甲中内置爆炸反应模块，在遭到高伤害武器攻击时会被触发，大幅度减少本次伤害
 
-When the hull takes a damage >= %s, the ERA triggers, consuming 1 ammo and that damage %s. The ship has %s ERAs in total",,graphics/aEP_hullmods/aEP_reactive_armor.png,,
-Composite Targeting System,aEP_TargetSystem,0,FSF Design,,,,,,TRUE,,4,5,9,12,data.scripts.hullmods.aEP_TargetSystem,"A composite targeting system in combination of laser, radio, optic rangefinder, capable of doing capital scale range bonus
+当船体受到>={%s}的伤害时被触发，本次伤害减少{%s}，限{%s}次",,graphics/aEP_hullmods/aEP_reactive_armor.png,,
+线列目标定位,aEP_TargetSystem,0,FSF设计,,,,,,TRUE,,4,5,9,12,data.scripts.hullmods.aEP_TargetSystem,"包含光学观瞄，无线电，激光测距等多项设备的复合定位系统，能在较小的舰体上实现主力舰级别的射击能力
 
-Ballistic/energy non-PD weapon range %s, PD weapon %s, but the range part above %s is subtracted %s",,graphics/aEP_hullmods/aEP_target_system.png,,
-High Speed Maneuver,aEP_HighSpeedManeuver,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_HighSpeedManeuver,"The small shape of this ship allows it to graze between bullets, although not for long",,graphics/aEP_hullmods/aEP_high_speed_maneuver.png,,
-Multi-turret Optimization,aEP_HLMultiTurret,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MultiTurret,"Part of weapon structure is built into the slots,
+所有非PD的实弹/能量武器射程{%s}，PD武器射程{%s}，但是武器射程超过{%s}的部分会受到{%s}的降低",,graphics/aEP_hullmods/aEP_target_system.png,,
+机动躲避,aEP_HighSpeedManeuver,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_HighSpeedManeuver,本舰的体型允许使用爆发性的变向机动在短时间内躲避伤害，但连续的克服惯性会导致引擎的表现开始下降,,graphics/aEP_hullmods/aEP_high_speed_maneuver.png,,
+多炮塔优化,aEP_HLMultiTurret,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MultiTurret,"本舰在设计之初就为了承受较多的槽位将一部分改装空间更高效的内置于舰体中
 
-Ballistic/energy weapon OP cost from small to large reduced by %s/ %s/ %s",,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,
-Close Targeting,aEP_CloseTargeting,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CloseTargeting,"A PD orientated targeting system, help PD weapons on smaller ship shoot as well as on capital ship.
+小中大武器安装消耗装配点减少{%s/%s/%s}。",,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,
+近程追踪火控,aEP_CloseTargeting,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CloseTargeting,"用于近距离射击小尺寸目标的火控系统，能帮助武器精确的锁定目标弱点部位
 
-PD weapon range %s, all ballistic/energy weapon recoil and max spread %s, projectile speed %s",,graphics/aEP_hullmods/aEP_close_targeting.png,,
-Shield Focus,aEP_FocusOnShield,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FocusOnShield,"Redirect lines that were used by weapon system to shield system, enforcing shield performance
+本舰的PD武器射程{%s}，所有能量/实弹武器的后坐力与最大扩散{%s}，弹丸飞行速度{%s}",,graphics/aEP_hullmods/aEP_close_targeting.png,,
+护盾调控,aEP_FocusOnShield,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FocusOnShield,"将舰船原本用于武器及火控系统的能源优先供给给护盾系统使用，强化护盾的运行效率
 
-Shield damage taken %s, all ballistic/energy weapon flux cost %s, max shield active arc during battle is limited to %s",,graphics/aEP_hullmods/aEP_focus_on_shield.png,,
-Titanic Killer,aEP_TitanicKiller,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TitanicKiller,"A dreadnought is born to defeat a qualified opponent.
+护盾承受的伤害降低{%s}，实弹/能量武器幅能消耗增加{%s}，战斗中护盾展开的最大角度不能超过{%s}",,graphics/aEP_hullmods/aEP_focus_on_shield.png,,
+泰坦杀手,aEP_TitanicKiller,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TitanicKiller,"无畏舰的使命就是击败同级别的战舰，只有超越平庸的精英对手才能完全激发这艘战舰的潜能。
 
-According to hullsize, if the target's base DP is above certain start point, for every few DP above, damage %s per step, to the max of %s",,graphics/aEP_hullmods/aEP_titanic_killer.png,,
-Twin Fighter,aEP_TwinFighter,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,"The Gunnery module at front part of this ship is a individual fighter, which can be launched to coordinately attack target at flank",,graphics/aEP_hullmods/aEP_twin_fighter.png,,
+根据目标舰体级别，对于基础部署点超过一定平均水平的敌方舰船，每超过一定值，对其伤害{%s}，最多{%s}",,graphics/aEP_hullmods/aEP_titanic_killer.png,,
+双生战机,aEP_TwinFighter,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,位于本舰前半部分的火力模块是一架独立的的舰载机，必要情况下可以出击与本舰协同攻击目标,,graphics/aEP_hullmods/aEP_twin_fighter.png,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,,,
-Elite Ship,aEP_EliteShip,2,FSF Design,,"FSF, no_build_in, req_spaceport, defensive",Defenses,25000,,,,1,1,1,1,data.scripts.hullmods.aEP_EliteShip,"This modification aimed to maximize the defense of ship, including a total overhaul to all mechanism parts, using micro drones to detect and fix every small leak within pipelines, and replacing main armor belt with better material.
+精英化防御方案,aEP_EliteShip,2,FSF设计,,"FSF, no_build_in, req_spaceport, defensive",Defenses,25000,,,,1,1,1,1,data.scripts.hullmods.aEP_EliteShip,"有时一到两艘舰船的溃败会导致整个战线失守，此项改造以不计成本为指导最大化单舰防御能力，包含对舰船机械部件的全面维护，使用无人机修复所有舰内管道系统存在的细微泄露，并用更先进材料替换了战舰的主装甲带
 
-Besides ordinary improvement, a backup overload respond is installed, a disposal drone will hold a ship-size shield till the ship recovers.",,graphics/aEP_hullmods/aEP_elite_ship.png,,
-Emergency Reconstruct,aEP_EmergencyReconstruct,2,FSF Design,,"FSF, defensive",Defenses,25000,,TRUE,,10,20,30,50,data.scripts.hullmods.aEP_EmergencyReconstruct,"Inspired by an automated ship design, a whole set of scaffold is put into compressed phase space. Once the ship receives a lethal damage, it initiates a emergency reconstruction progress to fully restore its hullpoints and armor",,graphics/aEP_hullmods/aEP_emergency_reconstruct.png,,
-Controlled Shield,aEP_ShieldControlled,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,"Specialized shield gen cooperating with targeting system, harden shield just before impact, but incapable of tracking projectiles fired close in",,graphics/aEP_hullmods/aEP_controled_shield.png,,
-Floating Shield,aEP_ShieldFloating,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,"Specialized shield gen producing liquid-like surface, harder the impact higher the efficiency, providing flux shunt ability",,graphics/aEP_hullmods/aEP_resist_shield.png,,
-Hot Loader,aEP_HotLoader,1,FSF Design,,"FSF, offensive",Weapons,20000,,,,8,12,18,25,data.scripts.hullmods.aEP_HotLoader,"Recoil recycling device designed by the company, exploit potential space for expand magazine to boost ammo regen
+除了常规的属性增加，一种应急护盾系统也被安装到舰船中，在主系统过载的瞬间，发射一架无人机在数秒内撑起保护整个舰船的战舰级护盾并在之后烧毁",,graphics/aEP_hullmods/aEP_elite_ship.png,,
+折叠重建工厂,aEP_EmergencyReconstruct,2,FSF设计,,"FSF, defensive",Defenses,25000,,TRUE,,10,20,30,50,data.scripts.hullmods.aEP_EmergencyReconstruct,来源于无人舰船技术的自动化维修方案，装备有能够覆盖整个舰船的折叠龙门架，在舰船遭受致命伤害时不会被立刻摧毁，而是展开一个自动化建设工厂对舰船进行完全重建。,,graphics/aEP_hullmods/aEP_emergency_reconstruct.png,,
+受控护盾,aEP_ShieldControlled,1,FSF设计,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,特殊的护盾发生器会联动舰船的目标定位系统，捕捉一定距离外发射的弹丸和光束，在其击中护盾的前一刻硬化护盾，大幅度减少护盾承受的冲击,,graphics/aEP_hullmods/aEP_controled_shield.png,,
+分流护盾,aEP_ShieldFloating,1,FSF设计,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,特殊的护盾发生器能生成一种近乎半流体的软化护盾，能将冲击传递到整个护盾上然后逐渐平息，这个过程中产生类似分流器的效果耗散硬幅能,,graphics/aEP_hullmods/aEP_resist_shield.png,,
+热填弹系统,aEP_HotLoader,1,FSF设计,,"FSF, offensive",Weapons,20000,,,,8,12,18,25,data.scripts.hullmods.aEP_HotLoader,"FSF设计的先进填弹辅助设备，高效回收武器开火时的后座能量，能极大提升弹匣武器的持续输出能力
 
-Ballistic/energy weapons ammo regen speed %s",,graphics/aEP_hullmods/aEP_hot_loader.png,Ammo regen speed bonus changes to %s,
-Vanguard Hull,aEP_VanguardHull,1,FSF Design,,"FSF, defensive",Defenses,10000,,,,8,12,18,20,data.scripts.hullmods.aEP_VanguardHull,"Improve the hardness of hull has been proven to be with little help to big anti-ship guns, but it does significantly reduce damage from many small impacts
+本舰的实弹/能量武器弹药回复速度{%s}",,graphics/aEP_hullmods/aEP_hot_loader.png,上述弹药回复速度加成变为{%s},
+先锋外壳,aEP_VanguardHull,1,FSF设计,,"FSF, defensive",Defenses,10000,,,,8,12,18,20,data.scripts.hullmods.aEP_VanguardHull,"对船壳硬度的强化尽管在面对大口径武器时其作用被证明是微乎其微，但能显著提升对于少量多次攻击的抗性，且舰船始终可在战后修复
 
-Each time the hull takes a damage, have %s chance to reduce it by %s",,graphics/aEP_hullmods/aEP_vanguard_hull.png,"Trigger chance changes to %s, damage reduction changes to %s",
-Strategy Thruster,aEP_StrategyThruster,1,FSF Design,,"FSF, engines",Engines,10000,,,,5,10,15,25,data.scripts.hullmods.aEP_StrategyThruster,"Be quicker in long range reposition is the key to get strategy advantage, this engine modification improves zero flux boost ability, thought come with a price of combat performance",,graphics/aEP_hullmods/aEP_strategy_thruster.png,,
+每次船体受到伤害，有{%s}的概率使伤害降低{%s}点",,graphics/aEP_hullmods/aEP_vanguard_hull.png,触发概率变为{%s}，触发后伤害减免变为{%s},
+战略推进器,aEP_StrategyThruster,1,FSF设计,,"FSF, engines",Engines,10000,,,,5,10,15,25,data.scripts.hullmods.aEP_StrategyThruster,抢占要地和长程机动是胜利的先决条件，这套引擎改装方案强化了舰船的零幅能加速能力并能屏蔽少量幅能压力对引擎加力档位的干扰，尽管对近身作战没有任何帮助,,graphics/aEP_hullmods/aEP_strategy_thruster.png,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
-Type28 Shield Gen,aEP_Type28Shield,0,unknown,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"A miracle shield generator is installed on this ship, with insane damage abortion rate, as price this hullmod is incompatible with any other hullmod",,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,
-FSF Module,aEP_Module,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,graphics/aEP_hullmods/aEP_self_rotate.png,,
-ADS Shield,aEP_MaoDianShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
-Cruise Missile Trigger S-1,aEP_CruiseMissile,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
-Cruise Missile Trigger S-2,aEP_CruiseMissile2,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
-Fighter Armor Plate,aEP_FighterArmor,0,FSF Design,,,,,,TRUE,w,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"Fighter's armor/structure take less damage, weapons and engines are less likely to be disabled
+Type28护盾发生器,aEP_Type28Shield,0,unknown,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,一个逻辑计算错误的伽马核心为舰体加装了独立的护盾发生器模块，几乎等同于驱逐舰的体积的模块大小给予了其极好的护盾效率，作为代价拥有对等的维持消耗。此发射器模块无法安装任何插件,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,
+FSF模块,aEP_Module,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,graphics/aEP_hullmods/aEP_self_rotate.png,,
+锚点护盾,aEP_MaoDianShield,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,独特的护盾系统，展开会持续产生软幅能。但遭到攻击时，如果当前软幅能高于硬幅能，会优先将软幅能转化为硬幅能，而非产生硬幅能。,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
+巡航导弹,aEP_CruiseMissile,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,自动追踪的巡洋导弹，无法人工控制，靠近敌方舰船时发生爆炸,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
+巡航导弹,aEP_CruiseMissile2,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,自动追踪的巡洋导弹，无法人工控制，靠近敌方舰船时发生爆炸,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
+战机防护增强,aEP_FighterArmor,0,FSF设计,,,,,,TRUE,w,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"全面增强战机的防护能力，装甲对伤害有更高抗性，武器和引擎更难被下线
 
-Armor/structure/weapon/engine take % less damage",,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
-Tank Armor,aEP_FlyingTank,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Armor automatically repair itself to the maximum in short time,,graphics/aEP_hullmods/aEP_self_rotate.png,,
-Projectile Denial Shield,aEP_ProjectileDenialShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_ProjectileDenialShield,"When a projectile hits shield, remove it and increase hard flux equals to its damage ",,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
+装甲，结构，武器与引擎受到的伤害降低{%}",,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
+坦克集成系统,aEP_FlyingTank,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,装甲在受损后会快速回复到最大值,,graphics/aEP_hullmods/aEP_self_rotate.png,,
+消弹护盾,aEP_ProjectileDenialShield,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_ProjectileDenialShield,被可以穿透战机的弹丸命中护盾时，直接消除这颗弹丸，并增长等量于伤害的硬幅能,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,

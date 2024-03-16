@@ -1,0 +1,12 @@
+name,id,tech/manufacturer,baseRaidDanger,desc
+,,,,
+FSF Common Ship Blueprint,FSF_openbp,FSF Design,,Allow to produce common FSF ships
+FSF Rare Ship Blueprint,FSF_rarebp,FSF Design,,Allow to produce rare FSF ships
+,,,,
+,,,,
+S-1 Cruise Missile,aEP_cruise_missile,FSF Advanced Weapon Program,,"S-series of cruise missile are remote controlled, frigate sized, campaign level weapon, after launch it will search the closest hostile fleet within 60 degrees of its heading.
+
+S-1 warhead contain massive amount of fragments that will be heated into plasmoid before being dispersed in a wide area, melting enemy armor in a wide range."
+S-2 Cruise Missile,aEP_cruise_missile2,FSF Advanced Weapon Program,,"S-series of cruise missile are remote controlled, frigate sized, campaign level weapon, after launch it will search the closest hostile fleet within 60 degrees of its heading.
+
+S-2 warhead contains a shaped charge that focuses all its power in one point, it is adapt at using high speed to penetrate enemy fleet defense to allow pin point destruction of select targets."

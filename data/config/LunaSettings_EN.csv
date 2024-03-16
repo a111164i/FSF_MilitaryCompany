@@ -1,0 +1,6 @@
+fieldID,fieldName,fieldType,defaultValue,secondaryValue,fieldDescription,minValue,maxValue,tab
+,,,,,,,,
+aEP_SettingHeader,Header,Header,Campaign,,,,,Settings
+aEP_SettingMissionSkipAwm,"Skip 'Advanced Weapon Program' story line",Boolean,false,,"When turned True, story line will be skipped, all rewards can be bought in market at hidden space",,,Settings
+aEP_SettingFleetSkill,"Add Support Doctrine to FSF Commanders",Boolean,false,,"When turned True, Support Doctrine will be added to FSF commander's skill set",,,Settings
+aEP_SettingAdvanceShipSpawnNormal,"Spawn FSF Advanced ships as normal",Boolean,false,,"When turned True, FSF Advanced ships will be spawned at average frequency",,,Settings

@@ -24,6 +24,7 @@
 		"total": "总和",
 		"decrease": "降低",
 		"increase": "增加",
+		"target_fleet": "目标舰队",
 
 		#############################
 		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸>=自己的友方舰船加速时，你的最大速度{%s}，加速度{%s}",
@@ -275,6 +276,7 @@
 		"total": "Total ",
 		"decrease": "Decrease ",
 		"increase": "Increase ",
+		"target_fleet": "Target Fleet ",
 
 		#############################
 		"aEP_SpecialHull01": "When accelerating toward or rotating around a friendly ship with this hullmod and whom no smaller than your hull size, your max speed %s, acceleration %s",

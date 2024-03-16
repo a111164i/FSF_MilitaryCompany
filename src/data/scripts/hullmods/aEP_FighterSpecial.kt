@@ -812,7 +812,8 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
 
       //同一个伤害不会反复受到不同来源战机listener的减伤
       if(damage.modifier.multMods.containsKey(ID_KEY)) return null
-      //相同来源的友军伤害不抓
+
+      //防护爆炸，相同来源的友军伤害不抓
       //这里抓母舰受到的爆炸伤害，然后判断受攻击点和爆心是否划过飞机(或者爆炸就处于飞机碰撞半径中)，如果划过，减伤
       if(param is DamagingExplosion ){
         val isCrossFighterPoint = CollisionUtils.getCollides(param.location, point, fighter.location,fighter.collisionRadius)
@@ -823,23 +824,23 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
         }
       }
 
-      //相同来源的友军伤害不抓
-      if(param is EmpArcEntity && !isDead(fighter)){
-        //施加一个等量伤害透明电弧对飞机的惩罚
-        if(param.source is ShipAPI){
-          Global.getCombatEngine().spawnEmpArc(
-            (param.source as ShipAPI),
-            fighter.location,fighter,
-            fighter,damage.type,damage.baseDamage,damage.fluxComponent,
-            100f,null,1f,
-            Color(1,1,1,1), Color(1,1,1,1))
-
-        }
-        //转移目标，消除对母舰的伤害
-        param.setTargetToShipCenter(fighter.location,fighter)
-        damage.modifier.modifyMult(ID_KEY, 0.1f)
-        return ID_KEY
-      }
+      //防护电弧，相同来源的友军伤害不抓，会导致跨平台问题
+//      if(param is EmpArcEntity && !isDead(fighter)){
+//        //施加一个等量伤害透明电弧对飞机的惩罚
+//        if(param.source is ShipAPI){
+//          Global.getCombatEngine().spawnEmpArc(
+//            (param.source as ShipAPI),
+//            fighter.location,fighter,
+//            fighter,damage.type,damage.baseDamage,damage.fluxComponent,
+//            100f,null,1f,
+//            Color(1,1,1,1), Color(1,1,1,1))
+//
+//        }
+//        //转移目标，消除对母舰的伤害
+//        param.setTargetToShipCenter(fighter.location,fighter)
+//        damage.modifier.modifyMult(ID_KEY, 0.1f)
+//        return ID_KEY
+//      }
 
       return null
     }

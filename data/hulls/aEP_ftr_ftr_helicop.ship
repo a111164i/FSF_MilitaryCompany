@@ -62,7 +62,7 @@
       "size": "SMALL",
       "type": "SYSTEM",
       "mount": "TURRET",
-      "arc": 60,
+      "arc": 90,
       "angle": 90,
       "locations": [5, 12.5]
     },
@@ -74,6 +74,15 @@
       "arc": 60,
       "angle": -90,
       "locations": [5, -12.5]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "TURRET",
+      "arc": 90,
+      "angle": 0,
+      "locations": [17, -0]
     }
   ],
   "engineSlots": [

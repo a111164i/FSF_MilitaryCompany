@@ -35,7 +35,7 @@
       "id": "FLAK01",
       "size": "SMALL",
       "type": "SYSTEM",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 180,
       "angle": 135,
       "locations": [-8.5, 7.5]
@@ -44,7 +44,7 @@
       "id": "FLAK02",
       "size": "SMALL",
       "type": "SYSTEM",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 180,
       "angle": -135,
       "locations": [-8.5, -7.5]
@@ -53,7 +53,7 @@
       "id": "FLAK03",
       "size": "SMALL",
       "type": "SYSTEM",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 180,
       "angle": 45,
       "locations": [7.5, 7.5]
@@ -62,7 +62,7 @@
       "id": "FLAK04",
       "size": "SMALL",
       "type": "SYSTEM",
-      "mount": "HARDPOINT",
+      "mount": "TURRET",
       "arc": 180,
       "angle": -45,
       "locations": [7.5, -7.5]

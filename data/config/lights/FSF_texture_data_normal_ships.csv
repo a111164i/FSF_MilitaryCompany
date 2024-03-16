@@ -1,7 +1,7 @@
 id,type,frame,magnitude,map,path
 ,,,,,
-# normal ----------------------------------------------------------------------#
-# ships
+# normal ----------------------------------------------------------------------#,,,,,
+# ships,,,,,
 aEP_cap_biaobing,ship,,1,normal,graphics/shaders/normal/ships/aEP_cap_biaobing_normal.png
 aEP_cap_decomposer,ship,,1,normal,graphics/shaders/normal/ships/aEP_cap_decomposer_normal.png
 aEP_cap_duiliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cap_duiliu_normal.png
@@ -15,7 +15,7 @@ aEP_cap_shangshengliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cap_shang
 aEP_cru_hailiang3,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_hailiang3_normal.png
 aEP_cru_hailiang4,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_hailiang4_normal.png
 aEP_cru_hailiang,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_hailiang_normal.png
-aEP_cru_lengshe2,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_lengshe2_normal.png
+aEP_cru_lengshe_front,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_lengshe2_normal.png
 aEP_cru_lengshe,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_lengshe_normal.png
 aEP_cru_pingding,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_pingding_normal.png
 aEP_cru_pubu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_pubu_normal.png
@@ -24,8 +24,8 @@ aEP_cru_shanhu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_shanhu_norma
 aEP_cru_zhongliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_zhongliu_normal.png
 aEP_des_cengliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_cengliu_normal.png
 aEP_des_lianliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_lianliu_normal.png
-aEP_des_shenceng_mk2,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shenceng_mk2_normal.png
-aEP_des_shenceng,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shenceng_normal.png
+aEP_des_shendu_mk2,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shenceng_mk2_normal.png
+aEP_des_shendu,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shenceng_normal.png
 aEP_des_shuishi,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shuishi_normal.png
 aEP_des_taodong,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_taodong_normal.png
 aEP_des_yangji_mk2,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_yangji_mk2_normal.png
@@ -42,8 +42,9 @@ aEP_fga_wanliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_fga_wanliu_norma
 aEP_fga_xiliu_mk2,ship,,1,normal,graphics/shaders/normal/ships/aEP_fga_xiliu_mk2_normal.png
 aEP_fga_xiliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_fga_xiliu_normal.png
 aEP_fga_yonglang,ship,,1,normal,graphics/shaders/normal/ships/aEP_fga_yonglang_normal.png
-aEP_fga_shuangshen,ship,,,normal,graphics/shaders/normal/ships/aEP_fga_shuangshen_normal.png
-aEP_fga_shuangshen2,ship,,,normal,graphics/shaders/normal/ships/aEP_fga_shuangshen2_normal.png
+aEP_fga_shuangshen,ship,,1,normal,graphics/shaders/normal/ships/aEP_fga_shuangshen_normal.png
+aEP_fga_shuangshen2,ship,,1,normal,graphics/shaders/normal/ships/aEP_fga_shuangshen2_normal.png
+aEP_fga_shuangshen3,ship,,1,normal,graphics/shaders/normal/fighters/ut_shuangshen3_normal.png
 aEP_typeA28,ship,,1,normal,graphics/shaders/normal/ships/aEP_typeA28_normal.png
 aEP_typeB28,ship,,1,normal,graphics/shaders/normal/ships/aEP_typeB28_normal.png
 aEP_typeL28,ship,,1,normal,graphics/shaders/normal/ships/aEP_typeL28_normal.png
@@ -59,7 +60,7 @@ aEP_ftr_sup_shield,ship,,1,normal,graphics/shaders/normal/fighters/sup_shield_no
 aEP_ftr_sup_supply,ship,,1,normal,graphics/shaders/normal/fighters/sup_supply_normal.png
 aEP_ftr_sup_tank,ship,,1,normal,graphics/shaders/normal/fighters/sup_tank_normal.png
 aEP_ftr_ut_decompose,ship,,1,normal,graphics/shaders/normal/fighters/ut_decompose_normal.png
-aEP_ftr_ut_decoy,ship,,1,normal,graphics/shaders/normal/fighters/ut_decoy_normal.png
+aEP_ut_decoy,ship,,1,normal,graphics/shaders/normal/fighters/ut_decoy_normal.png
 aEP_ftr_ut_maodian,ship,,1,normal,graphics/shaders/normal/fighters/ut_maodian00_normal.png
 aEP_ftr_ut_repair,ship,,1,normal,graphics/shaders/normal/fighters/ut_repair_normal.png
 aEP_ftr_ut_shendu,ship,,1,normal,graphics/shaders/normal/fighters/ut_shendu_normal.png
@@ -76,6 +77,9 @@ aEP_sta_tier1_hanger2,ship,,1,normal,graphics/shaders/normal/stations/tier1_hang
 aEP_sta_tier2_armor,ship,,1,normal,graphics/shaders/normal/stations/tier2_armor_normal.png
 aEP_sta_tier2_hull1,ship,,1,normal,graphics/shaders/normal/stations/tier2_hull1_normal.png
 aEP_sta_tier2_structure,ship,,1,normal,graphics/shaders/normal/stations/tier2_structure_normal.png
-,,,,,
-,,,,,
-,,,,,
+aEP_CruiseMissile,ship,,1,normal,graphics/shaders/normal/weapons/aEP_CM_weapon/aEP_CM01_normal.png
+aEP_CruiseMissile2,ship,,1,normal,graphics/shaders/normal/weapons/aEP_CM_weapon/aEP_CM02_normal.png
+aEP_ut_sta_main_rail_l,ship,,1,normal,graphics/shaders/normal/weapons/aEP_cap_sta/rail_l_normal.png
+aEP_ut_sta_main_rail_r,ship,,1,normal,graphics/shaders/normal/weapons/aEP_cap_sta/rail_r_normal.png
+aEP_ut_sta_main_side_l,ship,,1,normal,graphics/shaders/normal/weapons/aEP_cap_sta/side_exhaust_l_normal.png
+aEP_ut_sta_main_side_r,ship,,1,normal,graphics/shaders/normal/weapons/aEP_cap_sta/side_exhaust_r_normal.png
