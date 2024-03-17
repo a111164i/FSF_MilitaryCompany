@@ -22,7 +22,11 @@
     "WS0001": "aEP_blinker_green",
     "WS0002": "aEP_blinker_green",
     "WS0003": "aEP_blinker_green",
-    "WS0004": "aEP_blinker_green"
+    "WS0004": "aEP_blinker_green",
+    "WS0005": "lidardish",
+    "WS0006": "lidardish",
+    "WS0007": "lidardish",
+    "WS0008": "lidardish"
   },
   "weaponSlots": [
     {
@@ -267,6 +271,42 @@
       "arc": 0,
       "angle": -0,
       "locations": [50, -50]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 90,
+      "locations": [0, 83]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": -90,
+      "locations": [0, -83]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [83, -0]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 180,
+      "locations": [-83, -0]
     }
   ],
   "engineSlots": [],
