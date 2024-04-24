@@ -2,6 +2,8 @@
 	"id":"aEP_m_m_phasemine_shot",
 	"specClass":"missile",	
 	"missileType":"PHASE_MINE",
+	#用MISSILE会使得引信类里面无法通过设置flightTime=maxTime强制自爆
+	#"missileType":"MISSILE",
 	"sprite":"graphics/weapons/aEP_m_m_phasemine/proj.png",
 	"glowSprite":"graphics/weapons/aEP_m_m_phasemine/phase_glow.png",
 	"glowColor":[190,60,255,155],
@@ -16,6 +18,11 @@
 	"flameoutTime":0.1, # total time from flameout to full fadeout
 	"fadeTime":0.1, # fadeout duration
 	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
+  "noCollisionWhileFading":true,
+  "useHitGlowWhenDealingDamage":false, # ? look at this
+  "useHitGlowWhenDestroyed":false, # instead of the default explosion
+  "dudProbabilityOnFlameout":0,
 	"explosionColor":[148,100,50,255],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":400, # purely visual
 	"engineSpec":{"turnAcc":180,

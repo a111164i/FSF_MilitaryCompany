@@ -68,8 +68,8 @@ K-9 Fighter LMG,aEP_ftr_sup_shield_gun,PD,KINETIC,2,450,75,,12,,,5,,1600,,,0,1.0
 107 Rocket Launcher,aEP_b_m_rk107,USE_LESS_VS_SHIELDS,FRAGMENTATION,15,900,9,,400,,,300,,800,,,0,0.25,4,0.25,8,0.8,4,,0,6,0.8,10,300,600,FSF Manufacture,Finisher,3 | 450,"On hitting shield, deals twice the damage but in soft flux
 
 On hitting armor, the damage increased by %s times of target's minimum calculated armor, up to %s .",0.5,1600,"strike15, he10, FSF_bp, rare_bp",,,3,,,,,,,,,
-HV7 Smart Cannon,aEP_b_m_hv7,,ENERGY,14,900,12,,360,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF Manufacture,General,3 | 120 | 800,"When projectile comes near to a Destroyer or Frigate, it will split to %s submunition, each one dealing %s EN damage, targeting a random enemy within %s distance.",0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
---Split Shot,aEP_b_m_hv7_2,SYSTEM,ENERGY,,800,0,,150,,,0,,1500,,,1,1,1,1,,,,,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
+HV7 Smart Cannon,aEP_b_m_hv7,,ENERGY,14,900,14,,400,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF Manufacture,General,3 | 180 | 800,"When projectile comes near to a Destroyer or Frigate, it will split to %s submunition, each one dealing %s EN damage, targeting a random enemy within %s distance.",0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
+--Split Shot,aEP_b_m_hv7_2,SYSTEM,ENERGY,,800,0,,180,,,0,,1500,,,1,1,1,1,,,,,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
 ZT-125 Revolver Autocannon,aEP_b_m_k125,,KINETIC,12,800,8,,180,,,230,,800,,,0,0.5667,2,0.1,6,1,6,,0,12,1,15,,,FSF Manufacture,Anti-shield,2% | 2% | 200,"On hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher).",1,1000,"kinetic13, FSF_bp",,,1,,,,,,,,,
 MB32 Dual-purpose MG,aEP_b_m_mb32,"PD ,NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,11,800,90,,30,,,4.5,,900,,,0,0.125,,,,,,,0,2,0.01,10,,,FSF Manufacture,PD,50% | 50%,"All projectiles can reach a range of %s , however, only %s of projectiles can reach full range.
 
@@ -109,19 +109,19 @@ This weapon can't be fired manually",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
 """Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,200,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra %s KE damage in soft flux",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
 """Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,600,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,600,"When hitting shield, deals extra %s KE damage in soft flux",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
 """Percussion Drill"" Bombardment LRM",aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF Manufacture,Anti-armor,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,
-DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
+DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,3,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
 This weapon will immediately repair itself if brought offline.
 
 This weapon can't be fired manually",1,200,"pd5, FSF_bp",,,2,,,,,,,,,
 --Payload,aEP_m_s_era2,SYSTEM,FRAGMENTATION,,250,0,,300,,,,,200,,1.5,0,1,,,,,,,0,0,0,0,100,300,,,,,,,,,,,,,,,,,,,
-"""Pushpin"" Magnet Bomb Cluster",aEP_m_s_magnetmine,STRIKE,HIGH_EXPLOSIVE,2,1200,10,,1000,,,,,400,,3.1,0,5,,,1,0,1,TRUE,0,0,0,0,400,600,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
+"""Pushpin"" Magnet Bomb Cluster",aEP_m_s_magnetmine,STRIKE,HIGH_EXPLOSIVE,2,1200,10,,1000,,,,,400,,2.6,0,5,,,2,0,1,TRUE,0,0,0,0,400,600,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
 
 Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,300,"missile4, strike8, FSF_bp",,,0,,,,,,,,,
-"""Pushpin"" Magnet Bomb Cluster Pod",aEP_m_m_magnetmine,CONSERVE_1,HIGH_EXPLOSIVE,13,2000,12,,1000,,,,,250,,8.5,0,12,,,6,0,1,TRUE,5,15,30,15,350,400,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
+"""Pushpin"" Magnet Bomb Cluster Pod",aEP_m_m_magnetmine,CONSERVE_1,HIGH_EXPLOSIVE,13,2000,12,,1000,,,,,325,,8,0,12,,,9,0,1,TRUE,5,15,30,15,400,500,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
 
 Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,1200,"missile13, strike8, FSF_bp",,,1,,,,,,,,,
-"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,325,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
+"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,9999,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
 
 At most %s mine can co-exist in the battlefield at one time. For each of this weapon mounted on deployed ships, that limitation is increased by %s",1,1000,"missile12, FSF_bp",,,2,,,,,,,,,
 --Triggered,aEP_m_m_phasemine2,SYSTEM,HIGH_EXPLOSIVE,1,300,0,,1500,,,,,200,,5,0,1,,,1,0,1,TRUE,0,0,0,0,375,0,,,,,,,,,,,,,,,,,,,
@@ -240,6 +240,19 @@ aEP_marker,aEP_marker,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_des_shuishi_rail_green,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_des_shuishi_rotator,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_des_shuishi_base,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_tl,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_tr,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_tl2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_tr2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_bl,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_br,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_bl2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_br2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_bl3,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_armor_br3,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_glow_f,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_glow_l,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_des_chongji_glow_r,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_des_taodong_cover,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_des_shendu_door_l,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_des_shendu_door_r,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

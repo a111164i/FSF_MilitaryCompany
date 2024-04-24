@@ -5842,14 +5842,15 @@ class aEP_m_m_phasemine_shot : Effect(), AdvanceableListener{
       originalProjectile.velocity) as MissileAPI
 
     mine.angularVelocity = originalProjectile.angularVelocity
-    mine.hitpoints = originalProjectile.hitpoints
+    mine.spawnLocation.set(Vector2f(originalProjectile.spawnLocation))
+
   }
 
 }
 // 手动近炸引信，被最近的非战机激活
 open class ShipProximityTrigger(val missile: MissileAPI, val fuseRange:Float): aEP_BaseCombatEffect(0f,missile) {
 
-  val checkTimer = IntervalUtil(0.08f,0.12f)
+  val checkTimer = IntervalUtil(0.1f,0.15f)
 
   override fun advanceImpl(amount: Float) {
     checkTimer.advance(amount)
@@ -5857,9 +5858,12 @@ open class ShipProximityTrigger(val missile: MissileAPI, val fuseRange:Float): a
 
     val closestShip : ShipAPI?= aEP_Tool.getNearestEnemyCombatShip(missile)
     if(closestShip != null){
-      val dist = MathUtils.getDistance(closestShip, missile.location)
-      if(dist <= fuseRange){
+      val dist = MathUtils.getDistanceSquared(closestShip, missile.location)
+      if(dist <= fuseRange*fuseRange){
+        //用这个warp-around，对空雷有效，但对导弹也不起效
         missile.flightTime = missile.maxFlightTime
+        //不知道为啥，不起效
+        //missile.explode()
         shouldEnd = true
       }
     }

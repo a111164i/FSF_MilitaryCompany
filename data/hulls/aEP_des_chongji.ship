@@ -1,0 +1,314 @@
+{
+    "hullName": "",
+    "hullId": "aEP_des_chongji",
+    "hullSize": "DESTROYER",
+    "style": "aEP_FSF",
+    "spriteName": "graphics/ships/aEP_des_chongji.png",
+    "height": 180,
+    "width": 150,
+    "center": [
+        76, 89
+    ],
+    "collisionRadius": 91,
+    "coversColor": "",
+    "shieldCenter": [
+        0, 0
+    ],
+    "shieldRadius": 90,
+    "viewOffset": 0,
+    "builtInMods": [
+        "aEP_SpecialHull"
+    ],
+    "builtInWeapons": {
+        "TL 000": "aEP_des_chongji_armor_tl",
+        "TR 000": "aEP_des_chongji_armor_tr",
+        "TL 001": "aEP_des_chongji_armor_tl2",
+        "TR 001": "aEP_des_chongji_armor_tr2",
+        "BL 000": "aEP_des_chongji_armor_bl",
+        "BR 000": "aEP_des_chongji_armor_br",
+        "BL 001": "aEP_des_chongji_armor_bl2",
+        "BR 001": "aEP_des_chongji_armor_br2",
+        "BL 002": "aEP_des_chongji_armor_bl3",
+        "BR 002": "aEP_des_chongji_armor_br3",
+        "GLOW 000": "aEP_des_chongji_glow_f",
+				"GLOW 001": "aEP_des_chongji_glow_r",
+				"GLOW 002": "aEP_des_chongji_glow_l"
+    },
+    "builtInWings": [],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS 000",
+            "size": "MEDIUM",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 40,
+            "arc": 235,
+            "angle": 30,
+            "locations": [
+                      32,       22
+            ]
+        },
+        {
+            "id": "WS 001",
+            "size": "LARGE",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 50,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                       5,        0
+            ]
+        },
+        {
+            "id": "WS 002",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 30,
+            "arc": 220,
+            "angle": 225,
+            "locations": [
+                     -43,      -22
+            ]
+        },
+        {
+            "id": "WS 003",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 30,
+            "arc": 220,
+            "angle": 135,
+            "locations": [
+                     -43,       22
+            ]
+        },
+        {
+            "id": "TL 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 20,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      31,       22
+            ]
+        },
+        {
+            "id": "TR 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 20,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      31,      -22
+            ]
+        },
+        {
+            "id": "BR 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 20,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,      -27
+            ]
+        },
+        {
+            "id": "BL 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 20,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,       27
+            ]
+        },
+        {
+            "id": "TL 001",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 19,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      31,       22
+            ]
+        },
+        {
+            "id": "TR 001",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 19,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      31,      -22
+            ]
+        },
+        {
+            "id": "BL 001",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 17,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,       27
+            ]
+        },
+        {
+            "id": "BR 001",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 17,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,      -27
+            ]
+        },
+        {
+            "id": "BL 002",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 15,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,       27
+            ]
+        },
+        {
+            "id": "BR 002",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 15,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,      -27
+            ]
+        },
+        {
+            "id": "SPL 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 90,
+            "locations": [
+                     1.5,       21
+            ]
+        },
+        {
+            "id": "SPR 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": -90,
+            "locations": [
+                     1.5,      -21
+            ]
+        },
+        {
+            "id": "GLOW 000",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      45,        0
+            ]
+        },
+        {
+            "id": "GLOW 002",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 18,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,       27
+            ]
+        },
+        {
+            "id": "GLOW 001",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 18,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     -30,      -27
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -69, 25
+            ],
+            "length": 58,
+            "width": 20,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -69, -25
+            ],
+            "length": 58,
+            "width": 20,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        }
+    ],
+    "bounds": [
+           -58.5,      -30,
+           -50.5,    -41.5,
+           -26.5,    -41.5,
+           -11.5,    -29.5,
+              20,    -29.5,
+        
+            25.5,    -43.5,
+            52.5,    -43.5,
+            60.5,    -29.5,
+              45,      -24,
+            54.5,      -16,
+        
+            54.5,       16,
+              45,       24,
+            60.5,     29.5,
+            52.5,     43.5,
+            25.5,     43.5,
+        
+              20,     29.5,
+           -11.5,     29.5,
+           -26.5,     41.5,
+           -50.5,     41.5,
+           -58.5,       30
+    # 20 points total.
+    ]
+}

@@ -56,6 +56,16 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
 
       mag["aEP_des_lianliu_front_cover"] = arrayOf(6f, 3f, 0f,0f)
 
+      mag["aEP_des_chongji_armor_tr2"] = arrayOf(10f, 2f, 0f,2f)
+      mag["aEP_des_chongji_armor_tl2"] = arrayOf(10f, 2f, 0f,2f)
+
+      mag["aEP_des_chongji_armor_br2"] = arrayOf(0f, 2f, 8f,2f)
+      mag["aEP_des_chongji_armor_bl2"] = arrayOf(0f, 2f, -8f,2f)
+      mag["aEP_des_chongji_glow_r"] = arrayOf(0f, 2f, 8f,2f)
+      mag["aEP_des_chongji_glow_l"] = arrayOf(0f, 2f, -8f,2f)
+      mag["aEP_des_chongji_armor_br3"] = arrayOf(-8f, 2f, 0f,2f)
+      mag["aEP_des_chongji_armor_bl3"] = arrayOf(-8f, 2f, 0f,2f)
+
       mag["aEP_fga_wanliu_arm_l"] = arrayOf(-15f, 1f,  -4f, 1f)
       mag["aEP_fga_wanliu_arm_r"] = arrayOf(-15f, 1f,  4f, 1f)
       mag["aEP_fga_wanliu_cover"] = arrayOf(21f, 1f,  0f,0f)

@@ -1,0 +1,23 @@
+{
+	"id":"aEP_SiegeMode",
+	"type":"STAT_MOD",
+	#"aiType":"WEAPON_BOOST",
+	"aiType":"CUSTOM",
+  "aiScript":"data.scripts.ai.shipsystemai.aEP_SiegeModeAI",
+	"statsScript":"data.scripts.shipsystems.aEP_SiegeMode",
+
+
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+
+
+	"fadeActivationSoundOnChargedown":true,
+	"useSound":"aEP_DamperTankerOnUse",
+	"loopSound":"system_damper_loop",
+	"deactivateSound":"system_fast_missile_racks",
+	#"outOfUsesSound":"gun_out_of_ammo",
+	"aiHints":{
+	}
+}
+
+
+

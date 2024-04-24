@@ -75,9 +75,15 @@
       "yonglang_rapture_anchor_base": "graphics/weapons/aEP_fga_yonglang/anchor2.png",
       "d100t_sabot_l": "graphics/weapons/aEP_b_l_d100t/sabot_l.png",
       "d100t_sabot_r": "graphics/weapons/aEP_b_l_d100t/sabot_r.png",
+
       "des_taodong_glow": "graphics/ships/aEP_des_taodong_glow1.png",
+      "des_chongji_ring": "graphics/weapons/aEP_des_chongji/ring.png",
+      "des_chongji_ring2": "graphics/weapons/aEP_des_chongji/ring2.png",
+      "des_chongji_rod": "graphics/weapons/aEP_des_chongji/rod.png",
+
       "fga_shuangshen_full": "graphics/ships/aEP_fga_shuangshen_full.png",
       "fga_shuangshen": "graphics/ships/aEP_fga_shuangshen.png"
+
     },
     "fx": {
       "aEP_trail_smoke": "graphics/aEP_FX/trails/3.png",

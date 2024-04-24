@@ -109,6 +109,11 @@
 
 		"aEP_BBLockOn01": "武器幅能消耗增高",
 
+		"aEP_SiegeMode01":"幅能产生: %s",
+		"aEP_SiegeMode02":"武器射速: %s",
+		"aEP_SiegeMode03":"武器射程: %s",
+		"aEP_SiegeMode04":"机动被限制",
+
 		"aEP_WeaponReset01":"武器射速增加",
 
 		"aEP_FortressShieldStats01": "护盾承受伤害降低: %s",
@@ -361,6 +366,11 @@
 		"aEP_LADamper02":"Weapon RoF bonus: ",
 
 		"aEP_BBLockOn01": "Weapon flux cost increased",
+
+		"aEP_SiegeMode01":"Flux generated: %s",
+		"aEP_SiegeMode02":"Weapon RoF: %s",
+		"aEP_SiegeMode03":"Weapon range: %s",
+		"aEP_SiegeMode04":"Maneuver limited",
 
 		"aEP_WeaponReset01":"Weapon RoF bonus: ",
 

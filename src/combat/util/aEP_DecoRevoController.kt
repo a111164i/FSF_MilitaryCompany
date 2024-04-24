@@ -36,6 +36,19 @@ class aEP_DecoRevoController(var weapon: WeaponAPI) {
       mag["aEP_des_shuishi_rail_red"] = arrayOf(0f, -45f,  1f)
       mag["aEP_des_shuishi_rail_green"] = arrayOf(0f, -45f,  1f)
 
+      mag["aEP_des_chongji_armor_tr"] = arrayOf(0f, -32f,  1f)
+      mag["aEP_des_chongji_armor_tl"] = arrayOf(0f, 32f,  1f)
+      mag["aEP_des_chongji_armor_tr2"] = arrayOf(0f, -32f,  1f)
+      mag["aEP_des_chongji_armor_tl2"] = arrayOf(0f, 32f,  1f)
+
+      mag["aEP_des_chongji_armor_br"] = arrayOf(0f, 32f,  1f)
+      mag["aEP_des_chongji_armor_bl"] = arrayOf(0f, -32f,  1f)
+      mag["aEP_des_chongji_armor_br2"] = arrayOf(0f, 32f,  1f)
+      mag["aEP_des_chongji_armor_bl2"] = arrayOf(0f, -32f,  1f)
+      mag["aEP_des_chongji_armor_br3"] = arrayOf(0f, 32f,  1f)
+      mag["aEP_des_chongji_armor_bl3"] = arrayOf(0f, -32f,  1f)
+      mag["aEP_des_chongji_glow_l"] = arrayOf(0f, -32f,  1f)
+      mag["aEP_des_chongji_glow_r"] = arrayOf(0f, 32f,  1f)
 
       mag["aEP_fga_xiliu_rotator"] = arrayOf(0f, 90f,  2f)
       mag["aEP_fga_xiliu_red"] = arrayOf(0f, 90f, 2f)
@@ -66,8 +79,6 @@ class aEP_DecoRevoController(var weapon: WeaponAPI) {
       Math.min(toLevel - effectiveLevel, speed * amount)
     }
 
-    //无需移动就直接返回，减少计算量
-    if(toMove == 0f) return
 
     effectiveLevel += toMove
     weapon.currAngle = ship.facing + start + range * smooth(effectiveLevel)

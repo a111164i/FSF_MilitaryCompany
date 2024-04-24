@@ -36,6 +36,10 @@ class aEP_DecoGlowController(var weapon: WeaponAPI) {
       mag["aEP_des_shuishi_rail_red"] = GlowData(0.2f, 10f, Color(255, 255, 255, 255), 0f)
       mag["aEP_des_shuishi_rail_green"] = GlowData(0.2f, 10f, Color(255, 255, 255, 255), 0f)
 
+      mag["aEP_des_chongji_glow_f"] = GlowData(1f, 2f, Color(250, 250, 250, 250), 0f)
+      mag["aEP_des_chongji_glow_l"] = GlowData(1f, 2f, Color(250, 250, 250, 250), 0f)
+      mag["aEP_des_chongji_glow_r"] = GlowData(1f, 2f, Color(250, 250, 250, 250), 0f)
+
       mag["aEP_fga_yonglang_glow"] = GlowData(2f, 2f, Color(250, 250, 250, 250), 0f)
       mag["aEP_fga_xiliu_red"] = GlowData(1f, 8f, Color(250, 250, 250, 250), 0f)
       mag["aEP_fga_xiliu_green"] = GlowData(1f, 8f, Color(250, 250, 250, 250), 0f)
@@ -84,7 +88,9 @@ class aEP_DecoGlowController(var weapon: WeaponAPI) {
     weapon.animation.frame = 1
     val originalX = weapon.sprite.centerX
     val originalY = weapon.sprite.centerY
-    weapon.sprite.setCenter(originalX + effectiveLevel * MathUtils.getRandomNumberInRange(-range, range), originalY - effectiveLevel * MathUtils.getRandomNumberInRange(-range, range))
+    weapon.sprite.setCenter(
+      originalX + effectiveLevel * MathUtils.getRandomNumberInRange(-range, range),
+      originalY - effectiveLevel * MathUtils.getRandomNumberInRange(-range, range))
     weapon.animation.alphaMult = effectiveLevel
     if(additive) weapon.sprite.setAdditiveBlend() else weapon.sprite.setNormalBlend()
     weapon.sprite.color = c
