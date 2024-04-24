@@ -1,0 +1,34 @@
+{
+    "displayName": "Attack",
+    "fluxCapacitors": 13,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_des_chongji",
+    "hullMods": [
+        "targetingunit",
+        "aEP_StrategyThruster"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_chongji_Attack",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "mjolnir"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "aEP_b_m_flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 002": "aEP_ftr_sup_shield_gun",
+                "WS 003": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ]
+}

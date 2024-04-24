@@ -30,9 +30,9 @@ class aEP_SiegeMode : BaseShipSystemScript() {
     const val ROF_BONUS_PERCENT = 100f
 
     const val RANGE_BONUS_PERCENT = 25f
-    const val RANGE_BONUS_FLAT = 200f
+    const val RANGE_BONUS_FLAT = 250f
 
-    const val BREAK_RANGE = 300f
+    const val BREAK_RANGE = 350f
     const val FLUX_INCREASE_MULT = 0.50f
 
   }
@@ -179,7 +179,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
       fluxLastFrameHard = ship.fluxTracker.hardFlux
 
 
-      ship.mutableStats.maxSpeed.modifyMult(ID, 0.25f)
+      ship.mutableStats.maxSpeed.modifyMult(ID, 0.2f)
       ship.mutableStats.acceleration.modifyMult(ID, 0.5f)
       ship.mutableStats.deceleration.modifyMult(ID, 0.5f)
 

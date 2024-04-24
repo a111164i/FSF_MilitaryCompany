@@ -14,7 +14,7 @@ import kotlin.math.pow
 class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
   override fun initImpl() {
-    thinkTracker.setInterval(2f,4f)
+    thinkTracker.setInterval(2f,6f)
   }
 
   data class EnemyData(val ship: ShipAPI, val approachingSpeed: Float, val threatDps: Float, val dist: Float, val angleDist: Float)
