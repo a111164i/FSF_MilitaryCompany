@@ -20,9 +20,9 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
   public static final String id = "aEP_BBRadarEffect";
   public static final Map<WeaponAPI.WeaponSize, Float> BONUS_PERCENT = new HashMap<>();
   static {
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.45f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.45f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.45f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.40f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.40f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.40f);
   }
 
   static final float ANGLE_BEST = 20f;
