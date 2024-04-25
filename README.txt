@@ -1,1 +1,3 @@
-For EN version, no need to modify anything, click it on in SS and everything is good to go.
+EN by default
+
+Swap between CN/EN version by running "swap_CN_EN.py".

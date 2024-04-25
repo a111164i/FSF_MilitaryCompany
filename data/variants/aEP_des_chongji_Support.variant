@@ -1,0 +1,28 @@
+{
+    "displayName": "Support",
+    "fluxCapacitors": 18,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_des_chongji",
+    "hullMods": [
+        "targetingunit",
+        "escort_package",
+        "hardenedshieldemitter",
+        "extendedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_chongji_Support",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "mark9"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "aEP_b_m_flak"}
+        }
+    ]
+}
