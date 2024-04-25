@@ -77,8 +77,9 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
   var didCheckClass = false
   var didCheckBeamEffect = false
 
-  override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI) {
+  override fun onHit(projectile: DamagingProjectileAPI?, target: CombatEntityAPI?, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI) {
     //根据projId进行类查找
+    target?:return
     projectile?: return
     var weaponId = projectile.weapon?.spec?.weaponId?: ""
     //对于damagingExplosion，weapon会得到null，projectileId也是null
@@ -92,7 +93,7 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
     effect?.onHit(projectile, target, point, shieldHit, damageResult, engine, weaponId)
   }
 
-  override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI) {
+  override fun onFire(projectile: DamagingProjectileAPI?, weapon: WeaponAPI, engine: CombatEngineAPI) {
     //根据 projId进行类查找
     projectile?: return
     var weaponId = ""
@@ -103,8 +104,9 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
     effect?.onFire(projectile, weapon, engine, weaponId)
   }
 
-  override fun onExplosion(explosion: DamagingProjectileAPI, originalProjectile: DamagingProjectileAPI) {
+  override fun onExplosion(explosion: DamagingProjectileAPI?, originalProjectile: DamagingProjectileAPI?) {
     //根据 projId进行类查找
+    explosion?:return
     val projectile = originalProjectile?:return
     var weaponId = ""
     if (projectile.weapon != null) weaponId = projectile.weapon.spec.weaponId
