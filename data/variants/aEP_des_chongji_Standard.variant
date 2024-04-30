@@ -6,7 +6,7 @@
     "hullId": "aEP_des_chongji",
     "hullMods": [
         "targetingunit",
-        "aEP_ShieldControlled"
+        "aEP_ShieldFloating"
     ],
     "permaMods": [],
     "sMods": [],
