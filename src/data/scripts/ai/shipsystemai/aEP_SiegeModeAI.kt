@@ -44,7 +44,7 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
       }
     }
 
-    aEP_Tool.addDebugLog("weapon: " + maxWeaponRange)
+    //aEP_Tool.addDebugLog("weapon: " + maxWeaponRange)
 
     //------------------------------------------------------------//
     //寻找射程内的敌人
@@ -73,7 +73,7 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
       val angleDist = MathUtils.getShortestRotation(ship.facing, VectorUtils.getAngle(ship.location,shp.location)).absoluteValue
 
-      aEP_Tool.addDebugLog("dist: "+dist)
+      //aEP_Tool.addDebugLog("dist: "+dist)
       // Store ship and its approaching speed in <aroundEnemies>
       aroundEnemies.add(EnemyData(shp, approachingSpeed, dps, dist,angleDist))
     }
@@ -153,6 +153,6 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
     willing *= MathUtils.getRandomNumberInRange(0.8f,1.2f)
     if(willing > 100f) shouldActive = true
-    aEP_Tool.addDebugLog("willing: "+willing.toString())
+    //aEP_Tool.addDebugLog("willing: "+willing.toString())
   }
 }
