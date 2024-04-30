@@ -55,7 +55,8 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
       }
 
       //以上的检测都通过了，说明需要修改伤害
-      damage.damage = damage.baseDamage * 0.1f
+      //damage.damage = damage.baseDamage * 0.1f
+      damage.modifier.modifyMult(ID,0.1f)
       return 1f
     }
 

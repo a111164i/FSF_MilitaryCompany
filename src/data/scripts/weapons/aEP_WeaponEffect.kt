@@ -4685,29 +4685,37 @@ class aEP_des_yonglang_mk2_cover : EveryFrame(){
   }
 }
 class aEP_m_s_bomblance : EveryFrame(){
+
+  val checkTimer = IntervalUtil(0.05f,0.05f)
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
     weapon.ship?:return
 
     //不会下线
     aEP_Tool.keepWeaponAlive(weapon)
 
-    val triggerPoint = getExtendedLocationFromPoint(weapon.getFirePoint(0), weapon.currAngle, 0f)
-    //aEP_Tool.addDebugPoint(triggerPoint)
-    val ships = Global.getCombatEngine().ships
-    for (s in ships) {
-      if (s.owner == weapon.ship.owner) continue
-      if (!s.isFrigate && !s.isDestroyer && !s.isCruiser && !s.isCapital) continue
+    checkTimer.advance(amount)
+    if(checkTimer.intervalElapsed()){
+      val triggerPoint = getExtendedLocationFromPoint(weapon.getFirePoint(0), weapon.currAngle, 0f)
+      //aEP_Tool.addDebugPoint(triggerPoint)
+      val ships = Global.getCombatEngine().ships
+      for (s in ships) {
+        if (s.owner == weapon.ship.owner) continue
+        if (!s.isFrigate && !s.isDestroyer && !s.isCruiser && !s.isCapital) continue
 
-      val dist = MathUtils.getDistance(s.location, triggerPoint)
-      if (dist <= s.collisionRadius * 0.9f && weapon.ammo >= 0 && weapon.cooldownRemaining <= 0) {
-        //如果矛头戳进了碰撞圈的0.9倍内，检测实际碰撞点距离，防止碰撞圈虚高的情况
-        val collision = CollisionUtils.getNearestPointOnBounds(triggerPoint, s)
-        if(collision != null && MathUtils.getDistance(collision, triggerPoint) <= 75f){
-          weapon.setForceFireOneFrame(true)
-          return
+        val distSq = getDistanceSquared(s.location, triggerPoint)
+        if (distSq <= (s.collisionRadius).pow(2) && weapon.ammo >= 0 && weapon.cooldownRemaining <= 0) {
+          //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离，防止碰撞圈虚高的情况
+          val collision = CollisionUtils.getNearestPointOnBounds(triggerPoint, s)
+
+          if(getDistanceSquared(collision, triggerPoint) <= 250f){
+            weapon.setForceFireOneFrame(true)
+            return
+          }
         }
       }
     }
+
+
   }
 }
 class aEP_m_s_bomblance_shot : Effect(){

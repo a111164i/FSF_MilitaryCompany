@@ -10,6 +10,9 @@ import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.impl.combat.DamperFieldOmegaStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
+import com.fs.starfarer.api.util.JitterUtil
+import combat.plugin.aEP_CombatEffectPlugin
+import combat.util.aEP_Combat
 import combat.util.aEP_DataTool
 import combat.util.aEP_Tool
 import data.scripts.ai.aEP_DroneRepairShipAI
@@ -32,7 +35,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
     const val RANGE_BONUS_PERCENT = 25f
     const val RANGE_BONUS_FLAT = 250f
 
-    const val BREAK_RANGE = 350f
+    const val BREAK_RANGE = 450f
     const val FLUX_INCREASE_MULT = 0.50f
 
   }
@@ -50,6 +53,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
   val fixLoc = Vector2f(0f,0f)
 
   var didUse = false
+  var didJitterDown = false
 
   val rodSpriteL = Global.getSettings().getSprite("aEP_FX","des_chongji_rod")
   val ringSpriteL = Global.getSettings().getSprite("aEP_FX","des_chongji_ring")
@@ -66,15 +70,19 @@ class aEP_SiegeMode : BaseShipSystemScript() {
 
     //如果处于一定充能状态，开始搜寻主武器，准备旋转
     if( effectLevel > 0.1f && effectLevel < 0.9f){
+
+      if (didUse == true)
+
+
       //第一次搜寻到时，记录当时相对船头的角度
-      if(mainWeaponFacing < -361f){
-        for(w in ship.allWeapons){
-          if(w.slot.id.equals("WS 001")){
-            mainWeaponFacing = w.currAngle - ship.facing
-            main = w
+        if(mainWeaponFacing < -361f){
+          for(w in ship.allWeapons){
+            if(w.slot.id.equals("WS 001")){
+              mainWeaponFacing = w.currAngle - ship.facing
+              main = w
+            }
           }
         }
-      }
     }else{
       main = null
       mainWeaponFacing = -999f
@@ -107,34 +115,41 @@ class aEP_SiegeMode : BaseShipSystemScript() {
 
     //修改数值
     if(effectLevel <= 0f){
-      didUse = false
 
-      ship.mutableStats.maxSpeed.modifyMult(ID, 1f)
-      ship.mutableStats.acceleration.modifyMult(ID, 1f)
-      ship.mutableStats.deceleration.modifyMult(ID, 1f)
+      if(didUse){
+        //完全关闭时运行一帧
+        didUse = false
 
-      ship.mutableStats.maxTurnRate.modifyMult(ID, 1f)
-      ship.mutableStats.turnAcceleration.modifyMult(ID, 1f)
+        ship.mutableStats.maxSpeed.modifyMult(ID, 1f)
+        ship.mutableStats.acceleration.modifyMult(ID, 1f)
+        ship.mutableStats.deceleration.modifyMult(ID, 1f)
 
-      ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,0f)
+        ship.mutableStats.maxTurnRate.modifyMult(ID, 1f)
+        ship.mutableStats.turnAcceleration.modifyMult(ID, 1f)
 
-      ship.mutableStats.ballisticRoFMult.modifyPercent(ID, 0f)
-      ship.mutableStats.energyRoFMult.modifyPercent(ID, 0f)
+        ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,0f)
 
-      ship.mutableStats.ballisticWeaponRangeBonus.modifyFlat(ID, 0f)
-      ship.mutableStats.energyWeaponRangeBonus.modifyFlat(ID, 0f)
-      ship.mutableStats.ballisticWeaponRangeBonus.modifyPercent(ID, 0f)
-      ship.mutableStats.energyWeaponRangeBonus.modifyPercent(ID, 0f)
+        ship.mutableStats.ballisticRoFMult.modifyPercent(ID, 0f)
+        ship.mutableStats.energyRoFMult.modifyPercent(ID, 0f)
 
-      ship.setWeaponGlow(
-        0f,
-        aEP_CoordinatedCombat.WEAPON_BOOST,
-        EnumSet.of(WeaponAPI.WeaponType.BALLISTIC,WeaponAPI.WeaponType.ENERGY))
+        ship.mutableStats.ballisticWeaponRangeBonus.modifyFlat(ID, 0f)
+        ship.mutableStats.energyWeaponRangeBonus.modifyFlat(ID, 0f)
+        ship.mutableStats.ballisticWeaponRangeBonus.modifyPercent(ID, 0f)
+        ship.mutableStats.energyWeaponRangeBonus.modifyPercent(ID, 0f)
+
+        ship.setWeaponGlow(
+          0f,
+          aEP_CoordinatedCombat.WEAPON_BOOST,
+          EnumSet.of(WeaponAPI.WeaponType.BALLISTIC,WeaponAPI.WeaponType.ENERGY))
+      }
 
 
     }else if(effectLevel <= 1f){
       if(!didUse){
+        //刚刚开启时的第一帧
         didUse = true
+        didJitterDown = false
+
         ship.velocity.scale(0.1f)
         ship.angularVelocity *= 0.1f
         //记录固定的位置
@@ -142,6 +157,26 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         //重置幅能记录
         fluxLastFrameSoft = ship.fluxTracker.currFlux-ship.fluxTracker.hardFlux
         fluxLastFrameHard = ship.fluxTracker.hardFlux
+
+        //加一个抖动，表示开启系统
+        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.2f, 0.5f,ship)
+        jitter.color = aEP_CoordinatedCombat.WEAPON_BOOST
+        jitter.maxRange = 10f
+        jitter.maxRangePercent = 0f
+        jitter.copyNum = 2
+        jitter.jitterShield = false
+      }
+
+      if(!didJitterDown && state == ShipSystemStatsScript.State.OUT){
+        didJitterDown = true
+
+        //加一个抖动，表示关闭系统
+        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.2f, 0.5f,ship)
+        jitter.color = aEP_CoordinatedCombat.WEAPON_BOOST
+        jitter.maxRange = 10f
+        jitter.maxRangePercent = 0f
+        jitter.copyNum = 2
+        jitter.jitterShield = false
       }
 
       //检测距离，如果太远强制关闭
@@ -327,8 +362,8 @@ class aEP_SiegeMode : BaseShipSystemScript() {
 
       //顶部发光
       if (weapon.spec.weaponId.equals("aEP_des_chongji_glow_f") ||
-          weapon.spec.weaponId.equals("aEP_des_chongji_glow_l") ||
-          weapon.spec.weaponId.equals("aEP_des_chongji_glow_r") ) {
+        weapon.spec.weaponId.equals("aEP_des_chongji_glow_l") ||
+        weapon.spec.weaponId.equals("aEP_des_chongji_glow_r") ) {
         val controller = (weapon.effectPlugin as aEP_DecoAnimation)
         if(effectLevel <= 0.2f){
           controller.setGlowToLevel(0f)
