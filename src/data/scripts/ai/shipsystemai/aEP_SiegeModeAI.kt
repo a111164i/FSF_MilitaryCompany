@@ -2,6 +2,7 @@ package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.combat.DamageType
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.combat.WeaponAPI
 import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_SiegeMode
@@ -10,17 +11,22 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 import kotlin.math.absoluteValue
+import kotlin.math.max
 import kotlin.math.pow
 
 class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
   override fun initImpl() {
-    thinkTracker.setInterval(3f,6f)
+    thinkTracker.setInterval(2f,6f)
   }
 
   data class EnemyData(val ship: ShipAPI, val approachingSpeed: Float, val threatDps: Float, val dist: Float, val angleDist: Float)
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
+    //展开途中不会思考，防止武器距离变化导致ai反复
+    if(system.state == ShipSystemAPI.SystemState.IN) return
+    if(system.state == ShipSystemAPI.SystemState.OUT) return
+
 
     shouldActive = false
 
@@ -29,6 +35,7 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
     for(w in ship.allWeapons){
       if(w.isDecorative) continue
       //没激活时算激活后的射程，激活时就用当前射程
+      w.spec.maxRange
       var newRange = w.range * (100f+aEP_SiegeMode.RANGE_BONUS_PERCENT)/100f + aEP_SiegeMode.RANGE_BONUS_FLAT
       if(system.isActive) newRange = w.range
 
@@ -37,13 +44,17 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
       }
     }
 
+    aEP_Tool.addDebugLog("weapon: " + maxWeaponRange)
+
+    //------------------------------------------------------------//
+    //寻找射程内的敌人
     val aroundEnemies = ArrayList<EnemyData>()
     for(shp in engine.ships){
 
       var dps = 0f
 
       if(!aEP_Tool.isEnemy(ship,shp)) continue
-      val dist = MathUtils.getDistance(ship,shp.location)
+      val dist = MathUtils.getDistance(ship.location,shp.location)
       if(dist > maxWeaponRange) continue
       // find enemy threatening damage
       for(w in ship.allWeapons){
@@ -62,10 +73,13 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
       val angleDist = MathUtils.getShortestRotation(ship.facing, VectorUtils.getAngle(ship.location,shp.location)).absoluteValue
 
+      aEP_Tool.addDebugLog("dist: "+dist)
       // Store ship and its approaching speed in <aroundEnemies>
       aroundEnemies.add(EnemyData(shp, approachingSpeed, dps, dist,angleDist))
     }
 
+    //------------------------------------------------------------//
+    //检测附近敌人的威胁度和主要目标有多近
     var willing = 0f
     for (enemyData in aroundEnemies) {
 
@@ -124,6 +138,7 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
         //正面10秒(每秒打掉0.1)打爆结构，则一定关闭(0.1 * 1000 = 100 willing)
         willing -= (enemyData.threatDps * multiplier / (ship.hitpoints.coerceAtLeast(3000f))) * 250f
       }
+
     }
 
 
@@ -138,6 +153,6 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
     willing *= MathUtils.getRandomNumberInRange(0.8f,1.2f)
     if(willing > 100f) shouldActive = true
-    //aEP_Tool.addDebugLog("willing: "+willing.toString())
+    aEP_Tool.addDebugLog("willing: "+willing.toString())
   }
 }
