@@ -3782,7 +3782,7 @@ class aEP_b_l_aa40_shot : Effect(){
       }
       Global.getCombatEngine().applyDamage(
         target,point,
-        toAdd,DamageType.OTHER,0f,
+        toAdd,DamageType.KINETIC,0f,
         false,false,null)
 
       //先在光束落点加一个特效
@@ -5624,7 +5624,7 @@ class aEP_m_s_magnetmine_shot : Effect(){
       aEP_ftr_ut_shendu_mine_shot().onFire(mine, fakeWeapon, Global.getCombatEngine(), weaponId)
       mine.velocity.set(initialVel)
       mine.damage.damage = DAMAGE
-      mine.maxFlightTime = mine.maxFlightTime * MathUtils.getRandomNumberInRange(0.9f,1f)
+      mine.maxFlightTime = mine.maxFlightTime * getRandomNumberInRange(0.9f,1f)
 
     }
 

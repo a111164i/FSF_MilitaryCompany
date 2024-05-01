@@ -33,7 +33,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     * @return 0f代表不需要触发，1f在这里面已经修改过了伤害，外面需要返回ID
     * */
     fun damageModify(damage: DamageAPI, ship: ShipAPI, param: Any?, thres:Float, armor_level_thres:Float):Float{
-      var realDamage = damage.damage * damage.modifier.modified
+      var realDamage = damage.damage * damage.modifier.modifiedValue
       when(damage.type){
         DamageType.KINETIC -> realDamage *= 0.5f
         DamageType.ENERGY -> realDamage *= 0.75f
