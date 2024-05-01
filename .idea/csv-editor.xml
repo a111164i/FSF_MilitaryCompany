@@ -192,7 +192,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="F:\Starsector097\starsector-core\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\commodities_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -206,7 +220,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\industries_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -276,7 +304,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\submarkets_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\characters\skills\skill_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
