@@ -36,8 +36,9 @@
     },
     "hulls": {
       "aEP_cap_nuanchi": 0.75,
-      "aEP_cru_zhongliu": 0.75,
+      "aEP_cru_zhongliu": 1.25,
       "aEP_cru_requan": 0.75,
+      "aEP_cru_hailiang": 0.75,
       "aEP_des_chongji": 1.25,
       "aEP_des_yangji": 0.75,
       "aEP_des_shendu": 0.75,
