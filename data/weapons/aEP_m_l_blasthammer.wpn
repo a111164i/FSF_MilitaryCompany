@@ -9,7 +9,7 @@
   "turretGlowSprite":"graphics/weapons/aEP_m_l_blasthammer/tr_glow.png",
   "hardpointSprite": "graphics/weapons/aEP_m_l_blasthammer/hp.png",
   "hardpointGlowSprite":"graphics/weapons/aEP_m_l_blasthammer/hp_glow.png",
-	"glowColor":[255,151,75,235],
+	"glowColor":[255,151,75,255],
   #"renderAboveAllWeapons": 0,
   #Allows missiles to have a higher flight time to allow a bit more maneuvering time while within range, without extending their range
   "fizzleOnReachingWeaponRange":true,

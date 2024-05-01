@@ -281,15 +281,17 @@ class aEP_m_m_blasthammer_shot : Effect(){
     }
     //加重，防止被引力子拦截
     projectile.mass = 200f
-    smokeTrail.stopSpeed = 0.96f
-    smokeTrail.smokeSpreadAngleTracker.speed = 1.6f
-    smokeTrail.smokeSpreadAngleTracker.max = 15f
-    smokeTrail.smokeSpreadAngleTracker.min = -15f
-    smokeTrail.smokeSpreadAngleTracker.randomizeTo()
-    smokeTrail.flareColor = Color(255,134,86,240)
-    smokeTrail.flareColor2 = Color(152,124,20,240)
 
-    addEffect(smokeTrail)
+//    smokeTrail.stopSpeed = 0.96f
+//    smokeTrail.smokeSpreadAngleTracker.speed = 1.6f
+//    smokeTrail.smokeSpreadAngleTracker.max = 15f
+//    smokeTrail.smokeSpreadAngleTracker.min = -15f
+//    smokeTrail.smokeSpreadAngleTracker.randomizeTo()
+//    smokeTrail.flareColor = Color(255,134,86,240)
+//    smokeTrail.flareColor2 = Color(152,124,20,240)
+//    addEffect(smokeTrail)
+
+
     addEffect(ApproximatePrimer(projectile as MissileAPI, 0.75f))
 
     if(weapon.ship != null && !weapon.ship.customData.containsKey(KEY)){
@@ -317,16 +319,19 @@ class aEP_m_l_blasthammer_shot : Effect(){
       }
     }
     //加重，防止被引力子拦截
-    projectile.mass = 200f
-    smokeTrail.stopSpeed = 0.965f
-    //因为新的角度算法是按照生成烟的数量变化的，大导弹云更大，生成的也就越少，这里反而需要比小导大才能维持类似的角度变化
-    smokeTrail.smokeSpreadAngleTracker.speed = 1.8f
-    smokeTrail.smokeSpreadAngleTracker.max = 15f
-    smokeTrail.smokeSpreadAngleTracker.min = -15f
-    smokeTrail.flareColor = Color(255,134,86,240)
-    smokeTrail.flareColor2 = Color(152,124,20,240)
+    projectile.mass = 250f
 
-    addEffect(smokeTrail)
+
+//    smokeTrail.stopSpeed = 0.965f
+//    //因为新的角度算法是按照生成烟的数量变化的，大导弹云更大，生成的也就越少，这里反而需要比小导大才能维持类似的角度变化
+//    smokeTrail.smokeSpreadAngleTracker.speed = 1.8f
+//    smokeTrail.smokeSpreadAngleTracker.max = 15f
+//    smokeTrail.smokeSpreadAngleTracker.min = -15f
+//    smokeTrail.flareColor = Color(255,134,86,240)
+//    smokeTrail.flareColor2 = Color(152,124,20,240)
+//    addEffect(smokeTrail)
+
+
     addEffect(ApproximatePrimer(projectile as MissileAPI, 1f))
 
     if(weapon.ship != null && !weapon.ship.customData.containsKey(aEP_m_m_blasthammer_shot.KEY)){
@@ -4707,7 +4712,7 @@ class aEP_m_s_bomblance : EveryFrame(){
           //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离，防止碰撞圈虚高的情况
           val collision = CollisionUtils.getNearestPointOnBounds(triggerPoint, s)
 
-          if(getDistanceSquared(collision, triggerPoint) <= 250f){
+          if(getDistanceSquared(collision, triggerPoint) <= 2500f){
             weapon.setForceFireOneFrame(true)
             return
           }
