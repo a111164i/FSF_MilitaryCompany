@@ -30,7 +30,7 @@ Ballistic/energy weapon range %s",,graphics/aEP_hullmods/aEP_small_target_core.p
 Attack Carrier,aEP_AttackCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,"To send fighters faster and further away, all fighters of this ship is equipped with induction coil to receive a boost",,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,,
 Strafe,aEP_Strafe,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"This ship slowly recover strafe energy. Whenever a large weapon in this ship is in cooldown, consume strafe energy to eliminate cooldown remaining
 
-To fully recharge strafe energy takes %s seconds, when fully charged it can eliminate %s seconds of cooldown time, shortest firing interval is %s
+To fully recharge strafe energy takes %s seconds, when fully charged it can eliminate %s seconds of cooldown, shortest firing interval is %s
 
 If this ship's shipsystem is out of charge, immediately consume %s of strafe energy to get a charge. Each time this ship uses shipsystem, fires several low power built-in missiles to distract enemy",,graphics/aEP_hullmods/aEP_strafe.png,,
 Pre-planted Reactive Armor,aEP_ReactiveArmor,1,FSF Design,,"FSF, defensive",Defenses,10000,,TRUE,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"Planted explosive reactive armors under main armor belt, response to high damage on hit

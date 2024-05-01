@@ -303,8 +303,8 @@
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
 
 		"aEP_AttackCarrier01":"All fighters of this ship that is within %s range and have max speed < %s, get max speed bonus: ",
-		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge is activated to fast replace all lost non-bomber fighters. This ability has %s seconds cooldown time and produce large soft flux overtime",
-		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, cooldown time of the forge %s, currently %s seconds",
+		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge is activated to fast replace all lost non-bomber fighters. This ability has %s seconds cooldown and produce large soft flux overtime",
+		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, cooldown of the forge %s, currently %s seconds",
 
 		"aEP_ShieldControlled01": "For any projectile and beam spawned %s distance away and hit shield, damage %s",
 		"aEP_ShieldControlled02": "Ballistic/energy weapon %s range limited to %s.",

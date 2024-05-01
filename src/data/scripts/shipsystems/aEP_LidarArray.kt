@@ -19,7 +19,7 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
     val ACTIVE_RANGE_BONUS = HashMap<ShipAPI.HullSize, Float>()
 
     init {
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FIGHTER, 25f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FIGHTER, 30f)
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FRIGATE, 50f)
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.DESTROYER, 60f)
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.CRUISER, 80f)

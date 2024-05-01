@@ -13,7 +13,7 @@
   "viewOffset": 0,
   "builtInMods": [
     "aEP_SpecialHull",
-
+	  "aEP_HLMultiTurret",
     "ground_support"
   ],
   "builtInWeapons": {

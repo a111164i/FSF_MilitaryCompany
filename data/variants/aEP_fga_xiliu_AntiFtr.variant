@@ -1,6 +1,6 @@
 {
     "displayName": "Beam",
-    "fluxCapacitors": 6,
+    "fluxCapacitors": 10,
     "fluxVents": 9,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
@@ -31,6 +31,14 @@
                 "R01": "lrpdlaser",
                 "WS0007": "lrpdlaser",
                 "WS0009": "lrpdlaser"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "L02": "lrpdlaser",
+                "R02": "lrpdlaser"
             }
         }
     ]

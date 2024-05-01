@@ -48,7 +48,7 @@ Decoy Trick     : When activated with holding key Num 2, greatly reduce its 'Sco
 
 Field Infiltrate: When activated with holding key Num 3, immediately swap location with its 'Scout' Fighter, CD:1",Guided Assault | Decoy Trick | Field Infiltrate,
 aEP_SwitchPowerMode,SHIP_SYSTEM,"Activation allows toggle between the built in main-gun's focused and rapid fire mode, allowing one and preventing the other from firing. ",,,,
-aEP_RepulseMissileLaunch,SHIP_SYSTEM,"When activated,continuously fire some built in micro missiles, get extra flux dissipation and flux shunt percentage, until flux has been cleared or the system times out. The system will be forced to activate once this ship destroyed",,,,
+aEP_RepulseMissileLaunch,SHIP_SYSTEM,"When activated, get extra flux dissipation and flux shunt percentage, continuously fire its built-in missiles until flux has been cleared or the system times out. The system will be forced to activate once this ship destroyed",,,,
 aEP_FlareLaunch,SHIP_SYSTEM,"When activated, fires different type of flares around the ship to distract enemy missile targeting.",,,,
 ,,,,,,
 ,,,,,,

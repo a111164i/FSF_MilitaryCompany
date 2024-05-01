@@ -86,7 +86,10 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
       val isApproaching = enemyData.approachingSpeed > 0f
       val isRetreatingFast = enemyData.approachingSpeed < -20f
 
-      if(enemyData.ship == ship.shipTarget){
+      if(enemyData.ship == ship.shipTarget && !ship.shipTarget.isFighter){
+        //基础拥有25，如果目前0幅能，范围内有人就可以开
+        willing += 25f
+
         //如果范围内只有一艘，给与大量加成
         if(aroundEnemies.size == 1){
           willing += 50f
@@ -151,7 +154,7 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
     if(ship.fluxTracker.fluxLevel > 0.9f) willing -= 15f
     if(ship.fluxTracker.fluxLevel > 0.95f) willing -= 25f
 
-    willing *= MathUtils.getRandomNumberInRange(0.8f,1.2f)
+    willing *= MathUtils.getRandomNumberInRange(0.9f,1.1f)
     if(willing > 100f) shouldActive = true
     //aEP_Tool.addDebugLog("willing: "+willing.toString())
   }

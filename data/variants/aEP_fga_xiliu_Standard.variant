@@ -1,14 +1,15 @@
 {
     "displayName": "Standard",
     "fluxCapacitors": 10,
-    "fluxVents": 3,
+    "fluxVents": 8,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
         "hardened_subsystems",
         "targetingunit",
         "advancedoptics",
-        "aEP_ShieldFloating"
+        "hardenedshieldemitter",
+        "pointdefenseai"
     ],
     "permaMods": [],
     "sMods": [],
@@ -25,7 +26,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0007": "aEP_b_s_pom"}
+            "weapons": {"WS0009": "ioncannon"}
         },
         {
             "autofire": true,
@@ -36,9 +37,17 @@
             }
         },
         {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L02": "aEP_ftr_sup_shield_gun",
+                "R02": "aEP_ftr_sup_shield_gun"
+            }
+        },
+        {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0009": "ioncannon"}
+            "weapons": {"WS0007": "aEP_b_s_pom"}
         }
     ]
 }

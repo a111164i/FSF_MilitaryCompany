@@ -1,7 +1,7 @@
 {
     "displayName": "Automated",
-    "fluxCapacitors": 6,
-    "fluxVents": 6,
+    "fluxCapacitors": 10,
+    "fluxVents": 8,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
         "aEP_VanguardHull",
@@ -32,16 +32,20 @@
             "weapons": {
                 "L01": "lightac",
                 "R01": "lightac",
-                "WS0007": "aEP_b_s_h37",
                 "WS0009": "lightac"
             }
         },
         {
-            "autofire": false,
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_s_h37"}
+        },
+        {
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L02": "aEP_ftr_sup_shield_gun",
-                "R02": "aEP_ftr_sup_shield_gun"
+                "L02": "aEP_b_s_630",
+                "R02": "aEP_b_s_630"
             }
         }
     ]
