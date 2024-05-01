@@ -68,8 +68,8 @@ class aEP_SiegeMode : BaseShipSystemScript() {
     val ship = stats.entity as ShipAPI
     amount = aEP_Tool.getAmount(ship)
 
-    //如果处于一定充能状态，开始搜寻主武器，准备旋转
-    if( effectLevel > 0.1f && effectLevel < 0.9f){
+    //如果处于一定充能状态，开始搜寻主武器，准备旋转主武器
+    if( effectLevel > 0.1f && effectLevel < 0.9f ){
 
       if (didUse == true)
 
@@ -78,7 +78,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         if(mainWeaponFacing < -361f){
           for(w in ship.allWeapons){
             if(w.slot.id.equals("WS 001")){
-              mainWeaponFacing = w.currAngle - ship.facing
+              mainWeaponFacing = w.currAngle
               main = w
             }
           }
@@ -88,17 +88,21 @@ class aEP_SiegeMode : BaseShipSystemScript() {
       mainWeaponFacing = -999f
     }
 
-    //如果搜寻成功，开始旋转
+    //如果搜寻成功，开始旋转主武器
     ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,0f)
+    ship.mutableStats.maxTurnRate.modifyFlat(ID,0f)
     main?.run {
       var rotateLevel = 0f
       rotateLevel = ((effectLevel-0.05f)/0.95f).coerceAtMost(1f)
       rotateLevel = MagicAnim.smooth(rotateLevel)
       if(rotateLevel<1f && rotateLevel>0f){
         ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,-1.0E9f)
+        ship.mutableStats.maxTurnRate.modifyFlat(ID,-1.0E9f)
       }
+      if(state == ShipSystemStatsScript.State.OUT) rotateLevel = (1f-rotateLevel)
       //搁置，不转了
-      main!!.currAngle = (ship.facing + mainWeaponFacing + 360f*rotateLevel)
+
+      main!!.currAngle = (ship.facing + (mainWeaponFacing-ship.facing) * (1f-rotateLevel))
     }
 
 
