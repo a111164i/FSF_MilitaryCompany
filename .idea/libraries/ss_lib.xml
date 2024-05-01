@@ -9,7 +9,6 @@
       <root url="jar://$PROJECT_DIR$/../../starsector-core/lwjgl_util.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../starsector-core/lwjgl.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../starsector-core/starfarer.api.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../starsector-core/starfarer_obf.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../LazyLib/javadoc.zip!/" />
