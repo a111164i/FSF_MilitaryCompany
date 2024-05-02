@@ -16,8 +16,6 @@ import com.fs.starfarer.api.loading.HullModSpecAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import com.fs.starfarer.combat.entities.DamagingExplosion
-import com.fs.starfarer.combat.systems.EmpArcEntity
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.impl.VEs.aEP_SpreadRing
 import combat.plugin.aEP_CombatEffectPlugin
@@ -730,7 +728,7 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
         }
 
         //能抓到近炸，每炸到任何一个其他拥有吞弹护盾的舰船，自己对该爆炸的伤害降低
-        if(param is DamagingExplosion){
+        if(param.damagedAlready?.size?:1 > 1){
           var numOfDroneDamaged = 1
           for(e in param.damagedAlready){
             if(e is ShipAPI && e.variant.hasHullMod(ID) && e != ship){
@@ -782,17 +780,17 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
       }
 
       //对emp电弧-------------------------------------------------------------//
-      if(param is EmpArcEntity && param.source is ShipAPI){
-        val sourceShip = param.source as ShipAPI
-        sourceModifier = sourceShip.mutableStats.damageToFighters.modifiedValue
-
-        if(sourceModifier > 1f){
-          damage.modifier.modifyMult(ID, 1f/sourceModifier)
-          return ID
-        }else{
-          return null
-        }
-      }
+//      if(param is EmpArcEntity && param.source is ShipAPI){
+//        val sourceShip = param.source as ShipAPI
+//        sourceModifier = sourceShip.mutableStats.damageToFighters.modifiedValue
+//
+//        if(sourceModifier > 1f){
+//          damage.modifier.modifyMult(ID, 1f/sourceModifier)
+//          return ID
+//        }else{
+//          return null
+//        }
+//      }
 
 
       return null
@@ -815,7 +813,7 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
 
       //防护爆炸，相同来源的友军伤害不抓
       //这里抓母舰受到的爆炸伤害，然后判断受攻击点和爆心是否划过飞机(或者爆炸就处于飞机碰撞半径中)，如果划过，减伤
-      if(param is DamagingExplosion ){
+      if(param is DamagingProjectileAPI && param.damagedAlready?.size?:1>  1 ){
         val isCrossFighterPoint = CollisionUtils.getCollides(param.location, point, fighter.location,fighter.collisionRadius)
         if(isCrossFighterPoint || MathUtils.getDistanceSquared(fighter,param.location) < 25f){
           //如果飞机划过爆炸圈，给予母舰对炸弹的减伤
