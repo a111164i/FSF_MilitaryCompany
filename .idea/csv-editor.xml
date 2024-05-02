@@ -3,6 +3,20 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Users\a4567\AppData\Local\Temp\7zE4AE42F1D\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\a4567\AppData\Local\Temp\7zEC458C74A\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="F:\Starsector097\starsector-core\data\campaign\abilities.csv">
           <value>
             <Attribute>
