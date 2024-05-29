@@ -2,6 +2,7 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipCommand
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
@@ -27,12 +28,22 @@ class aEP_VectorThrust : BaseShipSystemScript() {
 
   val afterImageTracker = IntervalTracker(0.033f,0.033f)
 
+  var didOnce = false
+
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
     //复制粘贴这行
     val ship = (stats?.entity?: return)as ShipAPI
     val angleAndSpeed = aEP_Tool.velocity2Speed(ship.velocity)
     val angleDist = MathUtils.getShortestRotation(angleAndSpeed.x,ship.facing)
     val amount = aEP_Tool.getAmount(ship)
+
+    //使用时打断右键系统
+    if(!didOnce){
+      didOnce = true
+      if(ship.phaseCloak != null) ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
+
+    }
+
 
     //比较神奇，按加速，会覆盖掉setFlameLevel，同时setFlameLevel的尾焰会莫名的粗短
     for(e in ship.engineController.shipEngines){
@@ -79,6 +90,7 @@ class aEP_VectorThrust : BaseShipSystemScript() {
 
   override fun unapply(stats: MutableShipStatsAPI?, id: String?) {
     val ship = (stats?.entity?: return) as ShipAPI
+    didOnce = false
     ship.mutableStats.maxTurnRate.unmodify(id)
     ship.mutableStats.turnAcceleration.unmodify(id)
 
@@ -88,7 +100,6 @@ class aEP_VectorThrust : BaseShipSystemScript() {
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
-    if(ship.phaseCloak != null && ship.phaseCloak.effectLevel > 0f) return false
     return true
   }
 }
