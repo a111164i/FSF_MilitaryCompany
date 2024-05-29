@@ -24,18 +24,22 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
   data class EnemyData(val ship: ShipAPI, val approachingSpeed: Float, val threatDps: Float, val dist: Float, val angleDist: Float)
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
+    val system = rightClickSys as ShipSystemAPI
+
     //展开途中不会思考，防止武器距离变化导致ai反复
     if(system.state == ShipSystemAPI.SystemState.IN) return
     if(system.state == ShipSystemAPI.SystemState.OUT) return
 
 
-    shouldActive = false
+    shouldPhaseActive = false
 
     // find self max range
     var maxWeaponRange = 0f
     for(w in ship.allWeapons){
       if(w.isDecorative) continue
-      if(w.slot.id.equals(aEP_PingdingMainSwapHidden.MAIN_SLOT)) maxWeaponRange = w.range
+      if(w.slot.id.equals(aEP_PingdingMainSwapHidden.MAIN_SLOT)) {
+        maxWeaponRange = w.range + 9999f
+      }
     }
 
     //aEP_Tool.addDebugLog("weapon: " + maxWeaponRange)
@@ -149,7 +153,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
     if(ship.fluxTracker.fluxLevel > 0.95f) willing -= 25f
 
     willing *= MathUtils.getRandomNumberInRange(0.9f,1.1f)
-    if(willing > 100f) shouldActive = true
-    //aEP_Tool.addDebugLog("willing: "+willing.toString())
+    if(willing > 100f) shouldPhaseActive = true
+    aEP_Tool.addDebugLog("willing: "+willing.toString())
   }
 }

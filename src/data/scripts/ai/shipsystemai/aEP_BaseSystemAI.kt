@@ -16,12 +16,14 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
   lateinit var engine: CombatEngineAPI
   lateinit var system: ShipSystemAPI
+  var rightClickSys: ShipSystemAPI? = null
   lateinit var ship: ShipAPI
   lateinit var flags: ShipwideAIFlags
   var thinkTracker = IntervalUtil(0f, 0.5f)
   var shouldActive = false
   var skipWhenCooldown = false
-
+  var shouldPhaseActive = false
+  var skipPhaseWhenCooldown = false
 
   constructor(){
 
@@ -33,6 +35,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
   override fun init(ship: ShipAPI, system: ShipSystemAPI, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
     this.ship = ship
+    if(ship.phaseCloak != null && ship.phaseCloak is ShipSystemAPI) rightClickSys = ship.phaseCloak
     this.system = system
     this.engine = engine
     this.flags = flags
@@ -53,14 +56,27 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
     thinkTracker.advance(amount)
     if (!thinkTracker.intervalElapsed()) return
 
+    var shouldSkip = false
     //如果系统正在冷却，不需要思考
     if(system.state == ShipSystemAPI.SystemState.COOLDOWN && skipWhenCooldown){
+      shouldSkip = true
       shouldActive = false
-    }else{
-      advanceImpl(amount, missileDangerDir, collisionDangerDir, target)
     }
-    aEP_Tool.toggleSystemControl(ship,shouldActive)
+    //如果系统正在冷却，不需要思考
+    if(rightClickSys?.state == ShipSystemAPI.SystemState.COOLDOWN && skipPhaseWhenCooldown){
+      shouldSkip = true
+      shouldPhaseActive = false
+    }
 
+    if(!shouldSkip) advanceImpl(amount, missileDangerDir, collisionDangerDir, target)
+
+    if(aEP_Tool.toggleSystemControl(system,shouldActive)){
+      ship.giveCommand(ShipCommand.USE_SYSTEM, null, 0)
+    }
+
+    if(rightClickSys != null && aEP_Tool.toggleSystemControl(rightClickSys!!,shouldPhaseActive)){
+      ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK, null, 0)
+    }
   }
 
   /**

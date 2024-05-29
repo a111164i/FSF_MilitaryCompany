@@ -1064,17 +1064,19 @@ class aEP_Tool {
     }
 
     @JvmStatic
-    fun toggleSystemControl(systemShip: ShipAPI, shouldUse: Boolean) {
-      if (shouldUse && systemShip.system.state == ShipSystemAPI.SystemState.IDLE) {
-        systemShip.useSystem()
+    fun toggleSystemControl(system: ShipSystemAPI, shouldUse: Boolean): Boolean {
+      if (shouldUse && system.state == ShipSystemAPI.SystemState.IDLE) {
+        return true
       }
-      val isActived = (systemShip.system.state == ShipSystemAPI.SystemState.ACTIVE ||
-          systemShip.system.state == ShipSystemAPI.SystemState.IN ||
-          systemShip.system.state == ShipSystemAPI.SystemState.OUT)
+      val isActived = (system.state == ShipSystemAPI.SystemState.ACTIVE ||
+          system.state == ShipSystemAPI.SystemState.IN ||
+          system.state == ShipSystemAPI.SystemState.OUT)
 
       if (!shouldUse && isActived) {
-        systemShip.useSystem()
+        return true
       }
+
+      return false
     }
 
     @JvmStatic

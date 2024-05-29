@@ -155,26 +155,6 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): StatusData? {
-    if(effectLevel >= 0.25f){
-      if (index == 0 && effectLevel >= 1f) {
-        return ShipSystemStatsScript.StatusData(String.format(
-          aEP_DataTool.txt("aEP_SiegeMode01"), String.format("-%.0f", (FLUX_INCREASE_MULT)*100f)+"%"),
-          false)
-      } else if (index == 1 && effectLevel >= 1f) {
-        return ShipSystemStatsScript.StatusData(String.format(
-          aEP_DataTool.txt("aEP_SiegeMode02") , String.format("+%.0f", ROF_BONUS_PERCENT) + "%"),
-          false)
-      } else if (index == 2 && effectLevel >= 1f) {
-        return ShipSystemStatsScript.StatusData(String.format(
-          aEP_DataTool.txt("aEP_SiegeMode03") , String.format("+%.0f +%.0f", RANGE_BONUS_FLAT, RANGE_BONUS_PERCENT) + "%"),
-          false)
-      } else if (index == 3) {
-        return ShipSystemStatsScript.StatusData(
-          aEP_DataTool.txt("aEP_SiegeMode04") ,
-          true)
-      }
-    }
-
 
     return null
   }
