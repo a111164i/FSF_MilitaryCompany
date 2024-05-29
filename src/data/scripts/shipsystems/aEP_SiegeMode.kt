@@ -188,20 +188,20 @@ class aEP_SiegeMode : BaseShipSystemScript() {
       val distSq = MathUtils.getDistanceSquared(ship.location, fixLoc)
       val breakRange = BREAK_RANGE.pow(2)
 
-      if(Global.getCombatEngine().playerShip == ship && state != ShipSystemStatsScript.State.OUT) {
-        val sprite = Global.getSettings().getSprite("graphics/aEP_FX/frame.png")
-        val farLevel = MathUtils.clamp(distSq/(breakRange*0.7f),0f,1f)
-        val size = 40f + 40f * farLevel
-        MagicRender.singleframe(
-          sprite, fixLoc,
-          Vector2f(size, size),  -90f + 720f * farLevel,
-          aEP_Tool.getColorWithAlpha(Color(farLevel,1f-farLevel,0.1f), farLevel * 0.6f),
-          true)
-
-      }
-      if(distSq > breakRange){
-        aEP_Tool.toggleSystemControl(ship,false)
-      }
+//      if(Global.getCombatEngine().playerShip == ship && state != ShipSystemStatsScript.State.OUT) {
+//        val sprite = Global.getSettings().getSprite("graphics/aEP_FX/frame.png")
+//        val farLevel = MathUtils.clamp(distSq/(breakRange*0.7f),0f,1f)
+//        val size = 40f + 40f * farLevel
+//        MagicRender.singleframe(
+//          sprite, fixLoc,
+//          Vector2f(size, size),  -90f + 720f * farLevel,
+//          aEP_Tool.getColorWithAlpha(Color(farLevel,1f-farLevel,0.1f), farLevel * 0.6f),
+//          true)
+//
+//      }
+//      if(distSq > breakRange){
+//        aEP_Tool.toggleSystemControl(ship,false)
+//      }
 
       //读取记录，减少幅能
       val soft = ship.fluxTracker.currFlux-ship.fluxTracker.hardFlux

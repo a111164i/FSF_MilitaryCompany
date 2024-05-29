@@ -1,7 +1,7 @@
 name,id,hints,type,OPs,range,turn rate,damage/second,damage/shot,emp,energy/second,energy/shot,impact,proj speed,beam speed,flight time,chargeup,chargedown,burst size,burst delay,ammo,ammo/sec,reload size,noDPSInTooltip,min spread,max spread,spread/shot,spread decay/sec,proj hitpoints,launch speed,tech/manufacturer,primaryRoleStr,customPrimaryHL,customPrimary,rarity,base value,tags,,groupTag,tier,autofireAccBonus,extraArcForAI,speedStr,trackingStr,turnRateStr,accuracyStr,customAncillary,customAncillaryHL,number
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"""Typhoon"" Hyper Caliber Multistage Acceleration Electromagnet Hybrid Propulsion Cannon",aEP_cap_sta_main,"SYSTEM, DANGEROUS, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,1,1500,20,,8000,,,8000,4000,700,,,5,25,,,,,1,,0,2,2,10,4000,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
-"""Exemplar"" Mounted Radar",aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,1,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF Manufacture,Support,40% | 100 ,"All non-PD weapons of this ship gains up %s range if those weapon's facing is aligned with this radar
+"""Typhoon"" Hyper Caliber Multistage Accelerated Electromagnetic-Chemical Hybrid Propulsion Cannon",aEP_cap_sta_main,"SYSTEM, DANGEROUS, NO_TURN_RATE_BOOST_WHEN_IDLE",HIGH_EXPLOSIVE,1,1500,20,,8000,,,8000,4000,700,,,5,25,,,,,1,,0,2,2,10,4000,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+"""Exemplar"" Radar System",aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,1,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF Manufacture,Support,40% | 100 ,"All non-PD weapons of this ship gains up %s range if those weapon's facing is aligned with this radar
 
 All Medium Energy Weapon gains %s extra range.",,,,,,,,,,,,,,,
 """Aphotic Zone"" Coil Accelerator",aEP_cap_duiliu_main,SYSTEM,KINETIC,1,1200,,,500,,,1000,2000,2000,,1,2,9,,,,,,,0,0,0,0,,,FSF Manufacture,General,1500 | 1000 | 500,"While charging, the weapon shoots a stream of shards dealing around %s KE damage and gernates %s soft flux.
@@ -15,9 +15,11 @@ Main projectile explode on detachment, dealing %s HE damage.",,,,,,,,,,,,,,,
 --Storm,aEP_cap_nuanchi_missile3,"SYSTEM, DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,1,400,0,,100,3000,,0,,150,,2,1,1,,,,,1,,0,0,0,1,1000,0,,,,,,,,,,,,,,,,,,,
 Giant Mining Pulse,aEP_type28_cannon,SYSTEM,ENERGY,1,1000,10,,1600,,,1600,,600,,,0.5,3.5,,,,,,,0,0,0,,,1000,unknown,Mining,,,,,,,,,,,,,,,,,
 Waterfall Catapult,aEP_cru_pubu_main,SYSTEM,KINETIC,,2000,0,,100,,,0,,1000,,,0,1,,,,,,,0,0,0,0,,600,,,,,,,,,,,,,,,,,,,
-"""Dead Sea"" Rocket-assisted Cannon",aEP_cru_pingding_main,SYSTEM,HIGH_EXPLOSIVE,,1200,0,,2000,,,2750,1000,1200,,1.5,2,2,3,0.5,3,0.1,,,8,8,8,8,400,1200,FSF Manufacture,Anti-armor,25%,"When firing, max speed of this ship is reduced to %s, shield and ship system are turned off.
+NGW-S04 Battle Gun,aEP_cru_pingding_main,SYSTEM,HIGH_EXPLOSIVE,,1000,0,,600,,,1000,500,1200,,,0,1,,,10,0.5,,,0,10,2,20,,1200,FSF Manufacture,Anti-armor,,,,,"no_drop, no_salvage",,,,,,,,,,,,
+NGW-R23 Rail Artillery,aEP_cru_pingding_main2,SYSTEM,HIGH_EXPLOSIVE,,1300,0,,1000,,,2500,1500,1600,,10,2,2,3,0.5,6,0.2,,,0,5,1,20,400,1600,FSF Manufacture,Anti-armor,,,,,"no_drop, no_salvage",,,,,,,,,,,,
+NGW-G2 Rocket-assisted Cannon,aEP_cru_pingding_main3,"SYSTEM, STRIKE",HIGH_EXPLOSIVE,,1200,0,,2000,,,3000,1000,800,,2,1,1,3,0.5,3,0.1,,,0,15,10,20,600,800,FSF Manufacture,Anti-armor,,"Projectile can go through allies
 
-Projectile is considered a missile and can be intercepted",,,,,,,,,,,,,,,
+Projectile is considered a missile and can be intercepted",,,"no_drop, no_salvage",,,,,,,,,,,,
 --Measuring Laser,aEP_cru_pingding_lidardish,SYSTEM,ENERGY,,100,60,50,,,100,,,,5000,,1,2,,,,,,,0,0,0,1,,,,,,,,,,,,,,,,,,,,,
 """Whale Hunt"" Nuclear Powered Torpedo",aEP_cru_pingding_torpedo,"SYSTEM, STRIKE",HIGH_EXPLOSIVE,1,8000,0,,4000,,,0,,400,,30,0,20,,,,,,,0,0,0,1,600,40,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 """Hydrothermal"" LRM Launch Rail",aEP_cru_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,7,0.15,7,,,,0,0,0,1,125,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
@@ -97,9 +99,9 @@ If the hit causes an overload, the overload only last %s seconds",1,200,"strike7
 """Door Breach"" Torpedo Pod",aEP_m_m_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,12,1800,12,,1000,1500,,,2000,200,,10,0,12,,,8,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
 If the hit causes an overload, the overload only last %s seconds",1,1000,"strike12, rocket10, FSF_bp",,,2,,,,,,,,,
-"""Blast Hammer"" LRM Pod",aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,2750,8,,2800,,,,,675,,7,0,18,,,4,,,TRUE,0,0,0,0,400,200,FSF Manufacture,Finisher,25% | 2 | 50% | 50%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
+"""Blast Hammer"" LRM Pod",aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,2750,8,,2800,,,,,675,,7,0,18,,,4,,,TRUE,0,0,0,0,400,200,FSF Manufacture,Finisher,30% | 3 | 40% | 40%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
 --Payload,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,800,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
-"""Blast Hammer"" LRM System",aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,2750,6,,3600,,,,,600,,8,0,18,,,6,,,TRUE,0,0,0,0,500,150,FSF Manufacture,Finisher,25% | 2 | 50% | 50%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
+"""Blast Hammer"" LRM System",aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,2750,6,,3600,,,,,600,,8,0,18,,,6,,,TRUE,0,0,0,0,500,150,FSF Manufacture,Finisher,30% | 3 | 40% | 40%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
 Disposal Flux Tube,aEP_m_s_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,4,200,12,,200,,,-1000,,200,,5,1,20,,,7,,,,15,15,15,15,200,100,FSF Manufacture,Support,50% | 1000,"When flux level of this ship is above %s, the weapon will fire one shot and reduce flux by %s .
 
 This weapon can't be fired manually",1,300,"utility7, FSF_bp",,,0,,,,,,,,,
@@ -169,7 +171,7 @@ Works better to FSF ships",,,,,,,,,,,,,,,
 
 This weapon will immediately repair itself if brought offline.",,200,"strike8, restricted",,,0,,,,,,,,,
 """Lightening"" Disturb Gun",aEP_b_m_lighting,,ENERGY,13,800,12,,10,8,,10,0,600,,,0,0.125,2,0.125,240,6,8,,0,15,1,15,,,FSF Advanced Weapon Program,Anti-shield,8 | 16 ,"When hit shield, apply a stackable debuff to target: For the next %s second, as long as the target's shield is on, increase the target's soft flux by %s per sec",0,6000,"energy11, restricted",,,,,,,,,,,,
-"""Sea Roar"" Super-heavy Railway Cannon",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,3000,,,3000,1000,1000,,,0.5,1.5,1,,1,0.1667,1,,0,8,4,8,,,FSF Advanced Weapon Program,General,,"If hit costs overload on hitting shield, spawn a identical projectile at location of the hit.",0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
+"""Sea Roar"" Super-heavy Railway Cannon",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,1500,,,1500,1000,1000,,,0.2,1.8,,,1,0.2,1,,0,16,4,8,,,FSF Advanced Weapon Program,Anti-armor,,"When hit shield, if it overloads target, projectile will keep going.",0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bind Projectile,aEP_ut_missile_attacher,SYSTEM,FRAGMENTATION,,100,0,,1,,,,,100,,,0,1,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
@@ -214,8 +216,18 @@ aEP_marker,aEP_marker,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_cru_shanhu_round_red,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_cru_shanhu_round_green,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_cru_shanhu_rotator,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,aEP_cru_pingding_armor1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,aEP_cru_pingding_armor2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_armor_l1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_armor_r1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_armor_l2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_armor_r2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_barrel_sleeve_l1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_barrel_sleeve_r1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_barrel_sleeve_l2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_barrel_sleeve_r2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_tail_l1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_tail_r1,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_tail_l2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,aEP_cru_pingding_tail_r2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_cru_pubu_armor_hold,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_cru_pubu_armor_hold2,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,aEP_cru_pubu_armor_hold3,SYSTEM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

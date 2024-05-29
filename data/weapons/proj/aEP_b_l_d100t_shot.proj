@@ -45,6 +45,7 @@
   "renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
   "noCollisionWhileFading":true,
   "useHitGlowWhenDestroyed":true, # instead of the default explosion
+
 #	"behaviorSpec":{
 #		"behavior":"PROXIMITY_FUSE",
 #		"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",

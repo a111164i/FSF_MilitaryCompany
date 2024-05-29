@@ -9,18 +9,18 @@
 	"collisionClass":"MISSILE_NO_FF",
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"explosionColor":[243,242,241,250],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[243,242,161,250],  # purely visual, will get a white additively blended core on top of this color
   "explosionRadius":50, # purely visual
   "explosionSpec":{"duration":0.0001f, # not visual
            "radius":100,
            "coreRadius":50, # full damage within core radius
            "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
            "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
-           "particleSizeMin":12.0,
-           "particleSizeRange":12.0,
-           "particleDuration":1.6,
+           "particleSizeMin":6.0,
+           "particleSizeRange":6.0,
+           "particleDuration":0.8,
            "particleCount":100,
-           "particleColor":[243,242,241,250]},
+           "particleColor":[243,242,41,250]},
    #"maxFlightTime":3, #一般用不上
 	"flameoutTime":0.5,  # total time from flameout to full fadeout
 	"armingTime":1, # safe range count by time

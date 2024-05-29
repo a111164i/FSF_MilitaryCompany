@@ -86,6 +86,8 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin(), CombatLayeredRenderi
       e.advance(amount)
     }
     effects.removeAll(toRemove)
+
+    //aEP_Tool.addDebugLog(String.format("left events: %.0f",effects.size.toFloat()))
   }
 
 
@@ -94,7 +96,7 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin(), CombatLayeredRenderi
    * 在特效自己aEP_BaseCombatEffect类的render方法中判定这个特效要不要渲染
    * */
   override fun getRenderRadius(): Float {
-    return 999999f
+    return 999999999f
   }
 
   /**

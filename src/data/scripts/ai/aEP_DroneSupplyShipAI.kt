@@ -23,7 +23,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
   companion object{
     const val ID = "aEP_DroneSupplyShipAI"
-    const val FLUX_RETURN_PARENT = 0.5f
+    const val FLUX_RETURN_PARENT = 1.25f
   }
 
   private var parentShip: ShipAPI? = null
@@ -130,9 +130,9 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
           return
         }
 
-        //执行列阵，队长计算队列并且随机晃动
         val dist = MathUtils.getDistance(ship, parentShip)
         if(ship.isWingLeader){
+          //执行列阵，队长计算队列并且随机晃动
           if(dist > 200){
             aEP_Tool.moveToPosition(ship, parentShip.location)
           }else{
@@ -147,8 +147,8 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
             aEP_Tool.moveToAngle(ship, parentShip.facing)
             aEP_Tool.setToPosition(ship,point)
           }
-        //僚机跟随阵型
         }else{
+          //僚机跟随阵型
           //生成阵型
           var formation = ArrayList<Vector2f>()
           genBoxFormation(ship.wing,50f,formation)
@@ -305,8 +305,6 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       if(parentShip != null && !isDead(parentShip!!)){
         val parentShip = parentShip as ShipAPI
         var maxToAdd = (ship.fluxTracker.currFlux * FLUX_RETURN_PARENT).coerceAtMost(parentShip.maxFlux - parentShip.currFlux -1f)
-        maxToAdd *= aEP_BeamFlux.FSF_BONUS
-
         parentShip.fluxTracker.increaseFlux(maxToAdd,false)
       }
     }

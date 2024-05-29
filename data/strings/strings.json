@@ -58,7 +58,8 @@
 		"aEP_ShieldControlled02": "舰船所有实弹和能量武器的{%s}射程超过{%s}的部分会被扣除",
 
 		"aEP_ShieldFloating01": "波动值",
-		"aEP_ShieldFloating02": "当护盾承受伤害时会积累等同于伤害量的{%s}，随着波动值上升，最多使幅能耗散{%s}，磁通分流比例{%s}。波动值随时间自然下降",
+		"aEP_ShieldFloating02": "当护盾承受伤害时会增加等同于伤害量的{%s}，之后随时间降低",
+		"aEP_ShieldFloating04": "如果{%s}开始积攒，最多使幅能耗散{%s}，磁通分流比例{%s}",
 		"aEP_ShieldFloating03": "达到最大加成所需",
 
 		"aEP_StrategyThruster01": "零幅能加速值{%s}，现在为{%s}",
@@ -248,7 +249,7 @@
 		"aEP_UndergroundStorage04": "获得额外的大型巡逻队数量加成",
 
 		#############################
-		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（对于舰队指挥官则是超过{%s}）的舰船，每高出一级本舰对其的伤害增加{%s}，最高增加{%s}"
+		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（对于舰队指挥官则是超过{%s}）的舰船，每高出一级本舰对其的伤害增加{%s}，最高{%s}"
 
 	},
 	"aEP_custom_entity_names":{
@@ -289,29 +290,30 @@
 		"aEP_SpecialHull03": "If any non-built-in wing is installed, zero flux boost %s",
 
 		"aEP_MissilePlatform01":"Forge Output",
-		"aEP_MissilePlatform02":"Total Forge Output is calculated by a fraction of total amount of OP spent on missile weapons, the current Output level decides ammo production speed.",
-		"aEP_MissilePlatform03":"As Output level goes down, ammo produced slower thus consume less Output, eventually reach to a dynamic stable point called min level where recover speed equals consuption speed",
+		"aEP_MissilePlatform02":"Total Forge Output is calculated by a fraction of total OP spent on missile weapons, remaining Output percentage decides ammo production speed.",
+		"aEP_MissilePlatform03":"As Output level goes down, ammo produced slower thus consume less Output, eventually reach a dynamic balance called min level where recover speed equals consuption speed",
 		"aEP_MissilePlatform07":"When Forge Output is full, max ammo production speed of different sized missiles are shown as follow: ",
 		"aEP_MissilePlatform05":"All missile weapons' max ammo will be limited to: %s rounds of burst or %s of base amount, whichever is higher",
-		"aEP_MissilePlatform09":"For example a missile weapon of 30 OP with base ammo of 10, each ammo costs 3 OP",
-		"aEP_MissilePlatform11":"Missile weapons with regen is not affected by this hullmod",
-		"aEP_MissilePlatform12":"Hold %s to toogle to show more info",
+		"aEP_MissilePlatform09":"For example, a missile weapon of 30 OP with base ammo of 10, each ammo costs 3 OP",
+		"aEP_MissilePlatform11":"Missile weapons with base regen is not affected by this hullmod",
+		"aEP_MissilePlatform12":"Hold %s to show more info",
 
-		"aEP_HighSpeedManeuver01": "When the ship takes a damaging hit >= %s, has a chance going into %s, lasting for %s seconds, during that time the ship is in no-collision state",
-		"aEP_HighSpeedManeuver02": "Each time goes into Evasion Mode, the chance for subsequent Evasion Mode trigger decreases. If the ship has taken no damage for %s sec, the trigger chance starts recover",
-		"aEP_HighSpeedManeuver03": "Evadsion Mode",
+		"aEP_HighSpeedManeuver01": "Each time this ship takes a damage >= %s, has a chance going into %s, last for %s seconds, during which it has no collision",
+		"aEP_HighSpeedManeuver02": "Every evasion decreases the chance for subsequent evasions. If take no damage for %s sec, evade chance starts recover",
+		"aEP_HighSpeedManeuver03": "Evadsion",
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
 
 		"aEP_AttackCarrier01":"All fighters of this ship that is within %s range and have max speed < %s, get max speed bonus: ",
-		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge is activated to fast replace all lost non-bomber fighters. This ability has %s seconds cooldown and produce large soft flux overtime",
-		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, cooldown of the forge %s, currently %s seconds",
+		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge activates and replace all lost. This ability has %s seconds cooldown and produce large soft flux overtime",
+		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, forge cooldown %s seconds, currently %s seconds",
 
-		"aEP_ShieldControlled01": "For any projectile and beam spawned %s distance away and hit shield, damage %s",
+		"aEP_ShieldControlled01": "Any projectile and beam that spawned %s distance away, damage to shield %s",
 		"aEP_ShieldControlled02": "Ballistic/energy weapon %s range limited to %s.",
 
 		"aEP_ShieldFloating01": "Fluctuation Level",
-		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equals to the amount taken, as Fluctuation Level increases, flux dissipation increases up to %s, flux shunt percentage increases up to %s. Fluctuation Level decreases overtime",
-		"aEP_ShieldFloating03": "Get Full Bonus",
+		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equals to damage taken then it decreases overtime.",
+		"aEP_ShieldFloating04": "If %s is accumulating, flux dissipation increases up to %s, flux shunt percentage increases up to %s.",
+		"aEP_ShieldFloating03": "Needed to get Full Bonus",
 
 		"aEP_StrategyThruster01": "Zero flux boost speed %s, currently %s",
 		"aEP_StrategyThruster02": "Min flux level for zero flux boost to active %s, currently %s",
@@ -323,7 +325,7 @@
 		"aEP_EliteShip06": "Hullpoint %s",
 		"aEP_EliteShip05": "Max speed %s",
 		"aEP_EliteShip10": "Peak CR time %s",
-		"aEP_EliteShip07": "Each time this ship overloaded or lost %s hullpoints, roll a %s between 0-100, if result >= %s, a drone is launched to generate a shield to protect this ship for a while, that shield has %s damage absorption",
+		"aEP_EliteShip07": "Each time this ship overloads or lost %s hullpoints, roll a %s between 0-100, if result >= %s, a drone is launched to generate a shield to protect this ship for a while, that shield has %s damage absorption",
 		"aEP_EliteShip08": "Protect Test",
 		"aEP_EliteShip03": "Deployment cost in combat %s or %s, which higher",
 
@@ -332,10 +334,10 @@
 		"aEP_CruiseMissileCarrier03":"Nothing is loading",
 		"aEP_CruiseMissileCarrier04":"Loading process: %s",
 
-		"aEP_EmergencyReconstruct01": "Each time this ship has taken lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover its armor and hullpioint: ",
-		"aEP_EmergencyReconstruct02": "Do a %s roll between 0-100 and the result >= %s",
+		"aEP_EmergencyReconstruct01": "Each time this ship takes a lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover armor and hullpioint: ",
+		"aEP_EmergencyReconstruct02": "Do a %s roll between 0-100 and result >= %s",
 		"aEP_EmergencyReconstruct03": "Reconstruct Test",
-		"aEP_EmergencyReconstruct04": "Each time a successful %s will cause the result needed for the next test to %s",
+		"aEP_EmergencyReconstruct04": "Every succeed %s will cause result requirement for the next test %s",
 		"aEP_EmergencyReconstruct05": "Time to reconstruct is %s seconds",
 		"aEP_EmergencyReconstruct06": "During the reconstruction, the ship is phased and get 100 percent damage reduction to shield/armor/structure",
 
@@ -507,7 +509,7 @@
 
 
 		#############################
-		"aEP_SkillAnalyze01": "To any piloted ship that its officer is above level %s (for fleet commander is above level %s), for each level above you deal %s more damage to it, increase at maximum %s"
+		"aEP_SkillAnalyze01": "To any piloted ship that its officer is above level %s (for fleet commander %s), for every level above deal %s more damage, at maximum %s"
 
 	},
 	"aEP_EN_custom_entity_names":{

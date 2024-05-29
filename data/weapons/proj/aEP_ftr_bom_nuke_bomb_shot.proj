@@ -1,0 +1,66 @@
+{
+	"id":"aEP_ftr_bom_nuke_bomb_shot",
+	"specClass":"missile",	
+	"missileType":"PHASE_MINE",
+	"sprite":"graphics/weapons/aEP_fighters/aEP_nuke/proj00.png",
+	"glowSprite":"",
+	"glowRadius":300,
+  "glowColor":[255,86,65,65],
+	"size":[20,40],
+	"center":[10,20],
+	"collisionRadius":20,
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"armingTime":99,
+	"collisionClass":"MISSILE_FF",
+	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"fadeTime":0.1, # fadeout duration
+	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"explosionColor":[255,151,151,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":400, # purely visual
+	"engineSpec":{
+		"turnAcc":30,
+	  "turnRate":30,
+	  "acc":50,
+	  "dec":50
+	},
+	"behaviorSpec":{
+		"behavior":"PROXIMITY_FUSE",
+		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+		#为了防止被导弹触发，引信写在weaponEffect里面
+		"range":0,
+		"vsMissileRange":0,
+		"slowToMaxSpeed":false,
+		"delay":2.5,
+		"mineHasNoSprite":false,
+    "flashRateMult":1,
+		"pingSound":"mine_ping",
+		"pingColor":[255,20,10,245],
+		"pingRadius":400,
+		"pingDuration":0.3,
+		"windupSound":"aEP_ftr_bom_nuke_windup",
+		"windupDelay": 1.9,
+		"explosionSpec":{
+			"duration":0.15f,
+			"radius":250,
+			"coreRadius":150, # full damage within core radius
+			"collisionClass":MISSILE_FF,
+			"collisionClassByFighter":MISSILE_NO_FF,
+			"particleSizeMin":5.0,
+			"particleSizeRange":10.0,
+			"particleDuration":1.5,
+			"particleCount":150,
+			"particleColor":[240,235,170,125],
+			"explosionColor":[250,180,185,255],
+
+			"useDetailedExplosion":false,
+			"useDetailedExplosionColorAlpha":true,
+			"detailedExplosionRadius":400,
+			"detailedExplosionFlashRadius":500,
+			"detailedExplosionFlashDuration":0.25,
+			"detailedExplosionFlashColorFringe":[240,235,230,199],
+			"detailedExplosionFlashColorCore":[255,255,255,255],
+
+		  "sound":"aEP_ftr_bom_nuke_explode"},
+	}
+}

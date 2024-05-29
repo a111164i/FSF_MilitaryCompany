@@ -348,7 +348,7 @@ class aEP_CruiseMissileLoadIntel:aEP_BaseMission(0f) {
       val image2 = reloadInfoPanel.beginImageWithText(spriteName,spriteSize*sizeMult)
       image2.setBulletedListMode(BULLET)
       image2.addPara(Global.getSettings().getHullSpec(missileShipName).hullName,h,pad)
-      image2.addPara(Global.getSettings().getDescription(missileShipName,com.fs.starfarer.api.loading.Description.Type.SHIP).text1FirstPara,n,pad)
+      image2.addPara(Global.getSettings().getSpecialItemSpec(missileItemName).desc,n,pad)
       image2.setBulletedListMode("")
       reloadInfoPanel.addImageWithText(pad)
 

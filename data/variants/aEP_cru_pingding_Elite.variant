@@ -6,7 +6,7 @@
     "hullId": "aEP_cru_pingding",
     "hullMods": [
         "missleracks",
-        "aEP_ShieldControlled"
+        "aEP_PingdingMainSwap1"
     ],
     "permaMods": [],
     "sMods": [],
@@ -21,7 +21,6 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0008": "aEP_cru_pingding_armor1",
                 "WS0011": "aEP_cru_pingding_torpedo"
             }
         },

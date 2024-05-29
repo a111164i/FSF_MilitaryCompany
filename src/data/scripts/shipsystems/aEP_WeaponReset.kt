@@ -47,8 +47,9 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     val GLOW_COLOR = Color(255,72,44,118)
 
     //缓冲区大小是最大容量的几倍
-    private val MAX_FLUX_STORE_CAP_PERCENT = 1f
-
+    private val MAX_FLUX_STORE_CAP_PERCENT = 1.25f
+    //返还时，有多少的幅能被直接耗散掉无需返回
+    private val FLUX_VENT_PERCENT_ON_RETURN= 0.1f
     private val FLUX_DECREASE_PERCENT: MutableMap<String, Float> = HashMap()
     private val FLUX_DECREASE_FLAT: MutableMap<String, Float> = HashMap()
     private val FLUX_RETURN_SPEED: MutableMap<String, Float> = HashMap()
@@ -56,10 +57,11 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     private val WEAPON_ROF_PERCENT_BONUS: MutableMap<String, Float> = HashMap()
     init {
 
+      //吸收幅能的速度
       FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.33f
-
       FLUX_DECREASE_FLAT["aEP_cru_zhongliu"] = 300f
 
+      //返回幅能速度是耗散的几分之一
       FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.75f
 
       WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 100f
@@ -232,7 +234,8 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         ship.fluxTracker.increaseFlux(toAdd,false)
         //每秒最大返还量 - 软幅能返还量 = 剩下给硬幅能的量
         toReturnThisFrame -= toAdd
-        storedSoftFlux -= toAdd
+        storedSoftFlux -= toAdd * (1f + FLUX_VENT_PERCENT_ON_RETURN)
+        storedSoftFlux = storedSoftFlux.coerceAtLeast(0f)
       }
     }
 

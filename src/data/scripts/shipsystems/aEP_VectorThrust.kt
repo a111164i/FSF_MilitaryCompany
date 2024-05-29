@@ -2,6 +2,7 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.util.IntervalTracker
@@ -84,5 +85,10 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     ship.mutableStats.maxSpeed.unmodify(id)
     ship.mutableStats.acceleration.unmodify(id)
     ship.mutableStats.deceleration.unmodify(id)
+  }
+
+  override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
+    if(ship.phaseCloak != null && ship.phaseCloak.effectLevel > 0f) return false
+    return true
   }
 }

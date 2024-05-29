@@ -112,6 +112,9 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
     //正面
     addPositivePara(tooltip, "aEP_ShieldFloating02", arrayOf(
+      txt("aEP_ShieldFloating01")
+    ))
+    addPositivePara(tooltip, "aEP_ShieldFloating04", arrayOf(
       txt("aEP_ShieldFloating01"),
       String.format("+%.0f", DISS_BONUS[hullSize]),
       String.format("+%.0f", MAX_SHUNT_PERCENT) +"%"

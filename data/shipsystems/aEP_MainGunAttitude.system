@@ -1,0 +1,26 @@
+{
+	"id":"aEP_MainGunAttitude",
+	"type":"STAT_MOD",
+	#"aiType":"WEAPON_BOOST",
+	"aiType":"CUSTOM",
+  "aiScript":"data.scripts.ai.shipsystemai.aEP_MainGunAttitudeAI",
+	"statsScript":"data.scripts.shipsystems.aEP_MainGunAttitude",
+
+
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+
+	"canUseWhileRightClickSystemOn":false,
+
+	"fadeActivationSoundOnChargedown":true,
+	#"useSound":"aEP_cru_pingding_main_charge",
+	"useSound":"aEP_DamperTankerOnUse",
+	#"loopSound":"system_damper_loop",
+	#"deactivateSound":"aEP_cru_pingding_main_down",
+	"deactivateSound":"aEP_DamperTankerOnUse",
+	#"outOfUsesSound":"gun_out_of_ammo",
+	"aiHints":{
+	}
+}
+
+
+

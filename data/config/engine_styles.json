@@ -1,15 +1,4 @@
 {
-	"FSF_MAIN_OLD":{
-		"engineColor":[245,165,75,245],
-		"contrailParticleSizeMult":2,
-		"contrailParticleDuration":2,
-		"contrailParticleFinalSizeMult":3,
-		"contrailMaxSpeedMult":0.5,
-		"contrailAngularVelocityMult":0,
-		"contrailColor":[100,100,100,60],
-		"contrailCampaignColor":[150,120,100,75],
-		"type":"SMOKE"# GLOW or SMOKE
-	},
 	"FSF_MAIN":{
 		"glowSprite":"graphics/aEP_hullstyle/engineglow32s.png", # glow
 		"glowOutline":"graphics/aEP_hullstyle/engineflame32.png", # flame
@@ -28,6 +17,7 @@
 		"contrailCampaignColor":[181,182,149,85],
 		"type":"SMOKE", # GLOW or SMOKE
 	},
+	#用于系统激活的引擎，或者战机，不产生烟雾
 	"FSF_MAIN_CLEAN":{
 		"glowSprite":"graphics/aEP_hullstyle/engineglow32s.png", # glow
 		"glowOutline":"graphics/aEP_hullstyle/engineflame32.png", # flame
@@ -46,7 +36,7 @@
 		"contrailCampaignColor":[150,120,100,75],
 		"type":"SMOKE", # GLOW or SMOKE
 	},
-
+	#用于不发光的模拟矢量喷口
 	"FSF_THRUSTER":{
 		"engineColor":[255,145,75,0],
 		"contrailParticleSizeMult":4,

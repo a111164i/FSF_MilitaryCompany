@@ -26,7 +26,7 @@
     {"file": "sounds/shipsystems/aEP_NBJetFlying.ogg", "pitch": 1, "volume": 1},
   ],
   "aEP_DamperTankerOnUse": [
-    {"file": "sounds/shipsystems/aEP_DamperTankerOnUse.ogg", "pitch": 0.7, "volume": 1.25},
+    {"file": "sounds/shipsystems/aEP_DamperTankerOnUse.ogg", "pitch": 0.7, "volume": 0.8},
   ],
   "aEP_DamperBoostOnUse": [
     {"file": "sounds/shipsystems/aEP_DamperBoostOnUse.ogg", "pitch": 0.75, "volume": 0.3},
@@ -125,7 +125,7 @@
   	{"file": "sounds/weapons/aEP_RW_gun/RW_fire.ogg", "pitch": 1, "volume": 2},
   ],
   "aEP_RW_fire2": [
-  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire2.ogg", "pitch": 1, "volume": 0.8},
+  	{"file": "sounds/weapons/aEP_RW_gun/RW_fire2.ogg", "pitch": 1, "volume": 0.7},
   ],
   "aEP_RW_hit": [
   	{"file": "sounds/weapons/aEP_RW_gun/RW_fire3.ogg", "pitch": 1, "volume": 1.2},
@@ -142,13 +142,26 @@
   ],
 
   "aEP_cru_pingding_main_charge":[
-    {"file": "sounds/weapons/aEP_cru_pingding/charge01.ogg", "pitch": 1, "volume": 1},
+    {"file": "sounds/weapons/aEP_cru_pingding/charge01.ogg", "pitch": 1, "volume": 0.7},
   ],
   "aEP_cru_pingding_main_down":[
-    {"file": "sounds/weapons/aEP_cru_pingding/charge02.ogg", "pitch": 1, "volume": 1},
+    {"file": "sounds/weapons/aEP_cru_pingding/charge02.ogg", "pitch": 1, "volume": 0.7},
   ],
   "aEP_cru_pingding_torpedo_explode":[
     {"file": "sounds/weapons/aEP_cru_pingding/torpedo.ogg", "pitch": 1, "volume": 1},
+  ],
+  "aEP_cru_pingding_main_gun1_fire":[
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun1_fire.ogg", "pitch": 1, "volume": 0.7},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun1_fire.ogg", "pitch": 0.9, "volume": 0.7},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun1_fire.ogg", "pitch": 1.1, "volume": 0.7},
+  ],
+  "aEP_cru_pingding_main_gun2_charge":[
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_charge.ogg", "pitch": 1, "volume": 1},
+  ],
+  "aEP_cru_pingding_main_gun2_fire":[
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 1, "volume": 0.9},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 0.9, "volume": 0.9},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 1.1, "volume": 0.9},
   ],
   "aEP_fga_xiliu_main_fire": [
     {"file": "sounds/weapons/aEP_fga_xiliu/main_fire.ogg", "pitch": 1, "volume": 1},

@@ -1,69 +1,27 @@
 {
 	"id":"aEP_cru_pingding_main_shot",
-	"specClass":"missile",
-	"missileType":"ROCKET",
-  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"sprite":"graphics/weapons/aEP_cru_pingding/proj.png",
-	"size":[20,40],
-	"center":[10,20],
-	"collisionRadius":20, # 死雷是20
-	"collisionClass":"MISSILE_NO_FF",
-  "armingTime":0, # safe range count by time
-  "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)
-  "fadeTime":0, # fadeout duration
-	"flameoutTime":0.1,  # 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
-  "alwaysAccelerate":true,
-  "reduceDamageWhileFading":false,
-  "useProjectileRangeCalculation":true,
-	"passThroughMissiles":true,
+	"specClass":"projectile",
+  "spawnType":"BALLISTIC",
+  "collisionClass":"PROJECTILE_FF",
+  "collisionClassByFighter":"PROJECTILE_FIGHTER",
+  "length":120.0, #炼狱炮50x12
+  "width":8.0,
+  "fadeTime":0.3,
+
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "fringeColor":[255,165,30,175], # 拖尾和爆炸的颜色 炼狱炮175
+  "coreColor":[255,255,255,200], # 弹体的颜色 炼狱炮200
+  "glowColor":[255,145,81,105], # 发光的颜色 炼狱炮透明度105
+  "glowRadius":50, #炼狱炮60
+  "hitGlowRadius":125, #炼狱炮150
+
+  #"textureType":"SMOOTH",  # only needed for BEAM spawnType
+  #"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+  #"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":5.0,
+  "passThroughMissiles":true,
   "passThroughFighters":true,
-  "passThroughFightersOnlyWhenDestroyed":false,
-  "applyOnHitEffectWhenPassThrough":false,
-	"explosionColor":[233,122,100,250],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":800, # purely visual
-	"explosionSpec":{
-		"duration":0.0001f, # not visual
-		"radius":200,
-		"coreRadius":75, # full damage within core radius
-		"collisionClass":HITS_SHIPS_AND_ASTEROIDS,
-		"collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
-		"particleSizeMin":12.0,
-		"particleSizeRange":12.0,
-		"particleDuration":1.6,
-		"particleCount":200,
-		"particleColor":[250,210,200,255]},
-	"engineSpec":{
-		#"maxSpeed":1500,
-		"turnAcc":0,
-		"turnRate":0,
-		"acc":800,
-		"dec":0},
-	"engineSlots":[
-		{
-			"id":"ES1",
-			"loc":[-22, 0],
-	    "style":"CUSTOM",
-			"styleSpec":{
-				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-				"engineColor":[240,150,100,255],
-				"contrailDuration":0.8,
-				"contrailWidthMult":1.6,
-				"contrailWidthAddedFractionAtEnd":0,  # can be negative. makes trail spread out/narrow at the end
-				"contrailMinSeg":5, # min segment length, in pixels
-				"contrailMaxSpeedMult":0f,
-				"contrailAngularVelocityMult":0.5f,
-				"contrailSpawnDistMult":0f, # how far away from engine it starts
-				"contrailColor":[192,90,40,120],
-				"glowSizeMult":1.6,
-				"glowAlternateColor":[181,121,100,255],
-				"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
-			},
-	    "width":30.0,
-	    "length":150.0,
-	    "angle":180.0
-	  },
-
-
-  ]
+  "passThroughFightersOnlyWhenDestroyed":true,
+  "bulletSprite":"graphics/weapons/aEP_cru_pingding/proj1.png"
 }
-			

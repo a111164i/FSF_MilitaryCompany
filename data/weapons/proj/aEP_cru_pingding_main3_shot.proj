@@ -1,0 +1,69 @@
+{
+	"id":"aEP_cru_pingding_main3_shot",
+	"specClass":"missile",
+	"missileType":"ROCKET",
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"sprite":"graphics/weapons/aEP_cru_pingding/proj3.png",
+	"size":[20,40],
+	"center":[10,20],
+	"collisionRadius":20, # 死雷是20
+	"collisionClass":"MISSILE_NO_FF",
+  "armingTime":0, # safe range count by time
+  "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered(AKA safe range)
+  "fadeTime":0, # fadeout duration
+	"flameoutTime":0.1,  # 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+  "alwaysAccelerate":true,
+  "reduceDamageWhileFading":false,
+  "useProjectileRangeCalculation":true,
+	"passThroughMissiles":true,
+  "passThroughFighters":true,
+  "passThroughFightersOnlyWhenDestroyed":false,
+  "applyOnHitEffectWhenPassThrough":false,
+	"explosionColor":[243,152,75,200],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":275, # purely visual
+	"explosionSpec":{
+		"duration":0.0001f, # not visual
+		"radius":125,
+		"coreRadius":75, # full damage within core radius
+		"collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+		"collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+		"particleSizeMin":6.0,
+		"particleSizeRange":6.0,
+		"particleDuration":1.2,
+		"particleCount":150,
+		"particleColor":[250,120,50,255]},
+	"engineSpec":{
+		#"maxSpeed":1500,
+		"turnAcc":0,
+		"turnRate":0,
+		"acc":800,
+		"dec":0},
+	"engineSlots":[
+		{
+			"id":"ES1",
+			"loc":[-22, 0],
+	    "style":"CUSTOM",
+			"styleSpec":{
+				"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+				"engineColor":[240,150,100,205],
+				"contrailDuration":0.8,
+				"contrailWidthMult":1,
+				"contrailWidthAddedFractionAtEnd":0,  # can be negative. makes trail spread out/narrow at the end
+				"contrailMinSeg":5, # min segment length, in pixels
+				"contrailMaxSpeedMult":0f,
+				"contrailAngularVelocityMult":0.5f,
+				"contrailSpawnDistMult":0f, # how far away from engine it starts
+				"contrailColor":[192,90,40,80],
+				"glowSizeMult":1,
+				"glowAlternateColor":[181,121,100,155],
+				"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
+			},
+	    "width":20.0,
+	    "length":100.0,
+	    "angle":180.0
+	  },
+
+
+  ]
+}
+			

@@ -17,13 +17,13 @@ aEP_cru_hailiang4,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_hailiang4
 aEP_cru_hailiang,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_hailiang_normal.png
 aEP_cru_lengshe_front,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_lengshe2_normal.png
 aEP_cru_lengshe,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_lengshe_normal.png
-aEP_cru_pingding,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_pingding_normal.png
 aEP_cru_pubu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_pubu_normal.png
 aEP_cru_requan,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_requan_normal.png
 aEP_cru_shanhu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_shanhu_normal.png
 aEP_cru_zhongliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_cru_zhongliu_normal.png
 aEP_des_cengliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_cengliu_normal.png
 aEP_des_lianliu,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_lianliu_normal.png
+aEP_des_chongji,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_chongji_normal.png
 aEP_des_shendu_mk2,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shenceng_mk2_normal.png
 aEP_des_shendu,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shenceng_normal.png
 aEP_des_shuishi,ship,,1,normal,graphics/shaders/normal/ships/aEP_des_shuishi_normal.png

@@ -56,6 +56,16 @@ aEP_cru_zhongliu_slide_l,turret,,,material,graphics/shaders/material/weapons/aEP
 aEP_cru_zhongliu_slide_r,turret,,,material,graphics/shaders/material/weapons/aEP_cru_zhongliu/slide_r_material.png
 aEP_cru_pingding_armor1,turret,,,material,graphics/shaders/material/weapons/aEP_cru_pingding/armor1_material.png
 aEP_cru_pingding_armor2,turret,,,material,graphics/shaders/material/weapons/aEP_cru_pingding/armor2_material.png
+aEP_des_chongji_armor_bl,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_bl_material.png
+aEP_des_chongji_aromr_bl2,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_bl2_material.png
+aEP_des_chongji_aromr_bl3,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_bl3_material.png
+aEP_des_chongji_aromr_br,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_br_material.png
+aEP_des_chongji_aromr_br2,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_br2_material.png
+aEP_des_chongji_aromr_br3,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_br3_material.png
+aEP_des_chongji_aromr_tl,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_tl_material.png
+aEP_des_chongji_aromr_tl2,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_tl2_material.png
+aEP_des_chongji_aromr_tr,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_tr_material.png
+aEP_des_chongji_aromr_tr2,turret,,,material,graphics/shaders/material/weapons/aEP_des_chongji/armor_tr2_material.png
 aEP_des_lianliu_front_cover,turret,,,material,graphics/shaders/material/weapons/aEP_des_lianliu/front_cover_material.png
 aEP_des_lianliu_grenade_thrower,turret,,,material,graphics/shaders/material/weapons/aEP_des_lianliu/thrower_material.png
 aEP_des_shendu_door_l,turret,,,material,graphics/shaders/material/weapons/aEP_des_shendu/door_l_material.png

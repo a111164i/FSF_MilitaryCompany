@@ -1,0 +1,84 @@
+{
+	"id":"aEP_cru_pingding_main2_shot",
+	"specClass":"missile",
+	"missileType":"PHASE_CHARGE",
+  "collisionClass": "MISSILE_NO_FF",
+  "# collisionClassByFighter": "NONE",
+  "length":80,
+  "width":5,
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":5.0,
+  #"bulletSprite":"graphics/missiles/shell_small_yellow.png",
+	"sprite":"graphics/weapons/aEP_cru_pingding/proj2.png",
+	"glowSprite":"",
+  "glowColor":[200,100,15,115],
+  "glowRadius":100,
+	"size":[10,32],
+  "center":[5,12],
+	"collisionRadius":15,
+  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	# "explosionRadius": 300, # purely visual
+	# "explosionColor":[240,190,30,200], # purely visual, will get a white additively blended core on top of this color
+  "explosionSpec":{
+      "duration":0.0001f,
+			"radius":200, #原版最大的空雷250
+			"coreRadius":50, # full damage within core radius
+			"collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+			"collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+			"particleSizeMin":10.0,
+			"particleSizeRange":5.0,
+			"particleDuration":0.75,
+			"particleCount":100,
+			"explosionColor":[240,120,30,120],
+			"particleColor":[240,160,100,160],
+			"sound":""
+	},
+
+
+	#模板
+  "armingTime":0, # safe range count by time
+  "noEngineGlowTime":0.1, # time spent after fired without the engine glow being rendered
+  # 如果要弹丸严格按照最大距离飞行，这几个参数一定得是0，fadeTime这段时间如果不填默认不是0而且不属于maxFlightTime
+  # 如果不填，此时弹丸结束时的flightTime会大于maxFlightTime，且此段时间最大速度不受限制，默认fadeTime + flameoutTime为3.5秒
+  # flameoutTime 一般最小写0.1，再低经过测试会有问题
+  "fadeTime":0.1, # 熄火后能漂移多久
+  "flameoutTime":0.2,  #total time from flameout to full fadeout, 最大，如果小于fadeTime或者noEngineGlowTime就不发光或者直接不能发射
+
+  "alwaysAccelerate":false,
+  "reduceDamageWhileFading":false,
+  "useProjectileRangeCalculation":false,
+  "passThroughMissiles":true,
+  "renderTargetIndicator":true, # no target diamond in combat view, not targeted by flares
+  "noCollisionWhileFading":true,
+  "useHitGlowWhenDestroyed":true, # instead of the default explosion
+  "noDebrisWhenDestroyed": false,
+  # 不是PHASE_MINE/PHASE_CHARGE不会读取这个behavior PROXIMITY_FUSE
+  "behaviorSpec":{
+    "behavior":"PROXIMITY_FUSE",
+    "onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
+    "range":0,
+    "explosionSpec":{
+      "duration":0.0001f,
+			"radius":200,
+			"coreRadius":50, # full damage within core radius
+			"collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+			"collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+			"particleSizeMin":10.0,
+			"particleSizeRange":5.0,
+			"particleDuration":0.75,
+			"particleCount":100,
+			"explosionColor":[240,120,30,120],
+			"particleColor":[240,160,100,160],
+			"sound":""},
+  },
+  "engineSpec":{
+    "turnAcc":20,
+    "turnRate":20,
+    "acc":20,
+    "dec":20
+  },
+  "engineSlots":[
+
+  ]
+}

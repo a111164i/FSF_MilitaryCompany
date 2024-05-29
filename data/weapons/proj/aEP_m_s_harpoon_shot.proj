@@ -93,7 +93,7 @@
         "contrailParticleDuration":2,
         "contrailParticleFinalSizeMult":6,
         "contrailMaxSpeedMult":0,
-        "contrailColor":[55,55,65,109],
+        "contrailColor":[55,55,65,159],
         "contrailAngularVelocityMult":0.5,
         "glowSizeMult":0.1,
         "glowAlternateColor":[221,222,83,0],

@@ -1,0 +1,56 @@
+{
+  "id": "aEP_cru_pingding_main3",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_cru_pingding_main3_shot",
+  #"type": "MISSILE",
+  "type": "BALLISTIC",
+  #"type": "BUILT_IN",
+  "size": "LARGE",
+  "turretSprite": "graphics/weapons/aEP_cru_pingding/br_c_main00.png",
+  "turretGunSprite": "",
+  #"turretGlowSprite":"graphics/weapons/aEP_cru_pingding/glow.png",
+  "hardpointSprite": "graphics/weapons/aEP_cru_pingding/br_c_main00.png",
+  "hardpointGunSprite": "",
+  #"hardpointGlowSprite":"graphics/weapons/aEP_cap_duiliu/glow.png",
+  "everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "renderBelowAllWeapons":true,
+  "numFrames":2,
+  "frameRate":0,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    10,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    90,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType":"MUZZLE_FLASH",
+	"muzzleFlashSpec":{
+		"length":75.0,   # only used if animationType = MUZZLE_FLASH
+		"spread":15.0,
+		"particleSizeMin":30.0,
+		"particleSizeRange":30.0,
+		"particleDuration":0.6,
+		"particleCount":30,
+		"particleColor":[231,176,72,205]
+	},
+	"glowColor":[100,100,255,225],
+  "visualRecoil": 0,
+	"autocharge":true,
+	"interruptibleBurst":true,
+  #"numFrames": 10,
+  #"frameRate": 20,
+  #"alwaysAnimate":"false",
+  #"fireSoundOne": "aEP_cru_pingding_main_charge",
+  "fireSoundTwo": "aEP_RW_fire2"
+}

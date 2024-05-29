@@ -24,7 +24,15 @@ class aEP_DecoRevoController(var weapon: WeaponAPI) {
       mag["aEP_cap_duiliu_armor_l3"] = arrayOf(0f, 60f, 4f)
       mag["aEP_cap_duiliu_armor_r3"] = arrayOf(0f, -60f, 4f)
 
-      mag["aEP_cru_pingding_armor2"] = arrayOf(0f, 50f,  0.75f)
+      mag["aEP_cru_pingding_barrel_sleeve_r1"] = arrayOf(0f, 5f,  2f)
+      mag["aEP_cru_pingding_barrel_sleeve_l1"] = arrayOf(0f, -5f, 2f)
+      mag["aEP_cru_pingding_armor_r2"] = arrayOf(0f, -17f, 2f)
+      mag["aEP_cru_pingding_armor_l2"] = arrayOf(0f, 17f, 2f)
+
+      mag["aEP_cru_pingding_tail_r1"] = arrayOf(0f, 15f, 2f)
+      mag["aEP_cru_pingding_tail_l1"] = arrayOf(0f, -15f, 2f)
+      mag["aEP_cru_pingding_tail_r2"] = arrayOf(0f, 20f, 2f)
+      mag["aEP_cru_pingding_tail_l2"] = arrayOf(0f, -20f, 2f)
 
       mag["aEP_cru_shanhu_round_red"] = arrayOf(0f, -1440f,  0.32f)
       mag["aEP_cru_shanhu_round_green"] = arrayOf(0f, -1440f,  0.32f)

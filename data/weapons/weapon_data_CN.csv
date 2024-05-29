@@ -11,7 +11,9 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 异象导弹雷云,aEP_cap_nuanchi_missile3,,,
 巨型探矿脉冲,aEP_type28_cannon,unknown,工程设备,
 瀑布弹射器,aEP_cru_pubu_main,,,
-"""死海""火箭增程炮",aEP_cru_pingding_main,FSF制造,反装甲,"发射时，本舰的最大航速会被暂时限制到{%s}，并禁用护盾与战术系统
+"NGW-S04 新世代主战火炮",aEP_cru_pingding_main,FSF制造,反装甲,
+"NGW-R23 电磁投射器",aEP_cru_pingding_main2,FSF制造,反装甲,""
+"NGW-G2 火箭增程炮",aEP_cru_pingding_main3,FSF制造,反装甲,"弹丸可以穿过友军
 
 弹丸属于导弹，可以被拦截"
 死海-激光测距仪,aEP_cru_pingding_lidardish,,,
@@ -166,7 +168,7 @@ BAC爆射突击炮,aEP_ftr_bom_attacker_gun,FSF制造,反装甲,
 
 本武器在下线后会立刻修复"
 """闪电""扰动机炮",aEP_b_m_lighting,FSF先进武器计划,反护盾,击中护盾时，为目标施加一个可叠加的负面状态：在接下来的{%s}秒内，只要护盾开启就会每秒增加{%s}点软幅能
-"""海啸""重型轨道火炮",aEP_b_l_railwaygun,FSF先进武器计划,通用,击中护盾造成舰船过载时，在击中点新生成一颗相同的弹丸
+"""海啸""重型轨道火炮",aEP_b_l_railwaygun,FSF先进武器计划,通用,击中护盾造成目标过载时，弹丸会继续前进
 ,,,,
 ,,,,
 ,,,,

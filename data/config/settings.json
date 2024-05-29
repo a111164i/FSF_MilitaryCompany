@@ -75,6 +75,22 @@
       "yonglang_rapture_anchor_base": "graphics/weapons/aEP_fga_yonglang/anchor2.png",
       "d100t_sabot_l": "graphics/weapons/aEP_b_l_d100t/sabot_l.png",
       "d100t_sabot_r": "graphics/weapons/aEP_b_l_d100t/sabot_r.png",
+
+      "cru_pingding_br_a_1": "graphics/weapons/aEP_cru_pingding/br_a_1.png",
+      "cru_pingding_br_a_2": "graphics/weapons/aEP_cru_pingding/br_a_2.png",
+      "cru_pingding_br_b_1": "graphics/weapons/aEP_cru_pingding/br_b_1.png",
+      "cru_pingding_br_b_2": "graphics/weapons/aEP_cru_pingding/br_b_2.png",
+      "cru_pingding_br_c_1": "graphics/weapons/aEP_cru_pingding/br_c_1.png",
+      "cru_pingding_br_c_2": "graphics/weapons/aEP_cru_pingding/br_c_2.png",
+      "cru_pingding_leg_f": "graphics/weapons/aEP_cru_pingding/leg_f.png",
+      "cru_pingding_leg_b": "graphics/weapons/aEP_cru_pingding/leg_b.png",
+      "cru_pingding_leg_head": "graphics/weapons/aEP_cru_pingding/leg_head.png",
+      "cru_pingding_ejector": "graphics/weapons/aEP_cru_pingding/rail.png",
+      "cru_pingding_shell": "graphics/weapons/aEP_cru_pingding/shell.png",
+      "cru_pingding_main01_hullmod_icon": "graphics/aEP_hullmods/aEP_pingding_main01.png",
+      "cru_pingding_main02_hullmod_icon": "graphics/aEP_hullmods/aEP_pingding_main02.png",
+      "cru_pingding_main03_hullmod_icon": "graphics/aEP_hullmods/aEP_pingding_main03.png",
+
       "des_taodong_glow": "graphics/ships/aEP_des_taodong_glow1.png",
       "des_chongji_ring": "graphics/weapons/aEP_des_chongji/ring.png",
       "des_chongji_ring2": "graphics/weapons/aEP_des_chongji/ring2.png",
@@ -99,9 +115,6 @@
       "DL_pike_shot": "graphics/weapons/aEP_cap_duiliu/shot.png",
       "small_shell": "graphics/weapons/small_shell.png",
       "mid_shell": "graphics/weapons/mid_shell.png",
-      "aEP_PD_f": "graphics/weapons/aEP_cru_pingding/f.png",
-      "aEP_PD_b": "graphics/weapons/aEP_cru_pingding/b.png",
-      "aEP_PD_br": "graphics/weapons/aEP_cru_pingding/br.png",
       "aEP_b_m_h88_eject": "graphics/weapons/aEP_b_m_h88/eject.png"
     },
     "aEP_hullstyle": {

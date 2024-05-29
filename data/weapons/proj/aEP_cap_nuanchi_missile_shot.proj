@@ -10,6 +10,7 @@
 	#"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"explosionColor":[40,40,150,200],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":450, # purely visual
+	"noDebrisWhenDestroyed": true,
 	"engineSpec":{"turnAcc":160,
                         "turnRate":80,
                         "acc":100,

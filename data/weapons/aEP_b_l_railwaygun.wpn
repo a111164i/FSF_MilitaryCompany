@@ -32,17 +32,17 @@
   "animationType": "GLOW_AND_FLASH",
   "autocharge": true,
   "muzzleFlashSpec": {
-    "length": 90,
+    "length": 60,
     "spread": 30,
-    "particleSizeMin": 50,
-    "particleSizeRange": 100,
+    "particleSizeMin": 25,
+    "particleSizeRange": 50,
     "particleDuration": 0.5,
-    "particleCount": 36,
+    "particleCount": 12,
     "particleColor": [
       250,
       200,
       150,
-      255
+      155
     ]
   },
   "fireSoundTwo": "aEP_RW_fire2"

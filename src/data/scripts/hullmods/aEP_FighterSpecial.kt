@@ -499,7 +499,6 @@ class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifi
    * @return the id of the stat modification to damage.getModifier(), or null if no modification was made
    */
   override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f?, shieldHit: Boolean): String? {
-
     return null
   }
 
@@ -510,14 +509,14 @@ class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifi
       0.3f + 0.65f * renderLevel,
       0.5f,
       0.3f + 0.65f * (1f - renderLevel),
-      (0.2f * renderLevel * renderLevel) + MagicAnim.smooth((0.35f * (1f - renderLevel))))
+      (0.1f * renderLevel * renderLevel) + MagicAnim.smooth((0.1f * (1f - renderLevel))))
     ship.shield.innerColor = color
     ship.shield.ringColor = color
     //若开盾强制增加硬幅能，若不开盾增加机动时间，机动时间超时后快速涨幅能（防止有人控制飞机一直不开盾）
     if (ship.shield?.isOn == true) {
-      shieldTime = MathUtils.clamp(shieldTime + aEP_Tool.getAmount(ship), 0f, aEP_MaoDianShield.MAX_SHIELD_TIME)
+      shieldTime = MathUtils.clamp(shieldTime +amount, 0f, aEP_MaoDianShield.MAX_SHIELD_TIME)
     } else {
-      moveTime = MathUtils.clamp(moveTime + aEP_Tool.getAmount(ship), 0f, aEP_MaoDianShield.MAX_MOVE_TIME)
+      moveTime = MathUtils.clamp(moveTime + amount, 0f, aEP_MaoDianShield.MAX_MOVE_TIME)
     }
   }
 
@@ -561,7 +560,8 @@ class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifi
 
 }
 
-//吞弹护盾
+//
+// 吞弹护盾
 class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
   companion object{
     const val ID = "aEP_ProjectileDenialShield"

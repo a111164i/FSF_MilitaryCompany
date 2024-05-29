@@ -14,7 +14,7 @@ class aEP_BeamRepair : BeamEffectPlugin {
 
     const val FSF_BONUS = 3f
     const val REPAIR_THRESHOLD = 0.5f
-    const val HULL_REPAIR_THRESHOLD = 0.3f
+    const val HULL_REPAIR_THRESHOLD = 0.25f
     val REPAIR_COLOR = Color(250, 250, 178, 240)
     val REPAIR_COLOR2 = Color(250, 220, 70, 250)
 

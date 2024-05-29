@@ -33,6 +33,7 @@ import org.lwjgl.util.vector.Vector2f
 import org.magiclib.plugins.MagicRenderPlugin
 import org.magiclib.util.MagicRender
 import java.awt.Color
+import kotlin.concurrent.timer
 import kotlin.math.*
 
 class aEP_Tool {
@@ -1275,6 +1276,7 @@ class aEP_Tool {
     }
 
     fun firingSmoke(loc: Vector2f, facing: Float, param:FiringSmokeParam, ship: ShipAPI?) {
+
       val smokeSize = param.smokeSize
       val smokeRange = param.smokeSizeRange
       val smokeEndSizeMult = param.smokeEndSizeMult
@@ -1290,6 +1292,9 @@ class aEP_Tool {
 
       val smokeStopSpeed = param.smokeStopSpeed
       val smokeSpeed = param.smokeInitSpeed
+
+      //节约资源
+      if(!Global.getCombatEngine().viewport.isNearViewport(loc, 200f+ maxSpreadRange + smokeSpeed * smokeTime)) return
 
       //add cloud
       var i = 0
@@ -2185,7 +2190,7 @@ class aEP_Tool {
         override fun readyToEnd() {
           Global.getCombatEngine().removeEntity(attachProj)
           if(Global.getCombatEngine().isEntityInPlay(missile) && !missile.isFizzling){
-            missile.flameOut()
+            missile.flightTime = missile.maxFlightTime
           }
         }
       })

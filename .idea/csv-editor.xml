@@ -3,14 +3,7 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="C:\Users\a4567\AppData\Local\Temp\7zE4AE42F1D\commodities.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="C:\Users\a4567\AppData\Local\Temp\7zEC458C74A\commodities.csv">
+        <entry key="F:\Starsector097\mods\trailer-moments\data\config\modFiles\magicTrail_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -87,6 +80,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="F:\Starsector097\starsector-core\data\campaign\procgen\objective_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="F:\Starsector097\starsector-core\data\campaign\procgen\planet_gen_data.csv">
           <value>
             <Attribute>
@@ -150,6 +150,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="F:\Starsector097\starsector-core\data\characters\personalities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="F:\Starsector097\starsector-core\data\characters\skills\aptitude_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="F:\Starsector097\starsector-core\data\characters\skills\skill_data.csv">
           <value>
             <Attribute>
@@ -207,6 +221,13 @@
           </value>
         </entry>
         <entry key="F:\Starsector097\starsector-core\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\commodities.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

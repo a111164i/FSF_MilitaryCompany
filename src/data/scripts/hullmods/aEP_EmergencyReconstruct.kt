@@ -38,7 +38,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     val CHANGE_FAIL_INCREASE_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
     init {
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.33f)
-      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.15f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.16f)
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.25f)
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.33f)
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.5f)
@@ -114,7 +114,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
 
     val dp =  ship?.mutableStats?.dynamic?.getMod(Stats.DEPLOYMENT_POINTS_MOD)?.computeEffective(ship.hullSpec.suppliesToRecover)?:20f
     val time = REPAIR_TIME_BASE + REPAIR_TIME_PER_DP * dp
-    addSubBulletPara(tooltip, "aEP_EmergencyReconstruct05", arrayOf(
+    addNegativePara(tooltip, "aEP_EmergencyReconstruct05", arrayOf(
       String.format("%.0f", time)
     ))
 

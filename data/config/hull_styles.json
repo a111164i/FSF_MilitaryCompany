@@ -39,8 +39,6 @@
 		"dHullOverlayLight":"graphics/damage/dmod_overlay_midline_light.png",
 		"dHullOverlayMedium":"graphics/damage/dmod_overlay_midline_medium.png",
 		"dHullOverlayHeavy":"graphics/damage/dmod_overlay_midline_heavy.png",
-	},	
+	},
 
-
-	
 }

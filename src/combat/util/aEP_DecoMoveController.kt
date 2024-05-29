@@ -37,13 +37,25 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_cru_hailiang_holder_l"] = arrayOf(6f, 1.33f,  -6f, 1.33f)
       mag["aEP_cru_hailiang_holder_r"] = arrayOf(6f, 1.33f,  6f, 1.33f)
 
-      mag["aEP_cru_pingding_armor1"] = arrayOf(-10f, 0.66f, -24f, 0.66f)
-      mag["aEP_cru_pingding_armor2"] = arrayOf(0f, 1f,  0f, 1f)
+      mag["aEP_cru_pingding_barrel_sleeve_r1"] = arrayOf(-10f, 2f, 3f,2f)
+      mag["aEP_cru_pingding_barrel_sleeve_l1"] = arrayOf(-10f, 2f, -3f,2f)
+      mag["aEP_cru_pingding_barrel_sleeve_r2"] = arrayOf(-40f, 2f, 6f,2f)
+      mag["aEP_cru_pingding_barrel_sleeve_l2"] = arrayOf(-40f, 2f, -6f,2f)
 
-      mag["aEP_cru_zhongliu_head_l"] = arrayOf(0f, 1f,  -6f, 1.33f)
+      mag["aEP_cru_pingding_armor_r1"] = arrayOf(-30f, 2f, 8f,2f)
+      mag["aEP_cru_pingding_armor_l1"] = arrayOf(-30f, 2f, -8f,2f)
+      mag["aEP_cru_pingding_armor_r2"] = arrayOf(-15f, 2f, 2f,2f)
+      mag["aEP_cru_pingding_armor_l2"] = arrayOf(-15f, 2f, -2f,2f)
+
+      mag["aEP_cru_pingding_tail_r1"] = arrayOf(-3f, 2f, 3f,2f)
+      mag["aEP_cru_pingding_tail_l1"] = arrayOf(-3f, 2f, -3f,2f)
+      mag["aEP_cru_pingding_tail_r2"] = arrayOf(10f, 2f, 5f,2f)
+      mag["aEP_cru_pingding_tail_l2"] = arrayOf(10f, 2f, -5f,2f)
+
       mag["aEP_cru_zhongliu_head_r"] = arrayOf(0f, 1f,  6f, 1.33f)
-      mag["aEP_cru_zhongliu_slide_l"] = arrayOf(18f, 1.25f,  4f, 2f)
+      mag["aEP_cru_zhongliu_head_l"] = arrayOf(0f, 1f,  -6f, 1.33f)
       mag["aEP_cru_zhongliu_slide_r"] = arrayOf(18f, 0.75f,  -4f, 2f)
+      mag["aEP_cru_zhongliu_slide_l"] = arrayOf(18f, 1.25f,  4f, 2f)
 
       mag["aEP_des_shuishi_rail1"] = arrayOf(0f, 2f, 0f,0f)
       mag["aEP_des_shuishi_rail2"] = arrayOf(14f, 2f, 0f,0f)

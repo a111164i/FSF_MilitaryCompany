@@ -1,7 +1,7 @@
 {
   "id": "aEP_ftr_bom_nuke_bomb",
   "specClass": "projectile",
-  "projectileSpecId": "aEP_ftr_bom_nuke_bomb_shot2",
+  "projectileSpecId": "aEP_ftr_bom_nuke_bomb_shot",
   "type": "MISSILE",
   "size": "SMALL",
   #"everyFrameEffect": "data.scripts.weapons.aEP_NoWhenNotReadyAnimation",
