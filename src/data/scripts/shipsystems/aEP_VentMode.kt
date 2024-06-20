@@ -9,11 +9,8 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_DataTool
+import combat.util.*
 import combat.util.aEP_DataTool.txt
-import combat.util.aEP_DecoMoveController
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import org.dark.shaders.light.LightAPI
 import org.dark.shaders.light.LightShader
@@ -37,10 +34,10 @@ class aEP_VentMode: BaseShipSystemScript() {
 
     const val SOFT_CONVERT_RATE = 0.22f
     const val SOFT_CONVERT_SPEED = 1800f
-    const val SHIELD_DAMAGE_TAKEN_BONUS = 50f
-    const val HULL_DAMAGE_TAKEN_BONUS = 25f
+    const val SHIELD_DAMAGE_REDUCE_MULT = 0f
+    const val HULL_DAMAGE_TAKEN_BONUS = 50f
 
-    const val MAX_SPEED_REDUCE_MULT = 0.5f
+    const val MAX_SPEED_REDUCE_MULT = 0f
 
     private const val MIN_SECOND_TO_USE = 1f
   }
@@ -56,37 +53,43 @@ class aEP_VentMode: BaseShipSystemScript() {
   var timeElapsedAfterVenting = 0f;
   var forceDown = false
 
+  var animationLevel = aEP_AngleTracker(0f,0f,0.4f,1f,0f)
+
   //run every frame
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     //复制粘贴
     if (stats == null || stats.entity == null || stats.entity !is ShipAPI) return
     val ship = stats.entity as ShipAPI
     amount = aEP_Tool.getAmount(ship)
+    animationLevel.advance(amount)
 
     //增减激活系统后的时间
     if((state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE) && !forceDown){
-      timeElapsedAfterIn += amount
+      timeElapsedAfterIn += amount * 1000f
+      //自动关闭系统
+      if(!isUsable(ship.system, ship)) ship.system.deactivate()
+
     } else{
-      timeElapsedAfterIn -= amount
+      timeElapsedAfterIn -= amount * 1000f
     }
+    timeElapsedAfterIn = MathUtils.clamp(timeElapsedAfterIn,0f,1f)
 
     //增减进入venting后的时间
     if(ship.fluxTracker.isVenting){
-      timeElapsedAfterVenting += amount
+      timeElapsedAfterVenting += amount * 1000f
     } else{
-      timeElapsedAfterVenting -= amount
+      timeElapsedAfterVenting -= amount * 1000f
     }
+    timeElapsedAfterVenting = MathUtils.clamp(timeElapsedAfterVenting,0f,1f)
 
-    //把时间累计卡在2秒
-    timeElapsedAfterIn = timeElapsedAfterIn.coerceAtLeast(0f).coerceAtMost(2f)
-    timeElapsedAfterVenting = timeElapsedAfterVenting.coerceAtLeast(0f).coerceAtMost(2f)
 
-    //move deco weapon
-    //进入系统的时间/venting的时间，两者取大
-    // 0.5秒达到100%
-    val systemLevel = (timeElapsedAfterIn/2f).coerceAtMost(1f)
-    val ventLevel = (timeElapsedAfterVenting/2f).coerceAtMost(1f)
+    //不再用老的 timeElapsedAfter 作为Level，而是使用以前做的轮子
+    // 只要进入venting或者系统激活，立刻把 to 变为1
+    val systemLevel = timeElapsedAfterIn
+    val ventLevel = timeElapsedAfterVenting
     val decoLevel = max(systemLevel, ventLevel)
+
+    animationLevel.to = decoLevel
 
     forceDown = false
 
@@ -123,15 +126,15 @@ class aEP_VentMode: BaseShipSystemScript() {
       }
 
       //修改数值
-      stats.shieldDamageTakenMult.modifyPercent(ID, SHIELD_DAMAGE_TAKEN_BONUS * convertLevel)
+      stats.shieldDamageTakenMult.modifyMult(ID, 1f - SHIELD_DAMAGE_REDUCE_MULT * convertLevel)
       //stats.armorDamageTakenMult.modifyPercent(ID, DAMAGE_TAKEN_BONUS)
       stats.hullDamageTakenMult.modifyPercent(ID, HULL_DAMAGE_TAKEN_BONUS * convertLevel)
       stats.maxSpeed.modifyMult(ID,1f - MAX_SPEED_REDUCE_MULT * convertLevel)
     }
 
     //激活后才会产生的特效
-    if(decoLevel > 0.2f) {
-      val glowLevel = decoLevel
+    if(animationLevel.curr > 0.2f) {
+      val glowLevel = animationLevel.curr
 
       //创造散热器烟雾
       smokeTracker.advance(amount)
@@ -226,7 +229,7 @@ class aEP_VentMode: BaseShipSystemScript() {
 
     }
 
-    openDeco(ship, decoLevel)
+    openDeco(ship, animationLevel.curr)
 
     ship.isJitterShields = true
     //舰体微微泛红
@@ -249,13 +252,13 @@ class aEP_VentMode: BaseShipSystemScript() {
           String.format("%.0f", SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE) ),
           false)
       } else if (index == 1) {
-        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode02") ,
-          String.format("%.0f", SHIELD_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
-          true)
+//        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode02") ,
+//          String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT * 100f * convertLevel) + "%"),
+//          false)
       }
       else if (index == 2) {
         return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode07") ,
-          String.format("%.0f", HULL_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
+          String.format("+%.0f", HULL_DAMAGE_TAKEN_BONUS * convertLevel) + "%"),
           true)
       }
 

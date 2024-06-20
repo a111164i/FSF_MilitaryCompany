@@ -2,6 +2,7 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
 import com.fs.starfarer.api.graphics.SpriteAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.impl.combat.DamperFieldOmegaStats
@@ -19,14 +20,16 @@ import data.scripts.weapons.aEP_DecoAnimation
 import data.scripts.weapons.aEP_cru_pingding_main
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
+import org.lazywizard.lazylib.combat.WeaponUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
 import org.magiclib.util.MagicRender
 import java.awt.Color
 import java.util.*
+import kotlin.math.absoluteValue
 import kotlin.math.pow
 
-class aEP_MainGunAttitude : BaseShipSystemScript() {
+class aEP_MainGunAttitude : BaseShipSystemScript(), WeaponRangeModifier {
   companion object{
     const val ID = "aEP_MainGunAttitude"
 
@@ -64,6 +67,8 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
   val br1 = Global.getSettings().getSprite("aEP_FX","cru_pingding_br_a_1")
   val br2 = Global.getSettings().getSprite("aEP_FX","cru_pingding_br_a_2")
 
+  lateinit var maingun: WeaponAPI
+
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     //复制粘贴
     if (stats == null || stats.entity == null || stats.entity !is ShipAPI) return
@@ -74,13 +79,22 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
     openDeco(ship,effectLevel)
 
     //静止主武器开火
-    if(effectLevel < 1f){
-      for(w in ship.allWeapons){
-        if(w.slot.id.equals("MAIN")){
-          w.setForceNoFireOneFrame(true)
-        }
+    for(w in ship.allWeapons){
+      if(w.slot.id.equals("MAIN")){
+        maingun = w
+        if(effectLevel < 1f) w.setForceNoFireOneFrame(true)
+        //控制瞄准激光
+        //只有非手操才显示，手操不需要
+        if(Global.getCombatEngine().playerShip != ship)
+          aimLaser(ship, effectLevel, w)
       }
     }
+
+    //加入调整激光测距仪和主炮的listener
+    if(!ship.hasListenerOfClass(this::class.java)){
+      ship.addListener(this)
+    }
+
 
     //关闭引擎
     val engineLevel = ((effectLevel)/0.2f).coerceAtMost(1f)
@@ -97,17 +111,11 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
         //完全关闭时运行一帧
         didUse = false
 
-        ship.mutableStats.maxSpeed.modifyMult(ID, 1f)
-        ship.mutableStats.acceleration.modifyMult(ID, 1f)
-        ship.mutableStats.deceleration.modifyMult(ID, 1f)
-
-        ship.mutableStats.maxTurnRate.modifyPercent(ID, 1f)
-        ship.mutableStats.turnAcceleration.modifyPercent(ID, 1f)
-
       }
 
 
-    }else if(effectLevel <= 1f) {
+    }
+    else if(effectLevel <= 1f) {
       if(!didUse){
         //刚刚开启时的第一帧
         didUse = true
@@ -122,7 +130,7 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
         fluxLastFrameHard = ship.fluxTracker.hardFlux
 
         //如果舰船系统正在启用，关闭
-        if(ship.system.isActive) ship.system.deactivate()
+        if(ship.system != null && ship.system.isActive) ship.system.deactivate()
       }
 
       if(!didJitterDown && state == ShipSystemStatsScript.State.OUT){
@@ -131,13 +139,21 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
       }
 
       //开始激活时，持续激活的效果
-      ship.mutableStats.maxSpeed.modifyMult(ID, 0.2f)
-      ship.mutableStats.acceleration.modifyMult(ID, 0.5f)
-      ship.mutableStats.deceleration.modifyMult(ID, 0.5f)
       if(effectLevel >= 1f){
         //只有在完全激活才增加的效果
+        ship.mutableStats.maxSpeed.modifyMult(ID, 0.2f)
+        ship.mutableStats.acceleration.modifyMult(ID, 0.5f)
+        ship.mutableStats.deceleration.modifyMult(ID, 0.5f)
+
         ship.mutableStats.maxTurnRate.modifyPercent(ID, 50f)
         ship.mutableStats.turnAcceleration.modifyPercent(ID, 100f)
+      }else{
+        ship.mutableStats.maxSpeed.modifyMult(ID, 1f)
+        ship.mutableStats.acceleration.modifyMult(ID, 1f)
+        ship.mutableStats.deceleration.modifyMult(ID, 1f)
+
+        ship.mutableStats.maxTurnRate.modifyPercent(ID, 0f)
+        ship.mutableStats.turnAcceleration.modifyPercent(ID, 0f)
 
       }
 
@@ -438,5 +454,70 @@ class aEP_MainGunAttitude : BaseShipSystemScript() {
 
   }
 
+  fun aimLaser(ship: ShipAPI, effectLevel: Float, maingun: WeaponAPI) {
+      for (w in ship.allWeapons){
+        if(w.spec.weaponId.equals("aEP_cru_pingding_lidardish")){
+          val mouseAngleRange = MathUtils.getShortestRotation(ship.facing, VectorUtils.getAngle(ship.location, ship.mouseTarget)).absoluteValue
 
+          val mouseRange = MathUtils.getDistance(ship.location, ship.mouseTarget)
+          val center = aEP_Tool.getExtendedLocationFromPoint(ship.location, ship.facing, mouseRange)
+
+          val angleOffset = aEP_Tool.getTargetWidthAngleInDistance(ship.location, center, 10f)
+          if( w.slot.id.equals("WS0005")){
+            center.set(aEP_Tool.getExtendedLocationFromPoint(ship.location, ship.facing-angleOffset, mouseRange))
+          }else{
+            center.set(aEP_Tool.getExtendedLocationFromPoint(ship.location, ship.facing+angleOffset, mouseRange))
+          }
+
+          WeaponUtils.aimTowardsPoint(
+            w,
+            center,
+            amount)
+
+          //只有鼠标在炮口前才开始瞄准
+          if(mouseAngleRange < 20f){
+
+            if(effectLevel >= 1f){
+              if((w.beams?.size ?: 0) > 0){
+                var alpha = 0.1f + maingun.chargeLevel * 0.2f
+                w.beams[0].coreColor = Color(1f,0.35f,0.3f,alpha)
+                w.beams[0].fringeColor = Color(1f,0.35f,0.3f,alpha)
+
+              }
+
+              w.setForceFireOneFrame(true)
+            }
+
+          }
+        }
+      }
+  }
+
+  override fun getWeaponRangePercentMod(ship: ShipAPI, weapon: WeaponAPI): Float {
+    return 0f
+  }
+
+  override fun getWeaponRangeMultMod(ship: ShipAPI, weapon: WeaponAPI): Float {
+    if(weapon.spec.weaponId.startsWith("aEP_cru_pingding_main") && weapon.slot.isSystemSlot) {
+      if(ship.phaseCloak.effectLevel < 1f){
+        //return 0f
+      }
+    }
+    return 1f
+  }
+
+  override fun getWeaponRangeFlatMod(ship: ShipAPI, weapon: WeaponAPI): Float {
+    if(weapon.spec.weaponId.equals("aEP_cru_pingding_lidardish")){
+      val mouseAngleRange = MathUtils.getShortestRotation(ship.facing, VectorUtils.getAngle(ship.location, ship.mouseTarget)).absoluteValue
+      //只有鼠标在炮口前才开始瞄准
+      if(mouseAngleRange < 20f) {
+        val mouseRange = MathUtils.getDistance(weapon.ship.location, ship.mouseTarget)
+        val center = aEP_Tool.getExtendedLocationFromPoint(ship.location, ship.facing, mouseRange)
+        val dist = MathUtils.clamp(MathUtils.getDistance(weapon.location, center) - 100f,0f,maingun.range)
+        return dist - weapon.spec.maxRange
+      }
+    }
+
+    return 0f
+  }
 }

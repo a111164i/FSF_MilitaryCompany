@@ -12,6 +12,7 @@ import combat.util.aEP_DataTool
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import org.lwjgl.input.Keyboard
+import org.magiclib.kotlin.computeNumFighterBays
 import org.magiclib.util.MagicIncompatibleHullmods.removeHullmodWithWarning
 import java.awt.Color
 import java.lang.Exception
@@ -31,8 +32,8 @@ open class aEP_BaseHullMod : BaseHullMod() {
   val haveToBeWithMod = HashSet<String>()
   val allowOnHullsize = HashMap<ShipAPI.HullSize, Boolean>()
   val banShipList = HashSet<String>()
-  var canInstallOnModule = true
   var requireShield = false
+  var canInstallOnCarrier = true
 
   init {
     allowOnHullsize[ShipAPI.HullSize.DEFAULT] = false
@@ -49,7 +50,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
     var shouldRemove = false
     //遍历所有已经安装船插，若存在任何一个排斥，返回false
     var iterator: Iterator<*> = ship.variant.hullMods.iterator()
-    var conflictId: String? = ""
+    var conflictId: String = id
     while (iterator.hasNext()) {
       val it = iterator.next() as String
       if (notCompatibleList.contains(it)) {
@@ -107,7 +108,12 @@ open class aEP_BaseHullMod : BaseHullMod() {
       return false
     }
 
-    //检查尺寸
+    //检测是否航母（拥有自由甲板）
+    if((!canInstallOnCarrier && ship.hullSpec.builtInWings.size < ship.variant.computeNumFighterBays())){
+      return false
+    }
+
+    //检测舰体尺寸
     if(allowOnHullsize[ship.hullSize] != true){
       return false
     }
@@ -143,6 +149,12 @@ open class aEP_BaseHullMod : BaseHullMod() {
       return aEP_DataTool.txt("must_have_shield")
     }
 
+    //检测是否航母（拥有自由甲板）
+    if(!canInstallOnCarrier && ship.hullSpec.builtInWings.size < ship.variant.computeNumFighterBays()){
+      return aEP_DataTool.txt("must_have_no_free_deck")
+    }
+
+    //检测舰体尺寸
     if(allowOnHullsize[ship.hullSize] != true){
       return aEP_DataTool.txt("not_right_hullsize")
     }
@@ -253,21 +265,21 @@ open class aEP_BaseHullMod : BaseHullMod() {
   open fun addPositivePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
     val highLight = Misc.getHighlightColor()
     tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL,
-      arrayOf(Color.green, highLight),
+      arrayOf(Misc.getPositiveHighlightColor(), highLight),
       aEP_ID.HULLMOD_POINT,
       *data)
   }
 
   open fun addDoubleEdgePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
     val highLight = Misc.getHighlightColor()
-    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Color.yellow, highLight),
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Misc.getHighlightColor(), highLight),
       aEP_ID.HULLMOD_POINT,
       *data)
   }
 
   open fun addNegativePara(tooltip: TooltipMakerAPI, mainTxtId: String ,data: Array<String>){
     val highLight = Misc.getHighlightColor()
-    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Color.red, highLight),
+    tooltip.addPara(" %s "+ aEP_DataTool.txt(mainTxtId), PARAGRAPH_PADDING_SMALL, arrayOf(Misc.getNegativeHighlightColor(), highLight),
       aEP_ID.HULLMOD_POINT,
       *data)
   }

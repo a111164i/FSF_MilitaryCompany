@@ -57,8 +57,8 @@
   "smokeSpec": {
     "particleSizeMin": 25,
     "particleSizeRange": 15,
-    "cloudParticleCount": 6,
-    "cloudDuration": 0.55,
+    "cloudParticleCount": 2,
+    "cloudDuration": 0.2,
     "cloudRadius": 10,
     "blowbackParticleCount": 2,
     "blowbackDuration": 1,
@@ -68,7 +68,7 @@
       240,
       245,
       255,
-      25
+      20
     ]
   }
 }

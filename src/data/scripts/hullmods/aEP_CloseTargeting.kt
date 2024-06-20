@@ -5,6 +5,7 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.WeaponAPI.*
 import com.fs.starfarer.api.combat.listeners.DamageDealtModifier
+import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.impl.campaign.ids.Stats
@@ -19,13 +20,14 @@ import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 import kotlin.math.pow
 
-class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier {
+class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier, DamageTakenModifier {
 
   companion object{
     const val ID = "aEP_CloseTargeting"
 
     var PROJECTILE_SPEED_BONUS = 50f
     var SPREAD_REDUCE_MULT = 0.5f
+    var DAMAGE_TAKEN_REDUCE_MULT = 0f
 
     val PD_WEAPON_RANGE_BONUS = HashMap<HullSize, Float>()
     init {
@@ -56,6 +58,7 @@ class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier {
     stats.recoilPerShotMult.modifyMult(ID,1f - SPREAD_REDUCE_MULT)
     stats.maxRecoilMult.modifyMult(ID,1f - SPREAD_REDUCE_MULT)
 
+
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
@@ -69,21 +72,50 @@ class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier {
     if (index == 0) return String.format("+%.0f", PD_WEAPON_RANGE_BONUS[hullSize]?: 60f) +"%"
     if (index == 1) return String.format("-%.0f", SPREAD_REDUCE_MULT * 100f) +"%"
     if (index == 2) return String.format("+%.0f", PROJECTILE_SPEED_BONUS) +"%"
+    //if (index == 3) return String.format("-%.0f", DAMAGE_TAKEN_REDUCE_MULT * 100f) +"%"
     return null
   }
 
 
   override fun modifyDamageDealt(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
-    var source : ShipAPI? = null
+    var source  = 1234
 
-    if(param is BeamAPI) source = param.weapon?.ship
-    if(param is DamagingProjectileAPI) source = param.weapon?.ship
-    source ?: return null
+    //拿到自己的owner
+    if(param is ShipAPI) source = param.owner
+    if(param is EmpArcEntityAPI) source = param.owner
+    if(param is BeamAPI) source = param.weapon?.ship?.owner?:1234
+    if(param is DamagingProjectileAPI) source = param.weapon?.ship?.owner?:1234
 
-    if(target is ShipAPI && target.owner == source.owner){
+    //如果自己的owner等于目标的owner，不造成伤害（误伤）
+    if(target is ShipAPI && target.owner == source){
       damage.modifier.modifyMult(ID, 0.01f)
       return ID
     }
+    return null
+  }
+
+  override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f?, shieldHit: Boolean): String? {
+
+    if(param is ShipAPI) {
+      if(param.isFighter){
+        damage.modifier.modifyMult(ID, 1f - DAMAGE_TAKEN_REDUCE_MULT)
+        return ID
+      }
+    }
+    if(param is BeamAPI) {
+      if(param.source?.isFighter == true){
+        damage.modifier.modifyMult(ID, 1f - DAMAGE_TAKEN_REDUCE_MULT)
+        return ID
+      }
+    }
+    if(param is DamagingProjectileAPI) {
+      //来自飞机，或者是导弹
+      if(param.source?.isFighter == true || param is MissileAPI || param.isFromMissile){
+        damage.modifier.modifyMult(ID, 1f - DAMAGE_TAKEN_REDUCE_MULT)
+        return ID
+      }
+    }
+
     return null
   }
 }

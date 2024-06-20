@@ -13,9 +13,16 @@ class aEP_AcceleratedGunnery: aEP_BaseHullMod() {
 
     ship.mutableStats.ballisticRoFMult.modifyFlat(ID, 0.2f)
     ship.mutableStats.energyRoFMult.modifyFlat(ID, 0.2f)
+
+    ship.mutableStats.ballisticAmmoRegenMult.modifyFlat(ID, 0.2f)
+    ship.mutableStats.energyAmmoRegenMult.modifyFlat(ID, 0.2f)
+
     if(ship.system != null && ship.system.isActive){
       ship.mutableStats.ballisticRoFMult.modifyFlat(ID, 0.5f)
       ship.mutableStats.energyRoFMult.modifyFlat(ID, 0.5f)
+
+      ship.mutableStats.ballisticAmmoRegenMult.modifyFlat(ID, 0.5f)
+      ship.mutableStats.energyAmmoRegenMult.modifyFlat(ID, 0.5f)
     }
   }
 

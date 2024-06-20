@@ -27,7 +27,7 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
     //光束一秒结算10次，每次的伤害减免要乘一个系数
     const val BEAM_PER_HIT_REDUCE_COMPROMISE = 0.2f
 
-    const val REDUCE_CHANCE = 0.60f
+    const val REDUCE_CHANCE = 0.50f
     private val REDUCE_AMOUNT = HashMap<HullSize, Float>()
     init {
       REDUCE_AMOUNT[HullSize.FIGHTER] = 0f
@@ -37,7 +37,7 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
       REDUCE_AMOUNT[HullSize.CAPITAL_SHIP] = 25f
     }
 
-    const val SMOD_REDUCE_CHANCE = 0.50f
+    const val SMOD_REDUCE_CHANCE = 0.40f
     private val SMOD_REDUCE_AMOUNT = HashMap<HullSize, Float>()
     init {
       SMOD_REDUCE_AMOUNT[HullSize.FIGHTER] = 0f

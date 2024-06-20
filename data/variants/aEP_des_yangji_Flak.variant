@@ -1,14 +1,15 @@
 {
     "displayName": "Flak",
-    "fluxCapacitors": 13,
-    "fluxVents": 14,
+    "fluxCapacitors": 16,
+    "fluxVents": 20,
     "goalVariant": true,
     "hullId": "aEP_des_yangji",
     "hullMods": [
-        "aEP_VanguardHull",
-        "fluxbreakers",
         "pointdefenseai",
-        "autorepair"
+        "autorepair",
+        "aEP_ShieldFloating",
+        "reinforcedhull",
+        "fluxbreakers"
     ],
     "permaMods": [],
     "sMods": [],
@@ -17,39 +18,28 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0002": "aEP_b_m_mb32"}
+            "weapons": {"WS0001": "lightmortar"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0001": "railgun"}
+            "weapons": {
+                "SIDEL01": "aEP_b_m_flak",
+                "SIDEL04": "aEP_b_m_flak",
+                "SIDER01": "aEP_b_m_flak",
+                "SIDER04": "aEP_b_m_flak"
+            }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
                 "WS0004": "aEP_ftr_sup_shield_gun",
-                "WS0006": "aEP_ftr_sup_shield_gun",
-                "WS0011": "aEP_ftr_sup_shield_gun"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
                 "WS0005": "aEP_ftr_sup_shield_gun",
+                "WS0006": "aEP_ftr_sup_shield_gun",
                 "WS0007": "aEP_ftr_sup_shield_gun",
+                "WS0011": "aEP_ftr_sup_shield_gun",
                 "WS0012": "aEP_ftr_sup_shield_gun"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
-            "weapons": {
-                "SIDEL01": "aEP_b_m_flak",
-                "SIDEL04": "aEP_b_m_flak",
-                "SIDER01": "aEP_b_m_flak",
-                "SIDER04": "aEP_b_m_flak"
             }
         }
     ]

@@ -2,7 +2,8 @@
 	"aEP":{
 
 		"not_module":"不能安装在模块上",
-		"must_have_shield": "舰船没有护盾",
+		"must_have_shield": "不能安装在没有护盾的舰船上",
+		"must_have_no_free_deck": "不能安装在拥有空甲板位的舰船上",
 		"not_right_hullsize": "不能安装在此种舰体级别上",
 		"effect":"效果",
 		"not_compatible":"不兼容",
@@ -15,6 +16,9 @@
 		"activating": "激活中",
 		"equalsTo": "等同于",
 		"consumption": "消耗",
+		"depletion": "耗尽",
+		"after": "用时 ",
+		"time": "时间 ",
 		"recover": "回复",
 		"speed": "速度",
 		"max": "最高",
@@ -27,14 +31,15 @@
 		"target_fleet": "目标舰队",
 
 		#############################
-		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸>=自己的友方舰船加速时，你的最大速度{%s}，加速度{%s}",
+		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸大于自己的友方舰船加速时，你的最大速度{%s}，加速度{%s}",
 		"aEP_SpecialHull02": "零幅能加速的启用阈值{%s}",
-		"aEP_SpecialHull03": "如果安装了非内置的战机联队，零幅能加速{%s}",
 
 		"aEP_MissilePlatform01":"锻炉功率",
-		"aEP_MissilePlatform02":"锻炉功率的最大值为舰船所有导弹武器装配点之和的一定比例，当前导弹的弹药生产速度由锻炉功率的水平决定",
-		"aEP_MissilePlatform03":"随着当前锻炉功率水平的降低，导弹的弹药生产速度下降，锻炉功率的消耗速度也变慢，最终等同于回冲速度，达到动态平衡的最低值",
 		"aEP_MissilePlatform07":"锻炉功率为满时，不同尺寸导弹武器的的最大弹药生产速度如下: ",
+		"aEP_MissilePlatform02":"锻炉功率的最大值为舰船所有导弹武器装配点之和的一定比例，随时间自然回复{%s}",
+		"aEP_MissilePlatform03":"生产导弹会消耗锻炉功率，但随着锻炉功率的下降，生成导弹的速度也会变慢",
+		"aEP_MissilePlatform06":"本舰安装的武器在全速生产时一发弹药所需时间如下: ",
+		"aEP_MissilePlatform04":"秒/每发",
 		"aEP_MissilePlatform05":"所有导弹的备弹量会被限制到：武器{%s}轮的发射量或是基础备弹量的{%s}，两者取大",
 		"aEP_MissilePlatform09":"例如，装配点为30的导弹武器，基础备弹为10发，则每发导弹价值为3点",
 		"aEP_MissilePlatform11":"拥有基础回复速度的导弹不参与本插件",
@@ -54,18 +59,19 @@
 		"aEP_AttackCarrier02":"当本舰的非轰炸战机存量较低且幅能<={%s}时，发动锻炉立刻补满所有损失的非轰炸战机，本能力具有{%s}秒的冷却并产生大量幅能",
 		"aEP_AttackCarrier05":"安装超过{%s}OP的战机联队时，每超过一点，本能力冷却时间{%s}秒，当前惩罚为{%s}",
 
-		"aEP_ShieldControlled01": "对发射点和命中点之间距离超过{%s}的弹丸和光束，对护盾的伤害{%s}",
+		"aEP_ShieldControlled01": "对于非导弹的弹丸和光束，如果其发射点和击中点之间的距离超过{%s}，护盾承受伤害{%s}",
+		"aEP_ShieldControlled03": "对于导弹，护盾承受伤害{%s}",
 		"aEP_ShieldControlled02": "舰船所有实弹和能量武器的{%s}射程超过{%s}的部分会被扣除",
 
 		"aEP_ShieldFloating01": "波动值",
 		"aEP_ShieldFloating02": "当护盾承受伤害时会增加等同于伤害量的{%s}，之后随时间降低",
-		"aEP_ShieldFloating04": "如果{%s}开始积攒，最多使幅能耗散{%s}，磁通分流比例{%s}",
-		"aEP_ShieldFloating03": "达到最大加成所需",
+		"aEP_ShieldFloating04": "如果{%s}开始积攒，最多使幅能耗散{%s}",
+		"aEP_ShieldFloating03": "要达到最大加成",
+		"aEP_ShieldFloating05": "幅能耗散",
 
 		"aEP_StrategyThruster01": "零幅能加速值{%s}，现在为{%s}",
 		"aEP_StrategyThruster02": "零幅能加速的启用阈值{%s}，现在为{%s}",
 		"aEP_StrategyThruster03": "幅能容量{%s}",
-		"aEP_StrategyThruster04": "零幅能加速启用时，需要持续{%s}秒才能达到最大增益",
 
 		"aEP_EliteShip01": "护盾承受伤害{%s}",
 		"aEP_EliteShip02": "装甲值{%s}",
@@ -74,7 +80,7 @@
 		"aEP_EliteShip10": "峰值时间{%s}",
 		"aEP_EliteShip07": "每次过载，或累计损失{%s}的结构值时，进行一次0-100的{%s}，若结果>={%s}生成一个无人机生成护盾保护本舰，护盾拥有{%s}点伤害吸收",
 		"aEP_EliteShip08": "保护测试",
-		"aEP_EliteShip03": "战斗中部署点{%s}或{%s}，两者取大",
+		"aEP_EliteShip03": "战斗中部署点{%s}或{%s}，两者取大。对本舰为{%s}",
 
 		"aEP_EmergencyReconstruct01": "每当本舰受到致命伤害时，如果满足以下条件，可以立刻发起重建，完全恢复装甲与结构值: ",
 		"aEP_EmergencyReconstruct02": "进行一次0-100的{%s}，结果>={%s}",
@@ -92,8 +98,8 @@
 
 		#############################
 		"aEP_VentMode01":"幅能耗散增加: %s 硬幅能产生: %s",
-		"aEP_VentMode02":"护盾承受伤害增加: %s",
-		"aEP_VentMode07":"结构承受伤害增加: %s",
+		"aEP_VentMode02":"护盾承受伤害: %s",
+		"aEP_VentMode07":"结构承受伤害: %s",
 		"aEP_VentMode08":"最大速度降低: %s",
 		"aEP_VentMode06":"软幅能过少",
 
@@ -115,7 +121,8 @@
 		"aEP_SiegeMode03":"武器射程: %s",
 		"aEP_SiegeMode04":"机动被限制",
 
-		"aEP_WeaponReset01":"武器射速增加",
+		"aEP_WeaponReset01":"武器射速",
+		"aEP_WeaponReset02":"护盾承受伤害",
 
 		"aEP_FortressShieldStats01": "护盾承受伤害降低: %s",
 
@@ -249,7 +256,7 @@
 		"aEP_UndergroundStorage04": "获得额外的大型巡逻队数量加成",
 
 		#############################
-		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（对于舰队指挥官则是超过{%s}）的舰船，每高出一级本舰对其的伤害增加{%s}，最高{%s}"
+		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（若其为舰队指挥官则为{%s}）的目标舰船，每高出一级则本舰对其的伤害增加{%s}，最高{%s}"
 
 	},
 	"aEP_custom_entity_names":{
@@ -259,8 +266,9 @@
 	},
 	"aEP_En":{
 
-		"not_module":"Can not be installed on ship modules",
-		"must_have_shield": "Ship has no shields",
+		"not_module":"Can not be installed on module",
+		"must_have_shield": "Can not be installed on ship with no shield",
+		"must_have_no_free_deck": "Can not be installed on ship with empty fighter bays",
 		"not_right_hullsize": "Can not be installed on this hullsize",
 		"effect":"Effect",
 		"not_compatible":"Not compatible",
@@ -273,6 +281,9 @@
 		"activating": "Activating ",
 		"equalsTo": "Equal to ",
 		"consumption": "Consumption ",
+		"depletion": "Depleted ",
+		"after": "Aftr ",
+		"time": "Time ",
 		"recover": "Recover ",
 		"speed": "Speed ",
 		"max": "Max ",
@@ -283,16 +294,16 @@
 		"decrease": "Decrease ",
 		"increase": "Increase ",
 		"target_fleet": "Target Fleet ",
-
 		#############################
-		"aEP_SpecialHull01": "When accelerating toward or rotating around a friendly ship with this hullmod and whom no smaller than your hull size, your max speed %s, acceleration %s",
+		"aEP_SpecialHull01": "When accelerating toward or rotating around a friendly ship with this hullmod and is larger than your hullsize, your max speed %s, acceleration %s",
 		"aEP_SpecialHull02": "Min flux level for zero flux boost to active %s",
-		"aEP_SpecialHull03": "If any non-built-in wing is installed, zero flux boost %s",
 
 		"aEP_MissilePlatform01":"Forge Output",
-		"aEP_MissilePlatform02":"Total Forge Output is calculated by a fraction of total OP spent on missile weapons, remaining Output percentage decides ammo production speed.",
-		"aEP_MissilePlatform03":"As Output level goes down, ammo produced slower thus consume less Output, eventually reach a dynamic balance called min level where recover speed equals consuption speed",
 		"aEP_MissilePlatform07":"When Forge Output is full, max ammo production speed of different sized missiles are shown as follow: ",
+		"aEP_MissilePlatform02":"Total Forge Output is calculated by a fraction of total OP spent on missile weapons. It generates at speed of %s.",
+		"aEP_MissilePlatform03":"Producing ammo consumes Output, and as Output running low production speed drops as follows",
+		"aEP_MissilePlatform06":"Time needed to produce one ammo for installed weapons at full production speed: ",
+		"aEP_MissilePlatform04":"Second/ammo",
 		"aEP_MissilePlatform05":"All missile weapons' max ammo will be limited to: %s rounds of burst or %s of base amount, whichever is higher",
 		"aEP_MissilePlatform09":"For example, a missile weapon of 30 OP with base ammo of 10, each ammo costs 3 OP",
 		"aEP_MissilePlatform11":"Missile weapons with base regen is not affected by this hullmod",
@@ -307,18 +318,19 @@
 		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge activates and replace all lost. This ability has %s seconds cooldown and produce large soft flux overtime",
 		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, forge cooldown %s seconds, currently %s seconds",
 
-		"aEP_ShieldControlled01": "Any projectile and beam that spawned %s distance away, damage to shield %s",
-		"aEP_ShieldControlled02": "Ballistic/energy weapon %s range limited to %s.",
+		"aEP_ShieldControlled01": "For non-missile projectiles and beams that spawned %s distance away, shield damage taken %s",
+		"aEP_ShieldControlled03": "For missiles, shield damage taken %s",
+		"aEP_ShieldControlled02": "Ballistic/energy weapons %s range are limited to %s.",
 
-		"aEP_ShieldFloating01": "Fluctuation Level",
-		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equals to damage taken then it decreases overtime.",
-		"aEP_ShieldFloating04": "If %s is accumulating, flux dissipation increases up to %s, flux shunt percentage increases up to %s.",
-		"aEP_ShieldFloating03": "Needed to get Full Bonus",
+		"aEP_ShieldFloating01": "Fluctuation Points",
+		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, which decreases overtime.",
+		"aEP_ShieldFloating04": "If %s is accumulating, flux dissipation increases up to %s.",
+		"aEP_ShieldFloating03": "Needed for Full Bonus",
+		"aEP_ShieldFloating05": "Flux dissipation",
 
 		"aEP_StrategyThruster01": "Zero flux boost speed %s, currently %s",
 		"aEP_StrategyThruster02": "Min flux level for zero flux boost to active %s, currently %s",
 		"aEP_StrategyThruster03": "Flux capacity %s",
-		"aEP_StrategyThruster04": "When zero flux activated, it takes %s seconds to reach full bonus",
 
 		"aEP_EliteShip01": "Shield damage taken %s",
 		"aEP_EliteShip02": "Armor %s",
@@ -327,7 +339,7 @@
 		"aEP_EliteShip10": "Peak CR time %s",
 		"aEP_EliteShip07": "Each time this ship overloads or lost %s hullpoints, roll a %s between 0-100, if result >= %s, a drone is launched to generate a shield to protect this ship for a while, that shield has %s damage absorption",
 		"aEP_EliteShip08": "Protect Test",
-		"aEP_EliteShip03": "Deployment cost in combat %s or %s, which higher",
+		"aEP_EliteShip03": "Deployment cost in combat %s or %s, which higher. For this ship %s",
 
 		"aEP_CruiseMissileCarrier01":"Loading process completed",
 		"aEP_CruiseMissileCarrier02":"Loading process stops because CR is too low",
@@ -346,7 +358,7 @@
 
 		"aEP_TwinFighter01": "In combat, using key %s to toggle whether let the fighter free attack or fixed at front",
 		"aEP_TwinFighter02": "When fixed at front, the fighter repairs itself at speed of %s per second",
-		"aEP_TwinFighter03": "When the ship is destroyed, the fighter will be destroyed too",
+		"aEP_TwinFighter03": "When this ship is destroyed, the fighter will be destroyed too",
 
 
 		#############################
@@ -374,7 +386,8 @@
 		"aEP_SiegeMode03":"Weapon range: %s",
 		"aEP_SiegeMode04":"Maneuver limited",
 
-		"aEP_WeaponReset01":"Weapon RoF bonus: ",
+		"aEP_WeaponReset01":"Weapon RoF: ",
+		"aEP_WeaponReset02":"Shield damage taken: ",
 
 		"aEP_FortressShieldStats01": "Shield damage taken reduced by %s",
 
@@ -509,7 +522,7 @@
 
 
 		#############################
-		"aEP_SkillAnalyze01": "To any piloted ship that its officer is above level %s (for fleet commander %s), for every level above deal %s more damage, at maximum %s"
+		"aEP_SkillAnalyze01": "To target that its officer is above level %s (for fleet commander %s), for every level above you deal %s more damage, at maximum %s"
 
 	},
 	"aEP_EN_custom_entity_names":{

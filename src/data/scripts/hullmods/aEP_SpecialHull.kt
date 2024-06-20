@@ -15,8 +15,7 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.floatDataRecorder
+import combat.util.aEP_DataTool.FloatDataRecorder
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
@@ -33,18 +32,20 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
   companion object {
 
     //距离小于此，无论前进还是后退都获得加速
-    const val ACTIVE_RANGE_MIN = 200f
+    const val ACTIVE_RANGE_MIN = 350f
     //距离到超过这里，完全无加成
-    const val ACTIVE_RANGE_MAX = 600f
+    const val ACTIVE_RANGE_MAX = 900f
 
-    const val SPEED_BONUS = 15f
-    const val ACC_BONUS = 45f
+    const val SPEED_PERCENT_BONUS = 25f
+    const val ACC_PERCENT_BONUS = 50f
+    const val SPEED_BONUS = 25f
+    const val ACC_BONUS = 50f
 
     //航母的0幅能加速降低
-    const val CARRIER_PUNISH = 20f
+    const val CARRIER_PUNISH = 0f
 
-    const val TURN_BONUS = 6f
-    const val TURN_ACC_BONUS = 18f
+    const val TURN_BONUS = 5f
+    const val TURN_ACC_BONUS = 10f
 
     const val ZERO_FLUX_EXTRA_THRESHOLD = 4f //百分之几以下触发加速装填，航母派出飞机是1%，所以这里给2%
 
@@ -71,7 +72,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
 
     //改变0幅能加速的起始
-    ship.mutableStats.zeroFluxMinimumFluxLevel.modifyFlat(ID, ZERO_FLUX_EXTRA_THRESHOLD/100f)
+    // ship.mutableStats.zeroFluxMinimumFluxLevel.modifyFlat(ID, ZERO_FLUX_EXTRA_THRESHOLD/100f)
 
     //如果是航母，扣加速
     if(ship.variant.nonBuiltInWings.isNotEmpty())
@@ -90,7 +91,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
     //当希望customData进行初始化时，条件一定要是customData.contains()，有的时候舰船生成到一半，custom此时还没有创建
     if (!ship.customData.containsKey("$ID _ ${ship.id}")) {
-      val fluxData = floatDataRecorder()
+      val fluxData = FloatDataRecorder()
       ship.setCustomData("$ID _ ${ship.id}",fluxData)
       aEP_CombatEffectPlugin.addEffect(FriendlyAttraction(ship))
       //ship.addListener(FluxRecorder(ship, fluxData))
@@ -132,15 +133,18 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
 
     // 正面
+    var speedUp = SPEED_BONUS
+    var accUp = ACC_BONUS
+    if(ship != null) {
+      speedUp += ship.mutableStats.maxSpeed.base * SPEED_PERCENT_BONUS / 100f
+      accUp += ship.mutableStats.acceleration.base * ACC_PERCENT_BONUS / 100f
+    }
     addPositivePara(tooltip, "aEP_SpecialHull01", arrayOf(
-      String.format("+%.0f", SPEED_BONUS),
-      String.format("+%.0f", ACC_BONUS)))
-    addPositivePara(tooltip, "aEP_SpecialHull02", arrayOf(
-      String.format("+%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%"))
+      String.format("+%.0f",speedUp),
+      String.format("+%.0f", accUp)))
+//    addPositivePara(tooltip, "aEP_SpecialHull02", arrayOf(
+//      String.format("+%.0f", ZERO_FLUX_EXTRA_THRESHOLD) +"%"))
 
-    // 负面
-    addNegativePara(tooltip, "aEP_SpecialHull03", arrayOf(
-      String.format("-%.0f", CARRIER_PUNISH) ))
     //显示不兼容插件
     showIncompatible(tooltip)
 
@@ -201,7 +205,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
             && !ship.engineController.isStrafingLeft
             && !ship.engineController.isStrafingRight) continue
           //不能把一个比自己小的友军作为目标
-          if(s.hullSize < ship.hullSize) continue
+          if(s.hullSize <= ship.hullSize) continue
           if(s.owner != ship.owner) continue
           if(!s.variant.hasHullMod(ID)) continue
           if(aEP_Tool.isDead(s)) continue
@@ -257,6 +261,10 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
       ship.mutableStats.maxSpeed.modifyFlat(ID, SPEED_BONUS * level)
       ship.mutableStats.acceleration.modifyFlat(ID, ACC_BONUS * level)
       ship.mutableStats.deceleration.modifyFlat(ID, ACC_BONUS * level)
+
+      ship.mutableStats.maxSpeed.modifyPercent(ID, SPEED_PERCENT_BONUS * level)
+      ship.mutableStats.acceleration.modifyPercent(ID, ACC_PERCENT_BONUS * level)
+      ship.mutableStats.deceleration.modifyPercent(ID, ACC_PERCENT_BONUS * level)
 
       ship.mutableStats.maxTurnRate.modifyFlat(ID, TURN_BONUS* level)
       ship.mutableStats.turnAcceleration.modifyFlat(ID, TURN_ACC_BONUS * level)

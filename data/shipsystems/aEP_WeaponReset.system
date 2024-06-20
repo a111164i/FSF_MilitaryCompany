@@ -4,7 +4,7 @@
 	#have to use this ai with stat_mod
 	#"aiType":"HIGH_ENERGY_FOCUS",
 	"aiType":"CUSTOM",
-	"aiScript":"data.scripts.ai.shipsystemai.aEP_VentModeAI",
+	"aiScript":"data.scripts.ai.shipsystemai.aEP_WeaponResetAI",
 	"statsScript":"data.scripts.shipsystems.aEP_WeaponReset",
 	
 

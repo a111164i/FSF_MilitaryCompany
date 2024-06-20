@@ -49,6 +49,8 @@
   "reduceDamageWhileFading":false,
   "useProjectileRangeCalculation":false,
   "passThroughMissiles":true,
+  "passThroughFighters":true,
+  "passThroughFightersOnlyWhenDestroyed":true,
   "renderTargetIndicator":true, # no target diamond in combat view, not targeted by flares
   "noCollisionWhileFading":true,
   "useHitGlowWhenDestroyed":true, # instead of the default explosion

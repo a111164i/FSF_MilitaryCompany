@@ -17,7 +17,7 @@
   "useProjectileRangeCalculation":true,
 	"passThroughMissiles":true,
   "passThroughFighters":true,
-  "passThroughFightersOnlyWhenDestroyed":false,
+  "passThroughFightersOnlyWhenDestroyed":true,
   "applyOnHitEffectWhenPassThrough":false,
 	"explosionColor":[243,152,75,200],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":275, # purely visual

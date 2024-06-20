@@ -10,7 +10,6 @@ class aEP_VentModeAI: aEP_BaseSystemAI() {
     thinkTracker.setInterval(0.1f,0.4f)
   }
 
-  var timeElapsedActive = 0f
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
 

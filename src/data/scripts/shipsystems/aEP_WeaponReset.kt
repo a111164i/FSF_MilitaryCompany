@@ -12,6 +12,7 @@ import com.fs.starfarer.util.IntervalTracker
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
+import combat.util.aEP_AngleTracker
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.speed2Velocity
@@ -40,6 +41,8 @@ import kotlin.math.max
 class aEP_WeaponReset: BaseShipSystemScript() {
 
   companion object{
+
+    const val CUSTOM_DATA_KEY = "aEP_WeaponResetBuffer"
     //系统结束时环绕烟雾颜色
     val SMOKE_COLOR = Color(200, 200, 200, 60)
     //排气口喷出烟雾的颜色
@@ -47,9 +50,10 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     val GLOW_COLOR = Color(255,72,44,118)
 
     //缓冲区大小是最大容量的几倍
-    private val MAX_FLUX_STORE_CAP_PERCENT = 1.25f
+    private val MAX_FLUX_STORE_CAP_PERCENT = 2f
     //返还时，有多少的幅能被直接耗散掉无需返回
     private val FLUX_VENT_PERCENT_ON_RETURN= 0.1f
+    private val SHIELD_DAMAGE_REDUCE_MULT = 0.1f
     private val FLUX_DECREASE_PERCENT: MutableMap<String, Float> = HashMap()
     private val FLUX_DECREASE_FLAT: MutableMap<String, Float> = HashMap()
     private val FLUX_RETURN_SPEED: MutableMap<String, Float> = HashMap()
@@ -58,14 +62,20 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     init {
 
       //吸收幅能的速度
-      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.33f
-      FLUX_DECREASE_FLAT["aEP_cru_zhongliu"] = 300f
+      FLUX_DECREASE_PERCENT["aEP_cru_zhongliu"] = 0.25f
+      FLUX_DECREASE_FLAT["aEP_cru_zhongliu"] = 600f
 
       //返回幅能速度是耗散的几分之一
       FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.75f
 
       WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 100f
+    }
 
+    fun readStoredLevel(ship: ShipAPI): Float{
+      if(ship.customData.containsKey(CUSTOM_DATA_KEY)){
+        return ship.customData[CUSTOM_DATA_KEY] as Float
+      }
+      return 0f
     }
   }
 
@@ -78,6 +88,8 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   private val redSmokeTracker = IntervalUtil(0.1f, 0.2f)
   var timeElapsedAfterVenting = 0f
 
+  val decoTracker =  aEP_AngleTracker(0f,0f,0.75f,1f,0f)
+
   //runInIdle == true, unapply()只有在被外界强制关闭时才会调用
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
     //复制粘贴这行
@@ -89,27 +101,13 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     val bufferLvl = (storedSoftFlux/bufferSize).coerceAtMost(1f)
     val amount = getAmount(ship)
 
-    //维持玩家左下角的提示
+    //舰船额外ui
     if (Global.getCombatEngine().playerShip == ship) {
       MagicUI.drawHUDStatusBar(ship,
         bufferLvl, null,null, 0f,
         ship.system.displayName, String.format("%.1f",bufferLvl*100f)+"%",true )
     }
 
-    //增减进入venting后的时间
-    if(ship.fluxTracker.isVenting){
-      timeElapsedAfterVenting += amount
-    } else{
-      timeElapsedAfterVenting -= amount
-    }
-    timeElapsedAfterVenting = timeElapsedAfterVenting.coerceAtLeast(0f).coerceAtMost(1.5f)
-    //进入系统的时间/venting的时间，两者取大
-    val ventLevel = (timeElapsedAfterVenting/1.5f).coerceAtMost(1f)
-    val decoLevel = max(effectLevel, ventLevel)
-
-    updateDecos(ship,decoLevel, amount)
-    updateHeadDecos(ship,decoLevel)
-    updateBottomIndicators(ship)
 
     //激活中
     if(state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE || state == ShipSystemStatsScript.State.OUT){
@@ -130,7 +128,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
         //监测缓冲区满了没有，满了就强制关闭系统
         //软幅能散完了也是
-        if(storedSoftFlux >= bufferSize || !isUsable(ship.system,ship)){
+        if(storedSoftFlux >= bufferSize-1f){
           ship.system.deactivate()
           ship.system.cooldownRemaining = ship.system.cooldown
         }
@@ -202,9 +200,9 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
 
       //武器修复
-      stats.combatWeaponRepairTimeMult.modifyMult(id, 0.25f)
+      stats.combatWeaponRepairTimeMult.modifyMult(id, 0.1f)
 
-      val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 50f
+      val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 100f
 
       //ballistic weapon buff
       stats.ballisticRoFMult.modifyPercent(id, rofPercentBonus * effectLevel)
@@ -214,18 +212,24 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       stats.energyRoFMult.modifyPercent(id, rofPercentBonus * effectLevel)
       stats.energyAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel)
 
+      stats.shieldDamageTakenMult.modifyMult(id, 1f - SHIELD_DAMAGE_REDUCE_MULT * effectLevel)
 
       //取消护盾维持，防止出现把盾维吸入导致每秒幅散散了个空气的问题
       ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
 
-    } else{  //系统为IDLE时
+    }
+    else{  //系统为IDLE时
       //激活结束后运行一次
       if(didActive){
         unapply(stats, id)
       }
 
       //返还幅能
-      var toReturnThisFrame = aEP_Tool.getRealDissipation(ship) * getAmount(ship) * (FLUX_RETURN_SPEED[ship.hullSpec.baseHullId]?:1f)
+      //默认全速返还
+      var toReturnThisFrame = aEP_Tool.getRealDissipation(ship) * getAmount(ship)
+      //如果当前幅能不为空，慢速返还
+      if(ship.fluxTracker.fluxLevel > 0.01f) toReturnThisFrame *= (FLUX_RETURN_SPEED[ship.hullSpec.baseHullId]?:1f)
+
       if(ship.fluxTracker.isVenting) toReturnThisFrame = 0f;
       if(storedSoftFlux > 0){
         //限制返还软幅能量不超过剩余容量和储存的软幅能量
@@ -238,6 +242,23 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         storedSoftFlux = storedSoftFlux.coerceAtLeast(0f)
       }
     }
+
+    //增减进入venting后的时间
+    if(ship.fluxTracker.isVenting || state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE || state == ShipSystemStatsScript.State.OUT){
+      decoTracker.to = 1f
+    } else{
+      decoTracker.to = 0f
+    }
+
+    ship.setCustomData(CUSTOM_DATA_KEY, storedSoftFlux/bufferSize)
+
+    //控制装饰武器
+    decoTracker.advance(amount)
+    val decoLevel = decoTracker.curr
+
+    updateDecos(ship,decoLevel, amount)
+    updateHeadDecos(ship,decoLevel)
+    updateBottomIndicators(ship)
 
   }
 
@@ -282,7 +303,10 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     if(state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE || state == ShipSystemStatsScript.State.OUT) {
       if (index == 0) {
         val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 100f
-        return  StatusData(txt("aEP_WeaponReset01")+": "+ String.format("%.0f",rofPercentBonus)+"%", false)
+        return  StatusData(txt("aEP_WeaponReset01")+": "+ String.format("+%.0f",rofPercentBonus)+"%", false)
+      }
+      if (index == 1) {
+        return  StatusData(txt("aEP_WeaponReset02")+": "+ String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT*100f)+"%", false)
       }
     }
     return  null
@@ -290,18 +314,12 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
     var toShow = ""
-    if(!isUsable(system,ship) ){
-      toShow += txt("aEP_VentMode06")
-    }
     toShow += " Buffer: "+ storedSoftFlux.toInt()+ " / "+bufferSize.toInt()
     return toShow
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
-    val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
-    val hardFlux = ship.fluxTracker.hardFlux
-    if(softFlux < (FLUX_DECREASE_FLAT[ship.hullSpec.baseHullId] ?: 200f) * 1f) return false
-
+    if(storedSoftFlux >= bufferSize * 0.9f) return false
     return true
   }
 

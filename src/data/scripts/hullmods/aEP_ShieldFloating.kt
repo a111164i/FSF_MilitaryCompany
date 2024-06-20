@@ -20,14 +20,14 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
 
   companion object{
     const val ID = "aEP_ShieldFloating"
-    const val MAX_SHUNT_PERCENT = 100f
+    const val MAX_SHUNT_PERCENT = 0f
     val SHIFT_COLOR = Color(155,25,255,205)
 
     //下降是持续的，如果希望6秒内打满缓冲区，触发满加成，应该写12
     //达到最大分流加成所需的波动值
     private val MAX_THRESHOLD = HashMap<ShipAPI.HullSize, Float>()
     init {
-      MAX_THRESHOLD[ShipAPI.HullSize.FIGHTER] = 200f
+      MAX_THRESHOLD[ShipAPI.HullSize.FIGHTER] = 300f
       MAX_THRESHOLD[ShipAPI.HullSize.FRIGATE] = 600f
       MAX_THRESHOLD[ShipAPI.HullSize.DESTROYER] = 900f
       MAX_THRESHOLD[ShipAPI.HullSize.CRUISER] = 1500f
@@ -37,30 +37,30 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     //波动值下降速度
     private val DROP_SPEED = HashMap<ShipAPI.HullSize, Float>()
     init {
-      DROP_SPEED[ShipAPI.HullSize.FIGHTER] = 400f
-      DROP_SPEED[ShipAPI.HullSize.FRIGATE] = 600f
-      DROP_SPEED[ShipAPI.HullSize.DESTROYER] = 950f
-      DROP_SPEED[ShipAPI.HullSize.CRUISER] = 1800f
-      DROP_SPEED[ShipAPI.HullSize.CAPITAL_SHIP] = 2750f
+      DROP_SPEED[ShipAPI.HullSize.FIGHTER] = 150f
+      DROP_SPEED[ShipAPI.HullSize.FRIGATE] = 300f
+      DROP_SPEED[ShipAPI.HullSize.DESTROYER] = 450f
+      DROP_SPEED[ShipAPI.HullSize.CRUISER] = 750f
+      DROP_SPEED[ShipAPI.HullSize.CAPITAL_SHIP] = 1200f
     }
 
     //最高波动值大小
     private val CAP = HashMap<ShipAPI.HullSize, Float>()
     init {
-      CAP[ShipAPI.HullSize.FIGHTER] = 1000f
-      CAP[ShipAPI.HullSize.FRIGATE] = 1500f
-      CAP[ShipAPI.HullSize.DESTROYER] = 2500f
-      CAP[ShipAPI.HullSize.CRUISER] = 5000f
-      CAP[ShipAPI.HullSize.CAPITAL_SHIP] = 7500f
+      CAP[ShipAPI.HullSize.FIGHTER] = 600f
+      CAP[ShipAPI.HullSize.FRIGATE] = 1200f
+      CAP[ShipAPI.HullSize.DESTROYER] = 1800f
+      CAP[ShipAPI.HullSize.CRUISER] = 3000f
+      CAP[ShipAPI.HullSize.CAPITAL_SHIP] = 4800f
     }
 
     private val DISS_BONUS = HashMap<ShipAPI.HullSize, Float>()
     init {
-      DISS_BONUS[ShipAPI.HullSize.FIGHTER] = 50f
-      DISS_BONUS[ShipAPI.HullSize.FRIGATE] = 300f
-      DISS_BONUS[ShipAPI.HullSize.DESTROYER] = 350f
-      DISS_BONUS[ShipAPI.HullSize.CRUISER] = 575f
-      DISS_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 800f
+      DISS_BONUS[ShipAPI.HullSize.FIGHTER] = 200f
+      DISS_BONUS[ShipAPI.HullSize.FRIGATE] = 600f
+      DISS_BONUS[ShipAPI.HullSize.DESTROYER] = 900f
+      DISS_BONUS[ShipAPI.HullSize.CRUISER] = 1200f
+      DISS_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 1800f
     }
 
   }
@@ -121,7 +121,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     ))
 
     //列表展示关于波动值的数据
-    val col2W0 = width * 0.5f
+    val col2W0 = width * 0.4f
     //第一列显示的名称，尽可能可能的长
     val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
     tooltip.beginTable(
@@ -174,7 +174,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       ship.shield?:return
 
       val actualDamageToShield = result?.damageToShields?:0f
-      accumlated += actualDamageToShield
+      accumlated += actualDamageToShield / (ship.shield.fluxPerPointOfDamage + 0.001f)
       accumlated = MathUtils.clamp(accumlated, 0f, max)
       level = accumlated/threshold
       level = MathUtils.clamp(level,0f,1f)
@@ -209,12 +209,10 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui", ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          aEP_DataTool.txt("level")
-            +": "+String.format("%.0f", level * MAX_SHUNT_PERCENT)+"%"
-            +" "+String.format("+%.0f", level*dissipationBonus)
-            +" "+String.format("%.0f / %.0f", accumlated, max),  //data
-          false
-        )
+            txt("aEP_ShieldFloating01") + ": "+String.format("%4.0f / %4.0f", accumlated, max) +
+            " "+txt("aEP_ShieldFloating05") + ": "+String.format("+%.0f", level*dissipationBonus),
+            false)
+
       }
 
     }

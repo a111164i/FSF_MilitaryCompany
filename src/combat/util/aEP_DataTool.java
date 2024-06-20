@@ -3,12 +3,10 @@ package combat.util;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
-import com.fs.starfarer.api.util.ListMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.lazywizard.lazylib.MathUtils;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -88,12 +86,12 @@ public class aEP_DataTool
   }
 
 
-  public static class floatDataRecorder
+  public static class FloatDataRecorder
   {
     private float lastFrameData;
     private float accumulatedData;
 
-    public floatDataRecorder() {
+    public FloatDataRecorder() {
       lastFrameData = 0f;
       accumulatedData = 0f;
     }

@@ -142,6 +142,9 @@ public class MissionDefinition implements MissionDefinitionPlugin {
       addShip(role.getVariantId(), role.getWeight()/1f);
     }
 
+    /* 强化某些船的刷新率 */
+    addShip( "aEP_cru_pingding_Standard",10f);
+    addShip( "aEP_cru_pingding_Elite",10f);
     //--------------------------------------------------------------//
     //创造敌人的list
     //主力舰/4，巡洋/2.5，驱逐/1.5，护卫为1

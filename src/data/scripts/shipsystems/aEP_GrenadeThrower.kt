@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lwjgl.util.vector.Vector2f
@@ -24,6 +25,7 @@ class aEP_GrenadeThrower:  BaseShipSystemScript() {
   var decoToLevel = 0f
   var decoLevel = 0f
   var decoMoveSpeed = 1f
+  var didBurst = false
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     //复制粘贴这行
@@ -35,8 +37,23 @@ class aEP_GrenadeThrower:  BaseShipSystemScript() {
       for(w in ship.allWeapons){
         if(w.slot.id.startsWith("SYS")){
           w.setForceFireOneFrame(true)
+          if(!didBurst){
+            didBurst = true
+            val sizeMult = 1f
+            Global.getCombatEngine().spawnExplosion(
+              w.location,
+              Vector2f.add(aEP_Tool.speed2Velocity(w.currAngle, 60f),Misc.ZERO,null),
+              Color(240,110,20,255), 75f * sizeMult, 0.3f)
+            //闪光
+            Global.getCombatEngine().addSmoothParticle(
+              w.location,
+              Misc.ZERO,
+              450f,1f,0f,0.15f,Color(255,215,50,254))
+          }
         }
       }
+    }else{
+      didBurst = false
     }
 
   }

@@ -7,7 +7,7 @@
 
     "aEP_fga_xiliu_Standard": 3,
     "aEP_fga_xiliu_Elite": 3,
-    "aEP_fga_xiliu_AntiFtr":3,
+    "aEP_fga_xiliu_Beam":3,
 
     "aEP_fga_yonglang_Mixed": 3,
     "aEP_fga_yonglang_Standard": 4,
@@ -32,9 +32,9 @@
     "aEP_fga_xiliu_mk2_Elite": 3,
     "aEP_fga_xiliu_mk2_Standard": 3,
 
-    "aEP_fga_xiliu_Standard": 4,
-    "aEP_fga_xiliu_Elite": 3,
-    "aEP_fga_xiliu_AntiFtr":3,
+    "aEP_fga_xiliu_Standard": 6,
+    "aEP_fga_xiliu_Elite": 2,
+    "aEP_fga_xiliu_Beam":2,
 
     "aEP_fga_raoliu_PD": 5,
     "aEP_fga_raoliu_Standard":5,
@@ -78,8 +78,8 @@
     "aEP_cru_requan_Assault": 3,
 
     "aEP_cru_pingding_Standard": 2,
-    "aEP_cru_pingding_Elite": 3,
-
+    "aEP_cru_pingding_Elite": 2,
+    "aEP_cru_pingding_Ranged": 1
 },
   "combatCapital": {
     "aEP_cap_biaobing_Standard": 1,

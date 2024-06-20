@@ -11,9 +11,11 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 异象导弹雷云,aEP_cap_nuanchi_missile3,,,
 巨型探矿脉冲,aEP_type28_cannon,unknown,工程设备,
 瀑布弹射器,aEP_cru_pubu_main,,,
-"NGW-S04 新世代主战火炮",aEP_cru_pingding_main,FSF制造,反装甲,
-"NGW-R23 电磁投射器",aEP_cru_pingding_main2,FSF制造,反装甲,""
-"NGW-G2 火箭增程炮",aEP_cru_pingding_main3,FSF制造,反装甲,"弹丸可以穿过友军
+NGW-S04 新世代主战火炮,aEP_cru_pingding_main,FSF制造,反装甲,
+NGW-R23 电磁投射器,aEP_cru_pingding_main2,FSF制造,反装甲,"弹丸可以穿过友军
+
+弹丸属于导弹，可以被拦截"
+NGW-G2 火箭增程炮,aEP_cru_pingding_main3,FSF制造,反装甲,"弹丸可以穿过友军
 
 弹丸属于导弹，可以被拦截"
 死海-激光测距仪,aEP_cru_pingding_lidardish,,,
@@ -21,13 +23,13 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 热泉长程导弹发射舱,aEP_cru_requan_missile,FSF制造,反装甲,
 热泉长程导弹发射系统,aEP_cap_requan_missile,FSF制造,反装甲,
 巡航导弹发射装置,aEP_des_shendu_mk2_cruise_missile,FSF制造,终结,
-内置弹幕炮,aEP_des_yangji_flak,FSF制造,,爆炸击中时，对每个目标造成一次{%s}额外破片伤害
+洋脊弹幕炮,aEP_des_yangji_flak,FSF制造,,爆炸击中时，对每个目标造成一次{%s}额外破片伤害
 内置炸弹抛洒器,aEP_des_lianliu_grenade_thrower,FSF制造,反装甲,
 内置微型DEM,aEP_des_taodong_dem,FSF制造,通用,导弹在接近目标时会发射光束，在 %s 秒内造成约 %s 能量伤害。此伤害受导弹武器伤害效果影响，而不受能量武器伤害效果影响。
 --光束,aEP_des_taodong_dem_payload,,,
 """洄游""导弹",aEP_fga_xiliu_mk2_missile,FSF制造,通用,
 反冲力炮,aEP_fga_yonglang_main,FSF制造,反护盾,"击中护盾时，造成等同emp伤害的额外动能伤害,但额外部分只造成软幅能"
-"""沸腾""激光器-聚焦",aEP_fga_xiliu_main,FSF制造,点防御,"击中时，对护盾造成硬幅能，并产生电弧打击周围{%s}范围内最多{%s}个其他目标，每道造成{%s}点能量伤害
+"""沸腾""激光器-聚焦",aEP_fga_xiliu_main,FSF制造,点防御,"击中时，产生电弧打击周围{%s}范围内最多{%s}个其他目标，每道造成{%s}点能量伤害
 
 本武器在下线后会立刻修复
 
@@ -159,8 +161,8 @@ BAC爆射突击炮,aEP_ftr_bom_attacker_gun,FSF制造,反装甲,
 
 如果装甲修复完成，最多可以将结构值恢复到最满状态的{%s}
 
-对FSF的舰船效果更好
-"
+对FSF的舰船效果更好"
+路德之矛校准,aEP_ftr_bom_lancer_laser,,,
 ,,,,
 ,,,,
 """德雷克""喷火器",aEP_e_s_flamer,FSF胡乱改造,反装甲,

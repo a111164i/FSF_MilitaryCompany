@@ -1,87 +1,89 @@
-name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,,sprite,sModDesc,
-,,,,,,,,,,,,,,,,,,,,,
-FSF Ship Design,aEP_SpecialHull,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"A higher level implement of ship-wide gravity field, the shell is designed to receive or send force to a nearby friendly ship. A fleet purely made of FSF ships can swiftly swap between different formations
-
-Although many of the FSF ships have low max speed, zero flux boost can be activated for long range reposition",,,graphics/aEP_hullmods/aEP_marker_dissipation.png,,
+name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,,sprite,sModDesc
+,,,,,,,,,,,,,,,,,,,,
+FSF Ship Design,aEP_SpecialHull,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"A higher level implement of ship-wide gravity field, the shell is designed to receive or send force to a nearby friendly ship. A fleet purely made of FSF ships can swiftly swap between different formations",,,graphics/aEP_hullmods/aEP_marker_dissipation.png,
 Missile Platform,aEP_MissilePlatform,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"A integrated missile factory has taken all empty space, at the cost of max ammo, to continuously produce ammo. This applies to all missile weapons mounted on missile or composite slot.
 
-This ship has a resource named %s, it will be consumed to produce ammo if any missile weapon is not full and recovers over time",,,graphics/aEP_hullmods/aEP_missile_platform.png,,
+This ship has a resource named %s, it will be consumed to produce ammo if any missile weapon is not full and recovers over time",,,graphics/aEP_hullmods/aEP_missile_platform.png,
 FCS Radar,aEP_BBAdjustRange,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_BBAdjustRange,"The wave radar provides half of this ship's targeting ability, the other half is provided by this modification
 
-Ballistic/energy weapon range %s",,,graphics/hullmods/ecm_package.png,,
+Ballistic/energy weapon range %s",,,graphics/hullmods/ecm_package.png,
 Limited Targeting System,aEP_LimitedTurret,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_LimitedTurret,"A outdated but durable targeting system with mechanic computing, strong against any type of impact, physical or EMP
 
-Ballistic/energy weapon range %s, durability %s, repair time in battle %s",,,graphics/aEP_hullmods/aEP_limited_turret.png,,
-Towline,aEP_Tugboat,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Tugboat,Vigorous engine of this ship can tow another slower friendly fleet member to its speed,,,graphics/aEP_hullmods/aEP_tug_ship.png,,
-Main Gun Swapper Hidden,aEP_PingdingMainSwapHidden,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_PingdingMainSwapHidden,,,,graphics/aEP_hullmods/aEP_flux_magazine.png,,
-Main Gun Swapper,aEP_PingdingMainSwap1,0,FSF Design,,no_build_in,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_PingdingMainSwapHidden,"Remove this hullmod to swap between different built-in weapons",,,graphics/aEP_hullmods/aEP_flux_magazine.png,,
+Ballistic/energy weapon range %s, durability %s, repair time in battle %s",,,graphics/aEP_hullmods/aEP_limited_turret.png,
+Towline,aEP_Tugboat,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Tugboat,Vigorous engine of this ship can tow another slower friendly fleet member to its speed,,,graphics/aEP_hullmods/aEP_tug_ship.png,
+Main Gun Swapper Hidden,aEP_PingdingMainSwapHidden,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_PingdingMainSwapHidden,,,,graphics/aEP_hullmods/aEP_flux_magazine.png,
+Main Gun Swapper,aEP_PingdingMainSwap1,0,FSF Design,,no_build_in,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_PingdingMainSwapHidden,Remove this hullmod to swap between different built-in weapons,,,graphics/aEP_hullmods/aEP_flux_magazine.png,
 Open Field Hanger,aEP_OpenFieldHangar,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_OpenFieldHangar,"The big open deck in the central of this ship makes it possible to deploy more fighters in a wing, but doubling the work for a single LPC chip dropped its performance a little bit
 
-All non built-in wings will be infinitely extra deployed to %s, but all fighters of this ship deal %s damage to enemy ships",,,graphics/aEP_hullmods/aEP_open_field.png,,
-Accelerated Gunnery,aEP_AcceleratedGunnery,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AcceleratedGunnery,"Fine-tuned control chip accelerates every movement related to weapon cycling, only ships pre-built with above average steel can long-term stand its side effects
+All non built-in wings will be infinitely extra deployed to %s, but they deal %s damage to enemy ships",,,graphics/aEP_hullmods/aEP_open_field.png,
+Accelerated Gunnery,aEP_AcceleratedGunnery,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AcceleratedGunnery,"Fine-tuned control chip accelerates every movement related to weapon cycling, only ships pre-built with above-average steel can long-term stand its side effects
 
-Ballistic/energy weapon rate of fire %s. When the shipsystem is activating that bonus changes to %s",,,graphics/aEP_hullmods/aEP_accelerated_gunnery.png,,
-Cruise Missile Carrier,aEP_CruiseMissileCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CruiseMissileCarrier,"A specialized cruise missile vessel, letting you load cruise missile in intel page",,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
-Anchored Self Rotate,aEP_SelfRotate,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SelfRotate,This module constantly rotates around its axis,,,graphics/aEP_hullmods/aEP_self_rotate.png,,
+Ballistic/energy weapon RoF and ammo regen speed %s. When the shipsystem is activating that bonus changes to %s",,,graphics/aEP_hullmods/aEP_accelerated_gunnery.png,
+Cruise Missile Carrier,aEP_CruiseMissileCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CruiseMissileCarrier,"A specialized cruise missile vessel, letting you load cruise missile in intel page",,,graphics/aEP_hullmods/aEP_CM_carrier.png,
+Anchored Self Rotate,aEP_SelfRotate,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SelfRotate,This module constantly rotates around its axis,,,graphics/aEP_hullmods/aEP_self_rotate.png,
 Module Targeting Unit,aEP_ModuleTargeting,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,"Uncommon targeting solution for ship modules to base some of the sensors on its parent, also makes some of the modification not available
 
-Ballistic/energy weapon range %s",,,graphics/aEP_hullmods/aEP_small_target_core.png,,
-Attack Carrier,aEP_AttackCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,"To send fighters faster and further away, all fighters of this ship is equipped with induction coil to receive a boost",,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,,
-Strafe,aEP_Strafe,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"This ship slowly recover strafe energy. Whenever a large weapon in this ship is in cooldown, consume strafe energy to eliminate cooldown remaining
+Ballistic/energy weapon range %s",,,graphics/aEP_hullmods/aEP_small_target_core.png,
+Attack Carrier,aEP_AttackCarrier,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,"To send fighters faster and further away, all fighters of this ship is equipped with induction coil to receive a boost",,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,
+Strafe,aEP_Strafe,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"This ship slowly recovers strafe energy. Whenever a large weapon is in cooldown, consume strafe energy to eliminate its cooldown remaining
 
-To fully recharge strafe energy takes %s seconds, when fully charged it can eliminate %s seconds of cooldown, shortest firing interval is %s
+Fully recharge strafe energy takes %s seconds, when fully charged it can eliminate %s seconds of cooldown, after elimination the shortest fire interval is %s
 
-If this ship's shipsystem is out of charge, immediately consume %s of strafe energy to get a charge. Each time this ship uses shipsystem, fires several low power built-in missiles to distract enemy",,,graphics/aEP_hullmods/aEP_strafe.png,,
+If this ship's shipsystem is out of charge, immediately consume %s of strafe energy to get a charge.
+
+Each time this ship uses shipsystem, fires several low power built-in missiles to distract enemy",,,graphics/aEP_hullmods/aEP_strafe.png,
 Pre-planted Reactive Armor,aEP_ReactiveArmor,1,FSF Design,,"FSF, defensive",Defenses,10000,,TRUE,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"Planted explosive reactive armors under main armor belt, response to high damage on hit
 
-When the hull takes a damage >= %s, the ERA triggers, consuming 1 ammo and that damage %s. The ship has %s ERAs in total",,,graphics/aEP_hullmods/aEP_reactive_armor.png,,
+When the hull takes a damage >= %s, the ERA triggers, consuming 1 ammo and that damage %s. The ship has %s ERAs in total",,,graphics/aEP_hullmods/aEP_reactive_armor.png,
 Composite Targeting System,aEP_TargetSystem,0,FSF Design,,,,,,TRUE,,4,5,9,12,data.scripts.hullmods.aEP_TargetSystem,"A composite targeting system in combination of laser, radio, optic rangefinder, capable of doing capital scale range bonus
 
-Ballistic/energy non-PD weapon range %s, PD weapon %s, but the range part above %s is subtracted %s",,,graphics/aEP_hullmods/aEP_target_system.png,,
-High Speed Maneuver,aEP_HighSpeedManeuver,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_HighSpeedManeuver,"The small shape of this ship allows it to graze between bullets, although not for long",,,graphics/aEP_hullmods/aEP_high_speed_maneuver.png,,
+Ballistic/energy non-PD weapon range %s, PD weapon %s, but the range part above %s is subtracted %s",,,graphics/aEP_hullmods/aEP_target_system.png,
+High Speed Maneuver,aEP_HighSpeedManeuver,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_HighSpeedManeuver,"The small shape of this ship allows it to graze between bullets, although not for long",,,graphics/aEP_hullmods/aEP_high_speed_maneuver.png,
 Multi-turret Optimization,aEP_HLMultiTurret,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MultiTurret,"Part of weapon structure is built into the slots,
 
-Ballistic/energy weapon OP cost from small to large reduced by %s/ %s/ %s",,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,
+Ballistic/energy weapon OP cost from small to large reduced by %s/ %s/ %s",,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,
 Close Targeting,aEP_CloseTargeting,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CloseTargeting,"A PD orientated targeting system, help PD weapons on smaller ship shoot as well as on capital ship.
 
-PD weapon range %s, all ballistic/energy weapon recoil and max spread %s, projectile speed %s",,,graphics/aEP_hullmods/aEP_close_targeting.png,,
+PD weapon range %s, all ballistic/energy weapon recoil and max spread %s, projectile speed %s
+
+This ship deals significantly less damage to allies",,,graphics/aEP_hullmods/aEP_close_targeting.png,
 Shield Focus,aEP_FocusOnShield,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FocusOnShield,"Redirect lines that were used by weapon system to shield system, enforcing shield performance
 
-Shield damage taken %s, all ballistic/energy weapon flux cost %s, max shield active arc during battle is limited to %s",,,graphics/aEP_hullmods/aEP_focus_on_shield.png,,
+Shield damage taken %s, all ballistic/energy weapon flux cost %s, max shield active arc during battle is limited to %s",,,graphics/aEP_hullmods/aEP_focus_on_shield.png,
 Titanic Killer,aEP_TitanicKiller,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TitanicKiller,"A dreadnought is born to defeat a qualified opponent.
 
-According to hullsize, if the target's base DP is above certain start point, for every few DP above, damage %s per step, to the max of %s",,,graphics/aEP_hullmods/aEP_titanic_killer.png,,
-Twin Fighter,aEP_TwinFighter,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,"The Gunnery module at front part of this ship is a individual fighter, which can be launched to coordinately attack target at flank",,,graphics/aEP_hullmods/aEP_twin_fighter.png,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,,,,
+According to hullsize, if the target's base DP is above certain start point, for every few DP above, damage %s per step, to the max of %s",,,graphics/aEP_hullmods/aEP_titanic_killer.png,
+Twin Fighter,aEP_TwinFighter,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,"The Gunnery module at front part of this ship is a individual fighter, which can be launched to coordinately attack target at flank",,,graphics/aEP_hullmods/aEP_twin_fighter.png,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,,,
 Elite Ship,aEP_EliteShip,2,FSF Design,,"FSF, no_build_in, req_spaceport, defensive",Defenses,25000,,,,1,1,1,1,data.scripts.hullmods.aEP_EliteShip,"This modification aimed to maximize the defense of ship, including a total overhaul to all mechanism parts, using micro drones to detect and fix every small leak within pipelines, and replacing main armor belt with better material.
 
-Besides ordinary improvement, a backup overload respond is installed, a disposal drone will hold a ship-size shield till the ship recovers.",,,graphics/aEP_hullmods/aEP_elite_ship.png,,
-Emergency Reconstruct,aEP_EmergencyReconstruct,2,FSF Design,,"FSF, defensive",Defenses,25000,,TRUE,,10,20,30,50,data.scripts.hullmods.aEP_EmergencyReconstruct,"Inspired by an automated ship design, a whole set of scaffold is put into compressed phase space. Once the ship receives a lethal damage, it initiates a emergency reconstruction progress to fully restore its hullpoints and armor",,,graphics/aEP_hullmods/aEP_emergency_reconstruct.png,,
-Controlled Shield,aEP_ShieldControlled,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,"Specialized shield gen cooperating with targeting system, harden shield just before impact, but incapable of tracking projectiles fired close in",,,graphics/aEP_hullmods/aEP_controled_shield.png,,
-Floating Shield,aEP_ShieldFloating,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,"Specialized shield gen producing liquid-like surface, harder the impact higher the efficiency, providing flux shunt ability",,,graphics/aEP_hullmods/aEP_resist_shield.png,,
+Besides ordinary improvement, a backup overload respond is installed, a disposal drone will hold a ship-size shield till the ship recovers.",,,graphics/aEP_hullmods/aEP_elite_ship.png,
+Emergency Reconstruct,aEP_EmergencyReconstruct,2,FSF Design,,"FSF, defensive",Defenses,25000,,TRUE,,10,20,30,50,data.scripts.hullmods.aEP_EmergencyReconstruct,"Inspired by an automated ship design, a whole set of scaffold is put into compressed phase space. Once the ship receives a lethal damage, it initiates a emergency reconstruction progress to fully restore its hullpoints and armor",,,graphics/aEP_hullmods/aEP_emergency_reconstruct.png,
+Controlled Shield,aEP_ShieldControlled,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,"Specialized shield gen cooperating with targeting system, harden shield just before impact, but incapable of tracking projectiles fired close in",,,graphics/aEP_hullmods/aEP_controled_shield.png,
+Floating Shield,aEP_ShieldFloating,1,FSF Design,,"FSF, shields",Shields,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,"Specialized shield gen producing liquid-like surface, harder the impact higher the efficiency.",,,graphics/aEP_hullmods/aEP_resist_shield.png,
 Hot Loader,aEP_HotLoader,1,FSF Design,,"FSF, offensive",Weapons,20000,,,,8,12,18,25,data.scripts.hullmods.aEP_HotLoader,"Recoil recycling device designed by the company, exploit potential space for expand magazine to boost ammo regen
 
-Ballistic/energy weapons ammo regen speed %s",,,graphics/aEP_hullmods/aEP_hot_loader.png,Ammo regen speed bonus changes to %s,
+Ballistic/energy weapons ammo regen speed %s",,,graphics/aEP_hullmods/aEP_hot_loader.png,Ammo regen speed bonus changes to %s
 Vanguard Hull,aEP_VanguardHull,1,FSF Design,,"FSF, defensive",Defenses,10000,,,,8,12,18,20,data.scripts.hullmods.aEP_VanguardHull,"Improve the hardness of hull has been proven to be with little help to big anti-ship guns, but it does significantly reduce damage from many small impacts
 
-Each time the hull takes a damage, have %s chance to reduce it by %s",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,"Trigger chance changes to %s, damage reduction changes to %s",
-Strategy Thruster,aEP_StrategyThruster,1,FSF Design,,"FSF, engines",Engines,10000,,,,5,10,15,25,data.scripts.hullmods.aEP_StrategyThruster,"Be quicker in long range reposition is the key to get strategy advantage, this engine modification improves zero flux boost ability, thought come with a price of combat performance",,,graphics/aEP_hullmods/aEP_strategy_thruster.png,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,
-Type28 Shield Gen,aEP_Type28Shield,0,unknown,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"A miracle shield generator is installed on this ship, with insane damage abortion rate, as price this hullmod is incompatible with any other hullmod",,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,,
-FSF Module,aEP_Module,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,,graphics/aEP_hullmods/aEP_self_rotate.png,,
-ADS Shield,aEP_MaoDianShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
-Cruise Missile Trigger S-1,aEP_CruiseMissile,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
-Cruise Missile Trigger S-2,aEP_CruiseMissile2,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,,graphics/aEP_hullmods/aEP_CM_carrier.png,,
+Each time the hull takes a damage, have %s chance to reduce it by %s",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,"Trigger chance changes to %s, damage reduction changes to %s"
+Strategy Thruster,aEP_StrategyThruster,1,FSF Design,,"FSF, engines",Engines,10000,,,,5,10,15,25,data.scripts.hullmods.aEP_StrategyThruster,"Be quicker in long range reposition is the key to get strategy advantage, this engine modification improves zero flux boost ability, thought come with a price of combat performance",,,graphics/aEP_hullmods/aEP_strategy_thruster.png,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Type28 Shield Gen,aEP_Type28Shield,0,unknown,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"A miracle shield generator is installed on this ship, with insane damage abortion rate, as price this hullmod is incompatible with any other hullmod",,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,
+FSF Module,aEP_Module,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,,graphics/aEP_hullmods/aEP_self_rotate.png,
+ADS Shield,aEP_MaoDianShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,,graphics/aEP_hullmods/aEP_vanguard_hull.png,
+Cruise Missile Trigger S-1,aEP_CruiseMissile,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,,graphics/aEP_hullmods/aEP_CM_carrier.png,
+Cruise Missile Trigger S-2,aEP_CruiseMissile2,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Trigger explosion upon closing in,,,graphics/aEP_hullmods/aEP_CM_carrier.png,
 Fighter Armor Plate,aEP_FighterArmor,0,FSF Design,,,,,,TRUE,w,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"Fighter's armor/structure take less damage, weapons and engines are less likely to be disabled
 
-Armor/structure/weapon/engine take % less damage",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
-Tank Armor,aEP_FlyingTank,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Armor automatically repair itself to the maximum in short time,,,graphics/aEP_hullmods/aEP_self_rotate.png,,
-Projectile Denial Shield,aEP_ProjectileDenialShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_ProjectileDenialShield,"When a projectile hits shield, remove it and increase hard flux equals to its damage ",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
+Armor/structure/weapon/engine take % less damage",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,
+Tank Armor,aEP_FlyingTank,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,Armor automatically repair itself to the maximum in short time,,,graphics/aEP_hullmods/aEP_self_rotate.png,
+Projectile Denial Shield,aEP_ProjectileDenialShield,0,FSF Design,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_ProjectileDenialShield,"When a projectile hits shield, remove it and increase hard flux equals to its damage ",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,

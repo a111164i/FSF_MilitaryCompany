@@ -1770,7 +1770,6 @@ class aEP_Tool {
                           canAimModule:Boolean,
                           canAimNoneCollision:Boolean,
                           canAimFighter:Boolean): Boolean{
-      if(!Global.getCombatEngine().isEntityInPlay(target)) return false
       if(target.isHulk || !target.isAlive || !Global.getCombatEngine().isEntityInPlay(target)) return false
       if(!target.isTargetable) return false
       if(target.hasTag(Tags.VARIANT_FX_DRONE)) return false

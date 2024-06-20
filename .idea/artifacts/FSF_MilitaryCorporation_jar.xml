@@ -2,7 +2,7 @@
   <artifact type="jar" name="FSF_MilitaryCorporation:jar">
     <output-path>$PROJECT_DIR$/jars</output-path>
     <root id="archive" name="FSF_MilitaryCorporation.jar">
-      <element id="module-output" name="FSF_MilitaryCompany" />
+      <element id="module-output" name="FSF_MilitaryCorporation" />
     </root>
   </artifact>
 </component>

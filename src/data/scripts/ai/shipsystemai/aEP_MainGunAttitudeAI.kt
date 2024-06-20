@@ -38,7 +38,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
     for(w in ship.allWeapons){
       if(w.isDecorative) continue
       if(w.slot.id.equals(aEP_PingdingMainSwapHidden.MAIN_SLOT)) {
-        maxWeaponRange = w.range + 9999f
+        maxWeaponRange = w.range
       }
     }
 

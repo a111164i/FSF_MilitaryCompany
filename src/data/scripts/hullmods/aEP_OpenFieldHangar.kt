@@ -190,7 +190,7 @@ class aEP_OpenFieldHangar: aEP_BaseHullMod(), AdvanceableListener {
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String? {
     //if (index == 0) return String.format("%.0f", ACTIVE_COOLDOWN)
-    if (index == 0) return String.format("%.0f", 100f) +"%"
+    if (index == 0) return String.format("%.0f", 200f) +"%"
     if (index == 1) return String.format("-%.0f", 50f) +"%"
     else return null
   }

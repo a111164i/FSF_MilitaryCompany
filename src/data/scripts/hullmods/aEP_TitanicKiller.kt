@@ -19,21 +19,21 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
     const val ID = "aEP_TitanicKiller"
 
     const val DAMAGE_MULTIPLIER = 1.15f
-    const val MAX_DAMAGE_MULTIPLIER = 3f
+    const val MAX_DAMAGE_MULTIPLIER = 4f
 
     val START_DP = LinkedHashMap<ShipAPI.HullSize, Float>()
     init {
-      START_DP[ShipAPI.HullSize.CAPITAL_SHIP] = 45f
-      START_DP[ShipAPI.HullSize.CRUISER] = 24f
-      START_DP[ShipAPI.HullSize.DESTROYER] = 12f
-      START_DP[ShipAPI.HullSize.FRIGATE] = 6f
+      START_DP[ShipAPI.HullSize.CAPITAL_SHIP] = 50f
+      START_DP[ShipAPI.HullSize.CRUISER] = 30f
+      START_DP[ShipAPI.HullSize.DESTROYER] = 14f
+      START_DP[ShipAPI.HullSize.FRIGATE] = 8f
     }
 
     val DP_STEP = LinkedHashMap<ShipAPI.HullSize, Float>()
     init {
       DP_STEP[ShipAPI.HullSize.CAPITAL_SHIP] = 5f
-      DP_STEP[ShipAPI.HullSize.CRUISER] = 4f
-      DP_STEP[ShipAPI.HullSize.DESTROYER] = 3f
+      DP_STEP[ShipAPI.HullSize.CRUISER] = 3f
+      DP_STEP[ShipAPI.HullSize.DESTROYER] = 2f
       DP_STEP[ShipAPI.HullSize.FRIGATE] = 2f
     }
   }
@@ -112,6 +112,8 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
     target?: return null
 
     if(target is ShipAPI){
+      if(target.isStation || target.parentStation?.isStation == true) return null
+
       var startDp = START_DP[target.hullSize]?:24f
       var dpStep = DP_STEP[target.hullSize]?:4f
       var dp = target.hullSpec.suppliesToRecover

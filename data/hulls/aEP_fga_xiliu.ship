@@ -13,8 +13,8 @@
   "viewOffset": 0,
   "builtInMods": [
     "aEP_SpecialHull",
-	  "aEP_HLMultiTurret",
-    "ground_support"
+    "aEP_HLMultiTurret",
+    "aEP_CloseTargeting"
   ],
   "builtInWeapons": {
     "GREEN": "aEP_fga_xiliu_green",
@@ -47,8 +47,8 @@
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 150,
-      "angle": 45,
+      "arc": 190,
+      "angle": 70,
       "locations": [2.5, 18],
       "renderOrderMod": 1
     },
@@ -57,8 +57,8 @@
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 150,
-      "angle": -45,
+      "arc": 190,
+      "angle": -70,
       "locations": [2.5, -18],
       "renderOrderMod": 1
     },
@@ -67,9 +67,9 @@
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 150,
-      "angle": 135,
-      "locations": [-17.5, 18],
+      "arc": 190,
+      "angle": 110,
+      "locations": [-16.5, 18],
       "renderOrderMod": 2
     },
     {
@@ -77,9 +77,9 @@
       "size": "SMALL",
       "type": "HYBRID",
       "mount": "TURRET",
-      "arc": 150,
-      "angle": -135,
-      "locations": [-17.5, -18],
+      "arc": 190,
+      "angle": -110,
+      "locations": [-16.5, -18],
       "renderOrderMod": 2
     },
     {

@@ -1,7 +1,7 @@
 {
     "displayName": "Beam",
-    "fluxCapacitors": 10,
-    "fluxVents": 9,
+    "fluxCapacitors": 8,
+    "fluxVents": 8,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
@@ -9,11 +9,12 @@
         "pointdefenseai",
         "advancedoptics",
         "turretgyros",
-        "aEP_ShieldControlled"
+        "aEP_ShieldControlled",
+        "armoredweapons"
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_fga_xiliu_AntiFtr",
+    "variantId": "aEP_fga_xiliu_Beam",
     "weaponGroups": [
         {
             "autofire": true,
@@ -34,11 +35,11 @@
             }
         },
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L02": "lrpdlaser",
-                "R02": "lrpdlaser"
+                "L02": "vulcan",
+                "R02": "vulcan"
             }
         }
     ]

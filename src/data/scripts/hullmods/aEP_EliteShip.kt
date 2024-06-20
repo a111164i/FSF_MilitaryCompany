@@ -204,12 +204,19 @@ class aEP_EliteShip : aEP_BaseHullMod() {
     addPositivePara(tooltip, "aEP_EliteShip01", arrayOf(
       String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT*100f) +"%"
     ))
+
+    var bonus = ARMOR_BONUS_FLAT
+    ship?.run { bonus += ship.hullSpec.armorRating *  ARMOR_BONUS_PERCENT/100f}
     addPositivePara(tooltip, "aEP_EliteShip02", arrayOf(
-      String.format("+%.0f", ARMOR_BONUS_FLAT) +" " + String.format("+%.0f", ARMOR_BONUS_PERCENT)+"%"
+      String.format("+%.0f", bonus)
     ))
+
+    bonus = HULL_BONUS_FLAT
+    ship?.run { bonus += ship.hullSpec.hitpoints *  HULL_BONUS_PERCENT/100f}
     addPositivePara(tooltip, "aEP_EliteShip06", arrayOf(
-      String.format("+%.0f", HULL_BONUS_FLAT) +" "+ String.format("+%.0f", HULL_BONUS_PERCENT)+"%"
+      String.format("+%.0f", HULL_BONUS_FLAT)
     ))
+
     addPositivePara(tooltip, "aEP_EliteShip05", arrayOf(
       String.format("+%.0f", SPEED_BONUS[hullSize]?: 5f)
     ))
@@ -224,9 +231,18 @@ class aEP_EliteShip : aEP_BaseHullMod() {
     ))
 
     //负面
+    var dp = 0f
+    ship?.run {
+      val baseCost = ship.mutableStats.suppliesToRecover.baseValue
+      val increasePercent = (DP_INCREASE[hullSize]?: DEFAULT_DP_INCREASE)/100f
+      dp = (baseCost * increasePercent).coerceAtLeast(DP_INCREASE_MIN)
+
+
+    }
     addNegativePara(tooltip, "aEP_EliteShip03", arrayOf(
       String.format("+%.0f", DP_INCREASE[hullSize]?: DEFAULT_DP_INCREASE) +"%",
-      String.format("+%.0f", DP_INCREASE_MIN)
+      String.format("+%.0f", DP_INCREASE_MIN),
+      String.format("+%.0f", dp)
     ))
     //不兼容
     showIncompatible(tooltip)

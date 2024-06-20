@@ -23,25 +23,25 @@
         "aEP_PingdingMainSwapHidden"
     ],
     "builtInWeapons": {
-        # 要使用插件切换，则不能写入built-in
-        # "MAIN": "aEP_cru_pingding_main",
         "WS0011": "aEP_cru_pingding_torpedo",
         "WS0005": "aEP_cru_pingding_lidardish",
         "WS0009": "aEP_cru_pingding_lidardish",
         "WS0008": "aEP_cru_pingding_armor_l1",
         "WS0001": "aEP_cru_pingding_armor_l2",
         "WS0010": "aEP_cru_pingding_armor_r2",
-        "WS 002": "aEP_cru_pingding_barrel_sleeve_r2",
         "WS 006": "aEP_cru_pingding_armor_r1",
-        "WS 005": "aEP_cru_pingding_barrel_sleeve_l1",
-        "WS 004": "aEP_cru_pingding_barrel_sleeve_r1",
-        "WS 003": "aEP_cru_pingding_barrel_sleeve_l2",
         "WS 008": "aEP_cru_pingding_tail_l1",
         "WS 009": "aEP_cru_pingding_tail_l2",
         "WS 007": "aEP_cru_pingding_tail_r1",
-        "WS 010": "aEP_cru_pingding_tail_r2"
+        "WS 010": "aEP_cru_pingding_tail_r2",
+        "WS 005": "aEP_cru_pingding_barrel_sleeve_l1",
+        "WS 004": "aEP_cru_pingding_barrel_sleeve_r1",
+        "WS 003": "aEP_cru_pingding_barrel_sleeve_l2",
+        "WS 002": "aEP_cru_pingding_barrel_sleeve_r2"
     },
-    "builtInWings": [],
+    "builtInWings": [
+        "aEP_ftr_ut_shuishi_wing2"
+    ],
     "builtInModules": null,
     "weaponSlots": [
         {
@@ -99,7 +99,6 @@
             "mount": "HARDPOINT",
             "arc": 0,
             "angle": 0,
-            "renderOrderMod": 0,
             "locations": [
                       60,        0
             ]
@@ -112,7 +111,7 @@
             "arc": 100,
             "angle": 0,
             "locations": [
-                      -6,      -32
+                   -11.5,      -30
             ]
         },
         {
@@ -154,8 +153,8 @@
             "size": "SMALL",
             "type": "DECORATIVE",
             "mount": "TURRET",
-            "arc": 30,
-            "angle": 0,
+            "arc": 20,
+            "angle": 10,
             "locations": [
                       33,      -35
             ]
@@ -165,8 +164,8 @@
             "size": "SMALL",
             "type": "DECORATIVE",
             "mount": "TURRET",
-            "arc": 30,
-            "angle": 0,
+            "arc": 20,
+            "angle": -10,
             "locations": [
                       33,       35
             ]
@@ -203,7 +202,7 @@
             "arc": 0,
             "angle": 0,
             "locations": [
-                      -3,       33
+                   -11.5,       30
             ]
         },
         {
@@ -344,6 +343,18 @@
             "locations": [
                      -43,      -52
             ]
+        },
+        {
+            "id": "LB 000",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     1.5,       30,
+                       0,       30
+            ]
         }
     ],
     "engineSlots": [
@@ -475,28 +486,35 @@
             86.5,    -47.5,
             86.5,    -41.5,
               47,    -41.5,
-              21,    -10.5,
+              28,      -24,
         
+            86.5,    -23.5,
+            86.5,    -13.5,
+              55,      -13,
             59.5,       -7,
             59.5,        7,
-              21,     10.5,
-              47,     41.5,
-            86.5,     41.5,
         
+              55,       13,
+            86.5,     13.5,
+            86.5,     23.5,
+              28,       24,
+              47,     41.5,
+        
+            86.5,     41.5,
             86.5,     47.5,
             71.5,       54,
               37,       54,
               24,       54,
-              10,       78,
         
+              10,       78,
            -23.5,     78.5,
            -16.5,       64,
              -28,     54.5,
              -77,       37,
-             -77,       21,
         
+             -77,       21,
              -58,       19,
              -72,        8
-    # 32 points total.
+    # 38 points total.
     ]
 }

@@ -14,7 +14,8 @@
   "builtInMods": [
     "aEP_SpecialHull",
     "aEP_HLMultiTurret",
-    "aEP_CloseTargeting"
+    "aEP_CloseTargeting",
+    "aEP_FocusOnShield"
   ],
   "weaponSlots": [
     {
@@ -87,8 +88,8 @@
       "size": "MEDIUM",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 180,
-      "angle": 135,
+      "arc": 190,
+      "angle": 110,
       "locations": [-46, 36],
       "renderOrderMod": 10
     },
@@ -97,8 +98,8 @@
       "size": "MEDIUM",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 180,
-      "angle": -135,
+      "arc": 190,
+      "angle": -110,
       "locations": [-46, -36],
       "renderOrderMod": 10
     },
@@ -107,8 +108,8 @@
       "size": "MEDIUM",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 180,
-      "angle": 45,
+      "arc": 190,
+      "angle": 70,
       "locations": [47, 36]
     },
     {
@@ -116,8 +117,8 @@
       "size": "MEDIUM",
       "type": "BALLISTIC",
       "mount": "TURRET",
-      "arc": 180,
-      "angle": -45,
+      "arc": 190,
+      "angle": -70,
       "locations": [47, -36]
     },
     {

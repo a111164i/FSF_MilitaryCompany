@@ -4,23 +4,20 @@
   "projectileSpecId": "aEP_cru_pingding_torpedo_shot",
   "type": "MISSILE",
   "size": "MEDIUM",
+  "everyFrameEffect": "data.scripts.weapons.aEP_WeaponEffect",
   "displayArcRadius": 4000,
-  "turretSprite": "graphics/weapons/aEP_cru_pingding/torpedo.png",
-  "hardpointSprite": "graphics/weapons/aEP_cru_pingding/torpedo.png",
-  "renderAboveAllWeapons": 0,
-  "everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  "renderHints": [
-    #RENDER_LOADED_MISSILES
-  ],
+  "turretSprite": "graphics/weapons/aEP_cru_pingding/launcher.png",
+  "hardpointSprite": "graphics/weapons/aEP_cru_pingding/launcher.png",
+  #"renderHints":[RENDER_LOADED_MISSILES],
   "turretOffsets": [
-    0,
+    15,
     0
   ],
   "turretAngleOffsets": [
     0
   ],
   "hardpointOffsets": [
-    0,
+    35,
     0
   ],
   "hardpointAngleOffsets": [
@@ -45,6 +42,5 @@
       105
     ]
   },
-  "textureType": ROUGH,
   "fireSoundTwo": "reaper_fire"
 }

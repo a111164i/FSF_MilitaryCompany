@@ -15,7 +15,7 @@ class aEP_FocusOnShield : aEP_BaseHullMod(){
   }
 
   init {
-    notCompatibleList.add(aEP_ShieldFloating.ID)
+    //notCompatibleList.add(aEP_ShieldFloating.ID)
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
@@ -32,6 +32,7 @@ class aEP_FocusOnShield : aEP_BaseHullMod(){
 
     stats.ballisticWeaponFluxCostMod.modifyPercent(ID, WEAPON_FLUX_USE_PERCENT_BONUS)
     stats.energyWeaponFluxCostMod.modifyPercent(ID, WEAPON_FLUX_USE_PERCENT_BONUS)
+    stats.missileWeaponFluxCostMod.modifyPercent(ID, WEAPON_FLUX_USE_PERCENT_BONUS)
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String {

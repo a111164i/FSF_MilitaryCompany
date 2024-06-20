@@ -9,18 +9,33 @@
 	"collisionClass":"MISSILE_NO_FF",
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"explosionColor":[243,242,161,250],  # purely visual, will get a white additively blended core on top of this color
-  "explosionRadius":50, # purely visual
-  "explosionSpec":{"duration":0.0001f, # not visual
-           "radius":100,
-           "coreRadius":50, # full damage within core radius
-           "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
-           "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
-           "particleSizeMin":6.0,
-           "particleSizeRange":6.0,
-           "particleDuration":0.8,
-           "particleCount":100,
-           "particleColor":[243,242,41,250]},
+	#"destroyedExplosionColor":[255,165,100,255],  # when the missile is destroyed by damage
+	"explosionColor":[255,255,255,255],  # purely visual, will get a white additively blended core on top of this color, overridden by "explosionSpec"
+	"explosionRadius":50, # purely visual	, overridden by "explosionSpec"
+  "explosionSpec":{
+    "duration":0.0001f, # not visual
+    "radius":75,
+    "coreRadius":50, # full damage within core radius
+    "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+    "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+    "particleSizeMin":4.0,
+    "particleSizeRange":6.0,
+    "particleDuration":1.8,
+    "particleCount":80,
+    "particleColor":[243,242,41,250],
+    "explosionColor":[243,222,70,205],
+
+    "useDetailedExplosion":true,
+    "useDetailedExplosionColorAlpha":true,
+    "detailedExplosionRadius":120,
+    "detailedExplosionFlashRadius":400,
+    "detailedExplosionFlashDuration":0.2,
+
+    "detailedExplosionFlashColorFringe":[243,152,70,255],
+    "detailedExplosionFlashColorCore":[243,192,100,255],
+
+    "sound":"aEP_m_l_blasthammer_explode"
+  },
    #"maxFlightTime":3, #一般用不上
 	"flameoutTime":0.5,  # total time from flameout to full fadeout
 	"armingTime":1, # safe range count by time
@@ -42,7 +57,7 @@
 	"engineSlots":[
 		{
 			"id":"ES1",
-      "loc":[-15,0],
+      "loc":[-24,0],
       "style":"CUSTOM",
       "styleSpec":{
         "mode":"PARTICLES", # PARTICLES or QUAD_STRIP, determines which params are used
@@ -54,14 +69,14 @@
         "contrailAngularVelocityMult":0.5,
         "contrailColor":[50,50,50,50],
         "type":"SMOKE"},
-	    "width":30,
-	    "length":120.0,
+	    "width":28,
+	    "length":112.0,
 	    "angle":180.0
     },
 
 		{
 		  "id":"ES2",
-		  "loc":[-6,-0],
+		  "loc":[-0,-0],
 		  "style":"CUSTOM",
 		  "styleSpec":{
 		    "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
@@ -76,8 +91,8 @@
 		    "glowSizeMult":0.25,
 		    #"glowAlternateColor":[181,121,100,255],
 		    "type":"SMOKE"},
-		  "width":30,
-		  "length":120.0,
+		  "width":25,
+		  "length":0.0,
 		  "angle":180.0
 		},
 	],

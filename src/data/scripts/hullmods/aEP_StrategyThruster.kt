@@ -14,20 +14,22 @@ import java.awt.Color
 class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
   companion object{
     const val ID = "aEP_StrategyThruster"
-    const val ALLOW_LEVEL_BONUS = 4f
+    const val ALLOW_LEVEL_BONUS = 10f
 
-    const val TIME_TO_MAX_BOOST = 3f
+    const val FLUX_SHUNT_PERCENT_BONUS = 0f
+
+    const val TIME_TO_MAX_BOOST = 1f
 
     val ZERO_FLUX_SPEED_BONUS = LinkedHashMap<ShipAPI.HullSize, Float>()
-    const val DEFAULT_BOOST_BONUS = 32f
+    const val DEFAULT_BOOST_BONUS = 0f
     init {
-      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 30f
-      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.CRUISER] = 30f
-      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.DESTROYER] = 35f
-      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.FRIGATE] = 40f
+      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 0f
+      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.CRUISER] = 0f
+      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.DESTROYER] = 0f
+      ZERO_FLUX_SPEED_BONUS[ShipAPI.HullSize.FRIGATE] = 0f
     }
 
-    const val CAP_PUNISH_MULT = 0.25f
+    const val CAP_PUNISH_REDUCE_MULT = 0.1f
 
   }
 
@@ -36,13 +38,15 @@ class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
     notCompatibleList.add(HullMods.UNSTABLE_INJECTOR)
 
     banShipList.add("aEP_cru_hailiang3")
+
+    canInstallOnCarrier = false
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     ship.mutableStats.zeroFluxMinimumFluxLevel.modifyFlat(ID, ALLOW_LEVEL_BONUS/100f)
     ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS[ship.hullSpec.hullSize]?: DEFAULT_BOOST_BONUS)
-
-    ship.mutableStats.fluxCapacity.modifyMult(ID, 1f - CAP_PUNISH_MULT)
+    ship.mutableStats.hardFluxDissipationFraction.modifyFlat(ID, FLUX_SHUNT_PERCENT_BONUS/100f)
+    ship.mutableStats.fluxCapacity.modifyMult(ID, 1f - CAP_PUNISH_REDUCE_MULT)
 
     if(!ship.hasListenerOfClass(this::class.java)){
       val cls = aEP_StrategyThruster()
@@ -75,10 +79,10 @@ class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
       nowSpeed = ship.mutableStats?.zeroFluxSpeedBoost?.modifiedValue?:nowSpeed
     }
 
-    addPositivePara(tooltip,"aEP_StrategyThruster01", arrayOf(
-      String.format("+%.0f", bonus),
-      String.format("%.0f", nowSpeed))
-    )
+//    addPositivePara(tooltip,"aEP_StrategyThruster01", arrayOf(
+//      String.format("+%.0f", bonus),
+//      String.format("%.0f", nowSpeed))
+//    )
 
     val level = ALLOW_LEVEL_BONUS
     addPositivePara(tooltip,"aEP_StrategyThruster02", arrayOf(
@@ -86,12 +90,10 @@ class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
       String.format("%.0f", ship?.mutableStats?.zeroFluxMinimumFluxLevel?.modifiedValue?.times(100f)?:level)+"%")
     )
 
+
     //负面
     addNegativePara(tooltip,"aEP_StrategyThruster03", arrayOf(
-      String.format("-%.0f", CAP_PUNISH_MULT*100f)+"%")
-    )
-    addNegativePara(tooltip,"aEP_StrategyThruster04", arrayOf(
-      String.format("%.0f", TIME_TO_MAX_BOOST))
+      String.format("-%.0f", CAP_PUNISH_REDUCE_MULT*100f)+"%")
     )
 
     //显示不兼容插件
@@ -122,14 +124,11 @@ class aEP_StrategyThruster:aEP_BaseHullMod(), AdvanceableListener {
 
     val level = time/ TIME_TO_MAX_BOOST
 
-    //脱离0幅能加速或者战术系统激活时，buff消退
-    if(!ship.isEngineBoostActive || ship.system?.isActive == true){
+    //脱离0幅能加速时，buff消退
+    if(!ship.isEngineBoostActive){
       time = (time - amount * 3f).coerceAtLeast(0f)
-      ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, 0f)
     }else{
       time = (time + amount).coerceAtMost(TIME_TO_MAX_BOOST)
-      var flatBonus = bonus * level
-      ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID, flatBonus)
       //改变颜色
       ship.engineController.fadeToOtherColor(ID, Color.green, null,1f,0.35f * level)
 

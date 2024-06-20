@@ -40,7 +40,9 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     //使用时打断右键系统
     if(!didOnce){
       didOnce = true
-      if(ship.phaseCloak != null) ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
+      if(ship.phaseCloak != null && ship.phaseCloak.isActive){
+        ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
+      }
 
     }
 

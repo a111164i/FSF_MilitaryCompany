@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.WeaponBaseRangeModifier
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
+import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.loading.WeaponSpecAPI
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
@@ -38,17 +39,23 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
       mag[HullSize.CRUISER] = 1050f
       mag[HullSize.CAPITAL_SHIP] = 1150f
     }
+    private const val REDUCE_MULT = 0.65f
 
+    //如果距离小于这个数，也会提供减伤
     private const val MIN_DAMAGE_RANGE = 0f
 
+    //外环，更远的弹丸提供更多减伤
+    private const val OUTER_RANGE = 2400f
+    private const val OUTER_DAMAGE_REDUCE_MULT = 0f
+
     //REDUCE_MULT 是 1 - x
-    private const val REDUCE_MULT = 0.65f
     private const val UPKEEP_PUNISH = 0f
     private const val MAX_WEAPON_RANGE_CAP = 900f
     val SHIFT_COLOR = Color(105,155,255,205)
     private const val COLOR_RECOVER_INTERVAL = 0.025f //by seconds
-    //基础降低来自导弹和光束的伤害
-    private const val BASE_DAMAGE_REDUCE_MULT = 0f //by seconds
+
+    //基础降低来自导弹的伤害
+    private const val BASE_DAMAGE_REDUCE_MULT = 0.20f //
     const val ID = "aEP_ShieldControlled"
 
     fun shouldModRange(w: WeaponAPI): Boolean{
@@ -93,7 +100,6 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     }
 
     ship.mutableStats.missileShieldDamageTakenMult.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
-    ship.mutableStats.beamShieldDamageTakenMult.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
@@ -105,6 +111,9 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
       //目前处于范围内
       val distSq = MathUtils.getDistanceSquared(ship.location, proj.location) - ship.shield.radius
       if(distSq < (mag[ship.hullSize] ?: 1000f).pow(2)){
+        //无视导弹，和来源于导弹的弹丸
+        if(proj is MissileAPI || proj.isFromMissile) continue
+
         //发射时处于范围外
         val spawnDistSq = MathUtils.getDistanceSquared(ship.location, proj.spawnLocation) - ship.shield.radius
         if(spawnDistSq > (mag[ship.hullSize] ?: 1000f).pow(2)){
@@ -146,7 +155,12 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     // 正面
     addPositivePara(tooltip, "aEP_ShieldControlled01", arrayOf(
       String.format("%.0f", mag[hullSize]?:1000f),
-      String.format("-%.0f", REDUCE_MULT*100f) +"%"))
+      String.format("-%.0f", REDUCE_MULT*100f)+"%"
+    ))
+
+    addPositivePara(tooltip, "aEP_ShieldControlled03", arrayOf(
+      String.format("-%.0f", BASE_DAMAGE_REDUCE_MULT*100f)+"%"
+    ))
 
     // 负面
     addNegativePara(tooltip, "aEP_ShieldControlled02", arrayOf(
@@ -203,45 +217,65 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     private var didChange = false
     private val shifter = ColorShifter(ship.shield.innerColor)
     private val ringShifter = ColorShifter(ship.shield.ringColor)
+
+    val reduceRangeSq = rad * rad
+    val outerRangeSq = OUTER_RANGE * OUTER_RANGE
+    val minRangeSq = MIN_DAMAGE_RANGE * MIN_DAMAGE_RANGE
+
     init {
       radius = rad + ship.collisionRadius
       layers = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
     }
 
+    fun changeShield(distSq:Float, damage: DamageAPI, isBeam:Boolean) : Boolean{
+      var alpha = 0.6f
+      if(isBeam) alpha = 0.4f
+
+      if(distSq >= outerRangeSq){
+        damage.modifier.modifyMult(ID, 1f - OUTER_DAMAGE_REDUCE_MULT)
+        shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,alpha)
+        ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,alpha)
+        timer = COLOR_RECOVER_INTERVAL
+        didChange = true
+        return true
+      }
+
+      if (distSq >= reduceRangeSq || distSq < minRangeSq) {
+        damage.modifier.modifyMult(ID, 1f - REDUCE_MULT)
+        shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,alpha)
+        ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,alpha)
+        timer = COLOR_RECOVER_INTERVAL
+        didChange = true
+        return true
+      }
+      return false
+    }
 
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       //谨防有人中途取消护盾
       ship.shield?:return null
 
       param?: return null
-      if (param is DamagingProjectileAPI && shieldHit) {
+      //不对导弹减伤，不对来源于导弹弹丸减伤
+      if (param is DamagingProjectileAPI && param !is MissileAPI && !param.isFromMissile && shieldHit) {
         val from = param.spawnLocation?:param.location
         if (ship.isAlive) {
-          val dist = Misc.getDistance(from, point)
-          if (dist >= rad || dist < MIN_DAMAGE_RANGE) {
-            ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - REDUCE_MULT)
-            ship.mutableStats.shieldUpkeepMult.modifyFlat(ID, UPKEEP_PUNISH)
-            shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,0.6f)
-            ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,0.6f)
-            timer = COLOR_RECOVER_INTERVAL
-            didChange = true
-            return null
-          }
+          val distSq = Misc.getDistanceSq(from, point)
+          if(changeShield(distSq,damage, false)) return ID
         }
       }
-      if (param is BeamAPI && shieldHit) {
+      if (param is BeamAPI && shieldHit ) {
+
+        //如果光束来源于dem，固定减伤
+        if(param.source?.hasTag(Tags.VARIANT_FX_DRONE) == true){
+          damage.modifier.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
+          return ID
+        }
+
         val from = param.from
         if (ship.isAlive) {
-          val dist = Misc.getDistance(from, point)
-          if (dist >= rad || dist < MIN_DAMAGE_RANGE) {
-            ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - REDUCE_MULT)
-            ship.mutableStats.shieldUpkeepMult.modifyFlat(ID, UPKEEP_PUNISH)
-            shifter.shift( ID, SHIFT_COLOR,0.001f,0.05f,0.4f)
-            ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.05f,0.4f)
-            timer = COLOR_RECOVER_INTERVAL
-            didChange = true
-            return null
-          }
+          val distSq = Misc.getDistanceSq(from, point)
+          if(changeShield(distSq, damage,true)) return ID
         }
       }
       return null
@@ -288,7 +322,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
 
       if(Global.getCombatEngine().playerShip == ship
-        && ship.shield?.isOn == true){
+        && ship.shield?.isOn == true &&  ship.ai == null){
 
         //begin
         aEP_Render.openGL11CombatLayerRendering()

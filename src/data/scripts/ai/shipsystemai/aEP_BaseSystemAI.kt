@@ -24,6 +24,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
   var skipWhenCooldown = false
   var shouldPhaseActive = false
   var skipPhaseWhenCooldown = false
+  var timeElapsedActive = 0f
 
   constructor(){
 
@@ -55,6 +56,12 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
     }
     thinkTracker.advance(amount)
     if (!thinkTracker.intervalElapsed()) return
+
+    if(system.state == ShipSystemAPI.SystemState.IN || system.state == ShipSystemAPI.SystemState.ACTIVE  || system.state == ShipSystemAPI.SystemState.OUT ){
+      timeElapsedActive+=thinkTracker.elapsed
+    }else{
+      timeElapsedActive = 0f
+    }
 
     var shouldSkip = false
     //如果系统正在冷却，不需要思考

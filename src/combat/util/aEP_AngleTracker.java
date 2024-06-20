@@ -11,10 +11,13 @@ public class aEP_AngleTracker {
   float max;
   float min;
 
-
+ /**
+ * @param speed 越小越好
+ * */
   public aEP_AngleTracker(float curr, float to, float speed, float max, float min) {
     this.curr = curr;
     this.to = to;
+    //越小越好
     this.speed = speed;
     this.max = max;
     this.min = min;
@@ -22,9 +25,12 @@ public class aEP_AngleTracker {
 
   public void advance(float amount) {
     float toMove;
-    if (curr > to) toMove = -Math.min(curr - to, speed * amount);
-    else toMove = Math.min(to - curr, speed * amount);
-    curr += toMove * (0.5f * (1f - abs(curr)/(max+1f)) + 0.5f);
+    if (curr > to)
+      toMove = -Math.min(curr - to, speed * amount);
+    else
+      toMove = Math.min(to - curr, speed * amount);
+
+    curr += toMove * (0.5f * (1f - abs(curr)/(max+1f) ) + 0.5f);
     curr = MathUtils.clamp(curr, min, max);
 
   }

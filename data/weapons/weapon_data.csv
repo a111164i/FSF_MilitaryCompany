@@ -15,9 +15,11 @@ Main projectile explode on detachment, dealing %s HE damage.",,,,,,,,,,,,,,,
 --Storm,aEP_cap_nuanchi_missile3,"SYSTEM, DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,1,400,0,,100,3000,,0,,150,,2,1,1,,,,,1,,0,0,0,1,1000,0,,,,,,,,,,,,,,,,,,,
 Giant Mining Pulse,aEP_type28_cannon,SYSTEM,ENERGY,1,1000,10,,1600,,,1600,,600,,,0.5,3.5,,,,,,,0,0,0,,,1000,unknown,Mining,,,,,,,,,,,,,,,,,
 Waterfall Catapult,aEP_cru_pubu_main,SYSTEM,KINETIC,,2000,0,,100,,,0,,1000,,,0,1,,,,,,,0,0,0,0,,600,,,,,,,,,,,,,,,,,,,
-NGW-S04 Battle Gun,aEP_cru_pingding_main,SYSTEM,HIGH_EXPLOSIVE,,1000,0,,600,,,1000,500,1200,,,0,1,,,10,0.5,,,0,10,2,20,,1200,FSF Manufacture,Anti-armor,,,,,"no_drop, no_salvage",,,,,,,,,,,,
-NGW-R23 Rail Artillery,aEP_cru_pingding_main2,SYSTEM,HIGH_EXPLOSIVE,,1300,0,,1000,,,2500,1500,1600,,10,2,2,3,0.5,6,0.2,,,0,5,1,20,400,1600,FSF Manufacture,Anti-armor,,,,,"no_drop, no_salvage",,,,,,,,,,,,
-NGW-G2 Rocket-assisted Cannon,aEP_cru_pingding_main3,"SYSTEM, STRIKE",HIGH_EXPLOSIVE,,1200,0,,2000,,,3000,1000,800,,2,1,1,3,0.5,3,0.1,,,0,15,10,20,600,800,FSF Manufacture,Anti-armor,,"Projectile can go through allies
+NGW-S04 Battle Gun,aEP_cru_pingding_main,SYSTEM,HIGH_EXPLOSIVE,,1100,0,,600,,,1000,500,1200,,,0,1,,,12,0.5,,,0,10,2,20,,1200,FSF Manufacture,Anti-armor,,,,,"no_drop, no_salvage",,,,,,,,,,,,
+NGW-R23 Rail Artillery,aEP_cru_pingding_main2,SYSTEM,HIGH_EXPLOSIVE,,1500,0,,1000,,,2500,1500,1600,,10,2,2,3,0.5,6,0.2,,,0,4,1,20,450,1600,FSF Manufacture,Anti-armor,,"Projectile can go through allies
+
+Projectile is considered a missile and can be intercepted",,,"no_drop, no_salvage",,,,,,,,,,,,
+NGW-G2 Rocket-assisted Cannon,aEP_cru_pingding_main3,"SYSTEM, STRIKE",HIGH_EXPLOSIVE,,1300,0,,2000,,,3000,1000,800,,2,1,1,4,0.5,4,0.12,,,0,15,10,20,600,800,FSF Manufacture,Anti-armor,,"Projectile can go through allies
 
 Projectile is considered a missile and can be intercepted",,,"no_drop, no_salvage",,,,,,,,,,,,
 --Measuring Laser,aEP_cru_pingding_lidardish,SYSTEM,ENERGY,,100,60,50,,,100,,,,5000,,1,2,,,,,,,0,0,0,1,,,,,,,,,,,,,,,,,,,,,
@@ -25,18 +27,18 @@ Projectile is considered a missile and can be intercepted",,,"no_drop, no_salvag
 """Hydrothermal"" LRM Launch Rail",aEP_cru_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,7,0.15,7,,,,0,0,0,1,125,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 """Hydrothermal"" LRM Launch System",aEP_cap_requan_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_2",HIGH_EXPLOSIVE,1,3000,0,,600,,,375,,300,,13,0,2,12,0.1,12,,,,0,0,0,1,125,150,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 Cruise Missile Launch Rack,aEP_des_shendu_mk2_cruise_missile,"SYSTEM, DO_NOT_AIM, CONSERVE_3",ENERGY,,10000,5,,4000,,,0,,1000,,50,1.5,9999,1,,1,,,,0,0,0,0,2000,500,FSF Manufacture,Finisher,,,,,,,,,,,,,,,,,
-Built-in Flak Gun,aEP_des_yangji_flak,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",FRAGMENTATION,,800,0,,150,,,0,,800,,,0,0.25,3,0.1,16,0,,,90,90,90,90,,,FSF Manufacture,,150,"When explosion hit a target, deals extra %s FRAG damage",,,"fixed_range, fires_one_burst",,,,,,,,,,,,
-Built-in Grenade Thrower,aEP_des_lianliu_grenade_thrower,"SYSTEM, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,1,425,0,,300,,,,,50,,3,0,1,6,0.025,,,,TRUE,60,60,60,60,75,500,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
+Built-in Flak Gun,aEP_des_yangji_flak,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE",FRAGMENTATION,,325,0,,250,,,0,,900,,,0,1,6,0.333,,,,,90,90,90,90,,,FSF Manufacture,,150,"When explosion hit a target, deals extra %s FRAG damage",,,"fixed_range, fires_one_burst",,,,,,,,,,,,
+Built-in Grenade Thrower,aEP_des_lianliu_grenade_thrower,"SYSTEM, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,1,450,0,,200,,,,,50,,3,0,1,6,0.025,,,,TRUE,60,60,60,60,75,500,FSF Manufacture,Anti-armor,,,,,"fixed_range, fires_one_burst",,,,,,,,,,,,
 Built-in Micro DEM,aEP_des_taodong_dem,SYSTEM,ENERGY,1,1000,0,,50,,,0,,500,,3.5,0,0.4,2,0.4,,,,,0,0,0,0,100,300,FSF Manufacture,General,4 | 200,"The missile will fires a beam at target at close range, within %s seconds dealing around %s EN damage. This damage is affected by modifier that affect missile weapon damage instead of energy weapon damage.",,,,,,,,,,,,,,,
 --Payload,aEP_des_taodong_dem_payload,SYSTEM,ENERGY,1,600,360,50,,,0,,,,1000000,,0,0.25,1,,,,,,0,0,0,0,,,,,,,,,fires_one_burst,,,,,,,,,,,,
 """Migratory"" Repulse Missile",aEP_fga_xiliu_mk2_missile,"SYSTEM,MISSILE_SPREAD,DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,3,1600,30,0,150,,,,,400,,5,0,0.1,30,0.3333,3,0,3,,5,5,5,5,100,600,FSF Manufacture,General,,,,,,,,,,,,,,,,,
 """Recoil"" Gun",aEP_fga_yonglang_main,"SYSTEM, DANGEROUS",KINETIC,1,900,0,,500,1000,,200,,450,,2,1,3,,,3,0.08333,1,TRUE,0,0,0,0,450,600,FSF Manufacture,Anti-shield,,"When hitting shield, deals extra KE damage equals to EMP damage dealt, however these damage only cause soft flux. ",,,,,aEP_YLM_only,,,,,,,,,,
-"""Boiling"" Laser - High Output",aEP_fga_xiliu_main,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,1050,75,1200,320,,4000,,1,,1000000,,0,0.3,0.2,2.5,,,,,,,,,,,FSF Manufacture,PD,300 | 6 | 250,"On hitting shield, generate hard flux, also spawns emp arcs jumping around a distance of %s , hitting up to %s enemies, and deals %s EN damage to each of them.
+"""Boiling"" Laser - High Output",aEP_fga_xiliu_main,"SYSTEM, PD,ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,1000,100,1200,,,3600,,1,,1000000,,0,0.3,0.2,2,,,,,,,,,,,FSF Manufacture,PD,300 | 6 | 250,"On hitting shield, spawns emp arcs jumping around a distance of %s , hitting up to %s enemies, and deals %s EN damage to each of them.
 
 This weapon will automatically repair itself
 
 Beam can go through allies",,,,,aEP_XLM_only,,,,,,,,,,
-"""Boiling"" Laser - Repeating",aEP_fga_xiliu_main2,"SYSTEM, PD, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,450,180,900,150,300,0,,10,,1000000,,0,0.2,0.1,0.15,,,,,,,,,,,FSF Manufacture,PD,100%,"On hitting shield, generate hard flux, damage is increased by %s if the target is missile/fighter
+"""Boiling"" Laser - Repeating",aEP_fga_xiliu_main2,"SYSTEM, PD,ANTI_FTR, NO_TURN_RATE_BOOST_WHEN_IDLE, IGNORES_FLARES",ENERGY,1,350,360,900,,300,0,,10,,1000000,,0,0.2,0.1,0.15,,,,,,,,,,,FSF Manufacture,PD,100%,"On hitting shield, generate hard flux, damage is increased by %s if the target is missile/fighter
 
 This weapon will automatically repair itself
 
@@ -72,18 +74,18 @@ K-9 Fighter LMG,aEP_ftr_sup_shield_gun,PD,KINETIC,2,450,75,,12,,,5,,1600,,,0,1.0
 On hitting armor, the damage increased by %s times of target's minimum calculated armor, up to %s .",0.5,1600,"strike15, he10, FSF_bp, rare_bp",,,3,,,,,,,,,
 HV7 Smart Cannon,aEP_b_m_hv7,,ENERGY,14,900,14,,400,,,500,,1200,,,0,2.1,,,,,,,0,4,1,10,,,FSF Manufacture,General,3 | 180 | 800,"When projectile comes near to a Destroyer or Frigate, it will split to %s submunition, each one dealing %s EN damage, targeting a random enemy within %s distance.",0.75,1200,"he14, FSF_bp, rare_bp",,,2,,,,,,,,,
 --Split Shot,aEP_b_m_hv7_2,SYSTEM,ENERGY,,800,0,,180,,,0,,1500,,,1,1,1,1,,,,,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
-ZT-125 Revolver Autocannon,aEP_b_m_k125,,KINETIC,12,800,8,,180,,,230,,800,,,0,0.5667,2,0.1,6,1,6,,0,12,1,15,,,FSF Manufacture,Anti-shield,2% | 2% | 200,"On hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher).",1,1000,"kinetic13, FSF_bp",,,1,,,,,,,,,
+ZT-125 Revolver Autocannon,aEP_b_m_k125,,KINETIC,12,800,8,,180,,,230,,750,,,0,0.5667,2,0.1,6,1,6,,0,12,1,15,,,FSF Manufacture,Anti-shield,2% | 2% | 200,"On hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher).",1,1000,"kinetic13, FSF_bp",,,1,,,,,,,,,
 MB32 Dual-purpose MG,aEP_b_m_mb32,"PD ,NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,11,800,90,,30,,,4.5,,900,,,0,0.125,,,,,,,0,2,0.01,10,,,FSF Manufacture,PD,50% | 50%,"All projectiles can reach a range of %s , however, only %s of projectiles can reach full range.
 
 Projectile can go through allies",1,900,"pd13, kinetic7, FSF_bp",,,1,,,,,,,,,
-GP-80 Flak,aEP_b_m_flak,PD,FRAGMENTATION,10,800,45,,200,,,240,,1000,,,0,2,,,,,,,0,10,1,50,,,FSF Manufacture,PD,200,"On hitting missile/fighter, deals extra %s EN damage after a short delay
+GP-80 Flak,aEP_b_m_flak,PD,FRAGMENTATION,10,800,45,,150,,,150,,1000,,,0,2,,,,,,,0,10,1,50,,,FSF Manufacture,PD,250,"On hitting missile/fighter, deals extra %s EN damage after a short delay
 
 Projectile can go through allies",,900,"pd13, FSF_bp",,,1,,,,,,,,,
 H-88 Anti-ship Gun,aEP_b_m_h88,,HIGH_EXPLOSIVE,9,800,7,,300,,,400,,600,,,0,1.67,,,,,,,0,15,3,30,,,FSF Manufacture,Anti-armor,,,1,800,"he12, FSF_bp",,,0,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,#大武器,,,,,#赫炮20马九10炼狱5高斯3，蹂躏12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#大锤16，马ix18，速子矛20,,,,,,,,,,,,
-AA-40 Planetary Flak,aEP_b_l_aa40,ANTI_FTR,KINETIC,28,900,6,,250,,,340,100,800,,,0,1.05,2,0.2,12,1.6,4,,2,10,0.5,10,,,FSF Manufacture,Anti-shield,4% | 2% | 200,"When explosion hit shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher)",1,7500,"kinetic20,utility18, FSF_bp, rare_bp",,,3,,,,,,,,,
+AA-40 Planetary Flak,aEP_b_l_aa40,ANTI_FTR,KINETIC,28,900,6,,250,,,340,100,750,,,0,1.05,2,0.2,12,1.6,4,,2,10,0.5,10,,,FSF Manufacture,Anti-shield,4% | 2% | 200,"When explosion hit shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher)",1,7500,"kinetic20,utility18, FSF_bp, rare_bp",,,3,,,,,,,,,
 DG-3 Cyclone,aEP_b_l_dg3,,HIGH_EXPLOSIVE,24,900,12,,50,30,,50,,800,,,0.1,0.2,8,0.1,64,8,16,,0,16,0.3125,30,,,FSF Manufacture,Finisher,50,"When hitting hull where armor is fully stripped, additionally cause the target to lose %s hullpoint",1,7500,"he16, strike18, FSF_bp, rare_bp",,,2,,,,,,,,,
 d100t-MBC,aEP_b_l_d100t,,KINETIC,22,1000,4,,2000,,,2000,2000,1500,,,0.3,6.2,,,,,,,0,5,1,5,,,FSF Manufacture,Anti-shield,75% | 2% | 200 | 90% | 100,"When hitting shield, have %s chance to deal extra KE damage equal to %s of target's flux capacity or %s (whichever is higher)
 
@@ -93,15 +95,15 @@ When hitting hull, damage reduced by %s, but also additionally deals %s armor ig
 ,#导弹武器,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"#6-9, 11-15, 16-20",,,,,,,,,,,,
 """Expander"" Hive LRM",aEP_m_s_expander,"DO_NOT_AIM, CONSERVE_1, MISSILE_SPREAD ",FRAGMENTATION,5,2500,20,,500,250,,,10,250,,12,0,15,2,1,20,,,,0,0,0,0,225,250,FSF Manufacture,Suppression,,,1,300,"missile8 ,FSF_bp",,,0,,,,,,,,,
 """Expander"" Hive LRM Pod",aEP_m_m_expander,"DO_NOT_AIM, CONSERVE_1, MISSILE_SPREAD ",FRAGMENTATION,10,2500,15,,500,250,,,10,250,,12,0,15,2,1,40,,,,0,0,0,0,225,250,FSF Manufacture,Suppression,,,0.75,1200,"missile12 ,FSF_bp",,,1,,,,,,,,,
-"""Door Breach"" Torpedo",aEP_m_s_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,3,1800,15,,1000,1500,,,2000,200,,10,0,5,,,2,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
+"""Door Breach"" Torpedo",aEP_m_s_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,3,2000,15,,1000,1500,,,2000,200,,10,0,5,,,2,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
 If the hit causes an overload, the overload only last %s seconds",1,200,"strike7, rocket5, FSF_bp",,,0,,,,,,,,,
-"""Door Breach"" Torpedo Pod",aEP_m_m_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,12,1800,12,,1000,1500,,,2000,200,,10,0,12,,,8,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
+"""Door Breach"" Torpedo Pod",aEP_m_m_breachdoor,"DO_NOT_AIM, STRIKE",KINETIC,12,2000,12,,1000,1500,,,2000,200,,10,0,12,,,8,,,TRUE,0,0,0,0,800,100,FSF Manufacture,Anti-shield,2,"When hitting shield, deals extra KE damage equals to EMP damage in soft flux
 
 If the hit causes an overload, the overload only last %s seconds",1,1000,"strike12, rocket10, FSF_bp",,,2,,,,,,,,,
-"""Blast Hammer"" LRM Pod",aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,2750,8,,2800,,,,,675,,7,0,18,,,4,,,TRUE,0,0,0,0,400,200,FSF Manufacture,Finisher,30% | 3 | 40% | 40%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
---Payload,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,800,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
-"""Blast Hammer"" LRM System",aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,2750,6,,3600,,,,,600,,8,0,18,,,6,,,TRUE,0,0,0,0,500,150,FSF Manufacture,Finisher,30% | 3 | 40% | 40%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
+"""Blast Hammer"" LRM Pod",aEP_m_m_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,13,3000,8,,2800,,,,,675,,7.5,0,18,,,4,,,TRUE,0,0,0,0,400,200,FSF Manufacture,Finisher,30% | 3 | 40% | 40%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",1,1250,"missile14,strike14 ,FSF_bp",,,1,,,,,,,,,
+--Payload,aEP_m_m_blasthammer3,SYSTEM,FRAGMENTATION,,300,0,,1500,,,1,,500,,,0,1,,,,,,TRUE,0,0,0,0,,,,,,,,,fixed_range,,,,,,,,,,,,
+"""Blast Hammer"" LRM System",aEP_m_l_blasthammer,"DO_NOT_AIM, DIRECT_AIM, STRIKE",ENERGY,24,3000,6,,3600,,,,,600,,8.5,0,18,,,6,,,TRUE,0,0,0,0,500,150,FSF Manufacture,Finisher,30% | 3 | 40% | 40%,"On hitting a ship,the missile only deals KE damage equals to %s of the total damage, spawns %s extra submunition, each one dealing FRAG damage equals to %s of the total damage.",0.75,8000,"missile19, strike19 ,FSF_bp",,,2,,,,,,,,,
 Disposal Flux Tube,aEP_m_s_fluxtube,"DO_NOT_AIM, DO_NOT_CONSERVE",ENERGY,4,200,12,,200,,,-1000,,200,,5,1,20,,,7,,,,15,15,15,15,200,100,FSF Manufacture,Support,50% | 1000,"When flux level of this ship is above %s, the weapon will fire one shot and reduce flux by %s .
 
 This weapon can't be fired manually",1,300,"utility7, FSF_bp",,,0,,,,,,,,,
@@ -111,7 +113,7 @@ This weapon can't be fired manually",1,1000,"utility13, FSF_bp",,,0,,,,,,,,,
 """Nail Gun"" LRM",aEP_m_s_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,4,3000,16,,400,,,100,400,600,,7.5,0,15,,,5,,,TRUE,0,0,0,0,200,0,FSF Manufacture,Anti-shield,400,"When hitting shield, deals extra %s KE damage in soft flux",1,450,"missile8, FSF_bp",,,1,,,,,,,,,
 """Nail Gun"" LRM System",aEP_m_l_harpoon,"CONSERVE_1, DIRECT_AIM, DO_NOT_AIM",KINETIC,28,3000,8,,600,,,350,600,600,,7.5,0,16,4,0.25,24,,,TRUE,0,0,0,0,250,0,FSF Manufacture,Anti-shield,600,"When hitting shield, deals extra %s KE damage in soft flux",0.5,7500,"missile20, FSF_bp",,,3,,,,,,,,,
 """Percussion Drill"" Bombardment LRM",aEP_m_s_cluster,"CONSERVE_3, DIRECT_AIM, DO_NOT_AIM",HIGH_EXPLOSIVE,5,3500,15,,500,,,,,400,,12,0,20,,,3,,,TRUE,0,0,0,0,700,100,FSF Manufacture,Anti-armor,,,0.5,500,"missile9, FSF_bp",,,3,,,,,,,,,
-DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,3,200,0,,200,,,,,50,,1.5,0,2,,,4,0,1,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
+DF-1 ERA,aEP_m_s_era,"PD, PD_ONLY, CONSERVE_5, GROUP_ALTERNATING",FRAGMENTATION,2,200,0,,200,,,,,50,,1.5,0,2,,,2,,,TRUE,0,0,0,0,100,250,FSF Manufacture,PD,600 | 0.8 | 90%,"When armor around this weapon has received a single hit that exceeding either %s damage or %s times of this ship's armor, the ERA triggers, consuming 1 ammo and that damage is reduced by %s .
 
 This weapon will immediately repair itself if brought offline.
 
@@ -123,10 +125,10 @@ Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,
 """Pushpin"" Magnet Bomb Cluster Pod",aEP_m_m_magnetmine,CONSERVE_1,HIGH_EXPLOSIVE,13,2000,12,,1000,,,,,325,,8,0,12,,,9,0,1,TRUE,5,15,30,15,400,500,FSF Manufacture,Anti-armor,8 | 300,"When projectile comes near an enemy, it will split to %s magnet bombs, each one dealing %s HE damage
 
 Magnet bomb will be attracted to nearby enemy ships, including phased ships.",1,1200,"missile13, strike8, FSF_bp",,,1,,,,,,,,,
-"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,50,,1000,0,5,,,10,0.08333,1,TRUE,10,30,30,15,9999,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
+"""Tyre Spike"" Phase Mine",aEP_m_m_phasemine,"CONSERVE_1, DO_NOT_AIM",HIGH_EXPLOSIVE,11,4000,6,,1200,,,,,75,,999,0,5,,,10,0.08333,1,TRUE,10,30,30,15,9999,250,FSF Manufacture,Anti-armor,100 | 25,"The projectile has extremely long lifetime, and will stay in phase space with no collision until the fuse is armed.
 
 At most %s mine can co-exist in the battlefield at one time. For each of this weapon mounted on deployed ships, that limitation is increased by %s",1,1000,"missile12, FSF_bp",,,2,,,,,,,,,
---Triggered,aEP_m_m_phasemine2,SYSTEM,HIGH_EXPLOSIVE,1,300,0,,1500,,,,,200,,5,0,1,,,1,0,1,TRUE,0,0,0,0,375,0,,,,,,,,,,,,,,,,,,,
+--Triggered,aEP_m_m_phasemine2,SYSTEM,HIGH_EXPLOSIVE,1,300,0,,1500,,,,,200,,5,0,1,,,1,0,1,TRUE,0,0,0,0,400,0,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -134,10 +136,10 @@ At most %s mine can co-exist in the battlefield at one time. For each of this we
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 H-23 Fighter Anti-ship Gun - Fighter,aEP_ftr_ftr_hvfighter_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,100,,,50,,600,,,0,1,,,,,,,0,12,4,12,,,FSF Manufacture,Anti-armor,50,,,,,,,,,,,,,,,,
 K-14 Fighter HMG - Fighter,aEP_ftr_ftr_helicop_lmg,SYSTEM,KINETIC,0,300,60,,20,,,10,,800,,,0,0.2,5,0.2,,,,,0,6,1,12,,,FSF Manufacture,Anti-armor,50,,,,,,,,,,,,,,,,
-Pin Launcher - Fighter,aEP_ftr_ftr_helicop_rocket,SYSTEM,KINETIC,0,600,15,,100,,,0,,700,,1.4,0,0.1,1,,8,0.5,1,,0,12,6,12,100,200,FSF Manufacture,Anti-shield,,,,,,,,,,,,,,,,,
+Nail Rocket Launcher - Fighter,aEP_ftr_ftr_helicop_rocket,SYSTEM,KINETIC,0,600,15,,100,,,0,,700,,1.4,0,0.1,1,,8,0.5,1,,0,12,6,12,100,200,FSF Manufacture,Anti-shield,,,,,,,,,,,,,,,,,
 Micro Lance Array - Fighter,aEP_ftr_icp_gunship_beam,"SYSTEM, PD",ENERGY,0,350,180,600,,,200,,,,20000,,0,0.1,0.5,0.5,,,,,0,0,0,0,,,FSF Manufacture,General,100,,,,,,,,,,,,,,,,
 Electric Shock LMG - Fighter,aEP_ftr_icp_gunship_gun,"SYSTEM, PD",KINETIC,0,350,180,,15,15,,7.5,,900,,,0,0.85,5,0.1,,,,,0,5,0.5,5,,,FSF Manufacture,PD,60,,,,,,,,,,,,,,,,
-H-12 Fighter Anti-ship Gun - Fighter,aEP_ftr_sup_guardian_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,60,,,50,,900,,,0,0.25,,,,,,,3,12,3,12,,,FSF Manufacture,Anti-armor,200,,,,,,,,,,,,,,,,
+H-12 Anti-ship MG - Fighter,aEP_ftr_sup_guardian_gun,SYSTEM,HIGH_EXPLOSIVE,0,250,60,,60,,,40,,900,,,0,0.2,,,,,,,3,12,3,12,,,FSF Manufacture,Anti-armor,200,,,,,,,,,,,,,,,,
 HVK Long Range Sniper - Fighter,aEP_ftr_sup_guardian_gun3,SYSTEM,KINETIC,0,1100,10,,65,,,50,,1200,,,0,1,,,,,,,0,4,1,4,,,FSF Manufacture,Anti-shield,,,,,,,,,,,,,,,,,
 Tank Cannon - Fighter,aEP_ftr_sup_tank_main,SYSTEM,HIGH_EXPLOSIVE,0,1100,12,,200,,,200,,800,,,0,1,,,,,,,0,12,2,12,,,FSF Manufacture,Anti-armor,200,,,,,,,,,,,,,,,,
 Smoke Bomb - Fighter,aEP_ftr_sup_tank_flak,SYSTEM,FRAGMENTATION,,250,60,,200,,,0,,400,,1,0,1,3,0.05,,,,,120,120,120,120,,400,FSF Manufacture,PD,,,,,,,,,,,,,,,,,
@@ -152,26 +154,28 @@ Projectile is missile, can be intercepted",,,,,,,10,,,,,,,,
 ADS System - Ship,aEP_cru_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,900,540,,500,,,,,3000,,1,0,0.2,,,24,2,1,,0,0,0,0,500,3000,FSF Manufacture,PD,500,"When hitting enemy projectile, reduce its damage by %s
 
 Projectile is missile, can be intercepted",,,,,,,10,,,,,,,,
-Flux Absorber,aEP_ftr_ut_supply_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,350,720,0,,,1,,,,20000,,0,0.5,,,,,,,0,0,0,0,,,FSF Manufacture,Support,500,"When hitting ship, transfer target's flux into this ship as hard flux at speed of %s .
+Flux Absorber - Fighter,aEP_ftr_ut_supply_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,350,720,0,,,1,,,,20000,,0,0.5,,,,,,,0,0,0,0,,,FSF Manufacture,Support,500,"When hitting ship, transfer target's flux into this ship as hard flux at speed of %s .
 
 If the target is activating a ship system that does not allow dissipation, no transfer can take place.
 
 Works better to FSF ships",,,,,,,,,,,,,,,
-Repair Beam,aEP_ftr_ut_repair_beam,SYSTEM,FRAGMENTATION,1,350,720,0,,,1,,,,2000,,0.1,0.1,0.3,3,3,,,,0,0,0,0,,,FSF Manufacture,Support,6 | 0.4% | 50% | 30%,"When hitting ship, repair its armor by %s + %s, up to %s of the maximum.
+Repair Beam - Fighter,aEP_ftr_ut_repair_beam,SYSTEM,FRAGMENTATION,1,350,720,0,,,1,,,,2000,,0.1,0.1,0.3,3,3,,,,0,0,0,0,,,FSF Manufacture,Support,6 | 0.4% | 50% | 30%,"When hitting ship, repair its armor by %s + %s, up to %s of the maximum.
 
 If armor has reached max repair level, restore hullpoints up to %s of maximum.
 
 Works better to FSF ships",,,,,,,,,,,,,,,
+Lance Aim - Fighter,aEP_ftr_bom_lancer_laser,"SYSTEM, DANGEROUS",ENERGY,,500,120,75,,,0,,,,2000,,0.2,0.2,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 """Drake"" Flame Thrower",aEP_e_s_flamer,ANTI_FTR,HIGH_EXPLOSIVE,9,300,9,,50,,,30,,500,,,0,0.1,10,0.1,50,2,10,,0,0,0,15,,,FSF Private Conversion,Anti-armor,,,,400,"he9, restricted",,,0,,,,,,,,,
-"""Boom"" Lance",aEP_m_s_bomblance,"STRIKE, DO_NOT_CONSERVE",HIGH_EXPLOSIVE,2,250,5,,4000,,,0,,100,,0.01,0,20,,,1,0,1,TRUE,0,0,0,15,500,1000,FSF Private Conversion,Anti-armor,,"Fires automatically if the tip touches a ship
+"""Boom"" Lance",aEP_m_s_bomblance,"STRIKE, DO_NOT_CONSERVE, DANGEROUS",HIGH_EXPLOSIVE,2,300,5,,4000,,,0,,250,,0.1,0.2,20,,,1,0,1,TRUE,0,0,0,15,500,2500,FSF Private Conversion,Anti-armor,,"Fires automatically if the tip touches a ship
 
 This weapon will immediately repair itself if brought offline.",,200,"strike8, restricted",,,0,,,,,,,,,
 """Lightening"" Disturb Gun",aEP_b_m_lighting,,ENERGY,13,800,12,,10,8,,10,0,600,,,0,0.125,2,0.125,240,6,8,,0,15,1,15,,,FSF Advanced Weapon Program,Anti-shield,8 | 16 ,"When hit shield, apply a stackable debuff to target: For the next %s second, as long as the target's shield is on, increase the target's soft flux by %s per sec",0,6000,"energy11, restricted",,,,,,,,,,,,
-"""Sea Roar"" Super-heavy Railway Cannon",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,1500,,,1500,1000,1000,,,0.2,1.8,,,1,0.2,1,,0,16,4,8,,,FSF Advanced Weapon Program,Anti-armor,,"When hit shield, if it overloads target, projectile will keep going.",0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
+"""Sea Roar"" Super-heavy Railway Cannon",aEP_b_l_railwaygun,,HIGH_EXPLOSIVE,30,1000,5,,1500,,,1000,1000,700,,,0.2,2.3,,,,,,,0,16,4,8,,,FSF Advanced Weapon Program,Anti-armor,,"When hit shield, if it overloads target, projectile will keep going.",0,10000,"energy16, kinetic16, he16 ,restricted",,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bind Projectile,aEP_ut_missile_attacher,SYSTEM,FRAGMENTATION,,100,0,,1,,,,,100,,,0,1,,,,,,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,

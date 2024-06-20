@@ -1,14 +1,20 @@
 {
-  "variantId": "aEP_ftr_ut_shuishi",
-  "hullId": "aEP_ftr_ut_shuishi",
-  "displayName": "",
-  "goalVariant": true,
-  "fluxCapacitors": 0,
-  "fluxVents": 0,
-  "quality": 1,
-  "permaMods": [],
-  "hullMods": [],
-  "weaponGroups": [],
-  "modules": [],
-  "wings": []
+    "displayName": "",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_ftr_ut_shuishi",
+    "hullMods": [],
+    "quality": 1.0,
+    "variantId": "aEP_ftr_ut_shuishi",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 000": "aEP_ftr_sup_shield_gun",
+                "WS 001": "aEP_empty"
+            }
+        }
+    ]
 }

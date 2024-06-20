@@ -138,7 +138,8 @@ class DodgeAttack(val ship: ShipAPI, val maxDodgeChance:Float, val maxDodgeChanc
       dodgeChance -= dodgeChanceDrop
       ship.collisionClass = CollisionClass.NONE
       dodgeTime = maxDodgeTime
-      damage.modifier.modifyMult(ID,0f)
+      //任何情况不要 mult 0
+      damage.modifier.modifyMult(ID,0.1f)
       return ID
     }
 

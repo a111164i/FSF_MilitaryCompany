@@ -1,3 +1,4 @@
+
 {
 	"id":"aEP_m_s_bomblance",
 	"specClass":"projectile",
@@ -7,8 +8,8 @@
 	"turretSprite":"",
 	"hardpointSprite":"",
 	"everyFrameEffect":"data.scripts.weapons.aEP_WeaponEffect",
-	"hardpointOffsets":[190, 0],
-	"turretOffsets":[190, 0],
+	"hardpointOffsets":[200, 0],
+	"turretOffsets":[200, 0],
 	"hardpointAngleOffsets":[0],
 	"turretAngleOffsets":[0],
 	"barrelMode":"LINKED",

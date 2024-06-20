@@ -1,18 +1,21 @@
 {
-    "displayName": "Standard",
-    "fluxCapacitors": 30,
+    "displayName": "Ranged",
+    "fluxCapacitors": 20,
     "fluxVents": 30,
     "goalVariant": true,
     "hullId": "aEP_cru_pingding",
-    "hullMods": ["aEP_PingdingMainSwap1"],
+    "hullMods": [
+        "aEP_PingdingMainSwap1",
+        "aEP_HotLoader"
+    ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_cru_pingding_Standard",
+    "variantId": "aEP_cru_pingding_Ranged",
     "weaponGroups": [
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"MAIN": "aEP_cru_pingding_main3"}
+            "weapons": {"MAIN": "aEP_cru_pingding_main2"}
         },
         {
             "autofire": false,
@@ -22,12 +25,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0002": "gauss"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0006": "heavyneedler"}
+            "weapons": {"WS0002": "aEP_b_l_d100t"}
         },
         {
             "autofire": true,
@@ -36,6 +34,11 @@
                 "WS 000": "aEP_b_s_630",
                 "WS 001": "aEP_b_s_630"
             }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_b_m_flak"}
         },
         {
             "autofire": true,

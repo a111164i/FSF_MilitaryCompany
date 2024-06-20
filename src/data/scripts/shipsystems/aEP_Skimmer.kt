@@ -50,7 +50,7 @@ class aEP_Skimmer: BaseShipSystemScript(){
       didEngineBurst = false
 
       //如果玩家在手操，显示闪现的预计落点
-      if(Global.getCombatEngine().playerShip == ship){
+      if(Global.getCombatEngine().playerShip == ship && ship.ai == null){
         if(ship.system.ammo >= 1){
           if(sprite == null){
             sprite = Global.getSettings().getSprite(ship.hullSpec.spriteName)

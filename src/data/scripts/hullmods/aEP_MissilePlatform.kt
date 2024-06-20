@@ -156,11 +156,6 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
     // 正面
-    // 概述锻炉功率的最大值由什么决定
-    addPositivePara(tooltip, "aEP_MissilePlatform02", arrayOf()) // 说明总装填率的储备值和回复值
-    // 解释锻炉功率水平的下降与回冲，如何达到最低平衡水平
-    addPositivePara(tooltip, "aEP_MissilePlatform03", arrayOf()) // 说明总装填率的储备值和回复值
-
 
     //统计全船的导弹数据，用于后面的表格
     var totalOp = 0f
@@ -190,34 +185,34 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     }
 
 
-    //用表格显示总装填率的最大值，回复速度，最大消耗速度
-    val col2W0 = width * 0.5f
-    //第一列显示的名称，尽可能可能的长
-    val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
-    tooltip.beginTable(
-      factionColor, factionDarkColor, factionBrightColor,
-      TEXT_HEIGHT_SMALL, true, true,
-      *arrayOf<Any>( txt("aEP_MissilePlatform01"), col1W0,
-        "Statistics", col2W0)
-    )
-    tooltip.addRow(
-      Alignment.MID, highlight, txt("total"),
-      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP",totalOp * MAX_RATE_MULT),
-    )
-    tooltip.addRow(
-      Alignment.MID, highlight, txt("recover")+txt("speed"),
-      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalOp * RATE_INCREASE_SPEED_MULT),
-    )
-    tooltip.addRow(
-      Alignment.MID, highlight, txt("max")+txt("consumption")+txt("speed") ,
-      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalConsumption * 100f),
-    )
-    val minLevel = (totalOp * RATE_INCREASE_SPEED_MULT/(totalConsumption * 100f + 0.01f)).coerceAtLeast(0f).coerceAtMost(1f)
-      tooltip.addRow(
-      Alignment.MID, highlight, txt("min")+txt("level") ,
-      Alignment.MID, highlight, String.format("%.0f",minLevel * 100f)+"%",
-    )
-    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+//    //用表格显示总装填率的最大值，回复速度，最大消耗速度
+//    val col2W0 = width * 0.5f
+//    //第一列显示的名称，尽可能可能的长
+//    val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
+//    tooltip.beginTable(
+//      factionColor, factionDarkColor, factionBrightColor,
+//      TEXT_HEIGHT_SMALL, true, true,
+//      *arrayOf<Any>( txt("aEP_MissilePlatform01"), col1W0,
+//        "Statistics", col2W0)
+//    )
+//    tooltip.addRow(
+//      Alignment.MID, highlight, txt("total"),
+//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP",totalOp * MAX_RATE_MULT),
+//    )
+//    tooltip.addRow(
+//      Alignment.MID, highlight, txt("recover")+txt("speed"),
+//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalOp * RATE_INCREASE_SPEED_MULT),
+//    )
+//    tooltip.addRow(
+//      Alignment.MID, highlight, txt("max")+txt("consumption")+txt("speed") ,
+//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalConsumption * 100f),
+//    )
+//    val minLevel = (totalOp * RATE_INCREASE_SPEED_MULT/(totalConsumption * 100f + 0.01f)).coerceAtLeast(0f).coerceAtMost(1f)
+//      tooltip.addRow(
+//      Alignment.MID, highlight, txt("min")+txt("level") ,
+//      Alignment.MID, highlight, String.format("%.0f",minLevel * 100f)+"%",
+//    )
+//    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
 
     addPositivePara(tooltip, "aEP_MissilePlatform07", arrayOf())
@@ -242,63 +237,68 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?:0.2f) * 100f))
     tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
+    // 说明总装填率的储备值和回复值
+    addPositivePara(tooltip, "aEP_MissilePlatform02", arrayOf(
+      String.format("%.1f", RATE_INCREASE_SPEED_MULT/MAX_RATE_MULT * 100f)+" %/s"
+    ))
+
+
+    // 解释锻炉功率水平的下降，如何达到最低平衡水平
+    addDoubleEdgePara(tooltip, "aEP_MissilePlatform03", arrayOf()) // 说明总装填率的储备值和回复值
+
+
     if(shouldShowF1Content){
+      addDoubleEdgePara(tooltip, "aEP_MissilePlatform05", arrayOf()) // 说明总装填率的储备值和回复值
       //表格显示每个武器的 弹药/OP比
-      val col2W2 = 60f
+      val col2W2 = 120f
       val col3W2 = 60f
-      val col4W2 = 80f
-      val col1W2 = (width - col2W2 - col3W2 - col4W2 - PARAGRAPH_PADDING_BIG)
+      val col1W2 = (width - col2W2 - col3W2 - PARAGRAPH_PADDING_BIG)
       tooltip.beginTable(
         factionColor, factionDarkColor, factionBrightColor,
         TEXT_HEIGHT_SMALL, true, true,
         *arrayOf<Any>("Missile Spec", col1W2,
           "OP", col3W2,
-          "Ammo", col2W2,
-          "OP per A.", col4W2))
+          txt("aEP_MissilePlatform04"), col2W2,
+          ))
 
       //val label = tooltip.createLabel( "Large", highlight)
       //label.autoSizeToWidth(10f)
       if(!allLargeSpec.isEmpty()){
-        tooltip.addRow(
-          Alignment.MID, highlight, "Large")
+        //tooltip.addRow(Alignment.LMID, highlight, "Large")
         for(spec in allLargeSpec){
           val op =  spec.getOrdnancePointCost(null)
           val ammo =spec.maxAmmo.toFloat()
+          val consumptionSpeed = op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]!! )
           tooltip.addRow(
-            Alignment.MID, txtColor, spec.weaponName,
+            Alignment.LMID, txtColor, spec.weaponName,
             Alignment.MID, txtColor, String.format("%.0f", op),
-            Alignment.MID, txtColor, String.format("%.0f", ammo),
-            Alignment.MID, txtColor, String.format("%.1f", op/ammo),
+            Alignment.MID, txtColor, String.format("%2.2f Sec.", consumptionSpeed),
           )
         }
       }
       if(!allMediumSpec.isEmpty()) {
-        tooltip.addRow(
-          Alignment.MID, highlight, "Medium"
-        )
+        //tooltip.addRow(Alignment.LMID, highlight, "Medium")
         for (spec in allMediumSpec) {
           val op = spec.getOrdnancePointCost(null)
           val ammo = spec.maxAmmo.toFloat()
+          val consumptionSpeed =  op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]!! )
           tooltip.addRow(
-            Alignment.MID, txtColor, spec.weaponName,
+            Alignment.LMID, txtColor, spec.weaponName,
             Alignment.MID, txtColor, String.format("%.0f", op),
-            Alignment.MID, txtColor, String.format("%.0f", ammo),
-            Alignment.MID, txtColor, String.format("%.1f", op / ammo),
+            Alignment.MID, txtColor, String.format("%2.2f Sec.", consumptionSpeed),
           )
         }
       }
       if(!allSmallSpec.isEmpty()) {
-        tooltip.addRow(
-          Alignment.MID, highlight, "Small"
-        )
+        //tooltip.addRow(Alignment.LMID, highlight, "Small")
         for (spec in allSmallSpec) {
           val op = spec.getOrdnancePointCost(null)
           val ammo = spec.maxAmmo.toFloat()
+          val consumptionSpeed = op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]!!)
           tooltip.addRow(
-            Alignment.MID, txtColor, spec.weaponName,
+            Alignment.LMID, txtColor, spec.weaponName,
             Alignment.MID, txtColor, String.format("%.0f", op),
-            Alignment.MID, txtColor, String.format("%.0f", ammo),
-            Alignment.MID, txtColor, String.format("%.1f", op / ammo),
+            Alignment.MID, txtColor, String.format("%2.2f Sec.", consumptionSpeed),
           )
         }
       }
