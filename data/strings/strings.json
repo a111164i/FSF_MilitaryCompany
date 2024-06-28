@@ -302,7 +302,7 @@
 		"aEP_MissilePlatform07":"When Forge Output is full, max ammo production speed of different sized missiles are shown as follow: ",
 		"aEP_MissilePlatform02":"Total Forge Output is calculated by a fraction of total OP spent on missile weapons. It generates at speed of %s.",
 		"aEP_MissilePlatform03":"Producing ammo consumes Output, and as Output running low production speed drops as follows",
-		"aEP_MissilePlatform06":"Time needed to produce one ammo for installed weapons at full production speed: ",
+		"aEP_MissilePlatform06":"Time needed to produce 1 ammo for installed weapons at full production speed: ",
 		"aEP_MissilePlatform04":"Second/ammo",
 		"aEP_MissilePlatform05":"All missile weapons' max ammo will be limited to: %s rounds of burst or %s of base amount, whichever is higher",
 		"aEP_MissilePlatform09":"For example, a missile weapon of 30 OP with base ammo of 10, each ammo costs 3 OP",

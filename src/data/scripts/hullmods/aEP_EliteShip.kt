@@ -42,8 +42,8 @@ class aEP_EliteShip : aEP_BaseHullMod() {
     init {
       SPEED_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 5f
       SPEED_BONUS[ShipAPI.HullSize.CRUISER] = 10f
-      SPEED_BONUS[ShipAPI.HullSize.DESTROYER] = 15f
-      SPEED_BONUS[ShipAPI.HullSize.FRIGATE] = 25f
+      SPEED_BONUS[ShipAPI.HullSize.DESTROYER] = 10f
+      SPEED_BONUS[ShipAPI.HullSize.FRIGATE] = 15f
     }
 
     //增加百分之多少部署

@@ -248,7 +248,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
 
     if(shouldShowF1Content){
-      addDoubleEdgePara(tooltip, "aEP_MissilePlatform05", arrayOf()) // 说明总装填率的储备值和回复值
+      addDoubleEdgePara(tooltip, "aEP_MissilePlatform06", arrayOf()) // 说明总装填率的储备值和回复值
       //表格显示每个武器的 弹药/OP比
       val col2W2 = 120f
       val col3W2 = 60f
