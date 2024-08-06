@@ -4,7 +4,7 @@ name,id,hints,type,OPs,range,turn rate,damage/second,damage/shot,emp,energy/seco
 """Exemplar"" Radar System",aEP_cap_biaobing_radar,"SYSTEM,FIRE_WHEN_INEFFICIENT",ENERGY,1,1000,6,100,,10,10,,,,20000,,1,2,,,,,1,,,,,,,,FSF Manufacture,Support,40% | 100 ,"All non-PD weapons of this ship gains up %s range if those weapon's facing is aligned with this radar
 
 All Medium Energy Weapon gains %s extra range.",,,,,,,,,,,,,,,
-"""Aphotic Zone"" Coil Accelerator",aEP_cap_duiliu_main,SYSTEM,KINETIC,1,1200,,,500,,,1000,2000,2000,,1,2,9,,,,,,,0,0,0,0,,,FSF Manufacture,General,1500 | 1000 | 500,"While charging, the weapon shoots a stream of shards dealing around %s KE damage and gernates %s soft flux.
+"""Aphotic Zone"" Coil Accelerator",aEP_cap_duiliu_main,SYSTEM,KINETIC,1,1200,,,500,,,1000,2000,2000,,1,2,9,,,,,,,0,0,0,0,,,FSF Manufacture,General,1500 | 1000 | 500,"While charging, the weapon shoots a stream of shards dealing around %s KE damage and generates %s soft flux.
 
 Main projectile will briefly stick to the target, while attached, it will continuously pull the target towards itself.
 
