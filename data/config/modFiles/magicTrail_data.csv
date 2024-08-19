@@ -1,7 +1,7 @@
 trail,projectile,sprite,minLength,fadeIn,duration,fadeOut,sizeIn,sizeOut,colorIn,colorOut,opacity,textLength,textScroll,randomTextureOffset,distance,dispersion,drift,frameOffsetMult,fadeOnFadeOut,angleAdjustment,additive,velocityIn,velocityOut,randomVelocity,angle,rotationIn,rotationOut,randomRotation,renderBelowExplosions
 ,#弹丸id,,#分段渲染单段长度,#淡入时间,#不透明时间,#淡出时间,#初始宽度,#最终宽度,#初始颜色,#最终颜色,#不透明度,#纹理长度,#纹理滚动，正数向后,#随机纹理起始位置,#与射弹的距离，正数向前,#随机量变化的速度,#继承多少舰船侧移动量,,#尾迹随射弹淡出,#调整弹丸方向,#叠加,#节点向后初始移动速度，注意大于0是向后,#节点向后最终移动速度，堆积则产生扭曲效果，必须配合后面的rotation设置起效，垂直旋转越大，越扭曲,#随机前边两列,#贴图初始垂直角度,#贴图初始垂直旋转速度,#贴图最终垂直旋转速度,#随机前面2项旋转的方向,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-#实弹
+#实弹,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_b_l_aa40_trail,aEP_b_l_aa40_shot,base_trail_zap,32,0,0.2,0.2,8,8,"[240,240,240]","[240,240,240]",0.05,32,128,TRUE,0,0,0,0,false,true,true,100,50,0,0,0,0,true,false
 aEP_b_l_aa40_trail2,aEP_b_l_aa40_shot,aEP_trail_smoke,32,0,0.2,0.6,16,16,"[240,240,240]","[240,240,240]",0.05,64,128,TRUE,0,0,0,0,false,true,true,250,50,0,0,20,-20,true,false
 aEP_b_l_aa40_trail3,aEP_b_l_aa40_shot,aEP_trail_smoke_long,32,0,0.2,0.8,16,32,"[160,160,160]","[100,100,100]",0.1,256,-128,TRUE,0,0,0,0,false,true,true,300,50,0,0,20,-20,true,false
@@ -39,7 +39,7 @@ aEP_b_m_hv7_shot_trail2,aEP_b_m_hv7_shot,base_trail_heavySmoke,16,0,0.15,0.15,20
 aEP_b_m_hv7_shot_trail3,aEP_b_m_hv7_shot,aEP_trail_flame,16,0.1,0.2,0.15,10,10,"[200,200,50]","[200,200,200]",0.2,128,256,TRUE,10,0,0,0,true,true,false,0,0,0,0,0,0,false,true
 aEP_b_m_hv7_shot2_trail,aEP_b_m_hv7_shot2,base_trail_zap,16,0,0,0.2,10,10,"[232,224,50]","[240,240,240]",0.6,64,128,TRUE,10,0,0,0,true,true,false,0,0,0,0,0,0,false,true
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-#导弹
+#导弹,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_m_l_blasthammer_shot_trail,aEP_m_l_blasthammer_shot,aEP_trail_smoke_long,64,1.2,0.7,1,48,64,"[240,240,240,120]","[240,240,240,120]",0.12,512,128,TRUE,0,1,0,0,false,false,false,200,100,0,0,6,6,true,false
 aEP_m_l_blasthammer_shot_trail2,aEP_m_l_blasthammer_shot,aEP_trail_smoke_long,64,0.7,0.7,1,48,64,"[240,240,240,120]","[240,240,240,120]",0.12,512,128,TRUE,0,1,0,0,false,false,false,200,100,0,0,12,12,true,false
 aEP_m_l_blasthammer_shot_trail3,aEP_m_l_blasthammer_shot,aEP_trail_smoke_long,64,0.2,0.7,1,48,64,"[240,240,240,120]","[240,240,240,120]",0.15,512,128,TRUE,0,1,0,0,false,false,false,200,100,0,0,18,18,true,false
@@ -49,7 +49,7 @@ aEP_m_m_blasthammer_shot_trail,aEP_m_m_blasthammer_shot,aEP_trail_smoke_long,64,
 aEP_m_m_blasthammer_shot_trail2,aEP_m_m_blasthammer_shot,aEP_trail_smoke_long,64,0.7,0.7,1,36,50,"[240,240,240,120]","[240,240,240,120]",0.12,512,128,TRUE,0,1,0,0,false,false,false,200,100,0,0,12,12,true,false
 aEP_m_m_blasthammer_shot_trail3,aEP_m_m_blasthammer_shot,aEP_trail_smoke_long,64,0.2,0.7,1,36,50,"[240,240,240,120]","[240,240,240,120]",0.15,512,128,TRUE,0,1,0,0,false,false,false,200,100,0,0,18,18,true,false
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-#内置武器
+#内置武器,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_cap_sta_main_shot_trail,aEP_cap_sta_main_shot,aEP_trail_smoke,32,0.05,0.8,0.4,32,32,"[240,240,240]","[240,240,240]",0.2,128,128,TRUE,0,0,0,0,false,true,false,300,50,0,0,60,-60,true,false
 aEP_cap_sta_main_shot_trail2,aEP_cap_sta_main_shot,aEP_trail_smoke_long,32,0.05,0.8,0.4,32,32,"[240,240,240]","[240,240,240]",0.1,256,128,TRUE,0,0,0,0,false,true,false,250,50,0,0,45,-45,true,false
 aEP_cap_sta_main_shot_trail3,aEP_cap_sta_main_shot,aEP_trail_smoke_long,32,0.05,0.8,0.4,32,32,"[240,240,240]","[240,240,240]",0.1,256,128,TRUE,0,0,0,0,false,true,false,200,50,0,0,30,-30,true,false
