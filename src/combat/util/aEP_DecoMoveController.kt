@@ -66,6 +66,8 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_des_shendu_door_l"] = arrayOf(5f, 2f, -16f,2f)
       mag["aEP_des_shendu_door_r"] = arrayOf(5f, 2f, 16f,2f)
 
+      mag["aEP_des_yuanyang_cover"] = arrayOf(6f, 2f, 0f,0f)
+
       mag["aEP_des_shendu_mk2_clip"] = arrayOf(-6f, 2f, 0f,2f)
 
       mag["aEP_des_lianliu_front_cover"] = arrayOf(6f, 3f, 0f,0f)

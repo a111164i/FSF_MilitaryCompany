@@ -17,22 +17,156 @@
     "shieldRadius": 115,
     "viewOffset": 0,
     "builtInMods": [
-      "aEP_SpecialHull",
-      "hiressensors",
-      "surveying_equipment"
+        "aEP_SpecialHull",
+        "hiressensors",
+        "surveying_equipment"
     ],
+    "builtInWeapons": {
+        "WS 004": "aEP_des_yuanyang_cover",
+        "WS 005": "aEP_des_yuanyang_cover",
+        "LED01": "aEP_cap_decomposer_round_indicator_red",
+        "LED02": "aEP_cap_decomposer_round_indicator_red",
+        "LED03": "aEP_cap_decomposer_round_indicator_red",
+        "LED04": "aEP_cap_decomposer_round_indicator_red",
+        "LED05": "aEP_cap_decomposer_round_indicator_red",
+        "LED06": "aEP_cap_decomposer_round_indicator_red"
+    },
     "builtInWings": [],
     "builtInModules": null,
     "weaponSlots": [
         {
             "id": "WS 000",
+            "size": "MEDIUM",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 100,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      11,        0
+            ]
+        },
+        {
+            "id": "WS 001",
             "size": "SMALL",
             "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 90,
+            "arc": 220,
+            "angle": 90,
+            "locations": [
+                      10,       23
+            ]
+        },
+        {
+            "id": "WS 002",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 90,
+            "arc": 220,
+            "angle": -90,
+            "locations": [
+                      10,      -23
+            ]
+        },
+        {
+            "id": "WS 003",
+            "size": "MEDIUM",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 130,
+            "angle": 40,
+            "locations": [
+                      28,       31
+            ]
+        },
+        {
+            "id": "WS 004",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 90,
+            "locations": [
+                   -24.5,     14.5
+            ]
+        },
+        {
+            "id": "WS 005",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 270,
+            "locations": [
+                   -24.5,    -14.5
+            ]
+        },
+        {
+            "id": "LED01",
+            "size": "SMALL",
+            "type": "DECORATIVE",
             "mount": "TURRET",
             "arc": 0,
             "angle": 0,
             "locations": [
-                      11,        0
+                   -19.5,     13.5
+            ]
+        },
+        {
+            "id": "LED02",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -19.5,    -13.5
+            ]
+        },
+        {
+            "id": "LED03",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -24.5,     13.5
+            ]
+        },
+        {
+            "id": "LED04",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -24.5,    -13.5
+            ]
+        },
+        {
+            "id": "LED05",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -29.5,     13.5
+            ]
+        },
+        {
+            "id": "LED06",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -29.5,    -13.5
             ]
         },
         {

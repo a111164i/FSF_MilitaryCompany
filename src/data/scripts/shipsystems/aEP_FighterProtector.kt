@@ -74,8 +74,6 @@ class aEP_FighterProtector : BaseShipSystemScript() {
         if(anim.decoMoveController.effectiveLevel == 1f) anim.setMoveToLevel(0f)
         anim.decoMoveController.speed = 0.5f + 1f * heatLevel
 
-
-
       }
       //发光
       if(w.id.equals(GLOW_WEAPON_ID)){
