@@ -9,90 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.7rc4">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules_CN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/exerelin/corvus_capitals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelin/corvus_capitals.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/exerelinFactionConfig/mod_factions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelinFactionConfig/mod_factions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicTrail_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicTrail_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk2.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk2.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk3.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk3.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_hailiang.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_hailiang.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_yangji.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_yangji.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan_mk2.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan_mk2.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_yonglang.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_yonglang.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_test/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_test/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_CN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Defense.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_ftr_bom_lancer.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_ftr_bom_lancer.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_fga_shuangshen2_lidardish.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_fga_shuangshen2_lidardish.wpn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_bom_lancer_laser.wpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ut_targeting_laser1.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ut_targeting_laser1.wpn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_breachdoor_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_breachdoor_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_random_fleet_combat/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_random_fleet_combat/MissionDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_test/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_test/MissionDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_BaseShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_BaseShipAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShieldShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShieldShipAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_BaseSystemAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_BaseSystemAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_MainGunAttitudeAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_MainGunAttitudeAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_ShuishiDroneLaunchAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_ShuishiDroneLaunchAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_SiegeModeAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_SiegeModeAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_WeaponResetAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_WeaponResetAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_CloseTargeting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_CloseTargeting.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FocusOnShield.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HighSpeedManeuver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HighSpeedManeuver.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MainGunAttitude.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MainGunAttitude.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VectorThrust.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VectorThrust.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
-    </list>
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "recovery-branch",
     "last_opened_file_path": "F:/Starsector097/mods/FSF_MilitaryCorporation/jars",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -232,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719585697683</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="4.8rc1">
+      <option name="closed" value="true" />
+      <created>1724991564152</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724991564152</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +208,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="4.7rc4" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.7rc4" />
+    <MESSAGE value="4.8rc1" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.8rc1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
