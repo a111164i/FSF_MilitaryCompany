@@ -5,24 +5,18 @@ aEP_station_tier1,Orbital Station - FSF,50,90,,3,,aEP_station_tier2,"station, su
 radius:55,
 variant:aEP_sta_base1_Standard,
 fleetName:Orbital Station,
-}",graphics/icons/industry/orbital_station.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"Orbital Station designed by FSF, it has extraordinary fire power potential
-
-It prevents any orbital bombing from happening",
+}",graphics/icons/industry/orbital_station.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"The Orbital Station, designed by FSF, boasts extraordinary firepower potential. It effectively prevents any orbital bombing from occurring.",
 ,,,,,,,,,,,,,
 aEP_station_tier2,Battle Base - FSF,100,120,,4,aEP_station_tier1,aEP_station_tier3,"station, battlestation, unraidable, structure","{
 radius:65,
 variant:aEP_sta_base2_Standard,
 fleetName:Battlestation,
-}",graphics/icons/industry/battlestation.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"Upgraded battle station, all necessary modules are mounted
-
-It prevents any orbital bombing from happening",
+}",graphics/icons/industry/battlestation.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"The upgraded battle station now has all necessary modules mounted, effectively preventing any orbital bombing attempts.",
 ,,,,,,,,,,,,,
 aEP_station_tier3,Star Fortress - FSF,200,180,,5,aEP_station_tier2,,"station, starfortress, unraidable, structure","{
 radius:70,
 variant:aEP_sta_base3_Standard,
 fleetName:Star Fortress
-}",graphics/icons/industry/battlestation.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"Fully armed star fortress, with extra modular armors protecting outer platform
-
-It prevents any orbital bombing from happening",
+}",graphics/icons/industry/battlestation.png,data.scripts.campaign.econ.industries.aEP_FSFOrbitalStationPlugin,"A fully armed star fortress, equipped with additional modular armor to protect the outer platform, effectively prevents any orbital bombardment.",
 ,,,,,,,,,,,,,
-aEP_AdvanceHq,Advance D&R Department,90,60,,6,,,"military, unraidable, tactical_bombardment, structure",,graphics/aEP_icons/industry/design_department.png,data.scripts.campaign.econ.industries.aEP_AdvanceHqPlugin,"It remains misery why FSF is experiencing this massive arsenal expanding in the recent years, but the battle-experienced, loyalty and background-clean officers are getting this department. Isolated from outside eyes, this move has been seen as a prediction of the company that tremendous chaos is coming",
+aEP_AdvanceHq,Advance D&R Department,90,60,,6,,,"military, unraidable, tactical_bombardment, structure",,graphics/aEP_icons/industry/design_department.png,data.scripts.campaign.econ.industries.aEP_AdvanceHqPlugin,"It remains a mystery why the FSF has been experiencing a massive expansion in its arsenal in recent years. However, battle-experienced, loyal, and background-checked officers are joining the department. Isolated from public scrutiny, this move is seen as the company's prediction of impending tremendous chaos.",

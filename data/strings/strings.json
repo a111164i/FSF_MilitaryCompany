@@ -282,7 +282,7 @@
 		"equalsTo": "Equal to ",
 		"consumption": "Consumption ",
 		"depletion": "Depleted ",
-		"after": "Aftr ",
+		"after": "After ",
 		"time": "Time ",
 		"recover": "Recover ",
 		"speed": "Speed ",
@@ -311,7 +311,7 @@
 
 		"aEP_HighSpeedManeuver01": "Each time this ship takes a damage >= %s, has a chance going into %s, last for %s seconds, during which it has no collision",
 		"aEP_HighSpeedManeuver02": "Every evasion decreases the chance for subsequent evasions. If take no damage for %s sec, evade chance starts recover",
-		"aEP_HighSpeedManeuver03": "Evadsion",
+		"aEP_HighSpeedManeuver03": "Evasion",
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
 
 		"aEP_AttackCarrier01":"All fighters of this ship that is within %s range and have max speed < %s, get max speed bonus: ",
@@ -346,7 +346,7 @@
 		"aEP_CruiseMissileCarrier03":"Nothing is loading",
 		"aEP_CruiseMissileCarrier04":"Loading process: %s",
 
-		"aEP_EmergencyReconstruct01": "Each time this ship takes a lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover armor and hullpioint: ",
+		"aEP_EmergencyReconstruct01": "Each time this ship takes a lethal damage, if following requirements are met, it can initiate a reconstruction to fully recover armor and hullpoints: ",
 		"aEP_EmergencyReconstruct02": "Do a %s roll between 0-100 and result >= %s",
 		"aEP_EmergencyReconstruct03": "Reconstruct Test",
 		"aEP_EmergencyReconstruct04": "Every succeed %s will cause result requirement for the next test %s",
