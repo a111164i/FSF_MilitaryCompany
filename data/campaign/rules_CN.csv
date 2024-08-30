@@ -92,7 +92,7 @@ aEP_researcher_stage0_greeting_normal,"ShowPersonVisual
 aEP_researcher_stage0_talk01,"ShowPersonVisual
 $faction.AWM_1Talked = true
 
-","""让我们来正式谈一谈这件事吧""——正在你看着个人终端的时候，$personFirstName本人已经在非限制区找到了你，说""看起来你的打扮没有你干过的事情那么传奇，现在我们该找一个地方坐下来聊，不介意的话去我的办公室吧""。","0:aEP_researcher_stage0_talk02:""或许你该先告诉我是什么类型的工作""",
+","""让我们来正式谈一谈这件事吧""--正在你看着个人终端的时候，$personFirstName本人已经在非限制区找到了你，说""看起来你的打扮没有你干过的事情那么传奇，现在我们该找一个地方坐下来聊，不介意的话去我的办公室吧""。","0:aEP_researcher_stage0_talk02:""或许你该先告诉我是什么类型的工作""",
 ,,,,
 ## 要等人物头像出来了，对话对象才是人物而不是站点，这个消除高亮才有效,,,,
 aEP_researcher_stage0_talk02,aEP_AdvanceWeaponMission highlightPerson lili_yang  off,"
@@ -115,7 +115,7 @@ aEP_researcher_stage0_AskAccept,,"""这个任务你接受吗？""","0:aEP_resear
 # 当玩家接受任务后，取消人物高亮,,,,
 aEP_researcher_stage0_Accept,"aEP_AdvanceWeaponMission start1
 $faction.AWM_1Accepted = true
-","""很好，希望你不要辜负我的信任——为了进一步的合作""",0:cutCommLink:切断通讯,
+","""很好，希望你不要辜负我的信任--为了进一步的合作""",0:cutCommLink:切断通讯,
 aEP_researcher_stage0_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""如果你回心转意了，可以再联系我""",0:cutCommLink:切断通讯,
 aEP_researcher_stage0_ReAsk,"ShowPersonVisual
 aEP_AdvanceWeaponMission show1","""继续上次的话题？""","0:aEP_researcher_stage0_Accept:接受
@@ -132,7 +132,7 @@ aEP_researcher_stage0_Complete_talk01,,"""正如部门的名字所示，我们�
 ,,,,
 ##任务线第二节（stage1） 摧毁无人舰,,,,
 aEP_researcher_stage1,"$faction.AWM_2MetYang = true
-aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我这里有一份新的工作给你，感兴趣的话随时可以联系我——你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
+aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我这里有一份新的工作给你，感兴趣的话随时可以联系我--你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
 aEP_researcher_stage1_greeting_out,"ShowPersonVisual
 ","""之前是一次简单的合作，你显然证明自己可以参与更深层次的合作，可惜我现在没有任务给你""",0:cutCommLink:切断通讯,
 aEP_researcher_stage1_greeting_in,"ShowPersonVisual
@@ -146,14 +146,14 @@ aEP_researcher_stage1_talk01,"
 aEP_AdvanceWeaponMission highlightPerson lili_yang  off","$personFirstName看了一下手中的平板，对你说:""这次的任务比较紧急，要求摧毁这艘特殊的人之领无人探测舰，然后把它的护盾核心带回来""","0:aEP_researcher_stage1_talk02:""看起来是某种安装了护盾的无人探测舰，它有什么独特之处让你们处理不了""",
 aEP_researcher_stage1_talk02,,"似乎早就知道会出现这个疑问，$personFirstName把手中的平板翻了过来，上面显示的是某只FSF舰队的战斗报告，像你解释道:""三个月以前一只公司雇佣的探索舰队发现了这艘独特的无人舰，就是你刚刚看到全息影像的出处。随后公司派出了一只中等规模的作战舰队去回收这艘无人舰，然后发生了交火""
 
-$heOrShe把平板递给你，说:""结果就在这个报告上。在遭受了轻等规模的损失后，舰队指挥官判断:虽然可以在交战中取胜，但会造成很多不必要的损失，于是向指挥部申请由另一只更大的舰队去处理——鉴于这艘舰船的特殊性，我觉得你是最合适的人选""","0:aEP_researcher_stage1_talk03:""为什么说我是最合适的人选，我不是很理解""
+$heOrShe把平板递给你，说:""结果就在这个报告上。在遭受了轻等规模的损失后，舰队指挥官判断:虽然可以在交战中取胜，但会造成很多不必要的损失，于是向指挥部申请由另一只更大的舰队去处理--鉴于这艘舰船的特殊性，我觉得你是最合适的人选""","0:aEP_researcher_stage1_talk03:""为什么说我是最合适的人选，我不是很理解""
 1:aEP_researcher_stage1_talk04:""说说那艘无人舰的特征，我需要更多信息""",
 aEP_researcher_stage1_talk03,aEP_AdvanceWeaponMission show2,"$personFirstName站在你的对面笑了出来，赶忙用手捂住了自己的嘴，说到:""真是不好意思，$playerName，看起来你比我想的要更迟钝一点""，感觉到$personFirstName并没有恶意，你为了掩饰尴尬也微笑起来。
 
-""很简单的问题，首先这是一艘非常特殊的无人舰，我们研究所非常想要它的数据，同样重要的是不让其他势力知道。其次，一只中型战斗舰队后紧接着一只大型战斗舰队朝同一个地方行进，无论它们带回的是什么，都将成为星域的焦点。这就是为什么这件事情由公司来做会比让你来做要麻烦的多——没人会盯着独立舰长成天往哪飞，比起麻烦的谍战最好就让这件艘船成为秘密。""",,
+""很简单的问题，首先这是一艘非常特殊的无人舰，我们研究所非常想要它的数据，同样重要的是不让其他势力知道。其次，一只中型战斗舰队后紧接着一只大型战斗舰队朝同一个地方行进，无论它们带回的是什么，都将成为星域的焦点。这就是为什么这件事情由公司来做会比让你来做要麻烦的多--没人会盯着独立舰长成天往哪飞，比起麻烦的谍战最好就让这件艘船成为秘密。""",,
 aEP_researcher_stage1_talk04,aEP_AdvanceWeaponMission show2,"$personFirstName在平板上操作了几下，调出了一份文档，然后重新把平板递给了你，同时解释到:""这艘无人舰特别的地方不仅是因为它'有'护盾，为无盾舰船安装护盾并没有多少难度，需要的只是一个逻辑出错的ai。真正引起我们注意的是它优秀到不可能的护盾效率，根据之前交战报告中的描述，这艘舰船的护盾在承受了数倍于常规舰船护盾吸收极限的伤害后才开始呈现不稳定的现象，舰队的技术副官判断以当前的火力强度要想使它的护盾过载舰队会承受较大的损失""
 
-看到你半信半疑的神色，$personFirstName并没有向你展示更多的信息，而是继续说道:""除了不合理的护盾，这艘舰船的其他地方就像星域中它的同行一样，仅仅能称作'能用'——这意味你有很多种方法能摧毁它""
+看到你半信半疑的神色，$personFirstName并没有向你展示更多的信息，而是继续说道:""除了不合理的护盾，这艘舰船的其他地方就像星域中它的同行一样，仅仅能称作'能用'--这意味你有很多种方法能摧毁它""
 ",,
 aEP_researcher_stage1_talk05,aEP_HandInParts aEP_b_m_lighting -2 none 0,"""我会提前支付一部分报酬，但是这是没有投入量产的东西，研究所也没有很多""","0:aEP_researcher_stage1_AskAccept:""非常感谢""",
 aEP_researcher_stage1_AskAccept,"ShowPersonVisual
@@ -238,7 +238,7 @@ aEP_researcher_stage2_greeting_if_not_recovered,"ShowPersonVisual
 aEP_researcher_stage3_contact_greeting,"ShowPersonVisual
 FireAll PopulateOptions",,,
 aEP_researcher_stage3,"$faction.AWM_4MetYang = true
-aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我有一件事要和你说——你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
+aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我有一件事要和你说--你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
 aEP_researcher_stage3_talk01,aEP_AdvanceWeaponMission highlightPerson lili_yang  off,"""你到了？在老地方见面吧，放心好了，这次的事情和工作无关，不如说是邀请更合适""",0:aEP_researcher_stage3_talk02:前往R024甲板,
 aEP_researcher_stage3_talk02,ShowPersonVisual,"在穿行过熟悉的研究所过道后，你们又到了$personFirstName的办公室，与刚才在过道中交谈的轻松的状态不同，$personFirstName露出了严肃的表情：""这次的事情，保密级别是公司内最高，接下来我希望只有你一个人听到谈话内容，作为诚意你依然可以带着配枪，怎么样？""。","0:aEP_researcher_stage3_talk03:""听起来真像个圈套""",
 aEP_researcher_stage3_talk03,,"她向你露出了非常职业性的微笑说到：""所以你的选择是？""，然后像是默认了你会选择同意一样打开了门。",0:aEP_researcher_stage3_talk04:跟着她进去,

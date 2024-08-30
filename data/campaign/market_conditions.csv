@@ -1,13 +1,13 @@
 name,id,planetary,decivRemove,script,desc,icon,order
-Under Ground Storage,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,"The is an underground base deep down this planet, the resource reserves allow it to self-sustain several cycles without outside connection.
+Under Ground Storage,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,"There is an underground base deep within this planet. Its resource reserves allow it to be self-sustaining for several cycles without outside connection.
 
-Provides stability bonus to the colony",graphics/aEP_icons/UndergroundStorage.png,
-Miliatary Zone,aEP_MilitaryZone,,TRUE,data.scripts.campaign.econ.environment.aEP_MilitaryZone,"A military restricted colony, denying all needs to <Drag> <Luxuries> <Organs>, the max num of industries <+2>",graphics/aEP_icons/UndergroundStorage.png,
-Space Farm,aEP_SpaceFarm,,TRUE,data.scripts.campaign.econ.environment.aEP_SpaceFarm,"This place has a artifact ecosystem, with inputting energy and inorganic compounds, it can continuously produce organic production
+It provides a stability bonus to the colony.",graphics/aEP_icons/UndergroundStorage.png,
+Military Zone,aEP_MilitaryZone,,TRUE,data.scripts.campaign.econ.environment.aEP_MilitaryZone,"A military-restricted colony, denying all needs for <Drag> <Luxuries> <Organs>, with a maximum number of industries <+2>.",graphics/aEP_icons/UndergroundStorage.png,
+Space Farm,aEP_SpaceFarm,,TRUE,data.scripts.campaign.econ.environment.aEP_SpaceFarm,"This place has an artifact ecosystem that, by inputting energy and inorganic compounds, can continuously produce organic products.
 
-Provides <Food> <Organic> production according to colony size",graphics/aEP_icons/hydroponics.png,
-Extinctive Virus,aEP_ExtinctiveVirus,,TRUE,data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus,"The environment is ruined by a synthetic virus aimed destroying all organic life, all outdoor activities must be conducted under full protection
+Provides <Food> and <Organic> production according to colony size.",graphics/aEP_icons/hydroponics.png,
+Extinctive Virus,aEP_ExtinctiveVirus,,TRUE,data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus,"The environment is being devastated by a synthetic virus aimed at destroying all organic life. Consequently, all outdoor activities must be conducted under full protection.
 
-Greatly decrease production of all industries",graphics/aEP_icons/xenoplague.png,
+This has greatly decreased the production capacity of all industries.",graphics/aEP_icons/xenoplague.png,
 ,,,,,,,
 ,,,,,,,

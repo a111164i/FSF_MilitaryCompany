@@ -1,5 +1,5 @@
 id,name,order,tier,reqPoints,reqPointsPerExtraSkill,description,author,combat officer,admiral,admin,tags,icon,
 # COMBAT,,,,,,,,,,,,,
-aEP_SkillAnalyze,SkillAnalyze,11,1,0,,"Supportive program is analyzing pilot style of the enemy captain, the more experienced the easier to predict",Combat Support Scripts HP-02-C User Manuel Chapter.1,TRUE,,,npc_only,graphics/aEP_icons/skills/skill_analyze.png,
+aEP_SkillAnalyze,SkillAnalyze,11,1,0,,"The support program is analyzing the piloting style of the enemy captain; the more experienced they are, the easier they are to predict.",Combat Support Scripts HP-02-C User Manuel Chapter.1,TRUE,,,npc_only,graphics/aEP_icons/skills/skill_analyze.png,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,

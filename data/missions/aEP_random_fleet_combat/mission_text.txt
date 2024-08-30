@@ -1,4 +1,4 @@
 ﻿Location: Unknown
 Date: Unknown
 
-Play against a random fleet
+Play against a random fleet.
