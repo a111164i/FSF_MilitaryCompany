@@ -46,8 +46,16 @@ Close Targeting,aEP_CloseTargeting,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.
 
 PD weapon range %s, all ballistic/energy weapon recoil and max spread %s, projectile speed %s
 
+<<<<<<< HEAD
 This ship deals significantly less damage to allies",,,graphics/aEP_hullmods/aEP_close_targeting.png,
 Shield Focus,aEP_FocusOnShield,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FocusOnShield,"Redirect lines that were used by weapon system to shield system, enforcing shield performance
+=======
+This ship deals significantly less damage to allies.",,,graphics/aEP_hullmods/aEP_close_targeting.png,
+Shield Focus,aEP_FocusOnShield,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FocusOnShield,"Redirect lines formerly used by the weapon system to the shield system, thereby enhancing shield performance.
+
+Shield damage taken %s, all ballistic/energy weapon flux cost %s, and the maximum shield active arc during battle is limited to %s.",,,graphics/aEP_hullmods/aEP_focus_on_shield.png,
+Titanic Killer,aEP_TitanicKiller,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TitanicKiller,"A dreadnought is designed to defeat a formidable opponent.
+>>>>>>> c440fc5 (4.8)
 
 Shield damage taken %s, all ballistic/energy weapon flux cost %s, max shield active arc during battle is limited to %s",,,graphics/aEP_hullmods/aEP_focus_on_shield.png,
 Titanic Killer,aEP_TitanicKiller,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TitanicKiller,"A dreadnought is born to defeat a qualified opponent.

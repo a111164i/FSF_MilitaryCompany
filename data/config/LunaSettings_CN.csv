@@ -1,6 +1,6 @@
 fieldID,fieldName,fieldType,defaultValue,secondaryValue,fieldDescription,minValue,maxValue,tab
 ,,,,,,,,
 aEP_SettingHeader,Header,Header,生涯模式,,,,,Settings
-aEP_SettingMissionSkipAwm,跳过“先进武器计划”任务线,Boolean,false,,开启后将不再触发任务线，并自动揭晓隐藏星系，任务线的奖励可以在隐藏星系中通过购买获得,,,Settings
+aEP_SettingMissionSkipAwm,"跳过""先进武器计划""任务线",Boolean,false,,开启后将不再触发任务线，并自动揭晓隐藏星系，任务线的奖励可以在隐藏星系中通过购买获得,,,Settings
 aEP_SettingFleetSkill,是否启用辅助学说,Boolean,false,,开启后FSF势力将辅助学说加入舰队技能,,,Settings
 aEP_SettingAdvanceShipSpawnNormal,是否正常刷新先进计划舰船,Boolean,false,,开启后FSF势力会将先进计划舰船在AI舰队中以正常倍率刷新,,,Settings
