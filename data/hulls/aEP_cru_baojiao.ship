@@ -1,0 +1,291 @@
+{
+    "hullName": "Barrier",
+    "hullId": "aEP_cru_baojiao",
+    "hullSize": "CRUISER",
+    "style": "aEP_FSF",
+    "spriteName": "graphics/ships/aEP_cru_baojiao.png",
+    "height": 350,
+    "width": 200,
+    "center": [
+        100, 175
+    ],
+    "collisionRadius": 165,
+    "coversColor": "",
+    "shieldCenter": [
+        0, 0
+    ],
+    "shieldRadius": 160,
+    "viewOffset": 0,
+    "builtInMods": [
+        "aEP_SpecialHull",
+        "aEP_MissilePlatform",
+        "targetingunit"
+    ],
+    "builtInWings": [],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS 000",
+            "size": "MEDIUM",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 100,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                   -89.5,        7
+            ]
+        },
+        {
+            "id": "WS 001",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 80,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                      31,        7
+            ]
+        },
+        {
+            "id": "WS 002",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 220,
+            "angle": 320,
+            "locations": [
+                      91,      -22
+            ]
+        },
+        {
+            "id": "WS 003",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 200,
+            "angle": 280,
+            "locations": [
+                      57,      -41
+            ]
+        },
+        {
+            "id": "WS 004",
+            "size": "SMALL",
+            "type": "COMPOSITE",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                     130,      -60
+            ]
+        },
+        {
+            "id": "WS 005",
+            "size": "SMALL",
+            "type": "COMPOSITE",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                     130,       59
+            ]
+        },
+        {
+            "id": "WS 006",
+            "size": "SMALL",
+            "type": "MISSILE",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                     -99,      -39
+            ]
+        },
+        {
+            "id": "WS 007",
+            "size": "SMALL",
+            "type": "MISSILE",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                     -99,       53
+            ]
+        },
+        {
+            "id": "WS 008",
+            "size": "SMALL",
+            "type": "SYSTEM",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                    94.5,     78.5
+            ]
+        },
+        {
+            "id": "WS 009",
+            "size": "SMALL",
+            "type": "SYSTEM",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                    94.5,    -78.5
+            ]
+        },
+        {
+            "id": "WS 010",
+            "size": "SMALL",
+            "type": "SYSTEM",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     5.5,       72
+            ]
+        },
+        {
+            "id": "WS 011",
+            "size": "SMALL",
+            "type": "SYSTEM",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     5.5,      -83
+            ]
+        },
+        {
+            "id": "LB 000",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                      56,       42,
+                    38.5,       42
+            ]
+        },
+        {
+            "id": "LB 001",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                    50.5,       42,
+                    44.5,       42
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -146.5, 7
+            ],
+            "length": 68.5,
+            "width": 20,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -138, -26.5
+            ],
+            "length": 37,
+            "width": 9,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -138.5, 39.5
+            ],
+            "length": 37,
+            "width": 9,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -138.5, 28
+            ],
+            "length": 50.5,
+            "width": 12,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -138.5, -14
+            ],
+            "length": 50.5,
+            "width": 12,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "FSF_MAIN"
+        }
+    ],
+    "bounds": [
+             -81,     38.5,
+           -92.5,     49.5,
+          -131.5,     49.5,
+          -131.5,     20.5,
+          -140.5,     20.5,
+        
+          -140.5,     17.5,
+          -145.5,     16.5,
+          -145.5,     -2.5,
+          -140.5,     -3.5,
+          -140.5,     -6.5,
+        
+          -131.5,     -6.5,
+          -131.5,    -35.5,
+           -92.5,    -35.5,
+           -85.5,      -31,
+             -16,    -30.5,
+        
+             -16,    -45.5,
+             -68,    -45.5,
+             -68,    -63.5,
+              -3,    -63.5,
+              -3,    -67.5,
+        
+              21,    -67.5,
+              29,      -76,
+              57,      -76,
+            59.5,    -50.5,
+            77.5,    -50.5,
+        
+             110,    -60.5,
+             131,    -50.5,
+           144.5,      -15,
+           108.5,      -14,
+           108.5,       14,
+        
+           144.5,       15,
+             131,     50.5,
+             110,     60.5,
+            77.5,     50.5,
+              23,     50.5,
+        
+              21,       55,
+            -4.5,       55,
+            -4.5,       48,
+             -15,       48,
+           -16.5,     43.5,
+        
+             -63,     44.5,
+             -64,     38.5
+    # 42 points total.
+    ]
+}

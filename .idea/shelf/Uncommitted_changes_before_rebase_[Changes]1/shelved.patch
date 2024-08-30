@@ -1,0 +1,311 @@
+Index: data/weapons/aEP_ftr_bom_lancer_laser.wpn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/weapons/aEP_ftr_bom_lancer_laser.wpn b/data/weapons/aEP_ftr_bom_lancer_laser.wpn
+deleted file mode 100644
+--- a/data/weapons/aEP_ftr_bom_lancer_laser.wpn	(revision c440fc5ce43e34357e23343b912c4a2349a0b56b)
++++ /dev/null	(revision c440fc5ce43e34357e23343b912c4a2349a0b56b)
+@@ -1,30 +0,0 @@
+-{
+-	"specClass":"beam",
+-	"id":"aEP_ftr_bom_lancer_laser",
+-	"type":"SYSTEM",
+-	"size":"SMALL",
+-  "collisionClass": "RAY_FIGHTER",
+-  "collisionClassByFighter": "RAY_FIGHTER",
+-	"showDamageWhenDecorative":true,
+-	"renderBelowAllWeapons":false,
+-	"turretSprite":"",
+-	"hardpointSprite":"",
+-	"turretOffsets":[0, 10],
+-	"turretAngleOffsets":[0],
+-	"hardpointOffsets":[0, 0],
+-	"hardpointAngleOffsets":[0],
+-	"fringeColor":[155,0,0,5],
+-	"coreColor":[255,255,255,5],
+-	"glowColor":[255,100,100,5],
+-	"hitGlowBrightenDuration":0.1,
+-	#"hitGlowRadius":100,
+-	"width":17.0,
+-	#"textureType":ROUGH,
+-	"textureType":SMOOTH,
+-	#"textureType":LASER,
+-	"textureScrollSpeed":128.0,
+-	"pixelsPerTexel":5.0,
+-	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF,ASTEROID, FIGHTER],
+-
+-	#"fireSoundOne":"lidar_ping",
+-}
+\ No newline at end of file
+Index: src/data/scripts/hullmods/aEP_FocusOnShield.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/data/scripts/hullmods/aEP_FocusOnShield.kt b/src/data/scripts/hullmods/aEP_FocusOnShield.kt
+deleted file mode 100644
+--- a/src/data/scripts/hullmods/aEP_FocusOnShield.kt	(revision c440fc5ce43e34357e23343b912c4a2349a0b56b)
++++ /dev/null	(revision c440fc5ce43e34357e23343b912c4a2349a0b56b)
+@@ -1,45 +0,0 @@
+-package data.scripts.hullmods
+-
+-import com.fs.starfarer.api.combat.MutableShipStatsAPI
+-import com.fs.starfarer.api.combat.ShipAPI
+-import com.fs.starfarer.api.loading.HullModSpecAPI
+-import com.fs.starfarer.api.ui.TooltipMakerAPI
+-
+-class aEP_FocusOnShield : aEP_BaseHullMod(){
+-
+-  companion object{
+-    const val ID = "aEP_FocusOnShield"
+-    const val SHIELD_DAMAGE_TAKEN_REDUCE_MULT = 0.5f
+-    const val WEAPON_FLUX_USE_PERCENT_BONUS = 100f
+-    const val MAX_SHIELD_ANGLE = 200f
+-  }
+-
+-  init {
+-    //notCompatibleList.add(aEP_ShieldFloating.ID)
+-  }
+-
+-  override fun advanceInCombat(ship: ShipAPI, amount: Float) {
+-    if(ship.shield?.isOn == true){
+-      val arc = ship.shield.activeArc
+-      if(arc > MAX_SHIELD_ANGLE){
+-        ship.shield.activeArc = MAX_SHIELD_ANGLE
+-      }
+-    }
+-  }
+-
+-  override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize, stats: MutableShipStatsAPI, id: String) {
+-    stats.shieldDamageTakenMult.modifyMult(ID, 1f - SHIELD_DAMAGE_TAKEN_REDUCE_MULT)
+-
+-    stats.ballisticWeaponFluxCostMod.modifyPercent(ID, WEAPON_FLUX_USE_PERCENT_BONUS)
+-    stats.energyWeaponFluxCostMod.modifyPercent(ID, WEAPON_FLUX_USE_PERCENT_BONUS)
+-    stats.missileWeaponFluxCostMod.modifyPercent(ID, WEAPON_FLUX_USE_PERCENT_BONUS)
+-  }
+-
+-  override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String {
+-    if (index == 0) return String.format("-%.0f", SHIELD_DAMAGE_TAKEN_REDUCE_MULT * 100f) +"%"
+-    if (index == 1) return String.format("+%.0f", WEAPON_FLUX_USE_PERCENT_BONUS) +"%"
+-    if (index == 2) return String.format("%.0f", MAX_SHIELD_ANGLE)
+-    return ""
+-  }
+-
+-}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"FSF_MilitaryCorporation:jar\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4740bd54-10da-4f60-8854-5f39776b797b\" name=\"Changes\" comment=\"4.7rc4\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/csv-editor.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/csv-editor.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/kotlinc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/kotlinc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/commodities.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/campaign/commodities.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/commodities_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/industries.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/campaign/industries.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/industries_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/market_conditions.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/campaign/market_conditions.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/market_conditions_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/rules.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/campaign/rules.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/rules_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/special_items.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/campaign/special_items.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/special_items_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/submarkets.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/campaign/submarkets.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/campaign/submarkets_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/characters/skills/skill_data.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/characters/skills/skill_data.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/characters/skills/skill_data_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/config/LunaSettings.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/config/LunaSettings.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/config/LunaSettings_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/config/modFiles/magicBounty_data_CN.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/config/settings.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/config/settings.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/hullmods/hull_mods.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/hullmods/hull_mods.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/hulls/ship_data.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/hulls/ship_data.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/hulls/ship_data_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_CN.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_CN.txt\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_CN.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_CN.txt\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_CN.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_CN.txt\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_CN.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_CN.txt\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/shipsystems/ship_systems.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/shipsystems/ship_systems.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/strings/descriptions.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/strings/descriptions.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/strings/descriptions_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/weapons/weapon_data.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/weapons/weapon_data.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/weapons/weapon_data_CN.csv\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/world/factions/aEP_FSF.faction\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/world/factions/aEP_FSF.faction\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/world/factions/aEP_FSF_CN.faction\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_CN.faction\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/mod_info.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/mod_info.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/mod_info_CN.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2i9ZR7wWrAY1gPh7OZJCavG6e7S\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;F:/Starsector097/mods/FSF_MilitaryCorporation/jars&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4740bd54-10da-4f60-8854-5f39776b797b\" name=\"Changes\" comment=\"\" />\r\n      <created>1718904744188</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1718904744188</updated>\r\n      <workItem from=\"1718904745515\" duration=\"389000\" />\r\n      <workItem from=\"1718905147317\" duration=\"1346000\" />\r\n      <workItem from=\"1718906517176\" duration=\"228000\" />\r\n      <workItem from=\"1718907452997\" duration=\"1633000\" />\r\n      <workItem from=\"1718909149611\" duration=\"1492000\" />\r\n      <workItem from=\"1718910696508\" duration=\"10022000\" />\r\n      <workItem from=\"1718920862811\" duration=\"129000\" />\r\n      <workItem from=\"1718921001729\" duration=\"975000\" />\r\n      <workItem from=\"1718922296470\" duration=\"396000\" />\r\n      <workItem from=\"1718978671106\" duration=\"127000\" />\r\n      <workItem from=\"1719585234568\" duration=\"347000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"4.7rc4\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1718922323235</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1718922323235</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"4.7rc4\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"4.7rc4\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c440fc5ce43e34357e23343b912c4a2349a0b56b)
++++ b/.idea/workspace.xml	(date 1724989295294)
+@@ -9,64 +9,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.7rc4">
+-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/industries_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/rules_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data_CN.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_CN.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_CN.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_CN.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_CN.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_CN.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_CN.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_CN.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_CN.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_CN.faction" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_CN.faction" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/mod_info_CN.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" afterDir="false" />
+-    </list>
++    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -74,6 +17,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="CurrentFile" />
+@@ -140,7 +84,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1718922323235</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="4.8">
++      <option name="closed" value="true" />
++      <created>1724989107893</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1724989107893</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -159,6 +111,8 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="4.7rc4" />
+-    <option name="LAST_COMMIT_MESSAGE" value="4.7rc4" />
++    <MESSAGE value="4.6" />
++    <MESSAGE value="4.8" />
++    <option name="LAST_COMMIT_MESSAGE" value="4.8" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/csv-editor.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CsvFileAttributes\">\r\n    <option name=\"attributeMap\">\r\n      <map>\r\n        <entry key=\"F:\\Starsector097\\mods\\GraphicsLib\\data\\lights\\core_light_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\mods\\GraphicsLib\\data\\lights\\core_texture_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\mods\\MagicLib\\data\\hullmods\\hull_mods.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\abilities.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\bar_events.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\commodities.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\industries.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\market_conditions.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\person_missions.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\procgen\\condition_gen_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\procgen\\drop_groups.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\procgen\\name_gen_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\procgen\\planet_gen_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\procgen\\salvage_entity_gen_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\procgen\\star_gen_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\reports.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\rules.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\sim_opponents.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\sim_opponents_dev.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\special_items.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\campaign\\submarkets.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\characters\\person_names.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\characters\\personalities.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\characters\\skills\\aptitude_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\characters\\skills\\skill_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\config\\title_screen_variants.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\hullmods\\hull_mods.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\hulls\\ship_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\hulls\\wing_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\shipsystems\\ship_systems.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\strings\\descriptions.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\weapons\\weapon_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"F:\\Starsector097\\starsector-core\\data\\world\\factions\\factions.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\commodities.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\industries.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\market_conditions.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\rules.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\sim_opponents.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\sim_opponents_dev.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\special_items.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\campaign\\submarkets.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\characters\\skills\\skill_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\LunaSettings.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_light_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_light_data_m.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_texture_data_material_ships.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_texture_data_material_weapons.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_texture_data_normal_ships.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_texture_data_normal_weapons.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_texture_data_surface_ships.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\lights\\FSF_texture_data_surface_weapons.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\modFiles\\magicTrail_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\config\\title_screen_variants.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\hullmods\\hull_mods.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\hullmods\\hull_mods_EN.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\hulls\\ship_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\hulls\\wing_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\shipsystems\\ship_systems.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\strings\\descriptions.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"\\data\\weapons\\weapon_data.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/csv-editor.xml b/.idea/csv-editor.xml
+--- a/.idea/csv-editor.xml	(revision c440fc5ce43e34357e23343b912c4a2349a0b56b)
++++ b/.idea/csv-editor.xml	(date 1724989295290)
+@@ -304,6 +304,13 @@
+             </Attribute>
+           </value>
+         </entry>
++        <entry key="\data\config\LunaSettings_CN.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
+         <entry key="\data\config\lights\FSF_light_data.csv">
+           <value>
+             <Attribute>
+@@ -311,6 +318,13 @@
+             </Attribute>
+           </value>
+         </entry>
++        <entry key="\data\config\lights\FSF_light_data_e.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
+         <entry key="\data\config\lights\FSF_light_data_m.csv">
+           <value>
+             <Attribute>
+@@ -375,6 +389,13 @@
+           </value>
+         </entry>
+         <entry key="\data\hullmods\hull_mods.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
++        <entry key="\data\hullmods\hull_mods_CN.csv">
+           <value>
+             <Attribute>
+               <option name="separator" value="," />
+@@ -396,6 +417,13 @@
+           </value>
+         </entry>
+         <entry key="\data\hulls\wing_data.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
++        <entry key="\data\missions\mission_list.csv">
+           <value>
+             <Attribute>
+               <option name="separator" value="," />
+@@ -409,6 +437,13 @@
+             </Attribute>
+           </value>
+         </entry>
++        <entry key="\data\shipsystems\ship_systems_CN.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
+         <entry key="\data\strings\descriptions.csv">
+           <value>
+             <Attribute>
+@@ -416,7 +451,21 @@
+             </Attribute>
+           </value>
+         </entry>
++        <entry key="\data\strings\descriptions_CN.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
+         <entry key="\data\weapons\weapon_data.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
++        <entry key="\data\weapons\weapon_data_CN.csv">
+           <value>
+             <Attribute>
+               <option name="separator" value="," />
