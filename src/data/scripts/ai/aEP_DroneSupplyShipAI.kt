@@ -228,7 +228,16 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
     override fun advance(amount: Float) {
       super.advance(amount)
 
-      //如果自己幅能太高，转入返回模式，最高优先级
+      //如果弹药用完，转入返回模式，最高优先级
+      for(w in ship.allWeapons){
+        w ?: continue
+        if(w.usesAmmo() && w.ammoTracker.ammoPerSecond <= 0 && w.ammoTracker.ammo <=0){
+          stat = ForceReturn()
+          return
+        }
+      }
+
+      //如果自己幅能太高，转入返回模式，高优先级
       if(ship.fluxLevel > 0.9f){
         stat = ForceReturn()
         cancelBuff()

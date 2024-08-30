@@ -104,7 +104,7 @@ Magnet Bomb - Fighter,aEP_ftr_ut_shendu_mine,"SYSTEM,DO_NOT_CONSERVE,DO_NOT_AIM"
 Anti-ship Laser - Fighter,aEP_ftr_ut_shendu_beam,SYSTEM,HIGH_EXPLOSIVE,0,300,60,240,,,,,,,20000,,0.5,1,0.5,,,,,,0,0,0,0,,,FSF Manufacture,Anti-armor,,,,,,,,,,,,,,,,,
 ADS System - Fighter,aEP_ftr_ut_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,1000,540,,500,,,,,3000,,1,0,0.25,,,10,1,1,,0,0,0,0,500,3000,FSF Manufacture,PD,500,"When hitting enemy projectile, reduce its damage by %s. Projectiles fired by this weapon are considered missiles and can be intercepted.",,,,,,,10,,,,,,,,
 ADS System - Ship,aEP_cru_maodian_ads,"SYSTEM, PD, PD_ONLY, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,900,540,,500,,,,,3000,,1,0,0.2,,,24,2,1,,0,0,0,0,500,3000,FSF Manufacture,PD,500,"When hitting an enemy projectile, reduce its damage by %s.Projectiles fired by this weapon are considered missiles and can be intercepted.",,,,,,,10,,,,,,,,
-Flux Absorber - Fighter,aEP_ftr_ut_supply_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,350,720,0,,,1,,,,20000,,0,0.5,,,,,,,0,0,0,0,,,FSF Manufacture,Support,500,"When hitting a ship, transfer the target's flux into this ship as hard flux at a speed of %s.
+Flux Absorber - Fighter,aEP_ftr_ut_supply_main,"SYSTEM, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,1,350,720,0,,,1,,,,20000,,0,0.5,0.1,,25,,,,0,0,0,0,,,FSF Manufacture,Support,500,"When hitting a ship, transfer the target's flux into this ship as hard flux at a speed of %s.
 
 If the target is using a ship system that prevents dissipation, no transfer will occur.
 
