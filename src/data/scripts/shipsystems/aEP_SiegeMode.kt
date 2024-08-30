@@ -96,14 +96,14 @@ class aEP_SiegeMode : BaseShipSystemScript() {
           var facingChange = MathUtils.getShortestRotation(weapon.currAngle, ship.facing)
 
 
-          // Ensure rotation is always in the direction of the longer distance
-          facingChange = if (facingChange > 0) {
-            // Current change is clockwise and shorter, make it counterclockwise and longer
-            facingChange - 360f
-          } else {
-            // Current change is counterclockwise and shorter, make it clockwise and longer
-            facingChange + 360f
-          }
+//          // Ensure rotation is always in the direction of the longer distance
+//          facingChange = if (facingChange > 0) {
+//            // Current change is clockwise and shorter, make it counterclockwise and longer
+//            facingChange - 360f
+//          } else {
+//            // Current change is counterclockwise and shorter, make it clockwise and longer
+//            facingChange + 360f
+//          }
 
           // Calculate turn rate based on finishTime
           val totalRotationNeeded = abs(facingChange)
