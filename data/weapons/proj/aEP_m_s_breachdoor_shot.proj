@@ -1,7 +1,7 @@
 {
 	"id":"aEP_m_s_breachdoor_shot",
 	"specClass":"missile",
-	"missileType":"MISSILE_TWO_STAGE_SECOND_UNGUIDED",
+	"missileType":"MISSILE",
 	"onFireEffect":"com.fs.starfarer.api.impl.combat.dem.DEMEffect",
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"sprite":"graphics/weapons/aEP_m_m_breachdoor/proj.png",

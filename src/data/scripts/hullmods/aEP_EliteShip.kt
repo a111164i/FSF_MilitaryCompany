@@ -65,7 +65,7 @@ class aEP_EliteShip : aEP_BaseHullMod() {
 
     const val HP_LOSS_PERCENT_TO_CHECK = 0.2f
 
-    const val CHECK_COOLDOWN = 6f
+    const val CHECK_COOLDOWN = 8f
 
     const val SHIELD_CHANCE = 0.5f
     val SHIELD_AMOUNT = LinkedHashMap<ShipAPI.HullSize, Float>()

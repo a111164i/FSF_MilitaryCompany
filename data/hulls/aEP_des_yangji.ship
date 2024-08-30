@@ -15,7 +15,6 @@
     "aEP_SpecialHull",
     "aEP_HLMultiTurret",
     "aEP_CloseTargeting",
-    "aEP_FocusOnShield"
   ],
   "weaponSlots": [
     {

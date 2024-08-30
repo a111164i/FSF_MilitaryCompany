@@ -31,15 +31,16 @@
 		"target_fleet": "目标舰队",
 
 		#############################
-		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸大于自己的友方舰船加速时，你的最大速度{%s}，加速度{%s}",
+		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸大于自己的友方舰船加速时，本舰的最大速度{%s}，加速度{%s}",
 		"aEP_SpecialHull02": "零幅能加速的启用阈值{%s}",
 
 		"aEP_MissilePlatform01":"锻炉功率",
-		"aEP_MissilePlatform07":"锻炉功率为满时，不同尺寸导弹武器的的最大弹药生产速度如下: ",
-		"aEP_MissilePlatform02":"锻炉功率的最大值为舰船所有导弹武器装配点之和的一定比例，随时间自然回复{%s}",
-		"aEP_MissilePlatform03":"生产导弹会消耗锻炉功率，但随着锻炉功率的下降，生成导弹的速度也会变慢",
-		"aEP_MissilePlatform06":"本舰安装的武器在全速生产时一发弹药所需时间如下: ",
-		"aEP_MissilePlatform04":"秒/每发",
+		"aEP_MissilePlatform07":"当锻炉功率满额时，不同尺寸导弹武器的弹药生产速度如下: ",
+		"aEP_MissilePlatform02":"锻炉功率为舰船所有导弹武器装配点之和的一定比例，回复速度为{%s}",
+		"aEP_MissilePlatform06":"不同武器生产弹药所需的{%s}与{%s}如下: ",
+		"aEP_MissilePlatform08":"弹药",
+		"aEP_MissilePlatform03":"功率",
+		"aEP_MissilePlatform04":"秒",
 		"aEP_MissilePlatform05":"所有导弹的备弹量会被限制到：武器{%s}轮的发射量或是基础备弹量的{%s}，两者取大",
 		"aEP_MissilePlatform09":"例如，装配点为30的导弹武器，基础备弹为10发，则每发导弹价值为3点",
 		"aEP_MissilePlatform11":"拥有基础回复速度的导弹不参与本插件",
@@ -96,6 +97,8 @@
 		"aEP_TwinFighter02": "固定在舰首时，以每秒{%s}的速度修复战机",
 		"aEP_TwinFighter03": "若本舰被摧毁，内置战机也会立刻被摧毁",
 
+		"aEP_CloseTargeting01": "对战机伤害{%s}",
+
 		#############################
 		"aEP_VentMode01":"幅能耗散增加: %s 硬幅能产生: %s",
 		"aEP_VentMode02":"护盾承受伤害: %s",
@@ -135,6 +138,9 @@
 		"aEP_CoordinatedCombat07": "协同作战",
 		"aEP_CoordinatedCombat08": "武器破甲力",
 		"aEP_CoordinatedCombat09": "战机的实弹/能量武器射速，最大速度，承受伤害",
+
+		"aEP_FighterProtector01":"战机承受伤害: ",
+		"aEP_FighterProtector02":"战机造成伤害: ",
 
 		#############################
 		"AWM01_title":"AWM01:搜集武器",
@@ -295,16 +301,17 @@
 		"increase": "Increase ",
 		"target_fleet": "Target Fleet ",
 		#############################
-		"aEP_SpecialHull01": "When accelerating toward or rotating around a friendly ship with this hullmod and is larger than your hullsize, your max speed %s, acceleration %s",
+		"aEP_SpecialHull01": "When accelerating toward or rotating around a friendly ship with this hullmod and it is larger than your hullsize, this ship's max speed %s, acceleration %s",
 		"aEP_SpecialHull02": "Min flux level for zero flux boost to active %s",
 
 		"aEP_MissilePlatform01":"Forge Output",
-		"aEP_MissilePlatform07":"When Forge Output is full, max ammo production speed of different sized missiles are shown as follow: ",
-		"aEP_MissilePlatform02":"Total Forge Output is calculated by a fraction of total OP spent on missile weapons. It generates at speed of %s.",
-		"aEP_MissilePlatform03":"Producing ammo consumes Output, and as Output running low production speed drops as follows",
-		"aEP_MissilePlatform06":"Time needed to produce 1 ammo for installed weapons at full production speed: ",
-		"aEP_MissilePlatform04":"Second/ammo",
-		"aEP_MissilePlatform05":"All missile weapons' max ammo will be limited to: %s rounds of burst or %s of base amount, whichever is higher",
+		"aEP_MissilePlatform07":"When Forge Output is at maximum, ammo production speed of different sized missiles are shown below: ",
+		"aEP_MissilePlatform02":"Forge Output capacity is calculated by a fraction of total OP spent on missile weapons. It generates at speed of %s.",
+		"aEP_MissilePlatform06":" %s and %s consumption to produce ammo for installed missile weapons are shown below: ",
+		"aEP_MissilePlatform08":"Ammo",
+		"aEP_MissilePlatform03":"Output",
+		"aEP_MissilePlatform04":"Sec.",
+		"aEP_MissilePlatform05":"All missile weapons' max ammo will be limited to: %s rounds of fire or %s of base max ammo, whichever is higher",
 		"aEP_MissilePlatform09":"For example, a missile weapon of 30 OP with base ammo of 10, each ammo costs 3 OP",
 		"aEP_MissilePlatform11":"Missile weapons with base regen is not affected by this hullmod",
 		"aEP_MissilePlatform12":"Hold %s to show more info",
@@ -360,6 +367,7 @@
 		"aEP_TwinFighter02": "When fixed at front, the fighter repairs itself at speed of %s per second",
 		"aEP_TwinFighter03": "When this ship is destroyed, the fighter will be destroyed too",
 
+		"aEP_CloseTargeting01": "Damage to fighters %s",
 
 		#############################
 		"aEP_VentMode01":"Flux dissipation increased: %s / Hard flux gen per second: %s",
@@ -400,6 +408,9 @@
 		"aEP_CoordinatedCombat07": "Coordinated Combat",
 		"aEP_CoordinatedCombat08": "Weapon hit strength",
 		"aEP_CoordinatedCombat09": "Fighter's ballistic/energy weapon RoF, max speed and damage taken",
+
+		"aEP_FighterProtector01":"Fighter damage taken: ",
+		"aEP_FighterProtector02":"Fighter damage dealt: ",
 
 		#############################
 		"AWM01_title":"AWM01: Search for weapons",

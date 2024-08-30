@@ -15,13 +15,13 @@ class aEP_VectorThrust : BaseShipSystemScript() {
 
   companion object{
 
-    const val MAX_FLAT_BUFF = 75f
-    const val MAX_FLAT_FORWARD_BUFF = 20f
+    const val MAX_FLAT_BUFF = 100f
+    const val MAX_FLAT_FORWARD_BUFF = 25f
 
-    const val ACC_FLAT_BUFF = 400f
+    const val ACC_FLAT_BUFF = 500f
 
     const val MAX_TURN_FLAT_BUFF = 30f
-    const val ACC_TURN_FLAT_BUFF = 100f
+    const val ACC_TURN_FLAT_BUFF = 120f
 
     val AFTER_IMAGE_COLOR = Color(190,100,93,30)
   }

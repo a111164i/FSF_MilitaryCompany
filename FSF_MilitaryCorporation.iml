@@ -13,12 +13,12 @@
     <content url="file://$MODULE_DIR$/../../starsector-core" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jetbrains.kotlin.stdlib.jdk8" level="application" />
-    <orderEntry type="library" name="core" level="project" />
     <orderEntry type="library" name="ExerelinCore" level="project" />
     <orderEntry type="library" name="Graphics" level="project" />
     <orderEntry type="library" name="LazyLib" level="project" />
     <orderEntry type="library" name="LunaLib" level="project" />
     <orderEntry type="library" name="MagicLib" level="project" />
+    <orderEntry type="library" name="core" level="project" />
+    <orderEntry type="library" name="jetbrains.kotlin.stdlib.jdk8" level="application" />
   </component>
 </module>

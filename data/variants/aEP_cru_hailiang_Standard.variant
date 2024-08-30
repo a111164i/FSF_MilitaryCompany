@@ -4,7 +4,10 @@
     "fluxVents": 29,
     "goalVariant": true,
     "hullId": "aEP_cru_hailiang",
-    "hullMods": ["aEP_ShieldControlled"],
+    "hullMods": [
+         "targetingunit",
+        "aEP_ShieldControlled"
+    ],
     "modules": [
         {"MD01": "aEP_cru_hailiang3_Standard"},
         {"MD03": "aEP_cru_hailiang4_Standard"},

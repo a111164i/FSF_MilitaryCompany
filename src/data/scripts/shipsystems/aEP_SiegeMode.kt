@@ -1,50 +1,58 @@
 package data.scripts.shipsystems
 
+import com.fs.graphics.util.Fader
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.WeaponAPI
-import com.fs.starfarer.api.graphics.SpriteAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
-import com.fs.starfarer.api.impl.combat.DamperFieldOmegaStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
-import com.fs.starfarer.api.util.JitterUtil
-import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Combat
 import combat.util.aEP_DataTool
 import combat.util.aEP_Tool
-import data.scripts.ai.aEP_DroneRepairShipAI
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.VectorUtils
+import org.lazywizard.lazylib.combat.WeaponUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
 import org.magiclib.util.MagicRender
 import java.awt.Color
 import java.util.*
+import kotlin.math.abs
 import kotlin.math.pow
+import kotlin.math.sign
 
 class aEP_SiegeMode : BaseShipSystemScript() {
-  companion object{
+  companion object {
     const val ID = "aEP_SiegeMode"
 
     const val ROF_BONUS_PERCENT = 100f
 
-    const val RANGE_BONUS_PERCENT = 25f
-    const val RANGE_BONUS_FLAT = 250f
+    const val RANGE_BONUS_PERCENT = 30f
+    const val RANGE_BONUS_FLAT = 300f
 
-    const val BREAK_RANGE = 450f
+    const val BREAK_RANGE = 9999f
     const val FLUX_INCREASE_MULT = 0.50f
 
-  }
+    const val MAX_SPEED_REDUCE_MULT = 0.75f
+    const val MANEUVER_REDUCE_MULT = 0.5f
 
+
+    const val WEAPON_TURNRATE_FLAT_BONUS = 15f
+
+    fun keepWeaponRotate(weapon: WeaponAPI, amount: Float, turnRate: Float) {
+      weapon.currAngle += amount * turnRate
+
+    }
+  }
 
   var amount = 0f
 
-  //相对于舰船的角度
-  var mainWeaponFacing = -999f
+  //用于存放每次激活炮塔旋转的速度
+  var mainTurnRate:Float? = null
+
   var main:WeaponAPI? = null
 
   var fluxLastFrameSoft = -999f
@@ -68,41 +76,45 @@ class aEP_SiegeMode : BaseShipSystemScript() {
     val ship = stats.entity as ShipAPI
     amount = aEP_Tool.getAmount(ship)
 
-    //如果处于一定充能状态，开始搜寻主武器，准备旋转主武器
-    if( effectLevel > 0.1f && effectLevel < 0.9f ){
-
-      if (didUse == true)
-
-
-      //第一次搜寻到时，记录当时相对船头的角度
-        if(mainWeaponFacing < -361f){
-          for(w in ship.allWeapons){
-            if(w.slot.id.equals("WS 001")){
-              mainWeaponFacing = w.currAngle
-              main = w
-            }
-          }
+    //第一次开始充能状态时，如果main还没初始化，开始搜寻主武器
+    if( main == null){
+      for(w in ship.allWeapons){
+        if(w.slot.id.equals("WS 001")){
+          main = w
         }
-    }else{
-      main = null
-      mainWeaponFacing = -999f
+      }
     }
 
     //如果搜寻成功，开始旋转主武器
     ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,0f)
     ship.mutableStats.maxTurnRate.modifyFlat(ID,0f)
     main?.run {
-      var rotateLevel = 0f
-      rotateLevel = ((effectLevel-0.05f)/0.95f).coerceAtMost(1f)
-      rotateLevel = MagicAnim.smooth(rotateLevel)
-      if(rotateLevel<1f && rotateLevel>0f){
-        ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,-1.0E9f)
-        ship.mutableStats.maxTurnRate.modifyFlat(ID,-1.0E9f)
-      }
-      if(state == ShipSystemStatsScript.State.OUT) rotateLevel = (1f-rotateLevel)
-      //搁置，不转了
 
-      main!!.currAngle = (ship.facing + (mainWeaponFacing-ship.facing) * (1f-rotateLevel))
+      if(state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.OUT){
+        mainTurnRate?:run {
+          val weapon = main as WeaponAPI
+          var facingChange = MathUtils.getShortestRotation(weapon.currAngle, ship.facing)
+
+
+          // Ensure rotation is always in the direction of the longer distance
+          facingChange = if (facingChange > 0) {
+            // Current change is clockwise and shorter, make it counterclockwise and longer
+            facingChange - 360f
+          } else {
+            // Current change is counterclockwise and shorter, make it clockwise and longer
+            facingChange + 360f
+          }
+
+          // Calculate turn rate based on finishTime
+          val totalRotationNeeded = abs(facingChange)
+          val calculatedTurnRate = if (ship.system.chargeUpDur > 0f) totalRotationNeeded / ship.system.chargeUpDur else 0f
+
+          mainTurnRate = if(facingChange < 0f) -calculatedTurnRate else calculatedTurnRate
+        }
+        keepWeaponRotate(main!!, amount, mainTurnRate!!)
+      }else{
+        mainTurnRate = null
+      }
     }
 
 
@@ -163,7 +175,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         fluxLastFrameHard = ship.fluxTracker.hardFlux
 
         //加一个抖动，表示开启系统
-        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.2f, 0.5f,ship)
+        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.1f, 0.2f,ship)
         jitter.color = aEP_CoordinatedCombat.WEAPON_BOOST
         jitter.maxRange = 10f
         jitter.maxRangePercent = 0f
@@ -175,7 +187,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         didJitterDown = true
 
         //加一个抖动，表示关闭系统
-        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.2f, 0.5f,ship)
+        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.1f, 0.2f,ship)
         jitter.color = aEP_CoordinatedCombat.WEAPON_BOOST
         jitter.maxRange = 10f
         jitter.maxRangePercent = 0f
@@ -218,16 +230,16 @@ class aEP_SiegeMode : BaseShipSystemScript() {
       fluxLastFrameHard = ship.fluxTracker.hardFlux
 
 
-      ship.mutableStats.maxSpeed.modifyMult(ID, 0.2f)
-      ship.mutableStats.acceleration.modifyMult(ID, 0.5f)
-      ship.mutableStats.deceleration.modifyMult(ID, 0.5f)
+      ship.mutableStats.maxSpeed.modifyMult(ID, 1f-MAX_SPEED_REDUCE_MULT)
+      ship.mutableStats.acceleration.modifyMult(ID, 1f-MANEUVER_REDUCE_MULT)
+      ship.mutableStats.deceleration.modifyMult(ID, 1f-MANEUVER_REDUCE_MULT)
 
-      ship.mutableStats.maxTurnRate.modifyMult(ID, 0.2f)
-      ship.mutableStats.turnAcceleration.modifyMult(ID, 0.5f)
+      ship.mutableStats.maxTurnRate.modifyMult(ID, 1f-MAX_SPEED_REDUCE_MULT)
+      ship.mutableStats.turnAcceleration.modifyMult(ID, 1f-MANEUVER_REDUCE_MULT)
 
       //只有在完全激活才增加的效果
       if(effectLevel >= 1f){
-        ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,10f)
+        ship.mutableStats.weaponTurnRateBonus.modifyFlat(ID,WEAPON_TURNRATE_FLAT_BONUS)
 
         ship.mutableStats.ballisticRoFMult.modifyPercent(ID, ROF_BONUS_PERCENT)
         ship.mutableStats.energyRoFMult.modifyPercent(ID, ROF_BONUS_PERCENT)

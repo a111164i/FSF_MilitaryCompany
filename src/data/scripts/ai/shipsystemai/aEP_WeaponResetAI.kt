@@ -48,7 +48,7 @@ class aEP_WeaponResetAI: aEP_BaseSystemAI() {
     else if(storedLevel > 0.1f) willing += 85f
     else if(storedLevel >= 0f) willing += 90f
 
-    aEP_Tool.addDebugLog(willing.toString()+"_"+timeElapsedActive.toString())
+    //aEP_Tool.addDebugLog(willing.toString()+"_"+timeElapsedActive.toString())
 
     if(timeElapsedActive > 2f){
       shouldActive = false

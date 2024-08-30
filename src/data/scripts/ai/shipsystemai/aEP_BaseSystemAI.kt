@@ -16,7 +16,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
   lateinit var engine: CombatEngineAPI
   lateinit var system: ShipSystemAPI
-  var rightClickSys: ShipSystemAPI? = null
+  lateinit var rightClickSys: ShipSystemAPI
   lateinit var ship: ShipAPI
   lateinit var flags: ShipwideAIFlags
   var thinkTracker = IntervalUtil(0f, 0.5f)
@@ -36,6 +36,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
   override fun init(ship: ShipAPI, system: ShipSystemAPI, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
     this.ship = ship
+    this.rightClickSys = system
     if(ship.phaseCloak != null && ship.phaseCloak is ShipSystemAPI) rightClickSys = ship.phaseCloak
     this.system = system
     this.engine = engine

@@ -13,7 +13,7 @@
   "viewOffset": 0,
   "builtInMods": [
     "aEP_SpecialHull",
-    "targetingunit",
+
   ],
   "builtInWings": [
     # "aEP_ftr_sup_guardian2_wing"

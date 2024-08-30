@@ -13,7 +13,7 @@
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[0, 0],
 	"hardpointAngleOffsets":[0],
-	"fringeColor":[100,100,200,155],
+	"fringeColor":[100,100,200,185],
 	"coreColor":[100,100,150,255],
 	"glowColor":[100,100,200,155],
 	"hitGlowBrightenDuration":0.05,

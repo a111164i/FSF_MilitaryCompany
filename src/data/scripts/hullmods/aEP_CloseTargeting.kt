@@ -20,14 +20,15 @@ import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 import kotlin.math.pow
 
-class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier, DamageTakenModifier {
+class aEP_CloseTargeting : aEP_BaseHullMod() {
 
   companion object{
     const val ID = "aEP_CloseTargeting"
 
-    var PROJECTILE_SPEED_BONUS = 50f
-    var SPREAD_REDUCE_MULT = 0.5f
-    var DAMAGE_TAKEN_REDUCE_MULT = 0f
+    val PROJECTILE_SPEED_BONUS = 50f
+    val SPREAD_REDUCE_MULT = 0.5f
+
+    val DAMAGE_TO_FIGHTER_PERCENT_BONUS = 75f
 
     val PD_WEAPON_RANGE_BONUS = HashMap<HullSize, Float>()
     init {
@@ -58,64 +59,47 @@ class aEP_CloseTargeting : aEP_BaseHullMod(), DamageDealtModifier, DamageTakenMo
     stats.recoilPerShotMult.modifyMult(ID,1f - SPREAD_REDUCE_MULT)
     stats.maxRecoilMult.modifyMult(ID,1f - SPREAD_REDUCE_MULT)
 
+    // 护卫舰追加效果
+    if(hullSize == HullSize.FRIGATE){
+      stats.damageToFighters.modifyPercent(ID, DAMAGE_TO_FIGHTER_PERCENT_BONUS)
+    }
+
+
 
   }
 
-  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    if(!ship.hasListenerOfClass(aEP_CloseTargeting::class.java)){
-      //因为listener里面不需要变量，所以直接加入this
-      ship.addListener(this)
+
+
+  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+
+    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
+    val highlight = Misc.getHighlightColor()
+    val negativeHighlight = Misc.getNegativeHighlightColor()
+
+    val grayColor = Misc.getGrayColor()
+    val txtColor = Misc.getTextColor()
+
+    val titleTextColor: Color = faction.color
+    val factionColor: Color = faction.baseUIColor
+    val factionDarkColor = faction.darkUIColor
+    val factionBrightColor = faction.brightUIColor
+
+    // 护卫舰追加效果
+    if(hullSize == HullSize.FRIGATE){
+      tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
+      addPositivePara(tooltip, "aEP_CloseTargeting01", arrayOf("+${DAMAGE_TO_FIGHTER_PERCENT_BONUS.toInt()}%"))
+
     }
+
+
+
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize): String? {
     if (index == 0) return String.format("+%.0f", PD_WEAPON_RANGE_BONUS[hullSize]?: 60f) +"%"
     if (index == 1) return String.format("-%.0f", SPREAD_REDUCE_MULT * 100f) +"%"
     if (index == 2) return String.format("+%.0f", PROJECTILE_SPEED_BONUS) +"%"
-    //if (index == 3) return String.format("-%.0f", DAMAGE_TAKEN_REDUCE_MULT * 100f) +"%"
     return null
   }
 
-
-  override fun modifyDamageDealt(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
-    var source  = 1234
-
-    //拿到自己的owner
-    if(param is ShipAPI) source = param.owner
-    if(param is EmpArcEntityAPI) source = param.owner
-    if(param is BeamAPI) source = param.weapon?.ship?.owner?:1234
-    if(param is DamagingProjectileAPI) source = param.weapon?.ship?.owner?:1234
-
-    //如果自己的owner等于目标的owner，不造成伤害（误伤）
-    if(target is ShipAPI && target.owner == source){
-      damage.modifier.modifyMult(ID, 0.01f)
-      return ID
-    }
-    return null
-  }
-
-  override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f?, shieldHit: Boolean): String? {
-
-    if(param is ShipAPI) {
-      if(param.isFighter){
-        damage.modifier.modifyMult(ID, 1f - DAMAGE_TAKEN_REDUCE_MULT)
-        return ID
-      }
-    }
-    if(param is BeamAPI) {
-      if(param.source?.isFighter == true){
-        damage.modifier.modifyMult(ID, 1f - DAMAGE_TAKEN_REDUCE_MULT)
-        return ID
-      }
-    }
-    if(param is DamagingProjectileAPI) {
-      //来自飞机，或者是导弹
-      if(param.source?.isFighter == true || param is MissileAPI || param.isFromMissile){
-        damage.modifier.modifyMult(ID, 1f - DAMAGE_TAKEN_REDUCE_MULT)
-        return ID
-      }
-    }
-
-    return null
-  }
 }

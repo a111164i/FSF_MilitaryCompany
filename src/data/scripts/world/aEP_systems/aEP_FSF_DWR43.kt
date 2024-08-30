@@ -329,6 +329,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
           override fun doAction() {
             val jumpPointGuardian = spawnFleet(jumpPoint1,FSF_SpaceFactoryMarket)
             jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_NO_JUMP, true)
+            jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true)
             jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORED_BY_OTHER_FLEETS, true)
             jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORES_OTHER_FLEETS, true)
             system.addScript(GuardianCatchPlayer(jumpPointGuardian,jumpPoint1,FSF_SpaceFactoryMarket))

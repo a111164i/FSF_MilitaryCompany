@@ -57,6 +57,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_zhongliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_shanhu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_baojiao_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_pubu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_pingding_Standard", FleetMemberType.SHIP, "FSF ship", false);
 

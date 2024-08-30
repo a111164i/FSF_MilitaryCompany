@@ -37,6 +37,8 @@ open class aEP_BaseShipAI: ShipAIPlugin {
   var stopFiringTime = 1f
   var needsRefit = false
 
+  var shieldFacing: Float? = null
+
   var stat: aEP_MissileAI.Status = aEP_MissileAI.Empty()
 
   constructor(ship : ShipAPI){
@@ -65,6 +67,16 @@ open class aEP_BaseShipAI: ShipAIPlugin {
     //如果本体已经死亡，不再运行ai
     if(aEP_Tool.isDead(ship) ){
       return
+    }
+
+    //控制护盾
+    if(shieldFacing != null){
+      ship.shieldTarget?.set(aEP_Tool.getExtendedLocationFromPoint(ship.shieldCenterEvenIfNoShield, shieldFacing!!, 600f))
+
+      //这个方法里面包含了检测舰船是否有护盾
+      aEP_Tool.toggleShieldControl(ship,true)
+    }else{
+      aEP_Tool.toggleShieldControl(ship,false)
     }
 
     stat.advance(amount)

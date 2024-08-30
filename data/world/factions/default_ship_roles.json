@@ -132,6 +132,10 @@
     "aEP_cru_shanhu_Siege":3,
     "aEP_cru_shanhu_Front":3,
 
+    "aEP_cru_baojiao_Standard":3,
+    "aEP_cru_baojiao_Support":3,
+    "aEP_cru_baojiao_Siege":3,
+
     "aEP_cap_decomposer_Standard": 4,
     "aEP_cap_decomposer_Attack": 3,
     "aEP_cap_decomposer_Support": 3,

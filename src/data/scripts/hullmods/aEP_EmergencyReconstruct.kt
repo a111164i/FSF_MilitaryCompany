@@ -38,7 +38,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     val CHANGE_FAIL_INCREASE_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
     init {
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FIGHTER, 0.33f)
-      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.16f)
+      CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.FRIGATE, 0.20f)
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.DESTROYER, 0.25f)
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.CRUISER, 0.33f)
       CHANGE_FAIL_INCREASE_HULLSIZE.put(ShipAPI.HullSize.CAPITAL_SHIP, 0.5f)

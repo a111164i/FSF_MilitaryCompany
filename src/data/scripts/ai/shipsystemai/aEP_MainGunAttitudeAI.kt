@@ -18,27 +18,28 @@ import kotlin.math.pow
 class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
   override fun initImpl() {
-    thinkTracker.setInterval(2f,4f)
+    thinkTracker.setInterval(0.5f,1f)
   }
 
   data class EnemyData(val ship: ShipAPI, val approachingSpeed: Float, val threatDps: Float, val dist: Float, val angleDist: Float)
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
-    val system = rightClickSys as ShipSystemAPI
-
     //展开途中不会思考，防止武器距离变化导致ai反复
-    if(system.state == ShipSystemAPI.SystemState.IN) return
-    if(system.state == ShipSystemAPI.SystemState.OUT) return
+    if(rightClickSys.state == ShipSystemAPI.SystemState.IN) return
+    if(rightClickSys.state == ShipSystemAPI.SystemState.OUT) return
 
 
     shouldPhaseActive = false
 
-    // find self max range
+    // find max range
     var maxWeaponRange = 0f
     for(w in ship.allWeapons){
       if(w.isDecorative) continue
-      if(w.slot.id.equals(aEP_PingdingMainSwapHidden.MAIN_SLOT)) {
-        maxWeaponRange = w.range
+      //没激活时算激活后的射程，激活时就用当前射程
+      var newRange = w.range
+
+      if(newRange > maxWeaponRange){
+        maxWeaponRange = newRange
       }
     }
 
@@ -46,7 +47,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
     //------------------------------------------------------------//
     //寻找射程内的敌人
-    val aroundEnemies = ArrayList<EnemyData>()
+    val aroundEnemies = ArrayList<aEP_SiegeModeAI.EnemyData>()
     for(shp in engine.ships){
 
       var dps = 0f
@@ -58,7 +59,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
       for(w in ship.allWeapons){
         if(aEP_Tool.isNormalWeaponType(w,false)){
           //只统计打的着的武器
-          if(MathUtils.getShortestRotation(w.currAngle, VectorUtils.getAngle(w.location,ship.location)).absoluteValue > 30f &&
+          if(MathUtils.getShortestRotation(w.currAngle, VectorUtils.getAngle(w.location,ship.location)).absoluteValue > 10f &&
             !w.hasAIHint(WeaponAPI.AIHints.DO_NOT_AIM)) continue
           if(w.range < dist) continue
           if(w.damageType == DamageType.ENERGY) dps += w.derivedStats.dps * 0.75f
@@ -73,7 +74,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
       //aEP_Tool.addDebugLog("dist: "+dist)
       // Store ship and its approaching speed in <aroundEnemies>
-      aroundEnemies.add(EnemyData(shp, approachingSpeed, dps, dist,angleDist))
+      aroundEnemies.add(aEP_SiegeModeAI.EnemyData(shp, approachingSpeed, dps, dist, angleDist))
     }
 
     //------------------------------------------------------------//
@@ -86,7 +87,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
       if(enemyData.ship == ship.shipTarget && !ship.shipTarget.isFighter){
         //基础拥有25，如果目前0幅能，范围内有人就可以开
-        willing += 25f
+        willing += 40f
 
         //如果范围内只有一艘，给与大量加成
         if(aroundEnemies.size == 1){
@@ -117,9 +118,9 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
         //迎敌角度不能太歪
         if(enemyData.angleDist > 30f) willing -= 10f
-        if(enemyData.angleDist > 60f) willing -= 20f
-        if(enemyData.angleDist > 90f) willing -= 30f
-        if(enemyData.angleDist > 120f) willing -= 40f
+        if(enemyData.angleDist > 60f) willing -= 10f
+        if(enemyData.angleDist > 90f) willing -= 20f
+        if(enemyData.angleDist > 120f) willing -= 20f
 
       }else{
         //如果是非目标，根据位置和武器计算威胁，减少意愿
@@ -133,20 +134,21 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
 
         if(enemyData.angleDist > 60f) multiplier += 0.1f
-        if(enemyData.angleDist > 90f) multiplier += 0.5f
-        if(enemyData.angleDist > 120f) multiplier += 2f
+        if(enemyData.angleDist > 90f) multiplier += 0.4f
+        if(enemyData.angleDist > 120f) multiplier += 1f
 
-        //正面10秒(每秒打掉0.1)打爆结构，则一定关闭(0.1 * 1000 = 100 willing)
-        willing -= (enemyData.threatDps * multiplier / (ship.hitpoints.coerceAtLeast(3000f))) * 250f
+        //正面x秒打爆就就会关闭
+        val ttk = 3f
+        willing -= ttk * 100f * enemyData.threatDps * multiplier / ship.hitpoints.coerceAtLeast(ship.maxHitpoints*0.5f)
       }
 
     }
 
 
-    if(ship.fluxTracker.fluxLevel < 0.65f) willing += 10f
-    if(ship.fluxTracker.fluxLevel < 0.5f) willing += 15f
-    if(ship.fluxTracker.fluxLevel < 0.35f) willing += 20f
-    if(ship.fluxTracker.fluxLevel < 0.2f) willing += 25f
+    if(ship.fluxTracker.fluxLevel < 0.65f) willing += 15f
+    if(ship.fluxTracker.fluxLevel < 0.5f) willing += 20f
+    if(ship.fluxTracker.fluxLevel < 0.35f) willing += 25f
+    if(ship.fluxTracker.fluxLevel < 0.2f) willing += 30f
 
     if(ship.fluxTracker.fluxLevel > 0.85f) willing -= 10f
     if(ship.fluxTracker.fluxLevel > 0.9f) willing -= 15f
@@ -154,6 +156,7 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
     willing *= MathUtils.getRandomNumberInRange(0.9f,1.1f)
     if(willing > 100f) shouldPhaseActive = true
-    aEP_Tool.addDebugLog("willing: "+willing.toString())
+
+    //aEP_Tool.addDebugText("willing: "+willing.toString(),ship.location)
   }
 }

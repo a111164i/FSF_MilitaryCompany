@@ -37,6 +37,7 @@ import combat.util.aEP_Tool.Util.speed2Velocity
 import combat.util.aEP_Tool.Util.velocity2Speed
 import data.scripts.hullmods.aEP_ReactiveArmor
 import data.scripts.hullmods.aEP_TwinFighter
+import data.scripts.shipsystems.aEP_CoordinatedCombat
 import data.scripts.shipsystems.aEP_WeaponReset
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
 import org.dark.shaders.distortion.DistortionShader
@@ -58,6 +59,7 @@ import org.magiclib.util.MagicLensFlare
 import org.magiclib.util.MagicRender
 import java.awt.Color
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.*
 
 /**
@@ -4384,7 +4386,7 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
 //闪电机炮
 class aEP_b_m_lighting_shot : Effect(){
   companion object{
-    var DAMAGE_TO_UPKEEP_INCREASE = 20f
+    var DAMAGE_TO_UPKEEP_INCREASE = 10f
     var BUFF_LIFETIME = 8f
     const val KEY = "aEP_b_m_lighting_shot"
 
@@ -4402,25 +4404,64 @@ class aEP_b_m_lighting_shot : Effect(){
 
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
     if (shieldHit && target is ShipAPI) {
-      addEffect(IncreaseUpKeep(BUFF_LIFETIME,target, DAMAGE_TO_UPKEEP_INCREASE))
+      aEP_BaseCombatEffect.addOrRefreshEffect(target, KEY,
+        {c ->
+          (c as IncreaseUpKeep).stack.add(BUFF_LIFETIME)
+        },
+        {
+          val c = IncreaseUpKeep(0f, target, DAMAGE_TO_UPKEEP_INCREASE)
+          c.stack.add(BUFF_LIFETIME)
+          c.setKeyAndPutInData(KEY)
+          aEP_CombatEffectPlugin.addEffect(c)
+        })
     }
 
   }
 
-  class IncreaseUpKeep(time:Float, val s:ShipAPI, val addPerSec:Float) : aEP_BaseCombatEffect(time,s){
-    val tracker = IntervalUtil(0.5f,5f)
+  class IncreaseUpKeep(time:Float, val s:ShipAPI, val addPerSec:Float) : aEP_BaseCombatEffectWithKey(time,s){
+    var stack = ArrayList<Float>()
+
+    val tracker = IntervalUtil(0.5f,0.5f)
     override fun advanceImpl(amount: Float) {
-      super.advanceImpl(amount)
+
       tracker.advance(amount)
       if(tracker.intervalElapsed() ){
-        //无护盾，或者护盾尚未开启，本次tick不起效
-        if(s.shield == null || s.shield?.isOn == false) return
-        //限制增长不会导致过载
-        val fluxToAdd = (addPerSec * tracker.elapsed).coerceAtMost(s.maxFlux - s.currFlux -1f)
-        if(fluxToAdd > 0){
-          s.fluxTracker.increaseFlux(fluxToAdd,false)
+
+        //如果为空就移除本类
+        if(stack.isEmpty() ) {
+          shouldEnd = true
+          return
         }
-      }
+
+        //不小于0
+        var toAdd = (stack.size * addPerSec).coerceAtLeast(0f)
+        //打印测试
+        aEP_Tool.addDebugLog(stack.size.toString() +"  toAdd = " + toAdd)
+
+
+        //减少每层stack的计时，低于0时移除一层
+        for(i in 0 until stack.size){
+          stack[i] -= tracker.elapsed
+        }
+        stack.removeAll { it <= 0f }
+
+        //无护盾，或者护盾尚未开启，本次tick不起效
+        if(s.shield == null || s.shield?.isOn == false) {
+          return
+        }
+        //对于基础就没有维持的舰船不生效
+        if(s.shield.upkeep > 0f) {
+          //先移除自己的加成
+          s.mutableStats.shieldUpkeepMult.modifyFlat(key, 0f)
+          //计算和当前维持的比例
+          val flatAdd = toAdd / s.shield.upkeep
+          s.mutableStats.shieldUpkeepMult.modifyFlat(key, flatAdd)
+        }
+     }
+    }
+
+    override fun readyToEndImpl() {
+      s.mutableStats.shieldUpkeepMult.modifyFlat(key, 0f)
     }
   }
 }
@@ -6428,5 +6469,38 @@ class ForceFighterTo(val ftr:ShipAPI, val toLoc:Vector2f): aEP_BaseCombatEffectW
 
   override fun readyToEndImpl() {
     ftr.resetDefaultAI()
+  }
+}
+//威胁光束
+class aEP_fga_shuangshen2_lidardish : EveryFrame(), DamageDealtModifier{
+  companion object{
+    const val WEAPON_ID = "aEP_fga_shuangshen2_lidardish"
+  }
+  init{
+  }
+  var didPut = false
+
+  override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
+    if(!didPut){
+      if(!weapon.ship.hasListenerOfClass(aEP_fga_shuangshen2_lidardish::class.java)){
+        weapon.ship.addListener(this)
+        didPut = true
+      }
+    }
+  }
+
+  override fun advanceAfter(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
+    super.advanceAfter(amount, engine, weapon)
+  }
+
+  override fun modifyDamageDealt(
+    param: Any?, target: CombatEntityAPI?, damage: DamageAPI?, point: Vector2f?, shieldHit: Boolean): String? {
+    if(param is BeamAPI && param.weapon != null){
+      if(param.weapon.spec.weaponId.equals(WEAPON_ID)){
+        param.damage.modifier.modifyMult(WEAPON_ID,0.01f)
+        return WEAPON_ID
+      }
+    }
+    return null
   }
 }

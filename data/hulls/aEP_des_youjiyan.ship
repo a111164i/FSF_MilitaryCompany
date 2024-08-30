@@ -14,7 +14,6 @@
   "builtInMods": [
     "aEP_SpecialHull",
     "civgrade",
-    "aEP_VanguardHull"
   ],
   "builtInWeapons": {
     "TOP_LV00_01": "aEP_cap_shangshengliu_top_cover",

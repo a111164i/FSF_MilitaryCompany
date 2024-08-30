@@ -82,7 +82,9 @@ class aEP_MainGunAttitude : BaseShipSystemScript(), WeaponRangeModifier {
     for(w in ship.allWeapons){
       if(w.slot.id.equals("MAIN")){
         maingun = w
-        if(effectLevel < 1f) w.setForceNoFireOneFrame(true)
+        if(effectLevel < 1f){
+          w.setForceNoFireOneFrame(true)
+        }
         //控制瞄准激光
         //只有非手操才显示，手操不需要
         if(Global.getCombatEngine().playerShip != ship)

@@ -68,6 +68,7 @@ class aEP_ShuishiDroneLaunchAI: aEP_BaseSystemAI() {
     var weight = 0f
     //准备好数据
     val hullLevel = s.hullLevel
+    val hardPercent = MathUtils.clamp(s.fluxTracker.hardFlux/s.fluxTracker.currFlux,0f,1f)
     val fluxLevel = s.fluxLevel
 
     val hullLevelWeight = 75f
@@ -100,6 +101,7 @@ class aEP_ShuishiDroneLaunchAI: aEP_BaseSystemAI() {
     if(s.fluxTracker.isOverloaded){
       weight += overloadWeight
     }
+    weight *= (0.4f + 0.6f * hardPercent)
     return weight * MathUtils.getRandomNumberInRange(0.75f,1.25f)
   }
 }

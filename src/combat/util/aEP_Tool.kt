@@ -2227,7 +2227,7 @@ class aEP_Tool {
     /**
      * 以能量为基准
      * */
-    fun  computeEffectiveDamage(damage: DamageAPI, KeFactor:Float, HeFactor:Float, EnFactor:Float, FragFactor:Float): Float{
+    fun computeEffectiveDamage(damage: DamageAPI, KeFactor:Float, HeFactor:Float, EnFactor:Float, FragFactor:Float): Float{
       var realDamage = damage.damage
       when (damage.type){
         DamageType.KINETIC -> realDamage *= KeFactor

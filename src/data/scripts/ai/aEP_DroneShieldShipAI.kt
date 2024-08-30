@@ -40,9 +40,6 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
   }
 
 
-  private var shouldShieldOn = true
-
-
   init {
     if(ship.wing?.sourceShip != null){
       stat = ProtectParent(ship.wing.sourceShip)
@@ -55,7 +52,6 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       }
     }
   }
-
 
   override fun advanceImpl(amount: Float) {
 
@@ -71,6 +67,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       if(ship.customData[KEY3] != null){
         ship.setCustomData(KEY3,null)
       }
+      shieldFacing = null
     }
 
   }
@@ -139,13 +136,16 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
 
       //shield check
-      if (ship.fluxLevel >= 0.99f) {
-        shouldShieldOn = false
-      }
+      // 零幅能开盾，被打满了就关盾直到耗散干净
       if (ship.fluxLevel <= 0.01f) {
-        shouldShieldOn = true
+        shieldFacing = ship.facing
+      }else{
+        shieldFacing = null
       }
-      aEP_Tool.toggleShieldControl(ship, shouldShieldOn)
+      //离目标太远不开盾
+      if (MathUtils.getDistanceSquared(ship, toProtect) > (toProtect.collisionRadius + 500f).pow(2f)) {
+        shieldFacing = null
+      }
 
       keepExplosionProtectListenerToParent(ship,toProtect)
 

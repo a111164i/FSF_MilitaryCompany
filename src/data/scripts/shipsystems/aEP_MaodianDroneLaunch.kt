@@ -50,6 +50,7 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
         }
       }
     }
+    decoWeaponDrone?: return
     val deco = decoWeaponDrone as WeaponAPI
 
     //检测当前的currDrone是否活着

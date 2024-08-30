@@ -5,6 +5,7 @@
     "goalVariant": true,
     "hullId": "aEP_cap_shangshengliu_mk3",
     "hullMods": [
+        "ballistic_rangefinder",
         "hardenedshieldemitter",
         "armoredweapons"
     ],

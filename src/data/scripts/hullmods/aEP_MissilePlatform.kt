@@ -31,14 +31,20 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     private const val MISSILE_MAX_MULT = 2
     private const val MISSILE_MAX_PERCENT = 20
 
-    private const val MIN_RATE = 0.35f //by percent
-    private const val MAX_RATE_MULT = 15f //池子大小等于所有武器装配点/100的总和的多少倍（多少秒消耗干净）
-    private const val RATE_INCREASE_SPEED_MULT = 0.6667f //每个武器提供的回复速度等于自身装配点的多少倍
-    private const val RATE_DECREASE_SPEED_MULT = 1f //每个武器消耗总装率的速度是实际装填量的几倍
+
+    private const val MAX_RATE_MULT = 0.16f //池子大小的百分比部分，武器装配点总和的多少倍（暖池装满导弹大概125op，等于20）
+    private const val MAX_RATE_FLAT = 0f //池子大小的基础大小
+
+    private const val MIN_RATE = 1f //生产导弹的最低速度（池子低于多少时，导弹依然会以该速度生产，不再跟着池子降速）
+
+    private const val RATE_INCREASE_SPEED_PERCENT = 0.04f //池子的百分比回复速度（百分比/秒）
+    private const val RATE_INCREASE_SPEED_FLAT = 0f //池子的基础回复速度（op/秒）
+
+
     const val ID = "aEP_MissilePlatform"
     private val MAX_RELOAD_SPEED = HashMap<WeaponAPI.WeaponSize,Float>()
     init {
-      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE] = 0.3333f
+      MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE] = 0.30f
       MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM] = 0.20f
       MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL] = 0.12f
     }
@@ -63,7 +69,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       var level = percent
       val angleAdd = 45f
       var startingAngle = 0f
-      while (level > 0.125f){
+      while (level >= 0.125f){
         val sprite = Global.getSettings().getSprite("aEP_FX","loading_ring")
         val ringSize = INDICATOR_SIZE[size]?: Vector2f(20f,20f)
         MagicRender.singleframe(
@@ -115,25 +121,28 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     val stats = ship.mutableStats
     stats.missileHealthBonus.modifyPercent(id, MISSILE_HITPOINT_BUFF)
 
-    var maxRate = 0.01f
-    for (w in ship.allWeapons) {
-      if(!isMissileWeapon(w)) continue
 
-      //记录所有武器的 op/100 得到总装率
-      val opMissileWeapon = w.spec.getOrdnancePointCost(null)
-      val reloadSpeed = opMissileWeapon/100f
-      //计算所有导弹武器的装填速度，创建一个整备率池子
-      maxRate += reloadSpeed
-
-      //限制武器的最大弹药量
-      val fireRoundLimit = getAmmoPerFire(w) * MISSILE_MAX_MULT
-      val percentLimit = w.spec.maxAmmo * MISSILE_MAX_PERCENT/100
-      val weaponMaxAmmoCap = (Math.max(fireRoundLimit, percentLimit)).coerceAtMost(w.spec.maxAmmo)
-      w.maxAmmo = weaponMaxAmmoCap
-
-    }
     if (!ship.customData.containsKey(ID)) {
-      val loadingClass = LoadingMap(ship,maxRate * MAX_RATE_MULT)
+
+      var totalOp = 0.01f
+      for (w in ship.allWeapons) {
+        if(!isMissileWeapon(w)) continue
+
+        //记录所有武器的 op/100 得到总装率
+        val opMissileWeapon = w.spec.getOrdnancePointCost(null)
+        //计算所有导弹武器的装填速度，创建一个整备率池子
+        totalOp += opMissileWeapon
+
+        //限制武器的最大弹药量
+        val fireRoundLimit = getAmmoPerFire(w) * MISSILE_MAX_MULT
+        val percentLimit = w.spec.maxAmmo * MISSILE_MAX_PERCENT/100
+        val weaponMaxAmmoCap = (Math.max(fireRoundLimit, percentLimit)).coerceAtMost(w.spec.maxAmmo)
+        w.maxAmmo = weaponMaxAmmoCap
+
+      }
+
+      // maxRate为百分比+基础值
+      val loadingClass = LoadingMap(ship,totalOp * MAX_RATE_MULT + MAX_RATE_FLAT)
       ship.setCustomData(ID,loadingClass)
       ship.addListener(loadingClass)
     }
@@ -183,83 +192,53 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       }
 
     }
+    val maxPool = totalOp * MAX_RATE_MULT + MAX_RATE_FLAT
 
 
-//    //用表格显示总装填率的最大值，回复速度，最大消耗速度
-//    val col2W0 = width * 0.5f
+//    //表格显示最大导弹回复速度
+//    addPositivePara(tooltip, "aEP_MissilePlatform07", arrayOf( ))
+//    //只显示可预期长度的数字的列，写一个固定的列宽度，
+//    val col2W = width * 0.70f
 //    //第一列显示的名称，尽可能可能的长
-//    val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
+//    val col1W = (width - col2W - PARAGRAPH_PADDING_BIG)
 //    tooltip.beginTable(
 //      factionColor, factionDarkColor, factionBrightColor,
 //      TEXT_HEIGHT_SMALL, true, true,
-//      *arrayOf<Any>( txt("aEP_MissilePlatform01"), col1W0,
-//        "Statistics", col2W0)
-//    )
+//      *arrayOf<Any>("Missile Size", col1W,
+//        "Ammo Produced per 100s", col2W))
 //    tooltip.addRow(
-//      Alignment.MID, highlight, txt("total"),
-//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP",totalOp * MAX_RATE_MULT),
-//    )
+//      Alignment.MID, highlight, "Large",
+//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?:0.2f) * 100f))
 //    tooltip.addRow(
-//      Alignment.MID, highlight, txt("recover")+txt("speed"),
-//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalOp * RATE_INCREASE_SPEED_MULT),
-//    )
+//      Alignment.MID, highlight, "Medium",
+//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?:0.2f) * 100f))
 //    tooltip.addRow(
-//      Alignment.MID, highlight, txt("max")+txt("consumption")+txt("speed") ,
-//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP/s",totalConsumption * 100f),
-//    )
-//    val minLevel = (totalOp * RATE_INCREASE_SPEED_MULT/(totalConsumption * 100f + 0.01f)).coerceAtLeast(0f).coerceAtMost(1f)
-//      tooltip.addRow(
-//      Alignment.MID, highlight, txt("min")+txt("level") ,
-//      Alignment.MID, highlight, String.format("%.0f",minLevel * 100f)+"%",
-//    )
+//      Alignment.MID, highlight, "Small",
+//      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?:0.2f) * 100f))
 //    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
-
-
-    addPositivePara(tooltip, "aEP_MissilePlatform07", arrayOf())
-    //表格显示最大导弹回复速度
-    //只显示可预期长度的数字的列，写一个固定的列宽度，
-    val col2W = width * 0.70f
-    //第一列显示的名称，尽可能可能的长
-    val col1W = (width - col2W - PARAGRAPH_PADDING_BIG)
-    tooltip.beginTable(
-      factionColor, factionDarkColor, factionBrightColor,
-      TEXT_HEIGHT_SMALL, true, true,
-      *arrayOf<Any>("Missile Size", col1W,
-        "Ammo Production per 100s", col2W))
-    tooltip.addRow(
-      Alignment.MID, highlight, "Large",
-      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]?:0.2f) * 100f))
-    tooltip.addRow(
-      Alignment.MID, highlight, "Medium",
-      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]?:0.2f) * 100f))
-    tooltip.addRow(
-      Alignment.MID, highlight, "Small",
-      Alignment.MID, highlight, txt("equalsTo") + String.format(" %.1f OP", (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]?:0.2f) * 100f))
-    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
     // 说明总装填率的储备值和回复值
     addPositivePara(tooltip, "aEP_MissilePlatform02", arrayOf(
-      String.format("%.1f", RATE_INCREASE_SPEED_MULT/MAX_RATE_MULT * 100f)+" %/s"
+      String.format("%.1f", RATE_INCREASE_SPEED_PERCENT * 100f + RATE_INCREASE_SPEED_FLAT/maxPool)+" %/s"
     ))
 
 
-    // 解释锻炉功率水平的下降，如何达到最低平衡水平
-    addDoubleEdgePara(tooltip, "aEP_MissilePlatform03", arrayOf()) // 说明总装填率的储备值和回复值
-
-
-    if(shouldShowF1Content){
-      addDoubleEdgePara(tooltip, "aEP_MissilePlatform06", arrayOf()) // 说明总装填率的储备值和回复值
+    ship?.run {
+      addPositivePara(tooltip, "aEP_MissilePlatform06", arrayOf(txt("aEP_MissilePlatform01"), txt("time"))) // 说明总装填率的储备值和回复值
       //表格显示每个武器的 弹药/OP比
-      val col2W2 = 120f
+      val col2W2 = 50f
       val col3W2 = 60f
-      val col1W2 = (width - col2W2 - col3W2 - PARAGRAPH_PADDING_BIG)
+      val col4W2 = 80f
+      val col1W2 = (width - col2W2 - col3W2 - col4W2 - PARAGRAPH_PADDING_BIG)
+      var totalConsumpSpeed = 0f
       tooltip.beginTable(
         factionColor, factionDarkColor, factionBrightColor,
         TEXT_HEIGHT_SMALL, true, true,
         *arrayOf<Any>("Missile Spec", col1W2,
-          "OP", col3W2,
-          txt("aEP_MissilePlatform04"), col2W2,
-          ))
+          txt("aEP_MissilePlatform08"), col2W2,
+          txt("aEP_MissilePlatform04"), col3W2,
+          txt("aEP_MissilePlatform03"), col4W2,
+        ))
 
       //val label = tooltip.createLabel( "Large", highlight)
       //label.autoSizeToWidth(10f)
@@ -267,13 +246,17 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         //tooltip.addRow(Alignment.LMID, highlight, "Large")
         for(spec in allLargeSpec){
           val op =  spec.getOrdnancePointCost(null)
-          val ammo =spec.maxAmmo.toFloat()
+          val ammo = spec.maxAmmo.toFloat()
           val consumptionSpeed = op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]!! )
+          var scale = getAmmoPerFire(ship, spec)
+          while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
-            Alignment.LMID, txtColor, spec.weaponName,
-            Alignment.MID, txtColor, String.format("%.0f", op),
-            Alignment.MID, txtColor, String.format("%2.2f Sec.", consumptionSpeed),
+            Alignment.LMID, highlight, spec.weaponName,
+            Alignment.MID, highlight, String.format("+ %s", scale),
+            Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
+            Alignment.MID, highlight, String.format("- %2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
           )
+          totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
       }
       if(!allMediumSpec.isEmpty()) {
@@ -282,11 +265,16 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           val op = spec.getOrdnancePointCost(null)
           val ammo = spec.maxAmmo.toFloat()
           val consumptionSpeed =  op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]!! )
+          var scale = getAmmoPerFire(ship,spec)
+          while(consumptionSpeed * scale < 0.1f) scale *= 10
+
           tooltip.addRow(
-            Alignment.LMID, txtColor, spec.weaponName,
-            Alignment.MID, txtColor, String.format("%.0f", op),
-            Alignment.MID, txtColor, String.format("%2.2f Sec.", consumptionSpeed),
+            Alignment.LMID, highlight, spec.weaponName,
+            Alignment.MID, highlight, String.format("+ %s", scale),
+            Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
+            Alignment.MID, highlight, String.format("- %2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
           )
+          totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
       }
       if(!allSmallSpec.isEmpty()) {
@@ -295,22 +283,26 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           val op = spec.getOrdnancePointCost(null)
           val ammo = spec.maxAmmo.toFloat()
           val consumptionSpeed = op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]!!)
+          var scale = getAmmoPerFire(ship, spec)
+          while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
-            Alignment.LMID, txtColor, spec.weaponName,
-            Alignment.MID, txtColor, String.format("%.0f", op),
-            Alignment.MID, txtColor, String.format("%2.2f Sec.", consumptionSpeed),
+            Alignment.LMID, highlight, spec.weaponName,
+            Alignment.MID, highlight, String.format("+ %s", scale),
+            Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
+            Alignment.MID, highlight, String.format("- %2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
           )
+          totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
       }
-      tooltip.addRow(
-        Alignment.MID, highlight, "Total",
-        Alignment.MID, highlight, String.format("%.0f",totalOp),
-      )
+
+//    tooltip.addRow(
+//      Alignment.MID, txtColor, txt("total"),
+//      Alignment.MID, highlight, "",
+//      Alignment.MID, highlight, "",
+//      Alignment.MID, highlight, String.format("%2.1f", (totalConsumpSpeed).coerceAtMost(99.9f))+" %/s",
+//    )
       tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
     }
-
-
-
 
     //实际上就是把原本扩展架的量慢慢给玩家
     // 负面
@@ -318,15 +310,16 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     showIncompatible(tooltip)
 
     //灰色额外说明
-    addGrayPara(tooltip, "aEP_MissilePlatform09", arrayOf())
+    //addGrayPara(tooltip, "aEP_MissilePlatform09", arrayOf())
     addGrayPara(tooltip, "aEP_MissilePlatform11", arrayOf())
-    addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf("F1"))
+    //addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf("F1"))
   }
 
-  public inner class LoadingMap constructor(var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {
-    val ammoLoaderTracker = IntervalUtil(0.25f,0.25f)
+  public inner class LoadingMap (var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {
+    //减少putInMap方法的调用次数
+    val ammoLoaderTracker = IntervalUtil(0.05f,0.15f)
     //[ loadingProgress, ammoPerFire, ammoPerRegen, ammoPerRegenConvertedToOp ]
-    var MPTimerMap: MutableMap<WeaponAPI, kotlin.Array<Float>> = HashMap()
+    var MPTimerMap: MutableMap<WeaponAPI, Array<Float>> = HashMap()
     var currRate = maxRate
 
     override fun advance(amount: Float) {
@@ -336,28 +329,38 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
       ammoLoaderTracker.advance(amount)
       val level = currRate/maxRate
-      for (w in ship.allWeapons) {
+      val listCopy = ArrayList(ship.allWeapons)
+      // 在池子耗尽时，每次装填的只有列表的前几个武器，为了保证均匀分布，将列表洗牌
+      listCopy.shuffle()
+      for (w in listCopy) {
         if(!isMissileWeapon(w)) continue
 
-        //计算弹量增加，如果map里面不存在就创建一个
+        //计时器，隔一段实际才计算一次弹量回复
         if(ammoLoaderTracker.intervalElapsed()){
           val reloadSpeed = (MAX_RELOAD_SPEED[w.size] ?: 0f)
           //在这个函数里面同时会卡死导弹的最大备弹
           putInMap(w, reloadSpeed, ammoLoaderTracker.elapsed)
         }
 
-        //画进度条
+        //每帧给每个武器画进度条
         if(w.ammo >= w.maxAmmo) continue
         val data = MPTimerMap[w]?: continue
 
         val opNow = data[0]
         val ammoPerFire = data[1].toInt()
+        //为了防止某些武器burst size无限大来实现松手停火的效果
         val ammoPerRegen = data[2].toInt()
         val ammoPerRegenConvertToOp = data[3]
         val loadingProgress = opNow/ammoPerRegenConvertToOp
         drawChargeBar(w.location, ship, w.size,loadingProgress)
 
       }
+
+
+      //回复池子（每帧）
+      currRate += maxRate * RATE_INCREASE_SPEED_PERCENT * amount
+      currRate += RATE_INCREASE_SPEED_FLAT * amount
+      currRate = MathUtils.clamp(currRate,0f, maxRate)
 
       //维持玩家左下角的提示
       if (Global.getCombatEngine().playerShip == ship) {
@@ -411,34 +414,25 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         val fireRoundLimit = data[1].toInt()* MISSILE_MAX_MULT
         val percentLimit = w.spec.maxAmmo * MISSILE_MAX_PERCENT/100
         w.maxAmmo = (Math.max(fireRoundLimit,percentLimit)).coerceAtMost(w.spec.maxAmmo)
+        var newOp = opNow
 
-        //存入map的是op数量，而不是具体的弹数
-        val newOp = opNow + reloadSpeed * amount * level
-
-        //需要装填，可以立刻回弹
-        if(w.ammo <= (w.maxAmmo-ammoPerRegen) && newOp >= ammoPerRegenConvertToOp){
-          //回复一颗
-          data[0] = (newOp - ammoPerRegenConvertToOp)
-          w.ammo += ammoPerRegen
-          //降低整备率，该武器需要装填，装了多少就从池子里面取出多少整备率
-          currRate -= reloadSpeed * amount * level * RATE_DECREASE_SPEED_MULT
-
-        //需要装填，但是尚且不能回弹
-        }else if(w.ammo <= (w.maxAmmo-ammoPerRegen) && newOp < ammoPerRegenConvertToOp){
-          data[0] = newOp
-          //降低整备率，该武器需要装填，装了多少就从池子里面取出多少整备率
-          currRate -= reloadSpeed * amount * level * RATE_DECREASE_SPEED_MULT
-
-        //武器已满 不需要装弹
-        }else if(w.ammo >= w.maxAmmo) {
-
+        //如果备弹不满
+        if(w.ammo < w.maxAmmo){
+          var consumedThisFrame = reloadSpeed * amount * level
+          //增加量不能多于池子剩余量
+          consumedThisFrame = consumedThisFrame.coerceAtMost(currRate)
+          //增加进度，减少池子
+          newOp += consumedThisFrame
+          currRate -= consumedThisFrame
         }
 
-        //无论如何，每门导弹都会提供整备率
-        currRate += w.spec.getOrdnancePointCost(null) / 100f * amount * RATE_INCREASE_SPEED_MULT
-
-        //限最低整备率
-        currRate = MathUtils.clamp(currRate,0f, maxRate)
+        //增加进度后，如果可以立刻回弹
+        while (newOp >= ammoPerRegenConvertToOp){
+          w.ammo += ammoPerRegen
+          newOp -= ammoPerRegenConvertToOp
+        }
+        //录入操作后的进度
+        data[0] = newOp
       }
     }
 
@@ -476,8 +470,40 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     return totalNumPerBurst
   }
 
+  private fun getAmmoPerFire(ship: ShipAPI, spec:WeaponSpecAPI): Int{
+    var numOfBurst = spec.burstSize
+
+    //计算linked和dual类型的单次发射量
+    var numPerBurst = spec.derivedStats.damagePerShot/Global.getCombatEngine().createFakeWeapon(ship, spec.weaponId).damage.baseDamage
+
+    //如果是mirv，计算每个子弹丸的伤害来统计一共几发
+    if(spec.projectileSpec is MissileSpecAPI) {
+      val missileSpec = spec.projectileSpec as MissileSpecAPI
+
+      if(missileSpec.behaviorJSON != null){
+        //尝试读取json里面子弹丸的数量和伤害来除
+        try {
+          if(missileSpec.behaviorJSON.getString("behavior").equals("MIRV")){
+            val damagePerWarhead = missileSpec.behaviorJSON.getString("damage").toFloat().coerceAtLeast(Float.MIN_VALUE)
+            val numOfWarhead = missileSpec.behaviorJSON.getString("numShots").toFloat().coerceAtLeast(Float.MIN_VALUE)
+            //对于mirv，perShot读取的是一次发射的总和
+            numPerBurst = (spec.derivedStats.damagePerShot / (numOfWarhead * damagePerWarhead) )
+          }
+        }catch (e1: Exception){
+          numPerBurst = 1f
+        }
+
+      }
+    }
+
+    val totalNumPerBurst = numOfBurst * numPerBurst.roundToInt()
+
+    return totalNumPerBurst.coerceAtMost(spec.maxAmmo)
+  }
+
   private fun createIndicator(loc:Vector2f, facing:Float, rateLevel: Float){
-    val useLevel = (rateLevel- MIN_RATE) * (1f/ (1f-MIN_RATE))
+    //val useLevel = (rateLevel- MIN_RATE) * (1f/ (1f-MIN_RATE))
+    val useLevel = rateLevel
     val step = 0.15f
     val maxStep = 6
     for( i in 1..maxStep){
@@ -501,4 +527,15 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 

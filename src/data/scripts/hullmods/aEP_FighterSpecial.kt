@@ -737,11 +737,11 @@ class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
           }
 
           //如果当前有超过一个其他无人机被炸，增加sourceModifier，减少伤害
-          var epdDamMult = 2f
+          var epdDamMult = 3f
           if(numOfDroneDamaged > 1){
             epdDamMult.pow(numOfDroneDamaged)
           }
-          sourceModifier *= epdDamMult
+          sourceModifier += epdDamMult
 
         }
 

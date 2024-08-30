@@ -32,8 +32,8 @@ class aEP_VentMode: BaseShipSystemScript() {
     val SMOKE_EMIT_COLOR = Color(250, 250, 250, 60)
     val SMOKE_EMIT_COLOR2 = Color(250, 250, 250, 180)
 
-    const val SOFT_CONVERT_RATE = 0.22f
-    const val SOFT_CONVERT_SPEED = 1800f
+    const val SOFT_CONVERT_RATE = 0.25f
+    const val SOFT_CONVERT_SPEED = 2000f
     const val SHIELD_DAMAGE_REDUCE_MULT = 0f
     const val HULL_DAMAGE_TAKEN_BONUS = 50f
 
