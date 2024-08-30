@@ -2,7 +2,7 @@ name,id,tech/manufacturer,primaryRoleStr,customPrimary
 ,,,,
 """台风""超口径多级火药电磁混合动力榴弹炮",aEP_cap_sta_main,FSF制造,通用,
 """标兵""搭载雷达",aEP_cap_biaobing_radar,FSF制造,辅助,本舰所有与雷达朝向相同的非PD武器获得{%s}射程提升，中能量武器获得额外{%s}基础射程
-"""无光层""多级加速器",aEP_cap_duiliu_main,FSF制造,通用,"充能时，持续发射碎片流共造成大约{%s}点动能伤害，产生{%s}幅能"
+"""无光层""多级加速器",aEP_cap_duiliu_main,FSF制造,通用,充能时，持续发射碎片流共造成大约{%s}点动能伤害，产生{%s}幅能
 -无光层碎屑,aEP_cap_duiliu_main2,FSF制造,,
 """黑星改""转轮炮",aEP_cap_neibo_main,FSF制造,反装甲,击中装甲时，有百分之{%s}的概率造成额外{%s}点破片伤害
 异象导弹,aEP_cap_nuanchi_missile,FSF制造,辅助,击中时，产生数个雷云产生电弧打击附近的敌方舰船，造成巨额穿越护盾的emp伤害
