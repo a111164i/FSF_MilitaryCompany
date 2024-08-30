@@ -61,7 +61,7 @@ class aEP_BeamFlux : BeamEffectPlugin {
     if (beam.didDamageThisFrame()){
       if(beam.damageTarget is ShipAPI) {
         //粒子特效
-        for (i in 0 until 4) {
+        for (i in 0 until 2) {
           val particleStartPoint = Vector2f(beam.from.x - beam.to.x, beam.from.y - beam.to.y)
           particleStartPoint.scale(0.65f)
           particleStartPoint.set(beam.to.x + particleStartPoint.x, beam.to.y + particleStartPoint.y)
