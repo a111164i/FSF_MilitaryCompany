@@ -10,16 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc1">
-      <change afterPath="$PROJECT_DIR$/data/weapons/aEP_des_yuanyang_cover.wpn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RecallDevice.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_yuanyang.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_yuanyang.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_RecallDevice.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_RecallDevice.system" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_des_yuanyang.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_des_yuanyang.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_DecoMoveController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_DecoMoveController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +139,7 @@
       <workItem from="1724863118667" duration="1874000" />
       <workItem from="1724929845297" duration="11435000" />
       <workItem from="1724978624309" duration="4758000" />
-      <workItem from="1725027801187" duration="10113000" />
+      <workItem from="1725027801187" duration="10820000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -228,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725035182033</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="4.8rc1">
+      <option name="closed" value="true" />
+      <created>1725040534754</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725040534754</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

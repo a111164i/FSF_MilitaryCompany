@@ -1,11 +1,35 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 0,
-    "fluxVents": 0,
-    "goalVariant": false,
+    "fluxCapacitors": 10,
+    "fluxVents": 5,
     "hullId": "aEP_des_yuanyang",
-    "hullMods": [],
-    "quality": 0.0,
+    "hullMods": [
+        "targetingunit",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
     "variantId": "aEP_des_yuanyang_Standard",
-    "weaponGroups": []
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 001": "lightdualac",
+                "WS 002": "lightdualac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 000": "aEP_b_m_mb32",
+                "WS 003": "aEP_b_m_mb32"
+            }
+        }
+    ],
+    "wings": [
+        "hoplon_wing",
+        "hoplon_wing"
+    ]
 }
