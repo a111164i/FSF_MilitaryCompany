@@ -57,6 +57,8 @@ class aEP_DecoMoveController(var weapon: WeaponAPI) {
       mag["aEP_cru_zhongliu_slide_r"] = arrayOf(18f, 0.75f,  -4f, 2f)
       mag["aEP_cru_zhongliu_slide_l"] = arrayOf(18f, 1.25f,  4f, 2f)
 
+      mag["aEP_cru_baojiao_piston"] = arrayOf(-22f, 0.5f,  0f, 0f)
+
       mag["aEP_des_shuishi_rail1"] = arrayOf(0f, 2f, 0f,0f)
       mag["aEP_des_shuishi_rail2"] = arrayOf(14f, 2f, 0f,0f)
       mag["aEP_des_shuishi_base"] = arrayOf(11f, 1f, 0f,0f)

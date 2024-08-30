@@ -21,6 +21,9 @@
         "aEP_MissilePlatform",
         "targetingunit"
     ],
+    "builtInWeapons": {
+        "WS 012": "aEP_cru_baojiao_piston"
+    },
     "builtInWings": [],
     "builtInModules": null,
     "weaponSlots": [
@@ -156,6 +159,17 @@
             "angle": 0,
             "locations": [
                      5.5,      -83
+            ]
+        },
+        {
+            "id": "WS 012",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -24.5,    -54.5
             ]
         },
         {

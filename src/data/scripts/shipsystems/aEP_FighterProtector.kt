@@ -35,6 +35,8 @@ class aEP_FighterProtector : BaseShipSystemScript() {
     private const val DAMPER_CLASS_KEY = "aEP_FighterProtector"
     private const val ID = "aEP_FighterProtector"
 
+
+    private const val DECO_WEAPON_ID = "aEP_cru_baojiao_piston"
     private val JITTER_COLOR_BLINK = Color(255,210,135,255)
 
   }
@@ -42,17 +44,57 @@ class aEP_FighterProtector : BaseShipSystemScript() {
   private var ship: ShipAPI? = null
 
   private val checkTimer = IntervalUtil(0.05f,0.05f)
-
   private val blinkTimer = IntervalUtil(0.025f,0.025f)
+  private val smokeTimer = IntervalUtil(0.12f,0.08f)
+
+  private val maxHeat = 8f
+  private var heat = 0f
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     ship = (stats?.entity?: return)as ShipAPI
     val ship = stats.entity as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
 
+    if(effectLevel > 0.5f) heat = maxHeat
+    heat -= amount
+    heat = heat.coerceAtLeast(0f)
+
+    val heatLevel = heat/maxHeat
+
+    //移动活塞
+    smokeTimer.advance(amount)
+    for(w in ship.allWeapons){
+      if(w.id.equals(DECO_WEAPON_ID)){
+        val anim = w.effectPlugin as aEP_DecoAnimation
+        if(anim.decoMoveController.effectiveLevel == 0f) anim.setMoveToLevel(1f)
+        if(anim.decoMoveController.effectiveLevel == 1f) anim.setMoveToLevel(0f)
+        anim.decoMoveController.speed = 0.5f + 0.5f * heatLevel
+
+        if(smokeTimer.intervalElapsed()){
+          val initColor = Color(200, 180, 150)
+          val alpha = 0.3f * heatLevel
+          val lifeTime = 3f * heatLevel
+          val size = 35f
+          val endSizeMult = 1.5f
+          val vel = aEP_Tool.speed2Velocity(w.currAngle-180f, 30f)
+          Vector2f.add(vel, ship.velocity, vel)
+          vel.scale(0.5f)
+          val loc = aEP_Tool.getExtendedLocationFromPoint(w.location, w.currAngle-180f, 30f)
+          Global.getCombatEngine().addNebulaParticle(
+            MathUtils.getRandomPointInCircle(loc, 20f),
+            vel,
+            size, endSizeMult,
+            0.1f, 0.4f,
+            lifeTime * MathUtils.getRandomNumberInRange(0.5f, 0.75f),
+            aEP_Tool.getColorWithAlpha(initColor, alpha)
+          )
+        }
+
+      }
+    }
 
     //modify here
     checkTimer.advance(amount)
-    if(checkTimer.intervalElapsed() && effectLevel >= 0.5f){
+    if(checkTimer.intervalElapsed() && effectLevel > 0.5f){
       for(wing in ship.allWings){
         for(ftr in wing.wingMembers){
           if(!aEP_Tool.isDead(ftr)){
@@ -81,7 +123,7 @@ class aEP_FighterProtector : BaseShipSystemScript() {
     }
 
     blinkTimer.advance(amount)
-    if(blinkTimer.intervalElapsed()){
+    if(blinkTimer.intervalElapsed() && effectLevel > 0.1f){
       for(slot in ship.hullSpec.allWeaponSlotsCopy){
         if(slot.isSystemSlot){
           if(MathUtils.getRandomNumberInRange(0f,1f) < 0.5f){
@@ -120,21 +162,6 @@ class aEP_FighterProtector : BaseShipSystemScript() {
     return null
   }
 
-  //控制
-  fun controlLv01(w : WeaponAPI, effectLevel: Float, state: ShipSystemStatsScript.State, anima:aEP_DecoAnimation){
-    //保证在一层和二层之间顿一下，所以设置3倍增速，同时留给延迟展开的板子时间
-    val delay = 0.2f
-    var useLevel = 0f
-    if(effectLevel <= 0.5f) useLevel = effectLevel * 4f
-    else useLevel = (effectLevel-0.5f) * 4f + 2f
-    //一共12个板子，越大越靠船头
-    val num = w.slot.id.replace("TOP_LV01_","").toInt()
-    //反一下，越靠船头越先展开
-    useLevel -= (12-num)*delay
-    useLevel = MathUtils.clamp(useLevel,0f,1f)
-
-    anima.setMoveToLevel(useLevel)
-  }
 
   class DamperField(val ftr: ShipAPI, val takenReduceMult:Float, val dealtReduceMult:Float, val fadeTime:Float): aEP_BaseCombatEffectWithKey(ftr){
 
