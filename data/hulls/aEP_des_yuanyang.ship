@@ -16,6 +16,11 @@
     ],
     "shieldRadius": 115,
     "viewOffset": 0,
+    "builtInMods": [
+      "aEP_SpecialHull",
+      "hiressensors",
+      "surveying_equipment"
+    ],
     "builtInWings": [],
     "builtInModules": null,
     "weaponSlots": [

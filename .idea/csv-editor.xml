@@ -430,6 +430,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\market_conditions_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\procgen\planet_gen_data.csv">
           <value>
             <Attribute>
