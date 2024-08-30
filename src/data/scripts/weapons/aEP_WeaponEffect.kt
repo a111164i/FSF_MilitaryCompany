@@ -1351,33 +1351,33 @@ class aEP_cap_duiliu_main_shot : Effect(){
           val toWeapon = getRandomPointInCone(renderLoc, entity.collisionRadius, facingToWeapon-10f,facingToWeapon +10f)
 
           //每帧施加拖拽速度
-          val distSq = getDistanceSquared(entity,  projectile.weapon.ship)
-          if(distSq > 40000f){
-            aEP_Tool.applyImpulse(entity, facingToWeapon, IMPULSE_ON_DRAG * amount, 100f)
-          }
-
-          blinkTracker.advance(amount)
-          if(blinkTracker.intervalElapsed()){
-
-            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: VECTOR2F_ZERO,200f,1f,0.25f,0.2f, BLINK_COLOR1)
-            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: VECTOR2F_ZERO,75f,1f,0.25f,0.2f, BLINK_COLOR2)
-            Global.getCombatEngine().spawnEmpArcVisual(
-              renderLoc, entity,
-              toWeapon, null,
-              30f,
-              ARC_COLOR1,
-              ARC_COLOR2)
-
-            val facingToTarget = VectorUtils.getAngle(projectile.weapon.location, entity.location)
-            val toTarget = MathUtils.getRandomPointInCone(projectile.weapon.location, 100f, facingToTarget-10f,facingToTarget +10f)
-            Global.getCombatEngine().spawnEmpArcVisual(
-              projectile.weapon.location, projectile.source,
-              toTarget, null,
-              30f,
-              ARC_COLOR1,
-              ARC_COLOR2)
-
-          }
+//          val distSq = getDistanceSquared(entity,  projectile.weapon.ship)
+//          if(distSq > 40000f){
+//            aEP_Tool.applyImpulse(entity, facingToWeapon, IMPULSE_ON_DRAG * amount, 100f)
+//          }
+//
+//          blinkTracker.advance(amount)
+//          if(blinkTracker.intervalElapsed()){
+//
+//            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: VECTOR2F_ZERO,200f,1f,0.25f,0.2f, BLINK_COLOR1)
+//            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: VECTOR2F_ZERO,75f,1f,0.25f,0.2f, BLINK_COLOR2)
+//            Global.getCombatEngine().spawnEmpArcVisual(
+//              renderLoc, entity,
+//              toWeapon, null,
+//              30f,
+//              ARC_COLOR1,
+//              ARC_COLOR2)
+//
+//            val facingToTarget = VectorUtils.getAngle(projectile.weapon.location, entity.location)
+//            val toTarget = MathUtils.getRandomPointInCone(projectile.weapon.location, 100f, facingToTarget-10f,facingToTarget +10f)
+//            Global.getCombatEngine().spawnEmpArcVisual(
+//              projectile.weapon.location, projectile.source,
+//              toTarget, null,
+//              30f,
+//              ARC_COLOR1,
+//              ARC_COLOR2)
+//
+//          }
 
         }
 
@@ -1386,17 +1386,17 @@ class aEP_cap_duiliu_main_shot : Effect(){
 
       override fun readyToEnd() {
         //如果时间几乎走完了才脱离，就爆炸
-        if(time >= lifeTime-0.1f) {
-          val spec = DamagingExplosionSpec(
-            0.0001f,
-            100f,20f,
-            damage,damage/3f,
-            CollisionClass.HITS_SHIPS_AND_ASTEROIDS,CollisionClass.HITS_SHIPS_AND_ASTEROIDS,
-            10f,10f,1f,
-            100,Color.yellow,BLINK_COLOR1)
-          spec.damageType = DamageType.HIGH_EXPLOSIVE
-          Global.getCombatEngine().spawnDamagingExplosion(spec, projectile.source, renderLoc)
-        }
+//        if(time >= lifeTime-0.1f) {
+//          val spec = DamagingExplosionSpec(
+//            0.0001f,
+//            100f,20f,
+//            damage,damage/3f,
+//            CollisionClass.HITS_SHIPS_AND_ASTEROIDS,CollisionClass.HITS_SHIPS_AND_ASTEROIDS,
+//            10f,10f,1f,
+//            100,Color.yellow,BLINK_COLOR1)
+//          spec.damageType = DamageType.HIGH_EXPLOSIVE
+//          Global.getCombatEngine().spawnDamagingExplosion(spec, projectile.source, renderLoc)
+//        }
         super.readyToEnd()
       }
 
