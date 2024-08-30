@@ -120,6 +120,12 @@
     "fallback2":{"carrierLarge":0.25},
   },
   "carrierMedium": {
+
+    "aEP_des_yuanyang_Standard":3,
+    "aEP_des_yuanyang_Attack":2,
+    "aEP_des_yuanyang_Defense":2,
+    "aEP_des_yuanyang_Support":3,
+
     "aEP_des_shendu_Standard": 5,
     "aEP_des_shendu_Strike": 5,
 

@@ -31,6 +31,9 @@ class aEP_DecoGlowController(var weapon: WeaponAPI) {
       mag["aEP_cru_shanhu_round_red"] = GlowData(0.25f, 2f, Color(255, 255, 255, 255), 0f)
       mag["aEP_cru_shanhu_round_green"] = GlowData(0.25f, 2f, Color(255, 255, 255, 255), 0f)
 
+      mag["aEP_cru_baojiao_glow"] = GlowData(0.1f, 2f, Color(255, 255, 255, 255), 0f)
+
+
       mag["aEP_cru_zhongliu_side_glow"] = GlowData(2f, 1000f, Color(255, 255, 255, 255), 0f)
 
       mag["aEP_des_shuishi_rail_red"] = GlowData(0.2f, 10f, Color(255, 255, 255, 255), 0f)

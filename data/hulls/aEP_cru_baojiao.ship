@@ -21,7 +21,8 @@
         "targetingunit"
     ],
     "builtInWeapons": {
-        "WS 012": "aEP_cru_baojiao_piston"
+        "WS 012": "aEP_cru_baojiao_piston",
+        "WS 013": "aEP_cru_baojiao_glow"
     },
     "builtInWings": [],
     "builtInModules": null,
@@ -165,10 +166,22 @@
             "size": "SMALL",
             "type": "DECORATIVE",
             "mount": "TURRET",
+            "renderOrderMod": 1,
             "arc": 0,
             "angle": 0,
             "locations": [
                    -24.5,    -54.5
+            ]
+        },
+        {
+            "id": "WS 013",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -36.5,    -54.5
             ]
         },
         {
