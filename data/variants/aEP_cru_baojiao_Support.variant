@@ -1,19 +1,41 @@
 {
     "displayName": "Support",
-    "fluxCapacitors": 0,
-    "fluxVents": 0,
+    "fluxCapacitors": 5,
+    "fluxVents": 2,
     "goalVariant": true,
     "hullId": "aEP_cru_baojiao",
-    "hullMods": [],
-    "quality": 0.0,
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "heavyarmor"
+    ],
+    "permaMods": [],
+    "sMods": [],
     "variantId": "aEP_cru_baojiao_Support",
     "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "railgun"}
+        },
         {
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS 000": "dualflak"
+                "WS 004": "aEP_m_s_cluster",
+                "WS 005": "aEP_m_s_cluster",
+                "WS 006": "aEP_m_s_cluster",
+                "WS 007": "aEP_m_s_cluster"
             }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "aEP_b_m_flak"}
         }
+    ],
+    "wings": [
+        "aEP_ftr_ftr_helicop_wing",
+        "aEP_ftr_ftr_helicop_wing",
+        "aEP_ftr_icp_gunship_wing"
     ]
 }

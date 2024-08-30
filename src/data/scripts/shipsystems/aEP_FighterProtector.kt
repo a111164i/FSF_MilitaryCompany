@@ -70,23 +70,25 @@ class aEP_FighterProtector : BaseShipSystemScript() {
         anim.decoMoveController.speed = 0.5f + 0.5f * heatLevel
 
         if(smokeTimer.intervalElapsed()){
-          val initColor = Color(200, 180, 150)
-          val alpha = 0.3f * heatLevel
-          val lifeTime = 3f * heatLevel
-          val size = 35f
-          val endSizeMult = 1.5f
-          val vel = aEP_Tool.speed2Velocity(w.currAngle-180f, 30f)
-          Vector2f.add(vel, ship.velocity, vel)
-          vel.scale(0.5f)
-          val loc = aEP_Tool.getExtendedLocationFromPoint(w.location, w.currAngle-180f, 30f)
-          Global.getCombatEngine().addNebulaParticle(
-            MathUtils.getRandomPointInCircle(loc, 20f),
-            vel,
-            size, endSizeMult,
-            0.1f, 0.4f,
-            lifeTime * MathUtils.getRandomNumberInRange(0.5f, 0.75f),
-            aEP_Tool.getColorWithAlpha(initColor, alpha)
-          )
+          if (Global.getCombatEngine().viewport.isNearViewport(w.location, 500f)) {
+            val initColor = Color(220, 220, 220)
+            val alpha = 0.3f * heatLevel
+            val lifeTime = 3f * heatLevel
+            val size = 40f
+            val endSizeMult = 1.35f
+            val vel = aEP_Tool.speed2Velocity(w.currAngle-180f, 50f)
+            Vector2f.add(vel, ship.velocity, vel)
+            vel.scale(0.5f)
+            val loc = aEP_Tool.getExtendedLocationFromPoint(w.location, w.currAngle-180f, 30f)
+            Global.getCombatEngine().addNebulaParticle(
+              MathUtils.getRandomPointInCircle(loc, 20f),
+              vel,
+              size, endSizeMult,
+              0.1f, 0.4f,
+              lifeTime * MathUtils.getRandomNumberInRange(0.5f, 0.75f),
+              aEP_Tool.getColorWithAlpha(initColor, alpha)
+            )
+          }
         }
 
       }

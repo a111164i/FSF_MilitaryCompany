@@ -1,19 +1,42 @@
 {
     "displayName": "Siege",
-    "fluxCapacitors": 0,
-    "fluxVents": 0,
+    "fluxCapacitors": 12,
+    "fluxVents": 12,
     "goalVariant": true,
     "hullId": "aEP_cru_baojiao",
-    "hullMods": [],
-    "quality": 0.0,
+    "hullMods": ["missile_autoloader"],
+    "permaMods": [],
+    "sMods": [],
     "variantId": "aEP_cru_baojiao_Siege",
     "weaponGroups": [
         {
             "autofire": false,
             "mode": "ALTERNATING",
+            "weapons": {"WS 000": "aEP_b_m_h88"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
             "weapons": {
-                "WS 000": "dualflak"
+                "WS 001": "aEP_b_s_pom",
+                "WS 002": "aEP_b_s_pom",
+                "WS 003": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 004": "atropos",
+                "WS 005": "atropos",
+                "WS 006": "atropos",
+                "WS 007": "atropos"
             }
         }
+    ],
+    "wings": [
+        "sarissa_wing",
+        "sarissa_wing",
+        "sarissa_wing"
     ]
 }

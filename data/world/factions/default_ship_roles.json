@@ -127,10 +127,10 @@
     "aEP_des_shuishi_Support": 5
 },
   "carrierLarge": {
-    "aEP_cru_shanhu_Standard":3,
-    "aEP_cru_shanhu_Attack":3,
-    "aEP_cru_shanhu_Siege":3,
-    "aEP_cru_shanhu_Front":3,
+    "aEP_cru_shanhu_Standard":1,
+    "aEP_cru_shanhu_Attack":1,
+    "aEP_cru_shanhu_Siege":1,
+    "aEP_cru_shanhu_Front":1,
 
     "aEP_cru_baojiao_Standard":3,
     "aEP_cru_baojiao_Support":3,

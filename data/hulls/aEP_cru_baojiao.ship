@@ -18,7 +18,6 @@
     "viewOffset": 0,
     "builtInMods": [
         "aEP_SpecialHull",
-        "aEP_MissilePlatform",
         "targetingunit"
     ],
     "builtInWeapons": {

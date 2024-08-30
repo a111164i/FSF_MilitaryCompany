@@ -10,13 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc1">
-      <change afterPath="$PROJECT_DIR$/data/weapons/aEP_cru_baojiao_piston.wpn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_baojiao.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_baojiao.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_FighterProtector.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_FighterProtector.system" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Siege.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Siege.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Support.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_DecoMoveController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_DecoMoveController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724993540941</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="4.8rc1">
+      <option name="closed" value="true" />
+      <created>1724995279687</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724995279687</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
