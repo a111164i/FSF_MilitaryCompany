@@ -304,7 +304,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\config\LunaSettings_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\config\lights\FSF_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\lights\FSF_light_data_e.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -402,6 +416,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\shipsystems\ship_systems.csv">
           <value>
             <Attribute>
@@ -410,6 +431,13 @@
           </value>
         </entry>
         <entry key="\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\strings\descriptions_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
