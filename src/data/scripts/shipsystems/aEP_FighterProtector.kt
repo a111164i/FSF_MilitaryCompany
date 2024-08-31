@@ -163,7 +163,7 @@ class aEP_FighterProtector : BaseShipSystemScript() {
       val ring = aEP_SpreadRing(
         400f,
         200f,
-        Color(255,150,55,30),
+        Color(255,150,55,20),
         100f,
         800f,
         ship.location)
