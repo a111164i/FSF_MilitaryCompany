@@ -647,6 +647,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hulls\ship_data_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hulls\ship_data_EN.csv">
           <value>
             <Attribute>

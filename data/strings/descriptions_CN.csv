@@ -25,6 +25,7 @@ aEP_VectorThrust,SHIP_SYSTEM,激活时增加巨额机动性，向左右侧移时
 ,,,,,,
 aEP_ShuishiDroneLaunch,SHIP_SYSTEM,激活时，向鼠标位置传送数架组盾无人机，保护距离落点最近的友方舰船，通过该系统产生的组盾无人机拥有数量限制,,,,
 aEP_Skimmer,SHIP_SYSTEM,激活时，向当前速度方向闪现一段距离,,,,
+aEP_RecallDevice,SHIP_SYSTEM,激活时，将所有战机传送回本舰，并在快速整备后重新出击,,,,
 aEP_SiegeMode,SHIP_SYSTEM,可切换，激活时将自身固定在一个位置，所有实弹/能量武器获得大量射速加成，同时减少自任何来源的幅能产生。如果距离该位置太远系统会自动关闭,,,,
 aEP_AntiPhaseDrone,SHIP_SYSTEM,激活时发射一架限时的超高速无人机持续攻击目标，装备有反舰光束与磁吸炸弹。无人机与母舰超过一定距离后性能会受到惩罚，机动性与防御性大幅度下降,,,,
 aEP_YJDefenseFlak,SHIP_SYSTEM,激活时向四周发射大量拥有近炸引信的防空炮弹丸,,,,
