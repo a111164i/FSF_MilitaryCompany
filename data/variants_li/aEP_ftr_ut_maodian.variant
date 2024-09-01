@@ -1,0 +1,43 @@
+{
+  "variantId": "aEP_ftr_ut_maodian",
+  "hullId": "aEP_ftr_ut_maodian",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0006": "aEP_empty"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "aEP_ftr_ut_maodian_ads"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "aEP_ftr_ut_maodian_ads"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "aEP_ftr_ut_maodian_ads"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

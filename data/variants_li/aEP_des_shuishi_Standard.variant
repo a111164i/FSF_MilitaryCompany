@@ -1,0 +1,34 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 20,
+    "fluxVents": 13,
+    "goalVariant": true,
+    "hullId": "aEP_des_shuishi",
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "expanded_deck_crew"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_shuishi_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "hveldriver"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_s_era",
+                "WS0002": "aEP_m_s_era",
+                "WS0003": "aEP_b_s_pom"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_sup_shield_wing",
+        "warthog_wing"
+    ]
+}

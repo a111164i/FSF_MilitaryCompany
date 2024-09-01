@@ -1,0 +1,27 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 3,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_des_chongji",
+    "hullMods": [
+        "converted_hangar",
+        "targetingunit"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_chongji_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "gauss"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "heavymauler"}
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

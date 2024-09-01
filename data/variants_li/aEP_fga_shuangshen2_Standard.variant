@@ -1,0 +1,16 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 5,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_fga_shuangshen2",
+    "hullMods": ["hardenedshieldemitter"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_shuangshen2_Standard",
+    "weaponGroups": [{
+        "autofire": false,
+        "mode": "LINKED",
+        "weapons": {"MAIN": "chaingun"}
+    }]
+}

@@ -1,0 +1,33 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 5,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_fga_shuangshen",
+    "hullMods": ["aEP_EliteShip"],
+    "modules": [{"FRONT": "aEP_fga_shuangshen2_Standard"}],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_shuangshen_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightdualac",
+                "WS0002": "lightdualac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "amblaster"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"POINTER": "aEP_fga_shuangshen_pointer"}
+        }
+    ],
+    "wings": []
+}

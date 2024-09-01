@@ -1,0 +1,24 @@
+{
+    "displayName": "Support",
+    "fluxCapacitors": 11,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_des_chongji",
+    "hullMods": ["converted_hangar"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_chongji_Support",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "aEP_b_l_aa40"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "aEP_b_m_h88"}
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

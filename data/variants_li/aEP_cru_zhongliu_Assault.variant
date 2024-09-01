@@ -1,0 +1,42 @@
+{
+    "displayName": "Assault",
+    "fluxCapacitors": 17,
+    "fluxVents": 11,
+    "goalVariant": true,
+    "hullId": "aEP_cru_zhongliu",
+    "hullMods": [
+        "aEP_EliteShip",
+        "targetingunit",
+        "ballistic_rangefinder"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_zhongliu_Assault",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_l_dg3",
+                "WS0002": "aEP_b_l_dg3"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0008": "aEP_m_s_fluxtube",
+                "WS0009": "aEP_m_s_fluxtube",
+                "WS0010": "aEP_m_s_fluxtube"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler"
+            }
+        }
+    ]
+}

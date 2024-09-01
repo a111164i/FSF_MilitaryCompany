@@ -1,0 +1,65 @@
+{
+  "variantId": "aEP_radiant_Standard",
+  "hullId": "radiant",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 50,
+  "fluxVents": 35,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit",
+    "hardenedshieldemitter",
+    "frontemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "tachyonlance",
+        "WS 001": "tachyonlance",
+        "WS 005": "annihilatorpod",
+        "WS 008": "annihilatorpod"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "squall",
+        "WS 004": "squall"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 006": "annihilatorpod",
+        "WS 007": "annihilatorpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "tachyonlance"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 009": "pdlaser",
+        "WS 018": "pdlaser"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

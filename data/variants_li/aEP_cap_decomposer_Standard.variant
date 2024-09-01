@@ -1,0 +1,43 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 18,
+    "fluxVents": 9,
+    "goalVariant": true,
+    "hullId": "aEP_cap_decomposer",
+    "hullMods": [
+        "missleracks",
+        "frontshield",
+        "aEP_ShieldControlled",
+        "expanded_deck_crew"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_decomposer_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "squall",
+                "WS0005": "squall"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0008": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0010": "aEP_b_s_pom"}
+        }
+    ],
+    "wings": [
+        "warthog_wing",
+        "warthog_wing",
+        "warthog_wing",
+        "",
+        ""
+    ]
+}

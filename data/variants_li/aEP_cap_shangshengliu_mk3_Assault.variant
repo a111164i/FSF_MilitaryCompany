@@ -1,0 +1,72 @@
+{
+    "displayName": "Assualt",
+    "fluxCapacitors": 50,
+    "fluxVents": 50,
+    "goalVariant": true,
+    "hullId": "aEP_cap_shangshengliu_mk3",
+    "hullMods": [
+        "converted_hangar",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_shangshengliu_mk3_Assault",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0017": "aEP_b_l_dg3"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightneedler",
+                "WS0005": "lightneedler",
+                "WS0007": "lightneedler",
+                "WS0009": "lightneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0013": "aEP_b_m_h88",
+                "WS0015": "aEP_b_m_h88"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_s_era",
+                "WS0002": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0018": "devastator"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_b_s_pom",
+                "WS0008": "aEP_ftr_sup_shield_gun",
+                "WS0010": "aEP_ftr_sup_shield_gun",
+                "WS0011": "aEP_b_s_pom",
+                "WS0012": "aEP_b_s_pom",
+                "WS0014": "aEP_ftr_sup_shield_gun",
+                "WS0016": "aEP_ftr_sup_shield_gun",
+                "WS0020": "aEP_ftr_sup_shield_gun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0019": "aEP_b_m_mb32"}
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

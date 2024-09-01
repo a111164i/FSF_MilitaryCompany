@@ -1,0 +1,53 @@
+{
+    "displayName": "",
+    "fluxCapacitors": 4,
+    "fluxVents": 4,
+    "goalVariant": true,
+    "hullId": "apex",
+    "hullMods": [
+        "targetingunit",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_apex_Assault",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 010": "ioncannon",
+                "WS 011": "ioncannon",
+                "WS 012": "ioncannon",
+                "WS 013": "ioncannon"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 004": "dragon",
+                "WS 005": "dragon",
+                "WS 006": "dragon",
+                "WS 007": "dragon"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 000": "riftbeam",
+                "WS 003": "riftbeam"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 008": "pdlaser",
+                "WS 009": "pdlaser"
+            }
+        }
+    ],
+    "wings": []
+}

@@ -1,0 +1,27 @@
+{
+    "displayName": "Attack",
+    "fluxCapacitors": 15,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_des_chongji",
+    "hullMods": [
+        "targetingunit",
+        "aEP_EliteShip",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_chongji_Attack",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "aEP_b_l_dg3"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "aEP_b_m_k125"}
+        }
+    ]
+}

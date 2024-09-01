@@ -1,0 +1,22 @@
+{
+  "variantId": "aEP_ftr_ut_shuangshen3",
+  "hullId": "aEP_ftr_ut_shuangshen3",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "MAIN": "aEP_fga_shuangshen2_lidardish"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

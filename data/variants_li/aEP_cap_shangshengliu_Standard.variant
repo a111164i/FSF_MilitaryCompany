@@ -1,0 +1,44 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 16,
+    "goalVariant": true,
+    "hullId": "aEP_cap_shangshengliu",
+    "hullMods": [
+        "targetingunit",
+        "converted_hangar",
+        "shield_shunt",
+        "heavyarmor"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_shangshengliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "heavymauler",
+                "WS0007": "hveldriver",
+                "WS0014": "dualflak",
+                "WS0015": "dualflak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "gauss"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_s_era",
+                "WS0002": "aEP_m_s_era",
+                "WS0016": "aEP_m_s_era",
+                "WS0017": "aEP_m_s_era"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

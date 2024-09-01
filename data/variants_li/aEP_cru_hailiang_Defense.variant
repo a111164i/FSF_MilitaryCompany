@@ -1,0 +1,35 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 18,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_cru_hailiang",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "targetingunit"
+    ],
+    "modules": [
+        {"MD01": "aEP_cru_hailiang3_Defense"},
+        {"MD03": "aEP_cru_hailiang4_Standard"},
+        {"MD02": "aEP_cru_hailiang4_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_hailiang_Defense",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_b_l_dg3"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0005": "lightneedler",
+                "WS0006": "lightneedler"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

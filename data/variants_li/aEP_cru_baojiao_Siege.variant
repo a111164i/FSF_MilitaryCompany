@@ -1,0 +1,44 @@
+{
+    "displayName": "Siege",
+    "fluxCapacitors": 9,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_cru_baojiao",
+    "hullMods": [
+        "expanded_deck_crew",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_baojiao_Siege",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "aEP_b_m_k125"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 004": "heatseeker",
+                "WS 005": "heatseeker",
+                "WS 006": "heatseeker",
+                "WS 007": "heatseeker"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 002": "aEP_b_s_pom",
+                "WS 003": "aEP_b_s_pom"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing"
+    ]
+}

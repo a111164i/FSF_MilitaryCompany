@@ -1,0 +1,56 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 20,
+    "fluxVents": 13,
+    "goalVariant": true,
+    "hullId": "aEP_des_yangji",
+    "hullMods": [
+        "aEP_EliteShip",
+        "aEP_ShieldControlled",
+        "unstable_injector",
+        "fluxcoil"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_yangji_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "heavyneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_m_s_era",
+                "WS0005": "aEP_m_s_era",
+                "WS0011": "aEP_m_s_era",
+                "WS0012": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "aEP_b_s_h37"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL01": "flak",
+                "SIDEL04": "flak",
+                "SIDER01": "flak",
+                "SIDER04": "flak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ]
+}

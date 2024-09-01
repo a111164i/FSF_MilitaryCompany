@@ -1,0 +1,62 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 13,
+    "fluxVents": 9,
+    "goalVariant": true,
+    "hullId": "aEP_des_yangji",
+    "hullMods": [
+        "converted_hangar",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_yangji_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL01": "hveldriver",
+                "SIDER01": "hveldriver"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_m_s_era",
+                "WS0005": "aEP_m_s_era",
+                "WS0011": "aEP_m_s_era",
+                "WS0012": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "heavymauler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL04": "flak",
+                "SIDER04": "flak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_ftr_sup_shield_gun",
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

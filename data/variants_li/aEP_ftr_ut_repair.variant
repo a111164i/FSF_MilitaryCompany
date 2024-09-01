@@ -1,0 +1,22 @@
+{
+  "variantId": "aEP_ftr_ut_repair",
+  "hullId": "aEP_ftr_ut_repair",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "aEP_ftr_ut_repair_beam"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

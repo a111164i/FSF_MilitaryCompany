@@ -1,0 +1,30 @@
+{
+  "variantId": "aEP_ftr_ftr_helicop",
+  "hullId": "aEP_ftr_ftr_helicop",
+  "displayName": "",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "aEP_ftr_ftr_helicop_lmg"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "aEP_ftr_ftr_helicop_rocket",
+        "WS0004": "aEP_ftr_ftr_helicop_rocket"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

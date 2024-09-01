@@ -1,0 +1,30 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 7,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_fga_shuangshen",
+    "hullMods": ["aEP_EliteShip"],
+    "modules": [{"FRONT": "aEP_fga_shuangshen2_Elite"}],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_shuangshen_Elite",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"POINTER": "aEP_fga_shuangshen_pointer"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "amblaster"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "lightneedler"}
+        }
+    ],
+    "wings": []
+}

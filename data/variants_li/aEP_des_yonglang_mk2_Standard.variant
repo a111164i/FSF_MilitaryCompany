@@ -1,0 +1,49 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 3,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_des_yonglang_mk2",
+    "hullMods": ["converted_hangar"],
+    "modules": [
+        {"L": "aEP_des_yonglang_mk2_l_Standard"},
+        {"R": "aEP_des_yonglang_mk2_r_Standard"},
+        {"M": "aEP_des_yonglang_mk2_m_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_yonglang_mk2_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0010": "aEP_e_s_flamer"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_s_bomblance",
+                "WS0006": "aEP_m_s_bomblance",
+                "WS0007": "aEP_m_s_bomblance",
+                "WS0008": "aEP_m_s_bomblance"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS00011": "aEP_des_yonglang_mk2_teslagun"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_ftr_sup_shield_gun",
+                "WS0003": "aEP_ftr_sup_shield_gun",
+                "WS0004": "aEP_ftr_sup_shield_gun",
+                "WS0005": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

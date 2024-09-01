@@ -1,0 +1,41 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 12,
+    "fluxVents": 3,
+    "goalVariant": true,
+    "hullId": "aEP_cru_zhongliu",
+    "hullMods": [
+        "targetingunit",
+        "converted_hangar",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_zhongliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_l_aa40",
+                "WS0002": "aEP_b_l_aa40"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0008": "aEP_m_s_fluxtube"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0010": "aEP_m_s_fluxtube"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_m_s_fluxtube"}
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

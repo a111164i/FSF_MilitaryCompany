@@ -1,0 +1,46 @@
+{
+    "displayName": "Beam",
+    "fluxCapacitors": 8,
+    "fluxVents": 8,
+    "goalVariant": true,
+    "hullId": "aEP_fga_xiliu",
+    "hullMods": [
+        "aEP_VanguardHull",
+        "pointdefenseai",
+        "advancedoptics",
+        "turretgyros",
+        "aEP_ShieldControlled",
+        "armoredweapons"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_xiliu_Beam",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_fga_xiliu_main",
+                "WS0003": "aEP_fga_xiliu_main2"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "lrpdlaser",
+                "R01": "lrpdlaser",
+                "WS0007": "lrpdlaser",
+                "WS0009": "lrpdlaser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L02": "vulcan",
+                "R02": "vulcan"
+            }
+        }
+    ]
+}

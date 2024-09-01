@@ -1,0 +1,39 @@
+{
+    "displayName": "Mixed",
+    "fluxCapacitors": 10,
+    "fluxVents": 7,
+    "goalVariant": true,
+    "hullId": "aEP_fga_yonglang",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "extendedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_yonglang_Mixed",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_pom",
+                "WS0002": "aEP_b_s_pom",
+                "WS0005": "lightneedler",
+                "WS0006": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0013": "aEP_fga_yonglang_main",
+                "WS0014": "aEP_fga_yonglang_main"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_m_s_era"}
+        }
+    ]
+}

@@ -329,11 +329,11 @@
 		"aEP_ShieldControlled03": "For missiles, shield damage taken %s",
 		"aEP_ShieldControlled02": "Ballistic/energy weapons %s range are limited to %s.",
 
-		"aEP_ShieldFloating01": "Fluctuation Points",
+		"aEP_ShieldFloating01": "F. Points",
 		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, which decreases overtime.",
 		"aEP_ShieldFloating04": "If %s is accumulating, flux dissipation increases up to %s.",
 		"aEP_ShieldFloating03": "Needed for Full Bonus",
-		"aEP_ShieldFloating05": "Flux dissipation",
+		"aEP_ShieldFloating05": "Flux vent",
 
 		"aEP_StrategyThruster01": "Zero flux boost speed %s, currently %s",
 		"aEP_StrategyThruster02": "Min flux level for zero flux boost to active %s, currently %s",

@@ -181,13 +181,15 @@ class aEP_FighterProtector : BaseShipSystemScript() {
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): StatusData? {
-    if (index == 0) {
+    if(effectLevel > 0f){
+      if (index == 0) {
+        return StatusData(aEP_DataTool.txt("aEP_FighterProtector01") + "-"+ (DAMAGE_TAKEN_REDUCE_MULT * 100f ).toInt() +"%", false)
+      } else if(index == 1) {
 
-      return StatusData(aEP_DataTool.txt("aEP_FighterProtector01") + "-"+ (DAMAGE_TAKEN_REDUCE_MULT * 100f ).toInt() +"%", false)
-    } else if(index == 1) {
-
-      return StatusData(aEP_DataTool.txt("aEP_FighterProtector02") + "-"+(DAMAGE_DEALT_REDUCE_MULT * 100f ).toInt() +"%", true)
+        return StatusData(aEP_DataTool.txt("aEP_FighterProtector02") + "-"+(DAMAGE_DEALT_REDUCE_MULT * 100f ).toInt() +"%", true)
+      }
     }
+
     return null
   }
 

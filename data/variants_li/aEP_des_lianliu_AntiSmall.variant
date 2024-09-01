@@ -1,0 +1,38 @@
+{
+    "displayName": "Attack",
+    "fluxCapacitors": 13,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_des_lianliu",
+    "hullMods": [
+        "converted_hangar",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_lianliu_AntiSmall",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "heavyneedler",
+                "WS0002": "heavyneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_b_m_h88"}
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "aEP_m_s_era",
+                "WS0005": "aEP_m_s_era"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

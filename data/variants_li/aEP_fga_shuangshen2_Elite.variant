@@ -1,0 +1,16 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 5,
+    "fluxVents": 5,
+    "goalVariant": true,
+    "hullId": "aEP_fga_shuangshen2",
+    "hullMods": ["hardenedshieldemitter"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_shuangshen2_Elite",
+    "weaponGroups": [{
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {"MAIN": "aEP_b_m_rk107"}
+    }]
+}

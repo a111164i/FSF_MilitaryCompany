@@ -1,0 +1,49 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 10,
+    "fluxVents": 9,
+    "goalVariant": true,
+    "hullId": "aEP_fga_xiliu_mk2",
+    "hullMods": [
+        "frontemitter",
+        "aEP_ShieldControlled",
+        "aEP_EliteShip"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_xiliu_mk2_Elite",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "dragon"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0001": "aEP_fga_xiliu_mk2_missile",
+                "WS0003": "aEP_fga_xiliu_mk2_missile"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"L01": "lightneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "L02": "aEP_m_s_era",
+                "R01": "aEP_m_s_era",
+                "R02": "aEP_m_s_era"
+            }
+        }
+    ]
+}

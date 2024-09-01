@@ -19,8 +19,9 @@
     "trigger_player_minLevel": 9,
     "trigger_min_days_elapsed": 0,
     "trigger_weight_mult": 1,
-    "trigger_memKeys_all":{"$AWM_4Complete":true},
-    #"trigger_memKeys_any":{"$key":true},
+    "trigger_memKeys_all": {
+      "$AWM_4Complete": true
+    },
     "trigger_playerRelationship_atLeast": {
       "aEP_FSF": 0.65
     },

@@ -1,0 +1,46 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 4,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_cru_hailiang3",
+    "hullMods": ["missleracks"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_hailiang3_Defense",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightneedler",
+                "WS0002": "lightneedler"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "dragon",
+                "WS0008": "dragon"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "devastator",
+                "WS0006": "devastator"
+            }
+        }
+    ],
+    "wings": []
+}

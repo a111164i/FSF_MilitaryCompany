@@ -30,7 +30,8 @@ class aEP_VentMode: BaseShipSystemScript() {
     val HIGHLIGHT_COLOR = Color(255, 20, 20, 120)
     val RING_COLOR = Color(180, 90, 90, 85)
     val SMOKE_EMIT_COLOR = Color(250, 250, 250, 60)
-    val SMOKE_EMIT_COLOR2 = Color(250, 250, 250, 180)
+    //四角烟雾
+    val SMOKE_EMIT_COLOR2 = Color(250, 250, 250, 125)
 
     const val SOFT_CONVERT_RATE = 0.25f
     const val SOFT_CONVERT_SPEED = 2000f

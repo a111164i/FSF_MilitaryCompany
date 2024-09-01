@@ -1,0 +1,74 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 36,
+    "fluxVents": 25,
+    "goalVariant": true,
+    "hullId": "aEP_cap_shangshengliu_mk3",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "converted_hangar",
+        "heavyarmor"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_shangshengliu_mk3_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightneedler",
+                "WS0007": "lightneedler",
+                "WS0009": "lightneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_m_s_era",
+                "WS0002": "aEP_m_s_era",
+                "WS0005": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0013": "heavymauler",
+                "WS0015": "heavymauler",
+                "WS0019": "heavymauler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0017": "devastator",
+                "WS0018": "devastator"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_b_s_pom",
+                "WS0011": "aEP_b_s_pom",
+                "WS0012": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0008": "aEP_ftr_sup_shield_gun",
+                "WS0010": "aEP_ftr_sup_shield_gun",
+                "WS0014": "aEP_ftr_sup_shield_gun",
+                "WS0016": "aEP_ftr_sup_shield_gun",
+                "WS0020": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_sup_shield_wing"]
+}

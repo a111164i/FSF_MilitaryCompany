@@ -1,0 +1,41 @@
+{
+    "displayName": "Attack",
+    "fluxCapacitors": 0,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_cap_decomposer",
+    "hullMods": [
+        "missleracks",
+        "frontshield",
+        "aEP_ShieldControlled",
+        "expanded_deck_crew"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_decomposer_Attack",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0008": "aEP_b_s_pom",
+                "WS0010": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "aEP_m_l_blasthammer",
+                "WS0005": "aEP_m_l_blasthammer"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "",
+        ""
+    ]
+}

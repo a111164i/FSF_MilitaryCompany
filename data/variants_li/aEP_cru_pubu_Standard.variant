@@ -1,0 +1,36 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 30,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_cru_pubu",
+    "hullMods": [
+        "expanded_deck_crew",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_pubu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_m_mb32"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0003": "aEP_m_s_era"
+            }
+        }
+    ],
+    "wings": [
+        "warthog_wing",
+        "warthog_wing",
+        "warthog_wing",
+        "broadsword_wing",
+        "broadsword_wing"
+    ]
+}

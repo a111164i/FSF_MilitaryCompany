@@ -1,0 +1,33 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 20,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_des_youjiyan",
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "aEP_EliteShip",
+        "targetingunit"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_youjiyan_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0006": "flak",
+                "WS0028": "heavymauler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler"
+            }
+        }
+    ]
+}

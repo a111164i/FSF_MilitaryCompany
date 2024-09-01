@@ -1,0 +1,60 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 10,
+    "fluxVents": 10,
+    "hullId": "aEP_fga_xiliu",
+    "hullMods": [
+        "automated",
+        "aEP_EmergencyReconstruct",
+        "aEP_EliteShip",
+        "frontemitter",
+        "aEP_ShieldFloating",
+        "reinforcedhull"
+    ],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstruct"
+    ],
+    "sMods": [],
+    "variantId": "aEP_fga_xiliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"R01": "amblaster"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"L01": "lightneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_fga_xiliu_main2"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_fga_xiliu_main"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "amblaster"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_ftr_sup_shield_gun"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "L02": "aEP_ftr_sup_shield_gun",
+                "R02": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ]
+}

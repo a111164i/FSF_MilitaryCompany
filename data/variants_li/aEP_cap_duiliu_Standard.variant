@@ -1,0 +1,53 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 50,
+    "fluxVents": 29,
+    "goalVariant": true,
+    "hullId": "aEP_cap_duiliu",
+    "hullMods": [
+        "targetingunit",
+        "ballistic_rangefinder",
+        "aEP_ShieldControlled",
+        "aEP_EliteShip"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_duiliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_cap_duiliu_main"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "lightneedler",
+                "WS0004": "lightneedler",
+                "WS0005": "lightneedler",
+                "WS0006": "lightneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0022": "lightneedler",
+                "WS0023": "lightneedler",
+                "WS0036": "lightneedler",
+                "WS0037": "lightneedler"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "aEP_b_m_h88",
+                "WS0008": "aEP_b_m_h88",
+                "WS0020": "aEP_b_m_h88",
+                "WS0021": "aEP_b_m_h88"
+            }
+        }
+    ]
+}
