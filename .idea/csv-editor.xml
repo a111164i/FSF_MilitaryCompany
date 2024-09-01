@@ -654,13 +654,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hulls\ship_data_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\hulls\wing_data.csv">
           <value>
             <Attribute>
@@ -697,13 +690,6 @@
           </value>
         </entry>
         <entry key="\data\strings\descriptions_CN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\strings\descriptions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

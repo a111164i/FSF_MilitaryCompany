@@ -182,8 +182,13 @@ class aEP_OpenFieldHangar: aEP_BaseHullMod(), AdvanceableListener {
   }
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI, ship: ShipAPI, id: String) {
-    fighter.mutableStats.damageToTargetShieldsMult.modifyMult(ID, 0.5f)
-    fighter.mutableStats.damageToTargetHullMult.modifyMult(ID, 0.5f)
+    fighter.mutableStats.damageToCapital.modifyMult(id, 0.5f)
+    fighter.mutableStats.damageToCruisers.modifyMult(id, 0.5f)
+    fighter.mutableStats.damageToDestroyers.modifyMult(id, 0.5f)
+    fighter.mutableStats.damageToFrigates.modifyMult(id, 0.5f)
+    fighter.mutableStats.damageToFighters.modifyMult(id, 0.5f)
+    fighter.mutableStats.damageToMissiles.modifyMult(id, 0.5f)
+
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize?, ship: ShipAPI?): String? {

@@ -10,6 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc1">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/campaign/commodities.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/campaign/commodities_CN.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
@@ -302,8 +304,12 @@
       <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_CN.faction" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_CN.faction" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod_info_CN.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -435,7 +441,9 @@
       <workItem from="1725115804211" duration="1079000" />
       <workItem from="1725118641004" duration="935000" />
       <workItem from="1725151598078" duration="30000" />
-      <workItem from="1725151668128" duration="1989000" />
+      <workItem from="1725151668128" duration="3820000" />
+      <workItem from="1725161837095" duration="653000" />
+      <workItem from="1725168969906" duration="4562000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -581,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725153471376</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="4.8rc1">
+      <option name="closed" value="true" />
+      <created>1725153885731</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1725153885731</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -29,7 +29,7 @@ class aEP_FighterProtector : BaseShipSystemScript() {
 
   companion object {
     private const val DAMAGE_TAKEN_REDUCE_MULT = 0.6f
-    private const val DAMAGE_DEALT_REDUCE_MULT = 0.9f
+    private const val DAMAGE_DEALT_REDUCE_MULT = 0.8f
 
     private const val FULL_TIME = 7.5f
     private const val FADE_TIME = 0.5f
@@ -208,8 +208,15 @@ class aEP_FighterProtector : BaseShipSystemScript() {
       if(lifeTime-time < fadeTime) level = ((lifeTime-time)/fadeTime).coerceAtLeast(0f)
 
 
-      ftr.mutableStats.damageToTargetHullMult.modifyMult(key, 1f-dealtReduceMult )
-      ftr.mutableStats.damageToTargetShieldsMult.modifyMult(key, 1f-dealtReduceMult)
+//      ftr.mutableStats.damageToTargetHullMult.modifyMult(key, 1f-dealtReduceMult )
+//      ftr.mutableStats.damageToTargetShieldsMult.modifyMult(key, 1f-dealtReduceMult)
+
+      ftr.mutableStats.damageToCapital.modifyMult(key, 1f-dealtReduceMult)
+      ftr.mutableStats.damageToCruisers.modifyMult(key, 1f-dealtReduceMult)
+      ftr.mutableStats.damageToDestroyers.modifyMult(key, 1f-dealtReduceMult)
+      ftr.mutableStats.damageToFrigates.modifyMult(key, 1f-dealtReduceMult)
+      ftr.mutableStats.damageToFighters.modifyMult(key, 1f-dealtReduceMult)
+      ftr.mutableStats.damageToMissiles.modifyMult(key, 1f-dealtReduceMult)
 
       ftr.mutableStats.armorDamageTakenMult.modifyMult(key, 1f - takenReduceMult*level)
       ftr.mutableStats.hullDamageTakenMult.modifyMult(key, 1f - takenReduceMult*level)
@@ -223,8 +230,17 @@ class aEP_FighterProtector : BaseShipSystemScript() {
 
     override fun readyToEndImpl()
     {
-      ftr.mutableStats.damageToTargetHullMult.modifyMult(key, 1f)
-      ftr.mutableStats.damageToTargetShieldsMult.modifyMult(key, 1f)
+//      ftr.mutableStats.damageToTargetHullMult.modifyMult(key, 1f)
+//      ftr.mutableStats.damageToTargetShieldsMult.modifyMult(key, 1f)
+
+
+      ftr.mutableStats.damageToCapital.modifyMult(key, 1f)
+      ftr.mutableStats.damageToCruisers.modifyMult(key, 1f)
+      ftr.mutableStats.damageToDestroyers.modifyMult(key, 1f)
+      ftr.mutableStats.damageToFrigates.modifyMult(key, 1f)
+      ftr.mutableStats.damageToFighters.modifyMult(key, 1f)
+      ftr.mutableStats.damageToMissiles.modifyMult(key, 1f)
+
 
       ftr.mutableStats.armorDamageTakenMult.modifyMult(key, 1f)
       ftr.mutableStats.hullDamageTakenMult.modifyMult(key, 1f)
