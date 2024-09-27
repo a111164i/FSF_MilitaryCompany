@@ -7,8 +7,6 @@ import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI
 import com.fs.starfarer.api.combat.listeners.DamageDealtModifier
 import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
 import com.fs.starfarer.api.impl.campaign.ids.Tags
-import com.fs.starfarer.api.impl.combat.BreachOnHitEffect
-import com.fs.starfarer.api.impl.combat.PhaseCloakStats.JITTER_COLOR
 import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
@@ -37,7 +35,6 @@ import combat.util.aEP_Tool.Util.speed2Velocity
 import combat.util.aEP_Tool.Util.velocity2Speed
 import data.scripts.hullmods.aEP_ReactiveArmor
 import data.scripts.hullmods.aEP_TwinFighter
-import data.scripts.shipsystems.aEP_CoordinatedCombat
 import data.scripts.shipsystems.aEP_WeaponReset
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
 import org.dark.shaders.distortion.DistortionShader
@@ -4065,8 +4062,14 @@ class SplitTrigger : aEP_BaseCombatEffect{
       if(t.hullSize != ShipAPI.HullSize.FRIGATE &&
         t.hullSize != ShipAPI.HullSize.DESTROYER) return
 
-      if(t.collisionClass == CollisionClass.NONE) continue
-      if(t.exactBounds == null) continue
+      if(!aEP_Tool.isShipTargetable(t,
+          false,
+          true,
+          true,
+          false,
+          false)) return
+
+
       if(t == projectile.source) continue
       if(t.owner == projectile.source.owner) continue
       //aEP_Tool.addDebugText("did", ship.location)
@@ -6442,11 +6445,11 @@ class ForceFighterTo(val ftr:ShipAPI, val toLoc:Vector2f): aEP_BaseCombatEffectW
     val dist = MathUtils.getDistance(ftr.location,toLoc)
     if(dist < 50f){
       didReach = true
-      aEP_Tool.setToPosition(ftr, toLoc)
-    }else if(dist < 250f){
-      aEP_Tool.setToPosition(ftr, toLoc)
-    }else{
       aEP_Tool.moveToPosition(ftr, toLoc)
+    }else if(dist < 250f){
+      aEP_Tool.moveToPosition(ftr, toLoc)
+    }else{
+      aEP_Tool.flyToPosition(ftr, toLoc)
     }
 
     if(didReach){

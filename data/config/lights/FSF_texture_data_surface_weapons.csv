@@ -119,7 +119,6 @@ aEP_ftr_sup_tank_main,hardpoint,,,surface,graphics/shaders/surface/weapons/aEP_f
 aEP_ftr_sup_tank_main,hardpointbarrel,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_tank/trbr_surface.png
 aEP_ftr_ut_maodian_ads,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_maodian/pd_surface.png
 aEP_ftr_ut_maodian_ads,turretbarrel,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_maodian/pd_br_surface.png
-aEP_ftr_ut_maodian_full_cover,turret,,,surface,graphics/shaders/surface/fighters/ut_maodian00_surface.png
 aEP_ftr_ut_repair_beam,turret,,,surface,graphics/shaders/surface/weapons/aEP_repairing_drone/aEP_repairing_drone00_surface.png
 aEP_ftr_ut_supply_fan,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_supply/fan_surface.png
 aEP_b_l_railwaygun,turret,,,surface,graphics/shaders/surface/weapons/aEP_b_l_railway/tr_surface.png

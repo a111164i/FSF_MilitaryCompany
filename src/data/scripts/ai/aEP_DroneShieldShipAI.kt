@@ -1,26 +1,17 @@
 //by a111164
 package data.scripts.ai
 
-import com.fs.starfarer.api.Global
-import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
-import combat.util.aEP_Tool.Util.setToPosition
+import combat.util.aEP_Tool.Util.moveToPosition
 import combat.util.aEP_Tool.Util.moveToAngle
-import combat.util.aEP_Tool.Util.returnToParent
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.ShipAIPlugin
 import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.ShipwideAIFlags
-import com.fs.starfarer.api.combat.ShipAIConfig
-import com.fs.starfarer.api.combat.CombatEngineAPI
 import org.lwjgl.util.vector.Vector2f
 import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.findNearestFriendyShip
 import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
 import combat.util.aEP_Tool.Util.isDead
-import data.scripts.ai.aEP_DroneShieldShipAI
-import data.scripts.hullmods.aEP_FighterSpecial
-import data.scripts.hullmods.aEP_ProjectileDenialShield
 import data.scripts.hullmods.aEP_ProjectileDenialShield.Companion.keepExplosionProtectListenerToParent
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -74,6 +65,8 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
   inner class ProtectParent(val toProtect: ShipAPI): aEP_MissileAI.Status(){
     var droneWidthInAngle = 5f
+    //是否检测因为距离过远而脱离，默认不检测，用于远距离强制无人机改变目标
+    var forceTag = false
 
     init {
       droneWidthInAngle = (FastTrig.atan2(DRONE_COLLISION_RAD.toDouble(),
@@ -131,7 +124,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
       aimAngle += droneWidthInAngle*(0.5f + currNum)
       val toLocation = getExtendedLocationFromPoint(toProtect.location, aimAngle, toProtect.collisionRadius+ FAR_FROM_PARENT)
-      setToPosition(ship, toLocation)
+      moveToPosition(ship, toLocation)
       moveToAngle(ship, aimAngle)
 
 
@@ -176,6 +169,17 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
   }
 
   override fun forceCircumstanceEvaluation() {
+
+    //如果已经在保护，并且被设置了强制跟随，就不再重新搜寻目标
+    if(stat is ProtectParent && (stat as ProtectParent).forceTag){
+      val s =  (stat as ProtectParent)
+      if(aEP_Tool.isDead(s.toProtect)){
+        stat = SelfExplode()
+      }else{
+        return
+      }
+    }
+
     val nearest = findNearestFriendyShip(ship)
     nearest?.run {
       stat = ProtectParent(nearest)

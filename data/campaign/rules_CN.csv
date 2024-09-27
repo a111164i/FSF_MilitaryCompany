@@ -175,7 +175,7 @@ aEP_researcher_stage1_ReAskAccepted,"ShowPersonVisual
 aEP_researcher_stage1_ReAskComplete,"ShowPersonVisual
 $faction.AWM_2Complete = true
 aEP_AdvanceWeaponMission complete2
-aEP_HandInParts aEP_b_l_railwaygun -1 none 0","""你拆下来的护盾生成器我们已经收到了，你到报酬...对研究所而言，曾经是非常有意义的成果，目前已经生产的原型仅此一个，虽然现在比不上你完成的这个任务的价值。希望这个落选的家伙能在你的手上发挥它的余热""","0:cutCommLink:""仅此一件？相当有诚意的报酬""",
+aEP_HandInParts aEP_b_l_railwaygun -1 none 0","""你拆下来的护盾生成器我们已经收到了，你的报酬...对研究所而言，曾经是非常有意义的成果，目前已经生产的原型仅此一个，虽然现在比不上你完成的这个任务的价值。希望这个落选的家伙能在你的手上发挥它的余热""","0:cutCommLink:""仅此一件？相当有诚意的报酬""",
 ,,,,
 ,,,,
 #任务线第三节，巡洋导弹舰队,,,,

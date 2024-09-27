@@ -27,11 +27,7 @@
             "mode": "LINKED",
             "weapons": {"WS0002": "aEP_m_s_era"}
         },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_b_s_pom"}
-        }
+
     ],
     "wings": [
         "aEP_ftr_sup_shield_wing",

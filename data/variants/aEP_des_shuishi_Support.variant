@@ -17,7 +17,6 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "aEP_e_s_300k",
                 "WS0004": "aEP_e_s_300k"
             }
         },

@@ -119,7 +119,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
         val dist = MathUtils.getDistance(ship, parentShip)
         if(ship.isWingLeader){
           if(dist > 200){
-            aEP_Tool.moveToPosition(ship, parentShip.location)
+            aEP_Tool.flyToPosition(ship, parentShip.location)
           }else{
             pointTracker.advance(amount)
             if(pointTracker.intervalElapsed()){
@@ -130,7 +130,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
               point.set(MathUtils.getRandomPointInCircle(point,100f))
             }
             aEP_Tool.moveToAngle(ship, parentShip.facing)
-            aEP_Tool.setToPosition(ship,point)
+            aEP_Tool.moveToPosition(ship,point)
           }
         //僚机跟随阵型
         }else{
@@ -145,7 +145,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
           }
           val loc = formation[i]
           aEP_Tool.moveToAngle(ship, ship.wing.leader.facing)
-          aEP_Tool.setToPosition(ship, loc)
+          aEP_Tool.moveToPosition(ship, loc)
         }
 
 
@@ -197,7 +197,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
         }
       }
 
-      aEP_Tool.moveToPosition(ship, target.location)
+      aEP_Tool.flyToPosition(ship, target.location)
     }
   }
 
@@ -244,7 +244,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       //转换相对位置到绝对位置，吸附舰船
       val absPos = aEP_Tool.getAbsoluteLocation(relPos, target, false)
       val absFacing = VectorUtils.getAngle(ship.location, target.location)
-      aEP_Tool.setToPosition(ship, absPos)
+      aEP_Tool.moveToPosition(ship, absPos)
       aEP_Tool.moveToAngle(ship, absFacing)
 
       //定期换位置，如果武器刚在开火就在结束后立刻换位

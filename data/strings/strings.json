@@ -44,7 +44,7 @@
 		"aEP_MissilePlatform05":"所有导弹的备弹量会被限制到：武器{%s}轮的发射量或是基础备弹量的{%s}，两者取大",
 		"aEP_MissilePlatform09":"例如，装配点为30的导弹武器，基础备弹为10发，则每发导弹价值为3点",
 		"aEP_MissilePlatform11":"拥有基础回复速度的导弹不参与本插件",
-		"aEP_MissilePlatform12":"按住 %s 切换是否显示更多信息",
+		"aEP_MissilePlatform12":"0点的武器会被视为消耗1装配点",
 
 		"aEP_HighSpeedManeuver01": "每当本舰受到高于{%s}的伤害时，有概率进入{%s}，持续{%s}秒，时间内本舰处于无碰撞状态",
 		"aEP_HighSpeedManeuver02": "每次进入闪避模式会使概率不断降低，如果{%s}秒内没有受到伤害则概率开始回复",
@@ -313,8 +313,8 @@
 		"aEP_MissilePlatform04":"Sec.",
 		"aEP_MissilePlatform05":"All missile weapons' max ammo will be limited to: %s rounds of fire or %s of base max ammo, whichever is higher",
 		"aEP_MissilePlatform09":"For example, a missile weapon of 30 OP with base ammo of 10, each ammo costs 3 OP",
-		"aEP_MissilePlatform11":"Missile weapons with base regen is not affected by this hullmod",
-		"aEP_MissilePlatform12":"Hold %s to show more info",
+		"aEP_MissilePlatform11":"Weapons with base ammo regen is not affected by this hullmod",
+		"aEP_MissilePlatform12":"Weapons with 0 OP cost will be considered to cost 1 in calculation",
 
 		"aEP_HighSpeedManeuver01": "Each time this ship takes a damage >= %s, has a chance going into %s, last for %s seconds, during which it has no collision",
 		"aEP_HighSpeedManeuver02": "Every evasion decreases the chance for subsequent evasions. If take no damage for %s sec, evade chance starts recover",

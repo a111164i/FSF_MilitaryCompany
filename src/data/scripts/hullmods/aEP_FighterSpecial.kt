@@ -302,26 +302,6 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
     }
   }
 
-  /**
-   * 使用这个
-   **/
-  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-    ship.collisionClass = CollisionClass.FIGHTER
-
-    ship.mutableStats.damageToFighters.modifyMult(ID, 0.33f)
-    ship.mutableStats.damageToFrigates.modifyMult(ID, 0.33f)
-    ship.mutableStats.damageToDestroyers.modifyMult(ID, 0.33f)
-    ship.mutableStats.damageToCruisers.modifyMult(ID, 0.33f)
-    ship.mutableStats.damageToCapital.modifyMult(ID, 0.33f)
-    if(!ship.hasListenerOfClass(ShieldListener::class.java)){
-      ship.addListener(ShieldListener(ship))
-    }
-
-    ship.mutableStats.dynamic.getStat(EXPLOSION_DAMAGE_MULT).modifyMult(id,0.01f)
-
-    ship.mutableStats.shieldUnfoldRateMult.modifyFlat(ID, 1f)
-  }
-
 }
 //锚点自爆监听器
 class ShieldListener(val ship: ShipAPI) : AdvanceableListener, DamageTakenModifier {

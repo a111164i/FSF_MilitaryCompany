@@ -64,7 +64,7 @@ public class aEP_SimpleMissileShipAI implements ShipAIPlugin
         Global.getCombatEngine().addFloatingText(target.getLocation(), "Target Locked", 10f, Color.red, target, 1, 0.4f);
       }
     }
-    aEP_Tool.moveToPosition(ship, toTargetPo);
+    aEP_Tool.flyToPosition(ship, toTargetPo);
   }
 
 

@@ -33,7 +33,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
 
     private const val MAX_RATE_MULT = 0.16f //池子大小的百分比部分，武器装配点总和的多少倍（暖池装满导弹大概125op，等于20）
-    private const val MAX_RATE_FLAT = 0f //池子大小的基础大小
+    private const val MAX_RATE_FLAT = 0.1f //池子大小的基础大小（给一个小数防止分母为0）
 
     private const val MIN_RATE = 1f //生产导弹的最低速度（池子低于多少时，导弹依然会以该速度生产，不再跟着池子降速）
 
@@ -98,6 +98,13 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       if (w.spec.ammoPerSecond > 0f) return false
       return true
     }
+
+    fun calculateWeaponCostAtLeastOne(spec: WeaponSpecAPI):Float{
+      if(spec.getOrdnancePointCost(null) > 1f)
+        return spec.getOrdnancePointCost(null)
+      else
+        return 1f
+    }
   }
 
   init {
@@ -129,7 +136,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         if(!isMissileWeapon(w)) continue
 
         //记录所有武器的 op/100 得到总装率
-        val opMissileWeapon = w.spec.getOrdnancePointCost(null)
+        val opMissileWeapon = calculateWeaponCostAtLeastOne(w.spec)
         //计算所有导弹武器的装填速度，创建一个整备率池子
         totalOp += opMissileWeapon
 
@@ -176,7 +183,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       for(w in ship.allWeapons) {
         if(!isMissileWeapon(w)) continue
         val spec = w.spec
-        totalOp += spec.getOrdnancePointCost(null)
+        totalOp += calculateWeaponCostAtLeastOne(w.spec)
         totalConsumption += MAX_RELOAD_SPEED[spec.size]?:0f
         when (spec.size){
           WeaponAPI.WeaponSize.LARGE -> {
@@ -245,16 +252,16 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       if(!allLargeSpec.isEmpty()){
         //tooltip.addRow(Alignment.LMID, highlight, "Large")
         for(spec in allLargeSpec){
-          val op =  spec.getOrdnancePointCost(null)
+          val op =  calculateWeaponCostAtLeastOne(spec)
           val ammo = spec.maxAmmo.toFloat()
           val consumptionSpeed = op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.LARGE]!! )
           var scale = getAmmoPerFire(ship, spec)
           while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
-            Alignment.MID, highlight, String.format("+ %s", scale),
+            Alignment.MID, highlight, String.format("+%s", scale),
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("- %2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
+            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -262,7 +269,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       if(!allMediumSpec.isEmpty()) {
         //tooltip.addRow(Alignment.LMID, highlight, "Medium")
         for (spec in allMediumSpec) {
-          val op = spec.getOrdnancePointCost(null)
+          val op = calculateWeaponCostAtLeastOne(spec)
           val ammo = spec.maxAmmo.toFloat()
           val consumptionSpeed =  op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM]!! )
           var scale = getAmmoPerFire(ship,spec)
@@ -270,9 +277,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
-            Alignment.MID, highlight, String.format("+ %s", scale),
+            Alignment.MID, highlight, String.format("+%s", scale),
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("- %2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
+            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -280,16 +287,16 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       if(!allSmallSpec.isEmpty()) {
         //tooltip.addRow(Alignment.LMID, highlight, "Small")
         for (spec in allSmallSpec) {
-          val op = spec.getOrdnancePointCost(null)
+          val op = calculateWeaponCostAtLeastOne(spec)
           val ammo = spec.maxAmmo.toFloat()
           val consumptionSpeed = op/ammo / (MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL]!!)
           var scale = getAmmoPerFire(ship, spec)
           while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
-            Alignment.MID, highlight, String.format("+ %s", scale),
+            Alignment.MID, highlight, String.format("+%s", scale),
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("- %2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
+            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -312,6 +319,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     //灰色额外说明
     //addGrayPara(tooltip, "aEP_MissilePlatform09", arrayOf())
     addGrayPara(tooltip, "aEP_MissilePlatform11", arrayOf())
+    addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf())
     //addGrayPara(tooltip, "aEP_MissilePlatform12", arrayOf("F1"))
   }
 
@@ -390,7 +398,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         val ammoPerFire = getAmmoPerFire(w)
         val ammoPerRegen = (ammoPerFire).coerceAtMost(w.spec.maxAmmo)
         //把map里面的op点转换为导弹数
-        val op = w.spec.getOrdnancePointCost(null)
+        val op = calculateWeaponCostAtLeastOne(w.spec)
         val opPerMissile = op/w.spec.maxAmmo.coerceAtLeast(1)
         val ammoPerRegenConvertToOp = ammoPerRegen * opPerMissile
         //记得记录数据的顺序

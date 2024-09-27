@@ -9,306 +9,71 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc1">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc2">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/rules_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules_CN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_nuanchi.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_nuanchi.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_pingding.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_pingding.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_shanhu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_shanhu.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_shuishi.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_shuishi.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_maodian.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_maodian.ship" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_CN.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Beam.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Beam.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Burst.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Burst.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Attack.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Attack.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Support.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_duiliu_Range.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_duiliu_Range.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_duiliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_duiliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_duiliu_Super.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_duiliu_Super.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_turret_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_turret_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_nuanchi_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_nuanchi_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_nuanchi_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_nuanchi_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_nuanchi_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_nuanchi_Support.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_Def.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_Def.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Siege.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Siege.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_baojiao_Support.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang3_Defense.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang3_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang3_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang3_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Defense.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_hailiang_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_lengshe_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_lengshe_front_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pingding_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pingding_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pingding_Ranged.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pingding_Ranged.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pingding_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pingding_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_requan_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_requan_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_requan_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_requan_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Attack.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Attack.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Front.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Front.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Siege.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Siege.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_shanhu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Automated.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Automated.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Broadside.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Broadside.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_chongji_Attack.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_chongji_Attack.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_chongji_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_chongji_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_chongji_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_chongji_Support.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_AntiSmall.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_AntiSmall.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_shendu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_shendu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_shendu_Strike.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_shendu_Strike.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_shendu_mk2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_shendu_mk2_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_shuishi_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_shuishi_Standard.variant" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_shuishi_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_shuishi_Support.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_taodong_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_taodong_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_taodong_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_taodong_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Flak.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Flak.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yonglang_mk2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yonglang_mk2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_Def.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_Def.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_mk2_Def.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_mk2_Def.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_mk2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_mk2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Attack.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Attack.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Defense.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yuanyang_Support.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_chichao_SideAtk.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_chichao_SideAtk.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_chichao_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_chichao_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_raoliu_PD.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_raoliu_PD.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_raoliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_raoliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen2_Attack.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen2_Attack.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen2_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen2_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen_Attack.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen_Attack.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_shuangshen_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_wanliu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_wanliu_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_wanliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_wanliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Automated.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Automated.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Mixed.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Mixed.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_typeA28_variant.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_typeA28_variant.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_typeB28_variant.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_typeB28_variant.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_typeL28_variant.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_typeL28_variant.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_typeR28_variant.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_typeR28_variant.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_CruiseMissile.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_CruiseMissile2.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_biaobing_Beam.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_biaobing_Burst.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_biaobing_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_decomposer_Attack.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_decomposer_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_decomposer_Support.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_duiliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_duiliu_Range.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_duiliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_duiliu_Super.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_neibo_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_neibo_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_neibo_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_neibo_armor_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_neibo_turret_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_nuanchi_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_nuanchi_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_nuanchi_Support.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_shangshengliu_Def.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_shangshengliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_shangshengliu_mk2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_shangshengliu_mk3_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cap_shangshengliu_mk3_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_baojiao_Siege.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_baojiao_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_baojiao_Support.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_hailiang3_Defense.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_hailiang3_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_hailiang4_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_hailiang_Defense.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_hailiang_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_pingding_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_pingding_Ranged.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_pingding_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_pubu_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_pubu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_requan_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_requan_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_shanhu_Attack.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_shanhu_Front.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_shanhu_Siege.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_shanhu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_zhongliu_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_zhongliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_zhongliu_Broadside.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_cru_zhongliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_chongji_Attack.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_chongji_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_chongji_Support.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_lianliu_AntiSmall.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_lianliu_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_lianliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shendu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shendu_Strike.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shendu_mk2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shuishi_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shuishi_Support.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_taodong_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_taodong_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yangji_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yangji_Flak.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yangji_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yonglang_mk2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yonglang_mk2_l_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yonglang_mk2_m_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yonglang_mk2_r_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_youjiyan_Def.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_youjiyan_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_youjiyan_mk2_Def.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_youjiyan_mk2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yuanyang_Attack.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yuanyang_Defense.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yuanyang_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_yuanyang_Support.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_chichao_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_chichao_SideAtk.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_chichao_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_raoliu_PD.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_raoliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen2.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen2_Attack.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen2_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen_Attack.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_shuangshen_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_wanliu_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_wanliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_AntiFtr.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_Beam.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_mk2_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_xiliu_mk2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_yonglang_Mixed.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_fga_yonglang_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_bom_attacker.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_bom_lancer.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_bom_nuke.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ftr_helicop.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ftr_hvfighter.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_icp_gunship.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_sup_guardian.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_sup_guardian2.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_sup_shield.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_sup_tank.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ut_decompose.variant" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_ftr_ut_maodian.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_ftr_ut_maodian.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shuishi_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants_li/aEP_des_shuishi_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_des_shuishi_Support.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants_li/aEP_des_shuishi_Support.variant" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ut_maodian.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ut_repair.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ut_shendu.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ut_shuishi.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_ftr_ut_supply.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_typeA28_variant.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_typeB28_variant.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_typeL28_variant.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/aEP_typeR28_variant.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_apex_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_brilliant_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_cap_duiliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_conquest_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_cru_zhongliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_fga_chichao_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_fga_xiliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_glimmer_Assault.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_lumen_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_nova_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_radiant_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_radiant_Strike.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/missions/aEP_scintilla_Strike.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base1_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base3_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base4_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier1_armor_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier1_battery_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier1_battery_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier1_hanger1_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier1_hanger2_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier2_armor_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier2_hull1_Elite.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier2_hull1_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_tier2_structure_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_ut_sta_main_rail_l_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_ut_sta_main_rail_r_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_ut_sta_main_side_l_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_ut_sta_main_side_r_Standard.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/variants - 快捷方式.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_maodian_full_cover.wpn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pubu_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pubu_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ut_maodian_ads_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ut_maodian_ads_shot.proj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_CN.faction" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_CN.faction" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_cap_nuanchi.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_cap_nuanchi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_cru_shanhu.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_cru_shanhu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_des_lianliu.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_des_lianliu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_des_shuishi.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_des_shuishi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_des_taodong.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_des_taodong.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fga_raoliu.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_fga_raoliu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fga_wanliu.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_fga_wanliu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fga_xiliu.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_fga_xiliu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fga_xiliu_mk2.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_fga_xiliu_mk2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fga_yonglang.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/ships/aEP_fga_yonglang.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fighters/ut_maodian00.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/ships/aEP_fighters/ut_maodian01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_cap_nuanchi/large.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_cap_nuanchi/large.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_des_taodong/cover.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_des_taodong/cover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_fga_wanliu/arm_l.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_fga_wanliu/arm_l.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_fga_wanliu/arm_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_fga_wanliu/arm_r.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_fga_wanliu/cover.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_fga_wanliu/cover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_fga_yonglang/main_l.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_fga_yonglang/main_l.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_fga_yonglang/main_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_fga_yonglang/main_r.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_fighters/aEP_maodian/pd_br.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_fighters/aEP_maodian/pd_br.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_info_CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info_CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneDecomposeAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneDecomposeAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShenduShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShenduShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShieldShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShieldShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneSupplyShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneSupplyShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_SimpleMissileShipAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_SimpleMissileShipAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/entity/aEP_CruiseMissileEntityPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/entity/aEP_CruiseMissileEntityPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -360,7 +125,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Starsector097/mods/FSF_MilitaryCorporation/data/weapons&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Starsector097/mods/FSF_MilitaryCorporation&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -443,7 +208,16 @@
       <workItem from="1725151598078" duration="30000" />
       <workItem from="1725151668128" duration="3820000" />
       <workItem from="1725161837095" duration="653000" />
-      <workItem from="1725168969906" duration="4562000" />
+      <workItem from="1725168969906" duration="5114000" />
+      <workItem from="1725203090814" duration="2206000" />
+      <workItem from="1725206623011" duration="495000" />
+      <workItem from="1726022312471" duration="249000" />
+      <workItem from="1726022802558" duration="18000" />
+      <workItem from="1727276396460" duration="21173000" />
+      <workItem from="1727421337301" duration="3699000" />
+      <workItem from="1727438577275" duration="563000" />
+      <workItem from="1727439153681" duration="63000" />
+      <workItem from="1727439218841" duration="7867000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -597,7 +371,31 @@
       <option name="project" value="LOCAL" />
       <updated>1725153885731</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="4.8rc2">
+      <option name="closed" value="true" />
+      <created>1725177064801</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1725177064801</updated>
+    </task>
+    <task id="LOCAL-00021" summary="4.8rc2">
+      <option name="closed" value="true" />
+      <created>1725203723127</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1725203723127</updated>
+    </task>
+    <task id="LOCAL-00022" summary="4.8rc2">
+      <option name="closed" value="true" />
+      <created>1725203881190</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1725203881190</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +447,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="4.7rc4" />
     <MESSAGE value="4.8rc1" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.8rc1" />
+    <MESSAGE value="4.8rc2" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.8rc2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

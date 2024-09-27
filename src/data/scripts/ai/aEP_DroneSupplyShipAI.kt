@@ -10,7 +10,6 @@ import combat.util.aEP_Tool
 import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
 import combat.util.aEP_Tool.Util.isDead
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
-import data.scripts.weapons.aEP_BeamFlux
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
@@ -134,7 +133,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
         if(ship.isWingLeader){
           //执行列阵，队长计算队列并且随机晃动
           if(dist > 200){
-            aEP_Tool.moveToPosition(ship, parentShip.location)
+            aEP_Tool.flyToPosition(ship, parentShip.location)
           }else{
             pointTracker.advance(amount)
             if(pointTracker.intervalElapsed()){
@@ -145,7 +144,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
               point.set(MathUtils.getRandomPointInCircle(point,100f))
             }
             aEP_Tool.moveToAngle(ship, parentShip.facing)
-            aEP_Tool.setToPosition(ship,point)
+            aEP_Tool.moveToPosition(ship,point)
           }
         }else{
           //僚机跟随阵型
@@ -160,7 +159,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
           }
           val loc = formation[i]
           aEP_Tool.moveToAngle(ship, ship.wing.leader.facing)
-          aEP_Tool.setToPosition(ship, loc)
+          aEP_Tool.moveToPosition(ship, loc)
         }
 
 
@@ -206,7 +205,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
         stat = StickAndFire(target)
       }
 
-      aEP_Tool.moveToPosition(ship, target.location)
+      aEP_Tool.flyToPosition(ship, target.location)
     }
   }
 
@@ -285,7 +284,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       //转换相对位置到绝对位置，吸附舰船
       //在findPos()时，会先从位置表里面踢掉已经离开的成员
       pos.set(findPos(target, dronePosition) )
-      aEP_Tool.setToPosition(ship, pos)
+      aEP_Tool.moveToPosition(ship, pos)
       aEP_Tool.moveToAngle(ship, target.facing)
 
       //开火检测，停稳了，对准了

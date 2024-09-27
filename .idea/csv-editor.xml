@@ -500,6 +500,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\characters\skills\skill_data_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\config\LunaSettings.csv">
           <value>
             <Attribute>

@@ -173,10 +173,10 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
       }
 
       if (MathUtils.getDistance(ship.getLocation(), toTarget.getLocation()) > parentShip.getCollisionRadius() * REFORM_RANGE * 2) {
-        aEP_Tool.moveToPosition(ship, toTargetPo);
+        aEP_Tool.flyToPosition(ship, toTargetPo);
       }
       else {
-        aEP_Tool.Util.setToPosition(ship, toTargetPo);
+        aEP_Tool.Util.moveToPosition(ship, toTargetPo);
         aEP_Tool.Util.moveToAngle(ship, parentShip.getFacing());
       }
       return;
@@ -185,14 +185,14 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
     }
 
     if (dist > toTarget.getCollisionRadius() + MOVEMENT_MOD_CHANGE_RANGE) {
-      aEP_Tool.moveToPosition(ship, toTarget.getLocation());
+      aEP_Tool.flyToPosition(ship, toTarget.getLocation());
     } else {
 
       if (splitTimer > SPLIT_INTERVAL) {
         splitTimer = 0f;
         toTargetPo = MathUtils.getRandomPointOnCircumference(toTarget.getLocation(),toTarget.getCollisionRadius() + 50f);
       }
-      aEP_Tool.Util.setToPosition(ship, toTargetPo);
+      aEP_Tool.Util.moveToPosition(ship, toTargetPo);
       aEP_Tool.Util.moveToAngle(ship, VectorUtils.getFacing(VectorUtils.getDirectionalVector(ship.getLocation(), toTarget.getLocation())));
     }
 

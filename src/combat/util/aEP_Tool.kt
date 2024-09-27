@@ -4,8 +4,6 @@ package combat.util
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CampaignFleetAPI
 import com.fs.starfarer.api.campaign.CargoAPI
-import com.fs.starfarer.api.campaign.econ.MonthlyReport
-import com.fs.starfarer.api.campaign.econ.MonthlyReport.FDNode
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Tags
@@ -15,7 +13,6 @@ import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
 import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.util.Misc
-import com.fs.starfarer.campaign.fleet.FleetMember
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.impl.aEP_BaseCombatEffect
@@ -33,7 +30,6 @@ import org.lwjgl.util.vector.Vector2f
 import org.magiclib.plugins.MagicRenderPlugin
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import kotlin.concurrent.timer
 import kotlin.math.*
 
 class aEP_Tool {
@@ -311,37 +307,46 @@ class aEP_Tool {
      * 舰船类
      * */
     @JvmStatic
-    fun moveToPosition(entity: ShipAPI, toPosition: Vector2f) {
+    fun flyToPosition(entity: ShipAPI, toPosition: Vector2f) {
+      // Get necessary values once and reuse them
       val directionVec = VectorUtils.getDirectionalVector(entity.location, toPosition)
       val directionAngle = VectorUtils.getFacing(directionVec)
       val distSq = MathUtils.getDistanceSquared(entity.location, toPosition)
       val angleAndSpeed = velocity2Speed(entity.velocity)
       val speedAngle = VectorUtils.getFacing(entity.velocity)
-      val timeToSlowDown = angleAndSpeed.y / entity.deceleration //time to slow down to zero speed(by seconds,squared)				s
+      val timeToSlowDown = angleAndSpeed.y / entity.deceleration  // Time to slow down to zero
       val faceAngleDiff = MathUtils.getShortestRotation(entity.facing, directionAngle)
       val velAngleDiff = abs(MathUtils.getShortestRotation(speedAngle, directionAngle))
 
-      //控制加速减速
+      // Calculate sine of the velocity angle difference only once
+      val sine = abs(FastTrig.sin(Math.toRadians(velAngleDiff.toDouble())))
+
+      // Calculate radius squared and arc distance squared in one go
+      val rSq = (distSq / 4) / (sine * sine)
+      val arcDistSq = Math.PI.toFloat() * Math.PI.toFloat() * 4f * rSq
+
+      // Calculate time required to traverse arc and to turn
       //以出发点方向为切线，向目标点做圆，求圆弧长度得到目标距离。
       //飞过目标距离所花的时间，小于等于转过面向需要的时间
-      val sine = abs(FastTrig.sin(Math.toRadians(velAngleDiff.toDouble())))
-      val rSq = (distSq/4)/(sine*sine)
-      val arcDistSq = 3.14f * 3.14f * 4f * rSq
-      val timeArcSq = arcDistSq/(angleAndSpeed.y * angleAndSpeed.y + 1)
-      val timeTurn = abs(velAngleDiff/(entity.angularVelocity+1))
+      val timeArcSq = arcDistSq / (angleAndSpeed.y * angleAndSpeed.y + 1)
+      val timeTurn = abs(velAngleDiff / (entity.angularVelocity + 1))
+
+      //控制加速减速
       //如果船飞过圆弧需要时间小于转向需要时间,即转向时间不足，减速，提前0.5秒转向当缓冲
       if( timeArcSq < (timeTurn+0.5f).pow(2) ){
         entity.giveCommand(ShipCommand.DECELERATE, null, 0)
       }else{//差别在容忍范围内
         //如果靠近目标点，开始减速
-        if (distSq <= (angleAndSpeed.y * timeToSlowDown + 10) * (angleAndSpeed.y * timeToSlowDown + 10)) {
+        val stopDistSq = (angleAndSpeed.y * timeToSlowDown + 10).pow(2)
+        if (distSq <= stopDistSq) {
           entity.giveCommand(ShipCommand.DECELERATE, null, 0)
-        }else{
-          if(faceAngleDiff > 20 && faceAngleDiff < 90){
-            entity.giveCommand(ShipCommand.STRAFE_LEFT,null,0)
-          }else if(faceAngleDiff < -20 && faceAngleDiff > -90){
-            entity.giveCommand(ShipCommand.STRAFE_RIGHT,null,0)
-          } else{
+        } else {
+          // Strafe if there's a significant angle difference
+          if (faceAngleDiff in 20f..90f) {
+            entity.giveCommand(ShipCommand.STRAFE_LEFT, null, 0)
+          } else if (faceAngleDiff in -90f..-20f) {
+            entity.giveCommand(ShipCommand.STRAFE_RIGHT, null, 0)
+          } else {
             entity.giveCommand(ShipCommand.ACCELERATE, null, 0)
           }
         }
@@ -365,7 +370,6 @@ class aEP_Tool {
       val faceAngleDiff = MathUtils.getShortestRotation(entity.facing, directionAngle)
       val velAngleDiff = abs(MathUtils.getShortestRotation(speedAngle, directionAngle))
 
-
       //控制加速减速
       //以出发点方向为切线，向目标点做圆，求圆弧长度得到目标距离。
       //飞过目标距离所花的时间，小于等于转过面向需要的时间
@@ -375,7 +379,7 @@ class aEP_Tool {
       val timeArcSq = arcDistSq/(angleAndSpeed.y * angleAndSpeed.y + 1)
       val timeTurn = abs(velAngleDiff/(entity.angularVelocity+1))
       //如果船飞过圆弧需要时间小于转向需要时间,即转向时间不足，减速
-      if( timeArcSq < timeTurn*timeTurn ){
+      if( timeArcSq < timeTurn*timeTurn + 0.5f){
         entity.giveCommand(ShipCommand.DECELERATE, null, 0)
       }else{//差别在容忍范围内
         if(faceAngleDiff > 20 && faceAngleDiff < 90){
@@ -428,7 +432,7 @@ class aEP_Tool {
      * 舰船类
      * */
     @JvmStatic
-    fun setToPosition(ship: ShipAPI, toPosition: Vector2f?) {
+    fun moveToPosition(ship: ShipAPI, toPosition: Vector2f?) {
       val directionVec =  VectorUtils.resize(VectorUtils.getDirectionalVector(ship.location, toPosition),ship.maxSpeed)
       val velDirectDiff = Vector2f(directionVec.x-ship.velocity.x,directionVec.y-ship.velocity.y)
       val diffAngle = angleAdd(VectorUtils.getFacing(velDirectDiff),-ship.facing)
@@ -830,7 +834,7 @@ class aEP_Tool {
         ship.mutableStats.acceleration.unmodify(id)
         ship.mutableStats.deceleration.unmodify(id)
         //如果之前开始了降落动画，而因为某些原因离开母舰100距离，取消降落
-        moveToPosition(ship, toTargetPo)
+        flyToPosition(ship, toTargetPo)
         if (landingStarted) {
           ship.abortLanding()
         }
@@ -840,7 +844,7 @@ class aEP_Tool {
         ship.mutableStats.acceleration.modifyFlat(id,parentShip.maxSpeed )
         ship.mutableStats.deceleration.modifyFlat(id,parentShip.maxSpeed )
         moveToAngle(ship, parentShip.facing)
-        setToPosition(ship, toTargetPo)
+        moveToPosition(ship, toTargetPo)
       }
 
       //成功平移到50内
@@ -1618,6 +1622,8 @@ class aEP_Tool {
       //对护盾易伤加成
       var allDamageToShieldDealtMult = sourceStat?.damageToTargetShieldsMult?.modifiedValue ?: 1f
 
+      //对船体易伤加成
+      //var allDamageToHullDealtMult = sourceStat?.damageToTargetHullMult?.modifiedValue ?: 1f
 
       //对舰体级别加成
       var targetSizeMult = 1f

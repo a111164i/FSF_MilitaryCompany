@@ -93,7 +93,7 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     token.setLocation(toLocation.x, toLocation.y);
 
     if(targetFleet == null) targetFleet = findNearestHostileFleet(token, searchRange, searchAngle);
-    if (targetFleet != null) {
+    if (targetFleet != null && isValidTarget(targetFleet)) {
       angleSpeed = flyToLoc(token.getLocation(), targetFleet.getLocation());
       if (MathUtils.getDistance(token.getLocation(), targetFleet.getLocation()) < targetFleet.getRadius()) {
         //只有在全局不存在key时，才会触发战斗，防止连续在同一帧触发引起bug，无论时对敌还是对我
@@ -298,6 +298,13 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
     Global.getSector().addScript(new DespawnMissileFleet(missileFleet));
 
     token.getContainingLocation().removeEntity(token);
+  }
+
+  boolean isValidTarget(CampaignFleetAPI targetFleet){
+    if(targetFleet.isDespawning() || targetFleet.getMembersWithFightersCopy() == null || targetFleet.getMembersWithFightersCopy().isEmpty()){
+      return false;
+    }
+    return true;
   }
 
   class ExchangePlayerFleet implements EveryFrameScript {

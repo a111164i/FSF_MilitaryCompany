@@ -20,6 +20,7 @@ import data.scripts.ai.shipsystemai.aEP_ShuishiDroneLaunchAI
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
+import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
@@ -30,26 +31,68 @@ import java.util.LinkedList
 class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
   companion object{
     const val ID = "aEP_ShuishiDroneLaunch"
-    const val MAX_FIGHTER_AT_SAME = 4
+    const val MAX_FIGHTER_AT_SAME = 6
     const val VARIANT_ID = "aEP_ftr_ut_shuishi"
-    const val MAX_SPAWN_PER_USE = 3
-    const val SYSTEM_RANGE = 2000f
+    const val MAX_SPAWN_PER_USE = 4
+    const val SYSTEM_RANGE = 1600f
   }
+
 
   val spawnTimer = IntervalUtil(0.2f,0.2f)
   var spawned = 0
   val currFighterList = LinkedList<ShipAPI>()
+
+  var guideLineLevel = 0f
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
 
     //复制粘贴这行
     val ship = (stats.entity?: return) as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
-    updateDeco(ship, effectLevel,amount)
+    //updateDeco(ship, effectLevel,amount)
+
+    val cooldownLevel = MathUtils.clamp((ship.system.cooldownRemaining)/(ship.system.cooldown+0.1f),0f,1f)
+    updateIndicator(ship, cooldownLevel)
+
+    for(slot in ship.hullSpec.allWeaponSlotsCopy){
+      if(slot.isSystemSlot){
+        val loc = slot.computePosition(ship)
+        val facing = slot.computeMidArcAngle(ship)
+        if(guideLineLevel > 0f){
+          updateGuideLine(loc,facing,guideLineLevel)
+          //投影轨道完全成型，并且计时器每跳一次，每个系统槽位都刷一个飞机
+          //spawned的记数在 createFighter里面，自动的
+          if(guideLineLevel >= 1f && spawnTimer.intervalElapsed() && spawned < MAX_SPAWN_PER_USE){
+            //落点不可超过系统射程
+            var toPoint = ship.mouseTarget
+            //如果是ai使用(ship.shipAi != null)，读取母舰的customData，由systemAI放入
+            if(ship.customData.containsKey(aEP_ID.SYSTEM_SHIP_TARGET_KEY) && ship.shipAI != null){
+              val t = ship.customData[aEP_ID.SYSTEM_SHIP_TARGET_KEY] as ShipAPI
+              toPoint.set(MathUtils.getRandomPointInCircle(t.location,t.collisionRadius))
+            }else{
+
+            }
+            val sysRange = aEP_Tool.getSystemRange(ship, SYSTEM_RANGE)
+            if(MathUtils.getDistance(toPoint,ship.location) - ship.collisionRadius > sysRange){
+              val angle = VectorUtils.getAngle(ship.location,toPoint);
+              toPoint = Vector2f(aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,sysRange+ship.collisionRadius))
+            }
+            createFighter(loc, facing, toPoint, ship?:continue)
+          }
+        }
+      }
+    }
 
     if(effectLevel <= 0f){
+      //guideLineLevel = MathUtils.clamp(guideLineLevel-amount,0f,1f)
+      guideLineLevel = 0f
       spawned = 0
       spawnTimer.elapsed = 0f
+    }else{
+      //guideLineLevel = MathUtils.clamp(guideLineLevel+amount,0f,1f)
+      guideLineLevel = effectLevel
+      //投影轨道完全成型后，计时器开始读秒
+      if(guideLineLevel >=1f) spawnTimer.advance(amount)
     }
   }
 
@@ -59,8 +102,10 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     val amount = aEP_Tool.getAmount(ship)
     spawned = 0
     spawnTimer.elapsed = 0f
-    updateDeco(ship, 0f, 0f)
+    //updateDeco(ship, 0f, 0f)
   }
+
+
 
   //这个方法只有在玩家开的时候才会每帧调用，不要在这里取巧
   override fun isUsable(system: ShipSystemAPI?, ship: ShipAPI?): Boolean {
@@ -148,7 +193,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
 
   fun updateGuideLine(startLoc:Vector2f, facing:Float, level:Float){
     val step = 10f
-    val num = 9
+    val num = 4
     for( i in 0 until num){
       //越近level越高，先渲染
       val renderLevel = MathUtils.clamp((level - i.toFloat()/num.toFloat()) * num,0f,1f)
@@ -168,6 +213,37 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
         true,
         CombatEngineLayers.ABOVE_SHIPS_LAYER)
 
+    }
+  }
+
+  fun updateIndicator(ship: ShipAPI, level:Float){
+
+    for(w in ship.allWeapons){
+      if(w.slot.id.equals("INDICATE 000")){
+        val animation = w.effectPlugin as aEP_DecoAnimation
+        if(level > 0.65f){
+          animation.decoGlowController.toLevel = 1f
+        }else{
+          animation.decoGlowController.toLevel = 0f
+        }
+
+      }
+      if(w.slot.id.equals("INDICATE 001")){
+        val animation = w.effectPlugin as aEP_DecoAnimation
+        if(level > 0.35f){
+          animation.decoGlowController.toLevel = 1f
+        }else{
+          animation.decoGlowController.toLevel = 0f
+        }
+      }
+      if(w.slot.id.equals("INDICATE 002")){
+        val animation = w.effectPlugin as aEP_DecoAnimation
+        if(level > 0f){
+          animation.decoGlowController.toLevel = 1f
+        }else{
+          animation.decoGlowController.toLevel = 0f
+        }
+      }
     }
   }
 
@@ -216,12 +292,33 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
 
     currFighterList.add(drone)
 
+    //找到距离toPoint最近的友军
+    var closest: ShipAPI? = null
+    var distance: Float
+    var closestDistance = Float.MAX_VALUE
+    for (tmp in AIUtils.getAlliesOnMap(source)) {
+      if(aEP_Tool.isDead(tmp)) continue
+      if(!aEP_Tool.isShipTargetable(
+          tmp,
+          true,true,false,true,false))continue
+      if (aEP_Tool.isEnemy(source,tmp)) continue
+      distance = MathUtils.getDistance(tmp, toPoint)
+      if (distance < closestDistance) {
+        closest = tmp
+        closestDistance = distance
+      }
+    }
+    if(closest is ShipAPI){
+      val state = ai.ProtectParent(closest)
+      state.forceTag = true
+      ai.stat = state
+    }
+
     //生成proj，绑定飞机
     val proj = Global.getCombatEngine().spawnProjectile(
       source, null,"aEP_cru_pubu_main",
       loc,facing,null) as DamagingProjectileAPI
-    //aEP_Tool.addDebugPoint(toPoint)
-    aEP_CombatEffectPlugin.addEffect(Speeding(0.5f,drone, proj, toPoint))
+    aEP_CombatEffectPlugin.addEffect(Speeding(0.15f,drone, proj, toPoint))
   }
 
   fun updateFighterList(){
@@ -243,18 +340,18 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
 
   }
 
-  inner class Speeding: aEP_BaseCombatEffect {
+  class Speeding: aEP_BaseCombatEffect {
     val max_speed_flat_bonus = 600f
     val max_turn_rate_mult = 0f
 
     val id = "aEP_Speeding"
     var fighter:ShipAPI
-    var teleportTo = Vector2f(0f,0f)
+    var teleportTo:Vector2f? = null
 
-    constructor(lifeTime: Float,fighter:ShipAPI, proj:CombatEntityAPI,  teleportTo:Vector2f){
+    constructor(lifeTime: Float,fighter:ShipAPI, proj:CombatEntityAPI,  teleportTo:Vector2f?){
       this.lifeTime = lifeTime
       this.fighter = fighter
-      this.teleportTo.set(teleportTo)
+      this.teleportTo?.set(teleportTo)
       init(proj)
 
 
@@ -289,11 +386,11 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
       fighter.blockCommandForOneFrame(ShipCommand.DECELERATE)
 
 
-      //本buff最多还剩0.5，传送需要1秒，所以传送结束时本buff已经结束了，不会被强制拉回来
-      if(lifeTime - time < 0.5f && !fighter.customData.containsKey(aEP_Combat.StandardTeleport.ID)){
-        val tel = aEP_Combat.StandardTeleport(0.5f,fighter,teleportTo,fighter.facing)
-        aEP_CombatEffectPlugin.addEffect(tel)
-      }
+//      //本buff最多还剩0.5，传送需要1秒，所以传送结束时本buff已经结束了，不会被强制拉回来
+//      if(lifeTime - time < 0.5f && !fighter.customData.containsKey(aEP_Combat.StandardTeleport.ID)){
+//        val tel = aEP_Combat.StandardTeleport(0.5f,fighter,teleportTo,fighter.facing)
+//        aEP_CombatEffectPlugin.addEffect(tel)
+//      }
 
     }
 

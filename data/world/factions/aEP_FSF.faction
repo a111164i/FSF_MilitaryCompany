@@ -206,7 +206,7 @@
     "combatFreighterProbability": 0.5,
     "combatFreighterCombatUseFraction": 0,
     "combatFreighterCombatUseFractionWhenPriority": 0,
-    "autofitRandomizeProbability": 0.3,
+    "autofitRandomizeProbability": 0,
     "officerSkillsShuffleProbability": 1,
     "officerSkills": [
       "ballistic_mastery",

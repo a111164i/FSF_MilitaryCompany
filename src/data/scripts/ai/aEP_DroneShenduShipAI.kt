@@ -1,11 +1,9 @@
 package data.scripts.ai
 
 import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.util.IntervalTracker
 import combat.util.aEP_Tool
-import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
 import data.scripts.ai.shipsystemai.aEP_DroneTimeAlterAI
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
@@ -24,7 +22,7 @@ class aEP_DroneShenduShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
     }
     //索敌失败时缓缓前进
     ship.shipTarget?:run {
-      aEP_Tool.moveToPosition(ship, attackLoc)
+      aEP_Tool.flyToPosition(ship, attackLoc)
     }
     val target = ship.shipTarget?:return
 
@@ -48,7 +46,7 @@ class aEP_DroneShenduShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       }
       //aEP_Tool.addDebugPoint(attackLoc)
       aEP_Tool.moveToAngle(ship, VectorUtils.getAngle(ship.location,target.location))
-      aEP_Tool.setToPosition(ship, attackLoc)
+      aEP_Tool.moveToPosition(ship, attackLoc)
     }
   }
 

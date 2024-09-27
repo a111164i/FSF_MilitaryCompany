@@ -61,7 +61,6 @@ aEP_ftr_sup_supply,ship,,1,normal,graphics/shaders/normal/fighters/sup_supply_no
 aEP_ftr_sup_tank,ship,,1,normal,graphics/shaders/normal/fighters/sup_tank_normal.png
 aEP_ftr_ut_decompose,ship,,1,normal,graphics/shaders/normal/fighters/ut_decompose_normal.png
 aEP_ut_decoy,ship,,1,normal,graphics/shaders/normal/fighters/ut_decoy_normal.png
-aEP_ftr_ut_maodian,ship,,1,normal,graphics/shaders/normal/fighters/ut_maodian00_normal.png
 aEP_ftr_ut_repair,ship,,1,normal,graphics/shaders/normal/fighters/ut_repair_normal.png
 aEP_ftr_ut_shendu,ship,,1,normal,graphics/shaders/normal/fighters/ut_shendu_normal.png
 aEP_ftr_ut_shuishi,ship,,1,normal,graphics/shaders/normal/fighters/ut_shuishi_normal.png
