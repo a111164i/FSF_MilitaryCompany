@@ -12,10 +12,28 @@
         {
             "autofire": false,
             "mode": "LINKED",
+            "weapons": {"WS0005": "cyclone"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
             "weapons": {
-                "WS0003": "lightac",
-                "WS0006": "lightac",
-                "WS0010": "lightac",
+                "WS0007": "aEP_m_s_fluxtube",
+                "WS0012": "aEP_m_s_fluxtube"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "typhoon",
+                "WS0008": "typhoon"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
                 "WS0013": "lightac",
                 "WS0014": "lightac"
             }
@@ -24,11 +42,9 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0004": "typhoon",
-                "WS0005": "cyclone",
-                "WS0007": "aEP_m_s_fluxtube",
-                "WS0008": "typhoon",
-                "WS0012": "aEP_m_s_fluxtube"
+                "WS0003": "lightac",
+                "WS0006": "lightac",
+                "WS0010": "lightac"
             }
         }
     ],

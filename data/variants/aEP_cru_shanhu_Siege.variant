@@ -1,6 +1,6 @@
 {
     "displayName": "Siege",
-    "fluxCapacitors": 0,
+    "fluxCapacitors": 5,
     "fluxVents": 5,
     "goalVariant": true,
     "hullId": "aEP_cru_shanhu",
@@ -16,13 +16,19 @@
         },
         {
             "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0008": "aEP_m_m_phasemine"}
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "aEP_m_s_cluster",
+                "WS0012": "aEP_m_s_cluster"
+            }
         },
         {
             "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0004": "aEP_m_m_phasemine"}
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "aEP_m_m_phasemine",
+                "WS0008": "aEP_m_m_phasemine"
+            }
         },
         {
             "autofire": true,
@@ -35,20 +41,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {
-                "WS0003": "aEP_b_s_630",
-                "WS0013": "aEP_b_s_630"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0007": "aEP_m_s_cluster"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0012": "aEP_m_s_cluster"}
+            "weapons": {"WS0003": "aEP_b_s_630"}
         }
     ],
     "wings": [

@@ -274,7 +274,7 @@
 
 		"not_module":"Can not be installed on module",
 		"must_have_shield": "Can not be installed on ship with no shield",
-		"must_have_no_free_deck": "Can not be installed on ship with empty fighter bays",
+		"must_have_no_free_deck": "Can not be installed on ship with free fighter bays",
 		"not_right_hullsize": "Can not be installed on this hullsize",
 		"effect":"Effect",
 		"not_compatible":"Not compatible",
