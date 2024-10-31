@@ -59,7 +59,10 @@ class aEP_RepulseMissileLaunch : BaseShipSystemScript() {
     //val barrelLevel = ((3f - cooldownRemaining)/1.5f).coerceAtLeast(0f).coerceAtMost(1f)
 
     //改数据，激活时
-    updateStats(ship, effectLevel)
+    //防止在装配页面生效改动耗散
+    if(Global.getCombatEngine().isEntityInPlay(ship)){
+      updateStats(ship, effectLevel)
+    }
 
     //系统没激活从这出去
     if (effectLevel < 0.9f && !forceUse) {
@@ -111,7 +114,7 @@ class aEP_RepulseMissileLaunch : BaseShipSystemScript() {
   }
 
   fun updateStats(ship: ShipAPI, effectLevel: Float){
-    if(forceUse){
+    if(forceUse && isUsable(ship.system,ship)){
       val toAdd = FLUX_REDUCE_FLAT + ship.fluxTracker.currFlux * FLUX_REDUCE_CURR_PERCENT
       ship.mutableStats.fluxDissipation.modifyFlat(ID, toAdd )
       ship.mutableStats.hardFluxDissipationFraction.modifyFlat(ID, 1f)
