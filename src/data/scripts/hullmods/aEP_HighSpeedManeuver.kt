@@ -32,9 +32,9 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
     val DODGE_JITTER_COLOR = Color(245,255,255,150)
     val DODGE_FADE_COLOR = Color(75,75,75,150)
 
-    const val DODGE_TIME = 0.3334f
+    const val DODGE_TIME = 0.34f
     const val MAX_DODGE_CHANCE = 0.9f
-    const val MAX_DODGE_CHANCE_DROP = 0.1f
+    const val MAX_DODGE_CHANCE_DROP = 0.15f
     const val DODGE_CHANCE_REFILL_SPEED = 0.1f
     const val REFILL_AFTER_DELAY= 1f
 

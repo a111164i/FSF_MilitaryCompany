@@ -20,7 +20,7 @@ aEP_ftr_icp_gunship_wing,aEP_ftr_icp_gunship,"FSF_bp, interceptor, interceptor4 
 aEP_ftr_bom_attacker_wing,aEP_ftr_bom_attacker,"FSF_bp, bomber, bomber4, wingmen_no_swarm                                                                                ",1,0.5,6,12,CLAW,2500,1000,450,3,BOMBER,Assault Bomber,10,10000,,,,,,
 aEP_ftr_bom_nuke_wing,aEP_ftr_bom_nuke,"FSF_bp, bomber, bomber4                                                                                                  ",3,0.25,6,20,V,4000,2000,-200,1,BOMBER,Bomber,25,20000,,,,,,
 aEP_ftr_bom_lancer_wing,aEP_ftr_bom_lancer,"bomber, bomber4, no_bp, no_sell, no_dealer, leader_no_swarm, match_leader_facing                        ",3,0.25,6,15,CLAW,4000,1600,600,1,BOMBER,Bomber,15,10000,,,,,,
-aEP_ftr_sup_shield_wing,aEP_ftr_sup_shield,"FSF_bp, support, support3, auto_fighter                                                                                  ",1,1,4,12,V,0,,,3,SUPPORT,Shield Drone,20,8000,,,,,,
+aEP_ftr_sup_shield_wing,aEP_ftr_sup_shield,"FSF_bp, support, support3, auto_fighter                                                                                  ",1,1,4,15,V,0,,,3,SUPPORT,Shield Drone,20,8000,,,,,,
 aEP_ftr_sup_guardian_wing,aEP_ftr_sup_guardian,"FSF_bp, interceptor, interceptor4, leader_no_swarm, wingmen_no_swarm                                       ",1,1,5,8,BOX,1500,300,100,3,INTERCEPTOR,Interceptor,10,8000,,,,,,
 aEP_ftr_sup_tank_wing,aEP_ftr_sup_tank,"FSF_bp, support, support4, stay_in_front_of_ship                                                                     ",2,1,6,15,CLAW,2000,500,,2,SUPPORT,Support,15,16000,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,

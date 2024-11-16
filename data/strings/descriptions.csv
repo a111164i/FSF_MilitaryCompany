@@ -37,11 +37,11 @@ aEP_FortressShield,SHIP_SYSTEM,"Toggleable. When activated, massively reduces sh
 aEP_LidarArray,SHIP_SYSTEM,"When activated, non-beam weapons in ballistic or energy weapon slots gain enhancements in range, rate of fire, accuracy, and projectile speed. Even when not activated, they still provide a small range bonus to ballistic and energy weapons.",,,,
 aEP_CoordinatedCombat,SHIP_SYSTEM,"When activated, recalls and increases the shield radius and maximum arc of the 'Scout' Fighter to block incoming damage. Cooldown: 5 seconds.
 
-Guided Assault: When activated by holding the Num 1 key, increases the ship's weapon hit strength by a small fixed amount. Cooldown: 6 seconds.
+Guided Assault: When activated while holding key Num 1, increases the ship's weapon hit strength by a small fixed amount. Cooldown: 6 seconds.
 
-Decoy Trick: When activated by holding the Num 2 key, greatly reduces the 'Scout' Fighter's maximum speed, ballistic/energy weapon rate of fire, and damage taken. Cooldown: 6 seconds.
+Decoy Trick: When activated while holding key Num 2, greatly reduces its 'Scout' Fighter's maximum speed, ballistic/energy weapon rate of fire, and damage taken. Cooldown: 6 seconds.
 
-Field Infiltrate: When activated by holding the Num 3 key, immediately swaps location with the 'Scout' Fighter. Cooldown: 1 second.",,"When activated, recall and increase the shield radius and maximum arc of its 'Scout' Fighter to block incoming damage. Cooldown: 5 seconds.
+Field Infiltrate: When activated while holding key Num 3, immediately swaps location with the 'Scout' Fighter. Cooldown: 1 second.",,"When activated, recall and increase the shield radius and maximum arc of its 'Scout' Fighter to block incoming damage. Cooldown: 5 seconds.
 
 Guided Assault: When activated by holding key Num 1, increase the ship's weapon hit strength by a small fixed amount. Cooldown: 6 seconds.
 

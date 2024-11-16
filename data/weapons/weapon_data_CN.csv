@@ -1,10 +1,10 @@
 name,id,tech/manufacturer,primaryRoleStr,customPrimary
 ,,,,
-"""台风""超口径多级火药电磁混合动力榴弹炮",aEP_cap_sta_main,FSF制造,通用,
-"""标兵""搭载雷达",aEP_cap_biaobing_radar,FSF制造,辅助,本舰所有与雷达朝向相同的非PD武器获得{%s}射程提升，中能量武器获得额外{%s}基础射程
-"""无光层""多级加速器",aEP_cap_duiliu_main,FSF制造,通用,充能时，持续发射碎片流共造成大约{%s}点动能伤害，产生{%s}幅能
+"台风超口径多级火药电磁混合动力榴弹炮",aEP_cap_sta_main,FSF制造,通用,
+"标兵搭载雷达",aEP_cap_biaobing_radar,FSF制造,辅助,本舰所有与雷达朝向相同的非PD武器获得{%s}射程提升，中能量武器获得额外{%s}基础射程
+"无光层多级加速器",aEP_cap_duiliu_main,FSF制造,通用,充能时，持续发射碎片流共造成大约{%s}点动能伤害，产生{%s}幅能
 -无光层碎屑,aEP_cap_duiliu_main2,FSF制造,,
-"""黑星改""转轮炮",aEP_cap_neibo_main,FSF制造,反装甲,击中装甲时，有百分之{%s}的概率造成额外{%s}点破片伤害
+"黑星改转轮炮",aEP_cap_neibo_main,FSF制造,反装甲,击中装甲时，有百分之{%s}的概率造成额外{%s}点破片伤害
 异象导弹,aEP_cap_nuanchi_missile,FSF制造,辅助,击中时，产生数个雷云产生电弧打击附近的敌方舰船，造成巨额穿越护盾的emp伤害
 异象导弹雷云,aEP_cap_nuanchi_missile3,,,
 巨型探矿脉冲,aEP_type28_cannon,unknown,工程设备,
@@ -17,7 +17,7 @@ NGW-G2 火箭增程炮,aEP_cru_pingding_main3,FSF制造,反装甲,"弹丸可以�
 
 弹丸属于导弹，可以被拦截"
 死海-激光测距仪,aEP_cru_pingding_lidardish,,,
-"""猎鲸""核动力鱼雷",aEP_cru_pingding_torpedo,FSF制造,反装甲,
+"猎鲸 核动力鱼雷",aEP_cru_pingding_torpedo,FSF制造,反装甲,
 热泉长程导弹发射舱,aEP_cru_requan_missile,FSF制造,反装甲,
 热泉长程导弹发射系统,aEP_cap_requan_missile,FSF制造,反装甲,
 巡航导弹发射装置,aEP_des_shendu_mk2_cruise_missile,FSF制造,终结,
@@ -25,14 +25,14 @@ NGW-G2 火箭增程炮,aEP_cru_pingding_main3,FSF制造,反装甲,"弹丸可以�
 内置炸弹抛洒器,aEP_des_lianliu_grenade_thrower,FSF制造,反装甲,
 内置微型DEM,aEP_des_taodong_dem,FSF制造,通用,导弹在接近目标时会发射光束，在 %s 秒内造成约 %s 能量伤害。此伤害受导弹武器伤害效果影响，而不受能量武器伤害效果影响。
 --光束,aEP_des_taodong_dem_payload,,,
-"""洄游""导弹",aEP_fga_xiliu_mk2_missile,FSF制造,通用,
+"洄游导弹",aEP_fga_xiliu_mk2_missile,FSF制造,通用,
 反冲力炮,aEP_fga_yonglang_main,FSF制造,反护盾,"击中护盾时，造成等同emp伤害的额外动能伤害,但额外部分只造成软幅能"
-"""沸腾""激光器-聚焦",aEP_fga_xiliu_main,FSF制造,点防御,"击中时，产生电弧打击周围{%s}范围内最多{%s}个其他目标，每道造成{%s}点能量伤害
+"沸腾激光器-聚焦",aEP_fga_xiliu_main,FSF制造,点防御,"击中时，产生电弧打击周围{%s}范围内最多{%s}个其他目标，每道造成{%s}点能量伤害
 
 本武器在下线后会立刻修复
 
 光束可以穿过友军"
-"""沸腾""激光器-速射",aEP_fga_xiliu_main2,FSF制造,点防御,"击中时，对护盾造成硬幅能，对战机和导弹的伤害提高{%s}
+"沸腾激光器-速射",aEP_fga_xiliu_main2,FSF制造,点防御,"击中时，对护盾造成硬幅能，对战机和导弹的伤害提高{%s}
 
 本武器在下线后会立刻修复
 
@@ -47,7 +47,7 @@ DF-2重型反应装甲,aEP_m_s_era3,FSF制造,点防御,"本武器附近的装�
 本武器无法主动使用"
 S-1巡航导弹弹片,aEP_cruise_missile_shot,FSF制造,,
 S-2巡航导弹弹片,aEP_cruise_missile_shot2,FSF制造,,
-"""特斯拉""电弧炮",aEP_des_yonglang_mk2_teslagun,FSF胡乱改造,辅助,击中舰船时，每秒产生{%s}道穿越护盾的电弧，每道造成{%s}点能量伤害和{%s}点emp伤害，同时降低目标{%s}的最大速度与机动性
+"特斯拉电弧炮",aEP_des_yonglang_mk2_teslagun,FSF胡乱改造,辅助,击中舰船时，每秒产生{%s}道穿越护盾的电弧，每道造成{%s}点能量伤害和{%s}点emp伤害，同时降低目标{%s}的最大速度与机动性
 热诱弹空雷,aEP_des_shuishi_flare,FSF制造,点防御,
 被动热诱弹,aEP_m_s_flare,FSF制造,点防御,
 战机热诱弹,aEP_m_s_flare2,FSF制造,点防御,
@@ -113,10 +113,10 @@ DF-1反应装甲,aEP_m_s_era,FSF制造,点防御,"本武器附近的装甲单次
 
 本武器无法主动使用"
 --反应装甲破片,aEP_m_s_era2,,,
-"""图钉""集束磁吸炸弹",aEP_m_s_magnetmine,FSF制造,鱼雷,"弹丸临近时，分裂为{%s}个磁吸炸弹，每颗造成{%s}点高爆伤害
+"图钉集束磁吸炸弹",aEP_m_s_magnetmine,FSF制造,鱼雷,"弹丸临近时，分裂为{%s}个磁吸炸弹，每颗造成{%s}点高爆伤害
 
 磁吸炸弹会被最近的敌方舰船吸引，包括相位中的舰船"
-"""图钉""炸弹抛射舱",aEP_m_m_magnetmine,FSF制造,反装甲,"弹丸临近时，分裂为{%s}个磁吸炸弹，每颗造成{%s}点高爆伤害
+"图钉炸弹抛射舱",aEP_m_m_magnetmine,FSF制造,反装甲,"弹丸临近时，分裂为{%s}个磁吸炸弹，每颗造成{%s}点高爆伤害
 
 磁吸炸弹会被最近的敌方舰船吸引，包括相位中的舰船
 
@@ -162,14 +162,14 @@ BAC爆射突击炮,aEP_ftr_bom_attacker_gun,FSF制造,反装甲,
 对FSF的舰船效果更好"
 ,,,,
 ,,,,
-"""德雷克""喷火器",aEP_e_s_flamer,FSF胡乱改造,反装甲,
-"""Boom""爆炸长矛",aEP_m_s_bomblance,FSF胡乱改造,反装甲,"本武器在靠近敌方舰船时会自动发射
+"德雷克喷火器",aEP_e_s_flamer,FSF胡乱改造,反装甲,
+"Boom爆炸长矛",aEP_m_s_bomblance,FSF胡乱改造,反装甲,"本武器在靠近敌方舰船时会自动发射
 
 本武器在下线后会立刻修复"
-"""闪电""扰动机炮",aEP_b_m_lighting,FSF先进武器计划,反护盾,"击中护盾时，为目标施加一个可叠加的负面状态：
+"闪电扰动机炮",aEP_b_m_lighting,FSF先进武器计划,反护盾,"击中护盾时，为目标施加一个可叠加的负面状态：
 
 在接下来的{%s}秒内，每层增加目标的护盾维持消耗{%s}"
-"""海啸""重型轨道火炮",aEP_b_l_railwaygun,FSF先进武器计划,通用,击中护盾造成目标过载时，弹丸会继续前进
+"海啸重型轨道火炮",aEP_b_l_railwaygun,FSF先进武器计划,通用,击中护盾造成目标过载时，弹丸会继续前进
 ,,,,
 ,,,,
 ,,,,

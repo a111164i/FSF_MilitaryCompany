@@ -5065,7 +5065,7 @@ class aEP_fga_yonglang_main : EveryFrame(){
     //}
   }
 
-  var smokeTimer = IntervalUtil(0.05f, 0.05f)
+  var smokeTimer = IntervalUtil(0.1f, 0.1f)
   var ammoLoadTimer = IntervalUtil(RELOAD_TIME, RELOAD_TIME)
   var fluxToAdd = 0f
 
@@ -5188,7 +5188,6 @@ class aEP_fga_yonglang_main_shot : Effect(){
   companion object{
     const val SPEED_BACKWARD = 300f
   }
-
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     val toSpawn = getExtendedLocationFromPoint(weapon.location, weapon.currAngle, 24f)
