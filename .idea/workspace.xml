@@ -168,7 +168,7 @@
       <workItem from="1730370233863" duration="1169000" />
       <workItem from="1731769694467" duration="2465000" />
       <workItem from="1731775088776" duration="2532000" />
-      <workItem from="1732047247681" duration="553000" />
+      <workItem from="1732047247681" duration="1084000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -418,7 +418,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732047799577</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder">
+      <option name="closed" value="true" />
+      <created>1732048333638</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1732048333638</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
