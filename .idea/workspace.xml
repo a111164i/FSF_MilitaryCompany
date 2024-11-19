@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc4&#10;patch 1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,6 +168,7 @@
       <workItem from="1730370233863" duration="1169000" />
       <workItem from="1731769694467" duration="2465000" />
       <workItem from="1731775088776" duration="2532000" />
+      <workItem from="1732047247681" duration="553000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -403,7 +402,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731776056238</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="4.8rc4&#10;patch 2: fixed name: df1-era">
+      <option name="closed" value="true" />
+      <created>1732047440841</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732047440841</updated>
+    </task>
+    <task id="LOCAL-00031" summary="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder">
+      <option name="closed" value="true" />
+      <created>1732047799577</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732047799577</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +474,9 @@
     <MESSAGE value="4.8rc3" />
     <MESSAGE value="4.8rc3 - 修复细流战术系统在装配页面生效" />
     <MESSAGE value="4.8rc4&#10;patch 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.8rc4&#10;patch 1" />
+    <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era" />
+    <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
