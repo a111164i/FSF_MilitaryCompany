@@ -1,0 +1,14 @@
+{
+
+
+#	"starts":[
+#		{
+#			"id":"aEP_SymbiosisStart",
+#			"name":"Special Frigate start",
+#			"difficulty":"Easy",
+#			"desc":"Start with an elite frigate",
+#			"className":"exerelin.campaign.customstart.Tutorial",
+#			"randomSector":-1,
+#		},
+#	],
+}

@@ -143,6 +143,11 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
             if(f == ship) break
             i += 1
           }
+          //紧急处理
+          if(formation.size < i + 1){
+            stat = SelfExplode()
+            return
+          }
           val loc = formation[i]
           aEP_Tool.moveToAngle(ship, ship.wing.leader.facing)
           aEP_Tool.moveToPosition(ship, loc)

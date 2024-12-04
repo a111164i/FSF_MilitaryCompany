@@ -40,7 +40,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val ACTIVE_TIME = 12f
     //链子极限长度为目标的碰撞半径加FREE_RANGE
     const val FREE_RANGE = 200f
-    const val SYSTEM_RANGE = 1200f
+    const val SYSTEM_RANGE = 800f
 
     const val TICK_DIST = 25f
 
@@ -48,7 +48,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val FLUX_PER_TICK = 250f
     const val FLUX_PERCENT_PER_TICK = 2.5f
     //每25距离减一次速度
-    const val SPEED_SLOW_PER_TICK = 0.5f
+    const val SPEED_SLOW_PER_TICK = 0.4f
 
     const val OVERLOAD_TIME = 1f
 

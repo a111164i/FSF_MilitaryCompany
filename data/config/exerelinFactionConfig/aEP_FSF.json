@@ -21,40 +21,35 @@
         "tritachyon":1.2,
         "sindrian_diktat":1.2 
     },
+    "dispositions":{
+        "tritachyon": -10,
+        "sindrian_diktat": -10,
+    },
      
     "alignments":{
         "corporate":-0.5,	
-        "technocratic":1,
+        "technocratic":0.5,
         "hierarchial":0,
         "militarist":1,
-        "diplomatic":0.5,
-        "ideological":-0.5
+        "diplomatic":0,
+        "ideological":0.5
     },
-    "diplomacyTraits":["dislikes_ai","irredentist","law_and_order"],
-    
+    "diplomacyTraits":["dislikes_ai","irredentist","law_and_order","stalwart"],
+
+    # chance of the faction being picked to send a colony expedition. Default 0 (disabled)
+    "colonyExpeditionChance":0.2,	# baseline expansion behaviour
+    "colonyTargetValuator":"exerelin.campaign.colony.IndustrialColonyTargetValuator",
+
+
     "groundBattleSettings":{
         "moraleDamageTakenMult":0.9
     },
-	
-	"factionsLiked":[
-        "hegemony"  	
-    ],
 
-    "factionsDisliked":[
-        "luddic_path",
-        "tritachyon"
-    ],	
-    
-    "vengeanceLevelNames":["Pursuit", "Reprisal", "Vendetta"],
-    "vengeanceFleetNames":["Hunter-Killers", "Task Force", "Consortium Fleet"],
-    "vengeanceFleetNamesSingle":["a Hunter-Killer Fleet", "a Task Force", "a Consortium Termination Fleet"],
-    
-    "vengeanceFleetSizeMult":1.25,
-	
-	"invasionSupportFleetName":"Attack Force",
-    "responseFleetName":"Defense Fleet",
-    "defenceFleetName":"Protect Fleet",	
-    
+
+    "specialForcesNamerClass":"exerelin.campaign.intel.specialforces.namer.PlanetNamer",
+    #"specialForcesFlagshipVariants":{ "paragon_Elite":1, "astral_Strike":0.5 },
+
+
     "startShipsSolo":[
         ["aEP_fga_yonglang_Mixed"]
     ],
@@ -64,14 +59,12 @@
     "startShipsCarrierLarge":[
         ["aEP_des_shendu_Strike", "aEP_des_shendu_Standard", "aEP_fga_raoliu_PD"],
     ],
-   	
 
-   
-   #"customStations":["aEP_station"],
-   #"factionIdForHqResponse":"",
-   
-   #"miningVariantsOrWings":["gonodactylus_assault", "gonodactylus_cc", "gonodactylus_CS", "gonodactylus_elite"],
-   
+
+    "startSpecialItems":[
+        [["FSF_openbp",""]],
+    ],
+
     "defenceStations":[
         {"ids":["aEP_station_tier1", "aEP_station_tier2", "aEP_station_tier3"]},
     ],

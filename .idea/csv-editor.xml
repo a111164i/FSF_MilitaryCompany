@@ -423,6 +423,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\industries_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\market_conditions.csv">
           <value>
             <Attribute>

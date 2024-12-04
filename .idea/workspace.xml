@@ -9,11 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder">
+      <change afterPath="$PROJECT_DIR$/data/config/exerelin/customStarts.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exerelin/campaign/customstart/aEP_EliteFrigateStart.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -59,12 +75,12 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/a4567/OneDrive/Desktop/2024s2/ELEC5619_framwork/Wed-06-09-Lab-Group-10 - Copy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Starsector097/mods/FSF_MilitaryCorporation/data/config/exerelin&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
@@ -74,6 +90,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\config\exerelin" />
       <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\weapons" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
@@ -168,7 +185,9 @@
       <workItem from="1730370233863" duration="1169000" />
       <workItem from="1731769694467" duration="2465000" />
       <workItem from="1731775088776" duration="2532000" />
-      <workItem from="1732047247681" duration="1084000" />
+      <workItem from="1732047247681" duration="2023000" />
+      <workItem from="1732082381669" duration="7203000" />
+      <workItem from="1732464578054" duration="225000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -426,7 +445,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732048333638</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder">
+      <option name="closed" value="true" />
+      <created>1732048726025</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1732048726025</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
