@@ -9,20 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
-    </list>
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -195,7 +182,7 @@
       <workItem from="1733329666765" duration="679000" />
       <workItem from="1733395834694" duration="2251000" />
       <workItem from="1733399093311" duration="3182000" />
-      <workItem from="1733416088756" duration="5309000" />
+      <workItem from="1733416088756" duration="5795000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -493,7 +480,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733398142142</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="4.8rc5&#10;p 2: fix butcher weapon_data translation">
+      <option name="closed" value="true" />
+      <created>1733421513407</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1733421513407</updated>
+    </task>
+    <task id="LOCAL-00039" summary="4.8rc5&#10;p 2: fix butcher weapon_data translation">
+      <option name="closed" value="true" />
+      <created>1733421903199</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1733421903199</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +555,8 @@
     <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era" />
     <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
     <MESSAGE value="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell" />
+    <MESSAGE value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
