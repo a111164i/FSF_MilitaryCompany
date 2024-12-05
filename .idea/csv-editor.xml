@@ -472,6 +472,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>

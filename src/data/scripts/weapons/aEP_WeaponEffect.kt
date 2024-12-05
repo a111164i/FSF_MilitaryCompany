@@ -3294,7 +3294,7 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
           PERCENT_PER_TRIGGER = num.replace("%","").toFloat()
         }
         if(i == 2) {
-          PURE_ARMOR_DAMAGE = num.toFloat()
+          AMOUNT_PER_TRIGGER = num.toFloat()
         }
         if(i == 3) {
           DAMAGE_REDUCTION_HULL_HIT = num.replace("%","").toFloat().div(100f)
