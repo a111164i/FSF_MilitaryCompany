@@ -145,7 +145,6 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
           }
           //紧急处理
           if(formation.size < i + 1){
-            stat = SelfExplode()
             return
           }
           val loc = formation[i]
@@ -333,7 +332,8 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
   fun genBoxFormation(wing:FighterWingAPI, boxSize:Float, vectors: MutableList<Vector2f> ): MutableList<Vector2f>{
     vectors.clear()
     val n = wing.wingMembers.size
-    val m = (n/4 + 1).coerceAtLeast(2)
+    var m = (n/4 + 1)
+    if(n%4 > 0) m+=1
     val size = (boxSize * m)
     val center = wing.leader.location
 

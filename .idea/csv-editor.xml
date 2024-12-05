@@ -150,6 +150,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="F:\Starsector097\mods\SecondInCommand\data\config\secondInCommand\SCAptitudes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="F:\Starsector097\mods\SecondInCommand\data\config\secondInCommand\SCSkills.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="F:\Starsector097\mods\trailer-moments\data\config\modFiles\magicTrail_data.csv">
           <value>
             <Attribute>

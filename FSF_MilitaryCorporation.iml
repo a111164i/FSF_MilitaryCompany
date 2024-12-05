@@ -9,6 +9,9 @@
     <content url="file://$MODULE_DIR$/../LazyLib" />
     <content url="file://$MODULE_DIR$/../LunaLib" />
     <content url="file://$MODULE_DIR$/../MagicLib" />
+    <content url="file://$MODULE_DIR$/../SecondInCommand">
+      <sourceFolder url="file://$MODULE_DIR$/../SecondInCommand/src" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../trailer-moments" />
     <content url="file://$MODULE_DIR$/../../starsector-core" />
     <orderEntry type="inheritedJdk" />
