@@ -2,7 +2,7 @@
 	"id":"aEP_b_m_flak_shot",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC_AS_BEAM",
-	"collisionClass":"RAY_FIGHTER",
+	"collisionClass":"RAY",
 	"collisionClassByFighter":"RAY_FIGHTER",
 	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",

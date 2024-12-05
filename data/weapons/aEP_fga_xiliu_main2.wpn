@@ -3,7 +3,7 @@
   "specClass": "beam",
   "type": "ENERGY",
   "size": "MEDIUM",
-  "collisionClass": "RAY_FIGHTER",
+  "collisionClass": "RAY",
   "collisionClassByFighter": "RAY_FIGHTER",
   "turretSprite": "graphics/weapons/aEP_fga_xiliu/main_second00.png",
   "turretGlowSprite": "graphics/weapons/aEP_fga_xiliu/main_second_glow.png",

@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -182,7 +182,7 @@
       <workItem from="1733329666765" duration="679000" />
       <workItem from="1733395834694" duration="2251000" />
       <workItem from="1733399093311" duration="3182000" />
-      <workItem from="1733416088756" duration="5795000" />
+      <workItem from="1733416088756" duration="6129000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -496,7 +496,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733421903199</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="4.8rc5&#10;p 2: fix butchered weapon_data translation">
+      <option name="closed" value="true" />
+      <created>1733422013813</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1733422013813</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,7 +564,8 @@
     <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
     <MESSAGE value="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell" />
     <MESSAGE value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
+    <MESSAGE value="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

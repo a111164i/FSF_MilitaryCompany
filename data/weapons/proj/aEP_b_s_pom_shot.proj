@@ -2,7 +2,7 @@
 	"id":"aEP_b_s_pom_shot",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC",
-	"collisionClass":"PROJECTILE_NO_FF",
+	"collisionClass":"PROJECTILE_FF",
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
 	"collisionRadius":1,
 	"length":8,
