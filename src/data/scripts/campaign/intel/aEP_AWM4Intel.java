@@ -45,6 +45,7 @@ public class aEP_AWM4Intel extends aEP_BaseMission
     }
     if(Global.getSector().getPlayerFleet().getContainingLocation() == market.getContainingLocation()){
       readyToEnd = true;
+      Global.getSector().getMemoryWithoutUpdate().set("$aEP_HvbKey_01", true);
     }
 
   }

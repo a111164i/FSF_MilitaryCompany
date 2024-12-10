@@ -53,6 +53,8 @@ public class FSFCampaignPlugin implements EveryFrameScript {
       boolean shouldSkip = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingMissionSkipAwm");
       if(shouldSkip){
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_isSkipAwmMission", true);
+        //无条件刷出赏金
+        Global.getSector().getMemoryWithoutUpdate().set("$aEP_HvbKey_01", true);
       }
 
       //如果启用了辅助学说，开启辅助学说

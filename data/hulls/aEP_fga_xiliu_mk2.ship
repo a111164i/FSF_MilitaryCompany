@@ -1,147 +1,181 @@
 {
-  "hullName": "",
-  "hullId": "aEP_fga_xiliu_mk2",
-  "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_fga_xiliu_mk2.png",
-  "style": "aEP_FSF",
-  "height": 140,
-  "width": 80,
-  "center": [40, 70.5],
-  "collisionRadius": 75,
-  "shieldCenter": [0, -0],
-  "shieldRadius": 74.5,
-  "viewOffset": 0,
-  "builtInMods": [
-    "aEP_SpecialHull",
-    "missleracks"
-  ],
-  "builtInWeapons": {
-    "WS0001": "aEP_fga_xiliu_mk2_missile",
-    "WS0003": "aEP_fga_xiliu_mk2_missile"
-  },
-  "weaponSlots": [
-    {
-      "id": "WS0002",
-      "size": "MEDIUM",
-      "type": "COMPOSITE",
-      "mount": "HARDPOINT",
-      "arc": 15,
-      "angle": 0,
-      "locations": [51.5, -0]
+    "hullName": "",
+    "hullId": "aEP_fga_xiliu_mk2",
+    "hullSize": "FRIGATE",
+    "style": "aEP_FSF",
+    "spriteName": "graphics/ships/aEP_fga_xiliu_mk2.png",
+    "height": 140,
+    "width": 80,
+    "center": [
+        40, 70.5
+    ],
+    "collisionRadius": 75,
+    "coversColor": "",
+    "shieldCenter": [
+        0, 0
+    ],
+    "shieldRadius": 74.5,
+    "viewOffset": 0,
+    "builtInMods": [
+        "aEP_SpecialHull",
+        "missleracks"
+    ],
+    "builtInWeapons": {
+        "WS0001": "aEP_fga_xiliu_mk2_missile",
+        "WS0003": "aEP_fga_xiliu_mk2_missile"
     },
-    {
-      "id": "L01",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "HARDPOINT",
-      "arc": 15,
-      "angle": -0,
-      "locations": [7.5, 19]
-    },
-    {
-      "id": "R01",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "HARDPOINT",
-      "arc": 15,
-      "angle": 0,
-      "locations": [7.5, -19]
-    },
-    {
-      "id": "L02",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "TURRET",
-      "arc": 210,
-      "angle": 90,
-      "locations": [-16.5, 18]
-    },
-    {
-      "id": "R02",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "TURRET",
-      "arc": 210,
-      "angle": -90,
-      "locations": [-16.5, -18]
-    },
-    {
-      "id": "WS0009",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [9.5, -0]
-    },
-    {
-      "id": "WS0001",
-      "size": "SMALL",
-      "type": "BUILT_IN",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 90,
-      "locations": [-34, 16.5]
-    },
-    {
-      "id": "WS0003",
-      "size": "SMALL",
-      "type": "BUILT_IN",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": -90,
-      "locations": [-34, -16.5]
-    },
-    {
-      "id": "ID_01",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 0,
-      "angle": 0,
-      "locations": [-29.5, -0]
-    }
-  ],
-  "engineSlots": [
-    {
-      "location": [-62.5, 16],
-      "length": 55,
-      "width": 16,
-      "angle": 180,
-      "contrailSize": 16,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-62.5, -18],
-      "length": 55,
-      "width": 16,
-      "angle": -180,
-      "contrailSize": 16,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-60.5, 8.5],
-      "length": 34,
-      "width": 6,
-      "angle": 180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-60.5, -8.5],
-      "length": 34,
-      "width": 6,
-      "angle": -180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    }
-  ],
-  "bounds": [
-    -57.5, -23,
-    51.5, -21,
-    55.5, -17,
-    55.5, 17,
-    51.5, 21,
-    -57.5, 23
-  ]
+    "builtInWings": [],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS0002",
+            "size": "MEDIUM",
+            "type": "COMPOSITE",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                    51.5,        0
+            ]
+        },
+        {
+            "id": "L01",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                       3,       18
+            ]
+        },
+        {
+            "id": "R01",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                       3,      -18
+            ]
+        },
+        {
+            "id": "L02",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 210,
+            "angle": 90,
+            "locations": [
+                   -16.5,       18
+            ]
+        },
+        {
+            "id": "R02",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 210,
+            "angle": -90,
+            "locations": [
+                   -16.5,      -18
+            ]
+        },
+        {
+            "id": "WS0009",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     9.5,        0
+            ]
+        },
+        {
+            "id": "WS0001",
+            "size": "SMALL",
+            "type": "BUILT_IN",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 90,
+            "locations": [
+                     -34,     16.5
+            ]
+        },
+        {
+            "id": "WS0003",
+            "size": "SMALL",
+            "type": "BUILT_IN",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": -90,
+            "locations": [
+                     -34,    -16.5
+            ]
+        },
+        {
+            "id": "ID_01",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                   -29.5,        0
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -62.5, 16
+            ],
+            "length": 55,
+            "width": 16,
+            "angle": 180,
+            "contrailSize": 16,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -62.5, -18
+            ],
+            "length": 55,
+            "width": 16,
+            "angle": -180,
+            "contrailSize": 16,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -60.5, 8.5
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": 180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -60.5, -8.5
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": -180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        }
+    ],
+    "bounds": [
+           -57.5,      -23,
+            51.5,      -21,
+            55.5,      -17,
+            55.5,       17,
+            51.5,       21,
+        
+           -57.5,       23
+    ]
 }

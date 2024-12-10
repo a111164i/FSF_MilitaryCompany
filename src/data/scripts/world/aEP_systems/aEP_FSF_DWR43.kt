@@ -338,8 +338,6 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
       }
     }
 
-
-
     aEP_FSF_Heng.cleanup(system)
   }
 
@@ -378,22 +376,23 @@ class DiscoverSector : aEP_BaseEveryFrame{
       if(planet.id.equals("FSF_EarthStar")) planet.isSkipForJumpPointAutoGen = false
     }
 
-    /* //超空间新建一个跳跃点
-    val jumpPoint1 = Global.getFactory().createJumpPoint("$ID _jump_in", "$ID Gravity Well")
+    //超空间新建一个跳跃点
+    val jumpPoint1 = Global.getFactory().createJumpPoint("${aEP_FSF_DWR43.ID} _jump_in", "${aEP_FSF_DWR43.ID} Gravity Well")
     hyper.addEntity(jumpPoint1)
     //相互连通
     jumpPoint1.addDestination(JumpPointAPI.JumpDestination(inSpaceJumpPoint,inSpaceJumpPoint.name))
     inSpaceJumpPoint.addDestination(JumpPointAPI.JumpDestination(jumpPoint1,jumpPoint1.name))
     //断开并移除老的超空间跳跃点
     inSpaceJumpPoint.removeDestination(nascentWell)
-    hyper.removeEntity(nascentWell)*/
+    hyper.removeEntity(nascentWell)
+
 
     //设置在超空间的位置
     system.autogenerateHyperspaceJumpPoints(false,false,false)
 
 
     //设置在超空间的位置，这个半径是星系内环绕半径的等比例缩小，实际obj算法会更复杂，越远的地方缩的越多
-    //jumpPoint1.autoUpdateHyperJumpPointLocationBasedOnInSystemEntityAtRadius(inSpaceJumpPoint,inSpaceJumpPoint.circularOrbitRadius/10f)
+    jumpPoint1.autoUpdateHyperJumpPointLocationBasedOnInSystemEntityAtRadius(inSpaceJumpPoint,inSpaceJumpPoint.circularOrbitRadius/10f)
 
 
     //之前设置为NONE，但是这个殖民地已经被占领了，玩家又不能去扫描，故手动改为FULL

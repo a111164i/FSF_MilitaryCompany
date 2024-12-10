@@ -4,7 +4,10 @@
     "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_fga_wanliu",
-    "hullMods": ["hardenedshieldemitter"],
+    "hullMods": [
+        "aEP_EliteShip",
+        "reinforcedhull"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_fga_wanliu_Standard",

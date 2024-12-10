@@ -20,7 +20,7 @@
     "trigger_min_days_elapsed": 0,
     "trigger_weight_mult": 1,
     "trigger_memKeys_all": {
-      "$AWM_4Complete": true
+      "$aEP_HvbKey_01": true
     },
     "trigger_playerRelationship_atLeast": {
       "aEP_FSF": 0.65
