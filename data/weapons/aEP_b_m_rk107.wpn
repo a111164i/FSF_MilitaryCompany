@@ -2,6 +2,7 @@
   "id": "aEP_b_m_rk107",
   "specClass": "projectile",
   "projectileSpecId": "aEP_b_m_rk107_shot",
+  "mountTypeOverride": "COMPOSITE",
   "type": "BALLISTIC",
   "size": "MEDIUM",
   "turretSprite": "graphics/weapons/aEP_b_m_rk107/tr.png",
@@ -64,5 +65,4 @@
     ]
   },
   "fireSoundTwo": "aEP_b_m_rk107_fire",
-  "mountTypeOverride": "COMPOSITE"
 }

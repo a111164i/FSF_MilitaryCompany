@@ -286,26 +286,22 @@ class aEP_m_l_blasthammer_shot : aEP_m_m_blasthammer_shot(){
 class OnHitSplit() : DamageDealtModifier{
   companion object{
 
-    var KINETIC_PERCENT = 0.25f
     var FRAG_SHOT_NUM = 2
     var FRAG_PERCENT = 0.5f
-    var DAMAGE_DROP_PERCENT = 0.5f
+    var KINETIC_PERCENT = 0.25f
     init {
       val hlString = Global.getSettings().getWeaponSpec(
         aEP_m_m_blasthammer_shot::class.java.simpleName.replace("_shot","")).customPrimaryHL
       var i = 0
       for(num in hlString.split("|")){
         if(i == 0) {
-          KINETIC_PERCENT = num.replace("%","").toFloat().div(100f)
-        }
-        if(i == 1) {
           FRAG_SHOT_NUM = num.toFloat().toInt()
         }
-        if(i == 2) {
+        if(i == 1) {
           FRAG_PERCENT = num.replace("%","").toFloat().div(100f)
         }
-        if(i == 3) {
-          DAMAGE_DROP_PERCENT = num.replace("%","").toFloat().div(100f)
+        if(i == 2) {
+          KINETIC_PERCENT = num.replace("%","").toFloat().div(100f)
         }
         i += 1
       }
@@ -3288,18 +3284,9 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
       var i = 0
       for(num in hlString.split("|")){
         if(i == 0) {
-          TRIGGER_CHANCE = num.replace("%","").toFloat()
-        }
-        if(i == 1) {
-          PERCENT_PER_TRIGGER = num.replace("%","").toFloat()
-        }
-        if(i == 2) {
-          AMOUNT_PER_TRIGGER = num.toFloat()
-        }
-        if(i == 3) {
           DAMAGE_REDUCTION_HULL_HIT = num.replace("%","").toFloat().div(100f)
         }
-        if(i == 4) {
+        if(i == 1) {
           PURE_ARMOR_DAMAGE = num.toFloat()
         }
         i += 1
@@ -3347,13 +3334,14 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
     if(shieldHit){
       Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_shield", 0.25f, 2f, point, Misc.ZERO)
       if(target is ShipAPI){
-        val rand = getRandomNumberInRange(0f, 100f)
-        if(rand <= TRIGGER_CHANCE){
-          aEP_b_l_aa40_shot.applyPureShipDamage(target, point, AMOUNT_PER_TRIGGER, PERCENT_PER_TRIGGER)
-        }
+        //只要特效，不要伤害
+        aEP_b_l_aa40_shot.applyPureShipDamage(target, point, 200f, 2f)
       }
     }else{
       Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_armor", 0.5f, 2f, point, Misc.ZERO)
+      if(target is ShipAPI){
+        aEP_Tool.applyPureArmorDamage(projectile.weapon, PURE_ARMOR_DAMAGE, target,point)
+      }
     }
   }
 
@@ -3533,85 +3521,14 @@ class aEP_b_l_dg3_shot : Effect(){
   }
 }
 
-//EMP钉矛
-class aEP_EMP_pike_shot : Effect(){
-  companion object{
-    //质量参考
-    //驱逐400-500
-    //巡洋1200-2200
-    //战列2500-4000
-    val MAX_SPEED_REDUCE = 0.35f //
-    val MIN_SPEED_REDUCE = 0.05f //
-    val SPEED_REDUCE_BY_MASS = 100f // (SPEED_REDUCE_BY_MASS * SPEED_REDUCE_BY_MASS) / (mass * SPEED_REDUCE_BY_MASS) = speed reduce
-    val EMP_DAMAGE = 30f
-    val DEBUFF_TIME = 1f //
-    val ACCELERATE_MOD = 0.75f //by mult
-  }
-
-  override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
-    point?: return
-    projectile?: return
-    target?: return
-    if (shieldHit) {
-      addEffect(EMPEffect(projectile.weapon, 4.5f, target, point, "weapons.EMP_pike_shot_inShield", projectile.facing, true))
-    } else {
-      addEffect(EMPEffect(projectile.weapon, 4.5f, target, point, "weapons.EMP_pike_shot_inHull", projectile.facing, false))
-    }
-  }
-
-  internal class EMPEffect : aEP_StickOnHit {
-
-    var source: WeaponAPI
-    var empTracker = IntervalUtil(1f,1f)
-    constructor(
-      weapon: WeaponAPI,
-      duration: Float,
-      target: CombatEntityAPI,
-      point: Vector2f,
-      spriteId: String,
-      OnHitAngle: Float,
-      hitShield: Boolean) : super(duration, target, point, spriteId,"weapons.EMP_pike_shot",OnHitAngle, hitShield) {
-      this.source = weapon
-    }
-
-    override fun advanceImpl(amount: Float) {
-      empTracker.advance(amount)
-      if (!empTracker.intervalElapsed()) return
-      val target = entity as CombatEntityAPI
-      val speedMult = 1 - MathUtils.clamp((SPEED_REDUCE_BY_MASS * SPEED_REDUCE_BY_MASS )/ (target.mass + SPEED_REDUCE_BY_MASS), MIN_SPEED_REDUCE, MAX_SPEED_REDUCE)
-      target.velocity.scale(speedMult)
-      target.angularVelocity *= speedMult
-      //aEP_BuffEffect.addThisBuff(target, EMPPikeOnHit(DEBUFF_TIME, 1f, target, true, 1f, ACCELERATE_MOD))
-      Global.getCombatEngine().spawnEmpArcPierceShields(
-        source.ship,  //ShipAPI damageSource,
-        loc,  // Vector2f point,
-        target,  // CombatEntityAPI pointAnchor,
-        target,  // CombatEntityAPI empTargetEntity,
-        DamageType.ENERGY,  // DamageType damageType,
-        0f,  // float damAmount,
-        EMP_DAMAGE,  // float empDamAmount,
-        2000f,  // float maxRange,
-        null,  // java.lang.String impactSoundId,
-        15f,  // float thickness,
-        Color(100, 100, 100, 150),  // java.awt.Color fringe,
-        Color(100, 50, 50, 100)
-      ) // java.awt.Color core)
-    }
-
-  }
-
-}
-
 //aa40 125 转膛炮系列
 class aEP_b_m_k125_shot : Effect(){
   companion object{
     val SMOKE_RING_COLOR =  Color(240,240,240,244)
     val SHELL_GLOW =   Color(255, 218, 188, 35)
 
-    val TRIGGER_COLOR = Color(155, 168, 188, 255)
-    private var TRIGGER_CHANCE = 100f
     private var PERCENT_PER_TRIGGER = 2f
-    private var AMOUNT_PER_TRIGGER = 200f
+    private var AMOUNT_PER_TRIGGER = 10f //最低伤害
   }
   init {
     //把customHL一位一位读char，计算 “|”的情况
@@ -3619,13 +3536,7 @@ class aEP_b_m_k125_shot : Effect(){
     var i = 0
     for(num in hlString.split("|")){
       if(i == 0){
-        TRIGGER_CHANCE =  num.replace("%","").toFloat()
-      }
-      if(i == 1){
         PERCENT_PER_TRIGGER =  num.replace("%","").toFloat()
-      }
-      if(i == 2){
-        AMOUNT_PER_TRIGGER =  num.toFloat()
       }
       i += 1
     }
@@ -3706,7 +3617,6 @@ class aEP_b_m_k125_shot : Effect(){
 
     }
 
-
   }
 
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
@@ -3714,7 +3624,7 @@ class aEP_b_m_k125_shot : Effect(){
     explode(point)
     if(shieldHit && target is ShipAPI){
       val rand = getRandomNumberInRange(0f,100f)
-      if(rand <= TRIGGER_CHANCE){
+      if(rand <= aEP_b_l_aa40_shot.TRIGGER_CHANCE){
         aEP_b_l_aa40_shot.applyPureShipDamage(target, point, AMOUNT_PER_TRIGGER, PERCENT_PER_TRIGGER)
       }
     }
@@ -3737,9 +3647,10 @@ class aEP_b_l_aa40_shot : Effect(){
 
     val SHELL_GLOW = Color(255, 168, 58, 80)
     val TRIGGER_COLOR = Color(155, 168, 188, 255)
-    private var TRIGGER_CHANCE = 100f
+
+    var TRIGGER_CHANCE = 2f
     var PERCENT_PER_TRIGGER = 2f
-    var AMOUNT_PER_TRIGGER = 200f
+    var AMOUNT_PER_TRIGGER = 10f
 
     fun applyPureShipDamage(target:ShipAPI, point: Vector2f, damageFlat:Float, damagePercent:Float){
       val fluxLeft = target.fluxTracker.maxFlux - target.fluxTracker.currFlux - 1f
@@ -3766,7 +3677,7 @@ class aEP_b_l_aa40_shot : Effect(){
       MagicRender.battlespace(Global.getSettings().getSprite("graphics/fx/starburst_glow1.png"),
         point,
         VECTOR2F_ZERO,
-        Vector2f(100f , 900f ),
+        Vector2f(120f , 1200f ),
         Vector2f(-10f, -400f ),
         90f,
         0f,
@@ -3781,13 +3692,7 @@ class aEP_b_l_aa40_shot : Effect(){
     var i = 0
     for(num in hlString.split("|")){
       if(i == 0){
-        TRIGGER_CHANCE =  num.replace("%","").toFloat()
-      }
-      if(i == 1){
         PERCENT_PER_TRIGGER =  num.replace("%","").toFloat()
-      }
-      if(i == 2){
-        AMOUNT_PER_TRIGGER =  num.toFloat()
       }
       i += 1
     }
@@ -5290,43 +5195,15 @@ class aEP_fga_yonglang_main_shot : Effect(){
 //107火
 class aEP_b_m_rk107_shot : Effect(), DamageDealtModifier{
   companion object{
-    private var DAMAGE_BONUS = 4f
-    private var MAX_BONUS_DAMAGE = 450f
     const val WEAPON_ID = "aEP_b_m_rk107"
   }
-
-  init{
-    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
-    var i = 0
-    for(num in hlString.split("|")){
-      if(i == 0) DAMAGE_BONUS = num.toFloat()
-      if(i == 1) MAX_BONUS_DAMAGE = num.toFloat()
-      i += 1
-    }
-  }
-
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     val ship = weapon.ship
     if (!ship.hasListenerOfClass(this::class.java)) {
       ship.addListener(this)
     }
-//    if(projectile is MissileAPI){
-//      val speedNow = projectile.spec.launchSpeed
-//      val maxSpeed = projectile.maxSpeed
-//      val range = projectile.maxRange
-//      var acc = projectile.acceleration
-//      if(maxSpeed <= speedNow) return
-//      if(acc <= 0) return
-//      if(range <= 0) return
-//      val speedDiff = maxSpeed - speedNow
-//      val timeToAcc = speedDiff/acc
-//      val timeCompensation = timeToAcc/2f
-//      projectile.maxFlightTime = range/maxSpeed
-//      projectile.maxFlightTime += timeCompensation
-//    }
   }
-
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
 
     val sizeMult = 0.65f
@@ -5361,21 +5238,11 @@ class aEP_b_m_rk107_shot : Effect(), DamageDealtModifier{
     if(target !is ShipAPI) return null
     if(param is DamagingProjectileAPI){
       if (param.weapon != null && param.projectileSpecId?.equals(aEP_b_m_rk107_shot::class.java.simpleName) == true) {
-        //击中护盾直接造成2倍软幅能
+        //击中护盾只造成软幅能
         if(shieldHit) {
-          damage.modifier.modifyFlat(WEAPON_ID,1f)
           damage.isSoftFlux = true
           damage.isForceHardFlux = false
-          return WEAPON_ID
-        }else{    //击中舰船的装甲，提升伤害
-          val armorBonus = (target.armorGrid.armorRating
-              * target.mutableStats.minArmorFraction.modifiedValue
-              * DAMAGE_BONUS).coerceAtMost(MAX_BONUS_DAMAGE)
-          //基础值是1哦
-          //如果基础伤害是0就没法计算了，不加成
-          if(damage.baseDamage <= 0f) return null
-          damage.modifier.modifyFlat(WEAPON_ID,armorBonus/damage.baseDamage)
-          return WEAPON_ID
+          return null
         }
       }
     }

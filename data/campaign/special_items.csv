@@ -1,7 +1,9 @@
 name,id,tags,tech/manufacturer,rarity,base price,stack size,cargo space,baseRaidDanger,icon,sound id,sound id drop,plugin,plugin params,desc,order
 ,,,,,,,,,,,,,,,
-FSF Common Ship Blueprint,FSF_openbp,package_bp,FSF Design,,60000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_openbp,Allow the production of common FSF ships.,142
-FSF Rare Ship Blueprint,FSF_rarebp,package_bp,FSF Design,,120000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_rarebp,Allow the production of rare FSF ships.,46978
+FSF Common Ship Blueprint,FSF_openbp,package_bp,FSF Design,,50000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_openbp,Allow the production of common FSF ships.,142
+FSF Rare Ship Blueprint,FSF_rarebp,package_bp,FSF Design,,100000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_rarebp,Allow the production of rare FSF ships.,46978
+FSF Small Weapon Blueprint,FSF_weapon_small_bp,package_bp,FSF Design,,30000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_weapon_small_bp,Allow the production of common weapons of FSF.,142
+FSF Large Weapon Blueprint,FSF_weapon_heavy_bp,package_bp,FSF Design,,30000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_weapon_heavy_bp,Allow the production of some powerful weapons of FSF.,46978
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 S-1 Cruise Missile,aEP_cruise_missile,aEP_special,FSF Advanced Weapon Program,,80000,400,0,,graphics/aEP_items/aEP_cruise_missile.png,ui_cargo_special_military_pickup,ui_cargo_special_military_drop,data.scripts.campaign.items.aEP_CruiseMissile,,"The S-series cruise missiles are remote-controlled, frigate-sized, campaign-level weapons. After launch, they search for the nearest hostile fleet within 60 degrees of their heading.

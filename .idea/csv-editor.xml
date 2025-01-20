@@ -430,6 +430,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\commodities_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\industries.csv">
           <value>
             <Attribute>
@@ -465,6 +472,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>
@@ -480,6 +494,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\special_items_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -633,6 +654,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hulls\ship_data_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hulls\wing_data.csv">
           <value>
             <Attribute>
@@ -661,7 +689,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\strings\descriptions_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\weapons\weapon_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

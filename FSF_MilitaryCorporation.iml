@@ -19,6 +19,14 @@
     <orderEntry type="library" name="LunaLib" level="project" />
     <orderEntry type="library" name="MagicLib" level="project" />
     <orderEntry type="library" name="core" level="project" />
-    <orderEntry type="library" name="jetbrains.kotlin.stdlib.jdk8" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../LazyLib/jars/lib/Kotlin-Runtime.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

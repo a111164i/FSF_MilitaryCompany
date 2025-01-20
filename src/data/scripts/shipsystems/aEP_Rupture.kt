@@ -2,6 +2,7 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.impl.combat.MineStrikeStats
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
@@ -14,6 +15,7 @@ import combat.util.aEP_Blinker
 import combat.util.aEP_Combat
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
+import data.scripts.hullmods.aEP_EliteShip
 import data.scripts.shipsystems.aEP_Rupture.Companion.DIRECTION_COLOR
 import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_PERCENT_PER_TICK
 import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_PER_TICK
@@ -40,7 +42,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val ACTIVE_TIME = 12f
     //链子极限长度为目标的碰撞半径加FREE_RANGE
     const val FREE_RANGE = 200f
-    const val SYSTEM_RANGE = 850f
+    const val SYSTEM_RANGE = 900f
 
     const val TICK_DIST = 25f
 
@@ -48,7 +50,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val FLUX_PER_TICK = 250f
     const val FLUX_PERCENT_PER_TICK = 2.5f
     //每25距离减一次速度
-    const val SPEED_SLOW_PER_TICK = 0.4f
+    const val SPEED_SLOW_PER_TICK = 0.5f
 
     const val OVERLOAD_TIME = 1f
 
@@ -105,7 +107,36 @@ class aEP_Rupture:  BaseShipSystemScript() {
         toAim = ship.customData[aEP_ID.SYSTEM_SHIP_TARGET_KEY] as ShipAPI
       }
       if(toAim != null){
-        val drag = DragBall(ACTIVE_TIME,toAim)
+
+        //用fxDrone是没有自带ai的
+        val variant = Global.getSettings().createEmptyVariant(
+          aEP_EliteShip.DRONE_ID,
+          Global.getSettings().getHullSpec(aEP_EliteShip.DRONE_ID))
+        val drone = Global.getCombatEngine().createFXDrone(variant)
+        //并不是特效无人机，而是实体，去掉这个tag。这个tag会被createFXDrone()自动添加
+        drone.tags.remove(Tags.VARIANT_FX_DRONE)
+        drone.isDrone = true
+        drone.aiFlags.setFlag(ShipwideAIFlags.AIFlags.DRONE_MOTHERSHIP, 100000f, ship)
+        drone.layer = CombatEngineLayers.FIGHTERS_LAYER
+        drone.owner = ship.owner
+        drone.facing = 0f
+        //变更装甲
+        val maxHealth = 6000f
+        drone.maxHitpoints = maxHealth
+        drone.hitpoints = maxHealth
+        val maxArmor = 800f
+        drone.mutableStats.armorBonus.modifyFlat("aEP_Rupture", maxArmor)
+        val armorPerCell = maxArmor/15f
+        val xSize = drone.armorGrid.leftOf + drone.armorGrid.rightOf
+        val ySize = drone.armorGrid.above + drone.armorGrid.below
+        for (x in 0 until xSize) {
+          for (y in 0 until ySize) {
+            drone.armorGrid.setArmorValue(x, y, armorPerCell)
+          }
+        }
+        Global.getCombatEngine().addEntity(drone)
+
+        val drag = DragBall(ACTIVE_TIME,toAim, drone)
         aEP_CombatEffectPlugin.addEffect(drag)
 
         val arc = Global.getCombatEngine().spawnEmpArcVisual(
@@ -132,7 +163,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
   }
 }
 
-class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffectWithKey(lifetime, target){
+class DragBall(lifetime:Float,val target:ShipAPI, val anchor: ShipAPI) : aEP_BaseCombatEffectWithKey(lifetime, target){
   //影响锚图片的大小，链子的粗细
   var sizeMult = 2f
 
@@ -172,7 +203,7 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffectWithKey(
 
   override fun advanceImpl(amount: Float) {
 
-    if(aEP_Tool.isDead(target)){
+    if(aEP_Tool.isDead(target) || aEP_Tool.isDead(anchor)){
       shouldEnd = true
       return
     }
@@ -188,6 +219,11 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffectWithKey(
       ballLocation.set(aEP_Tool.getExtendedLocationFromPoint(target.location, fac2Entity-180f, maxLength))
       cumulatedDist += (dist2Entity - maxLength)
     }
+
+    //把无人机锁到球上
+    anchor.velocity.set(Vector2f(0f,0f))
+    anchor.location.set(ballLocation)
+    anchor.facing = fac2Entity
 
     //渲染底座，注意渲染顺序
     val baseAngle = aEP_Tool.angleAdd(fac2Entity - 90f,  time * 180f)
@@ -238,6 +274,7 @@ class DragBall(lifetime:Float,val target:ShipAPI) : aEP_BaseCombatEffectWithKey(
     chain.lifeTime = 100f
     chain.time = 99.9f
     Global.getCombatEngine().spawnExplosion(ballLocation, Misc.ZERO, aEP_BeamRepair.REPAIR_COLOR2,100f*sizeMult,0.5f)
+    Global.getCombatEngine().removeEntity(anchor)
   }
 }
 
