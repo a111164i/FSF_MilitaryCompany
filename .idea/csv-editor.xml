@@ -472,6 +472,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\rules_EN.csv">
           <value>
             <Attribute>
@@ -494,6 +501,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\special_items_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -689,6 +703,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\strings\descriptions_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\strings\descriptions_EN.csv">
           <value>
             <Attribute>
@@ -697,6 +718,13 @@
           </value>
         </entry>
         <entry key="\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\weapons\weapon_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
