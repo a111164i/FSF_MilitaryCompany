@@ -35,8 +35,6 @@ aEP_cru_hailiang_holder_l,turret,,1,normal,graphics/shaders/normal/weapons/aEP_c
 aEP_cru_hailiang_holder_r,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cru_hailiang/OilHolderR_normal.png
 aEP_cru_hailiang_oil,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cru_hailiang/Oil00_normal.png
 aEP_cru_lengshe_cover,turret,,1,normal,graphics/shaders/normal/weapons/aEP_lengshe/cover_normal.png
-aEP_cru_maodian_ads,turret,,1,normal,graphics/shaders/normal/weapons/aEP_fighters/aEP_maodian/pd_normal.png
-aEP_cru_maodian_ads,turretbarrel,,1,normal,graphics/shaders/normal/weapons/aEP_fighters/aEP_maodian/pd_br_normal.png
 aEP_cru_pingding_main,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cru_pingding/br_normal.png
 aEP_cru_pingding_main,turretbarrel,,1,normal,graphics/shaders/normal/weapons/aEP_cru_pingding/br_normal.png
 aEP_cru_pingding_main,hardpoint,,1,normal,graphics/shaders/normal/weapons/aEP_cru_pingding/br_normal.png

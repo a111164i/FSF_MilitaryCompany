@@ -58,7 +58,6 @@ public class MissionDefinition implements MissionDefinitionPlugin
     // files in data/variants and data/variants/fighters
     api.addToFleet(FleetSide.PLAYER, "aEP_cap_nuanchi_Standard", FleetMemberType.SHIP, name1, true);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP,  false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP,  false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP,  false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Standard", FleetMemberType.SHIP,  false);

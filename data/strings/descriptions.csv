@@ -240,7 +240,6 @@ aEP_ftr_ftr_helicop,SHIP,"A heavily armed helicopter operates both in the atmosp
 ,,,,,,
 aEP_ftr_ut_repair_beam,WEAPON,"An engineering tool launches a nanomaterial jet, which cools and solidifies when applied to damaged armor, often used for emergency battlefield repairs. However, it cannot restore the armor to its original strength.",,,,
 aEP_ftr_ut_supply_main,WEAPON,Beam to transfer flux from the target to itself.,,,,
-aEP_cru_maodian_ads,WEAPON,"An advanced active defense system fires solid, concrete-like blocks to intercept enemy projectiles.",,,,
 aEP_ftr_ut_maodian_ads,WEAPON,"An advanced active defense system fires solid, concrete-like blocks to intercept enemy projectiles.",,,,
 aEP_ftr_ut_decompose_beam,WEAPON,An engineering cutting tool that has little effect on ships but can quickly slice through wreckage.,,,,
 aEP_ftr_icp_gunship_gun,WEAPON,"LMG firing bullets with EMP effects, efficiently disabling enemy engines during air combat",,,,

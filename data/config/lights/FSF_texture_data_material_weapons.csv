@@ -35,8 +35,6 @@ aEP_cru_hailiang_holder_l,turret,,,material,graphics/shaders/material/weapons/aE
 aEP_cru_hailiang_holder_r,turret,,,material,graphics/shaders/material/weapons/aEP_cru_hailiang/OilHolderR_material.png
 aEP_cru_hailiang_oil,turret,,,material,graphics/shaders/material/weapons/aEP_cru_hailiang/Oil00_material.png
 aEP_cru_lengshe_cover,turret,,,material,graphics/shaders/material/weapons/aEP_lengshe/cover_material.png
-aEP_cru_maodian_ads,turret,,,material,graphics/shaders/material/weapons/aEP_fighters/aEP_maodian/pd_material.png
-aEP_cru_maodian_ads,turretbarrel,,,material,graphics/shaders/material/weapons/aEP_fighters/aEP_maodian/pd_br_material.png
 aEP_cru_pingding_main,turret,,,material,graphics/shaders/material/weapons/aEP_cru_pingding/br_material.png
 aEP_cru_pingding_main,turretbarrel,,,material,graphics/shaders/material/weapons/aEP_cru_pingding/br_material.png
 aEP_cru_pingding_main,hardpoint,,,material,graphics/shaders/material/weapons/aEP_cru_pingding/br_material.png

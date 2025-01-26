@@ -13,7 +13,7 @@ class aEP_BeamRepair : BeamEffectPlugin {
     private const val REPAIR_STEP_PER_CELL = 8f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
     const val FSF_BONUS = 3f
-    const val REPAIR_THRESHOLD = 0.5f
+    const val REPAIR_THRESHOLD = 0.4f
     const val HULL_REPAIR_THRESHOLD = 0.25f
     val REPAIR_COLOR = Color(250, 250, 178, 240)
     val REPAIR_COLOR2 = Color(250, 220, 70, 250)
@@ -41,7 +41,6 @@ class aEP_BeamRepair : BeamEffectPlugin {
       //只修一次
       if (didRepair ) return
       didRepair = true
-
 
       //修的不是舰船，return
       if(beam.damageTarget !is ShipAPI) return

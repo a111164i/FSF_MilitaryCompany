@@ -37,7 +37,8 @@ class aEP_Tool {
   companion object Util {
     val REPAIR_COLOR = Color(250, 250, 178, 240)
     val REPAIR_COLOR2 = Color(250, 220, 70, 250)
-
+    val HULL_UP_COLOR = Color(0, 255, 0, 250)
+    val ARMOR_UP_COLOR = Color(175, 255, 50, 250)
     /**
      * 旋转舰船朝向到指定位置
      * @return 转向需要的时间
@@ -1797,7 +1798,7 @@ class aEP_Tool {
     }
 
     /**
-     * @param convertRate 单个格子每次loop的最大维修量，越低单次维修的越均匀，一般为5不会造成棋盘状装甲，不可为0
+     * @param convertRate 单个格子每次loop的最大维修量，越低单次维修的越均匀，一般为5-10不会造成棋盘状装甲，不可为0
      * @return 维修剩余百分比，0f代表完全用于维修，1f代表不需要维修，本次维修值完全溢出
      * */
     fun findToRepair(ship: ShipAPI, repairAmount: Float, armorMaxPercent: Float, hpMaxPercent: Float, maxRepairPerGrid: Float, convertRate: Float, sparkEvenNotRepairing: Boolean): Float{
@@ -1809,6 +1810,7 @@ class aEP_Tool {
 
       var toRepair = repairAmount.coerceAtLeast(0f)
       var didSpark = false
+      val minArmorLoc = Vector2f(ship.location)
 
       while (toRepair > 0f){
         //find the lowest armor grid
@@ -1844,39 +1846,44 @@ class aEP_Tool {
           }
           ship.armorGrid.setArmorValue(minX, minY, armorAtMin + toAddArmor)
           //第一个修好的格子创造一个火花，每次维修最多生成一次
-          val minArmorLoc = ship.armorGrid.getLocation(minX,minY)
-
+          minArmorLoc.set(ship.armorGrid.getLocation(minX,minY))
           if(!didSpark){
             spawnRepairSpark(minArmorLoc,ship.velocity)
             didSpark = true
           }
-
 
         }else{//如果当前装甲最低的格子都不用修，break出去
           break
         }
       }
 
+      //修完甲后在修之前装甲最低的地方刷一个绿字
+      if(didSpark){
+        Global.getCombatEngine().addFloatingDamageText(minArmorLoc,repairAmount-toRepair,Color.green,ship,ship)
+      }
+
       //如果装甲修好了，维修点数还有省的就加结构
       if(toRepair > 0){
         val hullDamagedBelowThreshold = ship.maxHitpoints * hpMaxPercent - ship.hitpoints
         if(hullDamagedBelowThreshold > 0) {
-          //如果之前没有修到装甲，目前需要修结构，就随机抽一个点刷闪光
-          if(!didSpark ){
-            val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
-            spawnRepairSpark(randomLoc,ship.velocity)
-            didSpark = true
-          }
-
           val repairToHull = (toRepair * convertRate).coerceAtMost(hullDamagedBelowThreshold)
           ship.hitpoints += repairToHull
           toRepair -= repairToHull / convertRate
+
+          //如果之前没有修到装甲，目前需要修结构，就随机抽一个点刷闪光
+          if(!didSpark ){
+            val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
+            Global.getCombatEngine().addFloatingDamageText(ship.location,repairToHull, ARMOR_UP_COLOR,ship,ship)
+            spawnRepairSpark(randomLoc,ship.velocity)
+            didSpark = true
+          }
         }
       }
 
       //如果结构也没修，装甲也没修，看看是否强制刷一个火花
       if(!didSpark && sparkEvenNotRepairing){
         val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
+        Global.getCombatEngine().addFloatingDamageText(ship.location,0f, HULL_UP_COLOR,ship,ship)
         spawnRepairSpark(randomLoc,ship.velocity)
         didSpark = true
       }

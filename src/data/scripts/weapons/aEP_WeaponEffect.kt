@@ -4863,7 +4863,7 @@ class aEP_b_m_flak_shot : Effect(){
   }
 
   fun dealExtraDamage(target: CombatEntityAPI, damage:Float, source: ShipAPI?, point: Vector2f){
-    addEffect(DelayDamage(target, getRandomNumberInRange(0.2f,0.8f), damage, source, point))
+    addEffect(DelayDamage(target, getRandomNumberInRange(1f,1.5f), damage, source, point))
   }
 }
 //弹丸拖尾+消失后的视觉特效
