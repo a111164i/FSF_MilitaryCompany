@@ -12,67 +12,12 @@
     <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cru_maodian_ads.wpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_CN.faction" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_CN.faction" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info_CN.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_eliminate_mission/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_eliminate_mission/MissionDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamRepair.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamRepair.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneDecomposeAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneDecomposeAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,32 +64,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Starsector097/mods/FSF_MilitaryCorporation&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "F:/Starsector097/mods/FSF_MilitaryCorporation",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "project.kotlinCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\config\exerelin" />
@@ -277,7 +222,10 @@
       <workItem from="1737450028403" duration="603000" />
       <workItem from="1737724619053" duration="2464000" />
       <workItem from="1737892619433" duration="2332000" />
-      <workItem from="1737901417277" duration="1264000" />
+      <workItem from="1737901417277" duration="1420000" />
+      <workItem from="1737903192599" duration="2280000" />
+      <workItem from="1737953587854" duration="537000" />
+      <workItem from="1738054645151" duration="650000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -647,7 +595,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737432258381</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落">
+      <option name="closed" value="true" />
+      <created>1737903124053</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1737903124053</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,6 +667,17 @@
     <MESSAGE value="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配" />
     <MESSAGE value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
     <option name="LAST_COMMIT_MESSAGE" value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/combat/util/aEP_Tool.kt</url>
+          <line>1876</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

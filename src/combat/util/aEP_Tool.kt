@@ -38,7 +38,7 @@ class aEP_Tool {
     val REPAIR_COLOR = Color(250, 250, 178, 240)
     val REPAIR_COLOR2 = Color(250, 220, 70, 250)
     val HULL_UP_COLOR = Color(0, 255, 0, 250)
-    val ARMOR_UP_COLOR = Color(175, 255, 50, 250)
+    val ARMOR_UP_COLOR = Color(175, 255, 125, 250)
     /**
      * 旋转舰船朝向到指定位置
      * @return 转向需要的时间
@@ -1742,7 +1742,8 @@ class aEP_Tool {
       }
     }
 
-    fun isDead(ship: CombatEntityAPI) : Boolean{
+    fun isDead(ship: CombatEntityAPI?) : Boolean{
+      ship?:return false
       if(ship !is ShipAPI){
         return !Global.getCombatEngine().isEntityInPlay(ship)
       }
@@ -1859,7 +1860,7 @@ class aEP_Tool {
 
       //修完甲后在修之前装甲最低的地方刷一个绿字
       if(didSpark){
-        Global.getCombatEngine().addFloatingDamageText(minArmorLoc,repairAmount-toRepair,Color.green,ship,ship)
+        Global.getCombatEngine().addFloatingDamageText(minArmorLoc,repairAmount-toRepair,ARMOR_UP_COLOR,ship,ship)
       }
 
       //如果装甲修好了，维修点数还有省的就加结构
@@ -1873,7 +1874,7 @@ class aEP_Tool {
           //如果之前没有修到装甲，目前需要修结构，就随机抽一个点刷闪光
           if(!didSpark ){
             val randomLoc = MathUtils.getRandomPointInCircle(ship.location,ship.collisionRadius*2f/3f)
-            Global.getCombatEngine().addFloatingDamageText(ship.location,repairToHull, ARMOR_UP_COLOR,ship,ship)
+            Global.getCombatEngine().addFloatingDamageText(ship.location,repairToHull, HULL_UP_COLOR,ship,ship)
             spawnRepairSpark(randomLoc,ship.velocity)
             didSpark = true
           }

@@ -36,7 +36,7 @@
 
 		"aEP_MissilePlatform01":"锻炉功率",
 		"aEP_MissilePlatform07":"当锻炉功率满额时，不同尺寸导弹武器的弹药生产速度如下: ",
-		"aEP_MissilePlatform02":"锻炉功率为舰船所有导弹武器装配点之和的一定比例，回复速度为{%s}",
+		"aEP_MissilePlatform02":"锻炉功率总量基于舰船所有导弹武器装配点之和，回复速度为{%s}",
 		"aEP_MissilePlatform06":"不同武器生产弹药所需的{%s}与{%s}如下: ",
 		"aEP_MissilePlatform08":"弹药",
 		"aEP_MissilePlatform03":"功率",

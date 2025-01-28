@@ -82,8 +82,11 @@ public class aEP_DroneDecomposeAI implements ShipAIPlugin
     }
 
     //get parent ship
-    if (ship.getWing().getSourceShip() == null) {
+    if (aEP_Tool.Util.isDead(ship.getWing().getSourceShip())) {
       parentShip = aEP_Tool.getNearestFriendCombatShip(ship);
+      if(parentShip == null){
+        Global.getCombatEngine().applyDamage(ship, ship.getLocation(), 100f,DamageType.HIGH_EXPLOSIVE,0f,true,true,null,false);
+      }
     } else {
       parentShip = ship.getWing().getSourceShip();
     }

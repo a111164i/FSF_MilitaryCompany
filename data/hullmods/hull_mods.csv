@@ -3,7 +3,7 @@ name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hid
 FSF Ship Design,aEP_SpecialHull,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,"A higher-level implementation of a ship-wide gravity field, the shell is designed to receive or transmit force to a nearby friendly ship. A fleet composed entirely of FSF ships can swiftly switch between different formations.",,,graphics/aEP_hullmods/aEP_marker_dissipation.png,
 Missile Platform,aEP_MissilePlatform,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"An integrated missile factory has utilized all available space at the cost of maximum ammunition to continuously produce ammo. This applies to all missile weapons mounted in missile or composite slots.
 
-This ship has a resource named %s, which will be consumed to produce ammo if any missile weapon is not fully stocked and will recover over time.",,,graphics/aEP_hullmods/aEP_missile_platform.png,
+This ship has a resource named %s, which works alike to fighter refit rate. It will be consumed to produce ammo if any missile weapon is not fully stocked and will recover over time.",,,graphics/aEP_hullmods/aEP_missile_platform.png,
 FCS Radar,aEP_BBAdjustRange,0,FSF Design,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_BBAdjustRange,"The wave radar provides half of the ship's targeting capability, with the other half being enhanced by this modification:
 
 Ballistic/energy weapon range %s",,,graphics/hullmods/ecm_package.png,
