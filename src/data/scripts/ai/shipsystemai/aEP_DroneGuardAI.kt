@@ -37,6 +37,10 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
     val nearShips = AIUtils.getNearbyAllies(ship, systemRange)
     val nearEntities = CombatUtils.getEntitiesWithinRange(ship.location, systemRange * 1.5f)
 
+    //每帧更新一次自己碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
+    ship.visualBounds?.update(ship.location,ship.facing)
+    ship.exactBounds?.update(ship.location,ship.facing)
+
     //检查是否可以拦截弹丸
     for(proj in nearEntities){
       //这里的得到的是全部entity，先过滤一道只剩下弹丸

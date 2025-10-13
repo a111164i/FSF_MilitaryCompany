@@ -29,14 +29,18 @@ class aEP_FuelBurn: BaseShipSystemScript() {
   var activeCompensation = 1
   override fun apply(stats: MutableShipStatsAPI?, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
 
-
     //复制粘贴这行
     val ship = (stats?.entity?: return)as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
     val fuelUse = USAGE[ship.hullSpec.hullSize]?: 5f
 
+    //特殊情况熄火立刻中断系统
+    if(!isUsable(ship.system, ship) && ship.system.isActive) {
+      ship.system.deactivate()
+      return
+    }
 
-    consumeTimer.advance(amount * effectLevel)
+    if(effectLevel > 0.1f) consumeTimer.advance(amount * effectLevel)
     if (consumeTimer.intervalElapsed()) {
       if(activeCompensation > 0){
         ship.system.ammo = (ship.system.ammo + 1).coerceAtMost(ship.system.maxAmmo)
@@ -87,6 +91,10 @@ class aEP_FuelBurn: BaseShipSystemScript() {
       if(fuelNow <= fuelUse){
         return false
       }
+    }
+
+    if(ship.engineController.flameoutFraction <= 0.1f){
+      return false
     }
     return true
   }

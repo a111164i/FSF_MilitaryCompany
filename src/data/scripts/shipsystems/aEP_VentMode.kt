@@ -35,9 +35,9 @@ class aEP_VentMode: BaseShipSystemScript() {
 
     const val SOFT_CONVERT_RATE = 0.25f
     const val SOFT_CONVERT_SPEED = 2000f
-    const val SHIELD_DAMAGE_REDUCE_MULT = 0f
     const val HULL_DAMAGE_TAKEN_BONUS = 50f
 
+    const val SHIELD_DAMAGE_REDUCE_MULT = 0f
     const val MAX_SPEED_REDUCE_MULT = 0f
 
     private const val MIN_SECOND_TO_USE = 1f
@@ -105,21 +105,23 @@ class aEP_VentMode: BaseShipSystemScript() {
 
       stats.maxSpeed.unmodify(ID)
       stats.fluxDissipation.unmodify(ID)
+      stats.weaponDamageTakenMult.unmodify(ID)
+
     }
     else{
       //转化幅能
       val convertLevel = 0.5f + (effectLevel-0.5f).coerceAtLeast(0f)
       val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
       val hardFlux = ship.fluxTracker.hardFlux
-      //幅能充足就转换幅能，不充足就强制关闭
+      //幅能充足就转换幅能
       if(ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux > 100f){
-        val toConvert = softFlux.coerceAtMost(SOFT_CONVERT_SPEED * amount * convertLevel)
         //这里选择使用原版的耗散，而不是直接扣除幅能，方便ai理解
         ship.mutableStats.fluxDissipation.modifyFlat(ID, SOFT_CONVERT_SPEED * convertLevel)
         //ship.fluxTracker.decreaseFlux(toConvert)
         ship.system.fluxPerSecond = SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE * convertLevel
         //ship.fluxTracker.increaseFlux(toConvert * SOFT_CONVERT_RATE, true)
 
+      //幅能不足时关闭
       }else{
         if(timeElapsedAfterIn >= 1.9f){
           ship.system.deactivate()

@@ -6,7 +6,6 @@ import com.fs.starfarer.api.impl.campaign.fleets.RouteManager.RouteFleetSpawner
 import com.fs.starfarer.api.campaign.listeners.FleetEventListener
 import combat.util.aEP_ID
 import com.fs.starfarer.api.impl.campaign.ids.Commodities
-import com.fs.starfarer.api.campaign.rules.MemoryAPI
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags
 import com.fs.starfarer.api.campaign.econ.Industry.IndustryTooltipMode
@@ -14,7 +13,6 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.campaign.econ.Industry
-import com.fs.starfarer.api.impl.campaign.fleets.FleetFactory
 import com.fs.starfarer.api.util.WeightedRandomPicker
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactory.PatrolType
 import com.fs.starfarer.api.impl.campaign.fleets.RouteManager.OptionalFleetData
@@ -24,7 +22,6 @@ import com.fs.starfarer.api.impl.campaign.fleets.RouteManager.RouteSegment
 import com.fs.starfarer.api.campaign.CampaignFleetAPI
 import com.fs.starfarer.api.campaign.BattleAPI
 import com.fs.starfarer.api.campaign.CampaignEventListener.FleetDespawnReason
-import com.fs.starfarer.api.campaign.CampaignEventListener
 import com.fs.starfarer.api.impl.campaign.fleets.FleetParamsV3
 import com.fs.starfarer.api.campaign.FactionAPI
 import com.fs.starfarer.api.impl.campaign.econ.impl.MilitaryBase

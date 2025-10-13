@@ -1,6 +1,5 @@
 package com.fs.starfarer.api.impl.campaign.rulecmd;
 
-import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
@@ -534,7 +533,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     boolean has = false;
     for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
       if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation")
-              && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") >= 0.75f) {
+              && Global.getSector().getPlayerFaction().getRelationship("aEP_FSF") >= 0.7f) {
         for (PersonAPI person : market.getPeopleCopy()) {
           //科学家不在市场中，出去
           if (!person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) continue;

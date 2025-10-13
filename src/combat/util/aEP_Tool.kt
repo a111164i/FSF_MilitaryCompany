@@ -1200,9 +1200,11 @@ class aEP_Tool {
       if (t is ShipAPI) {
         if (t.getShield() != null && t.getShield().isOn && t.getShield().isWithinArc(checkPoint) && MathUtils.getDistance(checkPoint, t.getLocation()) < t.getShield().radius) return checkPoint
       }
+      t.exactBounds?.update(t.location, t.facing)
       toReturn = CollisionUtils.getCollisionPoint(point, checkPoint, t)
       return toReturn
     }
+
 
     @JvmStatic
     fun getFighterReplaceRate(reduceAmount: Float, ship: ShipAPI): Float {
@@ -2249,6 +2251,7 @@ class aEP_Tool {
         DamageType.ENERGY -> realDamage *= EnFactor
         DamageType.FRAGMENTATION -> realDamage *= FragFactor
 
+        else -> {}
       }
       return realDamage
     }

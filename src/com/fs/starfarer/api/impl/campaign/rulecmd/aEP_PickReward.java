@@ -11,7 +11,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.util.Misc;
 import combat.util.aEP_DataTool;
 import combat.util.aEP_Tool;
-import campaign.aEP_OpPageManager;
+import data.scripts.campaign.aEP_OpPageManager;
 
 import java.awt.*;
 import java.util.ArrayList;

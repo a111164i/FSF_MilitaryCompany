@@ -184,6 +184,11 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       //如果成功进入100内
       val dist = MathUtils.getDistance(ship,target)
       if(dist < 100f){
+
+        //每帧更新一次自己碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
+        ship.visualBounds?.update(ship.location,ship.facing)
+        ship.exactBounds?.update(ship.location,ship.facing)
+
         val randomPointAtCir =MathUtils.getRandomPointOnCircumference(target.location,target.collisionRadius + 100f)
         val hitPoint = CollisionUtils.getCollisionPoint(randomPointAtCir, target.location, target)
         //处于100内，并且成功生成一个随机附着点，切换到吸附模式

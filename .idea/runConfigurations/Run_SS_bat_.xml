@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run SS bat " type="BatchConfigurationType" factoryName="Batch">
+    <module name="FSF_MilitaryCorporation" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../starsector-core" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../starsector-core/starsector.bat" />
+    <option name="PARAMETERS" value="" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="FSF_MilitaryCorporation:jar" />
+      </option>
+    </method>
+  </configuration>
+</component>

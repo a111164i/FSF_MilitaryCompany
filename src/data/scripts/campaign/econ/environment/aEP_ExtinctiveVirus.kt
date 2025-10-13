@@ -3,10 +3,7 @@ package data.scripts.campaign.econ.environment
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.FactionAPI
 import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin
-import com.fs.starfarer.api.impl.campaign.ids.Commodities
-import com.fs.starfarer.api.impl.campaign.ids.Industries
 import com.fs.starfarer.api.util.IntervalUtil
-import org.lazywizard.lazylib.MathUtils
 
 class aEP_ExtinctiveVirus : BaseMarketConditionPlugin() {
 

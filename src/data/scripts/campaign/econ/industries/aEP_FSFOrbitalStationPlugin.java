@@ -9,7 +9,7 @@ public class aEP_FSFOrbitalStationPlugin extends OrbitalStation
 
   @Override
   public boolean isAvailableToBuild() {
-    return false;
+    return true;
   }
 
   @Override

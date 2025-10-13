@@ -3,87 +3,93 @@ id,trigger,conditions,script,text,options,notes
 # 通用的舰队招呼，因为openCommLink用的是指挥官人物的memory，所以获取舰队的状态是entity.xxx,,,,,,
 greetingFSFFriendly,OpenCommLink,"$faction.id == aEP_FSF
 $faction.friendlyToPlayer","$menuState = fleetConvMain 0
-FireAll PopulateOptions","$personName looks a little nervous but relaxes after seeing your image. ""Please proceed, Captain, with your matters.""
+FireAll PopulateOptions","$personName看起来有些紧张, 但在看到你的影像后放松了下来.""说吧, 舰长, 有什么事""
 OR
-""Greetings, friend of the company. While there are many eccentric individuals in this sector, we are not among them.""
+""向你问好, 公司的朋友. 在这片星域中疯狂的人很多, 幸好你我并不是其中之一""
 OR
-""Captains like you often need marines for missions, right? The Company has a program to train ordinary crew members to become marines. If you are interested, please contact the salesman in the Commercial Center for more details.""",,
+""舰长，遵循人之领的星舰互助条例向你提供帮助，有什么事吗""",,
 greetingFSFHostileWeakerDefiant,OpenCommLink,"$faction.id == aEP_FSF
 $entity.isHostile
 $entity.relativeStrength < 0
-$entity.weakerThanPlayerButHolding",$ignorePlayerCommRequests = true 1,"The image of $personName stares at you silently through the static of the communicator. After a brief pause, they turn their head away.
+$entity.weakerThanPlayerButHolding",$ignorePlayerCommRequests = true 1,"""这个时候是不是要配一些激昂的演讲?"" 舰长一边向你笑着一边说到:""总会有这么一天, 让我们战场上见吧""
 OR
-""If only I could add even one more scratch to your fleet, damn it.""",cutCommLink:Cut the comm link,
+""我喜欢有挑战性的任务,而且我从未失手"", 舰长$personName咬牙切齿的说出这几个字:""今天也是一样""
+",cutCommLink:切断链接,
 greetingFSFHostileWeaker,OpenCommLink,"$faction.id == aEP_FSF
 $entity.isHostile
-$entity.relativeStrength < 0",$ignorePlayerCommRequests = true 1,"""Isn't this the time for some rousing speeches?"" The captain of the company smiles at you defiantly. ""Today, we'll meet on the battlefield.""
+$entity.relativeStrength < 0",$ignorePlayerCommRequests = true 1,"在通讯器连接不稳定而产生的的波纹中, $personName的影像一言不发的盯着你, 在短暂的沉默后他转头离开了镜头.
 OR
-""I like challenging assignments, and I never fail to deliver,"" $personName says through gritted teeth. ""Today is no different.""",cutCommLink:Cut the comm link,
+""如果我能给你的舰队多添哪怕一道划痕, 该死的""
+",cutCommLink:切断链接,
 greetingFSFHostileStronger,OpenCommLink,"$faction.id == aEP_FSF
 $entity.isHostile
-$entity.relativeStrength >= 0",$ignorePlayerCommRequests = true 1,"""I'll make each of your ships eat 2,000 shells, I swear.""
+$entity.relativeStrength >= 0",$ignorePlayerCommRequests = true 1,"""我会给你们每一个人头分配2000发炮弹, 我确定""
 OR
-""Only those with greater power have the right to decide, and today you've lost that right.""
+""有力量的一方才能决定, 今天你没有决定权""
 OR
-""Perhaps you can run for a while before I start blasting your fleet to smithereens.""",cutCommLink:Cut the comm link,
+""或许在把你的舰队轰成残骸前, 你可以先逃一段距离""
+",cutCommLink:切断链接,
 ,,,,,,
 ,,,,,,
 # 通用市场描述,,,,,,
 flavorTextMarketFSF,TradePanelFlavorText,"$global.tradePanelMode == MARKET
-$faction.id == aEP_FSF","AddText ""The harbour is divided into several areas, where one can see the warships of the FSF Company parked in a line on the opposite side. Visitors can be seen converging in several interconnected commercial areas, where merchants and principals from different places talk about their matters in the halls. At the edge of the hall, checkpoints of soldiers and security gates clearly separate the restricted area from the public areas, and should attempt to look inside the walls of the restricted area, they would simply be greeted by a protective grey layer, still cold and metallic, as if they were two worlds away from the bustling environment.""",,,
+$faction.id == aEP_FSF","AddText ""港口被划分为数个区域，停靠时可以看见在公司的军舰在另一侧停成了一列，通过细长站台访客们汇聚在数个相互连接的商业区域中，大厅中来自不同地方的商人和委托人在谈着自己的事项。在大厅的边缘，由士兵和安检门组成的检查点把限制区和公共区域分明的隔开，向里望去限制区内的墙壁只是简单的覆盖了一层灰色的保护层，仍然能感受到冰冷的金属材质，和所处热闹的环境仿佛是两个世界。"" marketFlavorTextColor",,,
 flavorTextMarketFSFMilitrayStation,TradePanelFlavorText,"$global.tradePanelMode == MARKET
 $faction.id == aEP_FSF
-$id == aEP_FSF_SpaceFactory","AddText ""As soon as you land you are greeted by staff with security guards, who lead you through the ship-like interior structure of metal and pipes, and eventually to a lounge-like area where you spot the company staff, dressed in black uniforms, talking and laughing with each other. The atmosphere feels slightly awkward, given that outsiders like you are rarely seen here, but at least there is the normal greenery and decorations, with a panoramic screen with simulated sunlight and a natural background playing on a loop, giving you a sense of place.""",,,
+$id == aEP_FSF_SpaceFactory","AddText ""在落地的同时就有工作人员带着警卫出来迎接，在他们的带领下穿过如同舰船一样的由金属和管道组成的内部结构，最后到达了一块类似休息区的地方，这里能看到公司的员工们穿着黑色的制服相互谈笑着，作为外来者的人才是少数，让人感到略显尴尬，但至少这里有正常的绿化和装饰，甚至还有模拟阳光和循环播放着自然背景的全景屏幕"" marketFlavorTextColor",,,
 ,,,,,,
 ,,,,,,
 #  fsf consult greet,,,,,,
 aEP_ConsultGreeting01,PickGreeting,"$isaEP_Consult
 !$faction.isHostile
-",ShowPersonVisual,"$personName gives you a professional smile: ""Hello, welcome to the front desk of FSF Corporation. How may I assist you?""","0:aEP_offer_remain_part01:Ask $personName ""I heard that you are buying salvage parts?""
-1:aEP_marine_training01:Ask $personName ""I want to train some Marines""
-3:cutCommLink:""I'm just browsing.""",
+","ShowPersonVisual
+","$personName 向你做出了一个职业的微笑:""您好,欢迎来到公司前台,请问有什么需要""","0:aEP_offer_remain_part01:询问 $personName ""我听说,你们在收购残余零件?""
+1:aEP_marine_training01:询问 $personName ""我想训练一些陆战队员""
+3:cutCommLink:""我只是逛逛""",
 aEP_ConsultGreeting02,PickGreeting,"$isaEP_Consult
 $faction.isHostile
 ","ShowPersonVisual
 
-","$personName looks at you with surprise. ""Are you seriously calling this channel? Last I checked, you've been classified as a hostile target, to be shot on sight.""",cutCommLink:Cut the comm link,
+","$personName 惊讶的看着你,""你是认真的吗?我想你已经被划进危险分子名单了""",0:cutCommLink:切断通讯,
 ,,,,,,
 ,,,,,,
 #  offer remain parts,,,,,,
-aEP_offer_remain_part01,DialogOptionSelected,$option == aEP_offer_remain_part01,FireAll aEP_offer_remain_part01_Opts,"""One of our services at the Company involves recycling these valuable parts. While you might sell them as raw materials elsewhere, only we truly understand their worth. By entrusting them to us, you will significantly benefit, as will we. In return, we offer you unique rewards along with a substantial bonus.""",,
+aEP_offer_remain_part01,DialogOptionSelected,$option == aEP_offer_remain_part01,FireAll aEP_offer_remain_part01_Opts,"""我们一直在回收这些有价值的零件,或许您在其他地方只能当成原材料出售,但我们理解它真正的价值,将它交给我们对我们有很大的帮助,当然同样是对您,除了一笔可观的奖金外我们也会提供给您一些独特的奖励""",,
 aEP_part01_Have,aEP_offer_remain_part01_Opts,aEP_CheckItem aEP_remain_part 0 more,"aEP_HandInParts aEP_remain_part 0 none 0 showNum
-",,0:aEP_offer_remain_part03:Exchange salvaged parts for special rewards,
-aEP_part01_NotHave,aEP_offer_remain_part01_Opts,aEP_CheckItem aEP_remain_part 1 less,,,"0:cutCommLink:""I'm afraid I don't have one of those right now."" 
+",,"0:aEP_offer_remain_part03:使用残余零件换取特殊奖励
+1:aEP_offer_remain_part02:使用残余零件换取星币 
+2:cutCommLink:""我再考虑一下""",
+aEP_part01_NotHave,aEP_offer_remain_part01_Opts,aEP_CheckItem aEP_remain_part 1 less,,,"0:cutCommLink:""恐怕我现在没有这种东西""
 ",
 aEP_offer_remain_part02,DialogOptionSelected,$option == aEP_offer_remain_part02,"aEP_HandInParts aEP_remain_part 0 credits 200 chooseNum
-",,0:cutCommLink:Cut the comm link,
-aEP_offer_remain_part03,DialogOptionSelected,$option == aEP_offer_remain_part03,,"""You can't obtain these things without the right connections.""","0:aEP_part03_ShowShipBpList:Exchange for ship blueprints
-1:aEP_part03_ShowBpPackList:Exchange for blueprint packages
-2:cutCommLink:""I'll think about it.""",
-aEP_part03_ShowShipBpList,DialogOptionSelected,$option == aEP_part03_ShowShipBpList,aEP_PickReward showPanel ship_bp,,"0:cutCommLink:Cut the comm link
-1:aEP_offer_remain_part03:Choose again",
-aEP_part03_ShowBpPackList,DialogOptionSelected,$option == aEP_part03_ShowBpPackList,aEP_PickReward showPanel bp_package,,"0:cutCommLink:Cut the comm link
-1:aEP_offer_remain_part03:Choose again",
-aEP_part03_ShowWeapBpList,DialogOptionSelected,$option == aEP_part03_ShowWeapBpList,,,"0:cutCommLink:Cut the comm link
-1:aEP_offer_remain_part03:Choose again",
-aEP_part03_ShowShipList,DialogOptionSelected,$option == aEP_part03_ShowShipList,,,"0:cutCommLink:Cut the comm link
-1:aEP_offer_remain_part03:Choose again",
-aEP_part03_ConfirmBuying,DialogOptionSelected,aEP_CheckItem aEP_part03_ConfirmBuying_ 0 checkId,aEP_PickReward confirmBuying,,0:cutCommLink:Cut the comm link,
-aEP_part03_Buy,DialogOptionSelected,$option == aEP_part03_Buy,aEP_PickReward buy,,0:cutCommLink:Cut the comm link,
+",,0:cutCommLink:切断通讯,
+aEP_offer_remain_part03,DialogOptionSelected,$option == aEP_offer_remain_part03,,"""这些东西没有点关系可弄不到""","0:aEP_part03_ShowShipBpList:交换舰船蓝图
+1:aEP_part03_ShowBpPackList:交换蓝图包
+2:cutCommLink:""我再考虑一下""",
+aEP_part03_ShowShipBpList,DialogOptionSelected,$option == aEP_part03_ShowShipBpList,aEP_PickReward showPanel ship_bp,,"0:cutCommLink:切断通讯
+1:aEP_offer_remain_part03:重新选择",
+aEP_part03_ShowBpPackList,DialogOptionSelected,$option == aEP_part03_ShowBpPackList,aEP_PickReward showPanel bp_package,,"0:cutCommLink:切断通讯
+1:aEP_offer_remain_part03:重新选择",
+aEP_part03_ShowWeapBpList,DialogOptionSelected,$option == aEP_part03_ShowWeapBpList,,,"0:cutCommLink:切断通讯
+1:aEP_offer_remain_part03:重新选择",
+aEP_part03_ShowShipList,DialogOptionSelected,$option == aEP_part03_ShowShipList,,,"0:cutCommLink:切断通讯
+1:aEP_offer_remain_part03:重新选择",
+aEP_part03_ConfirmBuying,DialogOptionSelected,aEP_CheckItem aEP_part03_ConfirmBuying_ 0 checkId,aEP_PickReward confirmBuying,,0:cutCommLink:切断通讯,
+aEP_part03_Buy,DialogOptionSelected,$option == aEP_part03_Buy,aEP_PickReward buy,,0:cutCommLink:切断通讯,
 ,,,,,,
 ,,,,,,
 #  train marines,,,,,,
-aEP_marine_training01,DialogOptionSelected,$option == aEP_marine_training01,,"""Of course, we offer crew-oriented courses in equipment operation, precision shooting, tactical maneuvers, simulated confrontations, and a host of other programs to ensure that they will be able to undertake combat missions at the level of regular Marines once their training is completed.""","0:aEP_marine_training_show:""Continue""
-1:cutCommLink:""Let me think about it.""",
-aEP_marine_training_show,DialogOptionSelected,$option == aEP_marine_training_show,aEP_TrainMarine selection ,,"0:cutCommLink:""Let me think about it.""",
+aEP_marine_training01,DialogOptionSelected,$option == aEP_marine_training01,,"""当然,我们提供面向船员的课程,包括装备操作,精准射击,战术动作,模拟对抗等一系列训练,在完成时确保他们的作战能力达到正规军水平""","0:aEP_marine_training_show:""继续""
+1:cutCommLink:""我要考虑一下""",
+aEP_marine_training_show,DialogOptionSelected,$option == aEP_marine_training_show,aEP_TrainMarine selection ,,"0:cutCommLink:""我要考虑一下""",
 aEP_marine_training_start,DialogOptionSelected,$option == aEP_marine_training_start,aEP_TrainMarine start,,,
 ,,,,,,
 aEP_marine_training_deal,DialogOptionSelected,"$option == aEP_marine_training_deal
-",,"""Very well. Training will be completed in about three months, after which your crew will re-board your fleet when you visit a non-hostile spaceport.""","0:cutCommLink:""Alright.""",
+",,"""很好,训练将在大约3个月后完成,届时您的船员将在您访问非敌对势力的空间站时重新登船""","0:cutCommLink:""那就这样""",
 aEP_marine_training_complete,MarketPostDock,"aEP_TrainMarine check
 $hasMarket
 !$faction.isHostile
-$faction.id != neutral",aEP_TrainMarine complete,,"0:marketVisitBar:""Go get a drink at the nearest bar""",
+$faction.id != neutral",aEP_TrainMarine complete,,0:marketVisitBar:欢迎他们重新登舰，到酒吧请每个人喝一杯,
 ,,,,,,
 ,,,,,,
 #任务线第一节（stage0） 找武器,,,,,,
@@ -92,9 +98,9 @@ $faction.id == aEP_FSF
 $faction.AWM_MetYang == false
 aEP_AdvanceWeaponMission shouldStart
 $faction.AWM_1Complete == false","$faction.AWM_MetYang = true
-","Some time after docking, you are lingering in an unrestricted area of the port when you receive a communication request from someone who appears to be from the FSF Corporation: ""I've heard about you and your exploits, and I'd like to ask for your help with a matter concerning the company. Shall we meet up to discuss it?""","0:aEP_researcher_stage0_GreetAccept:""Tell me the details.""
-1:aEP_researcher_stage0_GreetDecline:""Sorry, I'm busy at the moment.""",
-aEP_researcher_stage0_GreetAccept,DialogOptionSelected,$option == aEP_researcher_stage0_GreetAccept,aEP_AdvanceWeaponMission shouldStart,"""Trust me, you will not regret taking on this mission. That said, may we switch to your personal comms? This matter involves some confidentiality.""",0:aEP_researcher_stage0_talk01:Continue,
+","与港口的对接完成后，你在港口非限制区内闲逛时受到了一条来自公司内部人员的通讯请求:""我知道你的一些事迹，或许我们可以谈一谈，我这里有份工作给你""","0:aEP_researcher_stage0_GreetAccept:""说说具体内容""
+1:aEP_researcher_stage0_GreetDecline:""我现在没有时间""",
+aEP_researcher_stage0_GreetAccept,DialogOptionSelected,$option == aEP_researcher_stage0_GreetAccept,aEP_AdvanceWeaponMission shouldStart,"""相信我，你绝对不会后悔的，切换到个人通讯吧，这件事情涉及到一些机密""",0:aEP_researcher_stage0_talk01:继续,
 ,,,,,,
 #触发了空间站弹出文本后，给人物打上高亮提醒这有一个任务,,,,,,
 aEP_researcher_stage0_GreetDecline,DialogOptionSelected,$option == aEP_researcher_stage0_GreetDecline,"FireBest MarketPostOpen
@@ -105,56 +111,57 @@ $faction.AWM_1Talked == false
 $faction.AWM_MetYang == true SCORE:100
 $faction.AWM_1Complete == false
 ","ShowPersonVisual
-","""Do you have some time now? Although this job involves confidential material, I promise the payoff will be substantial.""","0:aEP_researcher_stage0_talk01:""Tell me the details.""
-1:cutCommLink:""Sorry, I'm still rather busy as of now.",
+","""那么现在你有时间了吗，这件工作涉及到一些机密内容，但我保证回报超过你的想象""","0:aEP_researcher_stage0_talk01:""说说内容""
+1:cutCommLink:""抱歉我暂时还是没有时间""",
 aEP_researcher_stage0_greeting_InWithHostile,PickGreeting,"$isaEP_Researcher 
 $faction.isHostile SCORE:10000
 $faction.AWM_MetYang == true
 
 ","ShowPersonVisual
-","""Even though I personally trust your strength and competence, it would be troublesome to get involved with you given your current relationship with the company. We'll discuss other matters once you've resolved your standing with us.""",0:cutCommLink:Cut the comm link,
+","""尽管我个人信任你的实力和办事水平，但鉴于你与公司现在的关系，等你修复以后再来谈其他的事情""",0:cutCommLink:切断通讯,
 aEP_researcher_stage0_greeting_normal,PickGreeting,"$isaEP_Researcher 
 $faction.AWM_MetYang == false
 $faction.AWM_1Complete == false","ShowPersonVisual
-","""You are speaking to the director of the FSF's Advanced Weapons Program, $personName. Now, how did you obtain my contact information? I don't recall listing it in the public directory.""",0:cutCommLink:Cut the comm link,
+","""我是FSF旗下先进武器计划的项目主管，$personName。话说你是怎么有我的联系方式的，公开目录上应该找不到我才对""",0:cutCommLink:切断通讯,
 aEP_researcher_stage0_talk01,DialogOptionSelected,"$option == aEP_researcher_stage0_talk01
 $faction.AWM_1Talked == false
 $faction.AWM_1Complete == false","ShowPersonVisual
 $faction.AWM_1Talked = true
 
-","""Well, let's just have a face-to-face talk, shall we?"" While you're looking at your personal terminal, $personFirstName herself finds you in the unrestricted section. ""You certainly don't look as legendary as the rumors make you out to be, for what it's worth. If you don't mind, shall we head to my office and talk?""
-","0:aEP_researcher_stage0_talk02:""Maybe you should tell me what kind of work it is first.""",
+","""让我们来正式谈一谈这件事吧""--正在你看着个人终端的时候，$personFirstName本人已经在非限制区找到了你，说""看起来你的打扮没有你干过的事情那么传奇，现在我们该找一个地方坐下来聊，不介意的话去我的办公室吧""。","0:aEP_researcher_stage0_talk02:""或许你该先告诉我是什么类型的工作""",
 ,,,,,,
 # 要等人物头像出来了，对话对象才是人物而不是站点，这个消除高亮才有效,,,,,,
-aEP_researcher_stage0_talk02,DialogOptionSelected,$option == aEP_researcher_stage0_talk02,aEP_AdvanceWeaponMission highlightPerson lili_yang  off,"""Unfortunately, I can't divulge too much without your cooperation, as this matter involves certain confidential information. However, I am confident that a captain like you would be quite interested in the latest products from the Company's secret research institute, no?"" With that, you somewhat half-heartedly follow $personFirstName into the depths of the restricted area.
+aEP_researcher_stage0_talk02,DialogOptionSelected,$option == aEP_researcher_stage0_talk02,aEP_AdvanceWeaponMission highlightPerson lili_yang  off,"
+""在我们有更多的合作以前都不能说太多，这件事情涉及到公司的机密。但我有自信，你这样的舰长对来自公司秘密研究所的最新产品应该没有什么抵抗力""。你半信半疑的跟着$personFirstName，进到了这座军事空间站的限制区深处。
 
-From the looks of things, $heOrShe seems to have fairly high clearance, at least high enough to bring a stranger through the fortress unhindered. After some time on foot, you arrive at what appears to be a design office. Walking past the side-by-side offices along the way, you see the drawings on the terminals within. With your experience as a captain of spaceships, you immediately realize that the main products of this particular place are shipboard weapons-likely advanced ones.
+从目前的情况看$heOrShe应该有相当高的权限，至少高到仅凭自己的身份验证就能带着一个陌生人在要塞里畅通无阻。在一段时间的步行后，你来到了一个似乎是设计所的地方。穿过沿途并排的办公室，可以透过窗户看到里面员工电脑上的图纸，作为舰长你立刻意识到这地方所设计的东西是舰载武器。
 
-After walking through the office area, you ascend via an escalator to what appears to be the management area. In front of an office labeled ""Project Manager,"" $personFirstName swipes a card across a nearby scanner, opening the door.",0:aEP_researcher_stage0_talk03:Follow $himOrHer in,
-aEP_researcher_stage0_talk03,DialogOptionSelected,$option == aEP_researcher_stage0_talk03,aEP_AdvanceWeaponMission show1,"$personFirstName sits down in $hisOrHer seat and says to you while operating the terminal, ""To make it brief, I need you to collect some weapons-those that aren't in our inventory-for my institute on behalf of your fleet."" $heOrShe sends a detailed message to your personal terminal, outlining a list of weapons, their rumored specifications and appearances, along with various other intel on them.","0:aEP_researcher_stage0_talk04:""I feel like I'm entitled to an explanation at least.""
-1:aEP_researcher_stage0_AskAccept:Continue",
-aEP_researcher_stage0_talk04,DialogOptionSelected,$option == aEP_researcher_stage0_talk04,,"""Interested, huh? I like that,"" $heOrShe says as $heOrShe stops what $heOrShe is doing and gets up, walking around to you and crossing $hisOrHer arms over $hisOrHer chest while leaning against the wall. ""I should formally introduce myself; although you probably noticed by now, I am the director of the Company's 'Advanced Weapons Program.' You can think of me as a sort of researcher, but not the usual kind.""
+在穿过办公区后，你们登上了扶梯，到了似乎是管理层的区域。在门上挂着""项目主管""的办公室门前，$personFirstName刷开了门示意你就在这里。",0:aEP_researcher_stage0_talk03:跟着$heOrShe进去,
+aEP_researcher_stage0_talk03,DialogOptionSelected,$option == aEP_researcher_stage0_talk03,aEP_AdvanceWeaponMission show1,"$personFirstName坐到了$heOrShe的座位上，一边在操作电脑一边对你说""我就长话短说吧，我希望你能以自己舰队的名义帮我搜集一些武器""，$heOrShe把详细的消息发到了你的个人终端上","0:aEP_researcher_stage0_talk04:""我觉得我需要更多说明""
+1:aEP_researcher_stage0_AskAccept:继续",
+aEP_researcher_stage0_talk04,DialogOptionSelected,$option == aEP_researcher_stage0_talk04,,"""出乎意料的对故事感兴趣，我喜欢这种性格""，$heOrShe停下了手上的动作，起身绕到你身旁，双手交叉在胸前背靠着墙，看向你说到:""我该正式介绍一下自己的工作，我是'先进武器计划'简称AWM项目的主管，是一个'科学家'，但不是你想的那种。""
 
-""Specifically, my job is to ensure the smooth running of the project, which means being familiar with various 'channels' such as you, Captain."" $personFirstName leaves the wall and continues while returning to $hisOrHer computer desk, ""I've researched your exploits and believe that building a relationship with you would be beneficial to both me personally and the company.""
+""我的工作是保障项目的顺利进行，这意味着需要熟悉各种'渠道'，比如你，舰长""，$personFirstName离开了墙边，一边回到$heOrShe的电脑桌前一边继续道:""我调查过你的事迹了，相信和你建立关系无论对我个人还是对公司都有好处""
 
-""I can't say much about the 'Advanced Weapons Program'; just go with the name for now. For some tasks, especially those related to the procurement of weapons, going through the red tape takes more effort than getting a capable independent captain like you to handle them. That's why I've spent so much effort looking for someone like you. Upon completion of this task, I will give you some prototype weapons from my program that are not available on the market. Think of it as helping us test their capabilities and check the data. Rest assured, they are feature-complete and operational in all manners-just not mass-produced for various reasons.""","0:aEP_researcher_stage0_AskAccept:""Very reasonable.""",
-aEP_researcher_stage0_AskAccept,DialogOptionSelected,$option == aEP_researcher_stage0_AskAccept,,"""Are you willing to take on this job?""","0:aEP_researcher_stage0_Accept:Accept
-1:aEP_researcher_stage0_Decline:Decline
+""对于'先进武器计划'我不能做过多说明，你按照名字理解就好。对于有些任务，走程序耗费的精力，比找你这样有能力的独立舰长完成要多得多，作为回报我会给你一些市面上搞不到原型武器，就当作帮我们测试数据了，请放心，都是完成度很高的产品，只是因为各种原因无法量产而已""","0:aEP_researcher_stage0_AskAccept:""很合理""",
+aEP_researcher_stage0_AskAccept,DialogOptionSelected,$option == aEP_researcher_stage0_AskAccept,,"""这个任务你接受吗？""","0:aEP_researcher_stage0_Accept:接受
+1:aEP_researcher_stage0_Decline:拒绝
 ",
 ,,,,,,
 #当玩家接受任务后，取消人物高亮,,,,,,
 aEP_researcher_stage0_Accept,DialogOptionSelected,$option == aEP_researcher_stage0_Accept,"aEP_AdvanceWeaponMission start1
 $faction.AWM_1Accepted = true
-","""Very well. Good luck with the task-for the sake of us both!""",0:cutCommLink:Return to your ship,
-aEP_researcher_stage0_Decline,DialogOptionSelected,$option == aEP_researcher_stage0_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""That's unfortunate. Should you change your mind, please feel free to contact me again.""",0:cutCommLink:Return to your ship,
+","""很好，希望你不要辜负我的信任--为了进一步的合作""",0:cutCommLink:切断通讯,
+aEP_researcher_stage0_Decline,DialogOptionSelected,$option == aEP_researcher_stage0_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""如果你回心转意了，可以再联系我""",0:cutCommLink:切断通讯,
 aEP_researcher_stage0_ReAsk,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_1Accepted == false
 $faction.AWM_1Talked == true
 $faction.AWM_MetYang == true
 $faction.AWM_1Complete == false","ShowPersonVisual
-aEP_AdvanceWeaponMission show1","""So, have you changed your mind?""","0:aEP_researcher_stage0_Accept:Accept
-1:aEP_researcher_stage0_Decline:Decline",
+aEP_AdvanceWeaponMission show1","""继续上次的话题？""","0:aEP_researcher_stage0_Accept:接受
+1:aEP_researcher_stage0_Decline:拒绝
+",
 aEP_researcher_stage0_ReAskAccepted,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_1Accepted == true
@@ -162,7 +169,7 @@ $faction.AWM_1Talked == true
 $faction.AWM_MetYang == true
 $faction.AWM_1Complete == false
 ","ShowPersonVisual
-","""How are you doing?""","0:cutCommLink:""I'm afraid you'll have to wait a few more days.""",
+","""进度怎么样""","0:cutCommLink:""恐怕你要再等几天""",
 aEP_researcher_stage0_ReAskComplete,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_1Accepted == true
@@ -174,8 +181,8 @@ aEP_AdvanceWeaponMission check1 SCORE:100
 ","ShowPersonVisual
 $faction.AWM_1Complete = true
 aEP_AdvanceWeaponMission complete1
-aEP_HandInParts aEP_b_m_lighting -2 none 0","""Very well done, just as I expected. Here's to a fulfilling future partnership!""","0:aEP_researcher_stage0_Complete_talk01:""So, let me see what's so special about the payment.""",
-aEP_researcher_stage0_Complete_talk01,DialogOptionSelected,$option == aEP_researcher_stage0_Complete_talk01,,"""As the name of our department suggests, we are responsible for weapons development within the company. Naturally, many projects have come close to success but were ultimately abandoned because they were either too costly or too unreliable in harsh environments. We don't want these 'experiments' to simply sit in storage and deteriorate.""","0:cutCommLink:""Let's hope that these 'failed experiments' have that value in the field.""",
+aEP_HandInParts aEP_b_m_lighting -2 none 0","""很好，你的表现证明我的眼光没错，或许之后我们会有更多的合作""","0:aEP_researcher_stage0_Complete_talk01:""让我看看报酬有什么特殊之处""",
+aEP_researcher_stage0_Complete_talk01,DialogOptionSelected,$option == aEP_researcher_stage0_Complete_talk01,,"""正如部门的名字所示，我们负责武器的研发，自然有很多接近成功但是因为成本过高或者恶劣环境下可靠性太低等问题而下马的项目，我们也不希望这些'实验品'就这么在仓库里发霉""","0:cutCommLink:""希望它有这个价值""",
 ,,,,,,
 ,,,,,,
 #任务线第二节（stage1） 摧毁无人舰,,,,,,
@@ -186,14 +193,14 @@ $faction.AWM_1Complete == true
 $faction.AWM_2Complete == false
 aEP_AdvanceWeaponMission shouldStart2
 ","$faction.AWM_2MetYang = true
-aEP_AdvanceWeaponMission highlightPerson lili_yang  on","As you approach the space station, you receive a message directly from an internal FSF channel: ""Captain, I have a new job for you. Feel free to contact me if you are interested-you have my comms ID, after all. - Yang""","0:aEP_researcher_stage0_GreetDecline:""Got it.""",
+aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我这里有一份新的工作给你，感兴趣的话随时可以联系我--你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
 aEP_researcher_stage1_greeting_out,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_1Complete == true
 $faction.AWM_2Complete == false
 
 ","ShowPersonVisual
-","""Thank you for your valuable collaboration with us last time. Unfortunately, I don't have an assignment for you at the moment.""",0:cutCommLink:Cut the comm link,
+","""之前是一次简单的合作，你显然证明自己可以参与更深层次的合作，可惜我现在没有任务给你""",0:cutCommLink:切断通讯,
 aEP_researcher_stage1_greeting_in,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_2MetYang == true
@@ -203,33 +210,34 @@ $faction.AWM_2Complete == false
 aEP_AdvanceWeaponMission shouldStart2
 ","ShowPersonVisual
 $faction.AWM_2Talked = true
-","After picking up the comms, you meet in the commercial sector of the station. This time, $personName is not wearing the civilian attire you saw $himOrHer in last but instead dons the FSF uniform, appearing like a commissioned officer of the company. Just like before, $heOrShe leads you through the restricted area with an air of authority. However, instead of heading to the research quarters, you are led straight to the company's military zone.
+","接通通讯后，你们在空间站公开区域的商业区里碰头了，$personName这次并没有穿着研究所的衣服，而是FSF的制服，看起来更像是公司所属的某位指挥。像上次一样，$heOrShe带着你如入无人之地一样在限制区里穿行，但这次并没有去研究所，而是直接进入了军事区。
 
-Eventually, you stop at a conference room where a presentation seems to have taken place earlier. In the center, a holographic projection displays a ship floating in an asteroid belt, which you can't identify. Judging from the rough structural finish and the worn-out crest of the Domain of Man painted on the side, you surmise that it's one of the self-replicating unmanned probes of the Domain Explorarium.
+最终在某个类似会议室的地方你们停下了脚步，里面似乎在之前举行了一场报告会，中央的全息投影显示着一艘你认不出型号的舰船漂浮在小行星带中，从粗糙的结构完工度与涂装上的人之领图案可以推测是某种自我复制的无人探测舰。
 
-$personFirstName waits patiently for you to finish examining the strange ship before making a gesture that causes the holographic projection to play. As you watch, the drone ship remains stationary while asteroids float around it. Suddenly, as a particular asteroid is about to collide with the drone ship, it activates a shield.",0:aEP_researcher_stage1_talk01:Continue,
+$personFirstName站在旁边等着你审视完这艘奇怪的舰船，然后摆了一个手势，全息投影开始播放后续内容。无人舰保持静默，而小行星在四周漂浮，在某颗小行星快撞到无人舰的瞬间，它竟然产生了一层护盾。",0:aEP_researcher_stage1_talk01:继续,
 aEP_researcher_stage1_talk01,DialogOptionSelected,$option == aEP_researcher_stage1_talk01,"
-aEP_AdvanceWeaponMission highlightPerson lili_yang  off","$personFirstName looks at the tablet in $hisOrHer hand and says to you, ""This mission is urgent. The objective is the destruction of this particular Domain-era unmanned probe, and the retrieval of its shield core.""","0:aEP_researcher_stage1_talk02:""Looks like some kind of unmanned probe with shields installed, what's so unique about it that FSF can't handle?""",
-aEP_researcher_stage1_talk02,DialogOptionSelected,$option == aEP_researcher_stage1_talk02,,"As if $heOrShe knew this query would come up, $personFirstName flips the tablet over in $hisOrHer hand, displaying a battle report from one of the FSF fleets, and begins $hisOrHer explanation: ""Three months ago, a company-employed exploration fleet discovered this unique drone ship. The company then sent a medium-sized combat fleet to recover it, only for a firefight to ensue.""
+aEP_AdvanceWeaponMission highlightPerson lili_yang  off","$personFirstName看了一下手中的平板，对你说:""这次的任务比较紧急，要求摧毁这艘特殊的人之领无人探测舰，然后把它的护盾核心带回来""","0:aEP_researcher_stage1_talk02:""看起来是某种安装了护盾的无人探测舰，它有什么独特之处让你们处理不了""",
+aEP_researcher_stage1_talk02,DialogOptionSelected,$option == aEP_researcher_stage1_talk02,,"似乎早就知道会出现这个疑问，$personFirstName把手中的平板翻了过来，上面显示的是某只FSF舰队的战斗报告，像你解释道:""三个月以前一只公司雇佣的探索舰队发现了这艘独特的无人舰，就是你刚刚看到全息影像的出处。随后公司派出了一只中等规模的作战舰队去回收这艘无人舰，然后发生了交火""
 
-$heOrShe hands you the tablet and says, ""The results are in this report. After suffering light losses, the fleet commander judged that although he could have won the engagement, he would have incurred a lot of unnecessary damage. Consequently, he requested command to send another, larger fleet to handle it. Given the special nature of this ship, I felt you and your fleet would be the best option for the task.""","0:aEP_researcher_stage1_talk03:""Why am I the best person for the job? I don't really understand.""
-1:aEP_researcher_stage1_talk04:""Tell me about the characteristics of the target, I need more information.""",
-aEP_researcher_stage1_talk03,DialogOptionSelected,$option == aEP_researcher_stage1_talk03,aEP_AdvanceWeaponMission show2,"$personFirstName stands across from you, laughing out loud. Quickly, $heOrShe covers $hisOrHer mouth with $hisOrHer hand and says, ""I'm so sorry, $playerName. It looks like you're a bit slower to catch on than I thought."" Sensing that $personFirstName means no harm, you smile back to mask your embarrassment.
+$heOrShe把平板递给你，说:""结果就在这个报告上。在遭受了轻等规模的损失后，舰队指挥官判断:虽然可以在交战中取胜，但会造成很多不必要的损失，于是向指挥部申请由另一只更大的舰队去处理--鉴于这艘舰船的特殊性，我觉得你是最合适的人选""","0:aEP_researcher_stage1_talk03:""为什么说我是最合适的人选，我不是很理解""
+1:aEP_researcher_stage1_talk04:""说说那艘无人舰的特征，我需要更多信息""",
+aEP_researcher_stage1_talk03,DialogOptionSelected,$option == aEP_researcher_stage1_talk03,aEP_AdvanceWeaponMission show2,"$personFirstName站在你的对面笑了出来，赶忙用手捂住了自己的嘴，说到:""真是不好意思，$playerName，看起来你比我想的要更迟钝一点""，感觉到$personFirstName并没有恶意，你为了掩饰尴尬也微笑起来。
 
-""Yes, this is a very special drone ship, and I desperately need the data for the program. Theoretically, deploying a Company force to retrieve it would be the best course of action. However, it's equally important to keep it out of the hands of other powers. This brings me to my second point: a medium battle fleet, followed immediately by a large battle fleet heading towards the same location, will be the talk of the sector, regardless of what they retrieve. That's why it would cause more trouble if the Company were to undertake this mission instead of you. No one pays attention to where independent captains are flying all day, and it's better to keep this drone a secret than provoke a potentially troublesome conflict over it.""",,
-aEP_researcher_stage1_talk04,DialogOptionSelected,$option == aEP_researcher_stage1_talk04,aEP_AdvanceWeaponMission show2,"$personFirstName fiddles with the tablet for a moment and pulls up a document with specifications, then hands it back to you. ""What makes this drone ship special isn't just that it has shields. Installing shields on an unshielded drone is straightforward; it merely requires an AI with the right logic,"" she explains. ""What truly caught our attention is its incredibly efficient shield system. According to the previous engagement report, the ship's shields only began to show instability after enduring several times the damage that a conventional ship's shields could absorb. The fleet's technical officer has concluded that, with our current firepower, attempting to overload its shields would result in greater losses for our fleet.""
+""很简单的问题，首先这是一艘非常特殊的无人舰，我们研究所非常想要它的数据，同样重要的是不让其他势力知道。其次，一只中型战斗舰队后紧接着一只大型战斗舰队朝同一个地方行进，无论它们带回的是什么，都将成为星域的焦点。这就是为什么这件事情由公司来做会比让你来做要麻烦的多--没人会盯着独立舰长成天往哪飞，比起麻烦的谍战最好就让这件艘船成为秘密。""",,
+aEP_researcher_stage1_talk04,DialogOptionSelected,$option == aEP_researcher_stage1_talk04,aEP_AdvanceWeaponMission show2,"$personFirstName在平板上操作了几下，调出了一份文档，然后重新把平板递给了你，同时解释到:""这艘无人舰特别的地方不仅是因为它'有'护盾，为无盾舰船安装护盾并没有多少难度，需要的只是一个逻辑出错的ai。真正引起我们注意的是它优秀到不可能的护盾效率，根据之前交战报告中的描述，这艘舰船的护盾在承受了数倍于常规舰船护盾吸收极限的伤害后才开始呈现不稳定的现象，舰队的技术副官判断以当前的火力强度要想使它的护盾过载舰队会承受较大的损失""
 
-Noticing your half-hearted expression, $personFirstName refrains from showing you more information and continues, ""Apart from its remarkable shields, the rest of the ship, like its counterparts in the sector, is simply 'serviceable.' This means dismantling it shouldn't be too difficult for you.""",,
-aEP_researcher_stage1_talk05,DialogOptionSelected,$option == aEP_researcher_stage1_talk05,aEP_HandInParts aEP_b_m_lighting -2 none 0,"""Because of this, I'll provide your 'payment' in advance. Please note that it hasn't been mass-produced, and the Company has very few samples.""","0:aEP_researcher_stage1_AskAccept:""Thank you very much.""",
+看到你半信半疑的神色，$personFirstName并没有向你展示更多的信息，而是继续说道:""除了不合理的护盾，这艘舰船的其他地方就像星域中它的同行一样，仅仅能称作'能用'--这意味你有很多种方法能摧毁它""
+",,
+aEP_researcher_stage1_talk05,DialogOptionSelected,$option == aEP_researcher_stage1_talk05,aEP_HandInParts aEP_b_m_lighting -2 none 0,"""我会提前支付一部分报酬，但是这是没有投入量产的东西，研究所也没有很多""","0:aEP_researcher_stage1_AskAccept:""非常感谢""",
 aEP_researcher_stage1_AskAccept,DialogOptionSelected,$option == aEP_researcher_stage1_AskAccept,"ShowPersonVisual
 
-","""Are you willing to take on this job?""","0:aEP_researcher_stage1_Accept:Accept
-1:aEP_researcher_stage1_Decline:""I need to think about it.""
+","""那么你接受这个任务吗""","0:aEP_researcher_stage1_Accept:接受
+1:aEP_researcher_stage1_Decline:""我要思考一下""
 ",
 aEP_researcher_stage1_Accept,DialogOptionSelected,$option == aEP_researcher_stage1_Accept,"aEP_AdvanceWeaponMission start2
 $faction.AWM_2Accepted = true
-","""Good luck; I wouldn't want the Company to lose such a promising partner.""",0:cutCommLink:Return to your ship,
-aEP_researcher_stage1_Decline,DialogOptionSelected,$option == aEP_researcher_stage1_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""Considering that this mission is no child's play, I understand. Take some time to think it over.""",0:cutCommLink:Return to your ship,
+","""祝你好运，我不希望公司损失这样一个有潜力的合作伙伴""",0:cutCommLink:切断通讯,
+aEP_researcher_stage1_Decline,DialogOptionSelected,$option == aEP_researcher_stage1_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""这个任务可不是儿戏，你应该好好思考一下""",0:cutCommLink:切断通讯,
 ,,,,,,
 aEP_researcher_stage1_ReAsk,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
@@ -237,8 +245,9 @@ $faction.AWM_2Accepted == false
 $faction.AWM_2Talked == true
 $faction.AWM_2MetYang == true
 $faction.AWM_2Complete == false","ShowPersonVisual
-","""So, what do you think?""","0:aEP_researcher_stage1_Accept:Accept
-1:aEP_researcher_stage1_Decline:""I need to think about it.""",
+","""想的怎么样""","0:aEP_researcher_stage1_Accept:接受
+1:aEP_researcher_stage1_Decline:""我要思考一下""
+",
 aEP_researcher_stage1_ReAskAccepted,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_2Accepted == true
@@ -246,7 +255,7 @@ $faction.AWM_2Talked == true
 $faction.AWM_2MetYang == true
 $faction.AWM_2Complete == false
 ","ShowPersonVisual
-","""Are you in need of assistance?""","0:cutCommLink:""I'm afraid you'll have to wait a few more days.""",
+","""遇到困难了吗""","0:cutCommLink:""恐怕你要再等几天""",
 aEP_researcher_stage1_ReAskComplete,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_2Accepted == true
@@ -258,7 +267,7 @@ aEP_AdvanceWeaponMission check2 SCORE:100
 ","ShowPersonVisual
 $faction.AWM_2Complete = true
 aEP_AdvanceWeaponMission complete2
-aEP_HandInParts aEP_b_l_railwaygun -1 none 0","""We have received the shield generator you removed, so I'll begin processing the remainder of your payment. This prototype was once hailed as a significant achievement for the Company, but unfortunately, only a single unit was ever produced. I hope this somewhat underutilized candidate can still demonstrate its full brilliance in your hands.""","0:cutCommLink:""Just this one? Quite a sincere payment.""",
+aEP_HandInParts aEP_b_l_railwaygun -1 none 0","""你拆下来的护盾生成器我们已经收到了，你的报酬...对研究所而言，曾经是非常有意义的成果，目前已经生产的原型仅此一个，虽然现在比不上你完成的这个任务的价值。希望这个落选的家伙能在你的手上发挥它的余热""","0:cutCommLink:""仅此一件？相当有诚意的报酬""",
 ,,,,,,
 ,,,,,,
 #任务线第三节，巡洋导弹舰队,,,,,,
@@ -269,14 +278,14 @@ $faction.AWM_2Complete == true
 $faction.AWM_3Complete == false
 aEP_AdvanceWeaponMission shouldStart3
 ","$faction.AWM_3MetYang = true
-aEP_AdvanceWeaponMission highlightPerson lili_yang  on","As you approach the station, you are greeted by a familiar communication request: ""Urgent mission, come quickly. - Yang."" From the brief message, you can sense that something unusual is afoot.","0:aEP_researcher_stage0_GreetDecline:""Got it.""",
+aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条熟悉的通讯请求，""紧急任务，速来""。从简短的内容上就能感到这次任务的重要性不一般","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
 aEP_researcher_stage2_greeting_out,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_2Complete == true
 $faction.AWM_3Complete == false
 
 ","ShowPersonVisual
-","""It's good to see you, $playerName. Although I don't have any tasks for you to handle at the moment, perhaps we could take this opportunity to cultivate a personal relationship?""","0:cutCommLink:""Next time.""",
+","""见到你真好，$playerName，最近没有需要你出动的地方，或许我们可以培养一下私人关系""","0:cutCommLink:""下次吧""",
 aEP_researcher_stage2_greeting_in,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_3MetYang == true
@@ -286,25 +295,27 @@ $faction.AWM_3Complete == false
 aEP_AdvanceWeaponMission shouldStart3
 ","ShowPersonVisual
 $faction.AWM_3Talked = true
-","""Your arrival is fortuitous. I have an urgent matter that requires your abilities. Head to Restricted Deck R024; I will be waiting for you there.""",0:aEP_researcher_stage2_talk01:Board your shuttle and head to R024.,
+","""你在这个时候到访真是帮了我大忙，我现在有一件非常紧急的事情需要你的能力，到限制区R024甲板吧，我会在那等你""",0:aEP_researcher_stage2_talk01:继续,
 aEP_researcher_stage2_talk01,DialogOptionSelected,$option == aEP_researcher_stage2_talk01,"
-aEP_AdvanceWeaponMission highlightPerson lili_yang  off","As your shuttle comes into dock, you look through the porthole and see $personFirstName standing in the crowd, swinging $hisOrHer head from side to side, searching for your vessel.","0:aEP_researcher_stage2_talk02:""Its quite rare，$personFirstName, to see you in a state of distress.""",
-aEP_researcher_stage2_talk02,DialogOptionSelected,$option == aEP_researcher_stage2_talk02,,"$personFirstName nods at your observation of $hisOrHer discomfort and leads you without hesitation toward the Advanced Weapon Program's laboratories, guiding you all the way back to $hisOrHer office.
+aEP_AdvanceWeaponMission highlightPerson lili_yang  off",在你的穿梭机到底港口时，你透过舷窗看到$personFirstName站在人群中左右摆头寻找你飞船的样子。,"0:aEP_researcher_stage2_talk02:""这可真是少见，$personFirstName，看到你表现出不安""",
+aEP_researcher_stage2_talk02,DialogOptionSelected,$option == aEP_researcher_stage2_talk02,,"$personFirstName意识到了自己的失态，但并没有多做调整就带着你向""先进武器计划""实验室的方向走去，沿途穿过你上次经过的办公区，到了$heOrShe的办公室。
 
-As the office door closes, the seriousness is evident on $personFirstName's face. ""One of our prototype ships,"" $heOrShe declares with a frown, ""has been intercepted.""",0:aEP_researcher_stage2_talk03:Ask about the details of this matter,
-aEP_researcher_stage2_talk03,DialogOptionSelected,$option == aEP_researcher_stage2_talk03,,"$heOrShe props a hand on the table and leans forward to explain the situation to you. Some time ago, $personFirstName had commissioned the Commercial Centre's Orbital Works to build a ship designed by the Advanced Weapons Program project team. However, right after the maiden voyage, $personFirstName lost all contact with it and subsequently received a blackmail message from a pirate.
+在办公室的门关上后，$personFirstName已经把认真写在了脸上。""这次的事情非常严重""$heOrShe皱着眉头对你说， ""我们的一艘原型舰被人截走了""。","0:aEP_researcher_stage2_talk03:询问这件事的细节
+",
+aEP_researcher_stage2_talk03,DialogOptionSelected,$option == aEP_researcher_stage2_talk03,,"$heOrShe将一只手撑在桌面上，身体前倾向你解释了情况。$personFirstName委托商业中心的轨道工厂制造某艘""先进武器计划""项目组设计的舰船，在第一次边缘星系试航时完全失去联络，随后就收到了来自海盗的勒索讯息。
 
-""We have enough information to suggest that the test fleet was not simply hijacked from the outside by the pirates, but that someone hacked into the flagship's systems during the contact and sent orders to the surrounding fleet to surrender, allowing the pirates to easily take over the entire fleet,"" $personFirstName paused for a moment. ""This means that not only do we have a mole in our testing unit, but also that this group of pirates now possesses a military-grade Company fleet.""","0:aEP_researcher_stage2_talk04:""Well, now I can understand why you are so anxious.""",
-aEP_researcher_stage2_talk04,DialogOptionSelected,$option == aEP_researcher_stage2_talk04,,"""That's not the main reason for my anxiety. This particular prototype ship is equipped with one of our experimental weapons-a launch platform for strategic cruise missiles capable of destroying a small fleet before sensors can even detect its presence. If such a strategic weapon were to fall into the hands of pirates and be used to attack other factions, it would create a significant problem that affects the entire Sector. The Hegemony won't just sit idly by... In any case, I need you to destroy that fleet. As for the prototype ship, you can either keep it for yourself or return it to us; I trust you won't abuse it.""","0:aEP_researcher_stage2_AskAccept:""Looks like this is a really serious matter.""",
+""我们有足够的情报表示试航舰队并非是单纯被海盗从外部劫持，而是有人在接触时黑入了旗舰的系统，向周围的舰队发出投降的命令，使得海盗轻松接管了整只舰队。"",说到这里$personFirstName停顿了一下,""这意味着我们的试航舰队中混入了内鬼，也意味着这群海盗现在有了一支军用级别的舰队。","0:aEP_researcher_stage2_talk04:""我能理解你为什么那么焦虑了""
+",
+aEP_researcher_stage2_talk04,DialogOptionSelected,$option == aEP_researcher_stage2_talk04,,"""这不是我焦虑的最主要原因，真正的大问题是这艘原型舰上面搭载的武器系统，那是一种超视距打击的巡航导弹，能在传感器探测到敌方舰队影像前就摧毁一只小型舰队，如果从我们手上战略级别的武器流入给了海盗，并且被他们用来攻击其他势力，我们的问题就大了，这是涉及到整个英仙座的外交问题，霸主也不会坐视不管...总之我希望你摧毁那支舰队，而那艘原型船，如果可能的话回收它""","0:aEP_researcher_stage2_AskAccept:""看起来这事真的很严重""",
 aEP_researcher_stage2_AskAccept,DialogOptionSelected,$option == aEP_researcher_stage2_AskAccept,"ShowPersonVisual
 
-","""So, are you willing to accept this mission?""","0:aEP_researcher_stage2_Accept:Accept
-1:aEP_researcher_stage2_Decline:""I need to think about it.""
+","""那么你接受这个任务吗""","0:aEP_researcher_stage2_Accept:接受
+1:aEP_researcher_stage2_Decline:""我要思考一下""
 ",
 aEP_researcher_stage2_Accept,DialogOptionSelected,$option == aEP_researcher_stage2_Accept,"aEP_AdvanceWeaponMission start3
 $faction.AWM_3Accepted = true
-","""Captain, approach swiftly and handle the situation expediently. I suspect they will be eager to test the power of the cruise missiles, and you'll be a target from long range.""",0:cutCommLink:Return to your ship,
-aEP_researcher_stage2_Decline,DialogOptionSelected,$option == aEP_researcher_stage2_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""Considering this mission is no child's play, I understand. But given the urgency of the situation, please hurry.""",0:cutCommLink:Return to your ship,
+","""快速接近，然后速战速决，指挥官。我怀疑他们用你试验巡洋导弹的威力，远距离你会成为靶子的""",0:cutCommLink:切断通讯,
+aEP_researcher_stage2_Decline,DialogOptionSelected,$option == aEP_researcher_stage2_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""这个任务可不是儿戏，你应该好好思考一下""",0:cutCommLink:切断通讯,
 ,,,,,,
 aEP_researcher_stage2_ReAsk,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
@@ -312,8 +323,8 @@ $faction.AWM_3Accepted == false
 $faction.AWM_3Talked == true
 $faction.AWM_3MetYang == true
 $faction.AWM_3Complete == false","ShowPersonVisual
-","""So, what do you think?""","0:aEP_researcher_stage2_Accept:Accept
-1:aEP_researcher_stage2_Decline:""I need to think about it.""
+","""想的怎么样""","0:aEP_researcher_stage2_Accept:接受
+1:aEP_researcher_stage2_Decline:""我要思考一下""
 ",
 aEP_researcher_stage2_ReAskAccepted,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
@@ -322,7 +333,7 @@ $faction.AWM_3Talked == true
 $faction.AWM_3MetYang == true
 $faction.AWM_3Complete == false
 ","ShowPersonVisual
-","""Have you encountered any trouble?""","0:cutCommLink:""I'm afraid you'll have to wait a few more days.""",
+","""遇到困难了吗""","0:cutCommLink:""恐怕你要再等几天""",
 aEP_researcher_stage2_ReAskComplete,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_3Accepted == true
@@ -330,11 +341,11 @@ $faction.AWM_3Talked == true
 $faction.AWM_3MetYang == true 
 $faction.AWM_3Complete == false
 aEP_AdvanceWeaponMission check3 score:100
-","
-ShowPersonVisual
+","ShowPersonVisual
 $faction.AWM_3Complete = true
 aEP_AdvanceWeaponMission complete3
-","""I received a message indicating that the signal from the prototype ship within the pirate fleet has disappeared, thanks to your efforts. While the data from the prototype remains intact, if you succeed in recovering the ship, you can return it to us, saving us a significant amount of time.""","0:cutCommLink:""Sure.""",
+
+","""信息显示海盗舰队中这艘原型舰的信号已经消失，这件事多亏了你，如果你成功回收了这艘原型机，记得回来找我""","0:cutCommLink:""当然""",
 aEP_researcher_stage2_ReAskHandIn,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_3Accepted == true
@@ -344,28 +355,29 @@ $faction.AWM_3Complete == true
 $faction.AWM_3RecoveredShip == false
 aEP_AdvanceWeaponMission shouldGive3
 ","ShowPersonVisual
-","""You managed to recover this prototype ship? Very well, you can keep it as a reward. I hereby officially transfer ownership to you. Do remember, from now on, everything you do with this ship is your responsibility. The weapon is sold.""","
-1:aEP_researcher_stage2_ReAskHandInDecline:""I'll take it""
+
+
+","""你成功回收了这艘原型舰？很好，你可以把它留着当成奖励了，我现在公开的将所有权转入你的名下，当然之后你用它干的任何事情都是你的个人行为了""","
+0:aEP_researcher_stage2_ReAskHandInDecline:""那我就收下了""
 ",
 aEP_researcher_stage2_ReAskHandInAccepted,DialogOptionSelected,$option == aEP_researcher_stage2_ReAskHandInAccepted,"aEP_AdvanceWeaponMission giveShip3
 $faction.AWM_3DidExchange = true
-","""Thank you for your cooperation.""","0:cutCommLink:""Sure.""",
+","""感谢你的配合""","0:cutCommLink:""当然""",
 aEP_researcher_stage2_ReAskHandInDecline,DialogOptionSelected,"$option == aEP_researcher_stage2_ReAskHandInDecline
 ","aEP_HandInParts aEP_cruise_missile2 -10 none 0
 $faction.AWM_3RecoveredShip = true
-","""Interesting. We have some missiles available for this prototype, which have been shipped to your dock. Please check them out at your convenience. You can find some targets to test fire on, as long as you provide the data to me. Any responsibility regarding the operation of this ship and any consequences is yours. Understood?""","0:cutCommLink:""Then I have to thank you for your trust.""",
+","""这是一些适配这个家伙的弹药，运到你的船舱里了，去查收一下吧。你可以找一些目标试射，但是数据是我的，责任是你的，明白吗""","0:cutCommLink:""感谢你的信任""",
 aEP_researcher_stage2_greeting_if_not_recovered,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_3Complete == true
 $faction.AWM_4MetYang == false
 ","ShowPersonVisual
-","""So, I'll leave it in your hands for now. Just make sure you don't get us into any trouble, okay?""","0:cutCommLink:""See you later.""",
+","""见到你真好，$playerName，最近没有需要你出动的地方，或许我们可以培养一下私人关系""","0:cutCommLink:""下次吧""",
 ,,,,,,
 ,,,,,,
 #第四个任务，找到隐藏星系,,,,,,
 aEP_researcher_stage3_contact_greeting,PickGreeting,"MissionHubCMD hasHub
-","
-ShowPersonVisual
+","ShowPersonVisual
 FireAll PopulateOptions",,,
 aEP_researcher_stage3,MarketPostOpen,"$id == aEP_FSF_DefStation
 !$faction.isHostile
@@ -376,7 +388,7 @@ $faction.AWM_3RecoveredShip == true
 aEP_AdvanceWeaponMission shouldStart4
 
 ","$faction.AWM_4MetYang = true
-aEP_AdvanceWeaponMission highlightPerson lili_yang  on","As you approach the station, you are greeted with a familiar message from within the Company: ""Captain, I have something to say to you-you know my comm ID.""","0:aEP_researcher_stage0_GreetDecline:""Got it.""",
+aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我有一件事要和你说--你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
 aEP_researcher_stage3_talk01,PickGreeting,"$isaEP_Researcher 
 !$faction.isHostile
 $faction.AWM_3Complete == true
@@ -384,25 +396,27 @@ $faction.AWM_4Complete == false
 $faction.AWM_4MetYang == true
 aEP_AdvanceWeaponMission shouldStart4
 
-",aEP_AdvanceWeaponMission highlightPerson lili_yang  off,"""You've arrived? Meet me at the usual place. Don't worry; this time it's not about work. Consider it more of an invitation.""",0:aEP_researcher_stage3_talk02:Go to deck R024,
-aEP_researcher_stage3_talk02,DialogOptionSelected,$option == aEP_researcher_stage3_talk02,ShowPersonVisual,"After navigating the familiar aisles of the Institute, you arrive at $personFirstName's office once more. Unlike the relaxed conversation you both recently shared, $personFirstName now wears a serious expression. ""This time, what you're about to hear is highly confidential. I would like you to be the sole recipient of the upcoming discussion. As a gesture of goodwill, I'll permit you to bring your sidearm. How does that sound?""","0:aEP_researcher_stage3_talk03:""That sounds like a trap.""",
-aEP_researcher_stage3_talk03,DialogOptionSelected,$option == aEP_researcher_stage3_talk03,,"""So, what's your choice?"" she asks, opening the door simultaneously, as if she knew you would agree by default.",0:aEP_researcher_stage3_talk04:Follow her inside,
-aEP_researcher_stage3_talk04,DialogOptionSelected,$option == aEP_researcher_stage3_talk04,,"Once seated, she takes a document from the drawer and says, ""I should have mentioned that this is more of an invitation. Given the extent to which you have worked with us, you have proven yourself a true friend of the company."" Before you can express your disinterest in joining the Company, she quickly steers the conversation elsewhere. ""I wonder what your thoughts are on the AI fleets now roaming the fringes of the Sector. Do you believe they are still under someone's control, or are they autonomous? A scouting fleet of ours found one of the Remnant fleets inside one of the fringe systems eight years ago that hadn't yet been marked by the Hegemony. They discovered some... interesting stuff. Anyway, that particular system has now become a secret base for the Company."" With that, she hands you the document, which appears to contain a series of hyperspace coordinates and code words.","0:aEP_researcher_stage3_talk05:""On paper? This must be quite confidential.""",
+",aEP_AdvanceWeaponMission highlightPerson lili_yang  off,"""你到了？在老地方见面吧，放心好了，这次的事情和工作无关，不如说是邀请更合适""",0:aEP_researcher_stage3_talk02:前往R024甲板,
+aEP_researcher_stage3_talk02,DialogOptionSelected,$option == aEP_researcher_stage3_talk02,ShowPersonVisual,"在穿行过熟悉的研究所过道后，你们又到了$personFirstName的办公室，与刚才在过道中交谈的轻松的状态不同，$personFirstName露出了严肃的表情：""这次的事情，保密级别是公司内最高，接下来我希望只有你一个人听到谈话内容，作为诚意你依然可以带着配枪，怎么样？""。","0:aEP_researcher_stage3_talk03:""听起来真像个圈套""",
+aEP_researcher_stage3_talk03,DialogOptionSelected,$option == aEP_researcher_stage3_talk03,,"她向你露出了非常职业性的微笑说到：""所以你的选择是？""，然后像是默认了你会选择同意一样打开了门。",0:aEP_researcher_stage3_talk04:跟着她进去,
+aEP_researcher_stage3_talk04,DialogOptionSelected,$option == aEP_researcher_stage3_talk04,,"落座以后，她从抽屉取出了一踏纸张，开始了说明：""我应该说过，这更像是一个邀请，经过这么多次合作你已经证明了你是公司真正的朋友""。在你刚想解释自己对入职没有兴趣前她将话题引到了别处，""不知道你对现在边缘星系内游荡的AI舰队有什么想法？你相信它们就和官方说明的一样，完全处于控制之中吗？我们的探测舰队数年前在某个边缘星系里面发现了其中的一只尚未被霸主标记的AI舰队分支，发现了一些...有趣的事情。总之现在整个星系已经成为了公司的秘密基地""。说罢她把手上的那叠纸递给了你，上面写着一系列超空间坐标和暗号的样子。
+","0:aEP_researcher_stage3_talk05:""纸质版？保密级别真高""",
 aEP_researcher_stage3_talk05,DialogOptionSelected,$option == aEP_researcher_stage3_talk05,"$faction.AWM_4Complete = true
-aEP_AdvanceWeaponMission start4","""With this document, you can purchase the company's latest armaments. This token of appreciation reflects our gratitude towards our partners. I am confident that we will have the opportunity to collaborate again in the near future!""","0:cutCommLink:""Thanks.""",
+aEP_AdvanceWeaponMission start4","""只要有这封文件，你就可以购买公司最新的军备，这是公司对朋友的心意，相信我们很快就会有下一次合作了""
+","0:cutCommLink:""我知道了""",
 ,,,,,,
 ,,,,,,
 #第一次进入隐藏星系被卫队抓住，因为打开comm以后目标变成了人而不是舰队，所以要改舰队的mem是$entity.xxx而不是$xxx,,,,,,
 aEP_researcher_stage3_guardian_met,OpenCommLink,"$faction.id == aEP_FSF
 $entity.id == aEP_DWR43_JumpPointGuard score:100
-$entity.have_permission == false",aEP_AdvanceWeaponMission checkPermission4,"""You are entering a restricted area of the FSF Corporation. Please show your authorization documents.""",,
+$entity.have_permission == false",aEP_AdvanceWeaponMission checkPermission4,"""你正在进入FSF公司的管制区域，出示你的授权证件""",,
 aEP_researcher_stage3_guardian_met_have,DialogOptionSelected,$option == aEP_researcher_stage3_guardian_met_have,"$entity.have_permission = true
 unset $entity.cfai_makeHostile
 unset $entity.pursuePlayer
 unset $entity.$cfai_makeAggressive
-$entity.$$cfai_makeAllowDisengage = true","""Authorization in progress... Confirmed. Have a nice day!""",0:cutCommLink:Cut the comm link,
+$entity.$$cfai_makeAllowDisengage = true","""授权确认中...已通过，祝您有愉快的一天""",0:cutCommLink:Cut the comm link,
 aEP_researcher_stage3_guardian_met_nothave,DialogOptionSelected,"$option == aEP_researcher_stage3_guardian_met_nothave
-",,"""We can't allow you to leave without showing a permit.""",0:cutCommLink:Cut the comm link,
+",,"""没有出示许可我们不能让你离开""",0:cutCommLink:Cut the comm link,
 ,,,,,,
 ,,,,,,
 #page manager,,,,,,

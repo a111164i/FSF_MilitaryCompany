@@ -62,11 +62,11 @@
 
 
     "startSpecialItems":[
-        [["FSF_openbp",""]],
+        [["FSF_openbp","FSF"]],
     ],
 
     "defenceStations":[
-        {"ids":["aEP_station_tier1", "aEP_station_tier2", "aEP_station_tier3"]},
+        {"ids":["aEP_station_tier1", "aEP_station_tier2", "aEP_station_tier3", "aEP_station_tier4"]},
     ],
 	
     "industrySeeds":[

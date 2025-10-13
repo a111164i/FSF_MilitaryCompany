@@ -38,6 +38,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
         DamageType.KINETIC -> realDamage *= 0.5f
         DamageType.ENERGY -> realDamage *= 0.75f
         DamageType.FRAGMENTATION -> realDamage *= 0.35f
+        else -> {}
       }
 
       val damageThreshold = computeThreshold(thres, ship, armor_level_thres)

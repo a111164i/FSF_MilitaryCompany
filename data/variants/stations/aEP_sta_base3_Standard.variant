@@ -4,9 +4,10 @@
     "fluxVents": 0,
     "goalVariant": true,
     "hullId": "aEP_sta_base3",
+    "permaMods": ["stealth_minefield"],
     "hullMods": [],
     "modules": [
-        {"TIER1_BATTERY_B": "aEP_sta_tier1_battery_Elite"},
+        {"TIER1_BATTERY_B": "aEP_sta_tier1_battery_Standard"},
         {"TIER1_BATTERY_B_ARMOR_L": "aEP_sta_tier1_armor_Standard"},
         {"TIER1_BATTERY_B_ARMOR_R": "aEP_sta_tier1_armor_Standard"},
         {"TIER1_BATTERY_F": "aEP_sta_tier1_battery_Standard"},
@@ -29,12 +30,6 @@
         {"TIER2_STRUT_L": "aEP_sta_tier2_structure_Standard"},
         {"TIER2_STRUT_R": "aEP_sta_tier2_structure_Standard"}
     ],
-    "permaMods": [],
-    "sMods": [],
     "variantId": "aEP_sta_base3_Standard",
-    "weaponGroups": [{
-        "autofire": true,
-        "mode": "LINKED",
-        "weapons": {"MAIN": "aEP_cap_sta_main"}
-    }]
+    "weaponGroups": []
 }

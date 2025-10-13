@@ -10,51 +10,16 @@
   "hullMods": [],
   "weaponGroups": [],
   "modules": [
-    {
-      "TIER1_BATTERY_F": "aEP_sta_tier1_battery_Standard"
-    },
-    {
-      "TIER1_BATTERY_F_ARMOR_L": "aEP_sta_tier1_armor_Standard"
-    },
-    {
-      "TIER1_BATTERY_F_ARMOR_R": "aEP_sta_tier1_armor_Standard"
-    },
-    {
-      "TIER1_HANGER_L": "aEP_sta_tier1_hanger1_Standard"
-    },
-    {
-      "TIER1_HANGER_R": "aEP_sta_tier1_hanger2_Standard"
-    },
-    {
-      "TIER2_HULL_B": "aEP_sta_tier2_hull1_Standard"
-    },
-    {
-      "TIER2_HULL_B_ARMOR_L1": "aEP_sta_tier2_armor_Standard"
-    },
-    {
-      "TIER2_HULL_B_ARMOR_L2": "aEP_sta_tier2_armor_Standard"
-    },
-    {
-      "TIER2_HULL_B_ARMOR_R1": "aEP_sta_tier2_armor_Standard"
-    },
-    {
-      "TIER2_HULL_B_ARMOR_R2": "aEP_sta_tier2_armor_Standard"
-    },
-    {
-      "TIER2_HULL_F": "aEP_sta_tier2_hull1_Standard"
-    },
-    {
-      "TIER2_STRUT_B": "aEP_sta_tier2_structure_Standard"
-    },
-    {
-      "TIER2_STRUT_F": "aEP_sta_tier2_structure_Standard"
-    },
-    {
-      "TIER2_STRUT_L": "aEP_sta_tier2_structure_Standard"
-    },
-    {
-      "TIER2_STRUT_R": "aEP_sta_tier2_structure_Standard"
-    }
+    {"TIER1_BATTERY_B": "aEP_sta_tier1_battery_Standard"},
+    {"TIER1_BATTERY_F": "aEP_sta_tier1_battery_Standard"},
+    {"TIER1_HANGER_L": "aEP_sta_tier1_hanger1_Standard"},
+    {"TIER1_HANGER_R": "aEP_sta_tier1_hanger2_Standard"},
+    {"TIER2_HULL_B": "aEP_sta_tier2_hull1_Standard"},
+    {"TIER2_HULL_F": "aEP_sta_tier2_hull1_Standard"},
+    {"TIER2_STRUT_B": "aEP_sta_tier2_structure_Standard"},
+    {"TIER2_STRUT_F": "aEP_sta_tier2_structure_Standard"},
+    {"TIER2_STRUT_L": "aEP_sta_tier2_structure_Standard"},
+    {"TIER2_STRUT_R": "aEP_sta_tier2_structure_Standard" }
   ],
-  "wings": []
+  "wings": [],
 }

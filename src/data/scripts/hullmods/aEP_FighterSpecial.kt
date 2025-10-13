@@ -1282,13 +1282,20 @@ class aEP_CruiseMissile2 : BaseHullMod() {
       override fun advanceImpl(amount: Float){
         val detectPoint = aEP_Tool.getExtendedLocationFromPoint(ship.location,ship.facing, FUSE_RANGE)
         val sprite = Global.getSettings().getSprite("aEP_FX","frame")
+
+        //每帧更新一次自己碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
+        ship.visualBounds?.update(ship.location,ship.facing)
+        ship.exactBounds?.update(ship.location,ship.facing)
+
         MagicRender.singleframe(sprite,
           detectPoint,
           Vector2f(80f,80f),
           timeEclipsed*60f, Color(255,0,0,225),true)
-        for (s in AIUtils.getNearbyEnemies(ship,1000f)) {
+          for (s in AIUtils.getNearbyEnemies(ship,1000f)) {
           if (s.owner != ship.owner && !s.isFighter && !s.isDrone && !s.isShuttlePod) {
-            if (CollisionUtils.getCollisionPoint(ship.location,detectPoint,s) == null) continue
+            if (CollisionUtils.getCollisionPoint(ship.location,detectPoint,s) == null){
+              continue
+            }
             state = this@ExplodeListener.Exploding(ship)
             break
           }

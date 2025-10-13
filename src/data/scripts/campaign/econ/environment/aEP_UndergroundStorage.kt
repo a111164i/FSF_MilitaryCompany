@@ -5,7 +5,6 @@ import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
-import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import java.awt.Color
@@ -71,7 +70,7 @@ class aEP_UndergroundStorage : BaseMarketConditionPlugin() {
   override fun createTooltipAfterDescription(tooltip: TooltipMakerAPI, expanded: Boolean) {
 
     if(market.faction?.id != aEP_ID.FACTION_ID_FSF) return
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
 
     tooltip.addPara("{%s}"+txt("aEP_UndergroundStorage01"), 5f, arrayOf(Color.green),
       aEP_ID.HULLMOD_POINT,

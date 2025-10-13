@@ -3,6 +3,7 @@ package data.scripts.ai;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
+import com.fs.starfarer.api.util.Misc;
 import combat.util.aEP_Tool;
 import org.lazywizard.lazylib.CollisionUtils;
 import org.lazywizard.lazylib.MathUtils;
@@ -102,6 +103,13 @@ public class aEP_TearingBeamAI implements AutofireAIPlugin
 
       shouldFire = false;
       if (toTarget != null && ((ShipAPI) toTarget).isHulk() && !((ShipAPI) toTarget).isPiece()) {
+
+        //每帧更新一次碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
+        ShipAPI toTargetShip = (ShipAPI) toTarget;
+        if (toTargetShip.getExactBounds() != null) {
+          toTargetShip.getExactBounds().update(toTargetShip.getLocation(),toTargetShip.getFacing());
+        }
+
         if (CollisionUtils.getCollisionPoint(weapon.getLocation(), aEP_Tool.getExtendedLocationFromPoint(weapon.getLocation(), weapon.getCurrAngle(), weapon.getRange()), toTarget) != null) {
           shouldFire = true;
         }

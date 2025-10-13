@@ -1,5 +1,8 @@
 package data.scripts.world.aEP_systems
 
+import data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus
+import data.scripts.campaign.econ.environment.aEP_SpaceFarm
+import data.scripts.campaign.econ.environment.*
 import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.Script
@@ -18,9 +21,6 @@ import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import data.scripts.FSFModPlugin
-import data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus
-import data.scripts.campaign.econ.environment.aEP_MilitaryZone
-import data.scripts.campaign.econ.environment.aEP_SpaceFarm
 import data.scripts.campaign.submarkets.aEP_FSFMarketPlugin
 import lunalib.lunaSettings.LunaSettings.getBoolean
 import org.lazywizard.lazylib.MathUtils
@@ -140,7 +140,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     FSF_SpaceFactoryMarket.addIndustry(Industries.HIGHCOMMAND)
     FSF_SpaceFactoryMarket.addIndustry(Industries.ORBITALWORKS, ArrayList(listOf(Items.PRISTINE_NANOFORGE)))
     FSF_SpaceFactoryMarket.addIndustry(Industries.FUELPROD, ArrayList(listOf(Items.SYNCHROTRON)))
-    FSF_SpaceFactoryMarket.addIndustry("aEP_station_tier3")
+    FSF_SpaceFactoryMarket.addIndustry("aEP_station_tier4")
     FSF_SpaceFactoryMarket.addIndustry("aEP_AdvanceHq")
 
     FSF_SpaceFactoryMarket.addSubmarket("generic_military")

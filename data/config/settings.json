@@ -8,7 +8,9 @@
     },
     "blueprint_packages": {
       "FSF_rarebp": "graphics/aEP_items/FSF_rarebp.png",
-      "FSF_openbp": "graphics/aEP_items/FSF_openbp.png"
+      "FSF_openbp": "graphics/aEP_items/FSF_openbp.png",
+      "FSF_weapon_small_bp": "graphics/aEP_items/FSF_openbp.png",
+      "FSF_weapon_heavy_bp": "graphics/aEP_items/FSF_openbp.png"
     },
     "aEP_FX": {
       "particle_smoke01": "graphics/aEP_FX/particle_smoke/particle_smoke01.png",
@@ -205,5 +207,5 @@
       255
     ]
   },
-  "aEP_UseEnString": true
+  "aEP_UseEnString": false
 }

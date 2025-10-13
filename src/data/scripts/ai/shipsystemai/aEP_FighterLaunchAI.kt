@@ -22,6 +22,10 @@ class aEP_FighterLaunchAI: aEP_BaseSystemAI(){
 
     var willingToUse = 0f
 
+    //每帧更新一次自己碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
+    ship.visualBounds?.update(ship.location,ship.facing)
+    ship.exactBounds?.update(ship.location,ship.facing)
+
     //如果ai不想出动战机，判死刑
     val isPullbackFighters = ship.isPullBackFighters
     if (isPullbackFighters) willingToUse -= 100f

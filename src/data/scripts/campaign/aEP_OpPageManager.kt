@@ -1,4 +1,4 @@
-package campaign
+package data.scripts.campaign
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.InteractionDialogAPI

@@ -7,8 +7,8 @@ import com.fs.starfarer.api.campaign.impl.items.BaseSpecialItemPlugin;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
-import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin;
+import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel;
 
 import java.awt.*;

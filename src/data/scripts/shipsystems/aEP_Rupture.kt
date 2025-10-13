@@ -2,6 +2,7 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.impl.combat.MineStrikeStats
@@ -53,6 +54,9 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val SPEED_SLOW_PER_TICK = 0.5f
 
     const val OVERLOAD_TIME = 1f
+
+    const val DRONE_HP = 3000f
+    const val DRONE_ARMOR = 250f
 
     fun isValidTarget(t: ShipAPI?, self:ShipAPI):Boolean{
       t?:run { return false }
@@ -121,12 +125,10 @@ class aEP_Rupture:  BaseShipSystemScript() {
         drone.owner = ship.owner
         drone.facing = 0f
         //变更装甲
-        val maxHealth = 6000f
-        drone.maxHitpoints = maxHealth
-        drone.hitpoints = maxHealth
-        val maxArmor = 800f
-        drone.mutableStats.armorBonus.modifyFlat("aEP_Rupture", maxArmor)
-        val armorPerCell = maxArmor/15f
+        drone.maxHitpoints = DRONE_HP
+        drone.hitpoints = DRONE_HP
+        drone.mutableStats.armorBonus.modifyFlat("aEP_Rupture", DRONE_ARMOR)
+        val armorPerCell = DRONE_ARMOR/15f
         val xSize = drone.armorGrid.leftOf + drone.armorGrid.rightOf
         val ySize = drone.armorGrid.above + drone.armorGrid.below
         for (x in 0 until xSize) {
@@ -134,6 +136,43 @@ class aEP_Rupture:  BaseShipSystemScript() {
             drone.armorGrid.setArmorValue(x, y, armorPerCell)
           }
         }
+        //级别盾
+        drone.addListener(object : DamageTakenModifier{
+          /**
+           * Modifications to damage should ONLY be made using damage.getModifier().
+           *
+           * param can be:
+           * null
+           * DamagingProjectileAPI
+           * BeamAPI
+           * EmpArcEntityAPI
+           * Something custom set by a script
+           *
+           * @return the id of the stat modification to damage.getModifier(), or null if no modification was made
+           */
+          override fun modifyDamageTaken(
+            param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f?, shieldHit: Boolean): String? {
+            var source: ShipAPI? = null
+            if(param is DamagingProjectileAPI){
+              if(param.source is ShipAPI) source = param.source
+            }
+            if(param is BeamAPI){
+              if(param.source is ShipAPI) source = param.source
+            }
+            if(param is ShipAPI){
+               source = param
+            }
+
+            source?.run {
+              if(source.hullSize == ShipAPI.HullSize.DESTROYER) damage.modifier.modifyMult(TARGET_KEY, 0.8f)
+              if(source.hullSize == ShipAPI.HullSize.CRUISER) damage.modifier.modifyMult(TARGET_KEY, 0.5f)
+              if(source.hullSize == ShipAPI.HullSize.CAPITAL_SHIP) damage.modifier.modifyMult(TARGET_KEY, 0.2f)
+
+              return aEP_Rupture.TARGET_KEY
+            }
+            return null
+          }
+        })
         Global.getCombatEngine().addEntity(drone)
 
         val drag = DragBall(ACTIVE_TIME,toAim, drone)

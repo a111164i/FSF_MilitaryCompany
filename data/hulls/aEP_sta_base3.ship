@@ -18,7 +18,6 @@
     "shared_flux_sink"
   ],
   "builtInWeapons": {
-    "MAIN": "aEP_cap_sta_main",
     "WS0001": "aEP_blinker_green",
     "WS0002": "aEP_blinker_green",
     "WS0003": "aEP_blinker_green",
@@ -296,8 +295,8 @@
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 0,
-      "locations": [83, -0]
+      "angle": 180,
+      "locations": [-83, -0]
     },
     {
       "id": "WS0008",
@@ -305,8 +304,8 @@
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 360,
-      "angle": 180,
-      "locations": [-83, -0]
+      "angle": 0,
+      "locations": [83, -0]
     }
   ],
   "engineSlots": [],

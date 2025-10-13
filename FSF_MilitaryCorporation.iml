@@ -9,7 +9,6 @@
     <content url="file://$MODULE_DIR$/../LazyLib" />
     <content url="file://$MODULE_DIR$/../LunaLib" />
     <content url="file://$MODULE_DIR$/../MagicLib" />
-    <content url="file://$MODULE_DIR$/../trailer-moments" />
     <content url="file://$MODULE_DIR$/../../starsector-core" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -21,12 +20,13 @@
     <orderEntry type="library" name="core" level="project" />
     <orderEntry type="module-library">
       <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../LazyLib/jars/lib/Kotlin-Runtime.jar!/" />
-        </CLASSES>
+        <CLASSES />
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../MagicLib/MagicLib-Kotlin" />
+        </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
   </component>
 </module>

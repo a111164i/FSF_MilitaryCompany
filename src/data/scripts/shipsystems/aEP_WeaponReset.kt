@@ -188,7 +188,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
           }
         }
         //后于检测，保证之前加满的第一帧能进去
-        presmokeTracker.advance(aEP_Tool.getAmount(ship))
+        presmokeTracker.advance(getAmount(ship))
         //玩个梗，降低光束伤害
         ship.mutableStats.beamDamageTakenMult.modifyMult(id,0.2f)
       }
@@ -230,7 +230,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       //如果当前幅能不为空，慢速返还
       if(ship.fluxTracker.fluxLevel > 0.01f) toReturnThisFrame *= (FLUX_RETURN_SPEED[ship.hullSpec.baseHullId]?:1f)
 
-      if(ship.fluxTracker.isVenting) toReturnThisFrame = 0f;
+      if(ship.fluxTracker.isVenting) toReturnThisFrame = 0f
       if(storedSoftFlux > 0){
         //限制返还软幅能量不超过剩余容量和储存的软幅能量
         var toAdd = toReturnThisFrame.coerceAtMost(storedSoftFlux)
@@ -325,41 +325,42 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
   fun spawnSmoke(ship: ShipAPI, minSmokeDist: Int) {
     var moveAngle = 0f
+    ship.visualBounds?.update(ship.location,ship.facing)
+    ship.exactBounds?.update(ship.location,ship.facing)
     val angleToTurn = getTargetWidthAngleInDistance(ship.location, getExtendedLocationFromPoint(ship.location, 0f, ship.collisionRadius), minSmokeDist.toFloat())
     while (moveAngle < 360f) {
-      val outPoint = CollisionUtils.getCollisionPoint(getExtendedLocationFromPoint(ship.location, moveAngle, ship.collisionRadius + 10), ship.location, ship)
+      val lineStart = getExtendedLocationFromPoint(ship.location, moveAngle, ship.collisionRadius + 100f)
+      val outPoint = CollisionUtils.getCollisionPoint(lineStart, ship.location, ship)
+      moveAngle += angleToTurn
+      outPoint?: continue
       val lifeTime = 2f
       val extendRange = 0.5f
-      val speed = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius)
-      val ms = aEP_MovingSmoke(outPoint!!)
+      val speed = extendRange * ship.collisionRadius
+      val vel = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius)
+      val ms = aEP_MovingSmoke(outPoint)
       ms.lifeTime = lifeTime
       ms.fadeIn = 0.25f
       ms.fadeOut = 0.5f
-      ms.setInitVel(speed)
+      ms.setInitVel(vel)
       ms.size = minSmokeDist * 3f
       ms.sizeChangeSpeed = minSmokeDist * extendRange * 3f / lifeTime
-      ms.color = SMOKE_COLOR
+      ms.color = Misc.setAlpha(SMOKE_COLOR,30)
       ms.stopSpeed = 0.75f
       addEffect(ms)
-      moveAngle += angleToTurn
-    }
-    moveAngle = 0f
-    while (moveAngle < 360f) {
-      val outPoint = CollisionUtils.getCollisionPoint(getExtendedLocationFromPoint(ship.location, moveAngle, ship.collisionRadius + 10), ship.location, ship)
-      val lifeTime = 2f
-      val extendRange = 0.5f
-      val speed = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius + minSmokeDist * 6f)
-      val ms = aEP_MovingSmoke(outPoint!!)
-      ms.lifeTime = lifeTime
-      ms.fadeIn = 0.25f
-      ms.fadeOut = 0.5f
-      ms.setInitVel(speed)
-      ms.size = minSmokeDist * 6f
-      ms.sizeChangeSpeed = minSmokeDist * extendRange * 6f / lifeTime
-      ms.color = SMOKE_COLOR
-      ms.stopSpeed = 0.75f
-      addEffect(ms)
-      moveAngle += angleToTurn
+
+      val vel2 = VectorUtils.resize(Vector2f(vel),speed*6f)
+      val ms2 = aEP_MovingSmoke(outPoint)
+      ms2.lifeTime = lifeTime
+      ms2.fadeIn = 0.25f
+      ms2.fadeOut = 0.5f
+      ms2.setInitVel(vel2)
+      ms2.size = minSmokeDist * 6f
+      ms2.sizeChangeSpeed = minSmokeDist * extendRange * 6f / lifeTime
+      ms2.color = Misc.setAlpha(SMOKE_COLOR,25)
+      ms2.stopSpeed = 0.75f
+      addEffect(ms2)
+
+
     }
   }
 
@@ -409,10 +410,10 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         var lifeTime = 3f * effectLevel
         var size = 35f
         var endSizeMult = 1.5f
-        var vel = aEP_Tool.speed2Velocity(vent_1.weapon.currAngle,30f)
+        var vel = speed2Velocity(vent_1.weapon.currAngle,30f)
         Vector2f.add(vel,ship.velocity,vel)
         vel.scale(0.5f)
-        val loc1 = aEP_Tool.getExtendedLocationFromPoint(vent_1.weapon.location,vent_1.weapon.currAngle,20f)
+        val loc1 = getExtendedLocationFromPoint(vent_1.weapon.location,vent_1.weapon.currAngle,20f)
         Global.getCombatEngine().addNebulaParticle(
           MathUtils.getRandomPointInCircle(loc1,20f),
           vel,
@@ -421,7 +422,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
           lifeTime * MathUtils.getRandomNumberInRange(0.5f,0.75f),
           aEP_Tool.getColorWithAlpha(initColor,alpha))
 
-        val loc2 = aEP_Tool.getExtendedLocationFromPoint(vent_2.weapon.location,vent_2.weapon.currAngle,20f)
+        val loc2 = getExtendedLocationFromPoint(vent_2.weapon.location,vent_2.weapon.currAngle,20f)
         Global.getCombatEngine().addNebulaParticle(
           MathUtils.getRandomPointInCircle(loc2,20f),
           vel,

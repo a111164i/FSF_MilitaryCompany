@@ -1,25 +1,18 @@
 package data.scripts.campaign.submarkets;
 
-import com.fs.starfarer.api.FactoryAPI;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.FactionAPI.ShipPickMode;
-import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI;
 import com.fs.starfarer.api.campaign.econ.SubmarketAPI;
-import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.submarkets.BaseSubmarketPlugin;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
-import com.fs.starfarer.api.util.Highlights;
-import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_DataTool;
 import combat.util.aEP_ID;
 import data.scripts.FSFModPlugin;
 import lunalib.lunaSettings.LunaSettings;
-import org.lazywizard.lazylib.MathUtils;
 
 import java.util.*;
 

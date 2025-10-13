@@ -1,10 +1,10 @@
-Location: Askonia System Fringe
-Date: 182.8.7
+﻿地点: Askonia星系外围空间
+日期: 182.8.7
 
-The shadow of war looms over the sector as PK is used in conflict. According to intelligence from the Hegemony, a capital ship of the Persean League will soon be transported to the front line. The company is planning an interception to prevent the already intense situation from escalating further.
+PK被用于战争的阴影笼罩在星域的上空，根据霸主方面的情报，有一艘隶属于英仙座联盟的主力舰会在近日运输到前线，而公司正计划拦截它，防止目前过热的局势进一步升温。
 
-This mission will be carried out by a special ship, whose existence has not yet been disclosed to the public. The epic reveal of this ship is so successful that it appears in multiple games over the next 20 years. However, as a cost of bringing down a giant, both the wreckage of the prototype and the ship's designer have yet to be found to this day.
+本次任务由一只尚未对外披露存在的特殊舰船完成，这次划时代的亮相成功使得该舰在接下来的20年中在多个游戏中出场。作为搏倒大象的代价，原型机的残骸和该舰的设计者一起至今不知所踪。
 
-At the same time, the loss of key personnel and the prototype has left certain challenges of the project insurmountable. Regrettably, the company has had to abandon the development plan. This has only added to the legendary status of the ship.
+同时失去开发关键人物与原型机加使得该项目的一部分难点始终无法攻克，公司无奈放弃的开发计划，这让该舰的传奇度更上一层。
 
-You can hold F and re-select this mission to restrict unusable equipment. If you want to restore the original setting, please select this mission again without holding F. Please note, the restriction will affect everything. If you want to remove the restriction, you must select this mission without holding down any buttons.
+你可以通过按住 F 并重新选择这个任务屏蔽掉不可使用的军备，要恢复则不按住直接重新选择这个任务。注意，屏蔽是全局的，需要消除屏蔽，就不按住任何按键重新选择本任务

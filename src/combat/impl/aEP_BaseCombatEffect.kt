@@ -1,6 +1,5 @@
 package combat.impl
 
-import campaign.aEP_OpPageManager
 import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*

@@ -8,6 +8,16 @@ import data.scripts.FSFModPlugin
 import org.dark.shaders.light.LightData
 import java.util.*
 
+/*
+* -Djava.library.path=native\\windows
+-classpath
+janino.jar;commons-compiler.jar;commons-compiler-jdk.jar;starfarer.api.jar;starfarer_obf.jar;jogg-0.0.7.jar;jorbis-0.0.15.jar;json.jar;lwjgl.jar;jinput.jar;log4j-1.2.9.jar;lwjgl_util.jar;fs.sound_obf.jar;fs.common_obf.jar;xstream-1.4.10.jar
+-Dcom.fs.starfarer.settings.paths.saves=..\\saves
+-Dcom.fs.starfarer.settings.paths.screenshots=..\\screenshots
+-Dcom.fs.starfarer.settings.paths.mods=..\\mods
+-Dcom.fs.starfarer.settings.paths.logs=.
+com.fs.starfarer.StarfarerLauncher
+* */
 /**
  * 自由特效类，实现自定义特效渲染
  * */
