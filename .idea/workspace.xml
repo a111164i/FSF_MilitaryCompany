@@ -9,123 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落">
-      <change afterPath="$PROJECT_DIR$/.idea/IntelliLang.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Remote_SS_Debugger.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Run_SS_bat_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/scripts/ai/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/StarfarerLauncher.xml" beforeDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="5.0rc2&#10;&#10;修正了使用getCollision之前没有updateBounds的问题，版本号更新到098">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/commodities_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/industries_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/rules_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/special_items_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_sta_base1.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_sta_base1.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_sta_base2.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_sta_base2.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_sta_base3.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_sta_base3.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_CN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base1_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base1_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base3_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base3_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base4_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_base4_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base1_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base1_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base2_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base3_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base3_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base4_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants_li/stations/aEP_sta_base4_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_CN.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_CN.faction" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_CN.faction" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/campaign/aEP_OpPageManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/aEP_OpPageManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AdvanceWeaponMission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AdvanceWeaponMission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PageManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PickReward.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PickReward.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat/impl/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/impl/aEP_BaseCombatEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat/plugin/aEP_CombatEffectPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/plugin/aEP_CombatEffectPlugin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_TearingBeamAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_TearingBeamAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneGuardAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneGuardAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_FighterLaunchAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_FighterLaunchAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/FSFCampaignPlugin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/aEP_FSFRelayPlugin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/campaign.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_ExtinctiveVirus.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_MilitaryZone.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_SpaceFarm.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_UndergroundStorage.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_AdvanceHqPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/entity/aEP_CruiseMissileEntityPlugin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM1Intel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM2Intel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM3Intel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM4Intel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_BaseMission.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_CruiseMissileLoadIntel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_MarineTrainIntel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/items/aEP_CruiseMissile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/submarkets/aEP_FSFMarketPlugin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ReactiveArmor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ReactiveArmor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FuelBurn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FuelBurn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +42,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;a111164i&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/a111164i/FSF_MilitaryCompany.git&quot;,
+    &quot;accountId&quot;: &quot;7d6e5ea8-3041-4e1d-950a-0c4a5d9be040&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" root0="SKIP_INSPECTION" />
     <setting file="jar://$PROJECT_DIR$/../LazyLib/jars/LazyLib-Kotlin.jar!/kotlinx/coroutines/debug/internal/AgentPremain.class" root0="SKIP_INSPECTION" />
@@ -176,41 +74,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Run Starsector.executor": "Run",
-    "Application.StarfarerLauncher.executor": "Run",
-    "Batch.Run SS bat .executor": "Debug",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Remote JVM Debug.Remote SS Debugger.executor": "Debug",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "G:/Starsector098/mods/MagicLib/MagicLib-Kotlin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.sourceCode.kotlin",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Run Starsector.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StarfarerLauncher.executor&quot;: &quot;Run&quot;,
+    &quot;Batch.Run SS bat .executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Remote JVM Debug.Remote SS Debugger.executor&quot;: &quot;Debug&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;G:/Starsector098/mods/MagicLib/MagicLib-Kotlin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.kotlin&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\config\exerelin" />
@@ -224,15 +122,9 @@
       <recent name="data.scripts.ai" />
     </key>
   </component>
-  <component name="RunManager" selected="Batch.Run SS bat ">
-    <configuration name="Unnamed" type="CompoundRunConfigurationType">
-      <toRun name="Run SS bat " type="BatchConfigurationType" />
-      <toRun name="Remote SS Debugger" type="Remote" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Remote JVM Debug.Remote SS Debugger">
     <list>
       <item itemvalue="Batch.Run SS bat " />
-      <item itemvalue="Compound.Unnamed" />
       <item itemvalue="Remote JVM Debug.Remote SS Debugger" />
     </list>
   </component>
@@ -399,7 +291,8 @@
       <workItem from="1760342804739" duration="220000" />
       <workItem from="1760343115018" duration="7657000" />
       <workItem from="1760352043564" duration="192000" />
-      <workItem from="1760352246730" duration="7949000" />
+      <workItem from="1760352246730" duration="8190000" />
+      <workItem from="1760360486818" duration="925000" />
     </task>
     <task id="LOCAL-00001" summary="4.7rc4">
       <option name="closed" value="true" />
@@ -785,7 +678,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738066938883</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="5.0rc2&#10;&#10;修正了使用getCollision之前没有updateBounds的问题，版本号更新到098">
+      <option name="closed" value="true" />
+      <created>1760360341725</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1760360341725</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -848,7 +749,8 @@
     <MESSAGE value="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
     <MESSAGE value="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配" />
     <MESSAGE value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
+    <MESSAGE value="5.0rc2&#10;&#10;修正了使用getCollision之前没有updateBounds的问题，版本号更新到098" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.0rc2&#10;&#10;修正了使用getCollision之前没有updateBounds的问题，版本号更新到098" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
