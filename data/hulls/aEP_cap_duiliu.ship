@@ -14,7 +14,6 @@
   "builtInMods": [
     "aEP_SpecialHull",
     "aEP_AcceleratedGunnery",
-    "aEP_HotLoader"
   ],
   "builtInWeapons": {
     "AM01": "aEP_cap_duiliu_armor_l1",

@@ -6,7 +6,6 @@
     "hullId": "aEP_cru_pingding",
     "hullMods": [
         "aEP_PingdingMainSwap1",
-        "aEP_HotLoader",
         "aEP_EliteShip",
         "reinforcedhull",
         "blast_doors",

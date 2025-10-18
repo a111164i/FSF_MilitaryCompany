@@ -49,11 +49,11 @@ class aEP_BBLockOn : BaseShipSystemScript(){
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
-    val dist = aEP_Tool.checkTargetWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
+    val dist = aEP_Tool.checkTargetWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE, ship.shipTarget?.collisionRadius)
     return dist <= 0f
   }
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
-    return getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
+    return getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE,ship.shipTarget?.collisionRadius)
   }
 }

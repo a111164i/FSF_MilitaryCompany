@@ -330,11 +330,11 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
         if(dist < ACTIVE_RANGE_MIN ){
           spriteTexId = spriteId2
-          color = aEP_Tool.getColorWithAlpha(Color.green,0.275f)
+          color = aEP_Tool.getColorWithAlpha(Color.green,0.215f)
           scrollSpeed = 2f
         }else{
           spriteTexId = spriteId1
-          color = aEP_Tool.getColorWithAlpha(Color.red,0.275f)
+          color = aEP_Tool.getColorWithAlpha(Color.red,0.215f)
           scrollSpeed = -5f
         }
 

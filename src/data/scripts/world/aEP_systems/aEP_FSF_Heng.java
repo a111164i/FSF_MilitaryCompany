@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketConditionAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Conditions;
 import com.fs.starfarer.api.impl.campaign.ids.Items;
+import com.fs.starfarer.api.impl.campaign.ids.Submarkets;
 import com.fs.starfarer.api.impl.campaign.ids.Terrain;
 import com.fs.starfarer.api.impl.campaign.procgen.NebulaEditor;
 import com.fs.starfarer.api.impl.campaign.terrain.HyperspaceTerrainPlugin;
@@ -95,6 +96,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
     FSF_DefMarket.addIndustry("aEP_station_tier3");
     FSF_DefMarket.addSubmarket("open_market");
     FSF_DefMarket.addSubmarket("generic_military");
+    FSF_DefMarket.addSubmarket(Submarkets.SUBMARKET_BLACK);
     FSF_DefMarket.addSubmarket("storage");
     FSF_DefMarket.getTariff().modifyFlat("default_tariff", FSF_DefMarket.getFaction().getTariffFraction());
     FSF_DefStation.setMarket(FSF_DefMarket);

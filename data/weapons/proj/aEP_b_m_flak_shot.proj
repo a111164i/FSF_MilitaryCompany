@@ -13,8 +13,8 @@
 	"fringeColor":[255,50,50,255],
   "coreColor":[255,255,200,250],
 	"glowColor":[255,65,30,35],
-	"glowRadius":50,
-	"hitGlowRadius":80,
+	"glowRadius":45,
+	"hitGlowRadius":60,
 	#"textureType":"ROUGH",  # now also used for "BALLISTIC_AS_BEAM", if specified
   "textureType":["graphics/fx/beamfringec.png","graphics/fx/beam_weave_core.png"],
 	"textureScrollSpeed":64.0,
@@ -28,8 +28,8 @@
           "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 					"explosionSpec":{"duration":0.0001f,
 						"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-						"radius":120,
-						"coreRadius":60, # full damage within core radius - also equal to proximity fuse range
+						"radius":75,
+						"coreRadius":45, # full damage within core radius - also equal to proximity fuse range
 						"collisionClass":PROJECTILE_FF,
 						"collisionClassByFighter":PROJECTILE_FIGHTER,
 						"particleSizeMin":5.0,

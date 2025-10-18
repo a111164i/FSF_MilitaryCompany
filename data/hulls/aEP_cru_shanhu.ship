@@ -79,7 +79,7 @@
             "id": "WS0005",
             "size": "LARGE",
             "type": "COMPOSITE",
-            "mount": "HARDPOINT",
+            "mount": "TURRET",
             "renderOrderMod": 850,
             "arc": 360,
             "angle": 0,

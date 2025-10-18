@@ -129,7 +129,7 @@ class aEP_MaodianDroneLaunch: BaseShipSystemScript() {
   }
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
-    return aEP_Tool.getInfoTextWithinSystemRange(ship, ship.mouseTarget, SYSTEM_RANGE)
+    return aEP_Tool.getInfoTextWithinSystemRange(ship, ship.mouseTarget, SYSTEM_RANGE, 0f)
   }
 
 

@@ -7,7 +7,6 @@
     "hullMods": [
         "targetingunit",
         "ballistic_rangefinder",
-        "aEP_HotLoader"
     ],
     "permaMods": [],
     "sMods": [],

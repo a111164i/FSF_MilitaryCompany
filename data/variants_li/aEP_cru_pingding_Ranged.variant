@@ -5,7 +5,6 @@
     "goalVariant": true,
     "hullId": "aEP_cru_pingding",
     "hullMods": [
-        "aEP_HotLoader",
         "aEP_EliteShip",
         "ballistic_rangefinder",
         "missleracks",

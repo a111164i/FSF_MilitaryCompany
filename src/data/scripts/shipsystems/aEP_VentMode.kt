@@ -5,12 +5,14 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.impl.combat.LightsEffect
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.*
 import combat.util.aEP_DataTool.txt
+import data.scripts.hullmods.aEP_AcceleratedGunnery
 import data.scripts.weapons.aEP_DecoAnimation
 import org.dark.shaders.light.LightAPI
 import org.dark.shaders.light.LightShader
@@ -36,6 +38,8 @@ class aEP_VentMode: BaseShipSystemScript() {
     const val SOFT_CONVERT_RATE = 0.25f
     const val SOFT_CONVERT_SPEED = 2000f
     const val HULL_DAMAGE_TAKEN_BONUS = 50f
+
+    const val WEAPON_ROF_BONUS = 0.25f
 
     const val SHIELD_DAMAGE_REDUCE_MULT = 0f
     const val MAX_SPEED_REDUCE_MULT = 0f
@@ -105,7 +109,11 @@ class aEP_VentMode: BaseShipSystemScript() {
 
       stats.maxSpeed.unmodify(ID)
       stats.fluxDissipation.unmodify(ID)
-      stats.weaponDamageTakenMult.unmodify(ID)
+
+      ship.mutableStats.ballisticRoFMult.unmodify()
+      ship.mutableStats.energyRoFMult.unmodify()
+      ship.mutableStats.ballisticAmmoRegenMult.unmodify()
+      ship.mutableStats.energyAmmoRegenMult.unmodify()
 
     }
     else{
@@ -120,6 +128,12 @@ class aEP_VentMode: BaseShipSystemScript() {
         //ship.fluxTracker.decreaseFlux(toConvert)
         ship.system.fluxPerSecond = SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE * convertLevel
         //ship.fluxTracker.increaseFlux(toConvert * SOFT_CONVERT_RATE, true)
+
+        ship.mutableStats.ballisticRoFMult.modifyFlat(ID, WEAPON_ROF_BONUS * convertLevel)
+        ship.mutableStats.energyRoFMult.modifyFlat(ID, WEAPON_ROF_BONUS * convertLevel)
+
+        ship.mutableStats.ballisticAmmoRegenMult.modifyFlat(ID, WEAPON_ROF_BONUS * convertLevel)
+        ship.mutableStats.energyAmmoRegenMult.modifyFlat(ID, WEAPON_ROF_BONUS * convertLevel)
 
       //幅能不足时关闭
       }else{
@@ -255,9 +269,7 @@ class aEP_VentMode: BaseShipSystemScript() {
           String.format("%.0f", SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE) ),
           false)
       } else if (index == 1) {
-//        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode02") ,
-//          String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT * 100f * convertLevel) + "%"),
-//          false)
+        return  StatusData(txt("aEP_WeaponReset01")+": "+ String.format("+%.0f",WEAPON_ROF_BONUS*100f * convertLevel)+"%", false)
       }
       else if (index == 2) {
         return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode07") ,

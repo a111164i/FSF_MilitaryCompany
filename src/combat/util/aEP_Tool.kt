@@ -1413,14 +1413,14 @@ class aEP_Tool {
 
 
     /**
-     * 加上自身的碰撞半径但是不加上对面的碰撞半径
+     * 加上自身的碰撞半径和对面的碰撞半径
      * @return 距离进入系统范围还有多远
      * */
-    fun checkTargetWithinSystemRange(ship: ShipAPI, toLocation: Vector2f?, baseRange: Float): Int{
+    fun checkTargetWithinSystemRange(ship: ShipAPI, toLocation: Vector2f?, baseRange: Float, targetRadius: Float?): Int{
       //默认返回false，所以初始为-1f
       val range = ship.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: -1f
       if(toLocation == null) return 9999
-      val dist = MathUtils.getDistance(toLocation,ship.location) - ship.collisionRadius
+      val dist = MathUtils.getDistance(toLocation,ship.location) - ship.collisionRadius - abs(targetRadius?:0f)
       if(dist <= range){
         return 0
       }
@@ -1428,9 +1428,9 @@ class aEP_Tool {
 
     }
 
-    fun getInfoTextWithinSystemRange(ship: ShipAPI, toLocation: Vector2f?, baseRange: Float): String{
+    fun getInfoTextWithinSystemRange(ship: ShipAPI, toLocation: Vector2f?, baseRange: Float, targetRadius: Float?): String{
       if(toLocation == null) return "Need Target"
-      val dist = checkTargetWithinSystemRange(ship, toLocation, baseRange)
+      val dist = checkTargetWithinSystemRange(ship, toLocation, baseRange, targetRadius?:0f)
       if(dist <= 0f){
         return "In Range"
       } else{

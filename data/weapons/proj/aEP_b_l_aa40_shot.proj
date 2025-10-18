@@ -45,14 +45,15 @@
   # 不是PHASE_MINE/PHASE_CHARGE不会读取这个behavior PROXIMITY_FUSE
 	"behaviorSpec":{
 		"behavior":"PROXIMITY_FUSE",
+		#要在爆炸中使用onHit一定要同时使用onExplosion，在onExplosion中将projectileId放入customData
 		"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
-		"range":30,
+		"range":25,
 		#"vsMissileRange":100,
 		"explosionSpec":{
 			"duration":0.00001f,
-      "radius":60,
-      "coreRadius":40, # full damage within core radius - also equal to proximity fuse range
+      "radius":60,    #别动，太小了会丢伤害
+      "coreRadius":35, # full damage within core radius - also equal to proximity fuse range
       "collisionClass":PROJECTILE_NO_FF,
       "collisionClassByFighter":PROJECTILE_FIGHTER,
       "particleSizeMin":5,

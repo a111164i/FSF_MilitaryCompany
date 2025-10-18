@@ -3495,14 +3495,14 @@ class aEP_b_l_dg3_shot : Effect(){
   }
 }
 
-//aa40 125 转膛炮系列
+//aa40 zt125 转膛炮系列
 class aEP_b_m_k125_shot : Effect(){
   companion object{
     val SMOKE_RING_COLOR =  Color(240,240,240,244)
     val SHELL_GLOW =   Color(255, 218, 188, 35)
 
-    private var PERCENT_PER_TRIGGER = 2f
-    private var AMOUNT_PER_TRIGGER = 10f //最低伤害
+    private var PERCENT_PER_TRIGGER = 0f
+    private var AMOUNT_PER_TRIGGER = 0f //最低伤害
   }
   init {
     //把customHL一位一位读char，计算 “|”的情况
@@ -3622,25 +3622,26 @@ class aEP_b_l_aa40_shot : Effect(){
     val TRIGGER_COLOR = Color(155, 168, 188, 255)
 
     var TRIGGER_CHANCE = 2f
-    var PERCENT_PER_TRIGGER = 2f
-    var AMOUNT_PER_TRIGGER = 10f
+    var PERCENT_PER_TRIGGER = 0f
+    var AMOUNT_PER_TRIGGER = 0f
 
     fun applyPureShipDamage(target:ShipAPI, point: Vector2f, damageFlat:Float, damagePercent:Float){
       val fluxLeft = target.fluxTracker.maxFlux - target.fluxTracker.currFlux - 1f
 
       val percentAmount = target.fluxTracker.maxFlux * damagePercent / 100f
       var toAdd = (damageFlat.coerceAtLeast(percentAmount)).coerceAtMost(fluxLeft)
-      val shieldDamageTakenMult = target.mutableStats.shieldDamageTakenMult.modified
-      val fluxPerDam = (target.shield?.fluxPerPointOfDamage?:1f) * shieldDamageTakenMult
-      if(fluxPerDam > 0f){
-        toAdd /= fluxPerDam
-        //toAdd /= energyTakenMult
+      if(toAdd > 0f){
+        val shieldDamageTakenMult = target.mutableStats.shieldDamageTakenMult.modified
+        val fluxPerDam = (target.shield?.fluxPerPointOfDamage?:1f) * shieldDamageTakenMult
+        if(fluxPerDam > 0f){
+          toAdd /= fluxPerDam
+          //toAdd /= energyTakenMult
+        }
+        Global.getCombatEngine().applyDamage(
+          target,point,
+          toAdd,DamageType.KINETIC,0f,
+          false,false,null)
       }
-      Global.getCombatEngine().applyDamage(
-        target,point,
-        toAdd,DamageType.KINETIC,0f,
-        false,false,null)
-
       //先在光束落点加一个特效
       Global.getCombatEngine().addHitParticle(
         point,Misc.ZERO,300f,
@@ -4380,7 +4381,7 @@ class aEP_ftr_ut_shendu_mine_shot : Effect(){
 class DriftToTarget : aEP_BaseCombatEffect{
   companion object{
     const val MAGNETIC_ATTRACTION_RANGE = 500f
-    const val MAGNETIC_ATTRACTION_ACCELERATION = 625f
+    const val MAGNETIC_ATTRACTION_ACCELERATION = 500f
     const val STOP_SPEED = 0.8f
 
   }
@@ -4827,62 +4828,19 @@ class aEP_b_m_flak_shot : Effect(){
   }
 
   init{
-    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
-    var i = 0
-    for(num in hlString.split("|")){
-      if(i == 0) EXTRA_DAMAGE = num.toFloat()
-      i += 1
-    }
   }
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
-    addEffect(Blinking(projectile))
   }
 
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
-    if(target is ShipAPI){
-      if(target.isFighter){
-        dealExtraDamage(target, EXTRA_DAMAGE, projectile.source?:null, point)
-      }
-    }
 
-    if(target is MissileAPI){
-      dealExtraDamage(target, EXTRA_DAMAGE, projectile.source?:null, point)
-    }
   }
-
   override fun onExplosion(explosion: DamagingProjectileAPI, originalProjectile: DamagingProjectileAPI, weaponId: String) {
-  }
-
-  fun dealExtraDamage(target: CombatEntityAPI, damage:Float, source: ShipAPI?, point: Vector2f){
-    addEffect(DelayDamage(target, getRandomNumberInRange(1f,1.5f), damage, source, point))
-  }
-}
-//弹丸拖尾+消失后的视觉特效
-class Blinking(val proj: DamagingProjectileAPI) : aEP_BaseCombatEffect(5f,proj){
-  val blinkTimer = IntervalUtil(0.05f,0.05f)
-  override fun advanceImpl(amount: Float) {
-    blinkTimer.advance(amount)
-    if(blinkTimer.intervalElapsed()){
-      val loc = getRandomPointInCircle(proj.location,15f)
-      val vel = Vector2f(proj.velocity)
-      vel.scale(getRandomNumberInRange(0.05f,0.15f))
-      Global.getCombatEngine().addSmoothParticle(
-        loc,
-        vel,
-        getRandomNumberInRange(8f,30f),
-        1f,
-        0.3f+getRandomNumberInRange(0f,0.1f),
-        Color(221,100,50,255))
-
-    }
-  }
-
-  override fun readyToEnd() {
     //节约资源
-    if (!Global.getCombatEngine().viewport.isNearViewport(proj.location, 600f)) return
+    if (!Global.getCombatEngine().viewport.isNearViewport(explosion.location, 600f)) return
 
     Global.getCombatEngine().addHitParticle(
-      loc,
+      explosion.location,
       Misc.ZERO,
       150f,
       1f,
@@ -4891,7 +4849,7 @@ class Blinking(val proj: DamagingProjectileAPI) : aEP_BaseCombatEffect(5f,proj){
       Color(221,150,50,205))
 
     spawnSingleCompositeSmoke(
-      loc,
+      explosion.location,
       150f,
       0.75f,
       Color(235,230,235,105))
@@ -4903,38 +4861,14 @@ class Blinking(val proj: DamagingProjectileAPI) : aEP_BaseCombatEffect(5f,proj){
       Color(251,250,255,25),
       50f,
       1000f,
-      loc)
-    ring.initColor.setToColor(250f,250f,250f,0f,0.75f)
+      explosion.location)
+    ring.initColor.setToColor(250f,250f,250f,0f,0.65f)
     ring.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring)
   }
-}
-class DelayDamage(val target: CombatEntityAPI, lifeTime: Float, val damage : Float, val source: ShipAPI?, val point:Vector2f) :  aEP_BaseCombatEffect(lifeTime, target) {
-  override fun advanceImpl(amount: Float) {
-    if(time >= lifeTime){
-      Global.getCombatEngine().applyDamage(
-        target, target.location, damage, DamageType.ENERGY,
-        0f, true, false, source, false)
-
-      val explodePoint: Vector2f = CollisionUtils.getCollisionPoint(point, target.location,target) ?: return
-      val spec = DamagingExplosionSpec(
-        0.45f, 50f, 1f, 0f, 0f,
-        CollisionClass.HITS_SHIPS_AND_ASTEROIDS,CollisionClass.HITS_SHIPS_AND_ASTEROIDS,
-        6f,6f, 0.5f, 8,
-        Color(105,105,205,255),
-        Color(165,175,225,255))
-      spec.isUseDetailedExplosion = true
-      spec.detailedExplosionRadius = 75f
-      spec.detailedExplosionFlashDuration = 0.25f
-      spec.detailedExplosionFlashRadius = 150f
-      spec.detailedExplosionFlashColorCore =  Color(165,175,225,255)
-      spec.detailedExplosionFlashColorFringe = Color(105,105,205,175)
-      Global.getCombatEngine().spawnDamagingExplosion(
-        spec, source, explodePoint, false)
-    }
-  }
 
 }
+
 
 //反冲力炮 涌浪
 class aEP_fga_yonglang_main : EveryFrame(){
@@ -5394,11 +5328,6 @@ open class aEP_m_m_fluxtube :EveryFrame(){
       return
     }
     val ship = weapon.ship
-
-    //不会下线
-    aEP_Tool.keepWeaponAlive(weapon)
-
-
     //Global.getCombatEngine().addFloatingText(ship.getLocation(),  weapon.getCooldown()+"", 20f ,new Color(0, 100, 200, 240),ship, 0.25f, 120f);
 
     if (ship.fluxTracker.fluxLevel >= USE_THTRESHOLD && weapon.cooldownRemaining <= 0 && weapon.ammo > 0) {
@@ -5770,9 +5699,6 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
       }
     }
 
-    //不会下线
-    aEP_Tool.keepWeaponAlive(weapon)
-
     if(weapon.isFiring){
       if(!didFire){
         onFire(weapon, engine)
@@ -5875,6 +5801,7 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
     val candidate = LinkedList<CombatEntityAPI>()
     val currPoint = Vector2f(point)
     val picker = WeightedRandomPicker<CombatEntityAPI>()
+    val jumpRangeSq = JUMP_RANGE.pow(2)
     while (candidate.size < JUMP_TIME){
       var foundAny = false
       picker.clear()
@@ -5890,12 +5817,13 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
         if(beam.damageTarget == s) continue
         if(candidate.contains(s)) continue
         val distSq = getDistanceSquared(s,currPoint)
-        if(distSq > JUMP_RANGE.pow(2)) continue
+        if(distSq > jumpRangeSq) continue
+        //跳最近的一个
         if(!s.isFighter){
-          picker.add(s,0.000001f)
+          picker.add(s,0.001f)
           foundAny = true
         }else{
-          picker.add(s,1000000f)
+          picker.add(s,jumpRangeSq-distSq)
           foundAny = true
         }
       }
@@ -5905,11 +5833,12 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
         if(candidate.contains(m)) continue
         if(beam.damageTarget == m) continue
         val distSq = getDistanceSquared(m,currPoint)
-        if(distSq > JUMP_RANGE.pow(2)) continue
-        picker.add(m,1000000f)
+        if(distSq > jumpRangeSq) continue
+        picker.add(m,jumpRangeSq-distSq)
         foundAny = true
       }
       if(!foundAny) break
+      if(picker.isEmpty) break
       val toAdd = picker.pick()
       currPoint.set(toAdd.location)
       candidate.add(toAdd)
@@ -5919,20 +5848,32 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
     for( i in 0 until candidate.size){
       val target = candidate[i]
       if(i == 0){
-        val effect = empArcDelayed(
-          beam.to, target,
-          beam.source, target,
-          0.2f*i + 0.1f,
-          beam.coreColor, beam.fringeColor, damage)
-        addEffect(effect)
-      }
-      else{
-        val effect = empArcDelayed(
-          candidate[i-1].location, candidate[i-1],
-          beam.source, target,
-          0.2f*i + 0.1f,
-          beam.coreColor, beam.fringeColor, damage)
-        addEffect(effect)
+        Global.getCombatEngine().spawnEmpArc(
+          beam.source, Vector2f(beam.to),
+          null,
+          candidate[i],
+          DamageType.ENERGY,
+          damage,
+          1f,
+          9999f,
+          "tachyon_lance_emp_impact",
+          40f,
+          beam.fringeColor,
+          beam.coreColor)
+      }else{
+        Global.getCombatEngine().spawnEmpArc(
+          beam.source,
+          candidate[i-1].location,
+          null,
+          candidate[i],
+          DamageType.ENERGY,
+          damage,
+          1f,
+          9999f,
+          "tachyon_lance_emp_impact",
+          40f,
+          beam.fringeColor,
+          beam.coreColor)
       }
     }
 
@@ -5942,64 +5883,19 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
     if(param is BeamAPI){
       if(param.weapon.spec.weaponId.contains(WEAPON_ID)){
         //模式2时对战机导弹提高并造成硬幅能
-        if (param.weapon.spec.weaponId.contains(WEAPON_ID+"2")){
-          param.damage.isForceHardFlux = true
-          if((target is ShipAPI && target.isFighter) || target is MissileAPI ){
-            param.damage.modifier.modifyPercent(WEAPON_ID, aEP_fga_xiliu_main2.DAMAGE_BONUS_PERCENT)
-            return WEAPON_ID
-          }
-        }
+//        if (param.weapon.spec.weaponId.contains(WEAPON_ID+"2")){
+//          param.damage.isForceHardFlux = true
+//          if((target is ShipAPI && target.isFighter) || target is MissileAPI ){
+//            param.damage.modifier.modifyPercent(WEAPON_ID, aEP_fga_xiliu_main2.DAMAGE_BONUS_PERCENT)
+//            return WEAPON_ID
+//          }
+//        }
       }
     }
     return null
   }
 }
-class empArcDelayed(val startPoint: Vector2f,
-                    val start: CombatEntityAPI,
-                    val source: ShipAPI ,
-                    val end: CombatEntityAPI,
-                    lifeTime: Float,
-                    val coreColor:Color,
-                    val fringeColor: Color,
-                    val damageAmout: Float): aEP_BaseCombatEffect(lifeTime, end){
-  override fun advanceImpl(amount: Float) {
 
-    if(time >= lifeTime){
-      var dist = getDistance(start.location, end.location)
-      dist = dist.coerceAtMost(aEP_fga_xiliu_main.JUMP_RANGE + end.collisionRadius)
-      val end2StartFacing = VectorUtils.getAngle(end.location, start.location)
-      val startPoint = getExtendedLocationFromPoint(end.location,end2StartFacing,dist)
-
-
-      Global.getCombatEngine().spawnEmpArc(
-        source,
-        startPoint,
-        null,
-        end,
-        DamageType.ENERGY,
-        damageAmout,
-        1f,
-        9999f,
-        "tachyon_lance_emp_impact",
-        40f,
-        fringeColor,
-        coreColor)
-
-      Global.getCombatEngine().spawnEmpArcVisual(
-        startPoint,
-        null,
-        end.location,
-        end,
-        36f,
-        fringeColor,
-        coreColor)
-    }
-  }
-
-  override fun readyToEnd() {
-
-  }
-}
 //对战机和导弹增加伤害的监听器写在1里面了，省的放2个监听器进去
 class aEP_fga_xiliu_main2 : EveryFrame(), BeamEffectPluginWithReset{
   companion object{
@@ -6007,13 +5903,7 @@ class aEP_fga_xiliu_main2 : EveryFrame(), BeamEffectPluginWithReset{
     var DAMAGE_BONUS_PERCENT = 100f
   }
   init{
-    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.replace("_shot","")).customPrimaryHL
-    var i = 0
-    for(num in hlString.split("|")){
-      //因为toInt()碰到空格会炸，toFloat()不会
-      if(i == 0) DAMAGE_BONUS_PERCENT = num.replace("%","").toFloat()
-      i += 1
-    }
+
   }
 
   var didEffect = false
@@ -6025,20 +5915,7 @@ class aEP_fga_xiliu_main2 : EveryFrame(), BeamEffectPluginWithReset{
    * beam的advance
    * */
   override fun advance(amount: Float, engine: CombatEngineAPI, beam: BeamAPI) {
-    //第一次对某个目标造成伤害时，触发特效
-    if(!beam.didDamageThisFrame() || beam.damageTarget == null) return
 
-    if(!didEffect){
-      didEffect = true
-      onBeamHit(beam, engine)
-    }
-
-    val hitMissile = beam.damageTarget is MissileAPI
-    val hitFighter = beam.damageTarget is ShipAPI && (beam.damageTarget as ShipAPI).isFighter
-    if(beam.didDamageThisFrame() && (hitMissile || hitFighter)){
-
-      //aEP_Combat.AddDamageReduction(0.25f, 0.5f, beam.damageTarget)
-    }
   }
 
   override fun reset() {
@@ -6049,9 +5926,6 @@ class aEP_fga_xiliu_main2 : EveryFrame(), BeamEffectPluginWithReset{
    * everyFrame的advance
    * */
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
-
-    //不会下线
-    aEP_Tool.keepWeaponAlive(weapon)
 
     if(weapon.isFiring){
       smokeTime += amount
@@ -6123,8 +5997,6 @@ class aEP_fga_xiliu_main2 : EveryFrame(), BeamEffectPluginWithReset{
       }
     }
 
-
-
   }
 
   fun onFire( weapon: WeaponAPI, engine: CombatEngineAPI){
@@ -6133,9 +6005,7 @@ class aEP_fga_xiliu_main2 : EveryFrame(), BeamEffectPluginWithReset{
     smokeTime += 0.5f
   }
 
-  fun onBeamHit( beam: BeamAPI, engine: CombatEngineAPI){
 
-  }
 }
 
 //离岸流 榴弹抛射 炸弹 bt

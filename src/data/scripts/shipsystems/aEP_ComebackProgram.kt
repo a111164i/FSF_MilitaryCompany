@@ -173,7 +173,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
     val target = target as ShipAPI
 
     //检测距离够不够
-    val dist = aEP_Tool.checkTargetWithinSystemRange(ship,target.location, SYSTEM_RANGE)
+    val dist = aEP_Tool.checkTargetWithinSystemRange(ship,target.location, SYSTEM_RANGE, target.collisionRadius)
     if (dist > 0f){
       val rounded =  ((dist / 50f).roundToInt() + 1 ) * 50
       return "Out of Range: $rounded"

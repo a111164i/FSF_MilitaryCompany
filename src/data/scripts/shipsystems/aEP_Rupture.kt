@@ -2,6 +2,7 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.EmpArcEntityAPI.EmpArcParams
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
@@ -9,7 +10,6 @@ import com.fs.starfarer.api.impl.combat.MineStrikeStats
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
 import combat.impl.aEP_BaseCombatEffectWithKey
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Blinker
@@ -43,7 +43,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val ACTIVE_TIME = 12f
     //链子极限长度为目标的碰撞半径加FREE_RANGE
     const val FREE_RANGE = 200f
-    const val SYSTEM_RANGE = 900f
+    const val SYSTEM_RANGE = 800f
 
     const val TICK_DIST = 25f
 
@@ -71,7 +71,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
         return false
       }
 
-      val dist = aEP_Tool.checkTargetWithinSystemRange(self, t.location, SYSTEM_RANGE)
+      val dist = aEP_Tool.checkTargetWithinSystemRange(self, t.location, SYSTEM_RANGE,t.collisionRadius)
       return dist <= 0f
     }
   }
@@ -178,12 +178,33 @@ class aEP_Rupture:  BaseShipSystemScript() {
         val drag = DragBall(ACTIVE_TIME,toAim, drone)
         aEP_CombatEffectPlugin.addEffect(drag)
 
+
+        val arcPoint = ship.hullSpec.getWeaponSlot("ARC_POINT").computePosition(ship)
+        val params = EmpArcParams()
+        //			params.segmentLengthMult = 4f;
+        //			params.zigZagReductionFactor = 0.25f;
+        //			params.fadeOutDist = 200f;
+        //			params.minFadeOutMult = 2f;
+        params.segmentLengthMult = 8f
+        params.zigZagReductionFactor = 0.15f
+
+        params.brightSpotFullFraction = 0.5f
+        params.brightSpotFadeFraction = 0.5f
+        //params.nonBrrightSpotMinBrightness = 0.25f;
+        val dist: Float = Misc.getDistance(arcPoint, drag.ballLocation)
+
+        params.flickerRateMult = 0.6f - dist / 3000f
+        if (params.flickerRateMult < 0.3f) {
+          params.flickerRateMult = 0.3f
+        }
         val arc = Global.getCombatEngine().spawnEmpArcVisual(
-          ship.hullSpec.getWeaponSlot("ARC_POINT").computePosition(ship), ship,
+          arcPoint, ship,
           drag.ballLocation, null,
-          15f,
-          Color.blue, Color.white)
-        arc.setSingleFlickerMode()
+          20f,
+          Color.blue, Color.white, params)
+        //arc.setFadedOutAtStart(true);
+        //arc.setRenderGlowAtStart(false);
+        arc.setSingleFlickerMode(true)
       }
     }
   }
@@ -194,7 +215,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
   }
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
-    var string = aEP_Tool.getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE)
+    var string = aEP_Tool.getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE,ship.shipTarget?.collisionRadius)
     if(ship.shipTarget?.customData?.containsKey(TARGET_KEY) == true){
       string = "Not Valid"
     }
@@ -204,7 +225,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
 
 class DragBall(lifetime:Float,val target:ShipAPI, val anchor: ShipAPI) : aEP_BaseCombatEffectWithKey(lifetime, target){
   //影响锚图片的大小，链子的粗细
-  var sizeMult = 2f
+  var sizeMult = 1.6f
 
   val sprite = Global.getSettings().getSprite("aEP_FX","yonglang_rapture_anchor")
   val spriteBase = Global.getSettings().getSprite("aEP_FX","yonglang_rapture_anchor_base")

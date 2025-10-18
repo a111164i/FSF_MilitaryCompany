@@ -47,11 +47,11 @@
     #"shotRangeVariance":0.5,
     #"probOfVariance":0.5,
     "slowToMaxSpeed":true,
-    "range":30,
+    "range":50,
     # 只有phase_mine才触发以下参数
     "delay":0.8,
     "explosionSpec":{"duration":0.0001f,
-             "radius":100,
+             "radius":75,
              "coreRadius":50, # full damage within core radius - at least equal to proximity fuse range
              "collisionClass":PROJECTILE_NO_FF,
              "collisionClassByFighter":PROJECTILE_FIGHTER,
@@ -64,10 +64,10 @@
 
              "useDetailedExplosion":true,
              "useDetailedExplosionColorAlpha":true,
-             "detailedExplosionRadius":100,
-             "detailedExplosionFlashRadius":250,
+             "detailedExplosionRadius":75,
+             "detailedExplosionFlashRadius":150,
              "detailedExplosionFlashDuration":0.2,
-             "detailedExplosionFlashColorFringe":[255,125,55,55],
+             "detailedExplosionFlashColorFringe":[255,125,55,35],
              "detailedExplosionFlashColorCore":[155,155,155,55],
              "sound":"devastator_explosion"},
 
