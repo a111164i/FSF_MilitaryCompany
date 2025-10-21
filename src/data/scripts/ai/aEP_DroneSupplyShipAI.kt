@@ -14,14 +14,17 @@ import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.subsystems.drones.DroneFormation
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.absoluteValue
 
 
 class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneBurstAI()) {
 
   companion object{
     const val ID = "aEP_DroneSupplyShipAI"
+    const val FORMATION_KEY = "aEP_DroneSupplyShipAI_FormationKey"
     const val FLUX_RETURN_PARENT = 1.25f
   }
 
@@ -34,13 +37,12 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
     } else {
       ship.wing.sourceShip
     }
-    stat = Searching()
+    stat = Parenting()
 
   }
 
 
   override fun advanceImpl(amount: Float) {
-    super.advanceImpl(amount)
     if(stat is StickAndFire){
       //把自己的目标存入自己的customMap，用于检测需不需要踢掉
       //一定用setCustomData()这个方法才能初始化原本为空的customMap
@@ -61,8 +63,8 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       systemTarget = sa.target
     }
 
-    if(stat is Searching && parentShip != null){
-      val sa = stat as Searching
+    if(stat is Parenting && parentShip != null){
+      val sa = stat as Parenting
       systemTarget = parentShip
     }
 
@@ -70,11 +72,10 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       val sa = stat as ForceReturn
       systemTarget = parentShip
     }
-
   }
 
-  inner class Searching(): aEP_MissileAI.Status(){
-    val searchTracker = IntervalUtil(0.4f,0.6f)
+  inner class Parenting(): aEP_MissileAI.Status(){
+    val searchTracker = IntervalUtil(1f,3f)
     val pointTracker = IntervalUtil(1f,1f)
     var point = ship.location?: Vector2f(0f,0f)
     override fun advance(amount: Float) {
@@ -145,12 +146,13 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
             }
             aEP_Tool.moveToAngle(ship, parentShip.facing)
             aEP_Tool.moveToPosition(ship,point)
+            var formation = ArrayList<Vector2f>()
+            genBoxFormation(ship.wing,50f,formation)
+            ship.wing.customData.set(FORMATION_KEY, formation)
           }
         }else{
           //僚机跟随阵型
-          //生成阵型
-          var formation = ArrayList<Vector2f>()
-          genBoxFormation(ship.wing,50f,formation)
+          var formation = (ship.wing.customData.get(FORMATION_KEY)?: return) as ArrayList<Vector2f>
           //找到自己的战机编号
           var i = 0
           for(f in ship.wing.wingMembers){
@@ -162,13 +164,14 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
           aEP_Tool.moveToPosition(ship, loc)
         }
 
-
       }else{
+        //如果没有母舰，找最近的一个当母舰
         parentShip = aEP_Tool.getNearestFriendCombatShip(ship)
         if(parentShip == null){
           stat = SelfExplode()
           return
         }
+        ship.wing.sourceShip = parentShip
       }
 
     }
@@ -188,14 +191,14 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       }
 
       //如果停留追逐模式时间过长，转入搜索模式
-      if(time >= 16f){
-        stat = Searching()
+      if(time >= 20f){
+        stat = Parenting()
         return
       }
 
       //如果目标失效或者是相位舰船，转入搜索模式
       if(aEP_Tool.isDead(target) || target.isPhased){
-        stat = Searching()
+        stat = Parenting()
         return
       }
 
@@ -203,6 +206,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       val dist = MathUtils.getDistance(ship,target)
       if(dist < 100f){
         stat = StickAndFire(target)
+        return
       }
 
       aEP_Tool.flyToPosition(ship, target.location)
@@ -244,15 +248,15 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       }
 
       //如果停留吸收模式时间过长，转入搜索模式
-      if(time >= 8){
-        stat = Searching()
+      if(time >= 15f){
+        stat = Parenting()
         cancelBuff()
         return
       }
 
       //如果目标失效或者是相位舰船，转入搜索模式，
       if(aEP_Tool.isDead(target) || target.fluxLevel <= 0f || target.isPhased){
-        stat = Searching()
+        stat = Parenting()
         cancelBuff()
         return
       }
@@ -287,12 +291,17 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       aEP_Tool.moveToPosition(ship, pos)
       aEP_Tool.moveToAngle(ship, target.facing)
 
+      //ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
+
       //开火检测，停稳了，对准了
       val distToAbsPos = MathUtils.getDistance(ship.location, pos)
       if(distToAbsPos < 50f + target.maxSpeed * 0.25f
-        && target.collisionClass != CollisionClass.NONE ){
-        ship.giveCommand(ShipCommand.SELECT_GROUP,null,0)
-        ship.giveCommand(ShipCommand.FIRE,target.location,0)
+        && target.collisionClass != CollisionClass.NONE){
+
+        ship.mouseTarget.set(target.location)
+        if(MathUtils.getShortestRotation(ship.allWeapons[0].currAngle, VectorUtils.getAngle(ship.location, target.location).absoluteValue) < 15f) {
+          ship.giveCommand(ShipCommand.FIRE, target.location, 0)
+        }
       }
 
     }

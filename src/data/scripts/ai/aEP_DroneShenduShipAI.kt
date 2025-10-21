@@ -10,7 +10,7 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import kotlin.math.pow
 
-class aEP_DroneShenduShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseShipAI(ship, aEP_DroneTimeAlterAI()) {
+class aEP_DroneShenduShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseShipAI(ship, null) {
 
   val newAttackLocTracker = IntervalTracker(1f,4f)
   var attackLoc = Vector2f(ship.location)

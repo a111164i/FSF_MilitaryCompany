@@ -231,7 +231,6 @@ aEP_cru_pingding_main_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP
 aEP_cru_pingding_torpedo_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_cru_pingding/torpedo_normal.png
 aEP_cru_requan_missile_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_cap_nuanchi/rq_shot_normal.png
 aEP_des_lianliu_grenade_thrower_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_l_harpoon/bomblet_normal.png
-aEP_des_shuishi_flare_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_des_shuishi_flare/heavy_mine0_normal.png
 aEP_fga_xiliu_mk2_missile_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_fga_xiliu/mk2_missile_normal.png
 aEP_ftr_bom_nuke_bomb_shot1,missile,,1,normal,graphics/shaders/normal/weapons/aEP_fighters/aEP_nuke/proj00_normal.png
 aEP_ftr_bom_nuke_bomb_shot2,missile,,1,normal,graphics/shaders/normal/weapons/aEP_fighters/aEP_nuke/proj00_normal.png

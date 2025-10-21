@@ -12,9 +12,7 @@
   "shieldRadius": 38,
   "viewOffset": 0,
   "builtInMods": [
-    "autorepair",
     "insulatedengine",
-    "armoredweapons",
     "aEP_FighterArmor"
   ],
   "weaponSlots": [

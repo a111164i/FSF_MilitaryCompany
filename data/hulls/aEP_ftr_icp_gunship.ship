@@ -12,8 +12,6 @@
   "shieldRadius": 29.5,
   "viewOffset": 0,
   "builtInMods": [
-    "autorepair",
-    "insulatedengine",
     "aEP_FighterArmor",
     "turretgyros"
   ],

@@ -6,7 +6,8 @@
 	"statsScript":"data.scripts.shipsystems.aEP_MaodianDroneLaunch",
 
 	
-	"runScriptWhileIdle":true,  # this means unapply() never gets called	
+	"runScriptWhileIdle":true,  # this means unapply() never gets called
+	"useSound":"system_reserve_wing",
 	"outOfUsesSound":"gun_out_of_ammo",
 	"aiHints":{
 	}

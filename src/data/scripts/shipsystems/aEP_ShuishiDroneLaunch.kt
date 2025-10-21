@@ -105,8 +105,6 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     //updateDeco(ship, 0f, 0f)
   }
 
-
-
   //这个方法只有在玩家开的时候才会每帧调用，不要在这里取巧
   override fun isUsable(system: ShipSystemAPI?, ship: ShipAPI?): Boolean {
     return super.isUsable(system, ship)

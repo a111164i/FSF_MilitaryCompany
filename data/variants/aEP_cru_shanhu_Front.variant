@@ -1,6 +1,6 @@
 {
     "displayName": "Support",
-    "fluxCapacitors": 20,
+    "fluxCapacitors": 16,
     "fluxVents": 0,
     "goalVariant": true,
     "hullId": "aEP_cru_shanhu",
@@ -49,9 +49,9 @@
         }
     ],
     "wings": [
-        "aEP_ftr_sup_tank_wing",
-        "aEP_ftr_sup_tank_wing",
+        "aEP_ftr_ut_shuishi_wing2",
+        "aEP_ftr_ut_shuishi_wing2",
         "aEP_ftr_ut_repair_wing",
-        "aEP_ftr_sup_guardian_wing"
+        "aEP_ftr_ut_supply_wing"
     ]
 }

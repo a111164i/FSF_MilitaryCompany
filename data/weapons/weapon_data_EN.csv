@@ -26,15 +26,14 @@ Built-in Micro DEM,aEP_des_taodong_dem,FSF Manufacture,General,"The missile will
 Migratory Repulse Missile,aEP_fga_xiliu_mk2_missile,FSF Manufacture,General,
 Recoil Gun,aEP_fga_yonglang_main,FSF Manufacture,Anti-shield,"When hitting shields, it deals extra KE damage equal to its EMP damage in soft flux."
 Boiling Laser - High Output,aEP_fga_xiliu_main,FSF Manufacture,PD,"When hit, it spawns EMP arcs jump around a distance of %s, hitting up to %s enemies and dealing %s EN damage to each."
-Boiling Laser - Repeating,aEP_fga_xiliu_main2,FSF Manufacture,PD,
+Boiling Laser - Repeating,aEP_fga_xiliu_main2,FSF Manufacture,PD,Beam is divided into %s small beams
 Lidardish,aEP_fga_chichao_lidardish,,,
 Laser Aim,aEP_fga_shuangshen2_lidardish,FSF Manufacture,Support, 
 Fighter Pointer,aEP_fga_shuangshen_pointer,FSF Manufacture,Support,Guide the built-in fighter to the endpoint of this beam.
 DF-2 Heavy ERA,aEP_m_s_era3,FSF Manufacture,PD,"When the hull around this weapon takes a damage that is greater than or equal to %s or %s times the ship's armor, the ERA triggers, consuming 1 ammo and reducing that damage by %s."
 S-1 Payload,aEP_cruise_missile_shot,FSF Manufacture,,
 S-2 Payload,aEP_cruise_missile_shot2,FSF Manufacture,,
-Tesla Arc Emitter,aEP_des_yonglang_mk2_teslagun,FSF Private Conversion,Support,"When hit, this weapon spawns %s shield-piercing EMP arcs every second. Each arc deals %s EN damage and %s EMP damage, in addition to reducing the target's maximum speed by %s."
-Flare Mine,aEP_des_shuishi_flare,FSF Manufacture,PD,
+Tesla Arc Emitter,aEP_des_yonglang_mk2_teslagun,FSF Private Conversion,Support,"When hitting ships, this weapon spawns %s shield-piercing EMP arcs every second. Each arc deals %s EN damage and %s EMP damage, in addition to reducing the target's maximum speed by %s."
 Flare - Passive,aEP_m_s_flare,FSF Manufacture,PD,
 Flare - Fighter,aEP_m_s_flare2,FSF Manufacture,PD,
 Flare - Active,aEP_m_s_flare3,FSF Manufacture,PD,
@@ -67,8 +66,8 @@ d100t-MBC,aEP_b_l_d100t,FSF Manufacture,Anti-shield,"When hitting hulls, the dam
 ,#导弹武器,,,
 Expander Hive LRM,aEP_m_s_expander,FSF Manufacture,Suppression,
 Expander Hive LRM Pod,aEP_m_m_expander,FSF Manufacture,Suppression,
-Door Breach Torpedo,aEP_m_s_breachdoor,FSF Manufacture,Anti-shield,"When hitting shields, it deals extra kinetic energy damage equal to EMP damage in soft flux. If that hit causes an overload, the overload lasts only %s seconds."
-Door Breach Torpedo Pod,aEP_m_m_breachdoor,FSF Manufacture,Anti-shield,"When hitting shields, it deals extra kinetic energy damage equal to EMP damage in soft flux. If that hit causes an overload, the overload lasts only %s seconds."
+Door Breach Torpedo,aEP_m_s_breachdoor,FSF Manufacture,Anti-shield,"When hitting shields, it deals extra kinetic energy damage equal to EMP damage in soft flux. If that hit causes an overload, it lasts only %s seconds."
+Door Breach Torpedo Pod,aEP_m_m_breachdoor,FSF Manufacture,Anti-shield,"When hitting shields, it deals extra kinetic energy damage equal to EMP damage in soft flux. If that hit causes an overload, it lasts only %s seconds."
 Blast Hammer LRM Pod,aEP_m_m_blasthammer,FSF Manufacture,Finisher,"When hit, the impact only deals a small damage. It then shoots %s jets, each one dealing a FRAG damage of %s of the total."
 Blast Hammer LRM System,aEP_m_l_blasthammer,FSF Manufacture,Finisher,"When hit, the impact only deals a small damage. It then shoots %s jets, each one dealing a FRAG damage of %s of the total."
 --Payload,aEP_m_m_blasthammer3,,,
@@ -101,26 +100,20 @@ Tank Cannon - Fighter,aEP_ftr_sup_tank_main,FSF Manufacture,Anti-armor,
 Smoke Bomb - Fighter,aEP_ftr_sup_tank_flak,FSF Manufacture,PD,
 Nuke Mine - Fighter,aEP_ftr_bom_nuke_bomb,FSF Manufacture,Anti-armor,
 Burst Assault Cannon - Fighter,aEP_ftr_bom_attacker_gun,FSF Manufacture,Anti-armor,
-Scrape Beam - Fighter,aEP_ftr_ut_decompose_beam,FSF Manufacture,Support,"When hitting a hulk, it deals extra FRAG damage and recycles supplies. Those supplies are added to your cargo if the done made its way landing."
+Scrape Beam - Fighter,aEP_ftr_ut_decompose_beam,FSF Manufacture,Support,"When hitting hulks, it deals extra FRAG damage and recycles supplies. Those supplies are added to your cargo if the done made its way landing."
 Magnet Bomb - Fighter,aEP_ftr_ut_shendu_mine,FSF Manufacture,Anti-armor,"The magnet bomb will be attracted to nearby enemy ships, including phased ships."
 Anti-ship Laser - Fighter,aEP_ftr_ut_shendu_beam,FSF Manufacture,Anti-armor,
-Anchor ADS System,aEP_ftr_ut_maodian_ads,FSF Manufacture,PD,"Its projectiles are considered missiles and can intercept other projectiles
-
-When meeting a missile-piercing projectile, reducing its damage by %s."
-Flux Absorber - Fighter,aEP_ftr_ut_supply_main,FSF Manufacture,Support,"When hitting a ship, transfer the target's flux to this ship as hard flux at a speed of %s.
-
-If the target is using a ship system that prevents dissipation, no transfer will occur.
+Anchor ADS System,aEP_ftr_ut_maodian_ads,FSF Manufacture,PD,"Its projectiles are considered missiles and can intercept other projectiles. When meeting a missile-piercing projectile, reducing its damage by %s."
+Flux Absorber - Fighter,aEP_ftr_ut_supply_main,FSF Manufacture,Support,"When hitting a ship, transfer the target's flux to this ship as hard flux at a speed of %s. If the target is using a ship system that prevents dissipation, no transfer will occur.
 
 Works better with FSF ships."
-Repair Beam - Fighter,aEP_ftr_ut_repair_beam,FSF Manufacture,Support,"When hitting a ship, repair its armor by %s + %s, up to %s of the maximum armor.
-
-If the armor has reached the maximum repair level, restore hull integrity up to %s.
+Repair Beam - Fighter,aEP_ftr_ut_repair_beam,FSF Manufacture,Support,"When hitting a ship, repair its armor by %s + %s, up to %s of the maximum armor. Exceeded repair will restore hull integrity up to %s.
 
 Works better with FSF ships."
 ,,,,
 ,,,,
 Drake Flamethrower,aEP_e_s_flamer,FSF Private Conversion,Anti-armor,
-Boom Lance,aEP_m_s_bomblance,FSF Private Conversion,Anti-armor,This weapon fires automatically if its tip touches a ship.
+Boom Lance,aEP_m_s_bomblance,FSF Private Conversion,Anti-armor,This weapon fires automatically if its tip touches a ship and will not go offline
 Lightening Disturb Gun,aEP_b_m_lighting,FSF Advanced Weapon Program,Anti-shield,"When hitting shield, it applies a stackable debuff to the target: For the next %s seconds, increase the target's shield upkeep by %s."
 Sea Roar Super-heavy Railway Cannon,aEP_b_l_railwaygun,FSF Advanced Weapon Program,Anti-armor,"When hitting a ship, if it overloads the target, the projectile will continue forward."
 ,,,,

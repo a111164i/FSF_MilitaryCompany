@@ -19,7 +19,6 @@
     "builtInMods": [
         "autorepair",
         "insulatedengine",
-        "armoredweapons",
         "aEP_ProjectileDenialShield"
     ],
     "builtInWings": [],

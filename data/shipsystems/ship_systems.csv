@@ -49,7 +49,7 @@ name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u 
 俯冲突袭,aEP_DroneDash,1,,,,,,,,,0.1,,1.4,6,,,,,,,TRUE,,,TRUE,,,graphics/icons/hullsys/drone_pd_high.png,
 应急阻尼立场,aEP_DroneDamper,1,,,,,,,1,,0.5,4,0.5,1,,,,,,,,,TRUE,TRUE,,uses_damper_ai,graphics/icons/hullsys/ammo_feeder.png,
 时流加速,aEP_DroneTimeAlter,1,,,,,,,,,0.2,1,0.3,3.5,,,,,TRUE,,,,,,,,graphics/icons/hullsys/ammo_feeder.png,
-卫兵闪现,aEP_DroneGuard,1,,,,,,,,,0,1,0.5,8,,,,,TRUE,TRUE,TRUE,TRUE,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png,
+拦截,aEP_DroneGuard,1,,,,,,,,,0,1,0.5,8,,,,,TRUE,TRUE,TRUE,TRUE,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png,
 防空烟雾弹,aEP_DroneCanister,1,,,,,,,,,0.1,,0.1,12,,,,,,,,,,TRUE,,,graphics/icons/hullsys/ammo_feeder.png,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,

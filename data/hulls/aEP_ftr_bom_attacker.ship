@@ -12,9 +12,7 @@
   "shieldRadius": 22,
   "viewOffset": 0,
   "builtInMods": [
-    "autorepair",
-    "insulatedengine",
-    "armoredweapons"
+    "insulatedengine"
   ],
   "weaponSlots": [
     {

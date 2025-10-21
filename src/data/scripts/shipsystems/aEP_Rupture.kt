@@ -10,6 +10,7 @@ import com.fs.starfarer.api.impl.combat.MineStrikeStats
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.Misc
+import com.fs.starfarer.campaign.ui.marketinfo.b
 import combat.impl.aEP_BaseCombatEffectWithKey
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Blinker
@@ -18,9 +19,11 @@ import combat.util.aEP_ID
 import combat.util.aEP_Tool
 import data.scripts.hullmods.aEP_EliteShip
 import data.scripts.shipsystems.aEP_Rupture.Companion.DIRECTION_COLOR
+import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_INJECT_COLOR
 import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_PERCENT_PER_TICK
 import data.scripts.shipsystems.aEP_Rupture.Companion.FLUX_PER_TICK
 import data.scripts.shipsystems.aEP_Rupture.Companion.FREE_RANGE
+import data.scripts.shipsystems.aEP_Rupture.Companion.JITTER_COLOR
 import data.scripts.shipsystems.aEP_Rupture.Companion.OVERLOAD_TIME
 import data.scripts.shipsystems.aEP_Rupture.Companion.SPEED_SLOW_PER_TICK
 import data.scripts.shipsystems.aEP_Rupture.Companion.TICK_DIST
@@ -31,6 +34,7 @@ import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
+import kotlin.math.max
 
 class aEP_Rupture:  BaseShipSystemScript() {
   companion object{
@@ -40,19 +44,20 @@ class aEP_Rupture:  BaseShipSystemScript() {
     val JITTER_COLOR: Color = MineStrikeStats.JITTER_UNDER_COLOR
     val DIRECTION_COLOR: Color = Misc.scaleAlpha(Color.red,1f)
 
+    val FLUX_INJECT_COLOR: Color = Color(100,165,255,255)
+
     const val ACTIVE_TIME = 12f
-    //链子极限长度为目标的碰撞半径加FREE_RANGE
-    const val FREE_RANGE = 200f
-    const val SYSTEM_RANGE = 800f
+    //链子极限长度为FREE_RANGE，不应该小于系统释放范围，也受到系统射程的加成
+    const val FREE_RANGE = 900f
+    const val SYSTEM_RANGE = 600f
 
-    const val TICK_DIST = 25f
+    const val TICK_DIST = 50f
 
-    //每25距离加多少幅能
-    const val FLUX_PER_TICK = 250f
-    const val FLUX_PERCENT_PER_TICK = 2.5f
-    //每25距离减一次速度
+    //每tick距离加多少幅能
+    const val FLUX_PER_TICK = 200f
+    const val FLUX_PERCENT_PER_TICK = 2f
+    //每tick距离减一次速度
     const val SPEED_SLOW_PER_TICK = 0.5f
-
     const val OVERLOAD_TIME = 1f
 
     const val DRONE_HP = 3000f
@@ -65,9 +70,8 @@ class aEP_Rupture:  BaseShipSystemScript() {
           false,false,false,
           false,false)) return false
 
-
       //对于正在被起效的目标不能放第二个
-      if(t.customData?.containsKey(TARGET_KEY) == true){
+      if(t.customData?.containsKey(TARGET_KEY+self.id) == true){
         return false
       }
 
@@ -112,7 +116,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
       }
       if(toAim != null){
 
-        //用fxDrone是没有自带ai的
+        /*//用fxDrone是没有自带ai的
         val variant = Global.getSettings().createEmptyVariant(
           aEP_EliteShip.DRONE_ID,
           Global.getSettings().getHullSpec(aEP_EliteShip.DRONE_ID))
@@ -138,18 +142,6 @@ class aEP_Rupture:  BaseShipSystemScript() {
         }
         //级别盾
         drone.addListener(object : DamageTakenModifier{
-          /**
-           * Modifications to damage should ONLY be made using damage.getModifier().
-           *
-           * param can be:
-           * null
-           * DamagingProjectileAPI
-           * BeamAPI
-           * EmpArcEntityAPI
-           * Something custom set by a script
-           *
-           * @return the id of the stat modification to damage.getModifier(), or null if no modification was made
-           */
           override fun modifyDamageTaken(
             param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f?, shieldHit: Boolean): String? {
             var source: ShipAPI? = null
@@ -173,9 +165,8 @@ class aEP_Rupture:  BaseShipSystemScript() {
             return null
           }
         })
-        Global.getCombatEngine().addEntity(drone)
-
-        val drag = DragBall(ACTIVE_TIME,toAim, drone)
+        Global.getCombatEngine().addEntity(drone)*/
+        val drag = DragBall(ACTIVE_TIME,toAim, ship)
         aEP_CombatEffectPlugin.addEffect(drag)
 
 
@@ -187,24 +178,24 @@ class aEP_Rupture:  BaseShipSystemScript() {
         //			params.minFadeOutMult = 2f;
         params.segmentLengthMult = 8f
         params.zigZagReductionFactor = 0.15f
-
         params.brightSpotFullFraction = 0.5f
         params.brightSpotFadeFraction = 0.5f
         //params.nonBrrightSpotMinBrightness = 0.25f;
-        val dist: Float = Misc.getDistance(arcPoint, drag.ballLocation)
-
+        val dist: Float = Misc.getDistance(arcPoint, ship.shipTarget.location)
         params.flickerRateMult = 0.6f - dist / 3000f
         if (params.flickerRateMult < 0.3f) {
           params.flickerRateMult = 0.3f
         }
         val arc = Global.getCombatEngine().spawnEmpArcVisual(
           arcPoint, ship,
-          drag.ballLocation, null,
-          20f,
-          Color.blue, Color.white, params)
+          ship.shipTarget.location, ship.shipTarget,
+          30f, aEP_Tool.getColorWithAlpha(JITTER_COLOR,1f), Color.white,
+          params)
         //arc.setFadedOutAtStart(true);
         //arc.setRenderGlowAtStart(false);
         arc.setSingleFlickerMode(true)
+
+        Global.getSoundPlayer().playSound("system_interdictor",1f,1f,ship.location, Misc.ZERO)
       }
     }
   }
@@ -216,26 +207,29 @@ class aEP_Rupture:  BaseShipSystemScript() {
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
     var string = aEP_Tool.getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE,ship.shipTarget?.collisionRadius)
-    if(ship.shipTarget?.customData?.containsKey(TARGET_KEY) == true){
+    if(ship.shipTarget?.customData?.containsKey(TARGET_KEY+ship.id) == true){
       string = "Not Valid"
     }
     return string
   }
 }
 
-class DragBall(lifetime:Float,val target:ShipAPI, val anchor: ShipAPI) : aEP_BaseCombatEffectWithKey(lifetime, target){
+class DragBall(lifetime:Float,val target:ShipAPI, val ship: ShipAPI) : aEP_BaseCombatEffectWithKey(lifetime, target){
   //影响锚图片的大小，链子的粗细
-  var sizeMult = 1.6f
+  val sizeMult = 0.75f
+  //只影响粗细
+  val lineWidth = 2f
 
   val sprite = Global.getSettings().getSprite("aEP_FX","yonglang_rapture_anchor")
   val spriteBase = Global.getSettings().getSprite("aEP_FX","yonglang_rapture_anchor_base")
   val spriteDirection = Global.getSettings().getSprite("aEP_FX","forward")
 
-  var fac2Entity = 0f
-  var dist2Entity = 0f
-  var maxLength = FREE_RANGE + target.collisionRadius
-  val ballLocation = MathUtils.getRandomPointOnCircumference(Vector2f(target.location),maxLength)
+  var fac2Entity = ship.facing
+  var maxLength = aEP_Tool.getSystemRange(ship,FREE_RANGE) + ship.collisionRadius + target.collisionRadius
+  val ballLocation = ship.hullSpec.getWeaponSlot("ARC_POINT").computePosition(ship)
+  var dist2Entity =Misc.getDistance(ballLocation, target.location)
 
+  var minDist = Misc.getDistance(ballLocation, target.location)
   var cumulatedDist = 0f
 
   var chain = Chain(target, this)
@@ -259,31 +253,68 @@ class DragBall(lifetime:Float,val target:ShipAPI, val anchor: ShipAPI) : aEP_Bas
     Global.getCombatEngine().addHitParticle(
       ballLocation, Misc.ZERO,200f,
       1f,0.1f,0.5f, RecallDeviceStats.JITTER_COLOR)
+
   }
 
   override fun advanceImpl(amount: Float) {
 
-    if(aEP_Tool.isDead(target) || aEP_Tool.isDead(anchor)){
+    if(aEP_Tool.isDead(target) || aEP_Tool.isDead(ship)){
       shouldEnd = true
       return
     }
 
-    target.setCustomData(aEP_Rupture.TARGET_KEY,1f)
-
     moved = false
-    dist2Entity = MathUtils.getDistance(target.location, ballLocation)
-    //fac2Entity = VectorUtils.getAngle(ballLocation, target.location)
+    target.setCustomData(aEP_Rupture.TARGET_KEY+ship.id,1f)
+    //把锚放在船的特殊点位上
+    ballLocation.set(ship.hullSpec.getWeaponSlot("ARC_POINT").computePosition(ship))
+    dist2Entity = Misc.getDistance(ballLocation, target.location)
     if(dist2Entity > maxLength){
-      moved = true
-      fac2Entity = VectorUtils.getAngle(ballLocation, target.location)
-      ballLocation.set(aEP_Tool.getExtendedLocationFromPoint(target.location, fac2Entity-180f, maxLength))
-      cumulatedDist += (dist2Entity - maxLength)
+      shouldEnd = true
     }
 
-    //把无人机锁到球上
-    anchor.velocity.set(Vector2f(0f,0f))
-    anchor.location.set(ballLocation)
-    anchor.facing = fac2Entity
+    if(dist2Entity > minDist){
+      cumulatedDist += (dist2Entity-minDist)
+      minDist = dist2Entity
+      moved = true
+    }
+    minDist = dist2Entity
+
+    //灌幅能
+    while(cumulatedDist > TICK_DIST){
+      cumulatedDist -= TICK_DIST
+      fac2Entity = VectorUtils.getAngle(ballLocation, target.location)
+
+      val fluxLeft = (target.maxFlux - target.currFlux -1f).coerceAtLeast(0f)
+      val toAdd = (FLUX_PER_TICK + target.maxFlux * FLUX_PERCENT_PER_TICK/100f).coerceAtMost(fluxLeft)
+      //电弧
+
+      val params = EmpArcParams()
+      params.brightSpotFullFraction = 0.5f
+      params.brightSpotFadeFraction = 0.5f
+      params.glowAlphaMult = 0.1f
+      // flickerRate 频闪频率，越小，闪电存在时间越久。通灵塔写的挺好的，别动
+      val dist: Float = Misc.getDistance(ballLocation, target.location)
+      params.flickerRateMult = 0.6f - dist / 3000f
+      if (params.flickerRateMult < 0.3f) {
+        params.flickerRateMult = 0.3f
+      }
+      // movementDurMax 闪电向前移动的时间，太慢会导致闪电本身都消失了，还没有移动的目标。闪电本身的持续时间是跟着粗度来的，默认0.1f挺好的别动
+      params.movementDurMax = (0.05f + 0.05f * dist/2000f).coerceAtMost(0.15f)
+      params.movementDurMin = params.movementDurMax
+      val arc = Global.getCombatEngine().spawnEmpArc(
+        ship, ballLocation,
+        ship, target,
+        DamageType.ENERGY, 0f,0f,9999f,
+        "tachyon_lance_emp_impact",
+        16f, Color(255,255,255,1),
+        Color(255,255,255,1),
+        params)
+      arc.setSingleFlickerMode(true)
+
+      target.fluxTracker.increaseFlux(toAdd,false)
+      aEP_Combat.AddStandardSlow(1.1f,SPEED_SLOW_PER_TICK,0f,target)
+    }
+
 
     //渲染底座，注意渲染顺序
     val baseAngle = aEP_Tool.angleAdd(fac2Entity - 90f,  time * 180f)
@@ -303,38 +334,20 @@ class DragBall(lifetime:Float,val target:ShipAPI, val anchor: ShipAPI) : aEP_Bas
         aEP_Tool.getColorWithAlpha(DIRECTION_COLOR, directionBlinker.blinkLevel),true, CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
     }
 
-    if (cumulatedDist > TICK_DIST){
-      val fluxLeft = (target.maxFlux - target.currFlux -1f).coerceAtLeast(0f)
-      val toAdd = FLUX_PER_TICK + target.maxFlux * FLUX_PERCENT_PER_TICK/100f
-      if(fluxLeft >= toAdd){
-        //电弧
-        Global.getCombatEngine().spawnEmpArcPierceShields(
-          target, ballLocation, null,
-          target, DamageType.ENERGY,
-          1f,
-          1f,
-          Float.MAX_VALUE,
-          "system_emp_emitter_impact",
-          MathUtils.getRandomNumberInRange(0f, 10f) + 10f,
-          Color.blue,
-          Color.white)
-
-        target.fluxTracker.increaseFlux(FLUX_PER_TICK,false)
-        aEP_Combat.AddStandardSlow(1.1f,SPEED_SLOW_PER_TICK,0f,target)
-        cumulatedDist -= TICK_DIST
-      }else{
-        if(target.fluxTracker?.isOverloaded == false){
-          target.fluxTracker?.forceOverload(OVERLOAD_TIME)
-        }
-      }
-    }
   }
 
   override fun readyToEndImpl() {
     chain.lifeTime = 100f
     chain.time = 99.9f
-    Global.getCombatEngine().spawnExplosion(ballLocation, Misc.ZERO, aEP_BeamRepair.REPAIR_COLOR2,100f*sizeMult,0.5f)
-    Global.getCombatEngine().removeEntity(anchor)
+    //闪光
+    Global.getCombatEngine().addSmoothParticle(
+      ballLocation,
+      Misc.ZERO,
+      300f,1f,0.1f,0.15f,JITTER_COLOR)
+
+    Global.getCombatEngine().spawnExplosion(ballLocation, Misc.ZERO, aEP_BeamRepair.REPAIR_COLOR2,200f*sizeMult,0.5f)
+    Global.getSoundPlayer().playSound("phase_anchor_vanish",1f,1f,ship.location, Misc.ZERO)
+    target.removeCustomData(aEP_Rupture.TARGET_KEY+ship.id)
   }
 }
 
@@ -342,8 +355,8 @@ class Chain(val target: ShipAPI,val ballDrag:DragBall): PredictionStripe(target)
 
   init {
     scrollSpeed = 2f
-    texLength = 20f * ballDrag.sizeMult
-    halfWidth = 10f * ballDrag.sizeMult
+    texLength = 20f * ballDrag.sizeMult * ballDrag.lineWidth
+    halfWidth = 10f * ballDrag.sizeMult * ballDrag.lineWidth
     spriteTexId = Global.getSettings().getSprite("aEP_FX","chain").textureId
     layers.clear()
     layers.add(CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
@@ -360,7 +373,7 @@ class Chain(val target: ShipAPI,val ballDrag:DragBall): PredictionStripe(target)
     color = Color(
       50 + (200*redLevel).toInt(),
       250 - (200*redLevel).toInt(),
-      25,175)
+      25,155)
     super.advanceImpl(amount)
   }
 

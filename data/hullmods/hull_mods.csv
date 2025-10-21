@@ -74,7 +74,7 @@ FSF模块,aEP_Module,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aE
 锚点护盾,aEP_MaoDianShield,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,独特的护盾系统，展开会持续产生软幅能。但遭到攻击时，如果当前软幅能高于硬幅能，会优先将软幅能转化为硬幅能，而非产生硬幅能。,,,graphics/aEP_hullmods/aEP_vanguard_hull.png,
 巡航导弹,aEP_CruiseMissile,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,自动追踪的巡洋导弹，无法人工控制，靠近敌方舰船时发生爆炸,,,graphics/aEP_hullmods/aEP_CM_carrier.png,
 巡航导弹,aEP_CruiseMissile2,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,自动追踪的巡洋导弹，无法人工控制，靠近敌方舰船时发生爆炸,,,graphics/aEP_hullmods/aEP_CM_carrier.png,
-战机防护增强,aEP_FighterArmor,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"全面增强战机的防护能力，装甲对伤害有更高抗性，武器和引擎更难被下线
+战机防护增强,aEP_FighterArmor,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,"全面增强战机的防护能力，装甲对伤害有更高抗性，武器和引擎更难被下线
 
 装甲，结构，武器与引擎受到的伤害降低{%}",,,graphics/aEP_hullmods/aEP_vanguard_hull.png,
 坦克集成系统,aEP_FlyingTank,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,装甲在受损后会快速回复到最大值,,,graphics/aEP_hullmods/aEP_self_rotate.png,

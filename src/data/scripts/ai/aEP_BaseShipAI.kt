@@ -2,18 +2,13 @@ package data.scripts.ai
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.combat.entities.Ship
 import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.addDebugLog
-import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
 import data.scripts.ai.shipsystemai.aEP_BaseSystemAI
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.util.*
-import kotlin.collections.HashMap
+
 
 open class aEP_BaseShipAI: ShipAIPlugin {
 
@@ -21,8 +16,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
     const val ID = "aEP_BaseShipAI"
   }
 
-  lateinit var engine: CombatEngineAPI
-
+  var engine: CombatEngineAPI
   var ship: ShipAPI
 
   var systemTarget: ShipAPI? = null
@@ -39,6 +33,7 @@ open class aEP_BaseShipAI: ShipAIPlugin {
 
   var shieldFacing: Float? = null
 
+
   var stat: aEP_MissileAI.Status = aEP_MissileAI.Empty()
 
   constructor(ship : ShipAPI){
@@ -47,11 +42,11 @@ open class aEP_BaseShipAI: ShipAIPlugin {
 
   }
 
-  constructor(ship : ShipAPI, systemAI: aEP_BaseSystemAI){
+  constructor(ship : ShipAPI, systemAI: aEP_BaseSystemAI?){
     this.ship = ship
     this.engine = Global.getCombatEngine()
     this.systemAI = systemAI
-    systemAI.init(ship,ship.system,aiFlags,engine)
+    systemAI?.init(ship,ship.system,aiFlags,engine)
   }
 
 
@@ -87,18 +82,27 @@ open class aEP_BaseShipAI: ShipAIPlugin {
     }
 
     aiFlags.advance(amount)
-    if(ship.fighterTimeBeforeRefit <= 1f && stat !is ForceReturn){
+
+    if((ship.fighterTimeBeforeRefit <= 1f || ship.wing?.isReturning(ship)?:false )&& stat !is ForceReturn){
       stat = ForceReturn()
     }else{
       advanceImpl(amount)
+
     }
 
   }
 
   /**
-   * 用这个
+   * 非联队飞机/领队用这个
    */
   open fun advanceImpl(amount: Float){
+
+  }
+
+  /**
+   * 非领队用这个
+   */
+  open fun advanceImplWingman(leaderAI: aEP_BaseShipAI, amount: Float){
 
   }
 
@@ -142,6 +146,11 @@ open class aEP_BaseShipAI: ShipAIPlugin {
   open inner class ForceReturn: aEP_MissileAI.Status(){
     var didLand = false
 
+    init {
+      //被new的时候下一次回航命令
+      ship.wing?.orderReturn(ship)
+    }
+
     override fun advance(amount: Float) {
       //如果根本没有母舰，直接转入自毁
       if(ship.wing?.sourceShip == null){
@@ -156,8 +165,15 @@ open class aEP_BaseShipAI: ShipAIPlugin {
         return
       }
 
-      //其实不用这么麻烦还写个自爆，因为这个方法里面自带了，如果parent为空会直接自爆
+      // 如果被stop returning了，重新审视
+      val wing: FighterWingAPI = ship.getWing()
+      if (!wing.isReturning(ship)) {
+        forceCircumstanceEvaluation()
+        return
+      }
       aEP_Tool.returnToParent(ship, parent, amount)
+
+
       if(ship.isFinishedLanding && !didLand){
         onReturn()
         didLand = true

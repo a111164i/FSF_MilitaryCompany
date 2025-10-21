@@ -4514,73 +4514,6 @@ class aEP_des_shendu_antenna_blinker : EveryFrame(){
   }
 }
 
-//水蚀 罐式热诱弹 热诱弹空雷突袭
-class aEP_des_shuishi_flare_shot : Effect(){
-  companion object{
-    const val PASSIVE_FLARE_WEAPON_ID = "aEP_m_s_flare"
-    const val JAMMER_FLARE_WEAPON_ID = "aEP_m_s_flare2"
-  }
-
-  override fun onExplosion(explosion: DamagingProjectileAPI, originalProjectile: DamagingProjectileAPI, weaponId: String) {
-    //被动吸引导弹，飞的远
-    for (i in 1..8){
-      val m = Global.getCombatEngine().spawnProjectile(
-        originalProjectile.source,
-        null,
-        PASSIVE_FLARE_WEAPON_ID,
-        getRandomPointInCircle(explosion.location, 50f),
-        getRandomNumberInRange(0f,360f),
-        null) as MissileAPI
-      m.source = originalProjectile.source
-      m.maxFlightTime *= getRandomNumberInRange(0.5f,1f)
-      m.velocity.scale(getRandomNumberInRange(0.2f,1f))
-    }
-
-    //释放后只有发起者和目标非常近才会进入环绕制导模式，不好用
-//    for (i in 1..4){
-//      val m = Global.getCombatEngine().spawnProjectile(
-//        originalProjectile.source,
-//        null,
-//        JAMMER_FLARE_WEAPON_ID,
-//        getRandomPointInCircle(explosion.location, 50f),
-//        getRandomNumberInRange(0f,360f),
-//        null) as MissileAPI
-//    }
-
-
-    val upper = aEP_MovingSprite(
-      explosion.location,
-      Vector2f(30f,40f),
-      originalProjectile.facing,
-      "aEP_FX.flare_mine_upper")
-    upper.angleSpeed = getRandomNumberInRange(-30f,-60f)
-    upper.velocity = getRandomPointInCircle(VECTOR2F_ZERO,50f)
-    upper.fadeIn = 0f
-    upper.fadeOut = 0.2f
-    upper.lifeTime = 4f
-    addEffect(upper)
-    val glow = aEP_b_m_h88_shot.ShellGlow(upper, Misc.setAlpha((originalProjectile as MissileAPI).spec.explosionColor,50))
-    glow.endSize = 30f
-    glow.extraSize = 30f
-    addEffect(glow)
-    val lower = aEP_MovingSprite(
-      explosion.location,
-      Vector2f(30f,80f),
-      originalProjectile.facing,
-      "aEP_FX.flare_mine_lower")
-    lower.angleSpeed = getRandomNumberInRange(30f,60f)
-    lower.velocity = getRandomPointInCircle(VECTOR2F_ZERO,50f)
-    lower.fadeIn = 0f
-    lower.fadeOut = 0.2f
-    lower.lifeTime = 4f
-    addEffect(lower)
-    val glow2 = aEP_b_m_h88_shot.ShellGlow(lower, Misc.setAlpha(originalProjectile.spec.explosionColor,50))
-    glow2.endSize = 30f
-    glow2.extraSize = 30f
-    addEffect(glow2)
-  }
-}
-
 //crossout铲车头，长矛
 class aEP_des_yonglang_mk2_cover : EveryFrame(){
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
@@ -4853,7 +4786,6 @@ class aEP_b_m_flak_shot : Effect(){
       150f,
       0.75f,
       Color(235,230,235,105))
-
 
     val ring = aEP_SpreadRing(
       50f,

@@ -60,7 +60,6 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
 
   inner class HoldShield : aEP_MissileAI.Status() {
 
-
     override fun advance(amount: Float) {
 
       //速度大于1就减速，小于1开始转圈

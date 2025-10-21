@@ -11,6 +11,9 @@
   "shieldCenter": [0, 0.5],
   "shieldRadius": 26,
   "viewOffset": 0,
+  "builtInMods": [
+    "aEP_FlyingTank",
+  ],
   "weaponSlots": [
     {
       "id": "WS0001",

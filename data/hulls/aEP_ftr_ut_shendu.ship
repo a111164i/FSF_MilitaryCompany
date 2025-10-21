@@ -12,9 +12,6 @@
   "shieldRadius": 22,
   "viewOffset": 0,
   "builtInMods": [
-    "insulatedengine",
-    "autorepair",
-    "armoredweapons"
   ],
   "builtInWeapons": {
     "WS0004": "aEP_empty"

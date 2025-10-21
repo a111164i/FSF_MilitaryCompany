@@ -1,7 +1,7 @@
 {
     "displayName": "Beam",
-    "fluxCapacitors": 8,
-    "fluxVents": 8,
+    "fluxCapacitors": 9,
+    "fluxVents": 9,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
@@ -38,8 +38,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "L02": "vulcan",
-                "R02": "vulcan"
+                "L02": "pdlaser",
+                "R02": "pdlaser"
             }
         }
     ]

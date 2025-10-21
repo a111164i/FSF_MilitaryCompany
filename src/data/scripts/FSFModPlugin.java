@@ -37,6 +37,8 @@ public class FSFModPlugin extends BaseModPlugin {
         return new PluginPick<ShipAIPlugin>(new aEP_DroneDecomposeAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
       case "aEP_ftr_sup_shield":
         return new PluginPick<ShipAIPlugin>(new aEP_DroneShieldShipAI(member, ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+      case "aEP_ftr_ut_shuishi":
+        return new PluginPick<ShipAIPlugin>(new aEP_DroneShieldShipAI(member,ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
       case "aEP_ftr_ut_maodian":
         return new PluginPick<ShipAIPlugin>(new aEP_MaoDianDroneAI(ship), CampaignPlugin.PickPriority.MOD_SPECIFIC);
       case "aEP_CruiseMissile":

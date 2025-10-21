@@ -13,8 +13,6 @@
   "viewOffset": 0,
   "builtInMods": [
     "aEP_ProjectileDenialShield",
-    "insulatedengine",
-    "autorepair"
   ],
   "builtInWeapons": {
     "WING_L": "aEP_ftr_sup_guardian_cover_l",

@@ -41,8 +41,6 @@
       "frame": "graphics/aEP_FX/frame.png",
       "frame02": "graphics/aEP_FX/frame02.png",
       "loading_ring": "graphics/aEP_FX/ring_loading_18.png",
-      "flare_mine_upper": "graphics/weapons/aEP_des_shuishi_flare/l.png",
-      "flare_mine_lower": "graphics/weapons/aEP_des_shuishi_flare/r.png",
       "magnetmine_shell": "graphics/weapons/aEP_m_s_magnetmine/empty.png",
       "lance_empty": "graphics/weapons/aEP_FCL/lance_empty.png",
       "lance_empty2": "graphics/weapons/aEP_FCL/lance_empty2.png",

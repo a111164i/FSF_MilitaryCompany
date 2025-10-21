@@ -29,7 +29,7 @@ class aEP_AntiPhaseDrone : BaseShipSystemScript() {
     const val WING_SPEC_ID = "aEP_ftr_ut_shendu_wing"
 
     const val FIGHTER_LIFETIME = 24f
-    const val MAX_DISTANCE = 2400f
+    const val MAX_DISTANCE = 9999f
   }
 
   val bracket = Global.getSettings().getSprite("aEP_FX","shendu_bracket")

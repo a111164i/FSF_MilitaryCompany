@@ -1,6 +1,6 @@
 {
     "displayName": "Support",
-    "fluxCapacitors": 0,
+    "fluxCapacitors": 18,
     "fluxVents": 6,
     "goalVariant": true,
     "hullId": "aEP_cap_decomposer",
@@ -42,8 +42,6 @@
     "wings": [
         "aEP_ftr_ut_supply_wing",
         "aEP_ftr_ut_supply_wing",
-        "aEP_ftr_sup_tank_wing",
-        "",
-        ""
+        "aEP_ftr_ut_shuishi_wing2"
     ]
 }

@@ -39,7 +39,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
       mag[HullSize.CRUISER] = 1050f
       mag[HullSize.CAPITAL_SHIP] = 1150f
     }
-    private const val REDUCE_MULT = 0.65f
+    private const val REDUCE_MULT = 0.6f
 
     //如果距离小于这个数，也会提供减伤
     private const val MIN_DAMAGE_RANGE = 0f

@@ -8,9 +8,7 @@
   "quality": 1,
   "permaMods": [],
   "hullMods": [
-    "aEP_FlyingTank",
-    "autorepair",
-    "insulatedengine"
+
   ],
   "weaponGroups": [
     {

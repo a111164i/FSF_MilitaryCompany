@@ -826,11 +826,11 @@ class aEP_Tool {
       //landing check
       val landingStarted = ship.isLanding
       val toTargetPo = ship.wing.source.getLandingLocation(ship)
-      var dist = MathUtils.getDistance(ship.location, toTargetPo)
+      val dist = MathUtils.getDistance(ship.location, toTargetPo)
 
 
       //距离降落100外时，飞到100内，取消额外机动性
-      if (dist > 100f) {
+      if (dist > 200f) {
         ship.mutableStats.maxSpeed.unmodify(id)
         ship.mutableStats.acceleration.unmodify(id)
         ship.mutableStats.deceleration.unmodify(id)
@@ -849,7 +849,7 @@ class aEP_Tool {
       }
 
       //成功平移到50内
-      if (dist <= 50f) {
+      if (dist <= 75f) {
         //如果没开始降落，让飞机开始播放降落动画
         if (!landingStarted) {
           ship.beginLandingAnimation(parentShip)

@@ -231,7 +231,6 @@ aEP_cru_pingding_main_shot,missile,,,material,graphics/shaders/material/weapons/
 aEP_cru_pingding_torpedo_shot,missile,,,material,graphics/shaders/material/weapons/aEP_cru_pingding/torpedo_material.png
 aEP_cru_requan_missile_shot,missile,,,material,graphics/shaders/material/weapons/aEP_cap_nuanchi/rq_shot_material.png
 aEP_des_lianliu_grenade_thrower_shot,missile,,,material,graphics/shaders/material/weapons/aEP_m_l_harpoon/bomblet_material.png
-aEP_des_shuishi_flare_shot,missile,,,material,graphics/shaders/material/weapons/aEP_des_shuishi_flare/heavy_mine0_material.png
 aEP_fga_xiliu_mk2_missile_shot,missile,,,material,graphics/shaders/material/weapons/aEP_fga_xiliu/mk2_missile_material.png
 aEP_ftr_bom_nuke_bomb_shot1,missile,,,material,graphics/shaders/material/weapons/aEP_fighters/aEP_nuke/proj00_material.png
 aEP_ftr_bom_nuke_bomb_shot2,missile,,,material,graphics/shaders/material/weapons/aEP_fighters/aEP_nuke/proj00_material.png
