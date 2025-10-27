@@ -30,7 +30,7 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
     // 消耗百分之多少恢复一次系统充能
     const val CHARGE_CONVERT_TO_SYSTEM_CHARGE = 0.9f
 
-    val FM_RED_EMP_FRINGE = Color(255, 38, 38, 255)
+    val FM_RED_EMP_FRINGE = Color(255, 127, 80, 205)
   }
 
   init {
@@ -137,7 +137,7 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
           0f, 1f, 1f, 0f,
           0.3f, 0.3f, 0.4f,
           true,
-          CombatEngineLayers.ABOVE_SHIPS_LAYER,
+          CombatEngineLayers.BELOW_SHIPS_LAYER,
           GL11.GL_SRC_ALPHA, GL11.GL_ONE
         )
         i += 1
