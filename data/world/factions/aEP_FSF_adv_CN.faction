@@ -1,0 +1,36 @@
+{
+  "displayName": "FSF军事公司",
+  "displayNameWithArticle": "FSF军事公司",
+  "displayNameLong": "FSF军事公司",
+  "displayNameLongWithArticle": "FSF军事公司",
+  "entityNamePrefix": "FSF",
+  "personNamePrefix": "FSF",
+  "personNamePrefixAOrAn": "a",
+  "displayNameIsOrAre": "is",
+  "shipNamePrefix": "FSF",
+  "ranks": {
+    "ranks": {
+      "factionLeader": {
+        "name": "董事会代表"
+      }
+    },
+    "posts": {
+      "factionLeader": {
+        "name": "董事会代表"
+      },
+      "aEP_consultant": {
+        "name": "经理"
+      },
+      "aEP_researcher": {
+        "name": "项目总监"
+      }
+    }
+  },
+  "fleetTypeNames": {
+    "patrolSmall": "Patrol Squad",
+    "patrolMedium": "Front Platoon",
+    "patrolLarge": "Defense Battalion",
+    "inspectionFleet": "Inspection Team",
+    "taskForce": "Special Force"
+  }
+}

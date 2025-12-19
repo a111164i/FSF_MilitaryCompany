@@ -1,0 +1,10 @@
+name,id,tech/manufacturer,baseRaidDanger,desc
+,,,,
+FSF企业舰船蓝图,FSF_openbp,FSF设计,,可以在重工业生产星域中常见FSF星舰。
+FSF稀有舰船蓝图,FSF_rarebp,FSF设计,,可以在重工业生产FSF公司设计的稀有星舰。
+FSF常规武器蓝图,FSF_weapon_small_bp,FSF设计,,可以在重工业生产常见的FSF武器。
+FSF重型武器蓝图,FSF_weapon_heavy_bp,FSF设计,,可以在重工业生产威力更大的FSF武器。
+,,,,
+,,,,
+S-1巡航导弹,aEP_cruise_missile,FSF先进武器计划,,S系列巡洋导弹是一种使用护卫舰舰体进行长距离飞行的特殊导弹，发射后会自动搜寻前方60度最近的敌对舰队。S-1型巡洋导弹弹头预制了大量弹片，引爆后被融化为等离子体向周围散射，以高温融化大范围内的敌方装甲。
+S-2巡航导弹,aEP_cruise_missile2,FSF先进武器计划,,S系列巡洋导弹是一种使用护卫舰舰体进行长距离飞行的特殊导弹，发射后会自动搜寻前方60度最近的敌对舰队。S-2型巡洋导弹使用聚能装药弹头，能将威力集中于一点。擅长使用高速突破敌方舰队防御后精准摧毁点目标
