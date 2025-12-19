@@ -144,13 +144,13 @@
       "cruise_missile": "graphics/aEP_items/aEP_cruise_missile.png",
       "cruise_missile2": "graphics/aEP_items/aEP_cruise_missile.png"
     },
-    "weaponSkinsPlayerAndNPC":{
-      "vulcan:aEP_FSF:TURRET":"graphics/weapons/aEP_b_s_pom/tr.png",
-      "vulcan:aEP_FSF:HARDPOINT":"graphics/weapons/aEP_b_s_pom/hp.png"
+    "weaponSkinsPlayerAndNPC": {
+      "vulcan:aEP_FSF:TURRET": "graphics/weapons/aEP_b_s_pom/tr.png",
+      "vulcan:aEP_FSF:HARDPOINT": "graphics/weapons/aEP_b_s_pom/hp.png"
     },
-    "weaponSkinsExcludeFromSharing":{
-      "vulcan:aEP_FSF:TURRET":"graphics/weapons/aEP_b_s_pom/tr.png",
-      "vulcan:aEP_FSF:HARDPOINT":"graphics/weapons/aEP_b_s_pom/hp.png"
+    "weaponSkinsExcludeFromSharing": {
+      "vulcan:aEP_FSF:TURRET": "graphics/weapons/aEP_b_s_pom/tr.png",
+      "vulcan:aEP_FSF:HARDPOINT": "graphics/weapons/aEP_b_s_pom/hp.png"
     }
   },
   "plugins": {
