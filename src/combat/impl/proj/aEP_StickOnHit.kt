@@ -37,7 +37,9 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
     sprite.setAdditiveBlend()
     this.hitShield = hitShield
     if (hitShield) {
-      this.onHitAngle = aEP_Tool.angleAdd(spriteOnHitAngle, -target.shield.facing)
+      if(target.shield != null) {
+        this.onHitAngle = aEP_Tool.angleAdd(spriteOnHitAngle, -target.shield.facing)
+      }
     } else {
       this.onHitAngle = aEP_Tool.angleAdd(spriteOnHitAngle, -target.facing)
     }
@@ -50,8 +52,10 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
     super.advance(amount)
     val target = entity as ShipAPI
     if (hitShield) {
-      renderAngle = aEP_Tool.angleAdd(onHitAngle, target.shield.facing - 90f)
-      renderLoc = aEP_Tool.getAbsoluteLocation(relativeLocData.x, relativeLocData.y, target, true)
+      if(target.shield != null){
+        renderAngle = aEP_Tool.angleAdd(onHitAngle, target.shield.facing - 90f)
+        renderLoc = aEP_Tool.getAbsoluteLocation(relativeLocData.x, relativeLocData.y, target, true)
+      }
     } else {
       renderAngle = aEP_Tool.angleAdd(onHitAngle, target.facing - 90f)
       renderLoc = aEP_Tool.getAbsoluteLocation(relativeLocData.x, relativeLocData.y, target, false)
@@ -67,7 +71,7 @@ open class aEP_StickOnHit(duration: Float, target: CombatEntityAPI, hitPoint: Ve
 
 
     //detach check
-    if (hitShield && target.shield.isOff) {
+    if (hitShield && (target.shield == null || target.shield.isOff)) {
       cleanup()
     }
     if (shouldDetach) {

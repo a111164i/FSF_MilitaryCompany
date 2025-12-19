@@ -25,8 +25,8 @@ class  aEP_MainGunAttitudeAI : aEP_BaseSystemAI() {
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
     //展开途中不会思考，防止武器距离变化导致ai反复
-    if(rightClickSys.state == ShipSystemAPI.SystemState.IN) return
-    if(rightClickSys.state == ShipSystemAPI.SystemState.OUT) return
+    if(rightClickSys?.state == ShipSystemAPI.SystemState.IN) return
+    if(rightClickSys?.state == ShipSystemAPI.SystemState.OUT) return
 
 
     shouldPhaseActive = false

@@ -1,6 +1,5 @@
 {
   "graphics": {
-
     "aEP_backgrounds": {
       "background1": "graphics/aEP_background/background1.jpg"
     },
@@ -147,7 +146,7 @@
     },
     "weaponSkinsPlayerAndNPC":{
       "vulcan:aEP_FSF:TURRET":"graphics/weapons/aEP_b_s_pom/tr.png",
-      "vulcan:aEP_FSF:HARDPOINT":"graphics/weapons/aEP_b_s_pom/hp.png",
+      "vulcan:aEP_FSF:HARDPOINT":"graphics/weapons/aEP_b_s_pom/hp.png"
     },
     "weaponSkinsExcludeFromSharing":{
       "vulcan:aEP_FSF:TURRET":"graphics/weapons/aEP_b_s_pom/tr.png",
@@ -214,5 +213,5 @@
       255
     ]
   },
-  "aEP_UseEnString": false
+  "aEP_UseEnString": true
 }

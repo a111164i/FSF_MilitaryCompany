@@ -35,8 +35,9 @@
 		"aEP_SpecialHull02": "零幅能加速的启用阈值{%s}",
 
 		"aEP_MissilePlatform01":"锻炉功率",
-		"aEP_MissilePlatform07":"当锻炉功率满额时，不同尺寸导弹武器的弹药生产速度如下: ",
-		"aEP_MissilePlatform02":"锻炉功率总量基于舰船所有导弹武器装配点之和，回复速度为{%s}",
+        "aEP_MissilePlatform13":"制造速度",
+		"aEP_MissilePlatform07":"不同尺寸导弹武器的弹药生产速度如下: ",
+		"aEP_MissilePlatform02":"{%s}的存量基于舰船所有导弹武器装配点之和，回复速度为{%s}",
 		"aEP_MissilePlatform06":"不同武器生产弹药所需的{%s}与{%s}如下: ",
 		"aEP_MissilePlatform08":"弹药",
 		"aEP_MissilePlatform03":"功率",
@@ -262,7 +263,10 @@
 		"aEP_UndergroundStorage04": "获得额外的大型巡逻队数量加成",
 
 		#############################
-		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（若其为舰队指挥官则为{%s}）的目标舰船，每高出一级则本舰对其的伤害增加{%s}，最高{%s}"
+		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（若其为舰队指挥官则为{%s}）的目标舰船，每高出一级则本舰对其的伤害增加{%s}，最高{%s}",
+
+        #############################
+        "aEP_FSFOrbitalStationPluginBuildReason": "与FSF关系太低"
 
 	},
 	"aEP_custom_entity_names":{
@@ -305,8 +309,9 @@
 		"aEP_SpecialHull02": "Min flux level for zero flux boost to active %s",
 
 		"aEP_MissilePlatform01":"Forge Output",
-		"aEP_MissilePlatform07":"When Forge Output is at maximum, ammo production speed of different sized missiles are shown below: ",
-		"aEP_MissilePlatform02":"Forge Output capacity is calculated by a fraction of total OP spent on missile weapons. It generates at speed of %s.",
+        "aEP_MissilePlatform13":"Production Speed",
+		"aEP_MissilePlatform07":"Ammo production speed of different sized missiles are shown below: ",
+		"aEP_MissilePlatform02":"Capacity of %s is calculated by a fraction of total OP spent on missile weapons. It generates at speed of %s.",
 		"aEP_MissilePlatform06":" %s and %s consumption to produce ammo for installed missile weapons are shown below: ",
 		"aEP_MissilePlatform08":"Ammo",
 		"aEP_MissilePlatform03":"Output",
@@ -533,9 +538,12 @@
 
 
 		#############################
-		"aEP_SkillAnalyze01": "To target that its officer is above level %s (for fleet commander %s), for every level above you deal %s more damage, at maximum %s"
+		"aEP_SkillAnalyze01": "To target that its officer is above level %s (for fleet commander %s), for every level above you deal %s more damage, at maximum %s",
 
-	},
+        #############################
+        "aEP_FSFOrbitalStationPluginBuildReason": "Relationship with FSF is too low"
+
+    },
 	"aEP_EN_custom_entity_names":{
 		"aEP_FSF_DefStation": "FSF System Defense Station",
 		"aEP_FSF_SaleStation": "FSF Commercial Center",

@@ -15,8 +15,7 @@ class aEP_VectorThrust : BaseShipSystemScript() {
 
   companion object{
 
-    const val MAX_FLAT_BUFF = 100f
-    const val MAX_FLAT_FORWARD_BUFF = 25f
+    const val MAX_SPEED_BUFF = 20f
 
     const val ACC_FLAT_BUFF = 500f
 
@@ -43,7 +42,6 @@ class aEP_VectorThrust : BaseShipSystemScript() {
       if(ship.phaseCloak != null && ship.phaseCloak.isActive){
         ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
       }
-
     }
 
 
@@ -72,21 +70,9 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     ship.mutableStats.maxTurnRate.modifyFlat(id, MAX_TURN_FLAT_BUFF)
     ship.mutableStats.turnAcceleration.modifyFlat(id, ACC_TURN_FLAT_BUFF)
 
-    if(ship.engineController.isAcceleratingBackwards || ship.engineController.isAccelerating){
-      if(!ship.engineController.isStrafingLeft && ship.engineController.isStrafingRight){
-        //如果在全力前进或者后退，没有同时侧移时，削弱更多
-        ship.mutableStats.maxSpeed.modifyFlat(id, MAX_FLAT_FORWARD_BUFF * 0.5f)
-      }else{
-        //前进后退时效果削弱
-        ship.mutableStats.maxSpeed.modifyFlat(id, MAX_FLAT_FORWARD_BUFF)
-      }
-
-    }else{
-      ship.mutableStats.maxSpeed.modifyFlat(id, MAX_FLAT_BUFF)
-    }
-
-    ship.mutableStats.deceleration.modifyFlat(id, ACC_FLAT_BUFF)
+    ship.mutableStats.maxSpeed.modifyFlat(id,MAX_SPEED_BUFF)
     ship.mutableStats.acceleration.modifyFlat(id, ACC_FLAT_BUFF)
+    ship.mutableStats.deceleration.modifyFlat(id, ACC_FLAT_BUFF)
 
   }
 

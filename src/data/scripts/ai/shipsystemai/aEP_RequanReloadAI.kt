@@ -16,7 +16,7 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
   var loadingMap : aEP_MissilePlatform.LoadingMap? = null
 
   override fun initImpl() {
-    thinkTracker.setInterval(1f,3f)
+    thinkTracker.setInterval(0.5f,1.5f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
@@ -66,41 +66,47 @@ class aEP_RequanReloadAI: aEP_BaseSystemAI() {
 
     //0f-1f，冷却百分比
     reloadLevelTotal /= totalOp
-    //当热泉导弹需要填装时，挤占普通导弹冷却率的权衡权重，把一部导弹视为全部需要装填
+
+    //当热泉导弹需要填装时填
     if(needReloadRqMissile){
-      val weight = 0.33f
-      reloadLevelTotal = reloadLevelTotal * (1f-weight) + weight
+      willing += 0.05f
     }
 
-    //0f-0.5f，总装填率目前下降了多少
+    //总装填率目前下降了多少
     val emptyRate = (maxRate - currRate)/maxRate
 
-    //因为导弹冷却率是0-1，总装填率是0-0.5，平衡一下两者
+    //平衡一下两者的权重，默认情况下reloadLevel和emptyRate均为0-1，满了都会导致willing大于1直接使用系统
     willing += (reloadLevelTotal * 0.8f)
     willing += (emptyRate * 1.5f)
 
-    //保证幅能小于0.1时，光是用完内置导弹就会使用f
+    //保证幅能小于0.25时，光是用完内置导弹就会使用f
     //保证正常幅能不要超过0.5
     val highThreshold = 0.5f
     val lowThreshold = 0.1f
     val lowFluxBonus = (willing * 0.5f + 0.15f)
-    if(ship.fluxLevel < lowThreshold){
-      willing += lowFluxBonus
-    }else if(ship.fluxLevel > lowThreshold && ship.fluxLevel < highThreshold){
-      willing += lowFluxBonus * ((highThreshold - ship.fluxLevel)/(highThreshold-lowThreshold) )
+
+    //低幅能无条件刷满
+    if(ship.fluxLevel < 0.1f){
+      if(emptyRate > 0.15f) willing += 1f
+    } else if (ship.fluxLevel < 0.25f){
+      if(emptyRate > 0.3f) willing += 1f
+    } else if (ship.fluxLevel < 0.5f){
+      willing += 0.3f * (0.5f - ship.fluxLevel)/0.25f
     }
 
-    if(ship.fluxLevel > highThreshold){
+    //高幅能不愿意刷
+    if(ship.fluxLevel > 0.7f){
       willing *= 0.5f
+    }else if (ship.fluxLevel > 0.5f){
+      willing *= 0.8f
     }
 
     //根据母舰的aiFlag修正willing
-
     if(flags.hasFlag(ShipwideAIFlags.AIFlags.DO_NOT_AUTOFIRE_NON_ESSENTIAL_GROUPS)) willing -= 0.25f
     if(flags.hasFlag(ShipwideAIFlags.AIFlags.DO_NOT_USE_FLUX)) willing -= 0.5f
 
 
-    willing *= MathUtils.getRandomNumberInRange(0.75f,1.25f)
+    willing *= MathUtils.getRandomNumberInRange(0.8f,1.2f)
     //aEP_Tool.addDebugLog(willing.toString())
     shouldActive = false
     if(willing >= 1f){

@@ -161,7 +161,7 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
     }
 
     //拦截结束以后解除弹丸已经被锁定的状态，可以被其他ai选中
-    if(system.state === ShipSystemAPI.SystemState.IDLE && (currProj != null || currBeam != null) ){
+    if(system?.state === ShipSystemAPI.SystemState.IDLE && (currProj != null || currBeam != null) ){
       currProj?.removeCustomData(ID)
       currProj = null
       currBeam = null

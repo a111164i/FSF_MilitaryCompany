@@ -1,7 +1,13 @@
 name,id,planetary,decivRemove,script,desc,icon,order
-地下基地,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,在这颗星球的地下有着一座设施齐备的基地，其中储备的资源足够其在与外界切断联系后也能坚持数个循环。在殖民地低稳定度时提供额外稳定度加成,graphics/aEP_icons/UndergroundStorage.png,
-军事驻地,aEP_MilitaryZone,,TRUE,data.scripts.campaign.econ.environment.aEP_MilitaryZone,军队驻地，消除殖民地所有设施对<毒品> <奢侈品> <人体器官>的需求，同时最大工业设施数量<+2>,graphics/aEP_icons/UndergroundStorage.png,
-生态培养,aEP_SpaceFarm,,TRUE,data.scripts.campaign.econ.environment.aEP_SpaceFarm,大规模的内循环生态圈，只要输入能量和无机物就能产出工业所需的各种有机化合物，根据殖民地规模产生一定单位的<食物><有机物>供应,graphics/aEP_icons/hydroponics.png,
-灭绝病毒,aEP_ExtinctiveVirus,,TRUE,data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus,生态圈内充满了对人类极度致命的微生物，所有的作业都必须在完全密闭的环境内进行。极大降低所有设施的产出,graphics/aEP_icons/xenoplague.png,
+Under Ground Storage,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,"There is an underground base deep within this planet. Its resource reserves allow it to be self-sustaining for several cycles without outside connection.
+
+It provides a stability bonus to the colony.",graphics/aEP_icons/UndergroundStorage.png,
+Military Zone,aEP_MilitaryZone,,TRUE,data.scripts.campaign.econ.environment.aEP_MilitaryZone,"A military-restricted colony, denying all needs for <Drag> <Luxuries> <Organs>, with a maximum number of industries <+2>.",graphics/aEP_icons/UndergroundStorage.png,
+Space Farm,aEP_SpaceFarm,,TRUE,data.scripts.campaign.econ.environment.aEP_SpaceFarm,"This place has an artifact ecosystem that, by inputting energy and inorganic compounds, can continuously produce organic products.
+
+Provides <Food> and <Organic> production according to colony size.",graphics/aEP_icons/hydroponics.png,
+Extinctive Virus,aEP_ExtinctiveVirus,,TRUE,data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus,"The environment is being devastated by a synthetic virus aimed at destroying all organic life. Consequently, all outdoor activities must be conducted under full protection.
+
+This has greatly decreased the production capacity of all industries.",graphics/aEP_icons/xenoplague.png,
 ,,,,,,,
 ,,,,,,,

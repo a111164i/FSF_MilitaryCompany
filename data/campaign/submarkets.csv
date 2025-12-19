@@ -1,2 +1,3 @@
 id,name,faction,desc,script,icon,order,Unnamed: 7
-aEP_FSFMarket,先进武器计划开发部,aEP_FSF,"开发""先进武器计划""的特殊部门，得到许可的舰长可以购买一些开发中的舰船",data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799,
+aEP_FSFMarket,"Advanced
+Program Office",aEP_FSF,"This special department is dedicated to the ""Advanced Weapon Program."", licensed captains are allow to buy some of the experimental ships",data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799,

@@ -10,9 +10,9 @@ import java.awt.Color
 class aEP_BeamRepair : BeamEffectPlugin {
   companion object {
     private const val HULL_REPAIR_MULT = 2f //溢出的装甲维修点数转换成几倍的结构恢复
-    private const val REPAIR_STEP_PER_CELL = 8f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
+    private const val REPAIR_STEP_PER_CELL = 10f //单个格子一次遍历最多恢复几点，防止出现棋盘形状装甲
 
-    const val FSF_BONUS = 3f
+    const val FSF_BONUS = 1f
     const val REPAIR_THRESHOLD = 0.4f
     const val HULL_REPAIR_THRESHOLD = 0.25f
     val REPAIR_COLOR = Color(250, 250, 178, 240)
@@ -20,8 +20,8 @@ class aEP_BeamRepair : BeamEffectPlugin {
 
   }
 
-  var repairAmount = 6f
-  var repairPercent = 0.005f
+  var repairAmount = 15f
+  var repairPercent = 0.01f
   private var didRepair = false
 
   init {
@@ -93,7 +93,7 @@ class aEP_BeamRepair : BeamEffectPlugin {
     }
 
     hullLostBelowThres += (maxHullVal - ship.hitpoints).coerceAtLeast(0f)
-    //血线紧急的有限度高于装甲损失
+    //血线紧急的优先度高于装甲损失
     hullLostBelowThres * 2f
 
 

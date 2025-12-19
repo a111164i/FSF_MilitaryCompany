@@ -1,6 +1,7 @@
 //by a111164
 package combat.util
 
+import com.fs.starfarer.api.GameState
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CampaignFleetAPI
 import com.fs.starfarer.api.campaign.CargoAPI
@@ -913,6 +914,21 @@ class aEP_Tool {
       var absOffset = getExtendedLocationFromPoint(w.location, w.currAngle, relativeCoo.x)
       absOffset = getExtendedLocationFromPoint(absOffset, angleAdd(w.currAngle, 90f), relativeCoo.y)
       return absOffset
+    }
+
+    fun removeWeaponFromGroupInCombat(weapon: WeaponAPI) {
+      weapon.ship?:return
+      //进入战斗后才去除
+      if(Global.getCurrentState() != GameState.COMBAT) return
+      if(weapon.ship.getWeaponGroupFor(weapon) != null){
+        val group = weapon.ship.getWeaponGroupFor(weapon)
+        var i = 0
+        for(w in group.weaponsCopy) {
+          if(w == weapon) break
+          i++
+        }
+        group.removeWeapon(i)
+      }
     }
 
     fun getDistForLocToHitShield(loc: Vector2f, ship: ShipAPI): Float {

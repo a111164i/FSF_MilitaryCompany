@@ -1,11 +1,9 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
-import com.fs.starfarer.api.combat.ViewportAPI
 import com.fs.starfarer.api.combat.listeners.FighterOPCostModifier
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.loading.FighterWingSpecAPI
@@ -15,6 +13,7 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import combat.impl.aEP_BaseCombatEffect
 import combat.plugin.aEP_CombatEffectPlugin
+import combat.util.aEP_AngleTracker
 import combat.util.aEP_DataTool.FloatDataRecorder
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
@@ -24,6 +23,7 @@ import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.subsystems.examples.ChargedDriveSubsystem
 import java.awt.Color
 import kotlin.math.absoluteValue
 
@@ -34,7 +34,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
     //距离小于此，无论前进还是后退都获得加速
     const val ACTIVE_RANGE_MIN = 350f
     //距离到超过这里，完全无加成
-    const val ACTIVE_RANGE_MAX = 900f
+    const val ACTIVE_RANGE_MAX = 800f
 
     const val SPEED_PERCENT_BONUS = 25f
     const val ACC_PERCENT_BONUS = 50f
@@ -177,7 +177,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
     var currentIndicator : PredictionStripe? = null
     var activeTime = 0f
-    var level = 0f
+    var level = aEP_AngleTracker(0f,0f,0.5f,1f,0f)
     var activatingShip : ShipAPI? = null
     val checkTimer = IntervalUtil(0.15f,0.25f)
     var zeroBuffTime = 0f
@@ -188,13 +188,14 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
       activeTime -= amount
       checkTimer.advance(amount)
+      level.advance(amount)
 
       val acceleratingDir = aEP_Tool.computeCurrentManeuveringDir(ship)
       if(checkTimer.intervalElapsed()){
         val aroundShips = CombatUtils.getShipsWithinRange(ship.location,ship.collisionRadius + ACTIVE_RANGE_MAX)
         //val currVelDir = aEP_Tool.
         activatingShip = null
-        level = 0f
+        level.to = 0f
         var currAngleDist = 360f
         for(s in aroundShips){
           if(s.isFighter) continue
@@ -228,7 +229,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
         //如果最小角度大于90度，重新把activatingShip改回null
         if(currAngleDist < 75f){
-          level = 1f - ((currAngleDist-15f)/75f).coerceAtLeast(0f).coerceAtMost(1f)
+          level.to = 1f - ((currAngleDist-15f)/75f).coerceAtLeast(0f).coerceAtMost(1f)
         }else{
           activatingShip = null
         }
@@ -236,7 +237,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
         //更新加成
         updateShipStats(amount)
         //更新视觉效果
-        updateVisual()
+        //updateVisual()
       }
 
       //根据当前是否有生效舰船控制激活时间
@@ -252,22 +253,22 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
         currentIndicator = null
       }
 
-      //消除惯性
-
     }
 
 
-    fun updateShipStats(amount: Float){
-      ship.mutableStats.maxSpeed.modifyFlat(ID, SPEED_BONUS * level)
-      ship.mutableStats.acceleration.modifyFlat(ID, ACC_BONUS * level)
-      ship.mutableStats.deceleration.modifyFlat(ID, ACC_BONUS * level)
+    fun updateShipStats(amount: Float) {
+      ship.mutableStats.maxSpeed.modifyFlat(ID, SPEED_BONUS * level.curr)
+      ship.mutableStats.acceleration.modifyFlat(ID, ACC_BONUS * level.curr)
+      ship.mutableStats.deceleration.modifyFlat(ID, ACC_BONUS * level.curr)
 
-      ship.mutableStats.maxSpeed.modifyPercent(ID, SPEED_PERCENT_BONUS * level)
-      ship.mutableStats.acceleration.modifyPercent(ID, ACC_PERCENT_BONUS * level)
-      ship.mutableStats.deceleration.modifyPercent(ID, ACC_PERCENT_BONUS * level)
+      ship.mutableStats.maxSpeed.modifyPercent(ID, SPEED_PERCENT_BONUS * level.curr)
+      ship.mutableStats.acceleration.modifyPercent(ID, ACC_PERCENT_BONUS * level.curr)
+      ship.mutableStats.deceleration.modifyPercent(ID, ACC_PERCENT_BONUS * level.curr)
 
-      ship.mutableStats.maxTurnRate.modifyFlat(ID, TURN_BONUS* level)
-      ship.mutableStats.turnAcceleration.modifyFlat(ID, TURN_ACC_BONUS * level)
+      ship.mutableStats.maxTurnRate.modifyFlat(ID, TURN_BONUS * level.curr)
+      ship.mutableStats.turnAcceleration.modifyFlat(ID, TURN_ACC_BONUS * level.curr)
+      ship.getEngineController().fadeToOtherColor(
+        this, Color.green, Color(0, 0, 0, 0), level.curr, 0.25f)
     }
 
     fun updateVisual(){
@@ -300,6 +301,7 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
       }
     }
 
+
     inner class Indicator(ship: ShipAPI,val friendly: ShipAPI) : PredictionStripe(ship){
 
       var spriteId1 = Global.getSettings().getSprite("aEP_FX","forward").textureId
@@ -330,11 +332,11 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
         if(dist < ACTIVE_RANGE_MIN ){
           spriteTexId = spriteId2
-          color = aEP_Tool.getColorWithAlpha(Color.green,0.215f)
+          color = aEP_Tool.getColorWithAlpha(Color.green,0.2f)
           scrollSpeed = 2f
         }else{
           spriteTexId = spriteId1
-          color = aEP_Tool.getColorWithAlpha(Color.red,0.215f)
+          color = aEP_Tool.getColorWithAlpha(Color.red,0.2f)
           scrollSpeed = -5f
         }
 
@@ -343,10 +345,6 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
         if(aEP_Tool.isDead(friendly) || aEP_Tool.isDead(ship)){
           shouldEnd = true
         }
-      }
-
-      override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
-        super.renderImpl(layer, viewport)
       }
 
       override fun createLineNodes() {

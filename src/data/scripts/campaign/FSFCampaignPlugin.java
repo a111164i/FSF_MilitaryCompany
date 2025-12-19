@@ -2,6 +2,7 @@ package data.scripts.campaign;
 
 import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.CargoStackAPI;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.characters.FullName;
@@ -15,6 +16,8 @@ import data.scripts.campaign.econ.environment.aEP_MilitaryZone;
 import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import lunalib.lunaSettings.LunaSettings;
 import org.lazywizard.lazylib.MathUtils;
+
+import java.util.List;
 
 
 public class FSFCampaignPlugin implements EveryFrameScript {
@@ -127,6 +130,15 @@ public class FSFCampaignPlugin implements EveryFrameScript {
       Global.getSettings().getHullSpec(shipId).addTag("FSF_advancebp");
       if(!fsf.getKnownShips().contains(shipId)) fsf.getKnownShips().add(shipId);
       if(!fsfAdv.getKnownShips().contains(shipId)) fsfAdv.getKnownShips().add(shipId);
+    }
+
+    for(CargoStackAPI stack : Global.getSector().getPlayerFleet().getCargo().getStacksCopy()) {
+      if(stack.getSpecialDataIfSpecial()!= null
+              && stack.getSpecialDataIfSpecial().getData() != null
+              && stack.getSpecialDataIfSpecial().getData().equals("aEP_ftr_ut_shuishi_wing2")){
+        Global.getSector().getPlayerFleet().getCargo().removeStack(stack);
+        Global.getSector().getCampaignUI().addMessage("错误的蓝图已经被清除");
+      }
     }
 
   }

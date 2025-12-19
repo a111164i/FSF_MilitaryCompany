@@ -6,7 +6,7 @@ import com.fs.starfarer.api.combat.ShipAPI
 class aEP_AcceleratedGunnery: aEP_BaseHullMod() {
   companion object{
     const val ID = "aEP_AcceleratedGunnery"
-    const val ROF_BONUS = 0.25f
+    const val ROF_BONUS = 0.20f
     const val FLUX_WASTE_BONUS = 0.05f
 
   }

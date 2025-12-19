@@ -1,11 +1,15 @@
 name,id,tags,tech/manufacturer,rarity,base price,stack size,cargo space,baseRaidDanger,icon,sound id,sound id drop,plugin,plugin params,desc,order
 ,,,,,,,,,,,,,,,
-# 蓝图中心的图案在setting中的blueprint_packages里注册
-FSF企业舰船蓝图,FSF_openbp,package_bp,FSF设计,,50000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_openbp,可以在重工业生产星域中常见FSF星舰。,3131
-FSF稀有舰船蓝图,FSF_rarebp,package_bp,FSF设计,,100000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_rarebp,可以在重工业生产FSF公司设计的稀有星舰。,3132
-FSF常规武器蓝图,FSF_weapon_small_bp,package_bp,FSF设计,,30000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_weapon_small_bp,可以在重工业生产常见的FSF武器。,3133
-FSF重型武器蓝图,FSF_weapon_heavy_bp,package_bp,FSF设计,,30000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_weapon_heavy_bp,可以在重工业生产威力更大的FSF武器。,3134
+# 蓝图中心的图案在setting中的blueprint_packages里注册,,,,,,,,,,,,,,,
+FSF Common Ship Blueprint,FSF_openbp,package_bp,FSF Design,,50000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_openbp,Allow the production of common FSF ships.,3131
+FSF Rare Ship Blueprint,FSF_rarebp,package_bp,FSF Design,,100000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_rarebp,Allow the production of rare FSF ships.,3132
+FSF Small Weapon Blueprint,FSF_weapon_small_bp,package_bp,FSF Design,,30000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_weapon_small_bp,Allow the production of common weapons of FSF.,3133
+FSF Large Weapon Blueprint,FSF_weapon_heavy_bp,package_bp,FSF Design,,30000,1000,1,,graphics/aEP_items/blueprint_midline.png,ui_chip_pickup,ui_bp_package_drop,com.fs.starfarer.api.campaign.impl.items.MultiBlueprintItemPlugin,FSF_weapon_heavy_bp,Allow the production of some powerful weapons of FSF.,3134
 ,,,,,,,,,,,,,,,
-S-1巡航导弹,aEP_cruise_missile,aEP_special,FSF先进武器计划,,80000,400,0,,graphics/aEP_items/aEP_cruise_missile.png,ui_cargo_special_military_pickup,ui_cargo_special_military_drop,data.scripts.campaign.items.aEP_CruiseMissile,,S系列巡洋导弹是一种使用护卫舰舰体进行长距离飞行的特殊导弹，发射后会自动搜寻前方60度最近的敌对舰队。S-1型巡洋导弹弹头预制了大量弹片，引爆后被融化为等离子体向周围散射，以高温融化大范围内的敌方装甲。,3135
-S-2巡航导弹,aEP_cruise_missile2,aEP_special,FSF先进武器计划,,40000,400,0,,graphics/aEP_items/aEP_cruise_missile2.png,ui_cargo_special_military_pickup,ui_cargo_special_military_drop,data.scripts.campaign.items.aEP_CruiseMissile,,S系列巡洋导弹是一种使用护卫舰舰体进行长距离飞行的特殊导弹，发射后会自动搜寻前方60度最近的敌对舰队。S-2型巡洋导弹使用聚能装药弹头，能将威力集中于一点。擅长使用高速突破敌方舰队防御后精准摧毁点目标,3136
+S-1 Cruise Missile,aEP_cruise_missile,aEP_special,FSF Advanced Weapon Program,,80000,400,0,,graphics/aEP_items/aEP_cruise_missile.png,ui_cargo_special_military_pickup,ui_cargo_special_military_drop,data.scripts.campaign.items.aEP_CruiseMissile,,"The S-series cruise missiles are remote-controlled, frigate-sized, campaign-level weapons. After launch, they search for the nearest hostile fleet within 60 degrees of their heading.
+
+The S-1 warhead contains a massive amount of fragments that are heated into a plasmoid before being dispersed over a wide area, effectively melting enemy armor across an extensive range.",3135
+S-2 Cruise Missile,aEP_cruise_missile2,aEP_special,FSF Advanced Weapon Program,,40000,400,0,,graphics/aEP_items/aEP_cruise_missile2.png,ui_cargo_special_military_pickup,ui_cargo_special_military_drop,data.scripts.campaign.items.aEP_CruiseMissile,,"The S-series cruise missiles are remote-controlled, frigate-sized, campaign-level weapons. After launch, they will search for the closest hostile fleet within a 60-degree arc of their heading.
+
+The S-2 warhead contains a shaped charge that focuses all its power on a single point. It is adept at using high speed to penetrate enemy fleet defenses, allowing for pinpoint destruction of selected targets.",3136
 ,,,,,,,,,,,,,,,

@@ -259,13 +259,22 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
 
     //战术系统刷出来的和没有出击距离的联队，选择最近的友方
-    if(ship.wing == null || ship.wing.range <= 0f){
-      val nearest = findNearestFriendyShip(ship)
-      nearest?.run {
-        stat = ProtectParent(nearest)
-      }?:run {
-        stat = SelfExplode()
+    if((ship?.wing?.range)?:0f <= 0f){
+      if(ship.wing == null || ship.wing.sourceShip == null){
+        val nearest = findNearestFriendyShip(ship)
+        nearest?.run {
+          stat = ProtectParent(nearest)
+        }?:run {
+          stat = SelfExplode()
+        }
+      }else{
+        if(!aEP_Tool.isDead(ship.wing.sourceShip)){
+          stat = ProtectParent(ship.wing.sourceShip)
+        }else{
+          stat = SelfExplode()
+        }
       }
+
     } else { // 如果有出击距离，使用战术系统的逻辑
       val targetWeightPicker = WeightedRandomPicker<ShipAPI>()
       val wingRange = ship.wing.range

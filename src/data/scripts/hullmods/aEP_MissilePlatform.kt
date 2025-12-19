@@ -33,12 +33,13 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
 
     private const val MAX_RATE_MULT = 0.16f //池子大小的百分比部分，武器装配点总和的多少倍（暖池装满导弹大概125op，等于20）
-    private const val MAX_RATE_FLAT = 0.1f //池子大小的基础大小（给一个小数防止分母为0）
+    private const val MAX_RATE_FLAT = 0.1f //池子大小的基础大小（给一个数防止分母为0）
 
     private const val MIN_RATE = 1f //生产导弹的最低速度（池子低于多少时，导弹依然会以该速度生产，不再跟着池子降速）
 
-    private const val RATE_INCREASE_SPEED_PERCENT = 0.04f //池子的百分比回复速度（百分比/秒）
-    private const val RATE_INCREASE_SPEED_FLAT = 0f //池子的基础回复速度（op/秒）
+    private const val RATE_INCREASE_SPEED_PERCENT = 0.04f //池子的百分比回复速度（百分比/秒），如
+    // 果池子的百分比系数为0.2，回复百分比为0.04/s，那么总数据为：每25秒回复总装配点的20%的导弹，125秒回复1轮
+    private const val RATE_INCREASE_SPEED_FLAT = 0f //池子的基础回复速度（参考上面的大小）
 
 
     const val ID = "aEP_MissilePlatform"
@@ -122,6 +123,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
   override fun getTooltipWidth(): Float {
     return 412f
   }
+
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     if (ship.mutableStats == null) return
 
@@ -226,6 +228,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
     // 说明总装填率的储备值和回复值
     addPositivePara(tooltip, "aEP_MissilePlatform02", arrayOf(
+      txt("aEP_MissilePlatform01"),
       String.format("%.1f", RATE_INCREASE_SPEED_PERCENT * 100f + RATE_INCREASE_SPEED_FLAT/maxPool)+" %/s"
     ))
 
@@ -242,9 +245,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         factionColor, factionDarkColor, factionBrightColor,
         TEXT_HEIGHT_SMALL, true, true,
         *arrayOf<Any>("Missile Spec", col1W2,
-          txt("aEP_MissilePlatform08"), col2W2,
+          txt("aEP_MissilePlatform01"), col4W2,
           txt("aEP_MissilePlatform04"), col3W2,
-          txt("aEP_MissilePlatform03"), col4W2,
+          txt("aEP_MissilePlatform08"), col2W2,
         ))
 
       //val label = tooltip.createLabel( "Large", highlight)
@@ -259,9 +262,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
-            Alignment.MID, highlight, String.format("+%s", scale),
+            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool).coerceAtMost(99.9f))+" %",
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
+            Alignment.MID, highlight, String.format("+%s", scale),
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -277,9 +280,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
-            Alignment.MID, highlight, String.format("+%s", scale),
+            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool).coerceAtMost(99.9f))+" %",
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
+            Alignment.MID, highlight, String.format("+%s", scale),
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -294,9 +297,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
-            Alignment.MID, highlight, String.format("+%s", scale),
+            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool).coerceAtMost(99.9f))+" %",
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool/consumptionSpeed).coerceAtMost(99.9f))+" %/s",
+            Alignment.MID, highlight, String.format("+%s", scale),
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -325,7 +328,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
   public inner class LoadingMap (var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {
     //减少putInMap方法的调用次数
-    val ammoLoaderTracker = IntervalUtil(0.05f,0.15f)
+    val ammoLoaderTracker = IntervalUtil(0.15f,0.25f)
     //[ loadingProgress, ammoPerFire, ammoPerRegen, ammoPerRegenConvertedToOp ]
     var MPTimerMap: MutableMap<WeaponAPI, Array<Float>> = HashMap()
     var currRate = maxRate
@@ -377,7 +380,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui",ID),  //sprite name,full, must be registed in setting first
           spec.displayName,  //title
-          aEP_DataTool.txt("aEP_MissilePlatform01") +": "  + (level * 100f).toInt() + "%",  //data
+          aEP_DataTool.txt("aEP_MissilePlatform01") +": "  + (level * 100f).toInt() + "% ", // + txt("aEP_MissilePlatform13") +": "  + (level * 100f).coerceAtLeast(MIN_RATE*100f).toInt() + "%",  //data
           false
         )
       }

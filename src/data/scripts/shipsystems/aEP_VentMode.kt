@@ -39,7 +39,7 @@ class aEP_VentMode: BaseShipSystemScript() {
     const val SOFT_CONVERT_SPEED = 2000f
     const val HULL_DAMAGE_TAKEN_BONUS = 50f
 
-    const val WEAPON_ROF_BONUS = 0.25f
+    const val WEAPON_ROF_BONUS = 0.3f
 
     const val SHIELD_DAMAGE_REDUCE_MULT = 0f
     const val MAX_SPEED_REDUCE_MULT = 0f

@@ -2,10 +2,12 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.EmpArcEntityAPI.EmpArcParams
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.HullDamageAboutToBeTakenListener
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
+import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
@@ -16,6 +18,7 @@ import combat.util.aEP_Combat
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_Tool
 import data.scripts.hullmods.*
+import data.scripts.shipsystems.aEP_Rupture.Companion.JITTER_COLOR
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
@@ -31,7 +34,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
     const val ID = "aEP_ComebackProgram"
     const val SLOT_ID = "CENTER"
 
-    const val TEL_TIME = 1f
+    const val TEL_TIME = 0.5f
     const val SYSTEM_RANGE = 6000f
 
     const val TEL_KEY = "aEP_ComebackProgramTelTarget"
@@ -136,14 +139,31 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
 
       //在之前的checkIsShipValid()时已经检测过是否拥有TEL_KEY，所以这里不需要检测第二次
       //在初始化时会自动添加移除TEL_KEY
-      Global.getCombatEngine().spawnEmpArcVisual(
-        ship.hullSpec.getWeaponSlot("CENTER").computePosition(ship),
-        ship,
-        target!!.location,
-        target,
-        50f,
-        Color.yellow,
-        Color.white)
+      val arcPoint = ship.hullSpec.getWeaponSlot("CENTER").computePosition(ship)
+      val params = EmpArcParams()
+      //			params.segmentLengthMult = 4f;
+      //			params.zigZagReductionFactor = 0.25f;
+      //			params.fadeOutDist = 200f;
+      //			params.minFadeOutMult = 2f;
+      params.segmentLengthMult = 16f
+      params.zigZagReductionFactor = 0.15f
+      params.brightSpotFullFraction = 0.5f
+      params.brightSpotFadeFraction = 0.5f
+      //params.nonBrrightSpotMinBrightness = 0.25f;
+      val dist: Float = Misc.getDistance(arcPoint, ship.shipTarget.location)
+      params.flickerRateMult = 0.2f -  0.1f * dist / 4000f
+      if (params.flickerRateMult < 0.1f) {
+        params.flickerRateMult = 0.1f
+      }
+      val arc = Global.getCombatEngine().spawnEmpArcVisual(
+        ship.shipTarget.location, ship.shipTarget ,
+        arcPoint, ship,
+        80f,RecallDeviceStats.JITTER_COLOR, Color.white,
+        params)
+      //arc.setFadedOutAtStart(true);
+      //arc.setRenderGlowAtStart(false);
+      arc.setSingleFlickerMode(true)
+
       aEP_CombatEffectPlugin.addEffect(Tel(TEL_TIME, target as ShipAPI, ship.hullSpec.getWeaponSlot(SLOT_ID), ship))
     }
   }

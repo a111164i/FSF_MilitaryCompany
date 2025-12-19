@@ -30,7 +30,7 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
     // 消耗百分之多少恢复一次系统充能
     const val CHARGE_CONVERT_TO_SYSTEM_CHARGE = 0.9f
 
-    val FM_RED_EMP_FRINGE = Color(255, 127, 80, 205)
+    val FM_RED_EMP_FRINGE = Color(255, 127, 80, 165)
   }
 
   init {
@@ -82,7 +82,7 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
     //抵消大槽武器冷却
     for(w in ship.allWeapons){
       if(w.slot.slotSize == WeaponAPI.WeaponSize.LARGE && !w.slot.isDecorative){
-        if(w.cooldownRemaining > MIN_FIRE_INTERVAL && energy > 0f){
+        if(w.cooldownRemaining > MIN_FIRE_INTERVAL && energy > 0f && w.chargeLevel < 1f){
           val toUse = ((w.cooldownRemaining - MIN_FIRE_INTERVAL) / TIME_TO_REACH_ZERO).coerceAtMost(energy)
           energy -= toUse
           w.setRemainingCooldownTo(w.cooldownRemaining - toUse * TIME_TO_REACH_ZERO)

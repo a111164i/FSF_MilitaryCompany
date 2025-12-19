@@ -24,8 +24,8 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
     //展开途中不会思考，防止武器距离变化导致ai反复
-    if(system.state == ShipSystemAPI.SystemState.IN) return
-    if(system.state == ShipSystemAPI.SystemState.OUT) return
+    if(system?.state == ShipSystemAPI.SystemState.IN) return
+    if(system?.state == ShipSystemAPI.SystemState.OUT) return
 
 
     shouldActive = false
@@ -38,7 +38,7 @@ class  aEP_SiegeModeAI : aEP_BaseSystemAI() {
       w.spec.maxRange
       var newRange = w.range + w.spec.maxRange * (aEP_SiegeMode.RANGE_BONUS_PERCENT)/100f + aEP_SiegeMode.RANGE_BONUS_FLAT
 
-      if(system.isActive) newRange = w.range
+      if(system?.isActive == true) newRange = w.range
 
       if(newRange > maxWeaponRange){
         maxWeaponRange = newRange

@@ -15,8 +15,8 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
   }
 
   lateinit var engine: CombatEngineAPI
-  lateinit var system: ShipSystemAPI
-  lateinit var rightClickSys: ShipSystemAPI
+  var system: ShipSystemAPI? = null
+  var rightClickSys: ShipSystemAPI? = null
   lateinit var ship: ShipAPI
   lateinit var flags: ShipwideAIFlags
   var thinkTracker = IntervalUtil(0f, 0.5f)
@@ -34,7 +34,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
     init(ship, system, ShipwideAIFlags(), Global.getCombatEngine())
   }
 
-  override fun init(ship: ShipAPI, system: ShipSystemAPI, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
+  override fun init(ship: ShipAPI, system: ShipSystemAPI?, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
     this.ship = ship
     this.rightClickSys = system
     if(ship.phaseCloak != null && ship.phaseCloak is ShipSystemAPI) rightClickSys = ship.phaseCloak
@@ -58,7 +58,9 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
     thinkTracker.advance(amount)
     if (!thinkTracker.intervalElapsed()) return
 
-    if(system.state == ShipSystemAPI.SystemState.IN || system.state == ShipSystemAPI.SystemState.ACTIVE  || system.state == ShipSystemAPI.SystemState.OUT ){
+    if(system?.state == ShipSystemAPI.SystemState.IN
+      || system?.state == ShipSystemAPI.SystemState.ACTIVE
+      || system?.state == ShipSystemAPI.SystemState.OUT ){
       timeElapsedActive+=thinkTracker.elapsed
     }else{
       timeElapsedActive = 0f
@@ -66,7 +68,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
     var shouldSkip = false
     //如果系统正在冷却，不需要思考
-    if(system.state == ShipSystemAPI.SystemState.COOLDOWN && skipWhenCooldown){
+    if(system?.state == ShipSystemAPI.SystemState.COOLDOWN && skipWhenCooldown){
       shouldSkip = true
       shouldActive = false
     }
@@ -78,7 +80,7 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
     if(!shouldSkip) advanceImpl(amount, missileDangerDir, collisionDangerDir, target)
 
-    if(aEP_Tool.toggleSystemControl(system,shouldActive)){
+    if(system != null &&  aEP_Tool.toggleSystemControl(system!!,shouldActive)){
       ship.giveCommand(ShipCommand.USE_SYSTEM, null, 0)
     }
 

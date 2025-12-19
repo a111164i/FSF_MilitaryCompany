@@ -40,8 +40,8 @@ class aEP_CoordinatedCombatAI: aEP_BaseSystemAI() {
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
     shouldActive= false
 
-    val leftCharge = system.ammo
-    val maxAmmo = system.maxAmmo
+    val leftCharge = (system?.ammo)?:1
+    val maxAmmo = (system?.maxAmmo)?:1
     val leftPercent = (leftCharge/maxAmmo.toFloat())
     var willingMode0 = 0f
     var willingMode1 = 0f

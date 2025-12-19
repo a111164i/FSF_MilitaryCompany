@@ -57,10 +57,10 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     private val DISS_BONUS = HashMap<ShipAPI.HullSize, Float>()
     init {
       DISS_BONUS[ShipAPI.HullSize.FIGHTER] = 200f
-      DISS_BONUS[ShipAPI.HullSize.FRIGATE] = 600f
-      DISS_BONUS[ShipAPI.HullSize.DESTROYER] = 900f
-      DISS_BONUS[ShipAPI.HullSize.CRUISER] = 1200f
-      DISS_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 1800f
+      DISS_BONUS[ShipAPI.HullSize.FRIGATE] = 500f
+      DISS_BONUS[ShipAPI.HullSize.DESTROYER] = 750f
+      DISS_BONUS[ShipAPI.HullSize.CRUISER] = 900f
+      DISS_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 1350f
     }
 
   }

@@ -54,7 +54,7 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val TICK_DIST = 50f
 
     //每tick距离加多少幅能
-    const val FLUX_PER_TICK = 200f
+    const val FLUX_PER_TICK = 150f
     const val FLUX_PERCENT_PER_TICK = 2f
     //每tick距离减一次速度
     const val SPEED_SLOW_PER_TICK = 0.5f
@@ -168,7 +168,6 @@ class aEP_Rupture:  BaseShipSystemScript() {
         Global.getCombatEngine().addEntity(drone)*/
         val drag = DragBall(ACTIVE_TIME,toAim, ship)
         aEP_CombatEffectPlugin.addEffect(drag)
-
 
         val arcPoint = ship.hullSpec.getWeaponSlot("ARC_POINT").computePosition(ship)
         val params = EmpArcParams()

@@ -5136,7 +5136,6 @@ open class aEP_m_s_era :EveryFrame(){
 
     //装饰的爆反不起效
     if(weapon.slot != null && weapon.slot.weaponType == WeaponAPI.WeaponType.DECORATIVE) return
-
     weapon.isForceNoFireOneFrame = true
 
     //第一个被读取的武器把listener放进customData
@@ -5149,7 +5148,6 @@ open class aEP_m_s_era :EveryFrame(){
 
     //不会下线
     aEP_Tool.keepWeaponAlive(weapon)
-
     //大概显示一下触发半径
     //addDebugPoint(getExtendedLocationFromPoint(weapon.location,ship.fullTimeDeployed * 180f,70f))
 
@@ -5780,7 +5778,7 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
     for( i in 0 until candidate.size){
       val target = candidate[i]
       if(i == 0){
-        Global.getCombatEngine().spawnEmpArc(
+        val arc = Global.getCombatEngine().spawnEmpArc(
           beam.source, Vector2f(beam.to),
           null,
           candidate[i],
@@ -5792,8 +5790,9 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
           40f,
           beam.fringeColor,
           beam.coreColor)
+        arc.setSingleFlickerMode()
       }else{
-        Global.getCombatEngine().spawnEmpArc(
+        val arc =Global.getCombatEngine().spawnEmpArc(
           beam.source,
           candidate[i-1].location,
           null,
@@ -5806,6 +5805,7 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
           40f,
           beam.fringeColor,
           beam.coreColor)
+        arc.setSingleFlickerMode()
       }
     }
 

@@ -220,7 +220,7 @@ class aEP_FighterProtector : BaseShipSystemScript() {
 
       ftr.mutableStats.armorDamageTakenMult.modifyMult(key, 1f - takenReduceMult*level)
       ftr.mutableStats.hullDamageTakenMult.modifyMult(key, 1f - takenReduceMult*level)
-
+      //ftr.mutableStats.shieldDamageTakenMult.modifyMult(key, 1f - takenReduceMult*level)
 
       //产生jitter镀膜
       ftr.setJitter(key, JITTER_COLOR_ABOVE, 1f,1,0f)
@@ -244,6 +244,7 @@ class aEP_FighterProtector : BaseShipSystemScript() {
 
       ftr.mutableStats.armorDamageTakenMult.modifyMult(key, 1f)
       ftr.mutableStats.hullDamageTakenMult.modifyMult(key, 1f)
+      ftr.mutableStats.shieldDamageTakenMult.modifyMult(key, 1f)
       ftr.customData.remove(key)
     }
   }

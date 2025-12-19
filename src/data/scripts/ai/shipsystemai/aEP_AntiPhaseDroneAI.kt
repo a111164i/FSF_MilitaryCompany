@@ -15,10 +15,6 @@ import kotlin.math.pow
 
 class aEP_AntiPhaseDroneAI: aEP_BaseSystemAI() {
 
-  override fun init(ship: ShipAPI, system: ShipSystemAPI, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
-    super.init(ship, system, flags, engine)
-  }
-
   override fun initImpl() {
     thinkTracker.setInterval(0.5f,1.5f)
   }

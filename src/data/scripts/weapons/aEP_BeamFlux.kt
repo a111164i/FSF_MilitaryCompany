@@ -9,7 +9,8 @@ import org.lwjgl.util.vector.Vector2f
 class aEP_BeamFlux : BeamEffectPlugin {
 
   companion object{
-    const val FSF_BONUS = 3f
+    const val FSF_BONUS = 1f
+    const val FLUX_DRAIN = 500f
     const val MAX_SPEED_DIS_CAP = 1f
 
     fun pickTarget(ship: ShipAPI, weightComputer:(ShipAPI)->Float ): ShipAPI{
@@ -46,7 +47,7 @@ class aEP_BeamFlux : BeamEffectPlugin {
 
   }
 
-  var fluxDrain = 500f
+  var fluxDrain = FLUX_DRAIN
 
   init {
     val hlString = Global.getSettings().getWeaponSpec("aEP_ftr_ut_supply_main").customPrimaryHL

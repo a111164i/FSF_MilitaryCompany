@@ -14,6 +14,6 @@ class aEP_DroneTimeAlterAI: aEP_BaseSystemAI(){
     if(ship.fullTimeDeployed < 3f ) return
 
     shouldActive = false
-    if(system.state == ShipSystemAPI.SystemState.IDLE) shouldActive = true
+    if(system?.state == ShipSystemAPI.SystemState.IDLE) shouldActive = true
   }
 }
