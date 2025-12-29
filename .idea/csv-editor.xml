@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\mods\MagicLib\data\config\paintjobs\magic_paintjobs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\MagicLib\data\config\vayraBounties\unique_bounty_data.csv">
           <value>
             <Attribute>
@@ -227,7 +234,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\commodities_EN.csv">
+        <entry key="\data\campaign\commodities_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -241,7 +248,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\industries_EN.csv">
+        <entry key="\data\campaign\industries_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -255,7 +262,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\market_conditions_EN.csv">
+        <entry key="\data\campaign\market_conditions_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -283,7 +290,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\rules_EN.csv">
+        <entry key="\data\campaign\rules_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -311,7 +318,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\special_items_EN.csv">
+        <entry key="\data\campaign\special_items_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -325,7 +332,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\campaign\submarkets_EN.csv">
+        <entry key="\data\campaign\submarkets_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -339,7 +346,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\characters\skills\skill_data_EN.csv">
+        <entry key="\data\characters\skills\skill_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -353,7 +360,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\config\LunaSettings_EN.csv">
+        <entry key="\data\config\LunaSettings_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -486,13 +493,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hullmods\hull_mods_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\hulls\ship_data.csv">
           <value>
             <Attribute>
@@ -500,7 +500,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\hulls\ship_data_EN.csv">
+        <entry key="\data\hulls\ship_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -535,13 +535,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\shipsystems\ship_systems_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\strings\descriptions.csv">
           <value>
             <Attribute>
@@ -556,13 +549,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\strings\descriptions_EN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\data\weapons\weapon_data.csv">
           <value>
             <Attribute>
@@ -570,7 +556,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\data\weapons\weapon_data_EN.csv">
+        <entry key="\data\weapons\weapon_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

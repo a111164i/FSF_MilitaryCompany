@@ -21,7 +21,10 @@ import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
+import kotlin.compareTo
+import kotlin.div
 import kotlin.math.roundToInt
+import kotlin.times
 
 class aEP_MissilePlatform : aEP_BaseHullMod() {
 
@@ -35,7 +38,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     private const val MAX_RATE_MULT = 0.16f //池子大小的百分比部分，武器装配点总和的多少倍（暖池装满导弹大概125op，等于20）
     private const val MAX_RATE_FLAT = 0.1f //池子大小的基础大小（给一个数防止分母为0）
 
-    private const val MIN_RATE = 1f //生产导弹的最低速度（池子低于多少时，导弹依然会以该速度生产，不再跟着池子降速）
+    private const val MIN_RATE = 1f //随着池子减少，生产导弹的最低速度
+    private const val MIN_RATE_THRESHOLD = 0f //池子到达这个百分比时，生产导弹的速度变为最低
+
 
     private const val RATE_INCREASE_SPEED_PERCENT = 0.04f //池子的百分比回复速度（百分比/秒），如
     // 果池子的百分比系数为0.2，回复百分比为0.04/s，那么总数据为：每25秒回复总装配点的20%的导弹，125秒回复1轮
@@ -236,18 +241,18 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     ship?.run {
       addPositivePara(tooltip, "aEP_MissilePlatform06", arrayOf(txt("aEP_MissilePlatform01"), txt("time"))) // 说明总装填率的储备值和回复值
       //表格显示每个武器的 弹药/OP比
-      val col2W2 = 50f
+      val col2W2 = 60f
       val col3W2 = 60f
-      val col4W2 = 80f
+      val col4W2 = 70f
       val col1W2 = (width - col2W2 - col3W2 - col4W2 - PARAGRAPH_PADDING_BIG)
       var totalConsumpSpeed = 0f
       tooltip.beginTable(
         factionColor, factionDarkColor, factionBrightColor,
         TEXT_HEIGHT_SMALL, true, true,
         *arrayOf<Any>("Missile Spec", col1W2,
-          txt("aEP_MissilePlatform01"), col4W2,
-          txt("aEP_MissilePlatform04"), col3W2,
           txt("aEP_MissilePlatform08"), col2W2,
+          txt("aEP_MissilePlatform03"), col4W2,
+          txt("aEP_MissilePlatform04"), col3W2,
         ))
 
       //val label = tooltip.createLabel( "Large", highlight)
@@ -262,9 +267,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
+            Alignment.MID, highlight, String.format("+%s", scale),
             Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool).coerceAtMost(99.9f))+" %",
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("+%s", scale),
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -280,9 +285,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
+            Alignment.MID, highlight, String.format("+%s", scale),
             Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool).coerceAtMost(99.9f))+" %",
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("+%s", scale),
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -297,9 +302,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
           while(consumptionSpeed * scale  < 0.1f) scale *= 10
           tooltip.addRow(
             Alignment.LMID, highlight, spec.weaponName,
+            Alignment.MID, highlight, String.format("+%s", scale),
             Alignment.MID, highlight, String.format("-%2.1f", (100f * op/ammo/maxPool).coerceAtMost(99.9f))+" %",
             Alignment.MID, highlight, String.format("%2.1f", (scale * consumptionSpeed).coerceAtMost(99.9f))+" s",
-            Alignment.MID, highlight, String.format("+%s", scale),
           )
           totalConsumpSpeed += 100f * op/ammo/maxPool/consumptionSpeed
         }
@@ -413,7 +418,17 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
       } else {
 
-        val level = (currRate/maxRate).coerceAtLeast(MIN_RATE)
+        //val level = (currRate/maxRate).coerceAtLeast(MIN_RATE)
+        val fractionRaw = if (maxRate <= 0f) MIN_RATE else currRate / maxRate
+        val fraction = fractionRaw.coerceIn(MIN_RATE, 1f)
+        //浮点数比较大小不能直接==，可能由于rounding的问题漏进去一个极小的差值，1/0会出错
+        val level = if (kotlin.math.abs(1f - MIN_RATE) > 1e-6f) {
+          MIN_RATE_THRESHOLD + (fraction - MIN_RATE) * (1f - MIN_RATE_THRESHOLD) / (1f - MIN_RATE)
+        } else {
+          // MIN_RATE == 1 -> always full
+          1f
+        }
+
         val data = MPTimerMap[w] as Array<Float>
 
         val opNow = data[0]
