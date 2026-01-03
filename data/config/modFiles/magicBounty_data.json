@@ -1,4 +1,5 @@
 {
+  #:
   "aEP_MagicBounty1": {
     "required_mods_id": [
       "FSF_MilitaryCorporation"
@@ -49,21 +50,24 @@
     "job_show_arrow": false,
     "job_pick_option": "接受任务",
     "job_memKey": "$aEP_MagicBounty01",
+
+    #TARGET COMMANDER (OPTIONAL)
     "target_first_name": "01953-",
     "target_last_name": "A022",
     "target_portrait": "graphics/portraits/portrait_ai2.png",
     "target_gender": "UNDEFINED",
     "target_rank": "spaceCaptain",
-    "target_post": "warlord",
+    "target_post": "fleetCommander",
     "target_personality": "reckless",
     "target_aiCoreId": "alpha_core",
     "target_level": 8,
     "target_elite_skills": 2,
-    "target_skill_preference": "NO_ENERGY_YES_BALLISTIC_NO_MISSILE_YES_DEFENSE",
+    "target_skill_preference": "ANY",
     "target_skills": {
-      "skillnameA": 1,
-      "skillnameB": 2,
-      "skillnameC": 1
+      "electronic_warfare": 1,
+      "coordinated_maneuvers": 1,
+      "wolfpack_tactics": 1,
+      "support_doctrine": 1
     },
     "fleet_name": "失联舰队",
     "fleet_faction": "remnant",

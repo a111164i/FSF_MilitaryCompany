@@ -1,7 +1,7 @@
 {
-  "variantId": "aEP_cru_pubu_Elite",
+  "variantId": "aEP_cru_pubu_Assault",
   "hullId": "aEP_cru_pubu",
-  "displayName": "Elite",
+  "displayName": "Assault",
   "goalVariant": true,
   "fluxCapacitors": 6,
   "fluxVents": 16,

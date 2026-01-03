@@ -58,7 +58,7 @@
         }
     ],
     "wings": [
-        "aEP_ftr_ut_supply_wing",
+        "aEP_ftr_ut_repair_wing",
         "aEP_ftr_ut_repair_wing",
         "aEP_ftr_ut_supply_wing"
     ]

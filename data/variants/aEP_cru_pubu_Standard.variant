@@ -1,65 +1,37 @@
 {
-  "variantId": "aEP_cru_pubu_Standard",
-  "hullId": "aEP_cru_pubu",
-  "displayName": "Standard",
-  "goalVariant": true,
-  "fluxCapacitors": 7,
-  "fluxVents": 8,
-  "quality": 1,
-  "permaMods": [],
-  "hullMods": [
-    "expanded_deck_crew",
-    "recovery_shuttles",
-    "hardenedshieldemitter"
-  ],
-  "weaponGroups": [
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0007": "aEP_b_m_mb32"
-      }
-    },
-    {
-      "autofire": true,
-      "mode": "LINKED",
-      "weapons": {
-        "WS0001": "aEP_b_s_630",
-        "WS0003": "aEP_b_s_630"
-      }
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {}
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {}
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {}
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {}
-    },
-    {
-      "autofire": false,
-      "mode": "LINKED",
-      "weapons": {}
-    }
-  ],
-  "modules": [],
-  "wings": [
-    "aEP_ftr_ftr_hvfighter_wing",
-    "aEP_ftr_ftr_hvfighter_wing",
-    "aEP_ftr_ftr_helicop_wing",
-    "aEP_ftr_ftr_helicop_wing",
-    "aEP_ftr_icp_gunship_wing"
-  ]
+    "displayName": "Standard",
+    "fluxCapacitors": 9,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_cru_pubu",
+    "hullMods": [
+        "expanded_deck_crew",
+        "recovery_shuttles",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_pubu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_m_mb32"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0003": "aEP_b_s_630"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_ftr_helicop_wing",
+        "aEP_ftr_ftr_helicop_wing",
+        "aEP_ftr_ftr_hvfighter_wing"
+    ]
 }

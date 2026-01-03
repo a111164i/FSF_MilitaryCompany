@@ -24,7 +24,7 @@ Anchored Self Rotate,aEP_SelfRotate,FSF Design,,This module continuously rotates
 Module Targeting Unit,aEP_ModuleTargeting,FSF Design,,"A simple but practical system for ship module targeting, heavily relying on the sensors of parent vessel makes common targeting modifications unavailable.
 
 Ballistic/energy weapon range %s",,
-Attack Carrier,aEP_AttackCarrier,FSF Design,,"To send fighters faster and farther, all fighters on this ship are equipped with induction coils to receive a boost.",,
+Attack Carrier,aEP_AttackCarrier,FSF Design,,"Built to send fighters directly to enemy ships means high lost rate. To compensate the deficit in fighter refit rate, this ship can shortly overload its fighter forge quickly replacing all lost. Can't overload twice in short time and generate soft flux during cooldown",,
 Strafe,aEP_Strafe,FSF Design,,"This ship slowly regenerates strafe energy. Whenever a large weapon is on cooldown, consume strafe energy to eliminate the remaining cooldown time.
 
 Fully recharging strafe energy takes %s seconds; when fully charged, it can eliminate %s seconds of cooldown. After elimination, the shortest possible fire interval is %s.

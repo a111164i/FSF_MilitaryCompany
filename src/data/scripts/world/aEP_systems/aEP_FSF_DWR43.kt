@@ -271,9 +271,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
       "inactive_gate",  // type of object, defined in custom_entities.json
       null
     ) // faction
-
     gate.setCircularOrbit(FSF_EarthStar, 110f, 8000f, 800f)
-
 
     //增加稳定点/通讯器
     val stableLoc01: SectorEntityToken = system.addCustomEntity(
@@ -320,23 +318,22 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
 
     //创建空间站守护者舰队，同时加入脚本捕捉玩家第一次进入星系，必须延迟一秒再生成，构建星系的时候势力文件还没完成，此时根据任何势力都刷不出东西
     //如果启用了跳过主线，不生成
-    if (FSFModPlugin.isLunalibEnabled) {
-      val shouldSkip = getBoolean("FSF_MilitaryCorporation", "aEP_SettingMissionSkipAwm")!!
-      if (!shouldSkip) {
-        system.addScript(object : DelayedActionScript(2f){
-          override fun doAction() {
-            val jumpPointGuardian = spawnFleet(jumpPoint1,FSF_SpaceFactoryMarket)
-            jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_NO_JUMP, true)
-            jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true)
-            jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORED_BY_OTHER_FLEETS, true)
-            jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORES_OTHER_FLEETS, true)
-            system.addScript(GuardianCatchPlayer(jumpPointGuardian,jumpPoint1,FSF_SpaceFactoryMarket))
-          }
-        })
-      }
+    var shouldSkip = false
+    //if (FSFModPlugin.isLunalibEnabled) shouldSkip = getBoolean("FSF_MilitaryCorporation", "aEP_SettingMissionSkipAwm")!!
+    if (!shouldSkip) {
+      system.addScript(object : DelayedActionScript(2f){
+        override fun doAction() {
+          val jumpPointGuardian = spawnFleet(jumpPoint1,FSF_SpaceFactoryMarket)
+          jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_NO_JUMP, true)
+          jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true)
+          jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORED_BY_OTHER_FLEETS, true)
+          jumpPointGuardian.memoryWithoutUpdate.set(MemFlags.FLEET_IGNORES_OTHER_FLEETS, true)
+          system.addScript(GuardianCatchPlayer(jumpPointGuardian,jumpPoint1,FSF_SpaceFactoryMarket))
+        }
+      })
     }
 
-    aEP_FSF_Heng.cleanup(system)
+      aEP_FSF_Heng.cleanup(system)
   }
 
 }
@@ -476,13 +473,15 @@ open class aEP_BaseEveryFrame : EveryFrameScript{
 }
 
 fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
-  val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF_ADV)
+     val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF_ADV)
 
   //add Fleet
-  val params = FleetParamsV3(
-    null, aEP_ID.FACTION_ID_FSF, 1f,  // qualityMod
+  // 记得加入的预设也会占点数
+   val params = FleetParamsV3(
+    null, aEP_ID.FACTION_ID_FSF,
+    1f,  // qualityMod
     FleetTypes.TASK_FORCE,
-    60f,  // combatPts
+    200f,  // combatPts
     0f,  // freighterPts
     0f,  // tankerPts
     0f,  // transportPts
@@ -490,27 +489,32 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
     0f,  // utilityPts
     0f
   ) // quality mod
-  params.maxShipSize = 2 //0战机，1护卫，2驱逐，3巡洋，4主力
+   params.maxShipSize = 2 //0战机，1护卫，2驱逐，3巡洋，4主力
   params.treatCombatFreighterSettingAsFraction = true
   params.averageSMods = 2
   params.ignoreMarketFleetSizeMult = true
+  params.officerLevelBonus = 1
+  params.officerNumberBonus = 3
 
 
   // If user has preset variants in addShips, they are already in the list; add any built-in presets here
   // addShips is the single source of presets - add entries to it to include them in the fleet
   params.addShips = java.util.ArrayList<String?>()
 
-  params.addShips.add("aEP_cap_nuanchi_Elite")
-  params.addShips.add("aEP_cap_nuanchi_Elite")
-  params.addShips.add("aEP_cap_nuanchi_Elite")
-  params.addShips.add("aEP_cap_nuanchi_Elite")
+  params.addShips.add("aEP_cru_pingding_Standard")
+  params.addShips.add("aEP_cru_pingding_Elite")
 
-  params.addShips.add("aEP_cru_requan_Assault")
-  params.addShips.add("aEP_cru_requan_Assault")
+  params.addShips.add("aEP_cru_pubu_Standard")
+  params.addShips.add("aEP_cru_pubu_Assault")
+  params.addShips.add("aEP_cru_pubu_Assault")
 
-  params.addShips.add("aEP_cru_shanhu_Standard")
-  params.addShips.add("aEP_cru_shanhu_Standard")
+  params.addShips.add("aEP_des_chongji_Standard")
+  params.addShips.add("aEP_des_chongji_Attack")
+  params.addShips.add("aEP_des_chongji_Support")
+  params.addShips.add("aEP_des_chongji_Support")
 
+  params.addShips.add("aEP_des_taodong_Standard")
+  params.addShips.add("aEP_des_taodong_Assault")
 
   // 剩下的都留给自动生成
   params.withOfficers = true
@@ -518,44 +522,37 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
 
   //手捏一个指挥官，多给几个指挥官技能
   val person = Global.getFactory().createPerson()
-  person.setPortraitSprite("graphics/portraits/portrait_pirate02.png")
-  person.setName(FullName("phrex", "jin", FullName.Gender.MALE))
-  person.setGender(person.getName().getGender())
-  person.setFaction("pirates")
-  person.setRankId(Ranks.SPACE_CAPTAIN)
-  person.setVoice(Voices.VILLAIN)
+    person.portraitSprite = "graphics/portraits/portrait_pirate02.png"
+  person.name = FullName("phrex", "jin", FullName.Gender.MALE)
+  person.gender = person.getName().getGender()
+  person.setFaction(aEP_ID.FACTION_ID_FSF)
+  person.rankId = Ranks.SPACE_CAPTAIN
+  person.postId = Ranks.POST_FLEET_COMMANDER
+  person.voice = Voices.OFFICIAL
   person.setPersonality(Personalities.STEADY)
-  person.getStats().setSkillLevel(Skills.ELECTRONIC_WARFARE, 1f)
-  person.getStats().setSkillLevel(Skills.BEST_OF_THE_BEST, 1f)
-  person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS, 1f)
-  person.getStats().setSkillLevel(Skills.CREW_TRAINING, 1f)
-  person.getStats().setSkillLevel(Skills.OFFICER_MANAGEMENT, 1f)
-  person.getStats().setSkillLevel(Skills.FIGHTER_UPLINK, 1f)
-  person.getStats().setLevel(8)
+  person.stats.setSkillLevel(Skills.ELECTRONIC_WARFARE, 1f)
+  person.stats.setSkillLevel(Skills.COORDINATED_MANEUVERS, 1f)
+  person.stats.setSkillLevel(Skills.FIGHTER_UPLINK, 1f)
+  person.stats.setSkillLevel(Skills.CARRIER_GROUP, 1f)
+  person.stats.setSkillLevel(Skills.OFFICER_TRAINING, 1f)
+  person.stats.setSkillLevel(Skills.CYBERNETIC_AUGMENTATION, 1f)
+  person.stats.setSkillLevel(Skills.BEST_OF_THE_BEST, 1f)
+  person.stats.setSkillLevel(Skills.SUPPORT_DOCTRINE, 1f)
+  person.stats.level = 8
 
   //不为空，不使用自动生成的指挥官
   params.commander = person
-
-
   //如果自动生成指挥官，那么4级给1个舰队技能，6级给2个，看setting里面的commanderLevelForOneSkill。能刷到什么看faction里面的设置
   // params.noCommanderSkills = false;
-  val targetFleet = FleetFactoryV3.createFleet(params)
 
-  //刷出来以后立刻inflate一下，随机一下装配和s插，这个质量高
-  targetFleet.inflateIfNeeded()
+  val fleet = FleetFactoryV3.createFleet(params)
 
 
-
-
-  //加入舰队必须调用这个
-  fleet.setFaction(aEP_ID.FACTION_ID_FSF,true)
   //这个用于rules里面openCommLink的id检测
   fleet.id = "aEP_DWR43_JumpPointGuard"
 
-
   //要把舰队刷新到生涯地图，调用这个
-
-  market.containingLocation.spawnFleet(jumpPoint,0f,0f,fleet)
+    market.containingLocation.spawnFleet(jumpPoint,0f,0f,fleet)
   return fleet
 }
 

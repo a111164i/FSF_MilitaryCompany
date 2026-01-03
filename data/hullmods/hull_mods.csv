@@ -24,7 +24,7 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 模块定位,aEP_ModuleTargeting,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,"并非使用星域中常见的模块化插件，而是量身定制的目标定位系统。借助母舰更大的空间使得模块能够获得超过自己舰体级别的射程，但同时也使得一些极端的改装无法进行
 
 本舰的实弹/能量武器射程{%s}",,,graphics/aEP_hullmods/aEP_small_target_core.png,
-进攻性母舰,aEP_AttackCarrier,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,本舰为了将重型战机投送到远距离做了特殊适配，战机预先安装了共振模块，可以在远距离接受母舰导轨产生的驱动立场,,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,
+进攻性母舰,aEP_AttackCarrier,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,将战机直接投送到敌舰附近也意味着更容易损失，为了避免战机整备率过早清空，本舰可以短暂超载战机锻炉快速补充损失。无法连续超载且冷却期间会产生幅能,,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,
 扫射,aEP_Strafe,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"本舰会随时间补充扫射能量，如果任何大槽武器处于冷却状态，就会消耗扫射能量抵消武器的冷却时间
 
 完全补充扫射能量需要{%s}秒，充满时最多抵消{%s}秒的大槽武器冷却时间，冷却时间抵消后武器射击间隔最短为{%s}秒

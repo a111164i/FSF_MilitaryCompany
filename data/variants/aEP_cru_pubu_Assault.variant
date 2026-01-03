@@ -1,0 +1,34 @@
+{
+    "displayName": "Assault",
+    "fluxCapacitors": 15,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_cru_pubu",
+    "hullMods": ["expanded_deck_crew"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_pubu_Assault",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_m_flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_630",
+                "WS0003": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_icp_gunship_wing"
+    ]
+}

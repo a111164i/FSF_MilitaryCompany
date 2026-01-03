@@ -92,18 +92,14 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
     }
 
     //闪烁完毕以后发射导弹
-    if(ship.system != null){
-      if(ship.system.isActive){
+    ship.system?.let { sys ->
+      if (sys.isActive) {
         shouldFire = true
-      }else{
-        if(shouldFire){
-          shouldFire = false
-          for(w in ship.allWeapons){
-            if(w.slot.id.startsWith("M_")){
-              w.setForceFireOneFrame(true)
-            }
-          }
-        }
+      } else if (shouldFire) {
+        shouldFire = false
+        ship.allWeapons.asSequence()
+          .filter { it.slot.id.startsWith("M_") }
+          .forEach { it.setForceFireOneFrame(true) }
       }
     }
 

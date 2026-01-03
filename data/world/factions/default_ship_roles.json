@@ -57,7 +57,7 @@
     "aEP_des_lianliu_Attack": 1,
 
 
-"aEP_des_chongji_Standard":3,
+    "aEP_des_chongji_Standard":3,
     "aEP_des_chongji_Attack":4,
     "aEP_des_chongji_Support":4,
 
@@ -66,7 +66,7 @@
     "aEP_des_taodong_Support": 3,
 
 
-"aEP_des_yangji_Standard":4,
+    "aEP_des_yangji_Standard":4,
     "aEP_des_yangji_Elite":2,
     "aEP_des_yangji_Defense":4,
 
@@ -153,7 +153,7 @@
     "aEP_cap_decomposer_Repair": 3,
     "aEP_cap_decomposer_Support": 3,
 
-    "aEP_cru_pubu_Elite": 4,
+    "aEP_cru_pubu_Assault": 4,
     "aEP_cru_pubu_Standard": 4,
 },
   # phase ships

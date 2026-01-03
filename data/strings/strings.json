@@ -3,8 +3,8 @@
 
 		"not_module":"不能安装在模块上",
 		"must_have_shield": "不能安装在没有护盾的舰船上",
-		"must_have_no_free_deck": "不能安装在拥有空甲板位的舰船上",
-		"not_right_hullsize": "不能安装在此种舰体级别上",
+		"must_have_no_free_deck": "不能安装在拥有非内置甲板槽位的舰船上",
+		"not_right_hullsize": "不能安装在当前舰体级别上",
 		"effect":"效果",
 		"not_compatible":"不兼容",
 		"HaveToBeWith":"需要",
@@ -57,7 +57,7 @@
 		"aEP_CruiseMissileCarrier03":"未在装填",
 		"aEP_CruiseMissileCarrier04":"本舰装填已完成: {%s}",
 
-		"aEP_AttackCarrier01":"处于母舰{%s}范围内，最大速度<{%s}的战机联队提供速度加成: ",
+		"aEP_AttackCarrier01":"为处于母舰{%s}范围内，且最大速度<{%s}的战机联队提供速度加成: ",
 		"aEP_AttackCarrier02":"当本舰的非轰炸战机存量较低且幅能<={%s}时，发动锻炉立刻补满所有损失的非轰炸战机，本能力具有{%s}秒的冷却并产生大量幅能",
 		"aEP_AttackCarrier05":"安装超过{%s}OP的战机联队时，每超过一点，本能力冷却时间{%s}秒，当前惩罚为{%s}",
 
@@ -284,10 +284,10 @@
 	},
 	"aEP_En":{
 
-		"not_module":"Can not be installed on module",
-		"must_have_shield": "Can not be installed on ship with no shield",
-		"must_have_no_free_deck": "Can not be installed on ship with free fighter bays",
-		"not_right_hullsize": "Can not be installed on this hullsize",
+		"not_module":"Can not be installed on ship modules",
+		"must_have_shield": "Can not be installed on ships with no shield",
+		"must_have_no_free_deck": "Can not be installed on ships with non built-in fighter bays",
+		"not_right_hullsize": "Can not be installed on current hullsize",
 		"effect":"Effect",
 		"not_compatible":"Not compatible",
 		"HaveToBeWith":"Require",
@@ -335,7 +335,7 @@
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
 
 		"aEP_AttackCarrier01":"All fighters of this ship that is within %s range and have max speed < %s, get max speed bonus: ",
-		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge activates and replace all lost. This ability has %s seconds cooldown and produce large soft flux overtime",
+		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge activates and replaces all lost. This ability has %s seconds cooldown and produce soft flux overtime",
 		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, forge cooldown %s seconds, currently %s seconds",
 
 		"aEP_ShieldControlled01": "For non-missile projectiles and beams that spawned outside %s su, shield damage taken %s",

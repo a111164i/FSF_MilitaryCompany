@@ -1,7 +1,7 @@
 {
     "displayName": "Standard",
     "fluxCapacitors": 0,
-    "fluxVents": 28,
+    "fluxVents": 25,
     "goalVariant": true,
     "hullId": "aEP_cap_decomposer",
     "hullMods": [
@@ -48,7 +48,7 @@
     ],
     "wings": [
         "aEP_ftr_ut_supply_wing",
-        "aEP_ftr_ut_repair_wing",
+        "aEP_ftr_ut_supply_wing",
         "aEP_ftr_ut_shuishi_wing"
     ]
 }

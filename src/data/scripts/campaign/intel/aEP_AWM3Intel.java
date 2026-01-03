@@ -52,7 +52,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     float qualityMod = Misc.getShipQuality(null, aEP_ID.FACTION_ID_FSF); // 0-1，动态统计质量最高的市场太麻烦了，写死
     FleetParamsV3 params = new FleetParamsV3(
             null,
-            Factions.PIRATES,
+            aEP_ID.FACTION_ID_FSF,
             1f,// qualityMod
             FleetTypes.TASK_FORCE,
             0f, // combatPts
@@ -92,16 +92,15 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     person.setPortraitSprite("graphics/portraits/portrait_pirate02.png");
     person.setName(new FullName("phrex","jin", FullName.Gender.MALE));
     person.setGender(person.getName().getGender());
-    person.setFaction("pirates");
+    person.setFaction(Factions.PIRATES);
     person.setRankId(Ranks.SPACE_CAPTAIN);
     person.setVoice(Voices.VILLAIN);
     person.setPersonality(Personalities.STEADY);
     person.getStats().setSkillLevel(Skills.ELECTRONIC_WARFARE,1);
-    person.getStats().setSkillLevel(Skills.SUPPORT_DOCTRINE,1);
     person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS,1);
     person.getStats().setSkillLevel(Skills.CREW_TRAINING,1);
     person.getStats().setSkillLevel(Skills.OFFICER_MANAGEMENT,1);
-    person.getStats().setLevel(5);
+    person.getStats().setLevel(4);
     //不为空，不使用自动生成的指挥官
     params.commander = person;
 
@@ -157,6 +156,8 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     missileCarrier.setShipName(shipName);
 
     //完成舰队构成后，主舰队再sync
+    //为了军官roll出来的技能符合FSF势力的设定，targetFleet初始的FSF阵营，现在把归属改回海盗
+    targetFleet.setFaction(Factions.PIRATES,true);
     targetFleet.getFleetData().sort();
     targetFleet.getFleetData().setSyncNeeded();
     targetFleet.getFleetData().syncIfNeeded();

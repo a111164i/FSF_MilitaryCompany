@@ -67,18 +67,17 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
 
   init {
     notCompatibleList.add(HullMods.UNSTABLE_INJECTOR)
-
   }
 
 
   override fun applyEffectsToFighterSpawnedByShip(fighter: ShipAPI, ship: ShipAPI, ids: String) {
-    val speed = fighter.mutableStats.maxSpeed.baseValue
-    if(speed >= SPEED_THRESHOLD) return
-    fighter.mutableStats.maxSpeed.modifyFlat(ID,(SPEED_THRESHOLD - speed) * SPEED_GAP_BONUS )
-
-    val turnRate = fighter.mutableStats.maxTurnRate.baseValue
-    if(turnRate >= TURNRATE_THRESHOLD) return
-    fighter.mutableStats.maxTurnRate.modifyFlat(ID,(TURNRATE_THRESHOLD - turnRate) * TURNRATE_GAP_BONUS )
+//    val speed = fighter.mutableStats.maxSpeed.baseValue
+//    if(speed >= SPEED_THRESHOLD) return
+//    fighter.mutableStats.maxSpeed.modifyFlat(ID,(SPEED_THRESHOLD - speed) * SPEED_GAP_BONUS )
+//
+//    val turnRate = fighter.mutableStats.maxTurnRate.baseValue
+//    if(turnRate >= TURNRATE_THRESHOLD) return
+//    fighter.mutableStats.maxTurnRate.modifyFlat(ID,(TURNRATE_THRESHOLD - turnRate) * TURNRATE_GAP_BONUS )
   }
 
   override fun applyEffectsBeforeShipCreation(hullSize: ShipAPI.HullSize?, stats: MutableShipStatsAPI?, idd: String?) {
@@ -91,20 +90,20 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     if(!ship.isAlive || ship.isHulk)return
 
     //检测战机是否出界，取消航速buff
-    for(bay in ship.launchBaysCopy){
-      bay.wing?:continue
-      val wing = bay.wing
-      for(fighter in wing.wingMembers){
-        fighter?: continue
-        //距离太远，或者母舰不再存活时移除buff
-        if(MathUtils.getDistance(ship.location,fighter.location) > SPEED_BONUS_RANGE || !ship.isAlive || ship.isHulk){
-          fighter.mutableStats.maxSpeed.unmodify(ID)
-          fighter.mutableStats.maxTurnRate.unmodify(ID)
-        }else{
-          applyEffectsToFighterSpawnedByShip(fighter,ship,ID)
-        }
-      }
-    }
+//    for(bay in ship.launchBaysCopy){
+//      bay.wing?:continue
+//      val wing = bay.wing
+//      for(fighter in wing.wingMembers){
+//        fighter?: continue
+//        //距离太远，或者母舰不再存活时移除buff
+//        if(MathUtils.getDistance(ship.location,fighter.location) > SPEED_BONUS_RANGE || !ship.isAlive || ship.isHulk){
+//          fighter.mutableStats.maxSpeed.unmodify(ID)
+//          fighter.mutableStats.maxTurnRate.unmodify(ID)
+//        }else{
+//          applyEffectsToFighterSpawnedByShip(fighter,ship,ID)
+//        }
+//      }
+//    }
 
 
     //检测是否需要激活锻炉(如果锻炉就绪的话)
@@ -165,33 +164,33 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
     tooltip.addSectionHeading(txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
 
     // 正面
-    addPositivePara(tooltip, "aEP_AttackCarrier01", arrayOf(
-      String.format("%.0f", SPEED_BONUS_RANGE),
-      String.format("%.0f", SPEED_THRESHOLD)))
-
-    //第二列只用显示速度加成，写一个固定的列宽度，
-    val col2W = 80f
-    //第一列显示战机联队的名称，尽可能可能的长
-    val col1W = (width - col2W - PARAGRAPH_PADDING_BIG)
-
-    tooltip.beginTable(
-      factionColor, factionDarkColor, factionBrightColor,
-      TEXT_HEIGHT_SMALL, true, true,
-      *arrayOf<Any>("Wing Spec", col1W, "Bonus", col2W)
-    )
-
-    for(wings in ship?.variant?.fittedWings?:ArrayList()) {
-      val spec = Global.getSettings().getFighterWingSpec(wings)
-      val name = spec.wingName
-      val speed = spec.variant.hullSpec.engineSpec.maxSpeed
-      //速度大于200或者不存在的联队就跳过
-      if(speed >= SPEED_THRESHOLD) continue
-      tooltip.addRow(
-        Alignment.MID, txtColor, name,
-        Alignment.MID, highlight, String.format("+%.0f", SPEED_THRESHOLD - speed),
-      )
-    }
-    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
+//    addPositivePara(tooltip, "aEP_AttackCarrier01", arrayOf(
+//      String.format("%.0f", SPEED_BONUS_RANGE),
+//      String.format("%.0f", SPEED_THRESHOLD)))
+//
+//    //第二列只用显示速度加成，写一个固定的列宽度，
+//    val col2W = 80f
+//    //第一列显示战机联队的名称，尽可能可能的长
+//    val col1W = (width - col2W - PARAGRAPH_PADDING_BIG)
+//
+//    tooltip.beginTable(
+//      factionColor, factionDarkColor, factionBrightColor,
+//      TEXT_HEIGHT_SMALL, true, true,
+//      *arrayOf<Any>("Wing Spec", col1W, "Bonus", col2W)
+//    )
+//
+//    for(wings in ship?.variant?.fittedWings?:ArrayList()) {
+//      val spec = Global.getSettings().getFighterWingSpec(wings)
+//      val name = spec.wingName
+//      val speed = spec.variant.hullSpec.engineSpec.maxSpeed
+//      //速度大于200或者不存在的联队就跳过
+//      if(speed >= SPEED_THRESHOLD) continue
+//      tooltip.addRow(
+//        Alignment.MID, txtColor, name,
+//        Alignment.MID, highlight, String.format("+%.0f", SPEED_THRESHOLD - speed),
+//      )
+//    }
+//    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
 
     val fluxLevelString= (100f* MAX_ACTIVE_FLUX_LEVEL).toInt().toString()+"%"
     addPositivePara(tooltip, "aEP_AttackCarrier02", arrayOf(

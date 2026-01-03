@@ -199,6 +199,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\sim_opponents_dev.csv">
           <value>
             <Attribute>
@@ -242,6 +249,13 @@
           </value>
         </entry>
         <entry key="E:\Program Files\Starsector098\starsector-core\data\codex\text_codex_entries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="E:\Program Files\Starsector098\starsector-core\data\config\title_screen_variants.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -298,6 +312,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\commodities_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
