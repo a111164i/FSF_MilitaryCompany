@@ -1,0 +1,36 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 8,
+    "fluxVents": 8,
+    "goalVariant": true,
+    "hullId": "aEP_fga_raoliu",
+    "hullMods": [
+        "aEP_VanguardHull",
+        "aEP_ShieldControlled",
+        "aEP_EliteShip",
+        "armoredweapons",
+        "missleracks"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_raoliu_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_b_s_h37",
+                "WS0005": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0001": "aEP_m_s_era",
+                "WS0003": "aEP_m_s_era",
+                "WS0006": "aEP_m_s_era"
+            }
+        }
+    ]
+}
