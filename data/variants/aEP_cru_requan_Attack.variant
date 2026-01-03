@@ -1,0 +1,47 @@
+{
+    "displayName": "Attack",
+    "fluxCapacitors": 9,
+    "fluxVents": 30,
+    "goalVariant": true,
+    "hullId": "aEP_cru_requan",
+    "hullMods": [
+        "heavyarmor",
+        "hardenedshieldemitter"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_requan_Attack",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightdualac",
+                "WS0002": "lightdualac",
+                "WS0008": "lightdualac"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_m_s_cluster",
+                "WS0004": "aEP_m_s_cluster",
+                "WS0005": "aEP_m_s_cluster",
+                "WS0006": "aEP_m_m_breachdoor",
+                "WS0010": "aEP_m_m_breachdoor",
+                "WS0011": "aEP_m_m_breachdoor"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0016": "aEP_cru_requan_missile"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_m_flak"}
+        }
+    ]
+}

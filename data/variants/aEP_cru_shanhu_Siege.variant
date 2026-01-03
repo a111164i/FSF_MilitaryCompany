@@ -1,5 +1,5 @@
 {
-    "displayName": "Siege",
+    "displayName": "Elite",
     "fluxCapacitors": 5,
     "fluxVents": 5,
     "goalVariant": true,
@@ -7,7 +7,7 @@
     "hullMods": [],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_cru_shanhu_Siege",
+    "variantId": "aEP_cru_shanhu_Bomb",
     "weaponGroups": [
         {
             "autofire": false,

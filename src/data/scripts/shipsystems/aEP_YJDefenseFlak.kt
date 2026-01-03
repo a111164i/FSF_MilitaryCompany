@@ -4,24 +4,19 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.util.IntervalTracker
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.impl.VEs.aEP_MovingSprite
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.utils.aEP_MovingSprite
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
-import data.scripts.weapons.aEP_b_l_aa40_shot
-import data.scripts.weapons.aEP_b_m_h88_shot
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class aEP_YJDefenseFlak : BaseShipSystemScript() {

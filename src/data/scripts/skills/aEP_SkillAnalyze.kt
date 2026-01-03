@@ -1,25 +1,16 @@
 package data.scripts.skills
 
-import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.characters.DescriptionSkillEffect
 import com.fs.starfarer.api.characters.LevelBasedEffect.ScopeDescription
-import com.fs.starfarer.api.characters.MutableCharacterStatsAPI
 import com.fs.starfarer.api.characters.ShipSkillEffect
 import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.DamageAPI
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
-import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.DamageDealtModifier
-import com.fs.starfarer.api.impl.campaign.ids.Skills
-import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.util.Misc
-import com.fs.starfarer.api.util.WeightedRandomPicker
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_Tool
-import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.combat.AIUtils
+import data.scripts.utils.aEP_DataTool.txt
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 import kotlin.math.pow

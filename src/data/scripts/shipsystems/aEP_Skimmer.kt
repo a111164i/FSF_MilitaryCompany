@@ -6,14 +6,12 @@ import com.fs.starfarer.api.graphics.SpriteAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.Misc
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Blinker
-import combat.util.aEP_DataTool
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.speed2Velocity
-import data.scripts.weapons.aEP_DecoAnimation
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Blinker
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.speed2Velocity
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
@@ -195,7 +193,7 @@ class aEP_Skimmer: BaseShipSystemScript(){
       if(e.isSystemActivated) continue
       if(e.engineSlot.width <= 1f) continue
       val loc = e.engineSlot.computePosition(ship.location, ship.facing)
-      val vel = aEP_Tool.speed2Velocity(e.engineSlot.computeMidArcAngle(ship.facing), 40f)
+      val vel = speed2Velocity(e.engineSlot.computeMidArcAngle(ship.facing), 40f)
       Global.getCombatEngine().addSmoothParticle(
         loc, Misc.ZERO, 300f,  //size
         1f,  //brightness

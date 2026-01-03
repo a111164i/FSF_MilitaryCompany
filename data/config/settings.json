@@ -155,7 +155,7 @@
   },
   "plugins": {
     "aEP_CampaignPlugin": "data.scripts.campaign.FSFCampaignPlugin",
-    "aEP_CombatEffectPlugin": "combat.plugin.aEP_CombatEffectPlugin"
+    "aEP_CombatEffectPlugin": "data.scripts.aEP_CombatEffectPlugin"
   },
   "designTypeColors": {
     "FSF制造": [
@@ -213,5 +213,5 @@
       255
     ]
   },
-  "aEP_UseEnString": true
+  "aEP_UseEnString": false
 }

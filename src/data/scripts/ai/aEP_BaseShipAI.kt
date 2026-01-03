@@ -3,11 +3,10 @@ package data.scripts.ai
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import data.scripts.ai.shipsystemai.aEP_BaseSystemAI
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
-import java.util.*
 
 
 open class aEP_BaseShipAI: ShipAIPlugin {

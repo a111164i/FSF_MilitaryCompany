@@ -2,11 +2,10 @@ package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
-import combat.util.aEP_Combat
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_Tool
 import data.scripts.shipsystems.aEP_DroneGuard.Companion.MAX_DIST
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
@@ -152,7 +151,7 @@ class aEP_DroneGuardAI: aEP_BaseSystemAI() {
         engine.customData.set(ID, list )
       }
       (engine.customData[ID] as ArrayList<BeamAPI>).add(beam)
-      aEP_CombatEffectPlugin.addEffect(RemoveBeamFromListAfter(beam, 1f))
+      addEffect(RemoveBeamFromListAfter(beam, 1f))
 
       currBeam = beam
       shouldActive = true

@@ -3,11 +3,7 @@ package data.scripts.hullmods
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
-import com.fs.starfarer.api.impl.campaign.ids.HullMods
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_ID
 import data.scripts.weapons.aEP_DecoAnimation
-import java.awt.Color
 
 class aEP_OpenFieldHangar: aEP_BaseHullMod(), AdvanceableListener {
   companion object{

@@ -48,11 +48,11 @@
 		#要在爆炸中使用onHit一定要同时使用onExplosion，在onExplosion中将projectileId放入customData
 		"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 		"onExplosionEffect":"data.scripts.weapons.aEP_WeaponEffect",
-		"range":25,
+		"range":25, #和蹂躏一致
 		#"vsMissileRange":100,
 		"explosionSpec":{
 			"duration":0.00001f,
-      "radius":60,    #别动，太小了会丢伤害
+      "radius":60,    #别动，太小了会丢伤害，蹂躏是55/30，都比蹂躏大5因为蹂躏会丢，这东西消耗比蹂躏高的多，丢伤害后果很严重
       "coreRadius":35, # full damage within core radius - also equal to proximity fuse range
       "collisionClass":PROJECTILE_NO_FF,
       "collisionClassByFighter":PROJECTILE_FIGHTER,

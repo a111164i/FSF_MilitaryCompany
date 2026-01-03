@@ -9,9 +9,9 @@ import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
 
-import combat.util.aEP_DataTool
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.ai.aEP_CruiseMissileAI
 import data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel
 import data.scripts.weapons.aEP_DecoAnimation

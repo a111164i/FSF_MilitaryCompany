@@ -1,10 +1,13 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 13,
-    "fluxVents": 6,
+    "fluxCapacitors": 20,
+    "fluxVents": 9,
     "goalVariant": true,
     "hullId": "aEP_des_lianliu",
-    "hullMods": ["unstable_injector"],
+    "hullMods": [
+        "autorepair",
+        "aEP_ShieldControlled"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_lianliu_Standard",
@@ -13,9 +16,9 @@
             "autofire": true,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0001": "heavyneedler",
-                "WS0002": "heavyneedler",
-                "WS0003": "heavyneedler"
+                "WS0001": "heavyac",
+                "WS0002": "heavyac",
+                "WS0003": "aEP_b_m_h88"
             }
         },
         {

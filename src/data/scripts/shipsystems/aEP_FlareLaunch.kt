@@ -2,22 +2,12 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
-import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import combat.util.aEP_DataTool
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
-import data.scripts.weapons.aEP_DecoAnimation
-import data.scripts.weapons.aEP_fga_xiliu_main
-import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.VectorUtils
+import data.scripts.utils.aEP_Tool
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import java.util.*
-import javax.swing.undo.StateEdit
 
 class aEP_FlareLaunch: BaseShipSystemScript() {
 

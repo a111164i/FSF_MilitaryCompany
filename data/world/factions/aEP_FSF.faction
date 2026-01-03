@@ -6,10 +6,10 @@
     149,
     255
   ],
-  "displayName": "FSF Military Corporation",
-  "displayNameWithArticle": "FSF Military Corporation",
-  "displayNameLong": "FSF Military Corporation",
-  "displayNameLongWithArticle": "FSF Military Corporation",
+  "displayName": "FSF军事公司",
+  "displayNameWithArticle": "FSF军事公司",
+  "displayNameLong": "FSF军事公司",
+  "displayNameLongWithArticle": "FSF军事公司",
   "entityNamePrefix": "FSF",
   "personNamePrefix": "FSF",
   "personNamePrefixAOrAn": "a",
@@ -206,16 +206,18 @@
     "combatFreighterProbability": 0.5,
     "combatFreighterCombatUseFraction": 0,
     "combatFreighterCombatUseFractionWhenPriority": 0,
-    "autofitRandomizeProbability": 0,
+    "autofitRandomizeProbability": 0.1,
     "officerSkillsShuffleProbability": 1,
+    # 这里选择Shuffle，第一个技能可能是实弹大师也可能是导弹专精
     "officerSkills": [
       "ballistic_mastery",
-      "ordnance_expert",
-      "aEP_SkillAnalyze"
+      "missile_specialization",
     ],
-    "commanderSkillsShuffleProbability": 0.5,
+    "commanderSkillsShuffleProbability": 0,
+    # 不Shuffle的话，固定按照上往下的顺序4级学第一个6级学第二个
     "commanderSkills": [
-      "coordinated_maneuvers"
+      "coordinated_maneuvers",
+      "wolfpack_tactics",
     ]
   },
   "illegalCommodities": [

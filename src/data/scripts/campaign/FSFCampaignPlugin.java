@@ -9,15 +9,13 @@ import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
-import combat.util.aEP_ID;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_ID;
+import data.scripts.utils.aEP_Tool;
 import data.scripts.FSFModPlugin;
 import data.scripts.campaign.econ.environment.aEP_MilitaryZone;
 import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import lunalib.lunaSettings.LunaSettings;
 import org.lazywizard.lazylib.MathUtils;
-
-import java.util.List;
 
 
 public class FSFCampaignPlugin implements EveryFrameScript {
@@ -56,16 +54,6 @@ public class FSFCampaignPlugin implements EveryFrameScript {
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_isSkipAwmMission", true);
         //无条件刷出赏金
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_HvbKey_01", true);
-      }
-
-      //如果启用了辅助学说，开启辅助学说
-      boolean useFleetSkill = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingFleetSkill");
-      String skillId = "support_doctrine";
-      if(useFleetSkill){
-        if(!fsf.getFactionSpec().getFactionDoctrine().getCommanderSkills().contains(skillId))
-          fsf.getFactionSpec().getFactionDoctrine().getCommanderSkills().add(skillId);
-      }else {
-        fsf.getFactionSpec().getFactionDoctrine().getCommanderSkills().remove(skillId);
       }
 
       //如果启用了正常倍率刷新先进舰船，更改倍率

@@ -1,13 +1,16 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 5,
+    "fluxCapacitors": 0,
     "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_cru_hailiang3",
     "hullMods": [
         "pointdefenseai",
         "turretgyros",
-        "autorepair"
+        "autorepair",
+        "armoredweapons",
+        "reinforcedhull",
+        "fluxbreakers"
     ],
     "permaMods": [],
     "sMods": [],
@@ -25,18 +28,18 @@
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "aEP_m_m_phasemine",
-                "WS0008": "aEP_m_m_phasemine"
+                "WS0007": "aEP_m_m_breachdoor",
+                "WS0008": "aEP_m_m_breachdoor"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_b_m_mb32",
+                "WS0001": "aEP_b_m_flak",
                 "WS0002": "aEP_b_m_flak",
                 "WS0004": "aEP_b_m_flak",
-                "WS0005": "aEP_b_m_mb32"
+                "WS0005": "aEP_b_m_flak"
             }
         }
     ],

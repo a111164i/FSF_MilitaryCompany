@@ -101,10 +101,9 @@
 		"aEP_CloseTargeting01": "对战机伤害{%s}",
 
 		#############################
-		"aEP_VentMode01":"幅能耗散增加: %s 硬幅能产生: %s",
+		"aEP_VentMode01":"耗散增加: %s 硬幅能产生: %s",
 		"aEP_VentMode02":"护盾承受伤害: %s",
 		"aEP_VentMode07":"结构承受伤害: %s",
-		"aEP_VentMode08":"最大速度降低: %s",
 		"aEP_VentMode06":"软幅能过少",
 
 		"aEP_ComebackProgram01": "目标必须是护卫舰",
@@ -115,8 +114,7 @@
 		"aEP_RepulseMissileLaunch01":"系统激活中",
 		"aEP_RepulseMissileLaunch02":"幅能水平过低",
 
-		"aEP_LADamper01":"装甲计算值增加: ",
-		"aEP_LADamper02":"武器射速增加: ",
+		"aEP_LADamper01":"装甲计算值: ",
 
 		"aEP_BBLockOn01": "武器幅能消耗增高",
 
@@ -129,6 +127,12 @@
 		"aEP_WeaponReset02":"护盾承受伤害",
 
 		"aEP_FortressShieldStats01": "护盾承受伤害降低: %s",
+
+		"aEP_SwitchPowerMode01":"速射 (绿)",
+		"aEP_SwitchPowerMode02":"高出力 (red)",
+		"aEP_SwitchPowerMode03":"能量武器伤害: ",
+		"aEP_SwitchPowerMode04":"能量武器消耗: ",
+		"aEP_SwitchPowerMode05":"能量武器射速: ",
 
 		"aEP_CoordinatedCombat01": "伴生战机不可用",
 		"aEP_CoordinatedCombat02": "系统正在启用",
@@ -155,6 +159,8 @@
 
 		"AWM02_title":"AWM02:摧毁目标",
 		"AWM02_mission01":"目标位于{%s}内的一片小行星中",
+		"AWM02_targetFleetName":"奇怪的采矿无人船",
+
 		"mission_terminate":"终止合同",
 		"mission_info":"合同信息",
 		"mission_require":"任务要求",
@@ -215,8 +221,10 @@
 		"aEP_PickReward08":"继续选择",
 
 		#############################
-		"aEP_ApproachingTo":"正在接近 ",
-		"MissileEntity_after":"一阵火光过后，宇宙恢复了平静",
+		"FleetActionInfoApproaching":"正在接近",
+
+		"MissileEntityName":"巡航导弹",
+		"MissileEntityAfterHitDialog":"一阵火光过后，宇宙恢复了平静",
 
 		"CruiseMissileItem01":"右键点击该物品后，会向舰队前方发射。请注意，超视距发射巡航导弹时无法真正造成舰队减员，只能消耗其状态",
 		"CruiseMissileItem02":"目前舰队中没有装填完成的巡航导弹运载舰",
@@ -321,7 +329,7 @@
 		"aEP_MissilePlatform11":"Weapons with base ammo regen is not affected by this hullmod",
 		"aEP_MissilePlatform12":"Weapons with 0 OP cost will be considered to cost 1 in calculation",
 
-		"aEP_HighSpeedManeuver01": "Each time this ship takes a damage >= %s, has a chance going into %s, last for %s seconds, during which it has no collision",
+		"aEP_HighSpeedManeuver01": "Each time this ship takes a damage that >= %s, it has a chance going into %s, last for %s seconds, during which it has no collision",
 		"aEP_HighSpeedManeuver02": "Every evasion decreases the chance for subsequent evasions. If take no damage for %s sec, evade chance starts recover",
 		"aEP_HighSpeedManeuver03": "Evasion",
 		"aEP_HighSpeedManeuver04": "Combat engine repair time %s",
@@ -330,11 +338,11 @@
 		"aEP_AttackCarrier02":"When this ship's remaining non-bomber fighters are low and current flux level <= %s, the forge activates and replace all lost. This ability has %s seconds cooldown and produce large soft flux overtime",
 		"aEP_AttackCarrier05":"When installing a wing LPC that costs > %s OP, for each OP above, forge cooldown %s seconds, currently %s seconds",
 
-		"aEP_ShieldControlled01": "For non-missile projectiles and beams that spawned %s distance away, shield damage taken %s",
+		"aEP_ShieldControlled01": "For non-missile projectiles and beams that spawned outside %s su, shield damage taken %s",
 		"aEP_ShieldControlled03": "For missiles, shield damage taken %s",
 		"aEP_ShieldControlled02": "Ballistic/energy weapons %s range are limited to %s.",
 
-		"aEP_ShieldFloating01": "F. Points",
+		"aEP_ShieldFloating01": "Flow",
 		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, which decreases overtime.",
 		"aEP_ShieldFloating04": "If %s is accumulating, flux dissipation increases up to %s.",
 		"aEP_ShieldFloating03": "Needed for Full Bonus",
@@ -375,24 +383,22 @@
 		"aEP_CloseTargeting01": "Damage to fighters %s",
 
 		#############################
-		"aEP_VentMode01":"Flux dissipation increased: %s / Hard flux gen per second: %s",
+		"aEP_VentMode01":"Flux dissipation +%s / Hard flux gen: %s",
 		"aEP_VentMode02":"Shield damage taken: %s",
-		"aEP_VentMode07":"Hullpoint damage taken: %s",
-		"aEP_VentMode08":"Max speed reduced by: %s",
+		"aEP_VentMode07":"Hull damage taken: %s",
 		"aEP_VentMode06":"Not enough soft flux",
 
-		"aEP_ComebackProgram01": "Target has to be Frigate",
-		"aEP_ComebackProgram02": "Target has to be FSF Ship",
-		"aEP_ComebackProgram03": "This Type of FSF Ship is not Supported",
+		"aEP_ComebackProgram01": "Target has to be a Frigate",
+		"aEP_ComebackProgram02": "Target has to be a FSF Ship",
+		"aEP_ComebackProgram03": "This ship-class is not supported",
 		"aEP_ComebackProgram04": "Target or Self do not have enough CR",
 
 		"aEP_RepulseMissileLaunch01":"System activating",
 		"aEP_RepulseMissileLaunch02":"Need higher flux level",
 
-		"aEP_LADamper01":"Compute armor bonus: ",
-		"aEP_LADamper02":"Weapon RoF bonus: ",
+		"aEP_LADamper01":"Effective armor: ",
 
-		"aEP_BBLockOn01": "Weapon flux cost increased",
+		"aEP_BBLockOn01": "Weapon flux cost up",
 
 		"aEP_SiegeMode01":"Flux generated: %s",
 		"aEP_SiegeMode02":"Weapon RoF: %s",
@@ -403,6 +409,12 @@
 		"aEP_WeaponReset02":"Shield damage taken: ",
 
 		"aEP_FortressShieldStats01": "Shield damage taken reduced by %s",
+
+		"aEP_SwitchPowerMode01":"Rapid-fire (green)",
+		"aEP_SwitchPowerMode02":"High-output (red)",
+		"aEP_SwitchPowerMode03":"EN damage: ",
+		"aEP_SwitchPowerMode04":"EN flux cost: ",
+		"aEP_SwitchPowerMode05":"EN rate of fire: ",
 
 		"aEP_CoordinatedCombat01": "Twin fighter is not available",
 		"aEP_CoordinatedCombat02": "One of the systems is activating",
@@ -429,6 +441,7 @@
 
 		"AWM02_title":"AWM02: Investigate the target",
 		"AWM02_mission01":"Target is located at an asteroid area in %s",
+		"AWM02_targetFleetName":"Strange mining ship",
 		"mission_terminate":"Early Termination",
 		"mission_info":"Mission Info",
 		"mission_require":"Mission Requirement",
@@ -489,8 +502,10 @@
 		"aEP_PickReward08":"Continue",
 
 		#############################
-		"MissileEntity_after":"After sparks and flashes, the space back to dark",
-		"aEP_ApproachingTo":"Approaching!",
+		"FleetActionInfoApproaching":"Approaching",
+
+		"MissileEntityName":"Cruise Missile",
+		"MissileEntityAfterHitDialog":"After sparks and flashes, the space back to dark",
 
 		"CruiseMissileItem01":"Right click this item launch the missile towards the front of your fleet. Be noticed that firing cruise missile at campaign layer will not destroy any ship, only damage it's CR and Hull integrity",
 		"CruiseMissileItem02":"None of your missile carrier has completed loading process",

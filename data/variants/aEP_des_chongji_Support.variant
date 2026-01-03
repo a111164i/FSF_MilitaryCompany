@@ -1,14 +1,13 @@
 {
     "displayName": "Support",
-    "fluxCapacitors": 18,
-    "fluxVents": 10,
+    "fluxCapacitors": 15,
+    "fluxVents": 15,
     "goalVariant": true,
     "hullId": "aEP_des_chongji",
     "hullMods": [
         "targetingunit",
         "escort_package",
-        "hardenedshieldemitter",
-        "extendedshieldemitter"
+        "hardenedshieldemitter"
     ],
     "permaMods": [],
     "sMods": [],
@@ -17,7 +16,7 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS 001": "mark9"}
+            "weapons": {"WS 001": "gauss"}
         },
         {
             "autofire": true,

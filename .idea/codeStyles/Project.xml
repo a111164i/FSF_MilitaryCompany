@@ -6,6 +6,10 @@
         <option name="TAB_SIZE" value="2" />
       </value>
     </option>
+    <CsvCodeStyleSettings>
+      <option name="TABULARIZE" value="true" />
+      <option name="ENABLE_WIDE_CHARACTER_DETECTION" value="true" />
+    </CsvCodeStyleSettings>
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>

@@ -6,7 +6,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import data.scripts.ai.shipsystemai.aEP_BaseSystemAI;
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI;
 import org.lazywizard.lazylib.MathUtils;

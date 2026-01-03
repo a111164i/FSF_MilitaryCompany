@@ -3,7 +3,7 @@ package data.scripts.ai
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import data.scripts.util.MagicTargeting
 
 class aEP_CruiseMissileAI: aEP_BaseShipAI {

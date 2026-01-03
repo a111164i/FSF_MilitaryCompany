@@ -11,19 +11,18 @@ import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_AngleTracker
-import combat.util.aEP_DataTool.FloatDataRecorder
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_AngleTracker
+import data.scripts.utils.aEP_DataTool.FloatDataRecorder
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.PredictionStripe
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lwjgl.util.vector.Vector2f
-import org.magiclib.subsystems.examples.ChargedDriveSubsystem
 import java.awt.Color
 import kotlin.math.absoluteValue
 

@@ -1,10 +1,13 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 18,
-    "fluxVents": 29,
+    "fluxCapacitors": 15,
+    "fluxVents": 30,
     "goalVariant": true,
     "hullId": "aEP_cru_requan",
-    "hullMods": ["heavyarmor"],
+    "hullMods": [
+        "heavyarmor",
+        "hardenedshieldemitter"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_requan_Standard",
@@ -15,11 +18,17 @@
             "weapons": {
                 "WS0001": "lightdualac",
                 "WS0002": "lightdualac",
+                "WS0008": "lightdualac"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
                 "WS0003": "aEP_m_s_expander",
                 "WS0004": "aEP_m_s_expander",
                 "WS0005": "aEP_m_s_expander",
                 "WS0006": "aEP_m_m_expander",
-                "WS0008": "lightdualac",
                 "WS0010": "aEP_m_m_expander",
                 "WS0011": "aEP_m_m_expander"
             }
@@ -27,12 +36,12 @@
         {
             "autofire": false,
             "mode": "ALTERNATING",
-            "weapons": {"WS0007": "aEP_b_m_flak"}
+            "weapons": {"WS0016": "aEP_cru_requan_missile"}
         },
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0016": "aEP_cru_requan_missile"}
+            "weapons": {"WS0007": "aEP_b_m_flak"}
         }
     ]
 }

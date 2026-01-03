@@ -1,0 +1,58 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 19,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_des_yangji",
+    "hullMods": [
+        "pointdefenseai",
+        "autorepair",
+        "aEP_ShieldFloating",
+        "reinforcedhull",
+        "fluxbreakers",
+        "escort_package"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_yangji_Defense",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "amblaster"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL01": "dualflak",
+                "SIDER01": "dualflak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_b_m_mb32"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "SIDEL04": "aEP_b_m_flak",
+                "SIDER04": "aEP_b_m_flak"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_ftr_sup_shield_gun",
+                "WS0005": "aEP_ftr_sup_shield_gun",
+                "WS0006": "aEP_ftr_sup_shield_gun",
+                "WS0007": "aEP_ftr_sup_shield_gun",
+                "WS0011": "aEP_ftr_sup_shield_gun",
+                "WS0012": "aEP_ftr_sup_shield_gun"
+            }
+        }
+    ]
+}

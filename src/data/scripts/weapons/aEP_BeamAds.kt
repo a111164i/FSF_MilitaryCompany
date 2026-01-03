@@ -2,20 +2,7 @@ package data.scripts.weapons
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.util.Misc
-import combat.impl.VEs.aEP_MovingSprite
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_ID
-import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
-import combat.util.aEP_Tool
-import data.scripts.hullmods.aEP_SpecialHull
-import org.lazywizard.lazylib.MathUtils
-import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import kotlin.math.cos
-import kotlin.math.sign
-import kotlin.math.sin
 
 class aEP_BeamAds : BeamEffectPlugin {
   companion object {

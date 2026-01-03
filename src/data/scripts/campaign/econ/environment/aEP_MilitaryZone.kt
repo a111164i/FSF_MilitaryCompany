@@ -8,7 +8,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Commodities
 import com.fs.starfarer.api.impl.campaign.ids.Industries
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.util.aEP_ID
+import data.scripts.utils.aEP_ID
 
 class aEP_MilitaryZone : BaseMarketConditionPlugin() {
 

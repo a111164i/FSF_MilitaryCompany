@@ -2,10 +2,9 @@ package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.util.FaderUtil
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.impl.aEP_BaseCombatEffect
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.utils.aEP_Tool
 import org.lwjgl.util.vector.Vector2f
 
 open class aEP_BaseSystemAI : ShipSystemAIScript {
@@ -16,36 +15,35 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
 
   lateinit var engine: CombatEngineAPI
   var system: ShipSystemAPI? = null
-  var rightClickSys: ShipSystemAPI? = null
   lateinit var ship: ShipAPI
   lateinit var flags: ShipwideAIFlags
-  var thinkTracker = IntervalUtil(0f, 0.5f)
+  var thinkTracker = IntervalUtil(0.1f, 0.5f)
   var shouldActive = false
   var skipWhenCooldown = false
-  var shouldPhaseActive = false
-  var skipPhaseWhenCooldown = false
+  var minActiveTime = 0f //系统最小激活时间, 对于自由切换的系统，ai不会连续开关
   var timeElapsedActive = 0f
+  var isRightClickSys = false
 
   constructor(){
 
   }
 
-  constructor(ship: ShipAPI, system: ShipSystemAPI){
+  constructor(ship: ShipAPI, system: ShipSystemAPI, isRightClick : Boolean){
+    isRightClickSys = isRightClick
     init(ship, system, ShipwideAIFlags(), Global.getCombatEngine())
   }
 
   override fun init(ship: ShipAPI, system: ShipSystemAPI?, flags: ShipwideAIFlags, engine: CombatEngineAPI) {
     this.ship = ship
-    this.rightClickSys = system
-    if(ship.phaseCloak != null && ship.phaseCloak is ShipSystemAPI) rightClickSys = ship.phaseCloak
-    this.system = system
     this.engine = engine
     this.flags = flags
+    this.system = system
     initImpl()
+    if(isRightClickSys) this.system = ship.phaseCloak
   }
 
   /**
-   * 用这个
+   * 用这个，在这里处理是否是右键系统
    * */
   open fun initImpl() {
 
@@ -72,20 +70,22 @@ open class aEP_BaseSystemAI : ShipSystemAIScript {
       shouldSkip = true
       shouldActive = false
     }
-    //如果系统正在冷却，不需要思考
-    if(rightClickSys?.state == ShipSystemAPI.SystemState.COOLDOWN && skipPhaseWhenCooldown){
-      shouldSkip = true
-      shouldPhaseActive = false
-    }
+
 
     if(!shouldSkip) advanceImpl(amount, missileDangerDir, collisionDangerDir, target)
 
-    if(system != null &&  aEP_Tool.toggleSystemControl(system!!,shouldActive)){
-      ship.giveCommand(ShipCommand.USE_SYSTEM, null, 0)
+    //保证最小激活时间
+    if(system?.isActive?:false && !shouldActive && timeElapsedActive < minActiveTime) {
+      shouldActive = true
     }
 
-    if(rightClickSys != null && aEP_Tool.toggleSystemControl(rightClickSys!!,shouldPhaseActive)){
-      ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK, null, 0)
+    //执行系统开关
+    if(system != null &&  aEP_Tool.toggleSystemControl(system!!,shouldActive) ) {
+      if (!isRightClickSys){
+        ship.giveCommand(ShipCommand.USE_SYSTEM, null, 0)
+      } else {
+        ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK, null,0)
+      }
     }
   }
 

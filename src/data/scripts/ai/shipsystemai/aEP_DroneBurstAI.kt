@@ -4,8 +4,6 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.combat.ShipwideAIFlags
-import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f

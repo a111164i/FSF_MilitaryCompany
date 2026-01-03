@@ -1,0 +1,65 @@
+{
+    "displayName": "Repair",
+    "fluxCapacitors": 3,
+    "fluxVents": 3,
+    "goalVariant": true,
+    "hullId": "aEP_cap_decomposer",
+    "hullMods": [
+        "missleracks",
+        "armoredweapons",
+        "autorepair",
+        "reinforcedhull"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cap_decomposer_Repair",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "railgun",
+                "WS0007": "railgun"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "aEP_m_l_blasthammer",
+                "WS0005": "aEP_m_l_blasthammer"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0006": "aEP_m_s_era",
+                "WS0011": "aEP_m_s_era",
+                "WS0014": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_b_s_pom",
+                "WS0008": "aEP_b_s_pom",
+                "WS0009": "aEP_b_s_pom",
+                "WS0010": "aEP_b_s_pom",
+                "WS0015": "aEP_b_s_630",
+                "WS0016": "aEP_b_s_630"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_b_m_mb32"}
+        }
+    ],
+    "wings": [
+        "aEP_ftr_ut_supply_wing",
+        "aEP_ftr_ut_repair_wing",
+        "aEP_ftr_ut_supply_wing"
+    ]
+}

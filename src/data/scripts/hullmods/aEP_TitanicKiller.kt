@@ -5,12 +5,11 @@ import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.DamageAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.listeners.DamageDealtModifier
-import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
@@ -18,23 +17,23 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
   companion object{
     const val ID = "aEP_TitanicKiller"
 
-    const val DAMAGE_MULTIPLIER = 1.15f
+    const val DAMAGE_MULTIPLIER = 1.05f
     const val MAX_DAMAGE_MULTIPLIER = 4f
 
     val START_DP = LinkedHashMap<ShipAPI.HullSize, Float>()
     init {
-      START_DP[ShipAPI.HullSize.CAPITAL_SHIP] = 50f
-      START_DP[ShipAPI.HullSize.CRUISER] = 30f
-      START_DP[ShipAPI.HullSize.DESTROYER] = 14f
-      START_DP[ShipAPI.HullSize.FRIGATE] = 8f
+      START_DP[ShipAPI.HullSize.CAPITAL_SHIP] = 40f
+      START_DP[ShipAPI.HullSize.CRUISER] = 25f
+      START_DP[ShipAPI.HullSize.DESTROYER] = 13f
+      START_DP[ShipAPI.HullSize.FRIGATE] = 7f
     }
 
     val DP_STEP = LinkedHashMap<ShipAPI.HullSize, Float>()
     init {
-      DP_STEP[ShipAPI.HullSize.CAPITAL_SHIP] = 5f
-      DP_STEP[ShipAPI.HullSize.CRUISER] = 3f
-      DP_STEP[ShipAPI.HullSize.DESTROYER] = 2f
-      DP_STEP[ShipAPI.HullSize.FRIGATE] = 2f
+      DP_STEP[ShipAPI.HullSize.CAPITAL_SHIP] = 2f
+      DP_STEP[ShipAPI.HullSize.CRUISER] = 1f
+      DP_STEP[ShipAPI.HullSize.DESTROYER] = 1f
+      DP_STEP[ShipAPI.HullSize.FRIGATE] = 1f
     }
   }
 
@@ -112,6 +111,8 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
     target?: return null
 
     if(target is ShipAPI){
+
+      //不对空间站和其模块生效
       if(target.isStation || target.parentStation?.isStation == true) return null
 
       var startDp = START_DP[target.hullSize]?:24f

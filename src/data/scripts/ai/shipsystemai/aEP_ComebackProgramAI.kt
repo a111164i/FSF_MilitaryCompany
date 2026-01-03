@@ -2,10 +2,7 @@ package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
-import combat.util.aEP_Tool
 import data.scripts.shipsystems.aEP_ComebackProgram
-import data.scripts.weapons.aEP_BeamRepair.Companion.HULL_REPAIR_THRESHOLD
-import data.scripts.weapons.aEP_BeamRepair.Companion.REPAIR_THRESHOLD
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 

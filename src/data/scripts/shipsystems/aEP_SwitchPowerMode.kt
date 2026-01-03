@@ -6,8 +6,9 @@ import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import combat.util.aEP_DataTool
-import combat.util.aEP_Tool
+import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import data.scripts.weapons.aEP_fga_xiliu_main
 import org.lazywizard.lazylib.MathUtils
@@ -20,11 +21,15 @@ class aEP_SwitchPowerMode: BaseShipSystemScript(), WeaponRangeModifier {
   companion object{
     const val ID = "aEP_SwitchPowerMode"
 
-    var DAMAGE_TO_FIGHTER_PERCENT_BONUS = 0f
+    // mode 0
+    const val ENERGY_WEAPON_DAMAGE_REDUCE_MULT = 0.25f
+    const val ENERGY_WEAPON_FLUX_REDUCE_MULT = 0.5f
+    const val ENERGY_WEAPON_ROF_BONUS = 100f
 
-    val WEAPON_RANGE_REDUCE_THRESHOLD = 450f
-    var WEAPON_RANGE_REDUCE_MULT = 0.65f
-
+    // mode 1
+    const val ENERGY_WEAPON_DAMAGE_BONUS = 50f
+    const val ENERGY_WEAPON_RANGE_BONUS = 200f
+    const val ENERGY_WEAPON_ROF_REDUCE_MULT = 0.5f
   }
   private var ship: ShipAPI? = null
   var mode = 0
@@ -44,12 +49,10 @@ class aEP_SwitchPowerMode: BaseShipSystemScript(), WeaponRangeModifier {
     val ship = ship as ShipAPI
 
     updateIndicators()
-    switchMainWeapon()
     //技能不激活就不往下走了
     if(state == ShipSystemStatsScript.State.IDLE || state == ShipSystemStatsScript.State.COOLDOWN){
       return
     }
-
 
     var c = Color.red
     //由0（绿色）切换到1（红色）
@@ -67,6 +70,29 @@ class aEP_SwitchPowerMode: BaseShipSystemScript(), WeaponRangeModifier {
       if(mode > 1) mode = 0
       //把当前装填塞入customData给ai用
       ship.setCustomData(ID, mode)
+
+      // 重置所有状态修改
+      ship.mutableStats.energyWeaponDamageMult.unmodify(ID )
+      ship.mutableStats.energyWeaponFluxCostMod.unmodify(ID )
+      ship.mutableStats.energyWeaponRangeBonus.unmodify(ID)
+      ship.mutableStats.energyRoFMult.unmodify(ID)
+      ship.mutableStats.energyWeaponDamageMult.unmodify(ID )
+      ship.mutableStats.energyWeaponFluxCostMod.unmodify(ID )
+      ship.mutableStats.energyRoFMult.unmodify(ID)
+
+
+      if(mode == 0){
+        ship.mutableStats.energyWeaponDamageMult.modifyMult(ID,1f-ENERGY_WEAPON_DAMAGE_REDUCE_MULT )
+        ship.mutableStats.energyWeaponFluxCostMod.modifyMult(ID,1f-ENERGY_WEAPON_FLUX_REDUCE_MULT )
+        ship.mutableStats.energyRoFMult.modifyPercent(ID,ENERGY_WEAPON_ROF_BONUS)
+
+      }else if (mode == 1){
+        ship.mutableStats.energyWeaponDamageMult.modifyPercent(ID,ENERGY_WEAPON_DAMAGE_BONUS )
+        ship.mutableStats.energyWeaponFluxCostMod.modifyPercent(ID,ENERGY_WEAPON_DAMAGE_BONUS )
+        ship.mutableStats.energyWeaponRangeBonus.modifyFlat(ID,ENERGY_WEAPON_RANGE_BONUS)
+        ship.mutableStats.energyRoFMult.modifyMult(ID,1f-ENERGY_WEAPON_ROF_REDUCE_MULT)
+
+      }
     }
 
   }
@@ -75,7 +101,6 @@ class aEP_SwitchPowerMode: BaseShipSystemScript(), WeaponRangeModifier {
     //复制粘贴这行
     ship = (stats.entity?: return) as ShipAPI
     val ship = ship as ShipAPI
-    switchMainWeapon()
     updateIndicators()
     //把当前装填塞入customData给ai用
     ship.setCustomData(ID, mode)
@@ -87,11 +112,31 @@ class aEP_SwitchPowerMode: BaseShipSystemScript(), WeaponRangeModifier {
   }
 
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): ShipSystemStatsScript.StatusData? {
+    var debuff = false
+    if (index == 0) {
+      debuff = if(mode == 0) true else false
+      val num = if(mode == 0) "-" + (100f*ENERGY_WEAPON_DAMAGE_REDUCE_MULT).toInt() + "%" else "+" + ENERGY_WEAPON_DAMAGE_BONUS.toInt() + "%"
+      return StatusData(txt("aEP_SwitchPowerMode03") + num, debuff)
 
+    } else if (index == 1) {
+      debuff = if(mode == 0) false else true
+      val num = if(mode == 0) "-" + (100f*ENERGY_WEAPON_FLUX_REDUCE_MULT).toInt() + "%" else "+" + ENERGY_WEAPON_DAMAGE_BONUS.toInt() + "%"
+      return StatusData(txt("aEP_SwitchPowerMode04") + num, debuff)
+
+    } else if (index == 2) {
+      debuff = if(mode == 0) false else true
+      val num = if(mode == 0) "+" + ENERGY_WEAPON_ROF_BONUS.toInt() + "%" else "-" + (100f*ENERGY_WEAPON_ROF_REDUCE_MULT).toInt() + "%"
+      return StatusData(txt("aEP_SwitchPowerMode05") +num, debuff)
+    }
     return null
   }
 
   override fun getInfoText(system: ShipSystemAPI?, ship: ShipAPI?): String {
+    if(mode == 0){
+      return txt("aEP_SwitchPowerMode01")
+    }else if (mode == 1){
+      return txt("aEP_SwitchPowerMode02")
+    }
     return "Mode: "+(mode+1)
   }
 
@@ -196,43 +241,6 @@ class aEP_SwitchPowerMode: BaseShipSystemScript(), WeaponRangeModifier {
     return false
   }
 
-  fun switchMainWeapon(){
-    ship?:return
-    if(main1 == null && main2 == null){
-      for(w in ship!!.allWeapons){
-        if(w.spec.weaponId.equals("aEP_fga_xiliu_main")) main1 = w
-        if(w.spec.weaponId.equals("aEP_fga_xiliu_main2")) main2 = w
-      }
-    }
-    val main1 = main1 as WeaponAPI
-    val main2 = main2 as WeaponAPI
-
-    if(mode == 0){
-      //启动main1，关闭main2
-      main1.animation.frame = 0
-      main1.isKeepBeamTargetWhileChargingDown = true
-//      if(main1.isPermanentlyDisabled){
-//        main1.repair()
-//      }
-      main2.animation.frame = 1
-      main2.setForceNoFireOneFrame(true)
-      main2.currAngle = main1.currAngle
-    }
-
-    if(mode == 1){
-      //启动main2，关闭main1
-      main2.animation.frame = 0
-      main2.isKeepBeamTargetWhileChargingDown = true
-//      if(main2.isPermanentlyDisabled){
-//        main2.repair()
-//      }
-      main1.animation.frame = 1
-      main1.setForceNoFireOneFrame(true)
-      main1.currAngle = main2.currAngle
-      //main1.disable(true)
-    }
-
-  }
 
   fun updateIndicators(){
     if(red == null || green == null || rotator == null){

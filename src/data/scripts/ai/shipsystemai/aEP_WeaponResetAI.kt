@@ -1,9 +1,6 @@
 package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.combat.ShipAPI
-import combat.util.aEP_Tool
-import data.scripts.hullmods.aEP_SpecialHull
-import data.scripts.shipsystems.aEP_VentMode
 import data.scripts.shipsystems.aEP_WeaponReset
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f

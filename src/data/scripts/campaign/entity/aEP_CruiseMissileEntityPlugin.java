@@ -15,7 +15,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;
@@ -25,7 +25,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin {
 
@@ -483,7 +483,7 @@ public class aEP_CruiseMissileEntityPlugin implements CustomCampaignEntityPlugin
       }
 
 
-      dialog.getTextPanel().addPara(txt("MissileEntity_after"));
+      dialog.getTextPanel().addPara(txt("MissileEntityAfterHitDialog"));
       dialog.getVisualPanel().showFleetInfo(txt("target_fleet"), toShow, null, null);
       dialog.getOptionPanel().addOption("confirm", null);
 

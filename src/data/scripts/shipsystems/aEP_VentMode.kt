@@ -3,24 +3,22 @@ package data.scripts.shipsystems
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
-import com.fs.starfarer.api.impl.combat.LightsEffect
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.*
-import combat.util.aEP_DataTool.txt
-import data.scripts.hullmods.aEP_AcceleratedGunnery
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_AngleTracker
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
-import org.dark.shaders.light.LightAPI
 import org.dark.shaders.light.LightShader
 import org.dark.shaders.light.StandardLight
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import java.util.*
 import kotlin.math.max
 
 class aEP_VentMode: BaseShipSystemScript() {
@@ -35,7 +33,7 @@ class aEP_VentMode: BaseShipSystemScript() {
     //四角烟雾
     val SMOKE_EMIT_COLOR2 = Color(250, 250, 250, 125)
 
-    const val SOFT_CONVERT_RATE = 0.25f
+    const val SOFT_CONVERT_RATE = 0.2f
     const val SOFT_CONVERT_SPEED = 2000f
     const val HULL_DAMAGE_TAKEN_BONUS = 50f
 
@@ -58,7 +56,7 @@ class aEP_VentMode: BaseShipSystemScript() {
   var timeElapsedAfterVenting = 0f;
   var forceDown = false
 
-  var animationLevel = aEP_AngleTracker(0f,0f,0.4f,1f,0f)
+  var animationLevel = aEP_AngleTracker(0f, 0f, 0.4f, 1f, 0f)
 
   //run every frame
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
@@ -126,8 +124,8 @@ class aEP_VentMode: BaseShipSystemScript() {
         //这里选择使用原版的耗散，而不是直接扣除幅能，方便ai理解
         ship.mutableStats.fluxDissipation.modifyFlat(ID, SOFT_CONVERT_SPEED * convertLevel)
         //ship.fluxTracker.decreaseFlux(toConvert)
-        ship.system.fluxPerSecond = SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE * convertLevel
-        //ship.fluxTracker.increaseFlux(toConvert * SOFT_CONVERT_RATE, true)
+        //幅能满了就不产生硬幅能了，防止幅能快满就自动关闭
+        ship.system.fluxPerSecond = (SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE * convertLevel).coerceIn(0f,  (ship.fluxTracker.maxFlux - ship.fluxTracker.currFlux - 1000f).coerceAtLeast(0f))
 
         ship.mutableStats.ballisticRoFMult.modifyFlat(ID, WEAPON_ROF_BONUS * convertLevel)
         ship.mutableStats.energyRoFMult.modifyFlat(ID, WEAPON_ROF_BONUS * convertLevel)
@@ -264,7 +262,8 @@ class aEP_VentMode: BaseShipSystemScript() {
     val convertLevel = 0.5f + (effectLevel-0.5f).coerceAtLeast(0f)
     if(effectLevel > 0f){
       if (index == 0) {
-        return ShipSystemStatsScript.StatusData(String.format(aEP_DataTool.txt("aEP_VentMode01"),
+        return ShipSystemStatsScript.StatusData(String.format(
+          aEP_DataTool.txt("aEP_VentMode01"),
           String.format("%.0f", SOFT_CONVERT_SPEED * convertLevel) ,
           String.format("%.0f", SOFT_CONVERT_SPEED * SOFT_CONVERT_RATE) ),
           false)

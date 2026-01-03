@@ -3,13 +3,9 @@ package data.scripts.ai.shipsystemai
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipwideAIFlags
 import com.fs.starfarer.api.combat.WeaponAPI
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Tool
 import data.scripts.hullmods.aEP_MissilePlatform
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
-import java.awt.Color
 
 class aEP_RequanReloadAI: aEP_BaseSystemAI() {
 

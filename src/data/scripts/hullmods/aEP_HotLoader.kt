@@ -1,21 +1,13 @@
 package data.scripts.hullmods
 
-import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
-import com.fs.starfarer.api.ui.Alignment
-import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
-import java.awt.Color
+import data.scripts.utils.aEP_Tool
 
 class aEP_HotLoader : aEP_BaseHullMod() {
 

@@ -13,7 +13,7 @@
   "viewOffset": 0,
   "builtInMods": [
     "aEP_SpecialHull",
-    "aEP_ReactiveArmor"
+    "aEP_HighSpeedManeuver"
   ],
   "builtInWeapons": {
     "SYS01": "aEP_m_s_flare3",

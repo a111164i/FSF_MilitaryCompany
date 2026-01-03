@@ -14,8 +14,8 @@ import com.fs.starfarer.api.impl.campaign.intel.contacts.ContactIntel;
 import com.fs.starfarer.api.impl.campaign.terrain.DebrisFieldTerrainPlugin;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
-import combat.util.aEP_ID;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_ID;
+import data.scripts.utils.aEP_Tool;
 import data.scripts.campaign.intel.*;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 /**
  * 在rules.csv中，在script或者condition栏写“aEP_AdvanceWeaponMission show2 exp"即调用本类中的execute方法
@@ -475,7 +475,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
       SectorEntityToken token = planetPicker.pick();
       //Global.getSector().getIntelManager().addIntel(new aEP_AWM2Intel(token));
       //Global.getSector().getIntelManager().queueIntel(new aEP_AWM2Intel(token));
-      Global.getSector().addScript(new aEP_AWM3Intel(token, "FSF_pirate"));
+      Global.getSector().addScript(new aEP_AWM3Intel(token, "Testing Obj CMC02"));
 
     }
 

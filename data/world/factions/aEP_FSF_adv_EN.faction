@@ -1,0 +1,36 @@
+{
+  "displayName": "FSF Military Corporation",
+  "displayNameWithArticle": "FSF Military Corporation",
+  "displayNameLong": "FSF Military Corporation",
+  "displayNameLongWithArticle": "FSF Military Corporation",
+  "entityNamePrefix": "FSF",
+  "personNamePrefix": "FSF",
+  "personNamePrefixAOrAn": "a",
+  "displayNameIsOrAre": "is",
+  "shipNamePrefix": "FSF",
+  "ranks": {
+    "ranks": {
+      "factionLeader": {
+        "name": "Board Representative"
+      }
+    },
+    "posts": {
+      "factionLeader": {
+        "name": "Board Representative"
+      },
+      "aEP_consultant": {
+        "name": "Business Manager"
+      },
+      "aEP_researcher": {
+        "name": "Program Director"
+      }
+    }
+  },
+  "fleetTypeNames": {
+    "patrolSmall": "Patrol Squad",
+    "patrolMedium": "Front Platoon",
+    "patrolLarge": "Defense Battalion",
+    "inspectionFleet": "Inspection Team",
+    "taskForce": "Special Force"
+  }
+}

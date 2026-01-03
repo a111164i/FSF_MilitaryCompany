@@ -7,7 +7,7 @@ import com.fs.starfarer.api.ui.IntelUIAPI;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_ID;
+import data.scripts.utils.aEP_ID;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -15,7 +15,7 @@ import java.awt.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 import static data.scripts.world.aEP_systems.aEP_FSF_DWR43.FACTORY_STATION_MARKET_ID;
 
 public class aEP_AWM4Intel extends aEP_BaseMission

@@ -18,6 +18,7 @@
     "viewOffset": 0,
     "builtInMods": [
         "aEP_SpecialHull",
+        "aEP_ReactiveArmor",
         "missleracks"
     ],
     "builtInWeapons": {

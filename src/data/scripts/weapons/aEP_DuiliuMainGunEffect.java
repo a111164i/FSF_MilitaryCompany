@@ -2,7 +2,7 @@ package data.scripts.weapons;
 
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.util.IntervalUtil;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 

@@ -3,7 +3,7 @@ package data.scripts.ai.shipsystemai
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipwideAIFlags
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_des_lianliu_grenade_thrower_shot
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils

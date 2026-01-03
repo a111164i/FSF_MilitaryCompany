@@ -12,19 +12,16 @@ import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import combat.util.aEP_ID.Companion.HULLMOD_POINT
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_ID.Companion.HULLMOD_POINT
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import kotlin.compareTo
-import kotlin.div
 import kotlin.math.roundToInt
-import kotlin.times
 
 class aEP_MissilePlatform : aEP_BaseHullMod() {
 

@@ -1,10 +1,13 @@
 {
     "displayName": "Attack",
-    "fluxCapacitors": 1,
-    "fluxVents": 1,
+    "fluxCapacitors": 14,
+    "fluxVents": 0,
     "goalVariant": true,
     "hullId": "aEP_cru_shanhu",
-    "hullMods": ["hardenedshieldemitter"],
+    "hullMods": [
+        "hardenedshieldemitter",
+        "missleracks"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_shanhu_Attack",
@@ -12,14 +15,10 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0005": "aEP_m_l_blasthammer"}
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "aEP_m_s_cluster",
-                "WS0012": "aEP_m_s_cluster"
+                "WS0003": "lightneedler",
+                "WS0013": "lightneedler",
+                "WS0014": "lightneedler"
             }
         },
         {
@@ -27,25 +26,15 @@
             "mode": "ALTERNATING",
             "weapons": {
                 "WS0004": "aEP_m_m_blasthammer",
-                "WS0008": "aEP_m_m_blasthammer"
+                "WS0005": "aEP_m_l_blasthammer",
+                "WS0007": "aEP_m_s_cluster",
+                "WS0008": "aEP_m_m_blasthammer",
+                "WS0012": "aEP_m_s_cluster"
             }
         },
         {
             "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0013": "lightneedler",
-                "WS0014": "lightneedler"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0003": "lightneedler"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
+            "mode": "ALTERNATING",
             "weapons": {
                 "WS0006": "aEP_b_s_630",
                 "WS0010": "aEP_b_s_630"
@@ -56,6 +45,6 @@
         "aEP_ftr_bom_attacker_wing",
         "aEP_ftr_bom_attacker_wing",
         "aEP_ftr_bom_attacker_wing",
-        "aEP_ftr_bom_attacker_wing"
+        ""
     ]
 }

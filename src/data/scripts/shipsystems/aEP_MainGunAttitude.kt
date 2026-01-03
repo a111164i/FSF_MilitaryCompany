@@ -3,21 +3,14 @@ package data.scripts.shipsystems
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier
-import com.fs.starfarer.api.graphics.SpriteAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
-import com.fs.starfarer.api.impl.combat.DamperFieldOmegaStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.api.util.JitterUtil
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_DataTool
-import combat.util.aEP_Tool
-import data.scripts.ai.aEP_DroneRepairShipAI
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
-import data.scripts.weapons.aEP_cru_pingding_main
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.WeaponUtils
@@ -25,21 +18,14 @@ import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import java.util.*
 import kotlin.math.absoluteValue
-import kotlin.math.pow
 
 class aEP_MainGunAttitude : BaseShipSystemScript(), WeaponRangeModifier {
   companion object{
     const val ID = "aEP_MainGunAttitude"
 
-    const val ROF_BONUS_PERCENT = 100f
-
-    const val RANGE_BONUS_PERCENT = 25f
-    const val RANGE_BONUS_FLAT = 250f
-
-    const val BREAK_RANGE = 450f
-    const val FLUX_INCREASE_MULT = 0.50f
+    const val MAX_SPEED_REDUCE_MULT = 0.75f
+    const val TURN_RATE_BONUS = 100f
 
     val TAIL_SMOKE_COLOR = Color(255,255,255)
 
@@ -143,19 +129,20 @@ class aEP_MainGunAttitude : BaseShipSystemScript(), WeaponRangeModifier {
       //开始激活时，持续激活的效果
       if(effectLevel >= 1f){
         //只有在完全激活才增加的效果
-        ship.mutableStats.maxSpeed.modifyMult(ID, 0.2f)
-        ship.mutableStats.acceleration.modifyMult(ID, 0.5f)
-        ship.mutableStats.deceleration.modifyMult(ID, 0.5f)
+        ship.mutableStats.maxSpeed.modifyMult(ID, 1f - MAX_SPEED_REDUCE_MULT)
+        ship.mutableStats.acceleration.modifyMult(ID, 1f - MAX_SPEED_REDUCE_MULT)
+        ship.mutableStats.deceleration.modifyMult(ID, 1f - MAX_SPEED_REDUCE_MULT)
 
-        ship.mutableStats.maxTurnRate.modifyPercent(ID, 50f)
-        ship.mutableStats.turnAcceleration.modifyPercent(ID, 100f)
+        ship.mutableStats.maxTurnRate.modifyPercent(ID, TURN_RATE_BONUS)
+        ship.mutableStats.turnAcceleration.modifyPercent(ID, TURN_RATE_BONUS)
       }else{
-        ship.mutableStats.maxSpeed.modifyMult(ID, 1f)
-        ship.mutableStats.acceleration.modifyMult(ID, 1f)
-        ship.mutableStats.deceleration.modifyMult(ID, 1f)
 
-        ship.mutableStats.maxTurnRate.modifyPercent(ID, 0f)
-        ship.mutableStats.turnAcceleration.modifyPercent(ID, 0f)
+        ship.mutableStats.maxSpeed.unmodify(ID)
+        ship.mutableStats.acceleration.unmodify(ID)
+        ship.mutableStats.deceleration.unmodify(ID)
+
+        ship.mutableStats.maxTurnRate.unmodify(ID)
+        ship.mutableStats.turnAcceleration.unmodify(ID)
 
       }
 

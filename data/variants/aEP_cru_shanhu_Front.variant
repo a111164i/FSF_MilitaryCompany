@@ -1,10 +1,13 @@
 {
-    "displayName": "Support",
-    "fluxCapacitors": 16,
-    "fluxVents": 0,
+    "displayName": "Front",
+    "fluxCapacitors": 30,
+    "fluxVents": 1,
     "goalVariant": true,
     "hullId": "aEP_cru_shanhu",
-    "hullMods": ["aEP_ShieldFloating"],
+    "hullMods": [
+        "aEP_ShieldControlled",
+        "missleracks"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_cru_shanhu_Front",
@@ -12,21 +15,19 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"WS0005": "cyclone"}
-        },
-        {
-            "autofire": false,
-            "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "aEP_m_s_fluxtube",
-                "WS0012": "aEP_m_s_fluxtube"
+                "WS0003": "lightneedler",
+                "WS0006": "lightneedler",
+                "WS0013": "lightneedler",
+                "WS0014": "lightac"
             }
         },
         {
             "autofire": false,
-            "mode": "ALTERNATING",
+            "mode": "LINKED",
             "weapons": {
                 "WS0004": "typhoon",
+                "WS0005": "cyclone",
                 "WS0008": "typhoon"
             }
         },
@@ -34,24 +35,20 @@
             "autofire": false,
             "mode": "LINKED",
             "weapons": {
-                "WS0013": "lightac",
-                "WS0014": "lightac"
+                "WS0007": "aEP_m_s_fluxtube",
+                "WS0012": "aEP_m_s_fluxtube"
             }
         },
         {
-            "autofire": true,
+            "autofire": false,
             "mode": "LINKED",
-            "weapons": {
-                "WS0003": "lightac",
-                "WS0006": "lightac",
-                "WS0010": "lightac"
-            }
+            "weapons": {"WS0010": "aEP_b_s_pom"}
         }
     ],
     "wings": [
-        "aEP_ftr_ut_shuishi_wing",
-        "aEP_ftr_ut_shuishi_wing",
-        "aEP_ftr_ut_repair_wing",
-        "aEP_ftr_ut_supply_wing"
+        "aEP_ftr_sup_guardian_wing",
+        "aEP_ftr_sup_guardian_wing",
+        "aEP_ftr_sup_guardian_wing",
+        ""
     ]
 }

@@ -4,7 +4,6 @@ import com.fs.starfarer.api.AnimationAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.WeaponAPI;
-import combat.util.aEP_Tool;
 import org.lazywizard.lazylib.MathUtils;
 
 public class aEP_RepairAnimation implements EveryFrameWeaponEffectPlugin

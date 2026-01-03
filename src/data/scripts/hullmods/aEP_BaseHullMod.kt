@@ -1,16 +1,15 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
-import combat.util.aEP_Tool.Util.addDebugLog
+import data.scripts.utils.aEP_Tool.Util.addDebugLog
 import com.fs.starfarer.api.combat.BaseHullMod
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import java.util.HashSet
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_ID
 import org.lwjgl.input.Keyboard
 import org.magiclib.kotlin.computeNumFighterBays
 import org.magiclib.util.MagicIncompatibleHullmods.removeHullmodWithWarning

@@ -7,7 +7,7 @@ import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_DataTool;
+import data.scripts.utils.aEP_DataTool;
 
 import java.awt.*;
 import java.util.Map;

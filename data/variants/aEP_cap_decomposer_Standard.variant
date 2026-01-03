@@ -1,12 +1,13 @@
 {
     "displayName": "Standard",
     "fluxCapacitors": 0,
-    "fluxVents": 4,
+    "fluxVents": 28,
     "goalVariant": true,
     "hullId": "aEP_cap_decomposer",
     "hullMods": [
         "targetingunit",
-        "missleracks"
+        "missleracks",
+        "armoredweapons"
     ],
     "permaMods": [],
     "sMods": [],
@@ -16,8 +17,12 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
+                "WS0003": "aEP_b_s_h37",
+                "WS0007": "aEP_b_s_h37",
                 "WS0008": "lightac",
                 "WS0010": "lightac",
+                "WS0012": "aEP_b_s_h37",
+                "WS0013": "aEP_b_s_h37",
                 "WS0014": "lightac",
                 "WS0017": "lightac"
             }
@@ -34,16 +39,6 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "aEP_b_s_h37",
-                "WS0007": "aEP_b_s_h37",
-                "WS0012": "aEP_b_s_h37",
-                "WS0013": "aEP_b_s_h37"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
                 "WS0001": "aEP_b_s_630",
                 "WS0009": "aEP_b_s_630",
                 "WS0015": "aEP_b_s_630",
@@ -52,10 +47,8 @@
         }
     ],
     "wings": [
-        "aEP_ftr_bom_attacker_wing",
-        "aEP_ftr_bom_attacker_wing",
-        "aEP_ftr_bom_attacker_wing",
-        "",
-        ""
+        "aEP_ftr_ut_supply_wing",
+        "aEP_ftr_ut_repair_wing",
+        "aEP_ftr_ut_shuishi_wing"
     ]
 }

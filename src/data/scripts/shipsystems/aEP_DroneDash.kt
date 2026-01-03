@@ -2,14 +2,10 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import combat.util.aEP_Tool.Util.velocity2Speed
-import combat.util.aEP_Tool.Util.speed2Velocity
+import data.scripts.utils.aEP_Tool.Util.speed2Velocity
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.MathUtils
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
 import java.awt.Color
 
 class aEP_DroneDash : BaseShipSystemScript() {

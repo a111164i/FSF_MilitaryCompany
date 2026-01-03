@@ -9,9 +9,8 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.util.ColorShifter
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
 import java.util.HashMap
@@ -209,7 +208,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui", ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-            txt("aEP_ShieldFloating01") + ": "+String.format("%4.0f / %4.0f", accumlated, max) +
+            txt("aEP_ShieldFloating01") + ": "+String.format("%4.0f / %4.0f", accumlated, max) + ", " +
             " "+txt("aEP_ShieldFloating05") + ": "+String.format("+%.0f", level*dissipationBonus),
             false)
 

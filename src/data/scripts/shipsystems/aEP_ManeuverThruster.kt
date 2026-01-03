@@ -8,9 +8,8 @@ import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color

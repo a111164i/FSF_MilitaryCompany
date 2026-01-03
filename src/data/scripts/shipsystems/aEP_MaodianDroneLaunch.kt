@@ -6,10 +6,10 @@ import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.ai.aEP_MaoDianDroneAI
 import data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI
 import data.scripts.weapons.aEP_DecoAnimation

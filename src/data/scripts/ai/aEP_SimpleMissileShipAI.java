@@ -5,7 +5,7 @@ import com.fs.starfarer.api.combat.ShipAIConfig;
 import com.fs.starfarer.api.combat.ShipAIPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;

@@ -3,8 +3,7 @@ package data.scripts.ai;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import org.lazywizard.lazylib.CollisionUtils;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.VectorUtils;

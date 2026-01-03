@@ -4,7 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry
 import com.fs.starfarer.api.impl.campaign.fleets.RouteManager.RouteFleetSpawner
 import com.fs.starfarer.api.campaign.listeners.FleetEventListener
-import combat.util.aEP_ID
+import data.scripts.utils.aEP_ID
 import com.fs.starfarer.api.impl.campaign.ids.Commodities
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags

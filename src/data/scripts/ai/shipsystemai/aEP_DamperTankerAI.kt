@@ -2,7 +2,7 @@ package data.scripts.ai.shipsystemai
 
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 

@@ -1,0 +1,51 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 10,
+    "fluxVents": 5,
+    "goalVariant": true,
+    "hullId": "aEP_fga_xiliu",
+    "hullMods": [
+        "autorepair",
+        "hardened_subsystems",
+        "armoredweapons",
+        "aEP_ShieldFloating"
+    ],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstruct",
+    ],
+    "sMods": [
+        "pointdefenseai",
+        "turretgyros"
+    ],
+    "variantId": "aEP_fga_xiliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "heavyblaster"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "irpulse",
+                "R01": "irpulse",
+                "WS0009": "irpulse"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L02": "aEP_b_s_pom",
+                "R02": "aEP_b_s_pom"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_e_s_300k"}
+        }
+    ]
+}

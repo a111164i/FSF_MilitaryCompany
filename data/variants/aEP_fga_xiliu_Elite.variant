@@ -1,11 +1,10 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 7,
-    "fluxVents": 8,
+    "fluxCapacitors": 10,
+    "fluxVents": 4,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
-        "fluxdistributor",
         "aEP_ShieldFloating",
         "aEP_EliteShip",
         "autorepair",
@@ -19,15 +18,7 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {"L01": "amblaster"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "WS0002": "aEP_fga_xiliu_main",
-                "WS0003": "aEP_fga_xiliu_main2"
-            }
+            "weapons": {"L01": "lightneedler"}
         },
         {
             "autofire": false,
@@ -40,11 +31,12 @@
         {
             "autofire": false,
             "mode": "LINKED",
-            "weapons": {
-                "L02": "lightmg",
-                "R01": "lightmg",
-                "R02": "lightmg"
-            }
+            "weapons": {"WS0002": "heavyblaster"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"R01": "amblaster"}
         }
     ]
 }

@@ -3,8 +3,8 @@ package data.scripts.weapons;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.util.IntervalUtil;
-import combat.impl.aEP_BaseCombatEffect;
-import combat.plugin.aEP_CombatEffectPlugin;
+import data.scripts.utils.aEP_BaseCombatEffect;
+import data.scripts.aEP_CombatEffectPlugin;
 import org.lazywizard.lazylib.MathUtils;
 
 public class aEP_BeamTesla implements BeamEffectPlugin {

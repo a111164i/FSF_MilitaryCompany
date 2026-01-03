@@ -1,0 +1,10 @@
+Location: Askonia System Fringe
+Date: 182.8.7
+
+The shadow of war looms over the sector as PK is used in conflict. According to intelligence from the Hegemony, a capital ship of the Persean League will soon be transported to the front line. The company is planning an interception to prevent the already intense situation from escalating further.
+
+This mission will be carried out by a special ship, whose existence has not yet been disclosed to the public. The epic reveal of this ship is so successful that it appears in multiple games over the next 20 years. However, as a cost of bringing down a giant, both the wreckage of the prototype and the ship's designer have yet to be found to this day.
+
+At the same time, the loss of key personnel and the prototype has left certain challenges of the project insurmountable. Regrettably, the company has had to abandon the development plan. This has only added to the legendary status of the ship.
+
+You can hold F and re-select this mission to restrict unusable equipment. If you want to restore the original setting, please select this mission again without holding F. Please note, the restriction will affect everything. If you want to remove the restriction, you must select this mission without holding down any buttons.

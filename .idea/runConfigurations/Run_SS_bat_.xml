@@ -6,11 +6,6 @@
     <option name="PARENT_ENVS" value="true" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../starsector-core/starsector.bat" />
     <option name="PARAMETERS" value="" />
-    <method v="2">
-      <option name="Make" enabled="true" />
-      <option name="BuildArtifacts" enabled="true">
-        <artifact name="FSF_MilitaryCorporation:jar" />
-      </option>
-    </method>
+    <method v="2" />
   </configuration>
 </component>

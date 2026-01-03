@@ -8,7 +8,7 @@ import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender

@@ -1,27 +1,25 @@
 package data.scripts.world.aEP_systems
 
-import data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus
-import data.scripts.campaign.econ.environment.aEP_SpaceFarm
-import data.scripts.campaign.econ.environment.*
 import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.Script
 import com.fs.starfarer.api.campaign.*
 import com.fs.starfarer.api.campaign.econ.MarketAPI
-import com.fs.starfarer.api.characters.PersonAPI
-import com.fs.starfarer.api.fleet.FleetMemberAPI
+import com.fs.starfarer.api.characters.FullName
 import com.fs.starfarer.api.fleet.FleetMemberType
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3
 import com.fs.starfarer.api.impl.campaign.fleets.FleetParamsV3
 import com.fs.starfarer.api.impl.campaign.ids.*
 import com.fs.starfarer.api.impl.campaign.ids.Entities.STABLE_LOCATION
 import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantThemeGenerator
+import com.fs.starfarer.api.impl.campaign.rulecmd.aEP_AdvanceWeaponMission
 import com.fs.starfarer.api.util.DelayedActionScript
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
 import data.scripts.FSFModPlugin
+import data.scripts.campaign.econ.environment.*
 import data.scripts.campaign.submarkets.aEP_FSFMarketPlugin
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
 import lunalib.lunaSettings.LunaSettings.getBoolean
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
@@ -481,195 +479,79 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
   val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF_ADV)
 
   //add Fleet
-  val para = FleetParamsV3(
-    null,
-    aEP_ID.FACTION_ID_FSF_ADV,
-    99f,  // qualityMod
+  val params = FleetParamsV3(
+    null, aEP_ID.FACTION_ID_FSF, 1f,  // qualityMod
     FleetTypes.TASK_FORCE,
-    80f,  // combatPts
+    60f,  // combatPts
     0f,  // freighterPts
     0f,  // tankerPts
     0f,  // transportPts
     0f,  // linerPts
     0f,  // utilityPts
-    1f
-  )
-  para.maxShipSize = 2
-  para.treatCombatFreighterSettingAsFraction = true
-  para.averageSMods = 1
-  para.ignoreMarketFleetSizeMult = true
-  val fleet = FleetFactoryV3.createFleet(para)
+    0f
+  ) // quality mod
+  params.maxShipSize = 2 //0战机，1护卫，2驱逐，3巡洋，4主力
+  params.treatCombatFreighterSettingAsFraction = true
+  params.averageSMods = 2
+  params.ignoreMarketFleetSizeMult = true
+
+
+  // If user has preset variants in addShips, they are already in the list; add any built-in presets here
+  // addShips is the single source of presets - add entries to it to include them in the fleet
+  params.addShips = java.util.ArrayList<String?>()
+
+  params.addShips.add("aEP_cap_nuanchi_Elite")
+  params.addShips.add("aEP_cap_nuanchi_Elite")
+  params.addShips.add("aEP_cap_nuanchi_Elite")
+  params.addShips.add("aEP_cap_nuanchi_Elite")
+
+  params.addShips.add("aEP_cru_requan_Assault")
+  params.addShips.add("aEP_cru_requan_Assault")
+
+  params.addShips.add("aEP_cru_shanhu_Standard")
+  params.addShips.add("aEP_cru_shanhu_Standard")
+
+
+  // 剩下的都留给自动生成
+  params.withOfficers = true
+
+
+  //手捏一个指挥官，多给几个指挥官技能
+  val person = Global.getFactory().createPerson()
+  person.setPortraitSprite("graphics/portraits/portrait_pirate02.png")
+  person.setName(FullName("phrex", "jin", FullName.Gender.MALE))
+  person.setGender(person.getName().getGender())
+  person.setFaction("pirates")
+  person.setRankId(Ranks.SPACE_CAPTAIN)
+  person.setVoice(Voices.VILLAIN)
+  person.setPersonality(Personalities.STEADY)
+  person.getStats().setSkillLevel(Skills.ELECTRONIC_WARFARE, 1f)
+  person.getStats().setSkillLevel(Skills.BEST_OF_THE_BEST, 1f)
+  person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS, 1f)
+  person.getStats().setSkillLevel(Skills.CREW_TRAINING, 1f)
+  person.getStats().setSkillLevel(Skills.OFFICER_MANAGEMENT, 1f)
+  person.getStats().setSkillLevel(Skills.FIGHTER_UPLINK, 1f)
+  person.getStats().setLevel(8)
+
+  //不为空，不使用自动生成的指挥官
+  params.commander = person
+
+
+  //如果自动生成指挥官，那么4级给1个舰队技能，6级给2个，看setting里面的commanderLevelForOneSkill。能刷到什么看faction里面的设置
+  // params.noCommanderSkills = false;
+  val targetFleet = FleetFactoryV3.createFleet(params)
+
+  //刷出来以后立刻inflate一下，随机一下装配和s插，这个质量高
+  targetFleet.inflateIfNeeded()
+
+
+
 
   //加入舰队必须调用这个
   fleet.setFaction(aEP_ID.FACTION_ID_FSF,true)
   //这个用于rules里面openCommLink的id检测
   fleet.id = "aEP_DWR43_JumpPointGuard"
 
-  //手动添加敌人
-  //加一艘内波
-  var s: FleetMemberAPI = fleet.fleetData.addFleetMember("aEP_cap_neibo_Standard")
-  var p: PersonAPI = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_COMMANDER
-  p.setPersonality(Personalities.STEADY)
-  //0-未学习，1-普通，2-专精
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
-  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
-  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  s.variant.addPermaMod("ecm", true)
-
-  //加入2个分解者
-  for(i in 0 until 2){
-    s = fleet.fleetData.addFleetMember("aEP_cap_decomposer_Standard")
-    p = faction.createRandomPerson()
-    p.rankId = Ranks.SPACE_COMMANDER
-    p.setPersonality(Personalities.CAUTIOUS)
-    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-    p.stats.setSkillLevel(Skills.POLARIZED_ARMOR, 2f)
-    p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-    p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-    fleet.fleetData.addOfficer(p)
-    s.captain = p
-    s.variant.addPermaMod("ecm", true)
-  }
-
-  //加两艘瀑布级
-  for(i in 0 until 2){
-    s = fleet.fleetData.addFleetMember("aEP_cru_pubu_Standard")
-    p = faction.createRandomPerson()
-    p.rankId = Ranks.SPACE_LIEUTENANT
-    p.setPersonality(Personalities.CAUTIOUS)
-    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-    p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-    p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-    fleet.fleetData.addOfficer(p)
-    s.captain = p
-    s.variant.addPermaMod("ecm", true)
-
-  }
-
-  //第一艘 平定级
-  s = fleet.getFleetData().addFleetMember("aEP_cru_pingding_Standard")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_LIEUTENANT
-  p.setPersonality(Personalities.STEADY)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
-  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
-  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-
-  s = fleet.getFleetData().addFleetMember("aEP_cru_pingding_Standard")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_LIEUTENANT
-  p.setPersonality(Personalities.STEADY)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-  p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-  p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-  p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
-  p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
-  p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  //第一艘 深度级 荡平联队
-  s = fleet.fleetData.addFleetMember("aEP_des_shendu_Standard")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_ENSIGN
-  p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-  fleet.getFleetData().addOfficer(p)
-  s.captain = p
-  //2 进军联队
-  s = fleet.fleetData.addFleetMember("aEP_des_shendu_Strike")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_ENSIGN
-  p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  //3 进军联队
-  s = fleet.fleetData.addFleetMember("aEP_des_shendu_Strike")
-  p = faction.createRandomPerson()
-  p.rankId = Ranks.SPACE_ENSIGN
-  p.setPersonality(Personalities.CAUTIOUS)
-  p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-  p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-  p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-  p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-  p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-  p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-  fleet.fleetData.addOfficer(p)
-  s.captain = p
-  //加入4艘涌浪级
-  for(i in 0 until 4){
-    s = fleet.fleetData.addFleetMember("aEP_fga_yonglang_Mixed")
-    p = faction.createRandomPerson()
-    p.rankId = Ranks.SPACE_CHIEF
-    p.setPersonality(Personalities.STEADY)
-    p.stats.setSkillLevel(Skills.COMBAT_ENDURANCE, 2f)
-    p.stats.setSkillLevel(Skills.HELMSMANSHIP, 2f)
-    p.stats.setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2f)
-    p.stats.setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2f)
-    p.stats.setSkillLevel(Skills.IMPACT_MITIGATION, 2f)
-    p.stats.setSkillLevel(Skills.DAMAGE_CONTROL, 2f)
-    p.stats.setSkillLevel(Skills.FIELD_MODULATION, 2f)
-    p.stats.setSkillLevel(Skills.BALLISTIC_MASTERY, 2f)
-    p.stats.setSkillLevel(Skills.GUNNERY_IMPLANTS, 2f)
-    p.stats.setSkillLevel(Skills.TARGET_ANALYSIS, 2f)
-    p.stats.setSkillLevel(Skills.POINT_DEFENSE, 2f)
-    fleet.fleetData.addOfficer(p)
-    s.captain = p
-  }
-  //自动sync舰队指挥官
-  fleet.forceSync()
-  //全局buff
-  fleet.commander.stats.setSkillLevel(Skills.TACTICAL_DRILLS,1f)
-  fleet.commander.stats.setSkillLevel(Skills.COORDINATED_MANEUVERS,1f)
-  fleet.commander.stats.setSkillLevel(Skills.WOLFPACK_TACTICS,1f)
-  fleet.commander.stats.setSkillLevel(Skills.CREW_TRAINING,1f)
-  fleet.commander.stats.setSkillLevel(Skills.CARRIER_GROUP,1f)
-  fleet.commander.stats.setSkillLevel(Skills.FIGHTER_UPLINK,1f)
-  fleet.commander.stats.setSkillLevel(Skills.SUPPORT_DOCTRINE,1f)
-  fleet.commander.stats.setSkillLevel(Skills.ELECTRONIC_WARFARE,1f)
-  fleet.commander.stats.setSkillLevel(Skills.HULL_RESTORATION,1f)
 
   //要把舰队刷新到生涯地图，调用这个
 
@@ -696,7 +578,7 @@ class GuardianCatchPlayer(val fleet:CampaignFleetAPI, val jumpPoint: SectorEntit
       fleet.memoryWithoutUpdate[MemFlags.MEMORY_KEY_MAKE_HOSTILE] = true
       //注意追击assignment如果追到了就会被打断，并不算作完成
       fleet.addAssignment(FleetAssignment.INTERCEPT,Global.getSector().playerFleet,2f,
-        txt("aEP_ApproachingTo")+Global.getSector().playerPerson.nameString,InterceptOnComplete())
+        txt("FleetActionInfoApproaching")+Global.getSector().playerPerson.nameString,InterceptOnComplete())
     }
     //追击被打断后要重置ai
     if(fleet.currentAssignment == null){

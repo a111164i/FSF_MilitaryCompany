@@ -1,176 +1,202 @@
 {
-  "hullName": "",
-  "hullId": "aEP_fga_xiliu",
-  "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_fga_xiliu.png",
-  "style": "aEP_FSF",
-  "height": 140,
-  "width": 80,
-  "center": [40, 70.5],
-  "collisionRadius": 75,
-  "shieldCenter": [0, -0],
-  "shieldRadius": 74.5,
-  "viewOffset": 0,
-  "builtInMods": [
-    "aEP_SpecialHull",
-    "aEP_HLMultiTurret",
-    "aEP_CloseTargeting"
-  ],
-  "builtInWeapons": {
-    "GREEN": "aEP_fga_xiliu_green",
-    "RED": "aEP_fga_xiliu_red",
-    "ROTATOR": "aEP_fga_xiliu_rotator",
-    "WS0002": "aEP_fga_xiliu_main",
-    "WS0003": "aEP_fga_xiliu_main2"
-  },
-  "weaponSlots": [
-    {
-      "id": "WS0002",
-      "size": "MEDIUM",
-      "type": "BUILT_IN",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [44, -0]
+    "hullName": "",
+    "hullId": "aEP_fga_xiliu",
+    "hullSize": "FRIGATE",
+    "style": "aEP_FSF",
+    "spriteName": "graphics/ships/aEP_fga_xiliu.png",
+    "height": 140,
+    "width": 80,
+    "center": [
+        40, 70.5
+    ],
+    "collisionRadius": 75,
+    "coversColor": "",
+    "shieldCenter": [
+        0, 0
+    ],
+    "shieldRadius": 74.5,
+    "viewOffset": 0,
+    "builtInMods": [
+        "aEP_SpecialHull",
+        "aEP_HLMultiTurret",
+        "aEP_ReactiveArmor",
+        "aEP_CloseTargeting"
+    ],
+    "builtInWeapons": {
+        "GREEN": "aEP_fga_xiliu_green",
+        "RED": "aEP_fga_xiliu_red",
+        "ROTATOR": "aEP_fga_xiliu_rotator"
     },
-    {
-      "id": "WS0003",
-      "size": "MEDIUM",
-      "type": "BUILT_IN",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [43.5, -0]
-    },
-    {
-      "id": "L01",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 190,
-      "angle": 70,
-      "locations": [2.5, 18],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "R01",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 190,
-      "angle": -70,
-      "locations": [2.5, -18],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "L02",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 190,
-      "angle": 110,
-      "locations": [-16.5, 18],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "R02",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 190,
-      "angle": -110,
-      "locations": [-16.5, -18],
-      "renderOrderMod": 2
-    },
-    {
-      "id": "WS0007",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 180,
-      "locations": [-29.5, -0],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "WS0009",
-      "size": "SMALL",
-      "type": "HYBRID",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [9.5, -0]
-    },
-    {
-      "id": "ROTATOR",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [21.5, 23]
-    },
-    {
-      "id": "RED",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [21.5, 23],
-      "renderOrderMod": 1
-    },
-    {
-      "id": "GREEN",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": -180,
-      "locations": [21.5, 23],
-      "renderOrderMod": 1
-    }
-  ],
-  "engineSlots": [
-    {
-      "location": [-62.5, 16],
-      "length": 55,
-      "width": 16,
-      "angle": 180,
-      "contrailSize": 16,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-62.5, -18],
-      "length": 55,
-      "width": 16,
-      "angle": -180,
-      "contrailSize": 16,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-60.5, 8.5],
-      "length": 34,
-      "width": 6,
-      "angle": 180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-60.5, -8.5],
-      "length": 34,
-      "width": 6,
-      "angle": -180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    }
-  ],
-  "bounds": [
-    -57.5, -23,
-    51.5, -21,
-    55.5, -17,
-    55.5, 17,
-    51.5, 21,
-    -57.5, 23
-  ]
+    "builtInWings": [],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS0002",
+            "size": "MEDIUM",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                    43.5,        0
+            ]
+        },
+        {
+            "id": "L01",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 190,
+            "angle": 70,
+            "locations": [
+                     2.5,       18
+            ]
+        },
+        {
+            "id": "R01",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 190,
+            "angle": -70,
+            "locations": [
+                     2.5,      -18
+            ]
+        },
+        {
+            "id": "L02",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "renderOrderMod": 2,
+            "arc": 190,
+            "angle": 110,
+            "locations": [
+                   -16.5,       18
+            ]
+        },
+        {
+            "id": "R02",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "renderOrderMod": 2,
+            "arc": 190,
+            "angle": -110,
+            "locations": [
+                   -16.5,      -18
+            ]
+        },
+        {
+            "id": "WS0007",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 360,
+            "angle": 180,
+            "locations": [
+                   -29.5,        0
+            ]
+        },
+        {
+            "id": "WS0009",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                     9.5,        0
+            ]
+        },
+        {
+            "id": "ROTATOR",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                    21.5,       23
+            ]
+        },
+        {
+            "id": "RED",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                    21.5,       23
+            ]
+        },
+        {
+            "id": "GREEN",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 360,
+            "angle": -180,
+            "locations": [
+                    21.5,       23
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -62.5, 16
+            ],
+            "length": 55,
+            "width": 16,
+            "angle": 180,
+            "contrailSize": 16,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -62.5, -18
+            ],
+            "length": 55,
+            "width": 16,
+            "angle": -180,
+            "contrailSize": 16,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -60.5, 8.5
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": 180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -60.5, -8.5
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": -180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        }
+    ],
+    "bounds": [
+           -57.5,      -23,
+            51.5,      -21,
+            55.5,      -17,
+            55.5,       17,
+            51.5,       21,
+        
+           -57.5,       23
+    ]
 }

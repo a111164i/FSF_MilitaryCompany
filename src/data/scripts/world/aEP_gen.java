@@ -8,18 +8,14 @@ import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_ID;
+import data.scripts.utils.aEP_ID;
 import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import data.scripts.world.aEP_systems.aEP_FSF_Heng;
 import data.scripts.world.aEP_systems.aEP_IND_Lamdor;
 import org.lazywizard.lazylib.MathUtils;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.List;
-import java.util.Vector;
-
-import static com.fs.starfarer.api.impl.campaign.rulecmd.aEP_AdvanceWeaponMission.MISSILE_CARRIER_SPEC_ID;
 
 
 public class aEP_gen implements SectorGeneratorPlugin {

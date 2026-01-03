@@ -2,27 +2,21 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import com.fs.starfarer.api.combat.WeaponAPI.WeaponSize
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.util.IntervalTracker
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
-import combat.util.aEP_AngleTracker
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.speed2Velocity
-import combat.util.aEP_Tool.Util.getAmount
-import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.getTargetWidthAngleInDistance
-import combat.util.aEP_Tool.Util.getWeaponOffsetInAbsoluteCoo
-import combat.util.aEP_Tool.Util.isNormalWeaponSlotType
-import data.scripts.hullmods.aEP_ReactiveArmor
-import data.scripts.hullmods.aEP_Strafe
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.utils.aEP_AngleTracker
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.speed2Velocity
+import data.scripts.utils.aEP_Tool.Util.getAmount
+import data.scripts.utils.aEP_Tool.Util.getExtendedLocationFromPoint
+import data.scripts.utils.aEP_Tool.Util.getTargetWidthAngleInDistance
 import data.scripts.weapons.aEP_DecoAnimation
 import org.dark.shaders.light.LightShader
 import org.dark.shaders.light.StandardLight
@@ -36,7 +30,6 @@ import org.magiclib.util.MagicUI
 import java.awt.Color
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.math.max
 
 class aEP_WeaponReset: BaseShipSystemScript() {
 
@@ -52,8 +45,8 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     //缓冲区大小是最大容量的几倍
     private val MAX_FLUX_STORE_CAP_PERCENT = 2f
     //返还时，有多少的幅能被直接耗散掉无需返回
-    private val FLUX_VENT_PERCENT_ON_RETURN= 0.1f
-    private val SHIELD_DAMAGE_REDUCE_MULT = 0.1f
+    private val FLUX_VENT_PERCENT_ON_RETURN= 0f
+    private val SHIELD_DAMAGE_REDUCE_MULT = 0f
     private val FLUX_DECREASE_PERCENT: MutableMap<String, Float> = HashMap()
     private val FLUX_DECREASE_FLAT: MutableMap<String, Float> = HashMap()
     private val FLUX_RETURN_SPEED: MutableMap<String, Float> = HashMap()
@@ -87,6 +80,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
   private val redSmokeTracker = IntervalUtil(0.1f, 0.2f)
   var timeElapsedAfterVenting = 0f
+  var timeElapsedInSystem = 0f
 
   val decoTracker =  aEP_AngleTracker(0f,0f,0.75f,1f,0f)
 
@@ -125,6 +119,8 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         val soft = (ship.fluxTracker.currFlux - hard).coerceAtLeast(0f)
         val speedPercent = FLUX_DECREASE_PERCENT[ship.hullSpec.baseHullId]?:0.5f
         val speedFlat = FLUX_DECREASE_FLAT[ship.hullSpec.baseHullId]?:150f
+
+        timeElapsedInSystem+=amount
 
         //监测缓冲区满了没有，满了就强制关闭系统
         //软幅能散完了也是
@@ -167,7 +163,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         presmokeTracker.advance(getAmount(ship))
       }
 
-      //DOWN的时候释放四周喷长烟雾特效
+      //DOWN的时候快速喷一次烟
       if(state == ShipSystemStatsScript.State.OUT){
         if(presmokeTracker.intervalElapsed()) {
           for (w in ship.allWeapons) {
@@ -189,8 +185,8 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         }
         //后于检测，保证之前加满的第一帧能进去
         presmokeTracker.advance(getAmount(ship))
-        //玩个梗，降低光束伤害
-        ship.mutableStats.beamDamageTakenMult.modifyMult(id,0.2f)
+        //玩个梗，雾霾降低光束伤害
+        ship.mutableStats.beamDamageTakenMult.modifyMult(id,0.25f)
       }
 
       //给武器打粒子
@@ -222,6 +218,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       //激活结束后运行一次
       if(didActive){
         unapply(stats, id)
+        timeElapsedInSystem = 0f
       }
 
       //返还幅能
@@ -289,7 +286,10 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     //取消武器维修
     stats.combatWeaponRepairTimeMult.unmodify(id)
 
-    spawnSmoke(ship, 30)
+    //放四周喷长烟雾特效
+    if(timeElapsedInSystem > 3f){
+      spawnSmoke(ship, 30)
+    }
 
     ship.setWeaponGlow(
       0f,
@@ -305,7 +305,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.baseHullId]?: 100f
         return  StatusData(txt("aEP_WeaponReset01")+": "+ String.format("+%.0f",rofPercentBonus)+"%", false)
       }
-      if (index == 1) {
+      if (index == 1 && SHIELD_DAMAGE_REDUCE_MULT > 0f) {
         return  StatusData(txt("aEP_WeaponReset02")+": "+ String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT*100f)+"%", false)
       }
     }

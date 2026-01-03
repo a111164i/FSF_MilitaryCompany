@@ -8,8 +8,8 @@ import com.fs.starfarer.api.loading.FighterWingSpecAPI
 import com.fs.starfarer.api.loading.HullModSpecAPI
 import com.fs.starfarer.api.loading.WeaponSpecAPI
 import com.fs.starfarer.api.util.ListMap
-import combat.util.aEP_Tool.Util.isNormalWeaponSlotType
-import combat.util.aEP_Tool.Util.isNormalWeaponType
+import data.scripts.utils.aEP_Tool.Util.isNormalWeaponSlotType
+import data.scripts.utils.aEP_Tool.Util.isNormalWeaponType
 import java.awt.Color
 
 class aEP_MissionUtils{

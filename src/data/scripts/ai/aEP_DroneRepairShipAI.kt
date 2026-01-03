@@ -6,9 +6,9 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.WeightedRandomPicker
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
-import combat.util.aEP_Tool.Util.getRelativeLocationData
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.getNearestFriendCombatShip
+import data.scripts.utils.aEP_Tool.Util.getRelativeLocationData
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
 import data.scripts.weapons.aEP_BeamRepair.Companion.HULL_REPAIR_THRESHOLD
 import data.scripts.weapons.aEP_BeamRepair.Companion.REPAIR_THRESHOLD
@@ -154,7 +154,7 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
 
       }else{
-        parentShip = aEP_Tool.getNearestFriendCombatShip(ship)
+        parentShip = getNearestFriendCombatShip(ship)
         if(parentShip == null){
           stat = SelfExplode()
           return

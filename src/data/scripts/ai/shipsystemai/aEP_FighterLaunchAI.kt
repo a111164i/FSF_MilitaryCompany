@@ -3,7 +3,7 @@ package data.scripts.ai.shipsystemai
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipwideAIFlags
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import data.scripts.shipsystems.aEP_FighterLaunch
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
@@ -14,7 +14,7 @@ import org.lwjgl.util.vector.Vector2f
 class aEP_FighterLaunchAI: aEP_BaseSystemAI(){
 
   override fun initImpl() {
-    thinkTracker.setInterval(1f,1f)
+    thinkTracker.setInterval(1f,2f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {

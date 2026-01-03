@@ -1,10 +1,7 @@
 package data.scripts.weapons;
 
-import com.fs.starfarer.api.FactoryAPI;
-import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.combat.listeners.*;
-import combat.util.aEP_Tool;
 import org.lwjgl.util.vector.Vector2f;
 
 public class aEP_NiuArmorBurnerBeam implements BeamEffectPlugin

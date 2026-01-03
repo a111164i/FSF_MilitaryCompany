@@ -2,8 +2,8 @@ package data.scripts.weapons
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_ID.Companion.VECTOR2F_ZERO
+import data.scripts.utils.aEP_Tool
 import data.scripts.hullmods.aEP_SpecialHull
 import java.awt.Color
 

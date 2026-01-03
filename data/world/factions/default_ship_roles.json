@@ -12,8 +12,9 @@
     "aEP_fga_yonglang_Mixed": 3,
     "aEP_fga_yonglang_Standard": 4,
 
-    "aEP_fga_raoliu_PD":4,
-    "aEP_fga_raoliu_Standard":6,
+    "aEP_fga_raoliu_Defense":4,
+    "aEP_fga_raoliu_Standard":3,
+    "aEP_fga_raoliu_Elite":3,
 
     "aEP_des_yonglang_mk2_Standard":10,
 
@@ -36,11 +37,13 @@
     "aEP_fga_xiliu_Elite": 2,
     "aEP_fga_xiliu_Beam":2,
 
-    "aEP_fga_raoliu_PD": 5,
-    "aEP_fga_raoliu_Standard":5,
+    "aEP_fga_raoliu_Defense":4,
+    "aEP_fga_raoliu_Standard":3,
+    "aEP_fga_raoliu_Elite":3,
 
-    "aEP_fga_chichao_Standard": 5,
-    "aEP_fga_chichao_SideAtk": 5,
+    "aEP_fga_chichao_Standard": 4,
+    "aEP_fga_chichao_Elite": 4,
+    "aEP_fga_chichao_Defense": 2,
 
     "aEP_fga_shuangshen_Standard": 2,
     "aEP_fga_shuangshen_Elite": 2,
@@ -48,20 +51,24 @@
 },
   "combatMedium": {
 
-    "aEP_des_lianliu_Standard": 3,
-    "aEP_des_lianliu_AntiSmall": 3,
-    "aEP_des_lianliu_Elite": 4,
+    "aEP_des_lianliu_Standard": 4,
+    "aEP_des_lianliu_Support": 3,
+    "aEP_des_lianliu_Elite": 2,
+    "aEP_des_lianliu_Attack": 1,
 
-    "aEP_des_chongji_Standard":5,
-    "aEP_des_chongji_Attack":5,
-    "aEP_des_chongji_Support":5,
+
+"aEP_des_chongji_Standard":3,
+    "aEP_des_chongji_Attack":4,
+    "aEP_des_chongji_Support":4,
 
     "aEP_des_taodong_Standard": 4,
-    "aEP_des_taodong_Assault": 4,
+    "aEP_des_taodong_Assault": 3,
+    "aEP_des_taodong_Support": 3,
 
-    "aEP_des_yangji_Standard":3,
+
+"aEP_des_yangji_Standard":4,
     "aEP_des_yangji_Elite":2,
-    "aEP_des_yangji_Flak":5,
+    "aEP_des_yangji_Defense":4,
 
     "aEP_des_yonglang_mk2_Standard":10
 
@@ -133,9 +140,9 @@
     "aEP_des_shuishi_Support": 5
 },
   "carrierLarge": {
-    "aEP_cru_shanhu_Standard":1,
+    "aEP_cru_shanhu_Standard":2,
     "aEP_cru_shanhu_Attack":1,
-    "aEP_cru_shanhu_Siege":1,
+    "aEP_cru_shanhu_Bomb":2,
     "aEP_cru_shanhu_Front":1,
 
     "aEP_cru_baojiao_Standard":3,
@@ -143,7 +150,7 @@
     "aEP_cru_baojiao_Siege":3,
 
     "aEP_cap_decomposer_Standard": 4,
-    "aEP_cap_decomposer_Attack": 3,
+    "aEP_cap_decomposer_Repair": 3,
     "aEP_cap_decomposer_Support": 3,
 
     "aEP_cru_pubu_Elite": 4,

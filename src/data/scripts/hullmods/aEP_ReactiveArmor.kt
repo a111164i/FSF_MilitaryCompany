@@ -4,11 +4,8 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
-import com.fs.starfarer.api.ui.Alignment
-import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
-import combat.util.aEP_ID
+import data.scripts.utils.aEP_DataTool
 import data.scripts.weapons.aEP_m_s_era3
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
@@ -52,7 +49,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
           return 0f
         }
         //如果需要触发，加入减伤buff，并把param.toString()加入本船的customData
-        BeamDamageReduce(param, ship, 1.5f)
+        BeamDamageReduce(param, ship, 2f)
       }
 
       //以上的检测都通过了，说明需要修改伤害

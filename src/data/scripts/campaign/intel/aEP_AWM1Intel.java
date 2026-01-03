@@ -13,17 +13,13 @@ import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
-import combat.util.aEP_ID;
-import combat.util.aEP_Tool;
-import org.lazywizard.lazylib.MathUtils;
 
 import java.awt.*;
 import java.util.List;
 import java.util.*;
 
 import static com.fs.starfarer.api.impl.campaign.ids.Items.TAG_NO_DEALER;
-import static combat.util.aEP_DataTool.txt;
-import static combat.util.aEP_ID.FACTION_ID_FSF;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 public class aEP_AWM1Intel extends aEP_BaseMission
 {

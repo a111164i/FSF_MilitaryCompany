@@ -6,10 +6,10 @@
     149,
     255
   ],
-  "displayName": "FSF Military Corporation",
-  "displayNameWithArticle": "FSF Military Corporation",
-  "displayNameLong": "FSF Military Corporation",
-  "displayNameLongWithArticle": "FSF Military Corporation",
+  "displayName": "FSF军事公司",
+  "displayNameWithArticle": "FSF军事公司",
+  "displayNameLong": "FSF军事公司",
+  "displayNameLongWithArticle": "FSF军事公司",
   "entityNamePrefix": "FSF",
   "personNamePrefix": "FSF",
   "personNamePrefixAOrAn": "a",
@@ -157,21 +157,16 @@
     "combatFreighterCombatUseFractionWhenPriority": 0,
     "autofitRandomizeProbability": 0.2,
     "officerSkillsShuffleProbability": 1,
+    # 这里选择Shuffle，第一个技能可能是实弹大师也可能是导弹专精
     "officerSkills": [
       "ballistic_mastery",
-      "ordnance_expert",
       "missile_specialization",
       "aEP_SkillAnalyze"
     ],
     "commanderSkillsShuffleProbability": 0,
+    # 不Shuffle的话，固定按照上往下的顺序4级学第一个6级学第二个
     "commanderSkills": [
-      "crew_training",
-      "officer_training",
-      "coordinated_maneuvers",
-      "electronic_warfare",
-      "carrier_group",
-      "fighter_uplink",
-      "flux_regulation",
+      "wolfpack_tactics",
       "support_doctrine"
     ]
   },
@@ -230,18 +225,18 @@
   "ranks": {
     "ranks": {
       "factionLeader": {
-        "name": "Board Representative"
+        "name": "董事会代表"
       }
     },
     "posts": {
       "factionLeader": {
-        "name": "Board Representative"
+        "name": "董事会代表"
       },
       "aEP_consultant": {
-        "name": "Business Manager"
+        "name": "经理"
       },
       "aEP_researcher": {
-        "name": "Program Director"
+        "name": "项目总监"
       }
     }
   },

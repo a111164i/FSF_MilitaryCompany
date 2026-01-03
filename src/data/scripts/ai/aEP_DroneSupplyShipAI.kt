@@ -6,15 +6,14 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.WeightedRandomPicker
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.getNearestFriendCombatShip
-import combat.util.aEP_Tool.Util.isDead
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.getNearestFriendCombatShip
+import data.scripts.utils.aEP_Tool.Util.isDead
 import data.scripts.ai.shipsystemai.aEP_DroneBurstAI
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
-import org.magiclib.subsystems.drones.DroneFormation
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
@@ -125,7 +124,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       if(parentShip != null){
         //如果有母舰但是母舰寄了，自爆
         val parentShip = parentShip as ShipAPI
-        if(aEP_Tool.isDead(parentShip)){
+        if(isDead(parentShip)){
           stat = SelfExplode()
           return
         }
@@ -166,7 +165,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
 
       }else{
         //如果没有母舰，找最近的一个当母舰
-        parentShip = aEP_Tool.getNearestFriendCombatShip(ship)
+        parentShip = getNearestFriendCombatShip(ship)
         if(parentShip == null){
           stat = SelfExplode()
           return
@@ -197,7 +196,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       }
 
       //如果目标失效或者是相位舰船，转入搜索模式
-      if(aEP_Tool.isDead(target) || target.isPhased){
+      if(isDead(target) || target.isPhased){
         stat = Parenting()
         return
       }
@@ -255,7 +254,7 @@ class aEP_DroneSupplyShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       }
 
       //如果目标失效或者是相位舰船，转入搜索模式，
-      if(aEP_Tool.isDead(target) || target.fluxLevel <= 0f || target.isPhased){
+      if(isDead(target) || target.fluxLevel <= 0f || target.isPhased){
         stat = Parenting()
         cancelBuff()
         return

@@ -9,19 +9,26 @@ import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
-import combat.util.aEP_DataTool
-import data.scripts.shipsystems.aEP_DamperBoost.Companion.LARGE_FOLD_ARMOR
-import data.scripts.shipsystems.aEP_DamperBoost.Companion.LARGE_FOLD_BELOW
+import data.scripts.utils.aEP_DataTool
 import java.awt.Color
 
 class aEP_DamperTanker : BaseShipSystemScript() {
 
   companion object {
     private const val EFFECT_ARMOR_FLAT_BONUS = 400f
-    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.5f
-    private const val ARMOR_DAMAGE_REDUCE = 0.33f //by mult
-    private const val HULL_DAMAGE_REDUCE = 0.33f
+    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.35f
+    private const val ARMOR_DAMAGE_REDUCE = 0.25f //by mult
+    private const val HULL_DAMAGE_REDUCE = 0.25f
     private const val MIN_SECOND_TO_USE = 3f
+
+    const val SMALL_FOLD_BRIDGE_SHELL = "aEP_small_fold_bridgeshell"
+    const val SMALL_FOLD_ARMOR = "aEP_small_fold_armor"
+    const val SMALL_FOLD_BELOW = "aEP_small_fold_below"
+
+    const val LARGE_FOLD_ARMOR = "aEP_cap_shangshengliu_armor"
+    const val LARGE_FOLD_BELOW = "aEP_cap_shangshengliu_armor_dark"
+
+    val DAMPER_JITTER_COLOR = Color (255,165,90,65)
   }
 
   private var ship: ShipAPI? = null
@@ -124,7 +131,7 @@ class aEP_DamperTanker : BaseShipSystemScript() {
       val armorFlat = EFFECT_ARMOR_FLAT_BONUS
       val armorPercent = EFFECT_ARMOR_PERCENT_BONUS
       val toAdd = armorFlat + (ship?.hullSpec?.armorRating?:0f) * armorPercent
-      return StatusData(aEP_DataTool.txt("aEP_LADamper01") + (toAdd * effectLevel).toInt(), false)
+      return StatusData(aEP_DataTool.txt("aEP_LADamper01") + "+"+(toAdd * effectLevel).toInt()+"%", false)
     }
     return null
   }

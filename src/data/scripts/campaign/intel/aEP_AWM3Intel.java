@@ -18,8 +18,7 @@ import com.fs.starfarer.api.ui.IntelUIAPI;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_DataTool;
-import combat.util.aEP_ID;
+import data.scripts.utils.aEP_ID;
 import data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin;
 import data.scripts.hullmods.aEP_CruiseMissileCarrier;
 import org.lazywizard.lazylib.MathUtils;
@@ -27,11 +26,12 @@ import org.lazywizard.lazylib.VectorUtils;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static com.fs.starfarer.api.impl.campaign.rulecmd.aEP_AdvanceWeaponMission.MISSILE_CARRIER_SPEC_ID;
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 public class aEP_AWM3Intel extends aEP_BaseMission
 {
@@ -42,122 +42,52 @@ public class aEP_AWM3Intel extends aEP_BaseMission
   int didShipRecovered = 0;
   int didHighlightLili = 0;
 
+
   public aEP_AWM3Intel(SectorEntityToken whereToSpawn, String targetShipId) {
     super(0f);
     shipName = targetShipId;
     this.token = whereToSpawn;
 
-    //add Fleet
-    FleetParamsV3 para = new FleetParamsV3(
+    // Create FSF fleet paramV3
+    float qualityMod = Misc.getShipQuality(null, aEP_ID.FACTION_ID_FSF); // 0-1，动态统计质量最高的市场太麻烦了，写死
+    FleetParamsV3 params = new FleetParamsV3(
             null,
-            aEP_ID.FACTION_ID_FSF,
+            Factions.PIRATES,
             1f,// qualityMod
             FleetTypes.TASK_FORCE,
-            80f, // combatPts
+            0f, // combatPts
             0f, // freighterPts
             0f, // tankerPts
             0f, // transportPts
             0f, // linerPts
             0f,  // utilityPts
-            1f);
-    para.maxShipSize = 2;
-    para.treatCombatFreighterSettingAsFraction = true;
-    para.averageSMods = 1;
-    para.ignoreMarketFleetSizeMult = true;
-    CampaignFleetAPI targetFleet = FleetFactoryV3.createFleet(para);
+            0f); // quality mod
+    params.maxShipSize = 5; //0战机，1护卫，2驱逐，3巡洋，4主力
+    params.treatCombatFreighterSettingAsFraction = true;
+    params.averageSMods = 1;
+    params.ignoreMarketFleetSizeMult = true;
 
-    //手动添加敌人
-    {
-      FleetMemberAPI s = targetFleet.getFleetData().addFleetMember("aEP_cap_nuanchi_Elite");
-      PersonAPI p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.CAUTIOUS);
-      //0-未学习，1-普通，2-专精
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
-      p.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-      p.getStats().setSkillLevel(Skills.POINT_DEFENSE, 1);
-      p.getStats().setLevel(5);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-      s.getVariant().addPermaMod("ecm", true);
+    // If user has preset variants in addShips, they are already in the list; add any built-in presets here
+    // addShips is the single source of presets - add entries to it to include them in the fleet
+    params.addShips = new ArrayList<String>();
+    // 使用flagshipVariantId时，在生成完舰队后，如果旗舰的variant不是这个，就把旗舰转变为这艘船
+    params.flagshipVariantId = MISSILE_CARRIER_SPEC_ID+"_Standard";
+    // 旗舰默认最大的，所以这里4艘暖池的一艘被转变为了导弹船
+    params.addShips.add("aEP_cap_nuanchi_Elite");
+    params.addShips.add("aEP_cap_nuanchi_Elite");
+    params.addShips.add("aEP_cap_nuanchi_Elite");
+    params.addShips.add("aEP_cap_nuanchi_Elite");
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cap_nuanchi_Elite");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.CAUTIOUS);
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
-      p.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-      p.getStats().setSkillLevel(Skills.POINT_DEFENSE, 1);
-      p.getStats().setLevel(5);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-      s.getVariant().addPermaMod("ecm", true);
+    params.addShips.add("aEP_cru_requan_Assault");
+    params.addShips.add("aEP_cru_requan_Assault");
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cap_nuanchi_Support");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.CAUTIOUS);
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
-      p.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE, 1);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-      p.getStats().setSkillLevel(Skills.POINT_DEFENSE, 1);
-      p.getStats().setLevel(5);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-      s.getVariant().addPermaMod("ecm", true);
+    params.addShips.add("aEP_cru_shanhu_Standard");
+    params.addShips.add("aEP_cru_shanhu_Standard");
 
+    // 剩下的都留给自动生成
+    params.withOfficers = true;
 
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_requan_Assault");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.FLUX_REGULATION, 2);
-      p.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 1);
-      p.getStats().setLevel(4);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-
-      s = targetFleet.getFleetData().addFleetMember("aEP_cru_requan_Assault");
-      p = faction.createRandomPerson();
-      p.setFaction("pirates");
-      p.setRankId(Ranks.SPACE_COMMANDER);
-      p.setPersonality(Personalities.STEADY);
-      p.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
-      p.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 1);
-      p.getStats().setSkillLevel(Skills.FLUX_REGULATION, 2);
-      p.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 1);
-      p.getStats().setLevel(4);
-      targetFleet.getFleetData().addOfficer(p);
-      s.setCaptain(p);
-
-    }
-    //添加特殊舰作为旗舰
-    FleetMemberAPI flagship = targetFleet.getFleetData().addFleetMember(MISSILE_CARRIER_SPEC_ID +"_Standard");
-    flagship.getVariant().addPermaMod(HullMods.REINFORCEDHULL, true);
-    flagship.getVariant().addTag(Tags.VARIANT_UNBOARDABLE);
-    flagship.setId(shipName);
-    targetFleet.getFleetData().setFlagship(flagship);
-    aEP_CruiseMissileCarrier.LoadingMissile loading = new aEP_CruiseMissileCarrier.LoadingMissile();
-    loading.setFleetMember(flagship.getId());
-    loading.setLoadedNum(1);
-    Global.getSector().addScript(loading);
-
-    targetFleet.getFlagship().setShipName("AWM Testing Obj CMC02");
-    targetFleet.setFaction("pirates");
-    targetFleet.setName(aEP_DataTool.txt("AWM03_mission03"));
-    targetFleet.getFleetData().sort();
-    //add captain
+    //手捏一个指挥官，因为旗舰是个特殊的小船，不需要战斗技能，多给几个指挥官技能
     PersonAPI person = Global.getFactory().createPerson();
     person.setPortraitSprite("graphics/portraits/portrait_pirate02.png");
     person.setName(new FullName("phrex","jin", FullName.Gender.MALE));
@@ -166,18 +96,81 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     person.setRankId(Ranks.SPACE_CAPTAIN);
     person.setVoice(Voices.VILLAIN);
     person.setPersonality(Personalities.STEADY);
-    person.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES,1);
-    person.getStats().setSkillLevel(Skills.COORDINATED_MANEUVERS,1);
     person.getStats().setSkillLevel(Skills.ELECTRONIC_WARFARE,1);
     person.getStats().setSkillLevel(Skills.SUPPORT_DOCTRINE,1);
     person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS,1);
     person.getStats().setSkillLevel(Skills.CREW_TRAINING,1);
-    person.getStats().setSkillLevel(Skills.FIGHTER_UPLINK,1);
-    person.getStats().setLevel(7);
-    targetFleet.getFleetData().addOfficer(person);
-    targetFleet.getFlagship().setCaptain(person);
-    targetFleet.setCommander(person);
+    person.getStats().setSkillLevel(Skills.OFFICER_MANAGEMENT,1);
+    person.getStats().setLevel(5);
+    //不为空，不使用自动生成的指挥官
+    params.commander = person;
+
+    //如果自动生成指挥官，那么4级给1个舰队技能，6级给2个，看setting里面的commanderLevelForOneSkill。能刷到什么看faction里面的设置
+    // params.noCommanderSkills = false;
+    CampaignFleetAPI targetFleet = FleetFactoryV3.createFleet(params);
+    //刷出来以后立刻inflate一下，随机一下装配和s插，这个质量高
+    targetFleet.inflateIfNeeded();
+
+    // Create pirate fleet paramV3
+    FleetParamsV3 params2 = new FleetParamsV3(
+            null,
+            Factions.PIRATES,
+            0.5f,// qualityOverride
+            FleetTypes.TASK_FORCE,
+            60f, // combatPts
+            0f, // freighterPts
+            0f, // tankerPts
+            0f, // transportPts
+            0f, // linerPts
+            0f,  // utilityPts
+            0f); // quality mod，大部分时间用不到
+    //海盗生成一些随机小船，不要大船
+    params2.maxShipSize = 2; //0战机，1护卫，2驱逐，3巡洋，4主力
+    params2.treatCombatFreighterSettingAsFraction = true;
+    params2.averageSMods = 0;
+    params2.ignoreMarketFleetSizeMult = true;
+    params2.withOfficers = true;
+    CampaignFleetAPI pirateFleet = FleetFactoryV3.createFleet(params2);
+    //刷出来以后立刻inflate一下，随机一下装配和d插，海盗的质量低
+    pirateFleet.inflateIfNeeded();
+    pirateFleet.getFleetData().sort();
+    pirateFleet.getFleetData().setSyncNeeded();
+    pirateFleet.getFleetData().syncIfNeeded();
+    pirateFleet.forceSync();
+
+    //把随机出来的海盗舰队合并进目标舰队
+    for(FleetMemberAPI member : pirateFleet.getMembersWithFightersCopy()){
+      //不要把战机联队加进去，用addFleetMemeber()的时候会自己处理的
+      if(member.isFighterWing()) continue;
+      targetFleet.getFleetData().addFleetMember(member);
+    }
+
+    //找到targetFleet中第一艘舰船id是MISSILE_CARRIER_SPEC_ID的船，它就是本次任务中的导弹航母
+    FleetMemberAPI missileCarrier = null;
+    for (FleetMemberAPI member : targetFleet.getMembersWithFightersCopy()) {
+      if (member.getVariant().getHullSpec().getBaseHullId().equals(MISSILE_CARRIER_SPEC_ID)) {
+        missileCarrier = member;
+        break;
+      }
+    }
+    //设定特殊的船名，后续识别该舰队是否消灭也是用的这个船名
+    missileCarrier.setShipName(shipName);
+
+    //完成舰队构成后，主舰队再sync
+    targetFleet.getFleetData().sort();
+    targetFleet.getFleetData().setSyncNeeded();
+    targetFleet.getFleetData().syncIfNeeded();
     targetFleet.forceSync();
+
+    //给导弹航母上导弹
+    aEP_CruiseMissileCarrier.LoadingMissile loading = new aEP_CruiseMissileCarrier.LoadingMissile();
+    loading.setFleetMember(missileCarrier.getId());
+    loading.setLoadedNum(1);
+    Global.getSector().addScript(loading);
+
+    targetFleet.setFaction("pirates");
+    targetFleet.setName(txt("AWM03_mission03"));
+
 
     targetFleet.getCargo().addSpecial(new SpecialItemData(aEP_CruiseMissileCarrier.SPECIAL_ITEM_ID,null),30f);
     SalvageEntityGenDataSpec.DropData drop = new SalvageEntityGenDataSpec.DropData();
@@ -202,6 +195,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     this.targetFleet = targetFleet;
     setMapLocation(targetFleet);
 
+
     Global.getSector().getIntelManager().addIntel(this);
   }
 
@@ -211,7 +205,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
     //检测目标舰队还在不在
     boolean isGone = true;
     for (FleetMemberAPI member : targetFleet.getFleetData().getMembersListCopy()) {
-      if (member.getId().equals(shipName)) {
+      if ((member.getShipName() != null ? member.getShipName() : "").equals(shipName)) {
         isGone = false;
       }
     }
@@ -222,7 +216,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
 
       //创造一个的残骸实体，并绑上打捞参数
       DerelictShipEntityPlugin.DerelictShipData params = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData(MISSILE_CARRIER_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
-      params.ship.shipName = "Prototype";
+      params.ship.shipName = shipName;
       params.ship.nameAlwaysKnown = true;
       params.durationDays = 999999999f;
       params.ship.addDmods = true;
@@ -237,7 +231,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       ShipRecoverySpecial.ShipRecoverySpecialData params2 = new ShipRecoverySpecial.ShipRecoverySpecialData("Prototype");
       ShipRecoverySpecial.PerShipData data = new ShipRecoverySpecial.PerShipData(MISSILE_CARRIER_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.AVERAGE);
       data.addDmods = true;
-      data.shipName = "Prototype";
+      data.shipName = shipName;
       data.condition = ShipRecoverySpecial.ShipCondition.AVERAGE;
       data.nameAlwaysKnown = true;
       params2.addShip(data);
@@ -434,9 +428,10 @@ public class aEP_AWM3Intel extends aEP_BaseMission
 
     void launchToPlayer(CampaignFleetAPI fleet) {
 
+      String variatantId = "aEP_CruiseMissile";
       CustomCampaignEntityAPI missile = fleet.getContainingLocation().addCustomEntity(
               null,
-              null,
+              txt("MissileEntityName"),
               "aEP_CruiseMissile",
               fleet.getFaction().getId());
 
@@ -445,7 +440,7 @@ public class aEP_AWM3Intel extends aEP_BaseMission
       missile.setContainingLocation(fleet.getContainingLocation());
       missile.setLocation(fleet.getLocation().x, fleet.getLocation().y);
       aEP_CruiseMissileEntityPlugin plugin = (aEP_CruiseMissileEntityPlugin)missile.getCustomPlugin();
-      plugin.setVariantId("aEP_CruiseMissile");
+      plugin.setVariantId(variatantId);
       plugin.setTargetFleet(Global.getSector().getPlayerFleet());
     }
 

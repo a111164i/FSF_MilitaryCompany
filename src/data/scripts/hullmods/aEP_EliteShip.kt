@@ -1,26 +1,22 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.campaign.CampaignUIAPI
-import com.fs.starfarer.api.campaign.econ.MarketAPI
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_Combat.Companion.getTargetCurrentAimed
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_Combat.Companion.getTargetCurrentAimed
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import kotlin.math.abs
 
 class aEP_EliteShip : aEP_BaseHullMod() {
 

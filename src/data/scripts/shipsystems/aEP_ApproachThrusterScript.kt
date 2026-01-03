@@ -6,12 +6,11 @@ import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.WeaponAPI
-import combat.impl.VEs.aEP_MovingSprite
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.utils.aEP_MovingSprite
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import data.scripts.weapons.aEP_DecoAnimation
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
@@ -84,7 +83,7 @@ class aEP_ApproachThrusterScript : BaseShipSystemScript() {
           ms.fadeIn = 0f
           ms.fadeOut = 0.1f
           ms.color = Color(255,255,255)
-          aEP_CombatEffectPlugin.addEffect(ms)
+          addEffect(ms)
           (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(1f)
           (weapon.effectPlugin as aEP_DecoAnimation).setMoveToSideLevel(1f)
         }else{
@@ -107,7 +106,7 @@ class aEP_ApproachThrusterScript : BaseShipSystemScript() {
           ms.fadeIn = 0f
           ms.fadeOut = 0.1f
           ms.color = Color(255,255,255)
-          aEP_CombatEffectPlugin.addEffect(ms)
+          addEffect(ms)
           (weapon.effectPlugin as aEP_DecoAnimation).setMoveToLevel(1f)
           (weapon.effectPlugin as aEP_DecoAnimation).setMoveToSideLevel(1f)
         }else{

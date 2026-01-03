@@ -7,10 +7,10 @@ import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f

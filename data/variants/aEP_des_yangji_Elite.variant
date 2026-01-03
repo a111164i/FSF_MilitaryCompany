@@ -1,13 +1,13 @@
 {
     "displayName": "Elite",
     "fluxCapacitors": 20,
-    "fluxVents": 20,
+    "fluxVents": 16,
     "goalVariant": true,
     "hullId": "aEP_des_yangji",
     "hullMods": [
         "aEP_ShieldControlled",
-        "pointdefenseai",
-        "aEP_EliteShip"
+        "aEP_EliteShip",
+        "autorepair"
     ],
     "permaMods": [],
     "sMods": [],
@@ -16,30 +16,41 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0001": "ioncannon"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
             "weapons": {
-                "SIDEL01": "flak",
-                "SIDEL04": "flak",
-                "SIDER01": "flak",
-                "SIDER04": "flak"
+                "SIDEL01": "heavyneedler",
+                "SIDER01": "heavyneedler"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0003": "aEP_b_s_630",
-                "WS0004": "aEP_b_s_630",
+                "WS0001": "ioncannon",
+                "WS0002": "miningblaster"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"SIDER04": "flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
                 "WS0005": "aEP_b_s_630",
-                "WS0006": "aEP_b_s_630",
-                "WS0007": "aEP_b_s_630",
-                "WS0011": "aEP_b_s_630",
                 "WS0012": "aEP_b_s_630"
             }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "aEP_e_s_300k"}
         }
     ]
 }

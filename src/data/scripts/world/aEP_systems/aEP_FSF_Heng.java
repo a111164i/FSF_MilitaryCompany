@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 public class aEP_FSF_Heng implements SectorGeneratorPlugin {
   @Override

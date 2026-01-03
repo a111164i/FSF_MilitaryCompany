@@ -1,112 +1,175 @@
 {
-  "hullName": "",
-  "hullId": "aEP_fga_chichao",
-  "hullSize": "FRIGATE",
-  "spriteName": "graphics/ships/aEP_fga_chichao.png",
-  "style": "aEP_FSF",
-  "height": 80,
-  "width": 80,
-  "center": [40, 30],
-  "collisionRadius": 50,
-  "shieldCenter": [0, -0],
-  "shieldRadius": 48,
-  "viewOffset": 0,
-  "builtInMods": [
-    "aEP_SpecialHull",
-    "aEP_HighSpeedManeuver",
-    "ablative_armor",
-    "distributed_fire_control",
-    "aEP_EmergencyReconstruct",
-    "aEP_TitanicKiller"
-  ],
-  "builtInWeapons": {
-    "WS 003": "aEP_e_s_300k",
-    "WS0002": "aEP_fga_chichao_lidardish"
-  },
-  "weaponSlots": [
-    {
-      "id": "WS 001",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "HARDPOINT",
-      "arc": 15,
-      "angle": 0,
-      "locations": [14, 22]
+    "hullName": "",
+    "hullId": "aEP_fga_chichao",
+    "hullSize": "FRIGATE",
+    "style": "aEP_FSF",
+    "spriteName": "graphics/ships/aEP_fga_chichao2.png",
+    "height": 70,
+    "width": 120,
+    "center": [
+        60, 33
+    ],
+    "collisionRadius": 62,
+    "coversColor": "",
+    "shieldCenter": [
+        0, 0
+    ],
+    "shieldRadius": 58.5,
+    "viewOffset": 0,
+    "builtInMods": [
+        "aEP_SpecialHull",
+        "ablative_armor",
+        "distributed_fire_control",
+        "aEP_EmergencyReconstruct",
+        "aEP_TitanicKiller"
+    ],
+    "builtInWeapons": {
+        "WS0002": "aEP_fga_chichao_lidardish"
     },
-    {
-      "id": "WS 002",
-      "size": "SMALL",
-      "type": "BALLISTIC",
-      "mount": "HARDPOINT",
-      "arc": 15,
-      "angle": 0,
-      "locations": [14, -22.5]
-    },
-    {
-      "id": "WS 003",
-      "size": "SMALL",
-      "type": "BUILT_IN",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": 0,
-      "locations": [-16, 0]
-    },
-    {
-      "id": "WS0002",
-      "size": "SMALL",
-      "type": "DECORATIVE",
-      "mount": "TURRET",
-      "arc": 360,
-      "angle": -0,
-      "locations": [23, -0]
-    }
-  ],
-  "engineSlots": [
-    {
-      "location": [-26, 16],
-      "length": 35,
-      "width": 6,
-      "angle": 180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-26, -16.5],
-      "length": 35,
-      "width": 6,
-      "angle": 180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-16, 29],
-      "length": 34,
-      "width": 6,
-      "angle": 180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-16, -29],
-      "length": 34,
-      "width": 6,
-      "angle": -180,
-      "contrailSize": 6,
-      "style": "FSF_MAIN"
-    },
-    {
-      "location": [-28, -0],
-      "length": 55,
-      "width": 16,
-      "angle": 180,
-      "contrailSize": 16,
-      "style": "FSF_MAIN"
-    }
-  ],
-  "bounds": [
-    35, -1,
-    -14, 39,
-    -28, -1,
-    -13, -40
-  ]
+    "builtInWings": [],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS 001",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                      19,       22
+            ]
+        },
+        {
+            "id": "WS 002",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                      19,      -22
+            ]
+        },
+        {
+            "id": "WS 003",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                       2,       25
+            ]
+        },
+        {
+            "id": "WS0002",
+            "size": "SMALL",
+            "type": "DECORATIVE",
+            "mount": "TURRET",
+            "renderOrderMod": 2,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                       0,        0
+            ]
+        },
+        {
+            "id": "WS 000",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "renderOrderMod": 1,
+            "arc": 360,
+            "angle": 0,
+            "locations": [
+                       2,      -25
+            ]
+        },
+        {
+            "id": "WS 004",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                      10,      -38
+            ]
+        },
+        {
+            "id": "WS 005",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "HARDPOINT",
+            "arc": 15,
+            "angle": 0,
+            "locations": [
+                      10,       38
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -23, 17
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": 180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -23, -17
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": -180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -29.5, 7.5
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": 180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        },
+        {
+            "location": [
+                -29.5, -7.5
+            ],
+            "length": 34,
+            "width": 6,
+            "angle": 180,
+            "contrailSize": 6,
+            "style": "FSF_MAIN"
+        }
+    ],
+    "bounds": [
+             4.5,    -42.5,
+            13.5,    -42.5,
+            13.5,    -32.5,
+              28,    -11.5,
+              28,     11.5,
+        
+            13.5,     32.5,
+            13.5,     42.5,
+             4.5,     42.5,
+            -2.5,     53.5,
+            -9.5,     52.5,
+        
+            -4.5,     25.5,
+           -28.5,        0,
+            -4.5,    -25.5,
+            -9.5,    -52.5,
+            -2.5,    -53.5
+    # 15 points total.
+    ]
 }

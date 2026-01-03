@@ -1,0 +1,47 @@
+{
+    "displayName": "Automated",
+    "fluxCapacitors": 10,
+    "fluxVents": 6,
+    "goalVariant": true,
+    "hullId": "aEP_fga_raoliu",
+    "hullMods": [
+        "aEP_VanguardHull",
+        "aEP_StrategyThruster",
+        "aEP_ShieldControlled",
+        "aEP_EliteShip"
+    ],
+    "permaMods": [
+        "automated",
+        "aEP_EmergencyReconstruct"
+    ],
+    "sMods": [
+        "hardened_subsystems",
+        "autorepair"
+    ],
+    "variantId": "aEP_fga_raoliu_Automated",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "lightneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_b_s_pom"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_m_s_era",
+                "WS0006": "aEP_m_s_era"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_e_s_300k"}
+        }
+    ]
+}

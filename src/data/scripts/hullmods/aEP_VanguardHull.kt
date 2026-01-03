@@ -4,22 +4,14 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import java.util.HashMap
 import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.ui.TooltipMakerAPI
-import combat.util.aEP_DataTool
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
 import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.DamageAPI
 import org.lwjgl.util.vector.Vector2f
 import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.combat.BeamAPI
-import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.impl.campaign.ids.Stats
-import com.fs.starfarer.api.ui.Alignment
-import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
 import java.awt.Color
 
 class aEP_VanguardHull : aEP_BaseHullMod() {

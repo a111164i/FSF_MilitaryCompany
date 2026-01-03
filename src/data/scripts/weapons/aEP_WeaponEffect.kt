@@ -12,27 +12,28 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.api.util.WeightedRandomPicker
 import com.fs.starfarer.combat.entities.DamagingExplosion
-import combat.impl.VEs.*
-import combat.impl.aEP_BaseCombatEffect
-import combat.impl.aEP_BaseCombatEffectWithKey
-import combat.impl.proj.aEP_StickOnHit
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
-import combat.util.aEP_Combat
-import combat.util.aEP_ID
-import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
-import combat.util.aEP_Render
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.angleAdd
-import combat.util.aEP_Tool.Util.computeDamageToShip
-import combat.util.aEP_Tool.Util.firingSmoke
-import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.isDead
-import combat.util.aEP_Tool.Util.isEnemy
-import combat.util.aEP_Tool.Util.spawnCompositeSmoke
-import combat.util.aEP_Tool.Util.spawnSingleCompositeSmoke
-import combat.util.aEP_Tool.Util.speed2Velocity
-import combat.util.aEP_Tool.Util.velocity2Speed
+import data.scripts.utils.aEP_AnchorStandardLight
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.utils.aEP_BaseCombatEffectWithKey
+import data.scripts.utils.aEP_StickOnHit
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_ID.Companion.VECTOR2F_ZERO
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.utils.aEP_MovingSprite
+import data.scripts.utils.aEP_Render
+import data.scripts.utils.aEP_SpreadRing
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.angleAdd
+import data.scripts.utils.aEP_Tool.Util.computeDamageToShip
+import data.scripts.utils.aEP_Tool.Util.firingSmoke
+import data.scripts.utils.aEP_Tool.Util.getExtendedLocationFromPoint
+import data.scripts.utils.aEP_Tool.Util.isDead
+import data.scripts.utils.aEP_Tool.Util.isEnemy
+import data.scripts.utils.aEP_Tool.Util.spawnCompositeSmoke
+import data.scripts.utils.aEP_Tool.Util.spawnSingleCompositeSmoke
+import data.scripts.utils.aEP_Tool.Util.speed2Velocity
+import data.scripts.utils.aEP_Tool.Util.velocity2Speed
 import data.scripts.hullmods.aEP_ReactiveArmor
 import data.scripts.hullmods.aEP_TwinFighter
 import data.scripts.shipsystems.aEP_WeaponReset
@@ -42,7 +43,6 @@ import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
 import org.dark.shaders.light.StandardLight
 import org.lazywizard.lazylib.CollisionUtils
-import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.MathUtils.*
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
@@ -495,10 +495,9 @@ class aEP_m_l_harpoon_shot : Effect(){
         val randomVel = speed2Velocity(randomAngle,500f)
         randomVel.scale(getRandomNumberInRange(0.25f,1f))
         val ms = aEP_MovingSprite(
-          point,
-          Vector2f(randomSize,randomSize),
-          getRandomNumberInRange(0f,360f),
-          "graphics/weapons/aEP_b_l_aa40/shell.png")
+          point, Vector2f(randomSize, randomSize), getRandomNumberInRange(0f, 360f),
+          "graphics/weapons/aEP_b_l_aa40/shell.png"
+        )
         ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
         ms.fadeOut = 0.35f
         ms.color = FRAG_COLOR
@@ -583,7 +582,7 @@ class aEP_m_l_harpoon_shot : Effect(){
   }
 
 }
-class Glow(val ms:aEP_MovingSprite, val color : Color):aEP_BaseCombatEffect(){
+class Glow(val ms: aEP_MovingSprite, val color : Color):aEP_BaseCombatEffect(){
   var size = 10f
   var minSize = 5f
   override fun advanceImpl(amount: Float) {
@@ -697,10 +696,8 @@ class aEP_ftr_bom_nuke_bomb_shot : Effect(){
   override fun onExplosion(explosion: DamagingProjectileAPI, originalProjectile: DamagingProjectileAPI, weaponId: String) {
 
     val ring = aEP_SpreadRing(
-      1200f,
-      100f,
-      Color(235,120,80,100),
-      100f,600f,explosion.location)
+      1200f, 100f, Color(235, 120, 80, 100), 100f, 600f, explosion.location
+    )
     ring.layers = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_LAYER)
     ring.initColor.setToColor(235f,120f,80f,10f,0.35f)
     ring.endColor.setColor(255f,90f,20f,0f)
@@ -844,17 +841,10 @@ class aEP_m_s_breachdoor_shot : Effect(){
 
 
     val color = Color(240, 240, 240, 240)
-    val ring = aEP_MovingSprite(point,
-      Vector2f(0f, 0f),
-      0f,
-      VectorUtils.getAngle(point, target.location),
-      0f,
-      0f,
-      1f,
-      Vector2f(450f, 900f),
-      Vector2f(8f, 24f),
-      "aEP_FX.ring",
-      color)
+    val ring = aEP_MovingSprite(
+      point, Vector2f(0f, 0f), 0f, VectorUtils.getAngle(point, target.location), 0f, 0f, 1f, Vector2f(450f, 900f),
+      Vector2f(8f, 24f), "aEP_FX.ring", color
+    )
     addEffect(ring)
     CombatUtils.applyForce(target, projectile.velocity, 100f)
   }
@@ -1187,7 +1177,7 @@ class aEP_cap_nuanchi_glow : aEP_DecoAnimation() {
         light.setLifetime(lightLifetime)
         LightShader.addLight(light)
 
-        val anchored = aEP_AnchorStandardLight(light,weapon.ship,lightLifetime)
+        val anchored = aEP_AnchorStandardLight(light, weapon.ship, lightLifetime)
         addEffect(anchored)
       }
     }
@@ -1483,7 +1473,7 @@ class aEP_cru_pingding_main :EveryFrame(){
     if(weapon.chargeLevel == 1f){
       //抛壳
       val ejectPoint = getExtendedLocationFromPoint(slotLoc, angle-60f, 40f)
-      val ms = aEP_MovingSprite(ejectPoint, Vector2f(8f,42f),angle,"aEP_FX.cru_pingding_shell")
+      val ms = aEP_MovingSprite(ejectPoint, Vector2f(8f, 42f), angle, "aEP_FX.cru_pingding_shell")
       ms.lifeTime = 10f
       ms.fadeIn = 0f
       ms.fadeOut = 0.2f
@@ -1727,12 +1717,8 @@ class aEP_cru_pingding_main2_shot : Effect(){
 
   fun explode(point: Vector2f, facing: Float){
     val ring = aEP_SpreadRing(
-      75f,
-      100f,
-      Color(251,250,255,25),
-      125f,
-      1000f,
-      point)
+      75f, 100f, Color(251, 250, 255, 25), 125f, 1000f, point
+    )
     ring.initColor.setToColor(250f,250f,250f,0f,0.75f)
     ring.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring)
@@ -2058,9 +2044,8 @@ class aEP_cru_pingding_torpedo_shot : Effect(){
     //特效分为2段，一部分在SearchLight的readyToEnd里面，为了保证导弹被击毁也会有一部分特效
     //圈
     val ring = aEP_SpreadRing(
-      100f, 200f,
-      Color(251,250,255,35),
-      200f, 1200f, point)
+      100f, 200f, Color(251, 250, 255, 35), 200f, 1200f, point
+    )
     ring.initColor.setToColor(250f,230f,210f,0f,4f)
     ring.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring)
@@ -2376,7 +2361,7 @@ class aEP_b_l_railwaygun_shot : Effect(){
 
       //抛壳
       val angle = weapon.currAngle
-      val ms = aEP_MovingSprite(ejectPoint, Vector2f(4f,21f),angle,"aEP_FX.cru_pingding_shell")
+      val ms = aEP_MovingSprite(ejectPoint, Vector2f(4f, 21f), angle, "aEP_FX.cru_pingding_shell")
       ms.lifeTime = 10f
       ms.fadeIn = 0f
       ms.fadeOut = 0.2f
@@ -3130,18 +3115,16 @@ class aEP_cap_sta_main_shot : Effect(){
 
     //缓慢圈
     val ring = aEP_SpreadRing(
-      200f, 200f,
-      Color(251,100,25,25),
-      300f, 4000f, point)
+      200f, 200f, Color(251, 100, 25, 25), 300f, 4000f, point
+    )
     ring.initColor.setToColor(250f,230f,210f,0f,4f)
     ring.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring)
 
     //高速圈
     val ring2 = aEP_SpreadRing(
-      4000f, 300f,
-      Color(251,200,155,25),
-      300f, 4000f, point)
+      4000f, 300f, Color(251, 200, 155, 25), 300f, 4000f, point
+    )
     ring2.initColor.setToColor(250f,230f,210f,0f,0.5f)
     ring2.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring2)
@@ -3311,7 +3294,7 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
       Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_shield", 0.25f, 2f, point, Misc.ZERO)
       if(target is ShipAPI){
         //只要特效，不要伤害
-        aEP_b_l_aa40_shot.applyPureShipDamage(target, point, 200f, 2f)
+        aEP_b_l_aa40_shot.applyPureShieldDamage(target, point, 0f, 2f)
       }
     }else{
       Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_armor", 0.5f, 2f, point, Misc.ZERO)
@@ -3344,6 +3327,7 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
 
     if(!shieldHit){
       if(param is DamagingProjectileAPI && param.projectileSpecId?.equals(this.javaClass.simpleName) == true) {
+        damage.type = DamageType.FRAGMENTATION
         damage.damage = damage.baseDamage * (1f - DAMAGE_REDUCTION_HULL_HIT)
         return this.javaClass.simpleName
       }
@@ -3458,7 +3442,8 @@ class aEP_b_l_dg3_shot : Effect(){
         val ejectPoint = getExtendedLocationFromPoint(weapon.location,weapon.currAngle-125f,12f)
         //用烟雾 遮挡抛壳
         engine.addSmokeParticle(ejectPoint,Misc.ZERO,15f,0.6f,0.4f,Color(200,200,200))
-        val ms = aEP_MovingSprite(ejectPoint, Vector2f(2f,4f),weapon.currAngle,"graphics/weapons/aEP_b_l_aa40/shred.png")
+        val ms =
+          aEP_MovingSprite(ejectPoint, Vector2f(2f, 4f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
         ms.lifeTime = 1.2f
         ms.fadeIn = 0.05f
         ms.fadeOut = 0.2f
@@ -3476,7 +3461,8 @@ class aEP_b_l_dg3_shot : Effect(){
         val ejectPoint = getExtendedLocationFromPoint(weapon.location,weapon.currAngle+125f,12f)
         //用烟雾 遮挡抛壳
         engine.addSmokeParticle(ejectPoint,Misc.ZERO,15f,0.6f,0.4f,Color(200,200,200))
-        val ms = aEP_MovingSprite(ejectPoint, Vector2f(2f,4f),weapon.currAngle,"graphics/weapons/aEP_b_l_aa40/shred.png")
+        val ms =
+          aEP_MovingSprite(ejectPoint, Vector2f(2f, 4f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
         ms.lifeTime = 1.2f
         ms.fadeIn = 0.05f
         ms.fadeOut = 0.2f
@@ -3557,7 +3543,8 @@ class aEP_b_m_k125_shot : Effect(){
       }
       if(onLeft){
         val ejectPoint = getExtendedLocationFromPoint(weapon.location,weapon.currAngle-135f,16f)
-        val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f,3f),weapon.currAngle,"graphics/weapons/aEP_b_l_aa40/shred.png")
+        val ms =
+          aEP_MovingSprite(ejectPoint, Vector2f(6f, 3f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
         ms.lifeTime = 2f
         ms.fadeIn = 0.05f
         ms.fadeOut = 0.2f
@@ -3572,7 +3559,8 @@ class aEP_b_m_k125_shot : Effect(){
         addEffect(aEP_b_m_h88_shot.ShellGlow(ms, SHELL_GLOW))
       }else{
         val ejectPoint = getExtendedLocationFromPoint(weapon.location,weapon.currAngle+135f,16f)
-        val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f,3f),weapon.currAngle,"graphics/weapons/aEP_b_l_aa40/shred.png")
+        val ms =
+          aEP_MovingSprite(ejectPoint, Vector2f(6f, 3f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
         ms.lifeTime = 2f
         ms.fadeIn = 0.05f
         ms.fadeOut = 0.2f
@@ -3598,7 +3586,7 @@ class aEP_b_m_k125_shot : Effect(){
     if(shieldHit && target is ShipAPI){
       val rand = getRandomNumberInRange(0f,100f)
       if(rand <= aEP_b_l_aa40_shot.TRIGGER_CHANCE){
-        aEP_b_l_aa40_shot.applyPureShipDamage(target, point, AMOUNT_PER_TRIGGER, PERCENT_PER_TRIGGER)
+        aEP_b_l_aa40_shot.applyPureShieldDamage(target, point, AMOUNT_PER_TRIGGER, PERCENT_PER_TRIGGER)
       }
     }
 
@@ -3625,7 +3613,7 @@ class aEP_b_l_aa40_shot : Effect(){
     var PERCENT_PER_TRIGGER = 0f
     var AMOUNT_PER_TRIGGER = 0f
 
-    fun applyPureShipDamage(target:ShipAPI, point: Vector2f, damageFlat:Float, damagePercent:Float){
+    fun applyPureShieldDamage(target:ShipAPI, point: Vector2f, damageFlat:Float, damagePercent:Float){
       val fluxLeft = target.fluxTracker.maxFlux - target.fluxTracker.currFlux - 1f
 
       val percentAmount = target.fluxTracker.maxFlux * damagePercent / 100f
@@ -3711,7 +3699,8 @@ class aEP_b_l_aa40_shot : Effect(){
       }
       if (onLeft) {
         val ejectPoint = getExtendedLocationFromPoint(weapon.location, weapon.currAngle - 100f, 20f)
-        val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f, 3f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
+        val ms =
+          aEP_MovingSprite(ejectPoint, Vector2f(6f, 3f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
         ms.lifeTime = 2f
         ms.fadeIn = 0.05f
         ms.fadeOut = 0.2f
@@ -3729,7 +3718,8 @@ class aEP_b_l_aa40_shot : Effect(){
         addEffect(aEP_b_m_h88_shot.ShellGlow(ms, SHELL_GLOW))
       } else {
         val ejectPoint = getExtendedLocationFromPoint(weapon.location, weapon.currAngle + 100f, 20f)
-        val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f, 3f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
+        val ms =
+          aEP_MovingSprite(ejectPoint, Vector2f(6f, 3f), weapon.currAngle, "graphics/weapons/aEP_b_l_aa40/shred.png")
         ms.lifeTime = 2f
         ms.fadeIn = 0.05f
         ms.fadeOut = 0.2f
@@ -3753,7 +3743,7 @@ class aEP_b_l_aa40_shot : Effect(){
     if(shieldHit && target is ShipAPI){
       val rand = getRandomNumberInRange(0f,100f)
       if(rand <= TRIGGER_CHANCE){
-        applyPureShipDamage(target, point, AMOUNT_PER_TRIGGER, PERCENT_PER_TRIGGER)
+        applyPureShieldDamage(target, point, AMOUNT_PER_TRIGGER, PERCENT_PER_TRIGGER)
 
       }
     }
@@ -3782,7 +3772,10 @@ class aEP_b_l_aa40_shot : Effect(){
       val randomSize = getRandomNumberInRange(0f,2f) + size
       val vel = VectorUtils.getDirectionalVector(loc, p)
       vel.scale(moveSpeed)
-      val ms = aEP_MovingSprite(p, Vector2f(randomSize,randomSize), getRandomNumberInRange(0f,360f),"graphics/weapons/aEP_large_kinetic_flak/shell.png")
+      val ms = aEP_MovingSprite(
+        p, Vector2f(randomSize, randomSize), getRandomNumberInRange(0f, 360f),
+        "graphics/weapons/aEP_large_kinetic_flak/shell.png"
+      )
       ms.lifeTime = time
       ms.fadeOut = 0.8f
       ms.color = Color(240,240,200,150)
@@ -3827,12 +3820,8 @@ class aEP_b_l_aa40_shot : Effect(){
     }
 
     val ring = aEP_SpreadRing(
-      40f,
-      40f,
-      Color(251,250,255,25),
-      40f,
-      1000f,
-      loc)
+      40f, 40f, Color(251, 250, 255, 25), 40f, 1000f, loc
+    )
     ring.initColor.setToColor(250f,250f,250f,0f,0.6f)
     ring.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring)
@@ -3889,7 +3878,7 @@ class aEP_b_m_hv7_shot : Effect(){
     if(engine.viewport.isNearViewport(weapon.location,600f)) {
       //抛壳
       val ejectPoint = getExtendedLocationFromPoint(weapon.location,weapon.currAngle-110f,10f)
-      val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f,4f),weapon.currAngle,"weapons.aEP_b_m_h88_eject")
+      val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f, 4f), weapon.currAngle, "weapons.aEP_b_m_h88_eject")
       ms.lifeTime = 3f
       ms.fadeIn = 0.1f
       ms.fadeOut = 0.2f
@@ -4108,7 +4097,7 @@ class aEP_b_m_h88_shot : Effect() {
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     //创造蛋壳
     val ejectPoint = getExtendedLocationFromPoint(weapon.location,weapon.currAngle-140f,5f)
-    val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f,4f),weapon.currAngle,"weapons.aEP_b_m_h88_eject")
+    val ms = aEP_MovingSprite(ejectPoint, Vector2f(6f, 4f), weapon.currAngle, "weapons.aEP_b_m_h88_eject")
     ms.lifeTime = 3f
     ms.fadeIn = 0.1f
     ms.fadeOut = 0.2f
@@ -4126,7 +4115,7 @@ class aEP_b_m_h88_shot : Effect() {
     addEffect(ShellGlow(ms,EJECT_GLOW_COLOR))
   }
 
-  open class ShellGlow(val ms:aEP_MovingSprite, val color: Color):aEP_BaseCombatEffect(){
+  open class ShellGlow(val ms: aEP_MovingSprite, val color: Color):aEP_BaseCombatEffect(){
     var endSize = 10f
     var extraSize = 30f
     override fun advanceImpl(amount: Float) {
@@ -4226,10 +4215,9 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
       val randomVel = speed2Velocity(randomAngle, 400f)
       randomVel.scale(getRandomNumberInRange(0.25f, 1f))
       val ms = aEP_MovingSprite(
-        proj.location,
-        Vector2f(randomSize, randomSize),
-        getRandomNumberInRange(0f, 360f),
-        "graphics/weapons/aEP_b_l_aa40/shell.png")
+        proj.location, Vector2f(randomSize, randomSize), getRandomNumberInRange(0f, 360f),
+        "graphics/weapons/aEP_b_l_aa40/shell.png"
+      )
       ms.lifeTime = 0.8f + getRandomNumberInRange(0f, 0.4f)
       ms.fadeOut = 0.4f
       ms.color = FRAG_C
@@ -4788,12 +4776,8 @@ class aEP_b_m_flak_shot : Effect(){
       Color(235,230,235,105))
 
     val ring = aEP_SpreadRing(
-      50f,
-      50f,
-      Color(251,250,255,25),
-      50f,
-      1000f,
-      explosion.location)
+      50f, 50f, Color(251, 250, 255, 25), 50f, 1000f, explosion.location
+    )
     ring.initColor.setToColor(250f,250f,250f,0f,0.65f)
     ring.endColor.setColor(250f,250f,250f,0f)
     addEffect(ring)
@@ -5031,17 +5015,10 @@ class aEP_fga_yonglang_main_shot : Effect(){
     val sizeChange = Vector2f(8f, 24f)
     size.scale(sizeMult)
     sizeChange.scale(sizeMult)
-    val ring = aEP_MovingSprite(point,
-      Vector2f(0f, 0f),
-      0f,
-      VectorUtils.getAngle(point, target.location),
-      0f,
-      0f,
-      1f,
-      size,
-      sizeChange,
-      "aEP_FX.ring",
-      color)
+    val ring = aEP_MovingSprite(
+      point, Vector2f(0f, 0f), 0f, VectorUtils.getAngle(point, target.location), 0f, 0f, 1f, size, sizeChange,
+      "aEP_FX.ring", color
+    )
     addEffect(ring)
   }
 
@@ -5317,10 +5294,8 @@ class aEP_m_s_magnetmine_shot : Effect(){
     }
 
     val upper = aEP_MovingSprite(
-      explosion.location,
-      Vector2f(64f,64f),
-      originalProjectile.facing - 90f,
-      "aEP_FX.magnetmine_shell")
+      explosion.location, Vector2f(64f, 64f), originalProjectile.facing - 90f, "aEP_FX.magnetmine_shell"
+    )
     upper.angleSpeed = getRandomNumberInRange(-30f,30f)
     upper.velocity = getRandomPointInCircle(VECTOR2F_ZERO,30f)
     upper.fadeIn = 0f
@@ -5394,10 +5369,8 @@ class aEP_m_m_magnetmine_shot : Effect(){
     }
 
     val upper = aEP_MovingSprite(
-      explosion.location,
-      Vector2f(64f,64f),
-      originalProjectile.facing - 90f,
-      "aEP_FX.magnetmine_shell")
+      explosion.location, Vector2f(64f, 64f), originalProjectile.facing - 90f, "aEP_FX.magnetmine_shell"
+    )
     upper.angleSpeed = getRandomNumberInRange(-30f,30f)
     upper.velocity = getRandomPointInCircle(VECTOR2F_ZERO,30f)
     upper.fadeIn = 0f

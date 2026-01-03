@@ -2,12 +2,11 @@ package data.scripts.shipsystems
 
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
-import com.fs.starfarer.api.combat.ShipCommand
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.util.IntervalTracker
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
 
@@ -15,9 +14,11 @@ class aEP_VectorThrust : BaseShipSystemScript() {
 
   companion object{
 
-    const val MAX_SPEED_BUFF = 20f
+    const val ID = "aEP_VectorThrust"
 
-    const val ACC_FLAT_BUFF = 500f
+    const val MAX_SPEED_BUFF = 50f
+
+    const val ACC_FLAT_BUFF = 400f
 
     const val MAX_TURN_FLAT_BUFF = 30f
     const val ACC_TURN_FLAT_BUFF = 120f
@@ -36,12 +37,16 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     val angleDist = MathUtils.getShortestRotation(angleAndSpeed.x,ship.facing)
     val amount = aEP_Tool.getAmount(ship)
 
-    //使用时打断右键系统
+    //使用时如果右键系统激活，抵消主炮控制技能的移动惩罚
+    if(ship.phaseCloak != null && ship.phaseCloak.isActive){
+      val punishMult = ship.mutableStats.maxSpeed.getMultStatMod(aEP_MainGunAttitude.ID)?.value?:1f
+      ship.mutableStats.maxSpeed.modifyMult(ID+"compensation",1f / punishMult)
+      ship.mutableStats.acceleration.modifyMult(ID+"compensation",1f / punishMult)
+      ship.mutableStats.deceleration.modifyMult(ID+"compensation",1f / punishMult)
+    }
+
     if(!didOnce){
       didOnce = true
-      if(ship.phaseCloak != null && ship.phaseCloak.isActive){
-        ship.giveCommand(ShipCommand.TOGGLE_SHIELD_OR_PHASE_CLOAK,null,0)
-      }
     }
 
 
@@ -50,9 +55,9 @@ class aEP_VectorThrust : BaseShipSystemScript() {
       //shift * to是最终量，durIn和Out决定变化速度
       //但是这里每帧都会调用然后刷新,每帧都重新开始淡入，结果是0.5f左右，不是1f
       //in不能为0
-      ship.engineController.extendWidthFraction.shift(this,-0.7f,0.000001f,0f,1f)
-      ship.engineController.extendGlowFraction.shift(this,-0.7f,0.000001f,0f,1f)
-      ship.engineController.setFlameLevel(e.engineSlot,1f)
+//      ship.engineController.extendWidthFraction.shift(this,-0.7f,0.000001f,0f,1f)
+//      ship.engineController.extendGlowFraction.shift(this,-0.7f,0.000001f,0f,1f)
+//      ship.engineController.setFlameLevel(e.engineSlot,1f)
     }
 
     afterImageTracker.advance(amount)
@@ -85,6 +90,10 @@ class aEP_VectorThrust : BaseShipSystemScript() {
     ship.mutableStats.maxSpeed.unmodify(id)
     ship.mutableStats.acceleration.unmodify(id)
     ship.mutableStats.deceleration.unmodify(id)
+
+    ship.mutableStats.maxSpeed.unmodify(ID+"compensation")
+    ship.mutableStats.acceleration.unmodify(ID+"compensation")
+    ship.mutableStats.deceleration.unmodify(ID+"compensation")
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {

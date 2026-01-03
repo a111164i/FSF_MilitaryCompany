@@ -1,42 +1,39 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 5,
-    "fluxVents": 8,
+    "fluxCapacitors": 12,
+    "fluxVents": 0,
     "goalVariant": true,
     "hullId": "aEP_des_lianliu",
-    "hullMods": ["targetingunit"],
+    "hullMods": [
+        "aEP_EliteShip",
+        "aEP_ShieldFloating"
+    ],
     "permaMods": [],
     "sMods": [],
     "variantId": "aEP_des_lianliu_Elite",
     "weaponGroups": [
         {
             "autofire": true,
-            "mode": "ALTERNATING",
+            "mode": "LINKED",
             "weapons": {
-                "WS0001": "hveldriver",
-                "WS0002": "hveldriver",
-                "WS0003": "hveldriver"
+                "WS0001": "aEP_b_m_hv7",
+                "WS0002": "aEP_b_m_hv7",
+                "WS0003": "aEP_b_m_hv7"
             }
         },
         {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0005": "aEP_b_s_pom"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0004": "aEP_b_s_pom"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0008": "aEP_b_s_pom"}
-        },
-        {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {"WS0009": "aEP_e_s_300k"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "aEP_b_s_pom",
+                "WS0005": "aEP_b_s_pom",
+                "WS0008": "aEP_b_s_pom"
+            }
         }
     ]
 }

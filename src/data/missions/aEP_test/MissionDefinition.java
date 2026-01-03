@@ -10,7 +10,7 @@ import com.fs.starfarer.api.impl.campaign.ids.ShipRoles;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.mission.MissionDefinitionAPI;
 import com.fs.starfarer.api.mission.MissionDefinitionPlugin;
-import combat.util.aEP_ID;
+import data.scripts.utils.aEP_ID;
 import data.missions.aEP_MissionUtils;
 
 
@@ -80,7 +80,7 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_wanliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_PD", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Mixed", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_chichao_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_fga_shuangshen_Standard", FleetMemberType.SHIP, "FSF ship", false);

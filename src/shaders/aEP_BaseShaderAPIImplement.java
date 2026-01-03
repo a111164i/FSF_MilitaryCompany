@@ -2,10 +2,9 @@ package shaders;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineLayers;
-import com.fs.starfarer.api.combat.CombatLayeredRenderingPlugin;
 import com.fs.starfarer.api.combat.ViewportAPI;
 import com.fs.starfarer.api.input.InputEventAPI;
-import combat.impl.aEP_BaseCombatEffect;
+import data.scripts.utils.aEP_BaseCombatEffect;
 import org.dark.shaders.util.ShaderAPI;
 import org.lwjgl.opengl.GL20;
 

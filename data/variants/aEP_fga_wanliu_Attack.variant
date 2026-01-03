@@ -1,0 +1,29 @@
+{
+    "displayName": "Attack",
+    "fluxCapacitors": 10,
+    "fluxVents": 5,
+    "goalVariant": true,
+    "hullId": "aEP_fga_wanliu",
+    "hullMods": [
+        "aEP_EliteShip",
+        "aEP_ShieldControlled"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_wanliu_Attack",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "multineedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_b_s_630",
+                "WS0004": "aEP_b_s_630"
+            }
+        }
+    ]
+}

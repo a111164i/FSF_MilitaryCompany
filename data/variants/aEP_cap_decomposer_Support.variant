@@ -1,13 +1,13 @@
 {
     "displayName": "Support",
-    "fluxCapacitors": 18,
-    "fluxVents": 6,
+    "fluxCapacitors": 26,
+    "fluxVents": 26,
     "goalVariant": true,
     "hullId": "aEP_cap_decomposer",
     "hullMods": [
         "missleracks",
         "targetingunit",
-        "ballistic_rangefinder"
+        "frontshield"
     ],
     "permaMods": [],
     "sMods": [],
@@ -40,8 +40,8 @@
         }
     ],
     "wings": [
-        "aEP_ftr_ut_supply_wing",
-        "aEP_ftr_ut_supply_wing",
+        "aEP_ftr_ut_shuishi_wing",
+        "aEP_ftr_ut_shuishi_wing",
         "aEP_ftr_ut_shuishi_wing"
     ]
 }

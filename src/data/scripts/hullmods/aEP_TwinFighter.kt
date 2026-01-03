@@ -3,7 +3,6 @@ package data.scripts.hullmods
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
-import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.loading.WeaponSlotAPI
@@ -13,18 +12,17 @@ import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.combat.entities.Ship.ShipAIWrapper
 import com.fs.starfarer.loading.specs.HullVariantSpec
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_DataTool
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.ai.aEP_BaseShipAI
 import data.scripts.ai.aEP_MissileAI
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
-import org.magiclib.util.MagicUI
 import java.awt.Color
 
 class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{

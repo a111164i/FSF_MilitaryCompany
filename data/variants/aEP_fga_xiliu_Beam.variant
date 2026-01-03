@@ -1,6 +1,6 @@
 {
     "displayName": "Beam",
-    "fluxCapacitors": 9,
+    "fluxCapacitors": 10,
     "fluxVents": 9,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
@@ -9,8 +9,7 @@
         "pointdefenseai",
         "advancedoptics",
         "turretgyros",
-        "aEP_ShieldControlled",
-        "armoredweapons"
+        "aEP_ShieldControlled"
     ],
     "permaMods": [],
     "sMods": [],
@@ -19,27 +18,18 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {
-                "WS0002": "aEP_fga_xiliu_main",
-                "WS0003": "aEP_fga_xiliu_main2"
-            }
+            "weapons": {"WS0002": "phasebeam"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
                 "L01": "lrpdlaser",
+                "L02": "lrpdlaser",
                 "R01": "lrpdlaser",
+                "R02": "lrpdlaser",
                 "WS0007": "lrpdlaser",
                 "WS0009": "lrpdlaser"
-            }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {
-                "L02": "pdlaser",
-                "R02": "pdlaser"
             }
         }
     ]

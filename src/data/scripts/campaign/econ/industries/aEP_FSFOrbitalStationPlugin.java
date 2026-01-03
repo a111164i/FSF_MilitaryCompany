@@ -4,7 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.RepLevel;
 import com.fs.starfarer.api.impl.campaign.econ.impl.OrbitalStation;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 
 public class aEP_FSFOrbitalStationPlugin extends OrbitalStation

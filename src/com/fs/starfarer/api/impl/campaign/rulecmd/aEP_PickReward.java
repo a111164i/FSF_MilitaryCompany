@@ -3,14 +3,12 @@ package com.fs.starfarer.api.impl.campaign.rulecmd;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
-import com.fs.starfarer.api.campaign.InteractionDialogPlugin;
 import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
-import com.fs.starfarer.api.combat.EngagementResultAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_DataTool;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_DataTool;
+import data.scripts.utils.aEP_Tool;
 import data.scripts.campaign.aEP_OpPageManager;
 
 import java.awt.*;
@@ -31,15 +29,24 @@ public class aEP_PickReward extends BaseCommandPlugin
     ship_bp.put("aEP_cap_nuanchi", 300f);
     ship_bp.put("aEP_cap_duiliu", 240f);
     ship_bp.put("aEP_cap_neibo", 240f);
+    ship_bp.put("aEP_cap_decomposer", 240f);
 
     ship_bp.put("aEP_cru_shanhu", 200f);
     ship_bp.put("aEP_cru_requan", 180f);
 
-    ship_bp.put("aEP_fga_yonglang", 200f);
+    ship_bp.put("aEP_des_shendu", 150f);
+
+    ship_bp.put("aEP_fga_yonglang", 120f);
+    ship_bp.put("aEP_fga_wanliu", 120f);
   }
 
   static {
-    wep_bp.put("aEP_b_l_aa40", 150f);
+    wep_bp.put("aEP_b_l_aa40", 100f);
+    wep_bp.put("aEP_b_l_dg3", 100f);
+    wep_bp.put("aEP_b_l_d100t", 100f);
+
+    wep_bp.put("aEP_m_l_blasthammer", 100f);
+    wep_bp.put("aEP_m_l_harpoon", 100f);
   }
 
 

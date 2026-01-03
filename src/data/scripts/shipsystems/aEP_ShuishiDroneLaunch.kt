@@ -6,17 +6,13 @@ import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.util.IntervalTracker
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
-import data.scripts.ai.aEP_DroneShenduShipAI
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.ai.aEP_DroneShieldShipAI
 import data.scripts.ai.shipsystemai.aEP_DroneGuardAI
-import data.scripts.ai.shipsystemai.aEP_MaoDianDroneLaunchAI
-import data.scripts.ai.shipsystemai.aEP_ShuishiDroneLaunchAI
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
@@ -24,7 +20,6 @@ import org.lazywizard.lazylib.combat.AIUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
 import java.awt.Color
-import java.awt.Point
 import java.util.ArrayList
 import java.util.LinkedList
 

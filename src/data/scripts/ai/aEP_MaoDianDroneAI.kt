@@ -2,9 +2,8 @@ package data.scripts.ai
 
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipCommand
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
-import data.scripts.shipsystems.aEP_MaodianDroneLaunch.Companion.MAX_HOLD_TIME
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 

@@ -1,14 +1,9 @@
 package data.scripts.weapons;
 
-import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.combat.listeners.WeaponBaseRangeModifier;
 import com.fs.starfarer.api.combat.listeners.WeaponRangeModifier;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import org.lazywizard.lazylib.MathUtils;
-import org.lazywizard.lazylib.VectorUtils;
-import org.lazywizard.lazylib.combat.AIUtils;
-import org.lazywizard.lazylib.combat.WeaponUtils;
 
 import java.util.HashMap;
 import java.util.Map;

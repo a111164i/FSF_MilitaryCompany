@@ -8,19 +8,16 @@ import com.fs.starfarer.api.combat.DamageAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
-import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.DODGE_FADE_COLOR
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.DODGE_JITTER_COLOR
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.ID
 import data.scripts.hullmods.aEP_HighSpeedManeuver.Companion.IGNORE_DAMAGE
-import data.scripts.weapons.aEP_m_s_era
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
@@ -32,7 +29,7 @@ class aEP_HighSpeedManeuver:aEP_BaseHullMod() {
     val DODGE_JITTER_COLOR = Color(245,255,255,150)
     val DODGE_FADE_COLOR = Color(75,75,75,150)
 
-    const val DODGE_TIME = 0.34f
+    const val DODGE_TIME = 0.4f
     const val MAX_DODGE_CHANCE = 0.9f
     const val MAX_DODGE_CHANCE_DROP = 0.15f
     const val DODGE_CHANCE_REFILL_SPEED = 0.1f
@@ -126,6 +123,8 @@ class DodgeAttack(val ship: ShipAPI, val maxDodgeChance:Float, val maxDodgeChanc
 
   override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
 
+    //击中护盾的不闪避
+    if(shieldHit) return null
     //没伤害的，比如维修光束，不需要闪避
     if(damage.baseDamage <= IGNORE_DAMAGE) return null
     if(param is BeamAPI && damage.baseDamage <= IGNORE_DAMAGE * 2f) return null
@@ -138,7 +137,7 @@ class DodgeAttack(val ship: ShipAPI, val maxDodgeChance:Float, val maxDodgeChanc
       dodgeChance -= dodgeChanceDrop
       ship.collisionClass = CollisionClass.NONE
       dodgeTime = maxDodgeTime
-      //任何情况不要 mult 0
+      //除非真的有必要，任何情况不要 mult 0
       damage.modifier.modifyMult(ID,0.01f)
       return ID
     }

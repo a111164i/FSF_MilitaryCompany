@@ -1,11 +1,9 @@
 package data.scripts.weapons;
 
-import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.EveryFrameWeaponEffectPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
-import combat.util.aEP_Tool;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -12,13 +12,12 @@ import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_Tool
 import data.scripts.hullmods.*
-import data.scripts.shipsystems.aEP_Rupture.Companion.JITTER_COLOR
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
@@ -42,7 +41,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
     const val EXTRA_COOLDOWN = 20f
 
     const val REPAIR_TIME_BASE = 10f
-    const val REPAIR_TIME_PER_DP = 1f
+    const val REPAIR_TIME_PER_DP = 0.5f
 
     private val VALID_TARGET_LIST: MutableMap<String, Float> = HashMap()
     init {
@@ -309,6 +308,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
 
     init {
       ship.setCustomData(aEP_ComebackProgram.TEL_KEY,1f)
+      ship.mutableStats.hullDamageTakenMult.modifyMult(aEP_ComebackProgram.ID, 0.01f)
       telClassHandle = this
     }
     override fun advanceImpl(amount: Float) {
@@ -322,6 +322,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
     override fun readyToEnd() {
       super.readyToEnd()
       ship.removeCustomData(aEP_ComebackProgram.TEL_KEY)
+      ship.mutableStats.hullDamageTakenMult.unmodify(aEP_ComebackProgram.ID)
     }
 
     override fun onTel() {

@@ -11,13 +11,11 @@ import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
@@ -33,7 +31,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     const val ACTIVE_KEY = "aEP_EmergencyReconstructActive"
     const val ACTIVE_FRIENDLY_RANGE = 1600f
     const val REPAIR_TIME_BASE = 10f
-    const val REPAIR_TIME_PER_DP = 1f
+    const val REPAIR_TIME_PER_DP = 0.5f
 
     val CHANGE_FAIL_INCREASE_HULLSIZE = HashMap<ShipAPI.HullSize, Float>()
     init {

@@ -1,17 +1,15 @@
 package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.impl.aEP_BaseCombatEffect
-import combat.util.aEP_DataTool
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.getAmount
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.getAmount
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender

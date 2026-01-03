@@ -1,0 +1,38 @@
+{
+    "displayName": "Defense",
+    "fluxCapacitors": 9,
+    "fluxVents": 0,
+    "hullId": "aEP_fga_chichao",
+    "goalVariant": true,
+    "hullMods": [
+        "armoredweapons",
+        "autorepair",
+        "blast_doors",
+        "pointdefenseai",
+        "missleracks",
+        "aEP_EliteShip"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_chichao_Defense",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 000": "lightdualac",
+                "WS 003": "lightdualac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 001": "aEP_m_s_era",
+                "WS 002": "aEP_m_s_era",
+                "WS 004": "aEP_m_s_era",
+                "WS 005": "aEP_m_s_era"
+            }
+        }
+    ]
+}

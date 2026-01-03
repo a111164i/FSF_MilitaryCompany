@@ -1,0 +1,43 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 25,
+    "fluxVents": 0,
+    "goalVariant": true,
+    "hullId": "aEP_cru_hailiang",
+    "hullMods": [
+        "targetingunit",
+        "ballistic_rangefinder",
+        "aEP_ShieldControlled"
+    ],
+    "modules": [
+        {"MD01": "aEP_cru_hailiang3_Elite"},
+        {"MD03": "aEP_cru_hailiang4_Standard"},
+        {"MD02": "aEP_cru_hailiang4_Standard"}
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_hailiang_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "lightneedler",
+                "WS0004": "lightneedler",
+                "WS0005": "miningblaster",
+                "WS0006": "miningblaster"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "devastator"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_ftr_sup_shield_gun"}
+        }
+    ],
+    "wings": []
+}

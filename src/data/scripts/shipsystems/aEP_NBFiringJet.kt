@@ -1,21 +1,21 @@
 package data.scripts.shipsystems
 
 import com.fs.starfarer.api.Global
-import combat.util.aEP_Tool.Util.getAmount
-import combat.util.aEP_Tool.Util.speed2Velocity
-import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.utils.aEP_Tool.Util.getAmount
+import data.scripts.utils.aEP_Tool.Util.speed2Velocity
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.combat.ShipAPI
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import org.lwjgl.util.vector.Vector2f
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.combat.WeaponAPI
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.util.aEP_Tool.Util.velocity2Speed
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.utils.aEP_Tool.Util.velocity2Speed
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color

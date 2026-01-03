@@ -59,8 +59,6 @@ class aEP_RecallDevice : BaseShipSystemScript() {
     }
 
 
-
-
     if (effectLevel > 0f) {
       didActive = true
       var firstTime = false

@@ -1,0 +1,52 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 6,
+    "fluxVents": 10,
+    "goalVariant": true,
+    "hullId": "aEP_cru_hailiang3",
+    "hullMods": [
+        "fluxdistributor",
+        "turretgyros",
+        "magazines"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_hailiang3_Elite",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0003": "multineedler"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "aEP_m_m_fluxtube",
+                "WS0008": "aEP_m_m_fluxtube"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "multineedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "shredder",
+                "WS0002": "shredder"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0004": "shredder",
+                "WS0005": "shredder"
+            }
+        }
+    ],
+    "wings": []
+}

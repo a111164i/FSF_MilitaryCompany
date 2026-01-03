@@ -13,13 +13,13 @@ import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.mission.MissionDefinitionAPI;
 import com.fs.starfarer.api.mission.MissionDefinitionPlugin;
 import com.fs.starfarer.api.util.IntervalUtil;
-import combat.util.aEP_ID;
+import data.scripts.utils.aEP_ID;
 import data.missions.aEP_MissionUtils;
 import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 import static data.missions.aEP_MissionUtils.disableUnknownWeapon;
 
 public class MissionDefinition implements MissionDefinitionPlugin

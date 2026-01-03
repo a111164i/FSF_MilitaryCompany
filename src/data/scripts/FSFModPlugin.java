@@ -7,7 +7,7 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
-import combat.util.aEP_Tool;
+import data.scripts.utils.aEP_Tool;
 import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
 import data.scripts.campaign.FSFCampaignPlugin;

@@ -3,18 +3,16 @@ package data.scripts.campaign.intel;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.campaign.SectorAPI;
-import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin;
 import com.fs.starfarer.api.ui.*;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_ID;
-import org.lazywizard.lazylib.campaign.CampaignUtils;
+import data.scripts.utils.aEP_ID;
 
 import java.awt.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 public class aEP_MarineTrainIntel extends BaseIntelPlugin {
 

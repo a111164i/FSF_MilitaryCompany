@@ -4,26 +4,20 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
-import com.fs.starfarer.api.combat.ShipSystemAPI
-import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.impl.VEs.aEP_SpreadRing
-import combat.impl.aEP_BaseCombatEffect
-import combat.impl.aEP_BaseCombatEffectWithKey
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_DataTool
-import combat.util.aEP_Tool
-import data.scripts.shipsystems.aEP_DamperBoost.Companion.LARGE_FOLD_ARMOR
-import data.scripts.shipsystems.aEP_DamperBoost.Companion.LARGE_FOLD_BELOW
+import data.scripts.utils.aEP_SpreadRing
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.utils.aEP_BaseCombatEffectWithKey
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_Tool
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import java.util.*
-import kotlin.collections.ArrayList
 
 class aEP_FighterProtector : BaseShipSystemScript() {
 

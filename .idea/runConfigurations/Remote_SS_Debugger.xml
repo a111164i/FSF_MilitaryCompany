@@ -11,6 +11,12 @@
       <option name="DEBUG_PORT" value="5005" />
       <option name="LOCAL" value="false" />
     </RunnerSettings>
-    <method v="2" />
+    <method v="2">
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="FSF_MilitaryCorporation:jar" />
+      </option>
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Run SS bat " run_configuration_type="BatchConfigurationType" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Delay 5s" />
+    </method>
   </configuration>
 </component>

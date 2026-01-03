@@ -9,7 +9,10 @@
 
 	"runScriptWhileIdle":true,  # this means unapply() never gets called
 
-	"canUseWhileRightClickSystemOn":false,
+	"canUseWhileRightClickSystemOn":true,
+
+	"clampTurnRateAfter":true,
+  "clampMaxSpeedAfter":true,
 
 	"fadeActivationSoundOnChargedown":true,
 	#"useSound":"aEP_cru_pingding_main_charge",

@@ -7,7 +7,7 @@ import com.fs.starfarer.api.combat.ShipSystemAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 import java.awt.Color
 import java.util.HashMap
 

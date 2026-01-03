@@ -1,6 +1,5 @@
 package data.scripts.shipsystems
 
-import com.fs.graphics.util.Fader
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
@@ -9,12 +8,11 @@ import com.fs.starfarer.api.combat.WeaponAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
-import combat.util.aEP_Combat
-import combat.util.aEP_DataTool
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.combat.WeaponUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
 import org.magiclib.util.MagicRender
@@ -22,7 +20,6 @@ import java.awt.Color
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.pow
-import kotlin.math.sign
 
 class aEP_SiegeMode : BaseShipSystemScript() {
   companion object {
@@ -33,12 +30,14 @@ class aEP_SiegeMode : BaseShipSystemScript() {
     const val RANGE_BONUS_PERCENT = 30f
     const val RANGE_BONUS_FLAT = 300f
 
-    const val BREAK_RANGE = 9999f
+    const val BREAK_RANGE = 99999f
     const val FLUX_INCREASE_MULT = 0.50f
 
     const val MAX_SPEED_REDUCE_MULT = 0.75f
     const val MANEUVER_REDUCE_MULT = 0.5f
 
+    const val SHIELD_ARC_BONUS = 180f
+    const val SHIELD_UNFOLD_SPEED_BONUS = 100f
 
     const val WEAPON_TURNRATE_FLAT_BONUS = 15f
 
@@ -129,6 +128,10 @@ class aEP_SiegeMode : BaseShipSystemScript() {
       Color(0, 0, 0, 0),
       engineLevel, 1f * engineLevel)
 
+    //战斗中动态修改arc是不会生效的
+    val baseRad = ship.getMutableStats().getShieldArcBonus().computeEffective(ship.getHullSpec().getShieldSpec().getArc())
+    ship.getShield().setArc(MathUtils.clamp(baseRad + SHIELD_ARC_BONUS * effectLevel, 0f, 360f))
+
     //修改数值
     if(effectLevel <= 0f){
 
@@ -139,6 +142,8 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         ship.mutableStats.maxSpeed.modifyMult(ID, 1f)
         ship.mutableStats.acceleration.modifyMult(ID, 1f)
         ship.mutableStats.deceleration.modifyMult(ID, 1f)
+
+        ship.mutableStats.shieldUnfoldRateMult.modifyPercent(ID, 0f)
 
         ship.mutableStats.maxTurnRate.modifyMult(ID, 1f)
         ship.mutableStats.turnAcceleration.modifyMult(ID, 1f)
@@ -159,8 +164,8 @@ class aEP_SiegeMode : BaseShipSystemScript() {
           EnumSet.of(WeaponAPI.WeaponType.BALLISTIC,WeaponAPI.WeaponType.ENERGY))
       }
 
-
-    }else if(effectLevel <= 1f){
+    }
+    else if(effectLevel <= 1f){
       if(!didUse){
         //刚刚开启时的第一帧
         didUse = true
@@ -243,6 +248,8 @@ class aEP_SiegeMode : BaseShipSystemScript() {
 
         ship.mutableStats.ballisticRoFMult.modifyPercent(ID, ROF_BONUS_PERCENT)
         ship.mutableStats.energyRoFMult.modifyPercent(ID, ROF_BONUS_PERCENT)
+
+        ship.mutableStats.shieldUnfoldRateMult.modifyPercent(ID, SHIELD_UNFOLD_SPEED_BONUS)
 
         ship.mutableStats.ballisticWeaponRangeBonus.modifyFlat(ID, RANGE_BONUS_FLAT)
         ship.mutableStats.energyWeaponRangeBonus.modifyFlat(ID, RANGE_BONUS_FLAT)

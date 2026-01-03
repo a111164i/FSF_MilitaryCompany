@@ -2,7 +2,7 @@ package data.scripts.hullmods
 
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipHullSpecAPI
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_Tool
 
 class aEP_SelfRotate : aEP_BaseHullMod() {
   companion object {

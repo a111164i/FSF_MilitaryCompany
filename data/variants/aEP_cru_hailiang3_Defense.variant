@@ -1,12 +1,13 @@
 {
     "displayName": "Defense",
-    "fluxCapacitors": 1,
+    "fluxCapacitors": 4,
     "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_cru_hailiang3",
     "hullMods": [
-        "fluxdistributor",
-        "turretgyros"
+        "turretgyros",
+        "armoredweapons",
+        "heavyarmor"
     ],
     "permaMods": [],
     "sMods": [],
@@ -15,28 +16,30 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0006": "aEP_b_l_aa40"}
+            "weapons": {"WS0003": "aEP_b_l_d100t"}
         },
         {
             "autofire": false,
             "mode": "ALTERNATING",
             "weapons": {
-                "WS0007": "aEP_m_m_blasthammer",
-                "WS0008": "aEP_m_m_blasthammer"
+                "WS0007": "breachpod",
+                "WS0008": "breachpod"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_b_l_aa40"}
+            "weapons": {"WS0006": "aEP_b_l_d100t"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {
-                "WS0001": "aEP_b_m_flak",
-                "WS0005": "aEP_b_m_flak"
-            }
+            "weapons": {"WS0001": "aEP_b_m_hv7"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_b_m_hv7"}
         }
     ],
     "wings": []

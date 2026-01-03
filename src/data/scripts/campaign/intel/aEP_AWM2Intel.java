@@ -13,14 +13,12 @@ import com.fs.starfarer.api.ui.IntelUIAPI;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_ID;
-import combat.util.aEP_Tool;
 
 import java.awt.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 
 public class aEP_AWM2Intel extends aEP_BaseMission
 {
@@ -34,17 +32,17 @@ public class aEP_AWM2Intel extends aEP_BaseMission
     this.token = whereToSpawn;
 
     //add Fleet
-    CampaignFleetAPI targetFleet = Global.getFactory().createEmptyFleet("derelict", "奇怪的无人舰", true);
+    CampaignFleetAPI targetFleet = Global.getFactory().createEmptyFleet("derelict", txt("AWM02_targetFleetName"), true);
     targetFleet.getFleetData().addFleetMember(variantId);
     targetFleet.getFleetData().setFlagship(targetFleet.getFleetData().getMembersListWithFightersCopy().get(0));
-    targetFleet.getFlagship().setId(targetShipId);
+    targetFleet.getFlagship().setShipName(targetShipId);
     targetFleet.getFleetData().setOnlySyncMemberLists(false);
     targetFleet.getFleetData().sort();
     targetFleet.setAI(null);
     targetFleet.setNullAIActionText("...");
     //add captain
     PersonAPI person = Global.getFactory().createPerson();
-    person.setFaction("derelict");
+    person.setFaction(Factions.DERELICT);
 
     CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(Commodities.GAMMA_CORE);
     person.setAICoreId(Commodities.GAMMA_CORE);
@@ -92,8 +90,8 @@ public class aEP_AWM2Intel extends aEP_BaseMission
 
     //如果目标舰队中目标舰船已经消失，或者目标舰队已经消失，就算完成
     boolean isGone = true;
-    for (FleetMemberAPI member : targetFleet.getFleetData().getMembersListWithFightersCopy()) {
-      if (member.getId().equals(shipName)) {
+    for (FleetMemberAPI member : targetFleet.getFleetData().getMembersListCopy()) {
+      if ((member.getShipName() != null ? member.getShipName() : "").equals(shipName)) {
         isGone = false;
       }
     }

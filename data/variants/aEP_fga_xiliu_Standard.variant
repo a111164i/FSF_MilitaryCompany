@@ -1,15 +1,13 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 8,
-    "fluxVents": 8,
+    "fluxCapacitors": 10,
+    "fluxVents": 5,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
         "hardened_subsystems",
-        "pointdefenseai",
-        "turretgyros",
-        "autorepair",
-        "aEP_ShieldControlled"
+        "aEP_ShieldControlled",
+        "advancedoptics"
     ],
     "permaMods": [],
     "sMods": [],
@@ -18,20 +16,15 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0009": "ioncannon"}
+            "weapons": {"WS0002": "pulselaser"}
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0002": "aEP_fga_xiliu_main",
-                "WS0003": "aEP_fga_xiliu_main2"
+                "WS0007": "lightneedler",
+                "WS0009": "lightneedler"
             }
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS0007": "aEP_b_s_pom"}
         },
         {
             "autofire": true,

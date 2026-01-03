@@ -4,8 +4,7 @@ package data.scripts.ai;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.graphics.SpriteAPI;
-import combat.util.aEP_Tool;
-import org.lazywizard.lazylib.MathUtils;
+import data.scripts.utils.aEP_Tool;
 import org.lwjgl.util.vector.Vector2f;
 
 public class aEP_FluxTubeAI implements AutofireAIPlugin

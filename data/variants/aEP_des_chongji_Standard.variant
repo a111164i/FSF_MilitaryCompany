@@ -1,7 +1,7 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 15,
-    "fluxVents": 20,
+    "fluxCapacitors": 13,
+    "fluxVents": 14,
     "goalVariant": true,
     "hullId": "aEP_des_chongji",
     "hullMods": [
@@ -15,12 +15,18 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS 001": "gauss"}
+            "weapons": {
+                "WS 000": "heavyac",
+                "WS 001": "mjolnir"
+            }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS 000": "aEP_b_m_mb32"}
+            "weapons": {
+                "WS 002": "aEP_b_s_630",
+                "WS 003": "aEP_b_s_630"
+            }
         }
     ]
 }

@@ -3,7 +3,7 @@ package shaders;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineLayers;
 import com.fs.starfarer.api.combat.ViewportAPI;
-import combat.impl.aEP_BaseCombatEffect;
+import data.scripts.utils.aEP_BaseCombatEffect;
 import org.dark.shaders.util.ShaderLib;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;

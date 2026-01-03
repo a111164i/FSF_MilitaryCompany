@@ -1,17 +1,9 @@
 package data.scripts.hullmods
 
-import com.fs.starfarer.api.Global
 import java.util.HashMap
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
-import com.fs.starfarer.api.ui.Alignment
-import com.fs.starfarer.api.ui.TooltipMakerAPI
-import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_DataTool
-import combat.util.aEP_DataTool.txt
-import combat.util.aEP_ID
-import java.awt.Color
 
 class aEP_ModuleTargeting : aEP_BaseHullMod() {
   companion object {

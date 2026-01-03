@@ -1,21 +1,18 @@
 //by a111164
 package data.scripts.ai
 
-import combat.util.aEP_Tool.Util.moveToPosition
-import combat.util.aEP_Tool.Util.moveToAngle
+import data.scripts.utils.aEP_Tool.Util.moveToPosition
+import data.scripts.utils.aEP_Tool.Util.moveToAngle
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.CombatEntityAPI
 import com.fs.starfarer.api.combat.ShipwideAIFlags
-import com.fs.starfarer.api.impl.campaign.fleets.misc.MiscFleetRouteManager
 import com.fs.starfarer.api.util.WeightedRandomPicker
 import org.lwjgl.util.vector.Vector2f
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.findNearestFriendyShip
-import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.isDead
+import data.scripts.utils.aEP_Tool.Util.findNearestFriendyShip
+import data.scripts.utils.aEP_Tool.Util.getExtendedLocationFromPoint
+import data.scripts.utils.aEP_Tool.Util.isDead
 import data.scripts.hullmods.aEP_ProjectileDenialShield.Companion.keepExplosionProtectListenerToParent
-import data.scripts.shipsystems.aEP_ShuishiDroneLaunch
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
@@ -29,15 +26,16 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
     private const val DRONE_WIDTH_MULT = 0.9f // 1 means by default no gap between, 2 means gap as big as 1 drone
     private const val DRONE_COLLISION_RAD= 35f //有多个不同的drone会用本ai，设置一个通用的
 
+    const val RETHINK_INTERVAL = 20f //最低5秒，最长多少秒重新搜索一次目标
     const val FAR_FROM_PARENT = 45f // 30su far from parent's collisionRadius
     private const val KEY2 = "aEP_AroundDroneList"
     private const val KEY3 = "aEP_MyTarget"
 
     fun getMultiple(size :ShipAPI.HullSize): Float{
       if(size == ShipAPI.HullSize.CAPITAL_SHIP)
-        return 2f
+        return 1f
       else if (size == ShipAPI.HullSize.CRUISER)
-        return 2f
+        return 1f
       else if (size == ShipAPI.HullSize.DESTROYER)
         return 1f
       else if (size == ShipAPI.HullSize.FRIGATE)
@@ -55,37 +53,57 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       val hardPercent = MathUtils.clamp(s.fluxTracker.hardFlux/s.fluxTracker.currFlux,0f,1f)
       val fluxLevel = s.fluxLevel
 
-      val softFluxLevelWeight = 75f
-      val fluxLevelWeight = 200f
 
-      //幅能高于这个比例才视为有危险
-      val threshold = 0.2f
-      if(fluxLevel >threshold){
-        val softLevel = (s.fluxTracker.currFlux - s.fluxTracker.hardFlux)/(s.fluxTracker.maxFlux+1f)
-        val hardLevel = s.fluxTracker.hardFlux/(s.fluxTracker.maxFlux+1f)
-        weight += ((hardLevel-threshold)/(1f-threshold)).pow(2) * fluxLevelWeight
-        weight += ((softLevel-threshold)/(1f-threshold)).pow(2) * softFluxLevelWeight
+      //对于有盾船，幅能高于这个比例才视为有危险
+      if(s.shield != null){
+        val threshold = 0.25f
+        val softFluxLevelWeight = 75f
+        val fluxLevelWeight = 200f
+
+        if(fluxLevel >threshold) {
+          val softLevel = (s.fluxTracker.currFlux - s.fluxTracker.hardFlux) / (s.fluxTracker.maxFlux + 1f)
+          val hardLevel = s.fluxTracker.hardFlux / (s.fluxTracker.maxFlux + 1f)
+          weight += ((hardLevel - threshold) / (1f - threshold)).pow(2) * fluxLevelWeight
+          weight += ((softLevel - threshold) / (1f - threshold)).pow(2) * softFluxLevelWeight
+        }else{
+          weight -= 200f
+        }
+      }else{ //对于无盾船，以结构为阈值
+        val hullLevelWeight = 300f
+
+        if(hullLevel >= 0.95f){
+          weight -= 200f
+        }else{
+          weight += (1f - hullLevel).pow(2) * hullLevelWeight
+        }
       }
 
+      //Only set for phase ships using the default phase cloak AI.
       val inDpsDangerFlagWeight = 75f
-      if(fluxLevel > 0.25f && s.shipAI?.aiFlags?.hasFlag(ShipwideAIFlags.AIFlags.IN_CRITICAL_DPS_DANGER) == true){
+      if(s.shipAI?.aiFlags?.hasFlag(ShipwideAIFlags.AIFlags.IN_CRITICAL_DPS_DANGER) == true){
         weight += inDpsDangerFlagWeight
       }
 
       val needsHelpFlagWeight = 100f
-      if(fluxLevel > 0.35f && s.shipAI?.aiFlags?.hasFlag(ShipwideAIFlags.AIFlags.NEEDS_HELP) == true){
+      if( s.shipAI?.aiFlags?.hasFlag(ShipwideAIFlags.AIFlags.NEEDS_HELP) == true){
         weight += needsHelpFlagWeight
+      }
+
+      val hasIncomingDangerFlagWeight = 75f
+      if( s.shipAI?.aiFlags?.hasFlag(ShipwideAIFlags.AIFlags.HAS_INCOMING_DAMAGE) == true){
+        weight += hasIncomingDangerFlagWeight
       }
 
       val overloadWeight = 150f
       if(s.fluxTracker.isOverloaded){
         weight += overloadWeight
       }
+
       //硬幅能比例只放大，不加减
       weight *= (0.4f + 0.6f * hardPercent)
       //结构值只放大，不加减
       val hullLost = 1f - hullLevel
-      if(hullLost < 0.25f || s.hitpoints < 1000f){
+      if(hullLost > 0.4f || s.hitpoints < 5000f){
         weight *= 2f
       }else{
         weight *= 1f + hullLost
@@ -144,7 +162,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       droneWidthInAngle *= 57.296f // 把rad换成degree
 
       droneWidthInAngle *= (DRONE_WIDTH_MULT*2f)  //半个宽度变成整个宽度
-      timeShouldRethink = MathUtils.getRandomNumberInRange(5f,20f)
+      timeShouldRethink = MathUtils.getRandomNumberInRange(5f,RETHINK_INTERVAL)
     }
 
     override fun advance(amount: Float) {
@@ -183,7 +201,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       if(aimPoint == null){
         aimPoint = toProtect.mouseTarget
       }
-      aimPoint = aimPoint?:aEP_Tool.getExtendedLocationFromPoint(toProtect.location,toProtect.facing, 100f+toProtect.collisionRadius)
+      aimPoint = aimPoint?: getExtendedLocationFromPoint(toProtect.location,toProtect.facing, 100f+toProtect.collisionRadius)
 
       val aimMidAngle = VectorUtils.getFacing(VectorUtils.getDirectionalVector(toProtect.location, aimPoint))
       var aimAngle = aimMidAngle
@@ -201,6 +219,13 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       moveToPosition(ship, toLocation)
       moveToAngle(ship, aimAngle)
 
+      //shipsystem check
+      if(MathUtils.getDistance(ship.location, toLocation) > 800f){
+        if(ship.system != null && ship.system.id.equals("aEP_DroneTeleport")){
+          ship.mouseTarget.set(toLocation.x, toLocation.y)
+          ship.useSystem()
+        }
+      }
 
       //shield check
       // 硬幅能散完就开盾
@@ -250,7 +275,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
     //如果已经在保护，并且被设置了强制跟随，就不再重新搜寻目标
     if(stat is ProtectParent && (stat as ProtectParent).forceTag){
       val s =  (stat as ProtectParent)
-      if(aEP_Tool.isDead(s.toProtect)){
+      if(isDead(s.toProtect)){
         stat = SelfExplode()
       }else{
         return
@@ -268,7 +293,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
           stat = SelfExplode()
         }
       }else{
-        if(!aEP_Tool.isDead(ship.wing.sourceShip)){
+        if(!isDead(ship.wing.sourceShip)){
           stat = ProtectParent(ship.wing.sourceShip)
         }else{
           stat = SelfExplode()
@@ -280,7 +305,7 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       val wingRange = ship.wing.range
       val motherShip = ship.wing.sourceShip?:ship
       //遍历友军，根据危险程度加入权重选择器
-      for(s in AIUtils.getNearbyAllies(motherShip, wingRange + ship.collisionRadius + 200f)){
+      for(s in AIUtils.getNearbyAllies(motherShip, wingRange + ship.collisionRadius + 500f)){
         //危险阈值
         val threshold = 0f
         var weight = getWeight(s)

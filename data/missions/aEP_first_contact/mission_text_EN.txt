@@ -1,0 +1,10 @@
+Location: DWR43 jump point  
+Date: 201.1.12  
+
+"Edge Mapping Fleet 019200, Flagship Icebreaker, Fleet Commander - begin recording. We originally thought the DWR43 system was just a standard blue giant system, but upon crossing the jump point, we discovered an unmarked Remnant presence. Immediately after exiting hyperspace, our probe detected several afterglow fleets in orbit around the jump point in a dormant state."
+
+"Based on data from the Second AI War, activating the fleet's active tracking systems has more than an 80% chance of causing Remnant units to enter patrol mode. After a thorough assessment by this fleet's staff council, we have determined that direct contact with this Remnant fleet is manageable. Consequently, we have unanimously decided to remain near the jump point and actively engage these Remnants."
+
+"If the operation proceeds as planned, this fleet will conduct an active scan after resupply and decide on subsequent actions based on the findings. End of recording."
+
+You can hold F and re-select this mission to restrict unusable equipment. If you want to restore the original settings, please select this mission again without holding F. Please note, the restriction will affect everything. If you wish to remove the restriction, you must select this mission without holding down any buttons.

@@ -5,14 +5,12 @@ import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.impl.campaign.ids.Stats
-import com.fs.starfarer.api.impl.campaign.skills.ElectronicWarfare
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import combat.impl.VEs.aEP_SpreadRing
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Tool
-import data.scripts.weapons.Glow
+import data.scripts.utils.aEP_SpreadRing
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import java.awt.Color
@@ -22,7 +20,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
   companion object{
     const val ID = "aEP_EcmSuppress"
     const val SYSTEM_RANGE = 2000f
-    const val SYSTEM_TIME = 10f
+    const val SYSTEM_TIME = 12f
     val JITTER_COLOR = Color(71,90,175,40)
     val RING_COLOR = Color(71,90,175,125)
     val RING_COLOR2 = Color(71,190,175,125)
@@ -108,7 +106,6 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
   class EcmChange(val ship: ShipAPI, val ecmPoint: Float, lifetime:Float, var arcDelay : Float): aEP_BaseCombatEffect(lifetime, ship){
     init {
       ship.mutableStats.dynamic.getMod(Stats.ELECTRONIC_WARFARE_FLAT).modifyFlat(ID, ecmPoint)
-
     }
 
     override fun advanceImpl(amount: Float) {

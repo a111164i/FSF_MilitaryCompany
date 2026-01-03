@@ -1,12 +1,12 @@
 {
     "displayName": "Attack",
-    "fluxCapacitors": 13,
-    "fluxVents": 20,
+    "fluxCapacitors": 20,
+    "fluxVents": 12,
     "goalVariant": true,
     "hullId": "aEP_des_chongji",
     "hullMods": [
         "targetingunit",
-        "aEP_StrategyThruster"
+        "turretgyros"
     ],
     "permaMods": [],
     "sMods": [],
@@ -15,19 +15,17 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS 001": "mjolnir"}
-        },
-        {
-            "autofire": true,
-            "mode": "LINKED",
-            "weapons": {"WS 000": "aEP_b_m_flak"}
+            "weapons": {
+                "WS 000": "heavymauler",
+                "WS 001": "aEP_b_l_d100t"
+            }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS 002": "aEP_ftr_sup_shield_gun",
-                "WS 003": "aEP_ftr_sup_shield_gun"
+                "WS 002": "aEP_b_s_630",
+                "WS 003": "aEP_b_s_630"
             }
         }
     ]

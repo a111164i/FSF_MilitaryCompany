@@ -19,10 +19,10 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
     val ACTIVE_RANGE_BONUS = HashMap<ShipAPI.HullSize, Float>()
 
     init {
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FIGHTER, 30f)
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FRIGATE, 50f)
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.DESTROYER, 60f)
-      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.CRUISER, 80f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FIGHTER, 40f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.FRIGATE, 85f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.DESTROYER, 90f)
+      ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.CRUISER, 95f)
       ACTIVE_RANGE_BONUS.put(ShipAPI.HullSize.CAPITAL_SHIP, 100f)
       ACTIVE_RANGE_BONUS.withDefault { 60f }
     }
@@ -30,11 +30,11 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
     val PASSIVE_BONUS = HashMap<ShipAPI.HullSize, Float>()
     init {
       PASSIVE_BONUS.put(ShipAPI.HullSize.FIGHTER, 10f)
-      PASSIVE_BONUS.put(ShipAPI.HullSize.FRIGATE, 8f)
-      PASSIVE_BONUS.put(ShipAPI.HullSize.DESTROYER, 12f)
-      PASSIVE_BONUS.put(ShipAPI.HullSize.CRUISER, 20f)
-      PASSIVE_BONUS.put(ShipAPI.HullSize.CAPITAL_SHIP, 25f)
-      PASSIVE_BONUS.withDefault { 0.5f }
+      PASSIVE_BONUS.put(ShipAPI.HullSize.FRIGATE, 20f)
+      PASSIVE_BONUS.put(ShipAPI.HullSize.DESTROYER, 25f)
+      PASSIVE_BONUS.put(ShipAPI.HullSize.CRUISER, 30f)
+      PASSIVE_BONUS.put(ShipAPI.HullSize.CAPITAL_SHIP, 35f)
+      PASSIVE_BONUS.withDefault { 50f }
     }
   }
 
@@ -153,7 +153,7 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     val ship = stats.entity as ShipAPI
-    if (ship == null || ship.isHulk) {
+    if (ship.isHulk) {
       if (needsUnapply) {
         unmodify(id, stats)
         for (w in ship.allWeapons) {

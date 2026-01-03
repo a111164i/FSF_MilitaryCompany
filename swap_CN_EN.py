@@ -150,8 +150,20 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
     def read_json_with_comments(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
-        clean_lines = [line for line in lines if not line.strip().startswith('#')]
-        return json.loads(''.join(clean_lines))
+        
+        clean_content_parts = []
+        for line in lines:
+            # 以第一个#为分割点，拆分注释和有效内容（避免分割JSON字符串内的#）
+            comment_split_result = line.split('#', 1)
+            # 取分割后的第一部分（#之前的有效JSON内容）
+            non_comment_part = comment_split_result[0]
+            # 将有效内容添加到列表（保留原有缩进格式，不影响JSON解析）
+            clean_content_parts.append(non_comment_part)
+        
+        # 拼接所有有效内容，形成无注释的JSON字符串
+        clean_json_string = ''.join(clean_content_parts)
+        # 解析JSON并返回
+        return json.loads(clean_json_string)
 
     script_directory = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_directory)
@@ -273,30 +285,30 @@ def update_setting_in_json(file_path, key, new_value):
 
       
 if __name__ == "__main__":
-    # swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
-    # swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
-    # swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
-    # swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
-    # swap_file_csv("data/campaign/commodities.csv", "commodities", ['name'])
-    # swap_file_csv("data/campaign/market_conditions.csv", "market_conditions", ['name','desc'])
-    # swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4'])
-    # swap_file_csv("data/characters/skills/skill_data.csv", "skill_data", ['name','description','author'])
-    # swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])
-    # swap_file_csv("data/hulls/ship_data.csv", "ship_data", ['name','tech/manufacturer','designation'])
-    # swap_file_csv("data/hullmods/hull_mods.csv","hull_mods",['name','tech/manufacturer','uiTags','desc','short','sModDesc'])
-    # swap_file_csv("data/weapons/weapon_data.csv","weapon_data",['name','tech/manufacturer','primaryRoleStr','customPrimary'])
-    # swap_json("mod_info.json","mod_info")
-    # swap_name("data/missions/aEP_eliminate_mission/descriptor.json", "descriptor.json")
-    # swap_name("data/missions/aEP_eliminate_mission/mission_text.txt", "mission_text.txt")
-    # swap_name("data/missions/aEP_first_contact/descriptor.json", "descriptor.json")
-    # swap_name("data/missions/aEP_first_contact/mission_text.txt", "mission_text.txt")
-    # swap_name("data/missions/aEP_planet_investigation/descriptor.json", "descriptor.json")
-    # swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
-    # swap_name("data/missions/aEP_assassination/descriptor.json", "descriptor.json")
-    # swap_name("data/missions/aEP_assassination/mission_text.txt", "mission_text.txt")
-    # swap_name("data/config/LunaSettings.csv", "LunaSettings.csv")
-    # swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
-    # swap_json("data/world/factions/aEP_FSF.faction", "aEP_FSF","faction")
-    # swap_json("data/world/factions/aEP_FSF_adv.faction", "aEP_FSF_adv","faction")
+    swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
+    swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
+    swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
+    swap_file_csv("data/campaign/special_items.csv", "special_items", ['name','tech/manufacturer','desc'])
+    swap_file_csv("data/campaign/commodities.csv", "commodities", ['name'])
+    swap_file_csv("data/campaign/market_conditions.csv", "market_conditions", ['name','desc'])
+    swap_file_csv("data/strings/descriptions.csv", "descriptions", ['text1','text2','text3','text4','text5'])
+    swap_file_csv("data/characters/skills/skill_data.csv", "skill_data", ['name','description','author'])
+    swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])
+    swap_file_csv("data/hulls/ship_data.csv", "ship_data", ['name','tech/manufacturer','designation'])
+    swap_file_csv("data/hullmods/hull_mods.csv","hull_mods",['name','tech/manufacturer','uiTags','desc','short','sModDesc'])
+    swap_file_csv("data/weapons/weapon_data.csv","weapon_data",['name','tech/manufacturer','primaryRoleStr','customPrimary'])
+    swap_json("mod_info.json","mod_info")
+    swap_name("data/missions/aEP_eliminate_mission/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_eliminate_mission/mission_text.txt", "mission_text.txt")
+    swap_name("data/missions/aEP_first_contact/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_first_contact/mission_text.txt", "mission_text.txt")
+    swap_name("data/missions/aEP_planet_investigation/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
+    swap_name("data/missions/aEP_assassination/descriptor.json", "descriptor.json")
+    swap_name("data/missions/aEP_assassination/mission_text.txt", "mission_text.txt")
+    swap_name("data/config/LunaSettings.csv", "LunaSettings.csv")
+    swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
+    swap_json("data/world/factions/aEP_FSF.faction", "aEP_FSF","faction")
+    swap_json("data/world/factions/aEP_FSF_adv.faction", "aEP_FSF_adv","faction")
     update_setting_in_json("data/config/settings.json", 'aEP_UseEnString', None)
     

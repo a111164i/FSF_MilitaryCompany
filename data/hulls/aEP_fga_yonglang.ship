@@ -9,7 +9,7 @@
     "center": [
         60, 59
     ],
-    "collisionRadius": 80.5,
+    "collisionRadius": 80,
     "coversColor": "",
     "shieldCenter": [
         0, 0

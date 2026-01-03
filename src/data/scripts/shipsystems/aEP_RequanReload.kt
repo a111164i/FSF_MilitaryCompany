@@ -1,7 +1,6 @@
 package data.scripts.shipsystems
 
-import combat.plugin.aEP_CombatEffectPlugin.Mod.addEffect
-import combat.util.aEP_Tool.Util.isNormalWeaponType
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
@@ -9,9 +8,8 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
 import data.scripts.shipsystems.aEP_NCReloadScript.RefresherOrb
 import com.fs.starfarer.api.combat.WeaponAPI
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.utils.aEP_Tool
 import data.scripts.hullmods.aEP_MissilePlatform
 import org.lazywizard.lazylib.MathUtils
 import java.awt.Color

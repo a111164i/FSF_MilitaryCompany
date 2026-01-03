@@ -1,0 +1,27 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 8,
+    "fluxVents": 8,
+    "hullId": "aEP_fga_chichao",
+    "goalVariant": true,
+    "hullMods": [
+        "autorepair",
+        "aEP_EliteShip",
+        "armoredweapons"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_chichao_Elite",
+    "weaponGroups": [{
+        "autofire": false,
+        "mode": "LINKED",
+        "weapons": {
+            "WS 000": "lightac",
+            "WS 001": "lightac",
+            "WS 002": "lightac",
+            "WS 003": "lightac",
+            "WS 004": "aEP_b_s_h37",
+            "WS 005": "aEP_b_s_h37"
+        }
+    }]
+}

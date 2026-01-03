@@ -10,13 +10,13 @@ import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.submarkets.BaseSubmarketPlugin;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
-import combat.util.aEP_ID;
+import data.scripts.utils.aEP_ID;
 import data.scripts.FSFModPlugin;
 import lunalib.lunaSettings.LunaSettings;
 
 import java.util.*;
 
-import static combat.util.aEP_DataTool.txt;
+import static data.scripts.utils.aEP_DataTool.txt;
 import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S1_ITEM_ID;
 import static data.scripts.campaign.intel.aEP_CruiseMissileLoadIntel.S2_ITEM_ID;
 

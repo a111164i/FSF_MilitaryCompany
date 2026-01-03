@@ -8,7 +8,7 @@ import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.ui.ValueDisplayMode;
 import com.fs.starfarer.api.util.Misc;
-import combat.util.aEP_DataTool;
+import data.scripts.utils.aEP_DataTool;
 import data.scripts.campaign.intel.aEP_MarineTrainIntel;
 
 import java.awt.*;

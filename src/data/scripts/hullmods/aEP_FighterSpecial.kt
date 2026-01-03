@@ -16,24 +16,21 @@ import com.fs.starfarer.api.loading.HullModSpecAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import combat.impl.VEs.aEP_MovingSmoke
-import combat.impl.VEs.aEP_SpreadRing
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_Combat
-import combat.util.aEP_ID
-import combat.util.aEP_Render
-import combat.util.aEP_Tool
-import combat.util.aEP_Tool.Util.angleAdd
-import combat.util.aEP_Tool.Util.getExtendedLocationFromPoint
-import combat.util.aEP_Tool.Util.isDead
+import data.scripts.utils.aEP_MovingSmoke
+import data.scripts.utils.aEP_SpreadRing
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Combat
+import data.scripts.utils.aEP_ID
+import data.scripts.utils.aEP_Render
+import data.scripts.utils.aEP_Tool
+import data.scripts.utils.aEP_Tool.Util.angleAdd
+import data.scripts.utils.aEP_Tool.Util.getExtendedLocationFromPoint
+import data.scripts.utils.aEP_Tool.Util.isDead
 import data.scripts.ai.aEP_DroneShieldShipAI
-import data.scripts.shipsystems.aEP_DroneGuard
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.combat.AIUtils
-import org.lazywizard.lazylib.ui.LazyFont
-import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
 import org.magiclib.util.MagicLensFlare
@@ -856,7 +853,7 @@ class BeamDamageReduce(val beam: BeamAPI, val beamTarget: ShipAPI, val lifetime:
 
   override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
     if(param == beam){
-      damage.modifier.modifyMult(aEP_ProjectileDenialShield.ID, 0.025f)
+      damage.modifier.modifyMult(aEP_ProjectileDenialShield.ID, 0.02f)
       return aEP_ProjectileDenialShield.ID
     }
 
@@ -1217,7 +1214,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
           val angle = ship.facing-90f
           var level = 1f- (i.toFloat())/(numOfSmoke.toFloat())
           val reversedLevel = (1f-level)
-          val loc = aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,reversedLevel*maxRange)
+          val loc = getExtendedLocationFromPoint(ship.location,angle,reversedLevel*maxRange)
           val vel = aEP_Tool.speed2Velocity(angle, reversedLevel*maxSpeed)
           engine.addNebulaParticle(
             loc, vel,maxSize*level+minSize, 1f,
@@ -1228,7 +1225,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
           val angle = ship.facing+90f
           var level = 1f- (i.toFloat())/(numOfSmoke.toFloat())
           val reversedLevel = (1f-level)
-          val loc = aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,reversedLevel*maxRange)
+          val loc = getExtendedLocationFromPoint(ship.location,angle,reversedLevel*maxRange)
           val vel = aEP_Tool.speed2Velocity(angle, reversedLevel*maxSpeed)
           engine.addNebulaParticle(
             loc, vel,maxSize*level+minSize, 1f,
@@ -1247,7 +1244,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
             ship.location,  //loc
             ship.facing,  //facing
             null)
-          pro.location.set(aEP_Tool.getExtendedLocationFromPoint(ship.location,ship.facing,rangeCreepPerProj*i))
+          pro.location.set(getExtendedLocationFromPoint(ship.location,ship.facing,rangeCreepPerProj*i))
         }
 
         //play sound
@@ -1280,7 +1277,7 @@ class aEP_CruiseMissile2 : BaseHullMod() {
 
     inner class ApproximatePrimer(ship: ShipAPI) : State(ship) {
       override fun advanceImpl(amount: Float){
-        val detectPoint = aEP_Tool.getExtendedLocationFromPoint(ship.location,ship.facing, FUSE_RANGE)
+        val detectPoint = getExtendedLocationFromPoint(ship.location,ship.facing, FUSE_RANGE)
         val sprite = Global.getSettings().getSprite("aEP_FX","frame")
 
         //每帧更新一次自己碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
@@ -1560,7 +1557,7 @@ class aEP_Module : aEP_BaseHullMod() {
 
     override fun advance(amount: Float) {
       //如果本模块不拥有parent，重置一次状态，并从这里出去
-      if(ship.parentStation == null || aEP_Tool.isDead(ship) || aEP_Tool.isDead(ship.parentStation)) {
+      if(ship.parentStation == null || isDead(ship) || isDead(ship.parentStation)) {
         ship.setApplyExtraAlphaToEngines(false)
         ship.extraAlphaMult = 1f
         ship.extraAlphaMult2 = 1f

@@ -8,7 +8,7 @@ import com.fs.starfarer.api.loading.WeaponSpecAPI
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.Misc
-import combat.util.aEP_ID
+import data.scripts.utils.aEP_ID
 import java.awt.Color
 
 class aEP_TargetSystem : aEP_BaseHullMod() {

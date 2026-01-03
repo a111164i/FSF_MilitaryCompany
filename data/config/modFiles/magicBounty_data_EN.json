@@ -1,0 +1,16 @@
+{
+  "aEP_MagicBounty1": {
+    "job_name": "Digital Undead",
+    "job_description": "An urgent bounty has been issued by the FSF Hidden Factory, targeting the complete eradication of a fleet now under the control of the Remnants. This fleet was originally a test group for an advanced weapons program, scheduled to engage a small combat group of Remnants in a controlled environment to evaluate the combat effectiveness of the 'Redtide-class Dreadnought Modernization Project' in real battle conditions. However, a serious situation has arisen. The Remnant mothership unexpectedly increased its level of countermeasures and dispatched several fleets, including its main forces, effectively severing our contact with the test fleet. Current communication monitoring confirms that although all members of the fleet have been killed, messages such as combat orders are still being transmitted between the ships, as if they are continuing to fight against the Remnants. This development is both unsettling and inexplicable. The mission objective is to eliminate the lost test fleet.",
+    "job_comm_reply": "Human...Battle...Mission...Are you coming to help us...Aaaahhhh",
+    "job_intel_success": "The target fleet appears to have been completely taken over by the remnants. After repeatedly destroying these constantly reconstructing ghost ships, you reported this information.",
+    "job_intel_failure": "After countless reconstructions, you no longer have the strength to keep fighting.",
+    "job_intel_expired": "The target fleet has lost its signal, seemingly using the transverse jump device to enter hyperspace, rendering it untraceable.",
+    "job_difficultyDescription": "If you don't want to join them, it's best to be prepared. The target fleet has some capital ships.",
+    "job_pick_option": "Accept the job",
+    "target_first_name": "01953-",
+    "target_last_name": "A022",
+    "fleet_name": "Lost Fleet",
+    "fleet_flagship_name": "Brave"
+  }
+}

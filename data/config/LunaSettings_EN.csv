@@ -1,0 +1,4 @@
+fieldID,fieldName,fieldType,defaultValue,secondaryValue,fieldDescription,minValue,maxValue,tab
+,,,,,,,,
+aEP_SettingHeader,Header,Header,Campaign,,,,,Settings
+aEP_SettingMissionSkipAwm,Skip 'Advanced Weapon Program' story line,Boolean,false,,"When turned True, story line will be skipped, all rewards can be bought in market at hidden space",,,Settings

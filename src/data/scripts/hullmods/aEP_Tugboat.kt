@@ -3,8 +3,6 @@ package data.scripts.hullmods
 import com.fs.starfarer.api.campaign.BuffManagerAPI.Buff
 import com.fs.starfarer.api.campaign.FleetDataAPI
 import com.fs.starfarer.api.fleet.FleetMemberAPI
-import com.fs.starfarer.campaign.fleet.FleetData
-import combat.util.aEP_Tool.Util.addDebugLog
 import org.lazywizard.lazylib.MathUtils
 import java.util.ArrayList
 

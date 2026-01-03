@@ -1,21 +1,17 @@
 package data.scripts.shipsystems
 
-import com.fs.starfarer.api.FactoryAPI
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
-import com.fs.starfarer.util.IntervalTracker
-import combat.impl.aEP_BaseCombatEffect
-import combat.plugin.aEP_CombatEffectPlugin
-import combat.util.aEP_ID
-import combat.util.aEP_Tool
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_Tool
 import data.scripts.ai.aEP_BaseShipAI
 import data.scripts.ai.aEP_DroneShenduShipAI
 import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
 import org.magiclib.util.MagicRender
