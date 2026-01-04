@@ -108,7 +108,7 @@ class aEP_Skimmer: BaseShipSystemScript(){
       //闪光
       val glowSize = ship.collisionRadius + 400f
       Global.getCombatEngine().addHitParticle(
-        originalLoc, aEP_ID.VECTOR2F_ZERO,
+        originalLoc, Misc.ZERO,
         ship.collisionRadius + 400f,
         1f,0f,0.3f,Color(205,165,25))
 

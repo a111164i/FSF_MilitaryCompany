@@ -1503,8 +1503,7 @@ class aEP_Tool {
 
     fun spawnCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?){
       val c = color?: Color(240,240,240)
-      Global.getCombatEngine().addNebulaSmokeParticle(loc,
-        aEP_ID.VECTOR2F_ZERO,
+      Global.getCombatEngine().addNebulaSmokeParticle(loc, Misc.ZERO,
         radius,
         1f,
         0f,
@@ -1513,8 +1512,7 @@ class aEP_Tool {
         getColorWithAlpha(c, 0.2f *(c.alpha/255f)))
 
 
-      Global.getCombatEngine().addNebulaSmokeParticle(loc,
-        aEP_ID.VECTOR2F_ZERO,
+      Global.getCombatEngine().addNebulaSmokeParticle(loc, Misc.ZERO,
         radius,
         1f,
         0f,
@@ -2301,7 +2299,6 @@ class aEP_Tool {
 
 class aEP_ID{
   companion object{
-    val VECTOR2F_ZERO = Vector2f(0f,0f)
     const val FACTION_ID_FSF = "aEP_FSF"
     const val FACTION_ID_FSF_ADV = "aEP_FSF_adv"
     const val HULLMOD_POINT = "#"

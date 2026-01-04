@@ -110,7 +110,8 @@ class aEP_SiegeMode : BaseShipSystemScript() {
 
           mainTurnRate = if(facingChange < 0f) -calculatedTurnRate else calculatedTurnRate
         }
-        keepWeaponRotate(main!!, amount, mainTurnRate!!)
+        //不需要转了，会干扰系统ai
+        //keepWeaponRotate(main!!, amount, mainTurnRate!!)
       }else{
         mainTurnRate = null
       }

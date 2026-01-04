@@ -1615,7 +1615,7 @@ class aEP_Module : aEP_BaseHullMod() {
       //如果玩家正在操控parent或者玩家鼠标指向了模块的碰撞圈附近，且模块撑起了护盾，在护盾的尖端显示模块当前容量（防止多个模块和本体重叠）
       var shouldShowStatus = false
       if(Global.getCombatEngine().playerShip == parent) shouldShowStatus = true
-      val dist = MathUtils.getDistance(Global.getCombatEngine().playerShip.mouseTarget?: aEP_ID.VECTOR2F_ZERO, ship.location)
+      val dist = MathUtils.getDistance(Global.getCombatEngine().playerShip.mouseTarget?: Misc.ZERO, ship.location)
       if(dist < ship.collisionRadius + 10f) shouldShowStatus = true
       if(shouldShowStatus){
         var color = Misc.getPositiveHighlightColor()

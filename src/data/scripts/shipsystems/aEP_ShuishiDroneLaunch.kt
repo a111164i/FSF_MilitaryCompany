@@ -6,6 +6,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_BaseCombatEffect
 import data.scripts.aEP_CombatEffectPlugin
 import data.scripts.utils.aEP_Combat
@@ -36,7 +37,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
   val spawnTimer = IntervalUtil(0.2f,0.2f)
   var spawned = 0
   val currFighterList = LinkedList<ShipAPI>()
-
+  val toPoint = Vector2f()
   var guideLineLevel = 0f
 
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
@@ -45,6 +46,11 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     val ship = (stats.entity?: return) as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
     //updateDeco(ship, effectLevel,amount)
+
+    //激活第一帧记录一次鼠标位置
+    if(MathUtils.getDistance(toPoint, Misc.ZERO) < 1f || MathUtils.getDistance(toPoint, ship.mouseTarget) < 1f){
+      toPoint.set(ship.mouseTarget)
+    }
 
     val cooldownLevel = MathUtils.clamp((ship.system.cooldownRemaining)/(ship.system.cooldown+0.1f),0f,1f)
     updateIndicator(ship, cooldownLevel)
@@ -58,21 +64,27 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
           //投影轨道完全成型，并且计时器每跳一次，每个系统槽位都刷一个飞机
           //spawned的记数在 createFighter里面，自动的
           if(guideLineLevel >= 1f && spawnTimer.intervalElapsed() && spawned < MAX_SPAWN_PER_USE){
-            //落点不可超过系统射程
-            var toPoint = ship.mouseTarget
+
             //如果是ai使用(ship.shipAi != null)，读取母舰的customData，由systemAI放入
             if(ship.customData.containsKey(aEP_ID.SYSTEM_SHIP_TARGET_KEY) && ship.shipAI != null){
               val t = ship.customData[aEP_ID.SYSTEM_SHIP_TARGET_KEY] as ShipAPI
-              toPoint.set(MathUtils.getRandomPointInCircle(t.location,t.collisionRadius))
-            }else{
-
+              toPoint.set(t.location)
             }
+
+            //落点不可超过系统射程
             val sysRange = aEP_Tool.getSystemRange(ship, SYSTEM_RANGE)
             if(MathUtils.getDistance(toPoint,ship.location) - ship.collisionRadius > sysRange){
               val angle = VectorUtils.getAngle(ship.location,toPoint);
-              toPoint = Vector2f(aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,sysRange+ship.collisionRadius))
+              toPoint.set(aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,sysRange+ship.collisionRadius))
             }
-            createFighter(loc, facing, toPoint, ship?:continue)
+
+            //闪光
+            val glowSize = 75f
+            Global.getCombatEngine().addHitParticle(
+              toPoint, Misc.ZERO,
+              glowSize,
+              1f,0f,0.15f,Color(205,165,25))
+            createFighter(loc, facing, toPoint, ship)
           }
         }
       }
@@ -102,7 +114,11 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
 
   //这个方法只有在玩家开的时候才会每帧调用，不要在这里取巧
   override fun isUsable(system: ShipSystemAPI?, ship: ShipAPI?): Boolean {
-    return super.isUsable(system, ship)
+    return aEP_Tool.checkMouseWithinSystemRange(ship,SYSTEM_RANGE)
+  }
+
+  override fun getInfoText(system: ShipSystemAPI?, ship: ShipAPI?): String? {
+    return aEP_Tool.txtOfMouseWithinSystemRange(ship, SYSTEM_RANGE)
   }
 
   fun updateDeco(ship: ShipAPI, level:Float, amount:Float){
@@ -259,10 +275,10 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     //闪光
     Global.getCombatEngine().addSmoothParticle(
       loc,
-      aEP_ID.VECTOR2F_ZERO,
+      Misc.ZERO,
       100f,1f,0.1f,0.25f,Color.white)
-    aEP_Tool.spawnCompositeSmoke(loc, 50f, 2f,  Color(250, 250, 250, 105),aEP_ID.VECTOR2F_ZERO)
-    aEP_Tool.spawnCompositeSmoke(loc, 100f, 3f,  Color(150, 150, 150, 105),aEP_ID.VECTOR2F_ZERO)
+    aEP_Tool.spawnCompositeSmoke(loc, 50f, 2f,  Color(250, 250, 250, 105), Misc.ZERO)
+    aEP_Tool.spawnCompositeSmoke(loc, 100f, 3f,  Color(150, 150, 150, 105),Misc.ZERO)
 
 
     //用fxDrone是没有自带ai的

@@ -182,7 +182,7 @@ class ShowLocation : aEP_BaseCombatEffect {
     val sprite = Global.getSettings().getSprite("graphics/aEP_FX/frame02.png")
 
     MagicRender.singleframe(sprite,
-      ai.targetLoc?: aEP_ID.VECTOR2F_ZERO,
+      ai.targetLoc?: Misc.ZERO,
       Vector2f(60f,60f),
       45f, Color.yellow,true)
 

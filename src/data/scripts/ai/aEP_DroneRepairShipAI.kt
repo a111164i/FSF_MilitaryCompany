@@ -1,5 +1,3 @@
-//by Tartiflette, for the guiding part
-//by a111164
 package data.scripts.ai
 
 import com.fs.starfarer.api.combat.*

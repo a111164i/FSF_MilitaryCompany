@@ -6,6 +6,7 @@ import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import data.scripts.utils.aEP_Tool.Util.speed2Velocity
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_MovingSmoke
 import org.lazywizard.lazylib.MathUtils
 import data.scripts.utils.aEP_BaseCombatEffect
@@ -120,14 +121,14 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
             alpha = MathUtils.clamp(alpha, 0, 250)
             Global.getCombatEngine().addSmoothParticle(
               toSpawn,
-              aEP_ID.VECTOR2F_ZERO,
+              Misc.ZERO,
               GLOW_SIZE, 1f,
               GLOW_TIME,
               Color(0, 250, 0, alpha)
             )
             Global.getCombatEngine().addSmoothParticle(
               toSpawn,
-              aEP_ID.VECTOR2F_ZERO,
+              Misc.ZERO,
               GLOW_SIZE, 1f,
               GLOW_TIME,
               Color(0, 250, 0, alpha)

@@ -18,7 +18,6 @@ import data.scripts.utils.aEP_BaseCombatEffectWithKey
 import data.scripts.utils.aEP_StickOnHit
 import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import data.scripts.utils.aEP_Combat
-import data.scripts.utils.aEP_ID.Companion.VECTOR2F_ZERO
 import data.scripts.utils.aEP_MovingSmoke
 import data.scripts.utils.aEP_MovingSprite
 import data.scripts.utils.aEP_Render
@@ -511,9 +510,9 @@ class aEP_m_l_harpoon_shot : Effect(){
         //杆子
         MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty"),
           getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
-          getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
           Vector2f(11f,34f),
-          VECTOR2F_ZERO,
+          Misc.ZERO,
           //magicRender的角度开始点比游戏多90
           projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
           Color.white,
@@ -522,9 +521,9 @@ class aEP_m_l_harpoon_shot : Effect(){
         //断杆上
         MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty2"),
           getExtendedLocationFromPoint(projectile.location,projectile.facing,20f),
-          getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
           Vector2f(11f,34f),
-          VECTOR2F_ZERO,
+          Misc.ZERO,
           //magicRender的角度开始点比游戏多90
           projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
           Color(250, 250, 250, 250),
@@ -532,9 +531,9 @@ class aEP_m_l_harpoon_shot : Effect(){
         //断杆下
         MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty3"),
           getExtendedLocationFromPoint(projectile.location,projectile.facing,-20f),
-          getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
           Vector2f(11f,34f),
-          VECTOR2F_ZERO,
+          Misc.ZERO,
           //magicRender的角度开始点比游戏多90
           projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
           Color.white,
@@ -543,9 +542,9 @@ class aEP_m_l_harpoon_shot : Effect(){
         //断杆上
         MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty4"),
           getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
-          getRandomPointInCone(VECTOR2F_ZERO,220f, projectile.facing-15f, projectile.facing+15f),
+          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
           Vector2f(11f,34f),
-          VECTOR2F_ZERO,
+          Misc.ZERO,
           //magicRender的角度开始点比游戏多90
           projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
           Color.white,
@@ -592,7 +591,7 @@ class Glow(val ms: aEP_MovingSprite, val color : Color):aEP_BaseCombatEffect(){
     }
     val  level = 1f - ms.time/ms.lifeTime
     Global.getCombatEngine().addSmoothParticle(
-      ms.loc, VECTOR2F_ZERO,
+      ms.loc, Misc.ZERO,
       size*level+minSize,
       0.5f + 0.5f*level,
       Global.getCombatEngine().elapsedInLastFrame * 2f,
@@ -779,7 +778,7 @@ class aEP_ftr_bom_nuke_bomb_shot : Effect(){
     for (i in 0 until numMax) {
       val size = 400f * SIZE_MULT
       Global.getCombatEngine().addNebulaSmokeParticle(
-        point, VECTOR2F_ZERO,
+        point, Misc.ZERO,
         size,1.5f,
         0.2f, 0.5f,4f,Color(250, 250, 215, 121))
       angle += 360f / numMax
@@ -990,7 +989,7 @@ class EmpArcCloud : aEP_BaseCombatEffect {
     arcTracker.advance(amount)
     if(smokeTracker.intervalElapsed()){
       engine.addNebulaParticle(
-        mine.location, VECTOR2F_ZERO,
+        mine.location, Misc.ZERO,
         nowSize, 2f,
         0.25f,0.25f,1.5f, aEP_cap_nuanchi_missile_shot2.CLOUD_COLOR
       )
@@ -1336,8 +1335,8 @@ class aEP_cap_duiliu_main_shot : Effect(){
 //          blinkTracker.advance(amount)
 //          if(blinkTracker.intervalElapsed()){
 //
-//            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: VECTOR2F_ZERO,200f,1f,0.25f,0.2f, BLINK_COLOR1)
-//            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: VECTOR2F_ZERO,75f,1f,0.25f,0.2f, BLINK_COLOR2)
+//            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: Misc.ZERO,200f,1f,0.25f,0.2f, BLINK_COLOR1)
+//            Global.getCombatEngine().addSmoothParticle(renderLoc,entity?.velocity?: Misc.ZERO,75f,1f,0.25f,0.2f, BLINK_COLOR2)
 //            Global.getCombatEngine().spawnEmpArcVisual(
 //              renderLoc, entity,
 //              toWeapon, null,
@@ -1399,7 +1398,7 @@ class aEP_cap_neibo_main_shot : Effect(){
       false,false,
       projectile?.source,false)
     //红色爆炸特效
-    engine.addSmoothParticle(point, VECTOR2F_ZERO,160f,1f,0.5f,0.2f,Color.red)
+    engine.addSmoothParticle(point, Misc.ZERO,160f,1f,0.5f,0.2f,Color.red)
     var randomVel =
       getRandomPointInCone(point,75f, angleAdd(projectile?.facing?:0f,-200f),angleAdd(projectile?.facing?:0f,160f))
     randomVel = Vector2f(randomVel.x- (point?.x?:0f),randomVel.y-(point?.y?:0f))
@@ -1526,7 +1525,7 @@ class aEP_cru_pingding_main_shot : Effect(){
 
     //最中心的黄色火焰
     Global.getCombatEngine().spawnExplosion(
-      projectile.location, VECTOR2F_ZERO,
+      projectile.location, Misc.ZERO,
       Color(185,105,10),200f,0.2f)
 
     //制退器烟雾
@@ -1684,7 +1683,7 @@ class aEP_cru_pingding_main2_shot : Effect(){
 
     //最中心的黄色火焰
     Global.getCombatEngine().spawnExplosion(
-      projectile.location, VECTOR2F_ZERO,
+      projectile.location, Misc.ZERO,
       Color(185,105,10),200f,0.2f)
 
     //制退器烟雾
@@ -1910,7 +1909,7 @@ class aEP_cru_pingding_main3_shot : Effect(){
     //爆炸的黄色炮口风
     Global.getCombatEngine().spawnExplosion(
       projectile.location,
-      VECTOR2F_ZERO,
+      Misc.ZERO,
       Color(185,105,10),160f,0.4f)
 
     ship ?: return
@@ -2326,7 +2325,7 @@ class aEP_b_l_railwaygun_shot : Effect(){
 
     //最中心的黄色火焰
     Global.getCombatEngine().spawnExplosion(
-      projectile.location, VECTOR2F_ZERO,
+      projectile.location, Misc.ZERO,
       Color(205,175,10),175f,0.2f)
 
     val param = aEP_Tool.FiringSmokeParam()
@@ -2861,7 +2860,7 @@ class aEP_cap_sta_main : EveryFrame(), WeaponRangeModifier{
         fighter, fighter.location, fighter.armorGrid.armorRating*10f,
         DamageType.OTHER, 0f,
         true, false, null)
-      fighter.velocity.set(getRandomPointInCircle(VECTOR2F_ZERO,60f))
+      fighter.velocity.set(getRandomPointInCircle(Misc.ZERO,60f))
       fighter.collisionClass = CollisionClass.NONE
     }
   }
@@ -3362,9 +3361,9 @@ class DiscardSabot(lifeTime: Float, entity: CombatEntityAPI) : aEP_BaseCombatEff
     val projectile = entity as DamagingProjectileAPI
     //弹托左
     MagicRender.battlespace(l,
-      center, getRandomPointInCone(VECTOR2F_ZERO,200f, projectile.facing+10f, projectile.facing+30f),
+      center, getRandomPointInCone(Misc.ZERO,200f, projectile.facing+10f, projectile.facing+30f),
       Vector2f(l.width,l.height),
-      VECTOR2F_ZERO,
+      Misc.ZERO,
       //magicRender的角度开始点比游戏多90
       projectile.facing - 90f, getRandomNumberInRange(0f,90f),
       Color.white,
@@ -3372,9 +3371,9 @@ class DiscardSabot(lifeTime: Float, entity: CombatEntityAPI) : aEP_BaseCombatEff
 
     //弹托右
     MagicRender.battlespace(r,
-      center, getRandomPointInCone(VECTOR2F_ZERO,200f, projectile.facing-30f, projectile.facing-10f),
+      center, getRandomPointInCone(Misc.ZERO,200f, projectile.facing-30f, projectile.facing-10f),
       Vector2f(l.width,l.height),
-      VECTOR2F_ZERO,
+      Misc.ZERO,
       //magicRender的角度开始点比游戏多90
       projectile.facing - 90f, getRandomNumberInRange(-90f,0f),
       Color.white,
@@ -3412,7 +3411,7 @@ class aEP_b_l_dg3_shot : Effect(){
         //百分之25的概率触发一次爆炸特效，这样特效能做夸张一点
         if(getRandomNumberInRange(0f,1f) > 0.25f) return
         //红色爆炸特效
-        engine.addSmoothParticle(point, VECTOR2F_ZERO,160f,1f,0.5f,0.2f,Color.red)
+        engine.addSmoothParticle(point, Misc.ZERO,160f,1f,0.5f,0.2f,Color.red)
         var randomVel =
           getRandomPointInCone(point,75f, angleAdd(projectile?.facing?:0f,-200f),angleAdd(projectile?.facing?:0f,160f))
         randomVel = Vector2f(randomVel.x- (point?.x?:0f),randomVel.y-(point?.y?:0f))
@@ -3638,7 +3637,7 @@ class aEP_b_l_aa40_shot : Effect(){
       //横杠闪光
       MagicRender.battlespace(Global.getSettings().getSprite("graphics/fx/starburst_glow1.png"),
         point,
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         Vector2f(120f , 1200f ),
         Vector2f(-10f, -400f ),
         90f,
@@ -4125,7 +4124,7 @@ class aEP_b_m_h88_shot : Effect() {
       }
       val  level = 1f - ms.time/ms.lifeTime
       Global.getCombatEngine().addSmoothParticle(
-        ms.loc, VECTOR2F_ZERO,
+        ms.loc, Misc.ZERO,
         extraSize*level + endSize,
         0.5f + 0.5f*level,
         Global.getCombatEngine().elapsedInLastFrame * 2f,
@@ -4178,7 +4177,7 @@ class AdsDamageListener(val proj: MissileAPI) : aEP_BaseCombatEffect(0f, proj){
       val toErase = projs[0]
       if(toErase.damage.baseDamage < keyDamage){
         Global.getCombatEngine().spawnExplosion(
-          toErase.location, VECTOR2F_ZERO,
+          toErase.location, Misc.ZERO,
           proj.spec.glowColor,
           (toErase.damage.baseDamage/8f).coerceAtMost(120f),
         0.35f)
@@ -4423,7 +4422,7 @@ class DriftToTarget : aEP_BaseCombatEffect{
     //begin
 //    aEP_Render.openGL11Abs()
 //
-//    val center = Vector2f(entity?.location?: VECTOR2F_ZERO)
+//    val center = Vector2f(entity?.location?: Misc.ZERO)
 //    val rad = MAGNETIC_ATTRACTION_RANGE
 //    val width = 3f
 //
@@ -4590,7 +4589,7 @@ class aEP_m_s_bomblance_shot : Effect(){
         getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
         getRandomPointInCone(Vector2f(0f,0f),100f, projectile.facing-30f, projectile.facing+30f),
         Vector2f(12f,200f),
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         //magicRender的角度开始点比游戏多90
         projectile.facing - 90f, getRandomNumberInRange(-20f,20f),
         Color.white,
@@ -4602,7 +4601,7 @@ class aEP_m_s_bomblance_shot : Effect(){
         getExtendedLocationFromPoint(projectile.location,projectile.facing,50f),
         getRandomPointInCone(Vector2f(0f,0f),100f, projectile.facing-30f, projectile.facing+30f),
         Vector2f(4f,43f),
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         //magicRender的角度开始点比游戏多90
         projectile.facing - 90f, getRandomNumberInRange(-20f,20f),
         Color.white,
@@ -4612,7 +4611,7 @@ class aEP_m_s_bomblance_shot : Effect(){
         getExtendedLocationFromPoint(projectile.location,projectile.facing,-50f),
         getRandomPointInCone(Vector2f(0f,0f),100f, projectile.facing-30f, projectile.facing+30f),
         Vector2f(4f,140f),
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         //magicRender的角度开始点比游戏多90
         projectile.facing - 90f, getRandomNumberInRange(-20f,20f),
         Color.white,
@@ -4624,7 +4623,7 @@ class aEP_m_s_bomblance_shot : Effect(){
         getExtendedLocationFromPoint(projectile.location,projectile.facing,50f),
         getRandomPointInCone(Vector2f(0f,0f),100f, projectile.facing-30f, projectile.facing+30f),
         Vector2f(4f,43f),
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         //magicRender的角度开始点比游戏多90
         projectile.facing - 90f, getRandomNumberInRange(-20f,20f),
         Color.white,
@@ -4634,7 +4633,7 @@ class aEP_m_s_bomblance_shot : Effect(){
         getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
         getRandomPointInCone(Vector2f(0f,0f),100f, projectile.facing-30f, projectile.facing+30f),
         Vector2f(4f,100f),
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         //magicRender的角度开始点比游戏多90
         projectile.facing - 90f, getRandomNumberInRange(-20f,20f),
         Color.white,
@@ -4644,7 +4643,7 @@ class aEP_m_s_bomblance_shot : Effect(){
         getExtendedLocationFromPoint(projectile.location,projectile.facing,-50f),
         getRandomPointInCone(Vector2f(0f,0f),100f, projectile.facing-30f, projectile.facing+30f),
         Vector2f(4f,40f),
-        VECTOR2F_ZERO,
+        Misc.ZERO,
         //magicRender的角度开始点比游戏多90
         projectile.facing - 90f, getRandomNumberInRange(-20f,20f),
         Color.white,
@@ -4948,7 +4947,7 @@ class aEP_fga_yonglang_main_shot : Effect(){
       Color(200, 200, 200, 250))
 
     Global.getCombatEngine().addSmoothParticle(
-      toSpawn, VECTOR2F_ZERO,
+      toSpawn, Misc.ZERO,
       300f,1f,0.33f,0.15f,
       Color.white)
 
@@ -4964,8 +4963,8 @@ class aEP_fga_yonglang_main_shot : Effect(){
 //    Global.getSoundPlayer().playSound(
 //      "heavy_mortar_fire",
 //      1f, 1.2f,  // pitch,volume
-//      weapon.ship?.location?: VECTOR2F_ZERO,
-//      weapon.ship?.velocity?: VECTOR2F_ZERO)
+//      weapon.ship?.location?: Misc.ZERO,
+//      weapon.ship?.velocity?: Misc.ZERO)
 
 
   }
@@ -5167,7 +5166,7 @@ open class aEP_m_s_era :EveryFrame(){
             w.ship, w, w.spec.weaponId,
             w.getFirePoint(0),  //FirePoint得到的是绝对位置
             w.currAngle,
-            w.ship?.velocity?: VECTOR2F_ZERO) as MissileAPI
+            w.ship?.velocity?: Misc.ZERO) as MissileAPI
           proj.explode()
           w.ammo -= 1
 
@@ -5297,7 +5296,7 @@ class aEP_m_s_magnetmine_shot : Effect(){
       explosion.location, Vector2f(64f, 64f), originalProjectile.facing - 90f, "aEP_FX.magnetmine_shell"
     )
     upper.angleSpeed = getRandomNumberInRange(-30f,30f)
-    upper.velocity = getRandomPointInCircle(VECTOR2F_ZERO,30f)
+    upper.velocity = getRandomPointInCircle(Misc.ZERO,30f)
     upper.fadeIn = 0f
     upper.fadeOut = 0.25f
     upper.lifeTime = 4f
@@ -5372,7 +5371,7 @@ class aEP_m_m_magnetmine_shot : Effect(){
       explosion.location, Vector2f(64f, 64f), originalProjectile.facing - 90f, "aEP_FX.magnetmine_shell"
     )
     upper.angleSpeed = getRandomNumberInRange(-30f,30f)
-    upper.velocity = getRandomPointInCircle(VECTOR2F_ZERO,30f)
+    upper.velocity = getRandomPointInCircle(Misc.ZERO,30f)
     upper.fadeIn = 0f
     upper.fadeOut = 0.25f
     upper.lifeTime = 4f

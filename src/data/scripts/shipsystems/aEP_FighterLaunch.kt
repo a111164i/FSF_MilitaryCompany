@@ -334,7 +334,7 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
         return slot.computePosition(ship)
       }
     }
-    return aEP_ID.VECTOR2F_ZERO
+    return Vector2f(0f,0f)
   }
 
   override fun unapply(stats: MutableShipStatsAPI?, id: String?) {

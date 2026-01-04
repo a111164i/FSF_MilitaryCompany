@@ -9,30 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc5 01">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc5 02">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Repair.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Repair.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Elite.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Standard.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AdvanceWeaponMission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AdvanceWeaponMission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM3Intel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM3Intel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneSupplyShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneSupplyShipAI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_AttackCarrier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_AttackCarrier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Strafe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Strafe.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swap_CN_EN.py" beforeDir="false" afterPath="$PROJECT_DIR$/swap_CN_EN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SpecialHull.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SpecialHull.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneGuard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneGuard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NCReloadScript.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NCReloadScript.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Skimmer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Skimmer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamRepair.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamRepair.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_ThrusterAnimation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_ThrusterAnimation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +114,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.kotlin&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -378,14 +373,12 @@
       <workItem from="1767428354142" duration="22089000" />
       <workItem from="1767452075699" duration="683000" />
       <workItem from="1767452774963" duration="18709000" />
-    </task>
-    <task id="LOCAL-00013" summary="4.8rc1">
-      <option name="closed" value="true" />
-      <created>1725041601051</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1725041601051</updated>
+      <workItem from="1767472134113" duration="458000" />
+      <workItem from="1767505168560" duration="98000" />
+      <workItem from="1767505395642" duration="897000" />
+      <workItem from="1767506324096" duration="47000" />
+      <workItem from="1767506816214" duration="2752000" />
+      <workItem from="1767510552196" duration="363000" />
     </task>
     <task id="LOCAL-00014" summary="4.8rc1">
       <option name="closed" value="true" />
@@ -771,7 +764,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767465044611</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="//----------------------------------------------//&#10;5.0rc5 02">
+      <option name="closed" value="true" />
+      <created>1767472154354</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1767472154354</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -844,7 +845,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc3&#10;平衡性：&#10;  武器：&#10;    破门锥鱼雷：&#10;      弹体耐久800-&gt;625&#10;    图钉磁吸炸弹：&#10;      吸引力下调&#10;&#10;  插件：&#10;    热填弹系统：&#10;      被隐藏，为了存档兼容性问题先不删除，等重做&#10;    神速芯控：&#10;      常驻射速加成20%-&gt;25%&#10;      同时使能量/实弹武器幅能产出+5%&#10;      战术系统开启后加成不再翻倍（额外的射速加成被直接给到战术系统里，插件只提供常驻）&#10;&#10;  舰船：&#10;    温跃层级：&#10;      战术系统开启时获得25%的实弹/能量武器射速与弹药回复速度上升（抵消神速芯控改动的影响）&#10;    中流级：&#10;      装配点135-&gt;140&#10;    细流级：&#10;      内置主炮聚焦模式的电弧弹跳范围300-&gt;500，弹跳次数6-&gt;5&#10;      内置主炮的速射模式攻击特效被移除，dps350-&gt;375&#10;    涌浪级：&#10;      现在不再将敌舰链在重力矛上，而是自己身上&#10;&#10;  武器：&#10;    zt-125和aa40：&#10;      攻击特效被移除（极低概率只有2%，正常情况下增伤少到可以忽略，移除这种为了特效而特效的特效减少阅读量）&#10;    GP-80高射炮：&#10;      攻击特效被移除&#10;      装配点10-&gt;9&#10;      伤害150-&gt;300&#10;    K-9机载轻机枪:&#10;      射程450-&gt;400&#10;&#10;&#10;其他：&#10;    适配了0.98&#10;    修复了石珊瑚级中间大复合炮塔槽位被设定为挂载点的问题&#10;    略微下调了洋脊级战术系统的视觉特效&#10;    略微下调了离岸流级战术系统的视觉特效&#10;    在FSF星系中心防御站中增加了黑市&#10;    涌浪级的战术系统现在使用类似通灵塔系统的新版电弧" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc4 01" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 01" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc5 01" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc5 02" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

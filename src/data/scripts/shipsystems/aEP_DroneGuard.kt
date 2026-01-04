@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_ID
 import data.scripts.utils.aEP_Tool
 import data.scripts.utils.aEP_Tool.Util.speed2Velocity
@@ -33,8 +34,7 @@ class aEP_DroneGuard: BaseShipSystemScript(){
     Global.getSector().playerFaction.createRandomPerson()
       //闪光
       Global.getCombatEngine().addSmoothParticle(
-        originalLoc,
-        aEP_ID.VECTOR2F_ZERO,
+        originalLoc, Misc.ZERO,
         150f,1f,0.1f,0.3f,Color.yellow)
 
       //在原位置加烟
@@ -66,7 +66,7 @@ class aEP_DroneGuard: BaseShipSystemScript(){
       //闪光
       Global.getCombatEngine().addSmoothParticle(
         ship.location,
-        aEP_ID.VECTOR2F_ZERO,
+        Misc.ZERO,
         100f,1f,0.1f,0.3f,Color.white)
 
       //残影

@@ -139,7 +139,7 @@ class aEP_AttackCarrier:aEP_BaseHullMod() {
         }
         //放音效
         val p = computePunish(ship)
-        Global.getSoundPlayer().playSound(FORGE_ACTIVE_SOUND_ID,0.25f,0.8f,ship.location,aEP_ID.VECTOR2F_ZERO)
+        Global.getSoundPlayer().playSound(FORGE_ACTIVE_SOUND_ID,0.25f,0.8f,ship.location,Misc.ZERO)
         aEP_CombatEffectPlugin.addEffect(ForgeOn(FORGE_TOTAL_TIME + p,ship))
       }
     }

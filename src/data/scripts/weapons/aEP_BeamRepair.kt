@@ -2,7 +2,7 @@ package data.scripts.weapons
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
-import data.scripts.utils.aEP_ID.Companion.VECTOR2F_ZERO
+import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_Tool
 import data.scripts.hullmods.aEP_SpecialHull
 import java.awt.Color
@@ -48,9 +48,9 @@ class aEP_BeamRepair : BeamEffectPlugin {
 
       //先在光束落点加一个特效
       engine.spawnExplosion(
-        beam.to, VECTOR2F_ZERO, REPAIR_COLOR2, 60f, 0.75f)
+        beam.to, Misc.ZERO, REPAIR_COLOR2, 60f, 0.75f)
       engine.addHitParticle(
-        beam.to, VECTOR2F_ZERO, 150f, 0.75f, 0.1f, 0.2f, REPAIR_COLOR)
+        beam.to, Misc.ZERO, 150f, 0.75f, 0.1f, 0.2f, REPAIR_COLOR)
 
       //把本船，本船的模块，本船的母舰，统统视为一个整体
       //按照顺序选择修谁

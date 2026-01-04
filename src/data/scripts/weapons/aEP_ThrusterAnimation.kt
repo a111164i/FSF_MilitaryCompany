@@ -3,6 +3,7 @@ package data.scripts.weapons
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.WeaponAPI
+import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_ID
 import data.scripts.utils.aEP_Tool
 import org.magiclib.weapons.MagicVectorThruster
@@ -17,7 +18,7 @@ class aEP_ThrusterAnimation : MagicVectorThruster() {
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
     if (enable) {
       super.advance(amount, engine, weapon)
-      engine.addSmoothParticle(weapon.location,aEP_ID.VECTOR2F_ZERO,40f,1f,aEP_Tool.getAmount(null),ENGINE_GLOW)
+      engine.addSmoothParticle(weapon.location,Misc.ZERO,40f,1f,aEP_Tool.getAmount(null),ENGINE_GLOW)
     }
   }
 
