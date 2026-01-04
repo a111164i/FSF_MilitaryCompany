@@ -41,8 +41,20 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   public static final String MISSILE_CARRIER_SPEC_ID = "aEP_des_shendu_mk2";
 
   /**
+   * @return 为true时，会清掉当前所有选项，再添加新的选项（如果有的话）
+   * 原版的AddOption就为true，调用以后会清掉当前所有选项再新增一个，很不好用
+   */
+
+  @Override
+  public boolean doesCommandAddOptions() {
+    return super.doesCommandAddOptions();
+  }
+
+  /**
    * @param params commodityId, check threshold, moreOrLess.
    */
+
+
 
   @Override
   public boolean execute(String ruleId, InteractionDialogAPI dialog, List<Misc.Token> params, java.util.Map<String, MemoryAPI> memoryMap) {
@@ -78,8 +90,6 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
         }
         case "shouldStart2":
           return shouldStart2();
-        case "show2":
-          return show2();
         case "start2": {
           if(person != null) person.getRelToPlayer().setRel(person.getRelToPlayer().getRel() + 0.1f);
           return start2();
@@ -164,6 +174,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   }
 
   boolean shouldStart() {
+    //如果跳过主线，不开始第一个任务
     if(Global.getSector().getMemoryWithoutUpdate().getBoolean("$aEP_isSkipAwmMission") == true){
       return false;
     }
@@ -265,14 +276,6 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     return has && levelIsEnough && mission1Completed;
   }
 
-  boolean show2() {
-    dialog.getOptionPanel().setEnabled(memoryMap.get("local").getString("$option"), false);
-
-    if (!dialog.getOptionPanel().hasOption("aEP_researcher_stage1_talk05")) {
-      dialog.getOptionPanel().addOption(txt("aEP_AdvanceWeaponMission01"), "aEP_researcher_stage1_talk05");
-    }
-    return true;
-  }
 
   boolean start2() {
     FactionAPI faction = Global.getSector().getFaction("aEP_FSF");
@@ -562,16 +565,15 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   boolean checkPermission4() {
     FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
     dialog.getOptionPanel().clearOptions();
-    if(faction.getMemoryWithoutUpdate().contains("$AWM_4Complete" ) ){
+    boolean skipKey = Global.getSector().getMemoryWithoutUpdate().getBoolean("$aEP_isSkipAwmMission");
+    if(faction.getMemoryWithoutUpdate().contains("$AWM_4Complete") ||  skipKey ){
       dialog.getOptionPanel().addOption(txt("AWM04_have_permission"), "aEP_researcher_stage3_guardian_met_have");
     }
     dialog.getOptionPanel().addOption(txt("AWM04_nothave_permission"),"aEP_researcher_stage3_guardian_met_nothave");
 
-    if(Global.getSettings().isDevMode()){
-      dialog.getOptionPanel().addOption("Dev mode force pass", "aEP_researcher_stage3_guardian_met_have");
-    }
-
     return false;
   }
+
+
 }
 

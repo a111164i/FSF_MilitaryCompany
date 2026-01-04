@@ -50,7 +50,9 @@ public class FSFCampaignPlugin implements EveryFrameScript {
     if(FSFModPlugin.isLunalibEnabled){
       //如果启用了跳过主线，加入memKey
       boolean shouldSkip = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingMissionSkipAwm");
-      if(shouldSkip){
+      boolean skipKey = Global.getSector().getMemoryWithoutUpdate().getBoolean("$aEP_isSkipAwmMission");
+      if(shouldSkip && !skipKey){
+        //这个key用来过隐藏星系守门舰队
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_isSkipAwmMission", true);
         //无条件刷出赏金
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_HvbKey_01", true);

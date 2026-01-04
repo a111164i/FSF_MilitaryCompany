@@ -263,7 +263,6 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     })*/
 
 
-
     //加个星门
     val gate: SectorEntityToken = system.addCustomEntity(
       "DWR43_gate2",  // unique id
@@ -317,7 +316,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     system.addScript(DiscoverSector(system, FSF_SpaceFactoryMarket, FSF_MiningStationMarket, well, jumpPoint1))
 
     //创建空间站守护者舰队，同时加入脚本捕捉玩家第一次进入星系，必须延迟一秒再生成，构建星系的时候势力文件还没完成，此时根据任何势力都刷不出东西
-    //如果启用了跳过主线，不生成
+    //如果启用了跳过主线，$AWM_4Complete会被设置为true，依然生成了守护舰队但可以直接对许可
     var shouldSkip = false
     //if (FSFModPlugin.isLunalibEnabled) shouldSkip = getBoolean("FSF_MilitaryCorporation", "aEP_SettingMissionSkipAwm")!!
     if (!shouldSkip) {
@@ -521,10 +520,7 @@ fun spawnFleet(jumpPoint:JumpPointAPI, market:MarketAPI ) : CampaignFleetAPI{
 
 
   //手捏一个指挥官，多给几个指挥官技能
-  val person = Global.getFactory().createPerson()
-    person.portraitSprite = "graphics/portraits/portrait_pirate02.png"
-  person.name = FullName("phrex", "jin", FullName.Gender.MALE)
-  person.gender = person.getName().getGender()
+  val person = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF).createRandomPerson()
   person.setFaction(aEP_ID.FACTION_ID_FSF)
   person.rankId = Ranks.SPACE_CAPTAIN
   person.postId = Ranks.POST_FLEET_COMMANDER

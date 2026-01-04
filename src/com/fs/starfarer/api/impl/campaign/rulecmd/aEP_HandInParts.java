@@ -23,7 +23,7 @@ public class aEP_HandInParts extends BaseCommandPlugin
   String extra;
 
   /**
-   * @param params commodity, quantity, return commodity, return quantity, extra
+   * @param params commodity上交什么, quantity上交多少（可以为负数改为获得）, return commodity返还什么, return quantity返还多少, extra其他功能
    */
   @Override
   public boolean execute(String ruleId, InteractionDialogAPI dialog, java.util.List<Misc.Token> params, Map<String, MemoryAPI> memoryMap) {
@@ -50,7 +50,7 @@ public class aEP_HandInParts extends BaseCommandPlugin
       //get cargo
       CargoAPI cargo = Global.getSector().getPlayerFleet().getCargo();
       switch (extra) {
-        case "chooseNum":
+        case "chooseNum":  //选择上交多少个，每上交一个返还returnNum个
           if (selectValue == 0f) {
             CargoAPI copy = Global.getFactory().createCargo(false);
             //copy.addAll(cargo);
@@ -73,11 +73,11 @@ public class aEP_HandInParts extends BaseCommandPlugin
           }
           else {
             num = selectValue;
-            selectValue = 0f;
             returnNum = num * returnNum;
+            selectValue = 0f;
           }
           break;
-        case "chooseToBuy":
+        case "chooseToBuy":  //选择获得多少个（Cargo页面自动把selectValue设置为负数），每获得一个返还returnNum个（如果要失去记得写成负数）
           if (selectValue == 0f) {
             CargoAPI copy = Global.getFactory().createCargo(false);
             //copy.addAll(cargo);
@@ -95,25 +95,25 @@ public class aEP_HandInParts extends BaseCommandPlugin
           }
           else {
             num = selectValue;
-            selectValue = 0f;
             returnNum = num * returnNum;
+            selectValue = 0f;
           }
           break;
-        case "showNum":
+        case "showNum": //仅显示当前拥有多少个commodity，除了community其他都写none和0
           dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts01"), Color.white, Color.yellow, (int) cargo.getCommodityQuantity(commodity) + " ", Global.getSettings().getCommoditySpec(commodity).getName() + "");
           return true;
       }
 
-      //上交物品
+      //-----------------------------------------------------------------------------------//
+      //检测上交物品的类型单独处理，星币需要单开一栏，它不算物品（依然可以通过负数变成增加）
+      //检索顺序为 普通物品，无data的特殊物品，武器，联队LPC
       if (commodity.equals("credits")) {
         if (cargo.getCredits().get() < num) {
           dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts02"));
           return false;
         }
-        {
-          cargo.getCredits().subtract(num);
-          dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts03"), Color.white, Color.red, (int) num + "");
-        }
+        cargo.getCredits().subtract(num);
+        dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts03"), Color.white, Color.red, (int) num + "");
       }
       else if (!commodity.equals("none") && !commodity.equals("credits")) {
         if (cargo.getCommodityQuantity(commodity) < num) {
@@ -122,53 +122,56 @@ public class aEP_HandInParts extends BaseCommandPlugin
           return false;
         }
         else {
+          // commodity的num大于0是上交，小于0是获得
           if (num >= 0) {
             SettingsAPI settings = Global.getSettings();
+            String commdityName = "";
             if (settings.getCommoditySpec(commodity) != null) {
               cargo.removeCommodity(commodity, num);
-              String commdityName = Global.getSettings().getCommoditySpec(commodity).getName();
-              dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts05"), Color.white, Color.red, (int) num + "", commdityName + "");
+              commdityName = Global.getSettings().getCommoditySpec(commodity).getName();
             }
             else if (settings.getSpecialItemSpec(commodity) != null) {
               cargo.removeItems(CargoAPI.CargoItemType.SPECIAL, commodity, num);
-              String commdityName = Global.getSettings().getSpecialItemSpec(commodity).getName();
-              dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts05"), Color.white, Color.red, (int) num + "", commdityName + "");
+              commdityName = Global.getSettings().getSpecialItemSpec(commodity).getName();
             }
             else if (settings.getWeaponSpec(commodity) != null) {
               cargo.removeItems(CargoAPI.CargoItemType.WEAPONS, commodity, num);
-              String commdityName = Global.getSettings().getWeaponSpec(commodity).getWeaponName();
-              dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts05"), Color.white, Color.red, (int) num + "", commdityName + "");
+              commdityName = Global.getSettings().getWeaponSpec(commodity).getWeaponName();
             }
+            else if (settings.getFighterWingSpec(commodity) != null) {
+              cargo.removeItems(CargoAPI.CargoItemType.FIGHTER_CHIP, commodity, num);
+              commdityName = Global.getSettings().getFighterWingSpec(commodity).getWingName();
+            }
+            dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts05"), Color.white, Color.red, (int) num + "", commdityName + "");
           }
           else {
             SettingsAPI settings = Global.getSettings();
+            String commdityName = "";
+            // num是负数，记得取反变成正数处理
             if (settings.getCommoditySpec(commodity) != null) {
               cargo.addCommodity(commodity, -num);
-              String commdityName = Global.getSettings().getCommoditySpec(commodity).getName();
-              dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts06"), Color.white, Color.green, (int) -num + "", commdityName + "");
-
+              commdityName = Global.getSettings().getCommoditySpec(commodity).getName();
             }
             else if (settings.getSpecialItemSpec(commodity) != null) {
               cargo.addSpecial(new SpecialItemData(commodity, null), -num);
-              String commdityName = Global.getSettings().getSpecialItemSpec(commodity).getName();
-              dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts06"), Color.white, Color.green, (int) -num + "", commdityName + "");
+              commdityName = Global.getSettings().getSpecialItemSpec(commodity).getName();
             }
             else if (settings.getWeaponSpec(commodity) != null) {
-              cargo.addWeapons(commodity, -(int) num);
-              String commdityName = Global.getSettings().getWeaponSpec(commodity).getWeaponName();
-              dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts06"), Color.white, Color.green, (int) -num + "", commdityName + "");
+              cargo.addItems(CargoAPI.CargoItemType.WEAPONS, commodity, -num);
+              commdityName = Global.getSettings().getWeaponSpec(commodity).getWeaponName();
             }
-
+            else if (settings.getFighterWingSpec(commodity) != null) {
+              cargo.addItems(CargoAPI.CargoItemType.FIGHTER_CHIP, commodity, -num);
+              commdityName = Global.getSettings().getFighterWingSpec(commodity).getWingName();
+            }
+            dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts06"), Color.white, Color.green, (int) -num + "", commdityName + "");
           }
 
         }
       }
 
-
+      //对于蓝图这种有data的特殊物品，使用extra处理
       switch (extra) {
-        case "linked":
-          returnNum = returnNum * num;
-          break;
         case "ship_bp":
           cargo.addSpecial(new SpecialItemData("ship_bp", returnCommodity), returnNum);
           dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_HandInParts07"), Color.white, Color.green, Global.getSettings().getHullSpec(returnCommodity).getNameWithDesignationWithDashClass() + "");
@@ -182,8 +185,8 @@ public class aEP_HandInParts extends BaseCommandPlugin
 
       }
 
-
-      //返还物品
+      //-----------------------------------------------------------------------------------//
+      //返还物品，物品检测的逻辑较为简单.所以单纯只是要给奖励物品的话，通过上交物品的数量改为负数来实现获得，而返还物品写none 0
       if (returnCommodity.equals("credits")) {
         if (returnNum < 0) {
           returnNum = Math.abs(returnNum);

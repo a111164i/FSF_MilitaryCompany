@@ -113,7 +113,7 @@ $faction.AWM_1Complete == false
 ","ShowPersonVisual
 ","""那么现在你有时间了吗，这件工作涉及到一些机密内容，但我保证回报超过你的想象""","0:aEP_researcher_stage0_talk01:""说说内容""
 1:cutCommLink:""抱歉我暂时还是没有时间""",
-aEP_researcher_stage0_greeting_InWithHostile,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage0_greeting_InWithHostile,PickGreeting,"$isaEP_Researcher
 $faction.isHostile SCORE:10000
 $faction.AWM_MetYang == true
 
@@ -194,7 +194,7 @@ $faction.AWM_2Complete == false
 aEP_AdvanceWeaponMission shouldStart2
 ","$faction.AWM_2MetYang = true
 aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我这里有一份新的工作给你，感兴趣的话随时可以联系我--你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
-aEP_researcher_stage1_greeting_out,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage1_greeting_out,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_1Complete == true
 $faction.AWM_2Complete == false
@@ -217,15 +217,17 @@ $faction.AWM_2Talked = true
 $personFirstName站在旁边等着你审视完这艘奇怪的舰船，然后摆了一个手势，全息投影开始播放后续内容。无人舰保持静默，而小行星在四周漂浮，在某颗小行星快撞到无人舰的瞬间，它竟然产生了一层护盾。",0:aEP_researcher_stage1_talk01:继续,
 aEP_researcher_stage1_talk01,DialogOptionSelected,$option == aEP_researcher_stage1_talk01,"
 aEP_AdvanceWeaponMission highlightPerson lili_yang  off","$personFirstName看了一下手中的平板，对你说:""这次的任务比较紧急，要求摧毁这艘特殊的人之领无人探测舰，然后把它的护盾核心带回来""","0:aEP_researcher_stage1_talk02:""看起来是某种安装了护盾的无人探测舰，它有什么独特之处让你们处理不了""",
-aEP_researcher_stage1_talk02,DialogOptionSelected,$option == aEP_researcher_stage1_talk02,,"似乎早就知道会出现这个疑问，$personFirstName把手中的平板翻了过来，上面显示的是某只FSF舰队的战斗报告，像你解释道:""三个月以前一只公司雇佣的探索舰队发现了这艘独特的无人舰，就是你刚刚看到全息影像的出处。随后公司派出了一只中等规模的作战舰队去回收这艘无人舰，然后发生了交火""
+aEP_researcher_stage1_talk02,DialogOptionSelected,$option == aEP_researcher_stage1_talk02,SetEnabled aEP_researcher_stage1_talk05 false,"似乎早就知道会出现这个疑问，$personFirstName把手中的平板翻了过来，上面显示的是某只FSF舰队的战斗报告，像你解释道:""三个月以前一只公司雇佣的探索舰队发现了这艘独特的无人舰，就是你刚刚看到全息影像的出处。随后公司派出了一只中等规模的作战舰队去回收这艘无人舰，然后发生了交火""
 
 $heOrShe把平板递给你，说:""结果就在这个报告上。在遭受了轻等规模的损失后，舰队指挥官判断:虽然可以在交战中取胜，但会造成很多不必要的损失，于是向指挥部申请由另一只更大的舰队去处理--鉴于这艘舰船的特殊性，我觉得你是最合适的人选""","0:aEP_researcher_stage1_talk03:""为什么说我是最合适的人选，我不是很理解""
-1:aEP_researcher_stage1_talk04:""说说那艘无人舰的特征，我需要更多信息""",
-#talk02抛出2个信息选项03和04,,,,,,
-aEP_researcher_stage1_talk03,DialogOptionSelected,$option == aEP_researcher_stage1_talk03,aEP_AdvanceWeaponMission show2,"$personFirstName站在你的对面笑了出来，赶忙用手捂住了自己的嘴，说到:""真是不好意思，$playerName，看起来你比我想的要更迟钝一点""，感觉到$personFirstName并没有恶意，你为了掩饰尴尬也微笑起来。
+1:aEP_researcher_stage1_talk04:""说说那艘无人舰的特征，我需要更多信息""
+2:aEP_researcher_stage1_talk05:""继续""",
+#talk02抛出2个信息选项03和04，一个继续选项05，并设置为不可用，等查看信息选项的时候再启用,,,,,,
+aEP_researcher_stage1_talk03,DialogOptionSelected,$option == aEP_researcher_stage1_talk03,SetEnabled aEP_researcher_stage1_talk03 false,"$personFirstName站在你的对面笑了出来，赶忙用手捂住了自己的嘴，说到:""真是不好意思，$playerName，看起来你比我想的要更迟钝一点""，感觉到$personFirstName并没有恶意，你为了掩饰尴尬也微笑起来。
 
 ""很简单的问题，首先这是一艘非常特殊的无人舰，我们研究所非常想要它的数据，同样重要的是不让其他势力知道。其次，一只中型战斗舰队后紧接着一只大型战斗舰队朝同一个地方行进，无论它们带回的是什么，都将成为星域的焦点。这就是为什么这件事情由公司来做会比让你来做要麻烦的多--没人会盯着独立舰长成天往哪飞，比起麻烦的谍战最好就让这件艘船成为秘密。""",,
-aEP_researcher_stage1_talk04,DialogOptionSelected,$option == aEP_researcher_stage1_talk04,aEP_AdvanceWeaponMission show2,"$personFirstName在平板上操作了几下，调出了一份文档，然后重新把平板递给了你，同时解释到:""这艘无人舰特别的地方不仅是因为它'有'护盾，为无盾舰船安装护盾并没有多少难度，需要的只是一个逻辑出错的ai。真正引起我们注意的是它优秀到不可能的护盾效率，根据之前交战报告中的描述，这艘舰船的护盾在承受了数倍于常规舰船护盾吸收极限的伤害后才开始呈现不稳定的现象，舰队的技术副官判断以当前的火力强度要想使它的护盾过载舰队会承受较大的损失""
+aEP_researcher_stage1_talk04,DialogOptionSelected,$option == aEP_researcher_stage1_talk04,"SetEnabled aEP_researcher_stage1_talk04 false
+SetEnabled aEP_researcher_stage1_talk05 true","$personFirstName在平板上操作了几下，调出了一份文档，然后重新把平板递给了你，同时解释到:""这艘无人舰特别的地方不仅是因为它'有'护盾，为无盾舰船安装护盾并没有多少难度，需要的只是一个逻辑出错的ai。真正引起我们注意的是它优秀到不可能的护盾效率，根据之前交战报告中的描述，这艘舰船的护盾在承受了数倍于常规舰船护盾吸收极限的伤害后才开始呈现不稳定的现象，舰队的技术副官判断以当前的火力强度要想使它的护盾过载舰队会承受较大的损失""
 
 看到你半信半疑的神色，$personFirstName并没有向你展示更多的信息，而是继续说道:""除了不合理的护盾，这艘舰船的其他地方就像星域中它的同行一样，仅仅能称作'能用'--这意味你有很多种方法能摧毁它""
 ",,
@@ -257,7 +259,7 @@ $faction.AWM_2MetYang == true
 $faction.AWM_2Complete == false
 ","ShowPersonVisual
 ","""遇到困难了吗""","0:cutCommLink:""恐怕你要再等几天""",
-aEP_researcher_stage1_ReAskComplete,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage1_ReAskComplete,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_2Accepted == true
 $faction.AWM_2Talked == true
@@ -280,7 +282,7 @@ $faction.AWM_3Complete == false
 aEP_AdvanceWeaponMission shouldStart3
 ","$faction.AWM_3MetYang = true
 aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条熟悉的通讯请求，""紧急任务，速来""。从简短的内容上就能感到这次任务的重要性不一般","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
-aEP_researcher_stage2_greeting_out,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage2_greeting_out,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_2Complete == true
 $faction.AWM_3Complete == false
@@ -318,7 +320,7 @@ $faction.AWM_3Accepted = true
 ","""快速接近，然后速战速决，指挥官。我怀疑他们用你试验巡洋导弹的威力，远距离你会成为靶子的""",0:cutCommLink:切断通讯,
 aEP_researcher_stage2_Decline,DialogOptionSelected,$option == aEP_researcher_stage2_Decline,aEP_AdvanceWeaponMission highlightPerson lili_yang  on,"""这个任务可不是儿戏，你应该好好思考一下""",0:cutCommLink:切断通讯,
 ,,,,,,
-aEP_researcher_stage2_ReAsk,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage2_ReAsk,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_3Accepted == false
 $faction.AWM_3Talked == true
@@ -327,7 +329,7 @@ $faction.AWM_3Complete == false","ShowPersonVisual
 ","""想的怎么样""","0:aEP_researcher_stage2_Accept:接受
 1:aEP_researcher_stage2_Decline:""我要思考一下""
 ",
-aEP_researcher_stage2_ReAskAccepted,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage2_ReAskAccepted,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_3Accepted == true
 $faction.AWM_3Talked == true
@@ -368,7 +370,7 @@ aEP_researcher_stage2_ReAskHandInDecline,DialogOptionSelected,"$option == aEP_re
 ","aEP_HandInParts aEP_cruise_missile2 -10 none 0
 $faction.AWM_3RecoveredShip = true
 ","""这是一些适配这个家伙的弹药，运到你的船舱里了，去查收一下吧。你可以找一些目标试射，但是数据是我的，责任是你的，明白吗""","0:cutCommLink:""感谢你的信任""",
-aEP_researcher_stage2_greeting_if_not_recovered,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage2_greeting_if_not_recovered,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_3Complete == true
 $faction.AWM_4MetYang == false
@@ -390,7 +392,7 @@ aEP_AdvanceWeaponMission shouldStart4
 
 ","$faction.AWM_4MetYang = true
 aEP_AdvanceWeaponMission highlightPerson lili_yang  on","随着你靠近空间站，你受到了一条来自公司内部的讯息，""舰长，我有一件事要和你说--你知道我的通讯id""","0:aEP_researcher_stage0_GreetDecline:""我知道了""",
-aEP_researcher_stage3_talk01,PickGreeting,"$isaEP_Researcher 
+aEP_researcher_stage3_talk01,PickGreeting,"$isaEP_Researcher
 !$faction.isHostile
 $faction.AWM_3Complete == true
 $faction.AWM_4Complete == false

@@ -219,9 +219,9 @@ class aEP_DroneShieldShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
       moveToPosition(ship, toLocation)
       moveToAngle(ship, aimAngle)
 
-      //shipsystem check
-      if(MathUtils.getDistance(ship.location, toLocation) > 800f){
-        if(ship.system != null && ship.system.id.equals("aEP_DroneTeleport")){
+      //使用系统 system check
+      if(MathUtils.getDistance(ship.location, toLocation) > 900f){
+        if(ship.system != null && ship.system.id.equals("aEP_DroneTeleport") && ship.fullTimeDeployed > 4f ){
           ship.mouseTarget.set(toLocation.x, toLocation.y)
           ship.useSystem()
         }

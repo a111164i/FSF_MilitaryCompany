@@ -47,11 +47,6 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     val amount = aEP_Tool.getAmount(ship)
     //updateDeco(ship, effectLevel,amount)
 
-    //激活第一帧记录一次鼠标位置
-    if(MathUtils.getDistance(toPoint, Misc.ZERO) < 1f || MathUtils.getDistance(toPoint, ship.mouseTarget) < 1f){
-      toPoint.set(ship.mouseTarget)
-    }
-
     val cooldownLevel = MathUtils.clamp((ship.system.cooldownRemaining)/(ship.system.cooldown+0.1f),0f,1f)
     updateIndicator(ship, cooldownLevel)
 
@@ -65,6 +60,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
           //spawned的记数在 createFighter里面，自动的
           if(guideLineLevel >= 1f && spawnTimer.intervalElapsed() && spawned < MAX_SPAWN_PER_USE){
 
+            toPoint.set(ship.mouseTarget)
             //如果是ai使用(ship.shipAi != null)，读取母舰的customData，由systemAI放入
             if(ship.customData.containsKey(aEP_ID.SYSTEM_SHIP_TARGET_KEY) && ship.shipAI != null){
               val t = ship.customData[aEP_ID.SYSTEM_SHIP_TARGET_KEY] as ShipAPI
@@ -78,13 +74,16 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
               toPoint.set(aEP_Tool.getExtendedLocationFromPoint(ship.location,angle,sysRange+ship.collisionRadius))
             }
 
-            //闪光
-            val glowSize = 75f
-            Global.getCombatEngine().addHitParticle(
-              toPoint, Misc.ZERO,
-              glowSize,
-              1f,0f,0.15f,Color(205,165,25))
-            createFighter(loc, facing, toPoint, ship)
+            //手开时，落点闪光一下
+            if(Global.getCombatEngine().playerShip == ship){
+              val glowSize = 75f
+              Global.getCombatEngine().addHitParticle(
+                toPoint, Misc.ZERO,
+                glowSize,
+                1f,0f,0.75f,Color(205,165,155))
+              createFighter(loc, facing, toPoint, ship)
+            }
+
           }
         }
       }
@@ -95,6 +94,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
       guideLineLevel = 0f
       spawned = 0
       spawnTimer.elapsed = 0f
+      toPoint.set(Misc.ZERO)
     }else{
       //guideLineLevel = MathUtils.clamp(guideLineLevel+amount,0f,1f)
       guideLineLevel = effectLevel
@@ -328,6 +328,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
       source, null,"aEP_cru_pubu_main",
       loc,facing,null) as DamagingProjectileAPI
     aEP_CombatEffectPlugin.addEffect(Speeding(0.15f,drone, proj, toPoint))
+
   }
 
   fun updateFighterList(){
