@@ -141,13 +141,12 @@ class aEP_DroneRepairShipAI(member: FleetMemberAPI?, ship: ShipAPI) : aEP_BaseSh
             if(f == ship) break
             i += 1
           }
-          //紧急处理
-          if(formation.size < i + 1){
-            return
+          //有时候产生比formation更大的wingMembers，防止越界
+          if(formation.isNotEmpty()){
+            val loc = formation[i.coerceIn(0,formation.size-1)]
+            aEP_Tool.moveToAngle(ship, ship.wing.leader.facing)
+            aEP_Tool.moveToPosition(ship, loc)
           }
-          val loc = formation[i]
-          aEP_Tool.moveToAngle(ship, ship.wing.leader.facing)
-          aEP_Tool.moveToPosition(ship, loc)
         }
 
 
