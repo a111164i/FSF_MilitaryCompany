@@ -58,20 +58,6 @@ public class FSFCampaignPlugin implements EveryFrameScript {
         Global.getSector().getMemoryWithoutUpdate().set("$aEP_HvbKey_01", true);
       }
 
-      //如果启用了正常倍率刷新先进舰船，更改倍率
-      boolean spawnAdvanceShipAsNormal = LunaSettings.getBoolean("FSF_MilitaryCorporation","aEP_SettingAdvanceShipSpawnNormal");
-      float freq = 0.25f;
-      if(spawnAdvanceShipAsNormal){
-        freq = 1f;
-      }
-      fsf.getFactionSpec().getTagFrequency().put("FSF_advancebp",freq);
-      for(String id : fsf.getHullFrequency().keySet()){
-        ShipHullSpecAPI spec = Global.getSettings().getHullSpec(id);
-        if(spec.hasTag("FSF_advancebp")){
-          fsf.getHullFrequency().put(id, freq);
-        }
-      }
-
     }
 
     //check and create persons

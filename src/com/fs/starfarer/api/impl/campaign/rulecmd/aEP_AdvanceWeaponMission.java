@@ -175,7 +175,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
 
   boolean shouldStart() {
     //如果跳过主线，不开始第一个任务
-    if(Global.getSector().getMemoryWithoutUpdate().getBoolean("$aEP_isSkipAwmMission") == true){
+    if(Global.getSector().getMemoryWithoutUpdate().getBoolean("$aEP_isSkipAwmMission")){
       return false;
     }
 
