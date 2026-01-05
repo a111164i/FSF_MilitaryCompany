@@ -214,10 +214,10 @@ aEP_m_m_phasemine,WEAPON,"A phase mine deployer, these explosively devices lie s
 ,,,,,,,
 aEP_e_s_flamer,WEAPON,"""That ship had long since stopped firing; we sprayed at it and sprayed at it, and when we finally pried the hatch open it smelled like a buffet.""
 
-This weapon, developed by pirates, proves flamethrowers still have a place in star warfare, only the substances keep evolving.",-a pirate's confession in prison,,,,,
+This weapon, developed by pirates, proves flamethrowers still have a place in star warfare, only the substances keep evolving.",-a pirate's confession in prison,,,,
 aEP_m_s_bomblance,WEAPON,"""When I saw a frigate attack us with this weapon I thought I was hallucinating; it just slammed straight into our hull. Luckily the thick armor kept the ship from breaking apart, but that pirate was definitely done for. Next time they should make the pole a bit longer so at least they won't blow themselves up.""
 
-An engineering marvel: after some thought the lunatics of the Path realized that if you shove a torpedo into the enemy's face it won't be intercepted.",-interview with a caravan survivor,,,,,
+An engineering marvel: after some thought the lunatics of the Path realized that if you shove a torpedo into the enemy's face it won't be intercepted.",-interview with a caravan survivor,,,,
 aEP_b_m_lighting,WEAPON,"""Calm down, you won't get electrocuted into mush just because you accidentally drop the ammunition box.""
 
 Embedding high-density micro-batteries in the bullet completely diminishes its penetration power but disrupts shield stability. Injecting energy into the shield on impact is akin to creating ripples on a water's surface, significantly increasing the difficulty of maintaining the shield. ",--FSF Advanced Weapons Program Researcher's Meeting Record,,,,
