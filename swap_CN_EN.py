@@ -320,7 +320,7 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
 
     # 决定交换方向：优先使用全局设置 USE_EN_SETTING（True 表示当前为 EN）
     use_en = USE_EN_SETTING_NEW
-    if use_en is None:   
+    if use_en is None:
         raise Exception(f"aEP_UseEnString设置读取失败")
 
     # 读取主文件（主文件始终尝试读取为基础数据）
@@ -340,7 +340,7 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
         raise Exception(f"主CSV文件读取异常：{e}")
 
     # which path to read, is new language is EN, read _EN
-    preferred = abs_path_en if USE_EN_SETTING_NEW else abs_path_cn 
+    preferred = abs_path_en if USE_EN_SETTING_NEW else abs_path_cn
 
     # load file
     if preferred:
@@ -353,7 +353,7 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
                         dict_rows_other.append(row)
                         continue
                     dict_rows_other.append(row)
-            print(f"📄 成功加载语言文件：{preferred}") 
+            print(f"📄 成功加载语言文件：{preferred}")
         except FileNotFoundError as e:
             raise Exception(f"语言文件未找到：{preferred}")
         except Exception as e:
@@ -457,7 +457,7 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
 
     data1 = None  # 主文件数据
     data2 = None  # 语言文件数据
-    preferred = abs_path_en if USE_EN_SETTING_NEW else abs_path_cn 
+    preferred = abs_path_en if USE_EN_SETTING_NEW else abs_path_cn
 
     # 读取主文件
     try:
@@ -511,7 +511,7 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
 
     # 写入备份（写到与偏好相反的后缀）
     try:
-        target_path = abs_path_cn if USE_EN_SETTING_NEW else abs_path_en   
+        target_path = abs_path_cn if USE_EN_SETTING_NEW else abs_path_en
         temp_backup_path = write_to_temp_json(data2, target_path)
         print(f"📝 备份文件临时文件生成：{temp_backup_path}")
     except Exception as e:
@@ -699,7 +699,7 @@ if __name__ == "__main__":
     try:
         # 初始化全局语言设置（从配置文件读取）
         USE_EN_SETTING_OLD = get_current_aep_setting()
-        USE_EN_SETTING_NOW = not USE_EN_SETTING_OLD
+        USE_EN_SETTING_NEW = not USE_EN_SETTING_OLD
 
         # ========== 第一步：批量处理所有文件，生成临时文件/收集重命名任务 ==========
         print("=== 开始处理所有文件，生成临时文件 ===")
