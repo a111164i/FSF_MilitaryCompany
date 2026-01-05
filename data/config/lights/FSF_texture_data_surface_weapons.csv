@@ -101,9 +101,6 @@ aEP_fga_yonglang_main_br,turret,,,surface,graphics/shaders/surface/weapons/aEP_f
 aEP_fga_yonglang_main_cover_l,turret,,,surface,graphics/shaders/surface/weapons/aEP_fga_yonglang/main_l_surface.png
 aEP_fga_yonglang_main_cover_r,turret,,,surface,graphics/shaders/surface/weapons/aEP_fga_yonglang/main_r_surface.png
 aEP_fga_yonglang_scaffold,turret,,,surface,graphics/shaders/surface/weapons/aEP_fga_yonglang/br2_surface.png
-aEP_ftr_ftr_helicop_fan,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_helicop/fan_surface.png
-aEP_ftr_icp_gunship_beam,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_gunship_drone/cannon_surface.png
-aEP_ftr_icp_gunship_gun,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_gunship_drone/gun2_surface.png
 aEP_ftr_sup_guardian_cover_l,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_guardian_drone/l_surface.png
 aEP_ftr_sup_guardian_cover_r,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_guardian_drone/r_surface.png
 aEP_ftr_sup_shield_gun,turret,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_shield/tr_surface.png

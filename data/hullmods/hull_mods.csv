@@ -29,7 +29,7 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 
 完全补充扫射能量需要{%s}秒，充满时最多抵消{%s}秒的大槽武器冷却时间，冷却时间抵消后武器射击间隔最短为{%s}秒
 
-当本舰的战术系统充能次数耗尽时，会立刻消耗{%s}的扫射能量补充一次系统充能。本舰每次使用战术系统后，会从内置的导弹发射器发射数波干扰目标点防御的低威力导弹",,,graphics/aEP_hullmods/aEP_strafe.png,
+本舰的战术系统充能次数耗尽时，会立刻消耗{%s}的扫射能量补充一次系统充能。使用战术系统时，会从内置的导弹发射器发射数波干扰目标点防御的低威力导弹",,,graphics/aEP_hullmods/aEP_strafe.png,
 预制反应装甲,aEP_ReactiveArmor,1,FSF设计,,"FSF, defensive",Defenses,10000,,TRUE,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"在装甲中内置爆炸反应模块，在遭到高伤害武器攻击时会被触发，大幅度减少本次伤害
 
 当船体受到>={%s}的伤害时被触发，本次伤害{%s}，限{%s}次",,,graphics/aEP_hullmods/aEP_reactive_armor.png,

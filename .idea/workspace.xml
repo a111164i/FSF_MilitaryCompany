@@ -9,7 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc5 06&#10;TODO" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc7 01&#10;todo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_icp_gunship.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_icp_gunship.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_icp_gunship_beam.wpn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -362,22 +380,11 @@
       <workItem from="1767506816214" duration="2752000" />
       <workItem from="1767510552196" duration="15215000" />
       <workItem from="1767527109440" duration="43000" />
-    </task>
-    <task id="LOCAL-00016" summary="4.8rc1">
-      <option name="closed" value="true" />
-      <created>1725115270012</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1725115270012</updated>
-    </task>
-    <task id="LOCAL-00017" summary="4.8rc1">
-      <option name="closed" value="true" />
-      <created>1725116051096</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1725116051096</updated>
+      <workItem from="1767527450121" duration="205000" />
+      <workItem from="1767528301915" duration="12000" />
+      <workItem from="1767528634651" duration="910000" />
+      <workItem from="1767530085540" duration="13134000" />
+      <workItem from="1767596269895" duration="16548000" />
     </task>
     <task id="LOCAL-00018" summary="4.8rc1">
       <option name="closed" value="true" />
@@ -755,7 +762,23 @@
       <option name="project" value="LOCAL" />
       <updated>1767527124413</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="//----------------------------------------------//&#10;5.0rc5 06&#10;修复了wingMembers越界formation的问题">
+      <option name="closed" value="true" />
+      <created>1767527514954</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1767527514954</updated>
+    </task>
+    <task id="LOCAL-00066" summary="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到">
+      <option name="closed" value="true" />
+      <created>1767545781551</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1767545781552</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -831,7 +854,9 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 02" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 03&#10;把所有的aEP_ZERO换成了原版的Misc.ZERO" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 05&#10;修改了rules.csv，使用SetEnable简化了show2" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc5 05&#10;修改了rules.csv，使用SetEnable简化了show2" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 06&#10;修复了wingMembers越界formation的问题" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -92,7 +92,6 @@ At most %s mines can coexist on the battlefield. That cap is lift by %s for ever
 H-23 Fighter Anti-ship Gun - Fighter,aEP_ftr_ftr_hvfighter_gun,FSF Manufacture,Anti-armor,
 K-14 Fighter HMG - Fighter,aEP_ftr_ftr_helicop_lmg,FSF Manufacture,Anti-armor,
 Nail Rocket Launcher - Fighter,aEP_ftr_ftr_helicop_rocket,FSF Manufacture,Anti-shield,
-Micro Lance Array - Fighter,aEP_ftr_icp_gunship_beam,FSF Manufacture,General,
 EMS LMG - Fighter,aEP_ftr_icp_gunship_gun,FSF Manufacture,PD,
 H-12 Anti-ship MG - Fighter,aEP_ftr_sup_guardian_gun,FSF Manufacture,Anti-armor,
 HVK Long Range Gun - Fighter,aEP_ftr_sup_guardian_gun3,FSF Manufacture,Anti-shield,

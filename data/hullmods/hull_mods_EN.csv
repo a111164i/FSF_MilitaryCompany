@@ -25,13 +25,11 @@ Module Targeting Unit,aEP_ModuleTargeting,FSF Design,,"A simple but practical sy
 
 Ballistic/energy weapon range %s",,
 Attack Carrier,aEP_AttackCarrier,FSF Design,,"Built to send fighters directly to enemy ships means high lost rate. To compensate the deficit in fighter refit rate, this ship can shortly overload its fighter forge quickly replacing all lost. Can't overload twice in short time and generate soft flux during cooldown",,
-Strafe,aEP_Strafe,FSF Design,,"This ship slowly regenerates strafe energy. Whenever a large weapon is on cooldown, consume strafe energy to eliminate the remaining cooldown time.
+Strafe,aEP_Strafe,FSF Design,,"This ship slowly regenerates strafe energy. Whenever a large weapon on the ship fires, consume strafe energy to accelerate its remaining cooldown.
 
-Fully recharging strafe energy takes %s seconds; when fully charged, it can eliminate %s seconds of cooldown. After elimination, the shortest possible fire interval is %s.
+Fully recharging strafe energy takes %s seconds; when fully charged, it can reduce %s seconds of cooldown in total and weapons with fire interval shorter than %s can't be accelerated.
 
-If this ship's system is out of charge, it immediately consumes %s of strafe energy to regain a charge.
-
-Each time this ship uses its system, it fires several low-power built-in missiles to distract the enemy.",,
+If this ship's system is out of charge, it will consume %s of strafe energy to regain a charge. Everytime shipsystem activates, fires several low-power built-in missiles to distract enemy point defenses.",,
 Explosive Reactive Armor,aEP_ReactiveArmor,FSF Design,Defenses,"Explosive reactive armor (ERA) is embedded beneath the main armor belt, designed to respond to severe impacts.
 
 When the hull sustains damage equal to or greater than %s, the ERA activates, consuming one ammo and mitigating that damage by %s. The ship has a total of %s ERAs.",,

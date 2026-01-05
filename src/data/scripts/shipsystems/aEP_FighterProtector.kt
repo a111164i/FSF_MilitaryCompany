@@ -22,8 +22,8 @@ import java.awt.Color
 class aEP_FighterProtector : BaseShipSystemScript() {
 
   companion object {
-    private const val DAMAGE_TAKEN_REDUCE_MULT = 0.6f
-    private const val DAMAGE_DEALT_REDUCE_MULT = 0.8f
+    private const val DAMAGE_TAKEN_REDUCE_MULT = 0.5f
+    private const val DAMAGE_DEALT_REDUCE_MULT = 0.5f
 
     private const val FULL_TIME = 7.5f
     private const val FADE_TIME = 0.5f

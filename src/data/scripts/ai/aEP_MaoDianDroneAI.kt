@@ -1,11 +1,15 @@
 package data.scripts.ai
 
+import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipCommand
+import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_Tool
 import data.scripts.shipsystems.aEP_MaodianDroneLaunch
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicRender
+import java.awt.Color
 
 class aEP_MaoDianDroneAI:aEP_BaseShipAI {
   companion object{
@@ -71,6 +75,12 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
       }else{
         ship.giveCommand(ShipCommand.DECELERATE,null,0)
       }
+      //渲染一个特效，增加辨识度
+      val sprite = Global.getSettings().getSprite("graphics/aEP_FX/frame02.png")
+      MagicRender.singleframe(sprite,
+        ship.location,
+        Vector2f(60f,60f),
+        45f, Misc.setAlpha(Color.yellow,120),true)
 
       //速度够慢就开盾
       if(ship.velocity.x < 10 && ship.velocity.y < 10){
