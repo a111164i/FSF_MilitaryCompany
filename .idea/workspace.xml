@@ -10,23 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc7 01&#10;todo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_icp_gunship.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_icp_gunship.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_icp_gunship_beam.wpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swap_CN_EN.py" beforeDir="false" afterPath="$PROJECT_DIR$/swap_CN_EN.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,6 +369,7 @@
       <workItem from="1767528634651" duration="910000" />
       <workItem from="1767530085540" duration="13134000" />
       <workItem from="1767596269895" duration="16548000" />
+      <workItem from="1767643496479" duration="16000" />
     </task>
     <task id="LOCAL-00018" summary="4.8rc1">
       <option name="closed" value="true" />

@@ -157,14 +157,12 @@
     "combatFreighterCombatUseFractionWhenPriority": 0,
     "autofitRandomizeProbability": 0.2,
     "officerSkillsShuffleProbability": 1,
-    # 这里选择Shuffle，第一个技能可能是实弹大师也可能是导弹专精
     "officerSkills": [
       "ballistic_mastery",
       "missile_specialization",
       "aEP_SkillAnalyze"
     ],
     "commanderSkillsShuffleProbability": 0,
-    # 不Shuffle的话，固定按照上往下的顺序4级学第一个6级学第二个
     "commanderSkills": [
       "wolfpack_tactics",
       "support_doctrine"

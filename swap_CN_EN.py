@@ -290,12 +290,39 @@ def get_backup_dir() -> str:
     os.makedirs(_BACKUP_DIR, exist_ok=True)
     return _BACKUP_DIR
 
+# ========== 新增：通用后缀文件清理函数 ==========
+def clean_extra_suffix_files(base_dir: str, base_name: str, ext: str, use_en_setting: bool) -> None:
+    """
+    通用清理函数：清理多余的 _EN/_CN 后缀文件（所有模块复用同一套规则）
+    :param base_dir: 文件所在目录
+    :param base_name: 文件基础名（不含后缀和_EN/_CN，如 "submarkets"）
+    :param ext: 文件扩展名（带点，如 .csv、.json、.faction）
+    :param use_en_setting: 全局的USE_EN_SETTING_NEW值（True=使用英文，保留_CN；False=使用中文，保留_EN）
+    """
+    # 构建EN/CN文件完整路径
+    en_file = os.path.join(base_dir, f"{base_name}_EN{ext}")
+    cn_file = os.path.join(base_dir, f"{base_name}_CN{ext}")
+
+    # 统一清理规则：True保留_CN删_EN，False保留_EN删_CN
+    keep_file, delete_file = (cn_file, en_file) if use_en_setting else (en_file, cn_file)
+
+    # 执行清理（跳过要保留的文件，避免误删）
+    if os.path.exists(delete_file) and delete_file != keep_file:
+        try:
+            os.remove(delete_file)
+            print(f"🗑️ 已清理多余后缀文件：{delete_file}")
+        except Exception as e:
+            print(f"⚠️ 清理多余后缀文件失败 {delete_file}：{e}")
+    else:
+        print(f"ℹ️ 无多余后缀文件需要清理：{delete_file}")
+
 # -------------------------- CSV文件交换逻辑 --------------------------
 def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields: list) -> None:
     """
     处理CSV文件交换（仅写入临时文件，不立即替换原文件）：
     1. 保留字段内的中文逗号
     2. 仅交换指定字段的值
+    3. 新增：处理完成后清理多余的_EN/_CN文件
     """
     # 初始化数据存储
     dict_rows_now: List[Dict[str, str]] = []
@@ -304,7 +331,7 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     # 处理路径
     abs_file_path = get_abs_file_path(file_path)
     script_dir = os.path.dirname(abs_file_path)
-    file_ext = os.path.splitext(abs_file_path)[1]  # 获取文件后缀（.csv）
+    file_ext = os.path.splitext(abs_file_path)[1]  # 获取带点的文件后缀（如 .csv）
 
     # 构建EN/CN文件路径
     en_file_name = f"{file_name_without_extension}_EN{file_ext}"
@@ -427,21 +454,27 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     except Exception as e:
         raise Exception(f"备份文件临时文件写入失败：{e}")
 
+    # ========== 新增：调用通用清理函数，清理CSV的多余_EN/_CN文件 ==========
+    clean_extra_suffix_files(script_dir, file_name_without_extension, file_ext, USE_EN_SETTING_NEW)
+
 # -------------------------- JSON文件交换逻辑 --------------------------
 def swap_json(file_path: str, file_name_without_extension: str, extension: str = None) -> None:
     """
     处理JSON/faction文件交换（仅写入临时文件，不立即替换原文件）：
     1. 保留字符串内的中文逗号
     2. 递归交换JSON内的对应值
+    3. 新增：处理完成后清理多余的_EN/_CN文件
     """
     # 处理路径
     abs_file_path = get_abs_file_path(file_path)
     script_dir = os.path.dirname(abs_file_path)
-    file_ext = extension if extension else os.path.splitext(abs_file_path)[1].lstrip('.')
+    # 处理扩展名：如果传入extension（如faction）则用它，否则从路径提取（不带点）
+    file_ext_raw = extension if extension else os.path.splitext(abs_file_path)[1].lstrip('.')
+    file_ext = f".{file_ext_raw}"  # 转为带点的扩展名（如 .json、.faction）
 
     # 构建EN/CN文件路径
-    en_file_name = f"{file_name_without_extension}_EN.{file_ext}"
-    cn_file_name = f"{file_name_without_extension}_CN.{file_ext}"
+    en_file_name = f"{file_name_without_extension}_EN.{file_ext_raw}"
+    cn_file_name = f"{file_name_without_extension}_CN.{file_ext_raw}"
     abs_path_en = os.path.join(script_dir, en_file_name)
     abs_path_cn = os.path.join(script_dir, cn_file_name)
 
@@ -477,7 +510,6 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
             raise Exception(f"语言文件未找到：{preferred}")
         except Exception as e:
             raise Exception(f"语言文件读取失败：{e}：{preferred}")
-
 
     # 递归交换逻辑保持不变
     def swap_nested_json_values(data1: Union[Dict, List], data2: Union[Dict, List]):
@@ -517,6 +549,9 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
     except Exception as e:
         raise Exception(f"备份文件临时文件写入失败：{e}")
 
+    # ========== 新增：调用通用清理函数，清理JSON/faction的多余_EN/_CN文件 ==========
+    clean_extra_suffix_files(script_dir, file_name_without_extension, file_ext, USE_EN_SETTING_NEW)
+
 # -------------------------- 文件重命名逻辑 --------------------------
 def swap_name(file_path: str, file_name_with_ext: str) -> None:
     """预收集重命名任务，不立即执行重命名"""
@@ -553,85 +588,39 @@ def swap_name(file_path: str, file_name_with_ext: str) -> None:
             raise Exception(f"未找到后缀为XXX_CN的对应文件文件：{abs_file_path}")
 
 def batch_execute_rename() -> None:
-    """批量执行重命名任务，保证原子性
-
-    行为说明：
-    - 对于每个重命名任务 (original_path, temp_path, swap_path)：
-      1. 将 original_path 移到 temp_path（保存原始内容到带后缀文件）
-      2. 将 swap_path 移到 original_path（把交换过来的内容放回原位置）
-      3. 在同目录下清理除 temp_path 以外的 *_EN/*_CN 文件，只保留 temp_path（即保存被换出的副本）和最终的 original_path
+    """批量执行重命名任务（简化版+复用通用清理函数）
+    核心逻辑：原文件 ↔ 目标后缀文件
+    清理逻辑：复用通用函数，保证规则统一
     """
     for original_path, temp_path, swap_path in RENAME_TASKS:
-        tmp_swap = None
         try:
+            print(f"🔁 处理重命名任务: {original_path}")
+
+            # ========== 核心重命名逻辑 ==========
+            # 1. 原文件 → 临时后缀文件（如 original.csv → original_CN.csv）
+            if os.path.exists(original_path):
+                os.replace(original_path, temp_path)
+                print(f"➡️ 原文件已移动到临时位置：{original_path} -> {temp_path}")
+            else:
+                print(f"⚠️ 原文件不存在，跳过移动：{original_path}")
+
+            # 2. 目标交换文件 → 原文件位置（如 original_EN.csv → original.csv）
+            if os.path.exists(swap_path):
+                os.replace(swap_path, original_path)
+                print(f"⬅️ 交换文件已替换到原位置：{swap_path} -> {original_path}")
+            else:
+                print(f"⚠️ 交换文件不存在，跳过替换：{swap_path}")
+
+            # ========== 复用通用清理函数，清理重命名后的多余文件 ==========
             file_dir = os.path.dirname(original_path)
             base_name = os.path.splitext(os.path.basename(original_path))[0]
             ext = os.path.splitext(original_path)[1]
-
-            print(f"🔁 处理重命名任务: original={original_path}, temp(backup)={temp_path}, swap_source={swap_path}")
-
-            # create unique temporary path for swap source
-            fd, tmp_swap = tempfile.mkstemp(prefix=base_name + '_swap_tmp_', suffix=ext, dir=file_dir)
-            os.close(fd)
-            os.remove(tmp_swap)
-            # Step A: move swap_path -> tmp_swap (atomic replace)
-            os.replace(swap_path, tmp_swap)
-            print(f"ℹ️ 已临时移除交换来源到：{tmp_swap}")
-
-            # Step B: move original -> temp_path (overwrite existing temp_path)
-            # use os.replace so it will overwrite if temp_path exists
-            os.replace(original_path, temp_path)
-            print(f"➡️ 已将原始文件移动到备份位置：{original_path} -> {temp_path}")
-
-            # Step C: move tmp_swap -> original_path (place swapped-in content)
-            os.replace(tmp_swap, original_path)
-            print(f"⬅️ 已将交换来源放回原始位置：{tmp_swap} -> {original_path}")
-
-            # Step 3: 清理同目录下的 *_EN/*_CN 文件，保留 temp_path（被换出的副本）和 original_path
-            try:
-                candidates = [
-                    os.path.join(file_dir, f"{base_name}_EN{ext}"),
-                    os.path.join(file_dir, f"{base_name}_CN{ext}")
-                ]
-                for candidate in candidates:
-                    if os.path.exists(candidate):
-                        cand_norm = os.path.normcase(os.path.abspath(candidate))
-                        keep_norm = os.path.normcase(os.path.abspath(temp_path))
-                        orig_norm = os.path.normcase(os.path.abspath(original_path))
-                        if cand_norm != keep_norm and cand_norm != orig_norm:
-                            try:
-                                # 移动到备份目录以便回滚（保留原目录结构在备份目录中）
-                                backup_dir = get_backup_dir()
-                                # preserve relative path under backup dir
-                                rel_dir = os.path.relpath(os.path.dirname(candidate), os.path.dirname(os.path.abspath(__file__)))
-                                target_dir = os.path.join(backup_dir, rel_dir)
-                                os.makedirs(target_dir, exist_ok=True)
-                                target_name = os.path.basename(candidate)
-                                target_path = os.path.join(target_dir, target_name)
-                                # 如果已存在同名备份，添加序号
-                                i = 1
-                                base, ext = os.path.splitext(target_name)
-                                while os.path.exists(target_path):
-                                    target_path = os.path.join(target_dir, f"{base}_{i}{ext}")
-                                    i += 1
-                                os.replace(candidate, target_path)
-                                print(f"📦 已移动额外的后缀文件到备份：{candidate} -> {target_path}")
-                            except Exception as de:
-                                print(f"⚠️ 无法移动文件 {candidate} 到备份：{de}")
-                        else:
-                            print(f"ℹ️ 保留后缀文件：{candidate}")
-            except Exception as de:
-                print(f"⚠️ 清理后缀文件时出错：{de}")
+            clean_extra_suffix_files(file_dir, base_name, ext, USE_EN_SETTING_NEW)
 
         except Exception as e:
-            print(f"⚠️ 批量重命名失败 {original_path}：{e}")
-            # attempt to cleanup tmp_swap if exists
-            try:
-                if tmp_swap and os.path.exists(tmp_swap):
-                    os.remove(tmp_swap)
-            except Exception:
-                pass
-            raise
+            print(f"⚠️ 重命名或清理失败 {original_path}：{e}")
+            raise  # 抛出异常终止执行
+
     # 清空重命名任务列表
     RENAME_TASKS.clear()
 
@@ -654,20 +643,6 @@ def update_setting_in_json(file_path: str, key: str, new_value: Any = None) -> A
 
         if not isinstance(data, dict):
             raise ValueError(f"配置文件解析后不是字典：{abs_file_path}")
-
-        # 备份原文件到 swapped_backups（便于回滚）
-        try:
-            backup_dir = get_backup_dir()
-            rel_dir = os.path.relpath(os.path.dirname(abs_file_path), os.path.dirname(os.path.abspath(__file__)))
-            target_dir = os.path.join(backup_dir, rel_dir)
-            os.makedirs(target_dir, exist_ok=True)
-            base_name = os.path.basename(abs_file_path)
-            ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-            backup_path = os.path.join(target_dir, f"{base_name}.{ts}.bak")
-            shutil.copy2(abs_file_path, backup_path)
-            print(f"📦 已备份设置文件到：{backup_path}")
-        except Exception as e:
-            print(f"⚠️ 备份设置文件失败（继续执行）：{e}")
 
         # 仅修改指定键（保留其它键）
         if new_value is None:
@@ -704,7 +679,7 @@ if __name__ == "__main__":
         # ========== 第一步：批量处理所有文件，生成临时文件/收集重命名任务 ==========
         print("=== 开始处理所有文件，生成临时文件 ===")
 
-        # CSV文件交换（生成临时文件）
+        # CSV文件交换（生成临时文件 + 清理多余_EN/_CN）
         swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
         swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
         swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
@@ -729,7 +704,7 @@ if __name__ == "__main__":
         swap_name("data/missions/aEP_assassination/descriptor.json", "descriptor.json")
         swap_name("data/missions/aEP_assassination/mission_text.txt", "mission_text.txt")
 
-        # JSON/faction文件交换（生成临时文件）
+        # JSON/faction文件交换（生成临时文件 + 清理多余_EN/_CN）
         swap_json("mod_info.json","mod_info")
         swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
         swap_json("data/world/factions/aEP_FSF.faction", "aEP_FSF","faction")
@@ -742,7 +717,7 @@ if __name__ == "__main__":
         print("\n=== 所有临时文件生成完成，开始批量替换原文件 ===")
         # 批量替换临时文件为原文件
         batch_replace_original_files()
-        # 批量执行重命名任务
+        # 批量执行重命名任务（含清理）
         batch_execute_rename()
 
         # 最后更新设置（在重命名后执行，以便基于最新文件后缀状态）

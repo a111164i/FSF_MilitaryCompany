@@ -1,5 +1,4 @@
 {
-  #:
   "aEP_MagicBounty1": {
     "required_mods_id": [
       "FSF_MilitaryCorporation"
@@ -50,8 +49,6 @@
     "job_show_arrow": false,
     "job_pick_option": "接受任务",
     "job_memKey": "$aEP_MagicBounty01",
-
-    #TARGET COMMANDER (OPTIONAL)
     "target_first_name": "01953-",
     "target_last_name": "A022",
     "target_portrait": "graphics/portraits/portrait_ai2.png",
