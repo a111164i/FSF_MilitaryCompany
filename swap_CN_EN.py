@@ -4,6 +4,9 @@ import csv
 import json
 import re
 import tempfile
+import datetime
+import shutil
+
 from typing import Dict, List, Any, Union
 from pathlib import Path
 
@@ -12,6 +15,13 @@ from pathlib import Path
 TEMP_FILES: Dict[str, str] = {}
 # 存储重命名任务，批量执行
 RENAME_TASKS: List[tuple] = []
+
+# 全局当前语言设置（由 data/config/settings.json 的 aEP_UseEnString 决定）
+USE_EN_SETTING_OLD: Union[bool, None] = None
+USE_EN_SETTING_NEW: Union[bool, None] = None
+
+# 备份目录（延迟初始化）
+_BACKUP_DIR: Union[str, None] = None
 
 # -------------------------- 临时文件操作函数 --------------------------
 def create_temp_file(content: str, original_file_path: str) -> str:
@@ -37,7 +47,7 @@ def create_temp_file(content: str, original_file_path: str) -> str:
 
 def write_to_temp_csv(rows: List[Dict[str, str]], original_file_path: str) -> str:
     """
-    将CSV数据写入临时文件（保留中文逗号，仅处理半角逗逗号转义）
+    将CSV数据写入临时文件（保留中文逗号，仅处理半角逗号转义）
     :param rows: CSV行数据
     :param original_file_path: 原文件路径
     :return: 临时文件路径
@@ -46,8 +56,10 @@ def write_to_temp_csv(rows: List[Dict[str, str]], original_file_path: str) -> st
         raise ValueError("无数据可写入临时CSV文件")
     # 构建CSV内容
     fieldnames = list(rows[0].keys())
-    csv_content = []
-    csv_content.append(','.join(fieldnames))  # 表头（半角逗号分隔）
+    csv_content_lines: List[str] = []
+    # 表头（半角逗号分隔）
+    csv_content_lines.append(','.join(fieldnames))
+
     for row in rows:
         escaped_row = []
         # ensure we iterate in header order so columns align
@@ -55,13 +67,14 @@ def write_to_temp_csv(rows: List[Dict[str, str]], original_file_path: str) -> st
             v = row.get(k, '')
             val_str = '' if v is None else str(v)
             # 仅处理CSV标准转义：含半角逗号/双引号/换行符的字段需用双引号包裹
-            if ',' in val_str or '"' in val_str or '\n' in val_str:
+            if (',' in val_str) or ('"' in val_str) or ('\n' in val_str):
                 val_str = val_str.replace('"', '""')  # 双引号转义为两个
                 val_str = f'"{val_str}"'  # 包裹双引号
             # 中文逗号（，）不做任何处理，保留为字符串内容
             escaped_row.append(val_str)
-        csv_content.append(','.join(escaped_row))  # 半角逗号分隔字段
-    csv_content = '\n'.join(csv_content)
+        csv_content_lines.append(','.join(escaped_row))  # 半角逗号分隔字段
+
+    csv_content = '\n'.join(csv_content_lines)
     # 写入临时文件
     return create_temp_file(csv_content, original_file_path)
 
@@ -255,6 +268,28 @@ def get_abs_file_path(relative_path: str) -> str:
     script_dir = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(script_dir, relative_path)
 
+def get_current_aep_setting() -> Union[bool, None]:
+    """读取 data/config/settings.json 中的 aEP_UseEnString（只读）。返回 True/False 或 None（无法读取）"""
+    try:
+        settings_path = get_abs_file_path('data/config/settings.json')
+        settings = read_json_safely(settings_path)
+        if isinstance(settings, dict) and 'aEP_UseEnString' in settings:
+            return bool(settings['aEP_UseEnString'])
+        return None
+    except Exception:
+        return None
+
+def get_backup_dir() -> str:
+    """返回本次运行的备份目录路径（在项目下的 swapped_backups/<timestamp>/），并确保目录存在"""
+    global _BACKUP_DIR
+    if _BACKUP_DIR:
+        return _BACKUP_DIR
+    repo_root = os.path.dirname(os.path.abspath(__file__))
+    ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+    _BACKUP_DIR = os.path.join(repo_root, 'swapped_backups', ts)
+    os.makedirs(_BACKUP_DIR, exist_ok=True)
+    return _BACKUP_DIR
+
 # -------------------------- CSV文件交换逻辑 --------------------------
 def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields: list) -> None:
     """
@@ -265,7 +300,6 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     # 初始化数据存储
     dict_rows_now: List[Dict[str, str]] = []
     dict_rows_other: List[Dict[str, str]] = []
-    EN_to_CN = False  # 默认：CN -> EN
 
     # 处理路径
     abs_file_path = get_abs_file_path(file_path)
@@ -284,7 +318,12 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
         abs_path_cn = abs_file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN")
     assert abs_file_path != abs_path_en, f"文件路径/名称输入错误：{abs_file_path} vs {abs_path_en}"
 
-    # 读取主文件（处理#注释行）
+    # 决定交换方向：优先使用全局设置 USE_EN_SETTING（True 表示当前为 EN）
+    use_en = USE_EN_SETTING_NEW
+    if use_en is None:   
+        raise Exception(f"aEP_UseEnString设置读取失败")
+
+    # 读取主文件（主文件始终尝试读取为基础数据）
     try:
         with open(abs_file_path, 'r', encoding='utf-8') as f:
             csv_reader = csv.DictReader(f)
@@ -295,44 +334,36 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
                     continue
                 dict_rows_now.append(row)
         print(f"📄 成功加载主文件：{abs_file_path}")
-
-        # 尝试读取EN文件
-        with open(abs_path_en, 'r', encoding='utf-8') as f:
-            csv_reader = csv.DictReader(f)
-            for row in csv_reader:
-                row_id = row.get('id', '').strip()
-                if not row_id or row_id.startswith('#'):
-                    dict_rows_other.append(row)
-                    continue
-                dict_rows_other.append(row)
-        print(f"📄 成功加载EN文件：{abs_path_en}")
-
     except FileNotFoundError as e:
-        # EN文件不存在，切换为EN -> CN模式
-        if en_file_name in str(e):
-            EN_to_CN = True
-            try:
-                with open(abs_path_cn, 'r', encoding='utf-8') as f:
-                    csv_reader = csv.DictReader(f)
-                    for row in csv_reader:
-                        row_id = row.get('id', '').strip()
-                        if not row_id or row_id.startswith('#'):
-                            dict_rows_other.append(row)
-                            continue
-                        dict_rows_other.append(row)
-                print(f"📄 EN文件不存在，加载CN文件：{abs_path_cn}")
-            except Exception as e:
-                raise Exception(f"EN/CN文件均加载失败：{e}")
-        else:
-            raise Exception(f"主文件加载失败：{e}")
+        raise Exception(f"主CSV文件不存在或无法读取：{abs_file_path}：{e}")
     except Exception as e:
-        raise Exception(f"读取文件异常：{e}")
+        raise Exception(f"主CSV文件读取异常：{e}")
+
+    # which path to read, is new language is EN, read _EN
+    preferred = abs_path_en if USE_EN_SETTING_NEW else abs_path_cn 
+
+    # load file
+    if preferred:
+        try:
+            with open(preferred, 'r', encoding='utf-8') as f:
+                csv_reader = csv.DictReader(f)
+                for row in csv_reader:
+                    row_id = row.get('id', '').strip()
+                    if not row_id or row_id.startswith('#'):
+                        dict_rows_other.append(row)
+                        continue
+                    dict_rows_other.append(row)
+            print(f"📄 成功加载语言文件：{preferred}") 
+        except FileNotFoundError as e:
+            raise Exception(f"语言文件未找到：{preferred}")
+        except Exception as e:
+            raise Exception(f"语言文件读取失败：{e}：{preferred}")
 
     # 检测空数据
     if not dict_rows_now:
         raise ValueError(f"主CSV文件读取后无有效数据：{abs_file_path}")
     if not dict_rows_other:
-        raise ValueError(f"备用CSV文件（EN/CN）读取后无有效数据：{abs_path_en if not EN_to_CN else abs_path_cn}")
+        raise ValueError(f"备用CSV文件（EN/CN）读取后无有效数据：{preferred if preferred else abs_path_en if os.path.exists(abs_path_en) else abs_path_cn}")
 
     # 提取有效ID（排除注释/空ID）
     valid_ids_now = {
@@ -387,7 +418,10 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
 
     # 写入备份文件到临时文件
     try:
-        target_path = abs_path_en if EN_to_CN else abs_path_cn
+        # target_path: after swapping, write the swapped-out (original main) to the opposite suffix
+        # We want the main file to be the "current" language (USE_EN_SETTING_NEW == true indicates EN).
+        # Therefore the backup (swapped-out file) must be the other language suffix.      
+        target_path = abs_path_cn if USE_EN_SETTING_NEW else abs_path_en
         temp_backup_path = write_to_temp_csv(dict_rows_other, target_path)
         print(f"📝 备份文件临时文件生成：{temp_backup_path}")
     except Exception as e:
@@ -416,49 +450,47 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
         abs_path_en = abs_file_path.replace(file_name_without_extension, f"{file_name_without_extension}_EN")
         abs_path_cn = abs_file_path.replace(file_name_without_extension, f"{file_name_without_extension}_CN")
 
-    EN_to_CN = False
-    data1 = None  # 主文件数据
-    data2 = None  # 备份文件数据
+    # 决定交换方向：优先使用全局设置 USE_EN_SETTING
+    use_en = USE_EN_SETTING_NEW
+    if use_en is None:
+        raise Exception(f"aEP_UseEnString设置读取失败")
 
-    # 读取主文件 + 备份文件（保留中文逗号）
+    data1 = None  # 主文件数据
+    data2 = None  # 语言文件数据
+    preferred = abs_path_en if USE_EN_SETTING_NEW else abs_path_cn 
+
+    # 读取主文件
     try:
         data1 = read_json_safely(abs_file_path)
-        data2 = read_json_safely(abs_path_en)
-        print(f"📄 加载主文件+EN文件：{abs_file_path} + {abs_path_en}")
+        print(f"📄 成功加载主文件：{abs_file_path}")
     except FileNotFoundError as e:
-        if en_file_name in str(e):
-            EN_to_CN = True
-            try:
-                data2 = read_json_safely(abs_path_cn)
-                print(f"📄 EN文件不存在，加载CN文件：{abs_path_cn}")
-            except Exception as e:
-                raise Exception(f"EN/CN文件均加载失败：{e}")
-        else:
-            raise Exception(f"主文件加载失败：{e}")
+        raise Exception(f"主文件加载失败：{e}")
     except Exception as e:
         raise Exception(f"JSON读取异常：{e}")
 
-    # 新增：空数据最终校验（双重保障）
-    if data1 is None or not data1:
-        raise ValueError(f"主JSON文件无有效数据：{abs_file_path}")
-    if data2 is None or not data2:
-        raise ValueError(f"备用JSON文件无有效数据：{abs_path_en if not EN_to_CN else abs_path_cn}")
+    # 读取备用（优先使用偏好）
+    if preferred:
+        try:
+            data2 = read_json_safely(preferred)
+            print(f"📄 成功加载语言文件：{preferred}")
+        except FileNotFoundError as e:
+            raise Exception(f"语言文件未找到：{preferred}")
+        except Exception as e:
+            raise Exception(f"语言文件读取失败：{e}：{preferred}")
 
-    # 递归交换JSON值（保留中文逗号，仅交换对应值）
+
+    # 递归交换逻辑保持不变
     def swap_nested_json_values(data1: Union[Dict, List], data2: Union[Dict, List]):
         if isinstance(data1, dict) and isinstance(data2, dict):
-            # 只交换双方都有的key
             common_keys = set(data1.keys()).intersection(data2.keys())
             for key in common_keys:
                 if isinstance(data1[key], (dict, list)) and isinstance(data2[key], (dict, list)):
                     swap_nested_json_values(data1[key], data2[key])
                 else:
-                    # 基础类型交换（保留所有字符，包括中文逗号）
                     temp = cp.deepcopy(data2[key])
                     data2[key] = cp.deepcopy(data1[key])
                     data1[key] = temp
         elif isinstance(data1, list) and isinstance(data2, list):
-            # 数组按索引交换（仅当长度一致时）
             min_len = min(len(data1), len(data2))
             for i in range(min_len):
                 if isinstance(data1[i], (dict, list)) and isinstance(data2[i], (dict, list)):
@@ -468,7 +500,6 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
                     data2[i] = cp.deepcopy(data1[i])
                     data1[i] = temp
 
-    # 执行交换
     swap_nested_json_values(data1, data2)
 
     # 写入主文件到临时文件
@@ -478,9 +509,9 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
     except Exception as e:
         raise Exception(f"主文件临时文件写入失败：{e}")
 
-    # 写入备份文件到临时文件
+    # 写入备份（写到与偏好相反的后缀）
     try:
-        target_path = abs_path_en if EN_to_CN else abs_path_cn
+        target_path = abs_path_cn if USE_EN_SETTING_NEW else abs_path_en   
         temp_backup_path = write_to_temp_json(data2, target_path)
         print(f"📝 备份文件临时文件生成：{temp_backup_path}")
     except Exception as e:
@@ -499,39 +530,27 @@ def swap_name(file_path: str, file_name_with_ext: str) -> None:
     cn_path = os.path.join(file_dir, cn_file)
     en_path = os.path.join(file_dir, en_file)
 
-    # If both exist, decide based on settings
-    if os.path.exists(cn_path) and os.path.exists(en_path):
-        # Try to read settings to determine current language
-        try:
-            settings_path = get_abs_file_path('data/config/settings.json')
-            settings = read_json_safely(settings_path)
-            use_en = bool(settings.get('aEP_UseEnString', False))
-            print(f"📘 检测到双方后缀均存在，配置 aEP_UseEnString={use_en}（True=EN）")
-            if use_en:
-                # Currently EN: treat as if EN exists only -> original -> CN, EN -> original
-                RENAME_TASKS.append((abs_file_path, cn_path, en_path))
-                print(f"📌 预收集重命名任务（基于设置=EN）：{abs_file_path} ↔ {en_path}")
-            else:
-                # Currently CN: treat as if CN exists only -> original -> EN, CN -> original
-                RENAME_TASKS.append((abs_file_path, en_path, cn_path))
-                print(f"📌 预收集重命名任务（基于设置=CN）：{abs_file_path} ↔ {cn_path}")
-            return
-        except FileNotFoundError:
-            print("⚠️ 设置文件 data/config/settings.json 未找到，使用默认后缀优先策略（CN优先）")
-        except Exception as e:
-            print(f"⚠️ 读取设置失败，使用默认后缀优先策略：{e}")
+    # Always decide based on global USE_EN_SETTING (fallback to reading settings if None)
+    use_en = USE_EN_SETTING_NEW
+    if use_en is None:
+        raise Exception(f"aEP_UseEnString设置读取失败")
 
-    # 收集重命名任务（原文件, 目标文件1, 目标文件2）
-    if os.path.exists(cn_path):
-        # 原文件 → EN文件，CN文件 → 原文件
-        RENAME_TASKS.append((abs_file_path, en_path, cn_path))
-        print(f"📌 预收集重命名任务：{abs_file_path} ↔ {cn_file}")
-    elif os.path.exists(en_path):
-        # 原文件 → CN文件，EN文件 → 原文件
-        RENAME_TASKS.append((abs_file_path, cn_path, en_path))
-        print(f"📌 预收集重命名任务：{abs_file_path} ↔ {en_file}")
+    # When USE_EN_SETTING_NEW is True, current language should be main(CN) + main_EN -> final files: main (EN) + main_CN
+    # So if an EN file exists, move EN -> original and original -> _CN
+    if USE_EN_SETTING_NEW:
+        if os.path.exists(en_path):
+            RENAME_TASKS.append((abs_file_path, cn_path, en_path))
+            print(f"📌 预收集重命名任务：{abs_file_path} -> {cn_path})")
+        else:
+            raise Exception(f"未找到后缀为XXX_EN的对应文件文件：{abs_file_path}")
     else:
-        raise Exception(f"未找到对应的CN/EN文件：{cn_path} / {en_path}")
+        # USE_EN_SETTING_NEW is False, current language should be main(EN) + main_CN -> final files: main (CN) + main_EN
+        # So if a CN file exists, move CN -> original and original -> _EN
+        if os.path.exists(cn_path):
+            RENAME_TASKS.append((abs_file_path, en_path, cn_path))
+            print(f"📌 预收集重命名任务：：{abs_file_path} -> {en_path})")
+        else:
+            raise Exception(f"未找到后缀为XXX_CN的对应文件文件：{abs_file_path}")
 
 def batch_execute_rename() -> None:
     """批量执行重命名任务，保证原子性
@@ -543,58 +562,62 @@ def batch_execute_rename() -> None:
       3. 在同目录下清理除 temp_path 以外的 *_EN/*_CN 文件，只保留 temp_path（即保存被换出的副本）和最终的 original_path
     """
     for original_path, temp_path, swap_path in RENAME_TASKS:
-        tmp_backup = None
+        tmp_swap = None
         try:
             file_dir = os.path.dirname(original_path)
             base_name = os.path.splitext(os.path.basename(original_path))[0]
             ext = os.path.splitext(original_path)[1]
 
-            # If temp_path already exists, move original to a unique tmp backup first
-            if os.path.exists(temp_path):
-                # create unique temporary path in the same dir
-                fd, tmp_backup = tempfile.mkstemp(prefix=base_name + '_orig_backup_', suffix=ext, dir=file_dir)
-                os.close(fd)
-                # remove the zero-length file created by mkstemp so os.rename can use the name
-                os.remove(tmp_backup)
-                # move original -> tmp_backup
-                os.rename(original_path, tmp_backup)
-            else:
-                # safe to move original -> temp_path directly
-                os.rename(original_path, temp_path)
+            print(f"🔁 处理重命名任务: original={original_path}, temp(backup)={temp_path}, swap_source={swap_path}")
 
-            # move swap_path -> original_path (replace if exists)
-            # use os.replace to overwrite if necessary
-            os.replace(swap_path, original_path)
-            print(f"✅ 批量重命名完成：{original_path} ↔ {swap_path}")
+            # create unique temporary path for swap source
+            fd, tmp_swap = tempfile.mkstemp(prefix=base_name + '_swap_tmp_', suffix=ext, dir=file_dir)
+            os.close(fd)
+            os.remove(tmp_swap)
+            # Step A: move swap_path -> tmp_swap (atomic replace)
+            os.replace(swap_path, tmp_swap)
+            print(f"ℹ️ 已临时移除交换来源到：{tmp_swap}")
 
-            # if we used tmp_backup, now move it to temp_path (overwriting existing temp_path if any)
-            if tmp_backup:
-                try:
-                    if os.path.exists(temp_path):
-                        os.remove(temp_path)
-                    os.rename(tmp_backup, temp_path)
-                except Exception as de:
-                    print(f"⚠️ 无法将临时备份移动到目标后缀位置：{de}")
+            # Step B: move original -> temp_path (overwrite existing temp_path)
+            # use os.replace so it will overwrite if temp_path exists
+            os.replace(original_path, temp_path)
+            print(f"➡️ 已将原始文件移动到备份位置：{original_path} -> {temp_path}")
 
-            # Step 3: 清理同目录下的 *_EN/*_CN 文件，保留 temp_path（被换出的副本）
+            # Step C: move tmp_swap -> original_path (place swapped-in content)
+            os.replace(tmp_swap, original_path)
+            print(f"⬅️ 已将交换来源放回原始位置：{tmp_swap} -> {original_path}")
+
+            # Step 3: 清理同目录下的 *_EN/*_CN 文件，保留 temp_path（被换出的副本）和 original_path
             try:
                 candidates = [
                     os.path.join(file_dir, f"{base_name}_EN{ext}"),
                     os.path.join(file_dir, f"{base_name}_CN{ext}")
                 ]
                 for candidate in candidates:
-                    # if candidate exists but is not the temp_path we want to keep, delete it
                     if os.path.exists(candidate):
-                        # normalize paths for comparison
                         cand_norm = os.path.normcase(os.path.abspath(candidate))
                         keep_norm = os.path.normcase(os.path.abspath(temp_path))
                         orig_norm = os.path.normcase(os.path.abspath(original_path))
                         if cand_norm != keep_norm and cand_norm != orig_norm:
                             try:
-                                os.remove(candidate)
-                                print(f"🗑️ 已删除额外的后缀文件：{candidate}")
+                                # 移动到备份目录以便回滚（保留原目录结构在备份目录中）
+                                backup_dir = get_backup_dir()
+                                # preserve relative path under backup dir
+                                rel_dir = os.path.relpath(os.path.dirname(candidate), os.path.dirname(os.path.abspath(__file__)))
+                                target_dir = os.path.join(backup_dir, rel_dir)
+                                os.makedirs(target_dir, exist_ok=True)
+                                target_name = os.path.basename(candidate)
+                                target_path = os.path.join(target_dir, target_name)
+                                # 如果已存在同名备份，添加序号
+                                i = 1
+                                base, ext = os.path.splitext(target_name)
+                                while os.path.exists(target_path):
+                                    target_path = os.path.join(target_dir, f"{base}_{i}{ext}")
+                                    i += 1
+                                os.replace(candidate, target_path)
+                                print(f"📦 已移动额外的后缀文件到备份：{candidate} -> {target_path}")
                             except Exception as de:
-                                print(f"⚠️ 无法删除文件 {candidate}：{de}")
+                                print(f"⚠️ 无法移动文件 {candidate} 到备份：{de}")
                         else:
                             print(f"ℹ️ 保留后缀文件：{candidate}")
             except Exception as de:
@@ -602,10 +625,10 @@ def batch_execute_rename() -> None:
 
         except Exception as e:
             print(f"⚠️ 批量重命名失败 {original_path}：{e}")
-            # attempt to cleanup tmp_backup if exists
+            # attempt to cleanup tmp_swap if exists
             try:
-                if tmp_backup and os.path.exists(tmp_backup):
-                    os.remove(tmp_backup)
+                if tmp_swap and os.path.exists(tmp_swap):
+                    os.remove(tmp_swap)
             except Exception:
                 pass
             raise
@@ -613,51 +636,71 @@ def batch_execute_rename() -> None:
     RENAME_TASKS.clear()
 
 # -------------------------- JSON配置更新逻辑 --------------------------
-def update_setting_in_json(file_path: str, key: str, new_value: Any = None) -> None:
-    """更新JSON配置（保留中文逗号，写入临时文件）"""
+def update_setting_in_json(file_path: str, key: str, new_value: Any = None) -> Any:
+    """更新JSON配置（保留中文逗号，写入临时文件）
+
+    如果 new_value 为 None，则读取当前值并对布尔值取反后写回（返回新的值）。
+    返回写入后的值，供调用者使用。
+    """
     abs_file_path = get_abs_file_path(file_path)
     try:
-        # 安全读取（保留中文逗号）
+        # 直接读取原始内容并清理，确保我们解析到实际的字典结构
         with open(abs_file_path, 'r', encoding='utf-8-sig') as f:
-            raw_content = f.read()
-        clean_content = clean_json_content(raw_content)
+            raw = f.read()
+        if raw is None or raw.strip() == '':
+            raise ValueError(f"配置文件内容为空：{abs_file_path}")
+        clean = clean_json_content(raw)
+        data = json.loads(clean)
 
-        # 检测空内容
-        if not clean_content:
-            raise ValueError(f"配置文件清理后无有效内容：{abs_file_path}")
+        if not isinstance(data, dict):
+            raise ValueError(f"配置文件解析后不是字典：{abs_file_path}")
 
-        settings = json.loads(clean_content)
+        # 备份原文件到 swapped_backups（便于回滚）
+        try:
+            backup_dir = get_backup_dir()
+            rel_dir = os.path.relpath(os.path.dirname(abs_file_path), os.path.dirname(os.path.abspath(__file__)))
+            target_dir = os.path.join(backup_dir, rel_dir)
+            os.makedirs(target_dir, exist_ok=True)
+            base_name = os.path.basename(abs_file_path)
+            ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+            backup_path = os.path.join(target_dir, f"{base_name}.{ts}.bak")
+            shutil.copy2(abs_file_path, backup_path)
+            print(f"📦 已备份设置文件到：{backup_path}")
+        except Exception as e:
+            print(f"⚠️ 备份设置文件失败（继续执行）：{e}")
 
-        # 检测空配置
-        if not settings:
-            raise ValueError(f"配置文件解析后为空：{abs_file_path}")
-
-        # 更新配置
-        if key in settings:
-            if new_value is None:
-                # 布尔值取反
-                if not isinstance(settings[key], bool):
-                    raise ValueError(f"键{key}不是布尔值，无法取反（当前值：{settings[key]}，类型：{type(settings[key])}）")
-                settings[key] = not settings[key]
-            else:
-                settings[key] = new_value
-            print(f"🔧 更新配置：{key} = {settings[key]}")
+        # 仅修改指定键（保留其它键）
+        if new_value is None:
+            if key not in data:
+                raise KeyError(f"键{key}不存在于配置文件中（可用键：{list(data.keys())}）")
+            if not isinstance(data[key], bool):
+                raise ValueError(f"键{key}不是布尔值，无法取反（当前值：{data[key]}，类型：{type(data[key])}）")
+            data[key] = not data[key]
         else:
-            raise KeyError(f"键{key}不存在于配置文件中（可用键：{list(settings.keys())}）")
+            data[key] = new_value
 
-        # 写入临时文件
-        temp_config_path = write_to_temp_json(settings, abs_file_path)
+        print(f"🔧 更新配置：{key} = {data[key]}")
+
+        # 将修改后的完整字典写入临时文件（不会丢失其它键）
+        json_content = json.dumps(data, ensure_ascii=False, indent=2)
+        temp_config_path = create_temp_file(json_content, abs_file_path)
         print(f"📝 配置文件临时文件生成：{temp_config_path}")
+
+        return data[key]
     except FileNotFoundError:
         raise Exception(f"配置文件不存在：{abs_file_path}")
-    except json.JSONDecodeError:
-        raise Exception(f"配置文件JSON解析失败：{abs_file_path}")
+    except json.JSONDecodeError as e:
+        raise Exception(f"配置文件JSON解析失败：{abs_file_path}：{e}")
     except Exception as e:
         raise Exception(f"配置更新异常：{e}")
 
 # -------------------------- 主执行逻辑（原子性批量处理） --------------------------
 if __name__ == "__main__":
     try:
+        # 初始化全局语言设置（从配置文件读取）
+        USE_EN_SETTING_OLD = get_current_aep_setting()
+        USE_EN_SETTING_NOW = not USE_EN_SETTING_OLD
+
         # ========== 第一步：批量处理所有文件，生成临时文件/收集重命名任务 ==========
         print("=== 开始处理所有文件，生成临时文件 ===")
 
@@ -693,7 +736,7 @@ if __name__ == "__main__":
         swap_json("data/world/factions/aEP_FSF_adv.faction", "aEP_FSF_adv","faction")
 
         # 配置更新（生成临时文件）
-        update_setting_in_json("data/config/settings.json", 'aEP_UseEnString', None)
+        # update_setting_in_json("data/config/settings.json", 'aEP_UseEnString', None)
 
         # ========== 第二步：所有文件处理完成，批量执行替换/重命名 ==========
         print("\n=== 所有临时文件生成完成，开始批量替换原文件 ===")
@@ -701,6 +744,11 @@ if __name__ == "__main__":
         batch_replace_original_files()
         # 批量执行重命名任务
         batch_execute_rename()
+
+        # 最后更新设置（在重命名后执行，以便基于最新文件后缀状态）
+        update_setting_in_json("data/config/settings.json", 'aEP_UseEnString', None)
+        # 将设置临时文件应用到磁盘
+        batch_replace_original_files()
 
         print("\n🎉 所有文件交换/重命名完成！")
 
