@@ -15,6 +15,7 @@ import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_DataTool.txt
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -1453,17 +1454,15 @@ class aEP_Tool {
     }
 
     fun getInfoTextWithinSystemRange(ship: ShipAPI, toLocation: Vector2f?, baseRange: Float, targetRadius: Float?): String{
-      if(toLocation == null) return "Need Target"
+      if(toLocation == null) return txt("aEP_SystemGeneral01")
       val dist = checkTargetWithinSystemRange(ship, toLocation, baseRange, targetRadius?:0f)
       if(dist <= 0f){
-        return "In Range"
+        return txt("aEP_SystemGeneral02")
       } else{
         //round to nearest 50
         val rounded =  ((dist / 50f).roundToInt() + 1 ) * 50
-        return "Out of Range: $rounded"
+        return txt("aEP_SystemGeneral03") + rounded
       }
-
-
     }
 
     fun checkMouseWithinSystemRange(ship: ShipAPI?, baseRange: Float): Boolean{

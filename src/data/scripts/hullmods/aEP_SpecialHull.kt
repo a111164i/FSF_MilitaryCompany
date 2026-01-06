@@ -48,8 +48,8 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
     const val ZERO_FLUX_EXTRA_THRESHOLD = 4f //百分之几以下触发加速装填，航母派出飞机是1%，所以这里给2%
 
-    val BOOST_COLOR1 = Color(255,0,0)
-    val BOOST_COLOR2 = Color(225,125,75,100)
+    val BOOST_COLOR1 = Color(0,255,0)
+    val BOOST_COLOR2 = Color(155,255,0)
 
     const val MAX_OVERLOAD_TIME = 8f
     const val ID = "aEP_SpecialHull"
@@ -236,7 +236,9 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
         //更新加成
         updateShipStats(amount)
         //更新视觉效果
-        //updateVisual()
+        if(Global.getCombatEngine().playerShip == ship){
+          updateVisual()
+        }
       }
 
       //根据当前是否有生效舰船控制激活时间
@@ -278,9 +280,11 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
           val vxf = Indicator(ship, activatingShip!!)
           currentIndicator = vxf
           aEP_CombatEffectPlugin.addEffect(vxf)
-        //如果当前和目标存在链子，把持续视时间改为无限
         } else {
-          currentIndicator!!.lifeTime = 0f
+          //如果当前和目标存在链子，把lifeTime改为3秒，但time不会大于2，让链子保持显示
+          //如果中途玩家切换了座驾，这个船不再被update，1秒后链子自己断开
+          currentIndicator!!.lifeTime = 3f
+          if(currentIndicator!!.time > 2f) currentIndicator!!.time = 2f
         }
 
       //如果没有找到目标
@@ -331,11 +335,11 @@ class aEP_SpecialHull : aEP_BaseHullMod(), FighterOPCostModifier {
 
         if(dist < ACTIVE_RANGE_MIN ){
           spriteTexId = spriteId2
-          color = aEP_Tool.getColorWithAlpha(Color.green,0.2f)
+          color = aEP_Tool.getColorWithAlpha(BOOST_COLOR1,0.2f)
           scrollSpeed = 2f
         }else{
           spriteTexId = spriteId1
-          color = aEP_Tool.getColorWithAlpha(Color.red,0.2f)
+          color = aEP_Tool.getColorWithAlpha(BOOST_COLOR2,0.2f)
           scrollSpeed = -5f
         }
 

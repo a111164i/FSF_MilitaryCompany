@@ -52,6 +52,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
       VALID_TARGET_LIST["aEP_fga_yonglang"] = 1f
     }
 
+    //给ai用的
     fun checkIsShipValidLite(target:ShipAPI?, ship: ShipAPI): Boolean{
       //非空，是活着，是友军，CR足够，距离足够，是护卫，属于VALID_LIST，当前并不在被其他人传送或者维修
       if(target is ShipAPI
@@ -59,7 +60,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
         && target.owner == ship.owner
         && target.currentCR > 0.4f
         && ship.currentCR > 0.4f
-        && MathUtils.getDistanceSquared(ship, target.location) <= (aEP_Tool.getSystemRange(ship,SYSTEM_RANGE)).pow(2)
+        && aEP_Tool.checkTargetWithinSystemRange(ship, target.location, SYSTEM_RANGE, target.collisionRadius) <= 0f
         && target.isFrigate
         && !target.isPhased
         && target.collisionClass != CollisionClass.NONE
@@ -132,7 +133,7 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
 
     if(effectLevel >= 1f){
       //检测目标是否有效
-      if(!checkIsShipValid(target, ship)) target = null
+      if(!isUsable(ship.system, ship)) target = null
       //如果检测之后是null，不继续运行
       target?: return
 
@@ -168,26 +169,25 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
   }
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
-
-
-    if(checkIsShipValid(ship.shipTarget, ship)){
+    if(getInfoText(system, ship).equals(txt("aEP_SystemGeneral02"))){
       return true
     }
-
     return false
   }
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
 
+    //当前并不在传送或者维修
     if (telClassHandle != null){
-      return "Teleporting: " + String.format("%.2f",telClassHandle!!.lifeTime-telClassHandle!!.time)
+      return txt("aEP_ComebackProgram06") + String.format("%.2f",telClassHandle!!.lifeTime-telClassHandle!!.time)
     }
     if (repairClassHandle != null){
-      return "Repairing: " + String.format("%.0f",repairClassHandle!!.reconstructTimer)
+      return txt("aEP_ComebackProgram05") + String.format("%.0f",repairClassHandle!!.reconstructTimer)
     }
-    //当前无目标的情况可以先划出去
+
+    //非空
     if(target == null){
-      return "Need Ship Target"
+      return txt("aEP_SystemGeneral01")
     }
     val target = target as ShipAPI
 
@@ -195,54 +195,44 @@ class aEP_ComebackProgram:  BaseShipSystemScript(){
     val dist = aEP_Tool.checkTargetWithinSystemRange(ship,target.location, SYSTEM_RANGE, target.collisionRadius)
     if (dist > 0f){
       val rounded =  ((dist / 50f).roundToInt() + 1 ) * 50
-      return "Out of Range: $rounded"
+      return  txt("aEP_SystemGeneral03") + rounded
     }
 
+    //检测是不是护卫舰
     if (!target.isFrigate){
       return txt("aEP_ComebackProgram01")
     }
+    //检测是不是fsf的舰船
     if (!target.variant.hasHullMod(aEP_SpecialHull.ID)){
       return txt("aEP_ComebackProgram02")
     }
+    //检测是不是VALID_LIST里的舰船
     if (!VALID_TARGET_LIST.containsKey(target.hullSpec.baseHullId)){
       return txt("aEP_ComebackProgram03")
     }
+    //检测CR够不够
     if (target.currentCR <= 0.4f || ship.currentCR <= 0.4f){
       return txt("aEP_ComebackProgram04")
     }
 
-    if(checkIsShipValid(target, ship)){
-      return "Ready"
-    } else{
-      return "Invalid Ship Target"
-    }
-
-  }
-
-  fun checkIsShipValid(target:ShipAPI?, ship: ShipAPI): Boolean{
-    //非空，是活着，是友军，CR足够，距离足够，是护卫，属于VALID_LIST，当前并不在被其他人传送或者维修
-    if(target is ShipAPI
-      && !aEP_Tool.isDead(target)
+    //检测其他的杂项
+    //是活着，是友军，当前并不在被其他人传送或者维修
+    if(!aEP_Tool.isDead(target)
       && target.owner == ship.owner
-      && target.currentCR > 0.4f
-      && ship.currentCR > 0.4f
-      && MathUtils.getDistanceSquared(ship, target.location) <= (aEP_Tool.getSystemRange(ship,SYSTEM_RANGE)).pow(2)
-      && target.isFrigate
       && !target.isPhased
       && target.collisionClass != CollisionClass.NONE
       && !target.isStation
       && !target.isDrone
-      && target.variant.hasHullMod(aEP_SpecialHull.ID)
-      && VALID_TARGET_LIST.containsKey(target.hullSpec.baseHullId)
-      && telClassHandle == null
-      && repairClassHandle == null
       && !target.customData.containsKey(TEL_KEY)
       && !target.customData.containsKey(aEP_EmergencyReconstruct.ACTIVE_KEY)){
-      return true
+      //isUsable检测的是getInfo是否返回("aEP_SystemGeneral02")，别的信息都代表系统不可用
+      return txt("aEP_SystemGeneral02")
+    }else{
+      return txt("aEP_SystemGeneral04")
     }
 
-    return false
   }
+
 
   fun updateIndicators(ship: ShipAPI){
     var l1 : aEP_DecoAnimation? = null

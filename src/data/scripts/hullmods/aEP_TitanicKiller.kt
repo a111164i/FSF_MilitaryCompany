@@ -18,7 +18,7 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
     const val ID = "aEP_TitanicKiller"
 
     const val DAMAGE_MULTIPLIER = 1.05f
-    const val MAX_DAMAGE_MULTIPLIER = 4f
+    const val MAX_DAMAGE_MULTIPLIER = 3f
 
     val START_DP = LinkedHashMap<ShipAPI.HullSize, Float>()
     init {
@@ -57,7 +57,7 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
     val factionDarkColor = faction.darkUIColor
     val factionBrightColor = faction.brightUIColor
 
-    val col2W0 = width * 0.3f
+    val col2W0 = width * 0.25f
     val col3W0 = width * 0.4f
     //第一列显示的名称，尽可能可能的长
     val col1W0 = (width - col2W0 - col3W0 - PARAGRAPH_PADDING_BIG)
@@ -65,7 +65,7 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
       factionColor, factionDarkColor, factionBrightColor,
       TEXT_HEIGHT_SMALL, true, true,
       *arrayOf<Any>(
-        "Target Hullsize", col1W0,
+        txt("aEP_TitanicKiller03"), col1W0,
         txt("aEP_TitanicKiller01"), col2W0,
         txt("aEP_TitanicKiller02"), col3W0,
       )

@@ -246,7 +246,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       tooltip.beginTable(
         factionColor, factionDarkColor, factionBrightColor,
         TEXT_HEIGHT_SMALL, true, true,
-        *arrayOf<Any>("Missile Spec", col1W2,
+        *arrayOf<Any>(txt("aEP_MissilePlatform10"), col1W2,
           txt("aEP_MissilePlatform08"), col2W2,
           txt("aEP_MissilePlatform03"), col4W2,
           txt("aEP_MissilePlatform04"), col3W2,

@@ -9,8 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc7 01&#10;todo">
-      <change beforePath="$PROJECT_DIR$/swap_CN_EN.py" beforeDir="false" afterPath="$PROJECT_DIR$/swap_CN_EN.py" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc7 08&#10;TODO:&#10;检查EN巡洋导弹报错的问题">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SpecialHull.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SpecialHull.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TitanicKiller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TitanicKiller.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ComebackProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ComebackProgram.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -369,15 +379,11 @@
       <workItem from="1767528634651" duration="910000" />
       <workItem from="1767530085540" duration="13134000" />
       <workItem from="1767596269895" duration="16548000" />
-      <workItem from="1767643496479" duration="16000" />
-    </task>
-    <task id="LOCAL-00018" summary="4.8rc1">
-      <option name="closed" value="true" />
-      <created>1725153471376</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1725153471376</updated>
+      <workItem from="1767643496479" duration="1977000" />
+      <workItem from="1767645499234" duration="11000" />
+      <workItem from="1767645767579" duration="341000" />
+      <workItem from="1767687864454" duration="251000" />
+      <workItem from="1767695558256" duration="3726000" />
     </task>
     <task id="LOCAL-00019" summary="4.8rc1">
       <option name="closed" value="true" />
@@ -763,7 +769,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767545781552</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="//----------------------------------------------//&#10;5.0rc7 07&#10;更新swap_CN_EN 终于好了">
+      <option name="closed" value="true" />
+      <created>1767643725758</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1767643725758</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -841,7 +855,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 05&#10;修改了rules.csv，使用SetEnable简化了show2" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 06&#10;修复了wingMembers越界formation的问题" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 07&#10;更新swap_CN_EN 终于好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc7 07&#10;更新swap_CN_EN 终于好了" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

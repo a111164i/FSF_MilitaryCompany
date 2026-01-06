@@ -21,6 +21,7 @@ import data.scripts.shipsystems.aEP_Rupture.Companion.FREE_RANGE
 import data.scripts.shipsystems.aEP_Rupture.Companion.JITTER_COLOR
 import data.scripts.shipsystems.aEP_Rupture.Companion.SPEED_SLOW_PER_TICK
 import data.scripts.shipsystems.aEP_Rupture.Companion.TICK_DIST
+import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.weapons.PredictionStripe
 import data.scripts.weapons.aEP_BeamRepair
 import org.lazywizard.lazylib.VectorUtils
@@ -198,8 +199,9 @@ class aEP_Rupture:  BaseShipSystemScript() {
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
     var string = aEP_Tool.getInfoTextWithinSystemRange(ship, ship.shipTarget?.location, SYSTEM_RANGE,ship.shipTarget?.collisionRadius)
+    //对于正在被起效的目标不能放第二个
     if(ship.shipTarget?.customData?.containsKey(TARGET_KEY+ship.id) == true){
-      string = "Not Valid"
+      string = txt("aEP_SystemGeneral04")
     }
     return string
   }
