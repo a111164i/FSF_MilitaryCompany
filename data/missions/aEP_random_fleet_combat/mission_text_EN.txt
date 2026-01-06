@@ -1,0 +1,4 @@
+﻿Location: Unknown
+Date: Unknown
+
+Create random fleets doing combat test.

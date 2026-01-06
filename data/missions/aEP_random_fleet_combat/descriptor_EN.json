@@ -1,6 +1,6 @@
 {
-  "title": "随机舰队战斗测试",
-  "difficulty": "无",
+  "title": "Random Fleet Combat",
+  "difficulty": "None",
   "icon": "icon.png",
   "background": "graphics/backgrounds/hyperspace1.jpg",
   "player_prefix": "aEP_",

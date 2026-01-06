@@ -703,6 +703,10 @@ if __name__ == "__main__":
         swap_name("data/missions/aEP_planet_investigation/mission_text.txt", "mission_text.txt")
         swap_name("data/missions/aEP_assassination/descriptor.json", "descriptor.json")
         swap_name("data/missions/aEP_assassination/mission_text.txt", "mission_text.txt")
+        swap_name("data/missions/aEP_test/descriptor.json", "descriptor.json")
+        swap_name("data/missions/aEP_test/mission_text.txt", "mission_text.txt")
+        swap_name("data/missions/aEP_random_fleet_combat/descriptor.json", "descriptor.json")
+        swap_name("data/missions/aEP_random_fleet_combat/mission_text.txt", "mission_text.txt")
 
         # JSON/faction文件交换（生成临时文件 + 清理多余_EN/_CN）
         swap_json("mod_info.json","mod_info")

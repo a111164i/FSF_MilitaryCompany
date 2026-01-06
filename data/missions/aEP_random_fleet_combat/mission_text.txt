@@ -1,4 +1,4 @@
-﻿Location: Unknown
-Date: Unknown
+﻿地点: 未知
+日期: 未知
 
-Play against a random fleet.
+随机生成舰队进行战斗测试.

@@ -108,6 +108,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\bar_events.csv">
           <value>
             <Attribute>
@@ -353,6 +360,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>
@@ -508,13 +522,6 @@
           </value>
         </entry>
         <entry key="\data\hullmods\hull_mods.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\data\hullmods\hull_mods_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

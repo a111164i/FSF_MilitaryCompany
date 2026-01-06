@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipSystemAPI
+import com.fs.starfarer.api.impl.campaign.ids.Commodities
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.util.IntervalUtil
@@ -56,7 +57,7 @@ class aEP_FuelBurn: BaseShipSystemScript() {
           val toAdd = String.format("%s",fuelUse.toInt())
           Global.getCombatEngine().addFloatingText(
             ship.location,
-            "lost $toAdd fuel",
+            "- $toAdd "+ Global.getSettings().getCommoditySpec(Commodities.FUEL).name,
             20f,
             Color(200, 50, 50, 240),
             ship,
