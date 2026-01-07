@@ -691,7 +691,7 @@ if __name__ == "__main__":
         swap_file_csv("data/shipsystems/ship_systems.csv", "ship_systems", ['name'])
         swap_file_csv("data/hulls/ship_data.csv", "ship_data", ['name','tech/manufacturer','designation'])
         swap_file_csv("data/hullmods/hull_mods.csv","hull_mods",['name','tech/manufacturer','uiTags','desc','short','sModDesc'])
-        swap_file_csv("data/weapons/weapon_data.csv","weapon_data",['name','tech/manufacturer','primaryRoleStr','customPrimary'])
+        swap_file_csv("data/weapons/weapon_data.csv","weapon_data",['name','tech/manufacturer','primaryRoleStr','customPrimary','customAncillary'])
         swap_file_csv("data/config/LunaSettings.csv", "LunaSettings", ['fieldName','fieldDescription' ])
 
         # 文件重命名（预收集任务）

@@ -36,6 +36,7 @@ import data.scripts.utils.aEP_Tool.Util.velocity2Speed
 import data.scripts.hullmods.aEP_ReactiveArmor
 import data.scripts.hullmods.aEP_TwinFighter
 import data.scripts.shipsystems.aEP_WeaponReset
+import data.scripts.utils.aEP_ID
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
@@ -1075,9 +1076,7 @@ class aEP_cap_nuanchi_glow : aEP_DecoAnimation() {
     if(timeAfterActive < fadeTime){
       glowLevel = (fadeTime - timeAfterActive)/fadeTime
     }
-
     setGlowToLevel(glowLevel)
-
 
     //往返运动
     if (ring1?.getDecoMoveController()?.effectiveLevel
@@ -1203,8 +1202,6 @@ class aEP_cap_duiliu_main_shot : Effect(){
     val BLINK_COLOR1 = Color(255,80,50,225)
     val BLINK_COLOR2 = Color(255,225,190,155)
 
-    val ARC_COLOR1 = Color(225,75,12,185)
-    val ARC_COLOR2 = Color(205,175,150,155)
 
     //战列舰能有4000质量，其实并不多
     const val IMPULSE_ON_HIT = 80000f
@@ -1313,18 +1310,58 @@ class aEP_cap_duiliu_main_shot : Effect(){
       6f,
       target,
       point,
-      "weapons.DL_pike_shot_inHull",
+      "weapons.DL_pike_shot_inShield",
       "weapons.DL_pike_shot",
       projectile.facing,
       shieldHit ){
-      val blinkTracker = IntervalUtil(0.95f,0.95f)
+      val blinkTracker = IntervalUtil(1.5f,1.5f)
 
       override fun advanceImpl(amount: Float) {
 
         if(entity != null && projectile.weapon != null && projectile.weapon.ship != null){
-          val entity = entity as ShipAPI
+          val entity = entity?:return
+          val target = entity as ShipAPI
           val facingToWeapon = VectorUtils.getAngle(entity.location, projectile.weapon.location)
           getRandomPointInCone(renderLoc, entity.collisionRadius, facingToWeapon-10f,facingToWeapon +10f)
+
+          blinkTracker.advance(amount)
+          if(blinkTracker.intervalElapsed()){
+            //不要引用，复制一个值
+            val to = Vector2f(entity.location)
+            val picker = WeightedRandomPicker<Vector2f>(true)
+            for(engine in target.engineController.shipEngines){
+              picker.add(engine.location,1f)
+            }
+            to.set((picker.pick()?:entity.location) as Vector2f)
+            val arc = Global.getCombatEngine().spawnEmpArcVisual(renderLoc,
+              entity, to,entity, 4f,
+              aEP_ID.EMP_ARC_COLOR_FRINGE, aEP_ID.EMP_ARC_COLOR_CORE)
+            arc.setSingleFlickerMode(true)
+            arc.setRenderGlowAtStart(false)
+            arc.setRenderGlowAtEnd(true)
+
+            if(projectile.source != null){
+              val arc2 = Global.getCombatEngine().spawnEmpArcVisual(
+                projectile.weapon?.location?: projectile.source.location,
+                projectile.source,
+                renderLoc,entity, 4f,
+                aEP_ID.EMP_ARC_COLOR_FRINGE, aEP_ID.EMP_ARC_COLOR_CORE)
+              arc2.setSingleFlickerMode(true)
+              arc2.setRenderGlowAtStart(true)
+              arc2.setRenderGlowAtEnd(false)
+            }
+
+            if(target.mass < (projectile.source?.mass ?: 2500f)){
+              when (target.hullSize){
+                ShipAPI.HullSize.FRIGATE -> target.velocity.scale(0.25f)
+                ShipAPI.HullSize.DESTROYER -> target.velocity.scale(0.4f)
+                ShipAPI.HullSize.CRUISER -> target.velocity.scale(0.5f)
+                ShipAPI.HullSize.CAPITAL_SHIP -> target.velocity.scale(0.25f)
+                else -> {target.velocity.scale(0.5f)}
+              }
+              aEP_Combat.AddStandardSlow(2f, 0f, 0.5f, target)
+            }
+          }
 
           //每帧施加拖拽速度
 //          val distSq = getDistanceSquared(entity,  projectile.weapon.ship)
@@ -4655,7 +4692,7 @@ class aEP_m_s_bomblance_shot : Effect(){
 
 }
 
-//德雷克 喷火
+//德雷克 喷火器
 class aEP_e_s_flamer_shot : Effect(){
 
   companion object{

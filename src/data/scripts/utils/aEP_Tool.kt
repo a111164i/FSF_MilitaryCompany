@@ -16,6 +16,7 @@ import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import data.scripts.aEP_CombatEffectPlugin
 import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID.Companion.TELEPORT_JITTER_COLOR
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -2317,6 +2318,10 @@ class aEP_ID{
     const val FACTION_POST_FACTION_LEADER = "Board Representative"
     const val FACTION_POST_BUSINESS_MANAGER = "Business Manager"
 
+    val EMP_ARC_COLOR_FRINGE =  Color(255,150,255,200)
+    val EMP_ARC_COLOR_CORE =  Color(255,175,255,255)
+
+    val TELEPORT_JITTER_COLOR = RecallDeviceStats.JITTER_COLOR
   }
 }
 
@@ -2494,7 +2499,7 @@ class aEP_Combat{
       const val ID = "aEP_StandardTeleport"
     }
 
-    var color = RecallDeviceStats.JITTER_COLOR
+    var color = TELEPORT_JITTER_COLOR
     val key = ID+Math.random()
     init {
       ship.setCustomData(ID,1f)

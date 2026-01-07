@@ -8,8 +8,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class aEP_DuiliuMainGunEffect implements EveryFrameWeaponEffectPlugin
 {
-  //总伤害 = 2秒充能 * 每秒生成10次 * 每次生成5颗 * dph(15) = 1500
-  static final int NUM_PER_SPAWN = 5;
+  //总伤害 = 2秒充能 * 每秒生成10次 * 每次生成3颗 * dph(25) = 1500
+  static final int NUM_PER_SPAWN = 3;
   static final float MAX_SPREAD = 2;
   static final float FLUX_PER_SEC_CHARGING = 500f;//充能时每秒涨幅能
   IntervalUtil spawnTimer = new IntervalUtil(0.1f, 0.1f);
@@ -54,7 +54,7 @@ public class aEP_DuiliuMainGunEffect implements EveryFrameWeaponEffectPlugin
         loc,//point
         weapon.getCurrAngle(),//angle
         weapon.getShip().getVelocity());//init ship vel
-      float speedRand = MathUtils.getRandomNumberInRange(0.85f, 1.15f);
+      float speedRand = MathUtils.getRandomNumberInRange(0.9f, 1.1f);
       newProj.setFacing(MathUtils.getRandomNumberInRange(0, 360));
       newProj.getVelocity().scale(speedRand);
     }

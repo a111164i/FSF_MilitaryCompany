@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\config\glib\no_self_destruct.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\lights\core_light_data.csv">
           <value>
             <Attribute>
@@ -32,6 +25,13 @@
           </value>
         </entry>
         <entry key="E:\Program Files\Starsector098\mods\LazyLib\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="E:\Program Files\Starsector098\mods\LunaLib\data\config\LunaSettings.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -542,6 +542,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hulls\ship_data_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hulls\wing_data.csv">
           <value>
             <Attribute>
@@ -585,6 +592,13 @@
           </value>
         </entry>
         <entry key="\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\weapons\weapon_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
