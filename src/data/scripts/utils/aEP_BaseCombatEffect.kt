@@ -125,15 +125,19 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   }
 
   /**
-   * 因为是在一个LayeredRenderingPlugin中渲染全部的aEP_BaseCombatEffect
-   * 本方法完全没有意义
-   * 控制渲染距离在render方法中
+   * 在一个LayeredRenderingPlugin中渲染全部的aEP_BaseCombatEffect
+   * 控制渲染距离的代码在render方法中
    * 在结束时会把 radius设置为-1，用于 shaderPlugin中不经过 isExpire方法也能检测是否结束
+   * 离开屏幕多少距离后，不渲染
    */
   override fun getRenderRadius(): Float {
     return radius
   }
 
+  /**
+   * 如果要控制渲染距离，请override renderImpl方法
+   * 否则自行在代码中控制
+   */
   override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
     if(!layers.contains(layer)) return
     val center = loc

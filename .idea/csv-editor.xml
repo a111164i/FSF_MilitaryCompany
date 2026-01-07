@@ -409,6 +409,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\config\LunaSettings_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\config\exerelinFactionConfig\mod_factions.csv">
           <value>
             <Attribute>

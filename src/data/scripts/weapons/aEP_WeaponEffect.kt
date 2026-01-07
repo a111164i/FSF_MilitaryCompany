@@ -43,6 +43,7 @@ import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
 import org.dark.shaders.light.StandardLight
 import org.lazywizard.lazylib.CollisionUtils
+import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.MathUtils.*
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
@@ -56,7 +57,10 @@ import org.magiclib.util.MagicLensFlare
 import org.magiclib.util.MagicRender
 import java.awt.Color
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.*
+
 
 /**
  * 注意，EveryFrameWeaponEffectPlugin其实和 onHit，onFire共用一个类
@@ -4693,90 +4697,163 @@ class aEP_m_s_bomblance_shot : Effect(){
 }
 
 //德雷克 喷火器
-class aEP_e_s_flamer_shot : Effect(){
-
-  companion object{
-    val CORE_FLAME_COLOR = Color(255,194,86,175)
-    val CORE_FLAME_COLOR2= Color(252,164,50,95)
+// File: aEP_WeaponEffect.kt (only the changed class is shown)
+class aEP_e_s_flamer_shot : Effect() {
+  companion object {
+    private const val LOOP_ID = "cryoflamer_loop"
   }
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
-    projectile?:return
+    projectile ?: return
+    weapon ?: return
+    val ship = weapon.ship ?: return
 
-    val vel = Vector2f(projectile.velocity)
-    val lifeTime = (projectile.weapon.range / (projectile.moveSpeed + 0.1f)) + 0.35f
 
-    val sizeMult = 0.35f
-
-    val vel1 = Vector2f(projectile.velocity)
-    //vel1.scale(getRandomNumberInRange(0.9f,1.1f))
-    val loc1 = getExtendedLocationFromPoint(projectile.location,projectile.facing,40f)
-    Global.getCombatEngine().addNebulaParticle(
-      loc1,
-      vel1,
-      20f * sizeMult,
-      6f,
-      0.25f,0.5f,lifeTime,
-      CORE_FLAME_COLOR,true)
-
-    val vel2 = Vector2f(projectile.velocity)
-    //vel2.scale(getRandomNumberInRange(0.85f,1.15f))
-    val loc2 = getExtendedLocationFromPoint(projectile.location,projectile.facing,20f)
-    Global.getCombatEngine().addNebulaParticle(
-      loc2,
-      vel2,
-      20f * sizeMult,
-      4.5f,
-      0.25f,0.35f,lifeTime,
-      CORE_FLAME_COLOR,true)
-
-    val vel3 = Vector2f(projectile.velocity)
-    vel3.scale(getRandomNumberInRange(0.8f,1.1f))
-    val loc3 = getExtendedLocationFromPoint(projectile.location,projectile.facing,10f)
-    Global.getCombatEngine().addNebulaParticle(
-      loc3,
-      vel3,
-      40f * sizeMult,
-      3f,
-      0.25f,0.25f,lifeTime,
-      CORE_FLAME_COLOR2,true)
-
-    vel.scale(0.5f)
-    Global.getCombatEngine().addNebulaParticle(
-      loc1,
-      vel,
-      20f,
-      3f,
-      0.25f,0.1f,0.5f,
-      CORE_FLAME_COLOR
-    )
+    val trail = FlamerTrail(projectile , weapon)
+    addEffect(trail)
 
   }
 
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
-    projectile?:return
-    target?:return
-    point?: return
-    var color = projectile.projectileSpec.fringeColor
-    color = Misc.setAlpha(color, 100)
+    projectile ?: return
+
+    //只有一半的概率出特效，对与速射武器不需要过于频繁
+    if(MathUtils.getRandomNumberInRange(0,100) < 50) return
+
+    val color = projectile.projectileSpec?.fringeColor ?: Color(200, 220, 255)
     val vel = Vector2f()
-    if (target is ShipAPI) {
-      vel.set(target.velocity)
-    }
-    val endSizeMult = 4f
-    for (i in 0..2) {
-      val size = 20f + getRandomNumberInRange(0f,20f)
-      val dur = 1f
-      val rampUp = 0f
-      engine?.addNebulaParticle(
-        point, vel, size, endSizeMult,
-        rampUp, 0f, dur, color, true
-      )
+    if (target is ShipAPI) vel.set(target.velocity)
+    val size = (projectile.projectileSpec?.width ?: 8f) * 1f
+    val sizeMult = Misc.getHitGlowSize(100f, projectile.damage.baseDamage, damageResult) / 100f
+    val dur = 0.8f
+    val rampUp = 0f
+    val c = Misc.scaleAlpha(color, projectile.brightness)
+    engine.addNebulaParticle(point, vel, size, 5f + 3f * sizeMult, rampUp, 0f, dur, c)
+
+    // attempt to play impact-like sound (uses helper in original; keep simple)
+    try {
+      Misc.playSound(damageResult, point, vel, "cryoflamer_hit_shield_light", "cryoflamer_hit_shield_solid", "cryoflamer_hit_shield_heavy", "cryoflamer_hit_light", "cryoflamer_hit_solid", "cryoflamer_hit_heavy")
+    } catch (_: Throwable) { /* no-op if unavailable */ }
+  }
+
+  // Inner trail effect: follows a projectile and renders particle sprites
+  class FlamerTrail(val proj: DamagingProjectileAPI, val weapon: WeaponAPI) : aEP_BaseCombatEffect(0f, proj) {
+    private val baseFacing = proj.facing
+    private val particles = ArrayList<ParticleData>()
+    private val numParticles = 3
+    init {
+      // init particles along projectile length/width similarly to original
+      layers = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
+      radius = 300f
+      val length = proj.projectileSpec?.length ?: 100f
+      val width = proj.projectileSpec?.width ?: 20f
+      for (i in 0 until numParticles) {
+        particles.add(ParticleData(proj, this))
+      }
+      var index = 0f
+      for (p in particles) {
+        val f = index / (particles.size - 1).coerceAtLeast(1)
+        val dir = Misc.getUnitVectorAtDegreeAngle(proj.facing + 180f)
+        dir.scale(length * f)
+        Vector2f.add(p.offset, dir, p.offset)
+        //特效提前于弹丸100距离
+        p.offset.set(getExtendedLocationFromPoint(p.offset, proj.facing, 50f)) // keep types consistent; no-op transform
+        p.offset.set(Misc.getPointWithinRadius(p.offset, width * 0.5f))
+        index += 1f
+      }
     }
 
+    override fun advanceImpl(amount: Float) {
+      if (Global.getCombatEngine().isPaused) return
+      // keep entity location synced to projectile
+      this.entity?.location?.set(proj.location)
+
+      // advance particles
+      for (p in particles) p.advance(amount)
+    }
+
+    override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
+      val x = entity?.location?.x ?: proj.location.x
+      val y = entity?.location?.y ?: proj.location.y
+      val color = getParticleColor()
+      var b = proj.brightness
+      b *= viewport.alphaMult
+
+      for (p in particles) {
+        var size = (proj.projectileSpec?.width ?: 8f) * 0.8f
+        size *= p.scale
+        var offset = p.offset
+        val diff = Math.abs(Misc.getAngleDiff(baseFacing, proj.facing))
+        if (diff > 0.1f) {
+          offset = Misc.rotateAroundOrigin(offset, Misc.getAngleDiff(baseFacing, proj.facing))
+        }
+        val loc = Vector2f(x + offset.x, y + offset.y)
+        p.sprite.angle = p.angle
+        p.sprite.setSize(size, size)
+        p.sprite.setAlphaMult(b * p.fader)
+        p.sprite.color = color
+        p.sprite.renderAtCenter(loc.x, loc.y)
+      }
+    }
+
+    override fun readyToEnd() {
+      // nothing special: trail ends when projectile expires. cleanup will be done by aEP_BaseCombatEffect system.
+    }
+
+    private fun getParticleColor(): Color {
+      val c = proj.projectileSpec?.fringeColor ?: Color(200, 220, 255)
+      return Misc.setAlpha(c, 105)
+    }
+
+    // Particle data simplified (manual fade)
+    class ParticleData(val proj: DamagingProjectileAPI, val effect: FlamerTrail) {
+      val sprite = Global.getSettings().getSprite("misc", "nebula_particles")
+      val offset = Vector2f(0f,0f) //特效起始点和弹丸的相对距离
+      val vel = Vector2f()
+      var scale = 1f
+      var scaleIncreaseRate = 1.5f //发射后特效逐渐变大，或者达到最大距离时最大，两者取高
+      var maxscale = 2.5f //特效最大多大
+      var fadeIncreaseRate = 1f //发射后特效的透明度缓慢增加到1
+      var turnDir = 1f
+      var angle = (Math.random() * 360.0).toFloat()
+      var fader = 0f
+      init {
+        // choose a quarter of texture like original
+        val i = Misc.random.nextInt(4)
+        val j = Misc.random.nextInt(4)
+        sprite.setTexWidth(0.25f)
+        sprite.setTexHeight(0.25f)
+        sprite.setTexX(i * 0.25f)
+        sprite.setTexY(j * 0.25f)
+        sprite.setAdditiveBlend()
+        val maxDur = (proj.weapon?.range ?: 1000f) / max(1f, proj.weapon?.projectileSpeed ?: 300f)
+        scaleIncreaseRate = max(maxscale / maxDur, scaleIncreaseRate)
+        scaleIncreaseRate *= effect.getParticleScaleIncreaseRateMult()
+        scale = effect.getParticleScale()
+        turnDir = Math.signum((Math.random().toFloat()) - 0.5f) * 60f * Math.random().toFloat()
+        val driftDir = Math.random().toFloat() * 360f
+        val driftUnit = Misc.getUnitVectorAtDegreeAngle(driftDir)
+        val width = proj.projectileSpec?.width ?: 20f
+        driftUnit.scale((width / maxDur * 0.33f))
+        vel.set(driftUnit)
+        fader = 0f
+      }
+
+      fun advance(amount: Float) {
+        if (scale < maxscale) scale += scaleIncreaseRate * amount
+        offset.x += vel.x * amount
+        offset.y += vel.y * amount
+        angle += turnDir * amount
+        // simple fade in then stable (original used FaderUtil)
+        if (fader < 1f) fader = min(1f, fader + fadeIncreaseRate * amount)
+      }
+    }
+
+    // helper accessors to mimic original effect methods (kept minimal and private)
+    private fun getParticleScale(): Float = 1f
+    private fun getParticleScaleIncreaseRateMult(): Float = 1f
   }
 }
-
 
 //gp80舰队防空
 class aEP_b_m_flak_shot : Effect(){

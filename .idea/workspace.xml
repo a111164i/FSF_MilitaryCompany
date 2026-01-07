@@ -12,15 +12,11 @@
     <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_nuanchi.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_nuanchi.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_duiliu_main2_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_duiliu_main2_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_FCL/flame2.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_FCL/flame2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DuiliuMainGunEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DuiliuMainGunEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swap_CN_EN.py" beforeDir="false" afterPath="$PROJECT_DIR$/swap_CN_EN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -394,15 +390,8 @@
       <workItem from="1767764943177" duration="2732000" />
       <workItem from="1767767731852" duration="598000" />
       <workItem from="1767768349269" duration="10884000" />
-      <workItem from="1767779895028" duration="397000" />
-    </task>
-    <task id="LOCAL-00021" summary="4.8rc2">
-      <option name="closed" value="true" />
-      <created>1725203723127</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1725203723127</updated>
+      <workItem from="1767779895028" duration="1126000" />
+      <workItem from="1767781081426" duration="5522000" />
     </task>
     <task id="LOCAL-00022" summary="4.8rc2">
       <option name="closed" value="true" />
@@ -788,7 +777,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767712997568</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）">
+      <option name="closed" value="true" />
+      <created>1767780553826</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1767780553826</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -843,7 +840,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc1" />
     <MESSAGE value="4.8rc2" />
     <MESSAGE value="4.8rc3" />
     <MESSAGE value="4.8rc3 - 修复细流战术系统在装配页面生效" />
@@ -868,7 +864,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 07&#10;更新swap_CN_EN 终于好了" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 08&#10;修复了漏掉的系统里的文本&#10;TODO:&#10;检查EN巡洋导弹报错的问题" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 09&#10;加入了2个测试战役的汉化&#10;加入了运油船战斗中减燃料的汉化&#10;检查EN巡洋导弹报错的问题(ass_MiscBattleCombatPlugin导致的)" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc7 09&#10;加入了2个测试战役的汉化&#10;加入了运油船战斗中减燃料的汉化&#10;检查EN巡洋导弹报错的问题(ass_MiscBattleCombatPlugin导致的)" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
