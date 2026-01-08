@@ -1,0 +1,47 @@
+{
+	"aEP_base_campaign_objective":{
+	},
+	"aEP_FSF_SaleStation":{
+		"defaultName":"FSF Commercial Center",# used if name=null in addCustomEntity()
+		"nameInText":"FSF Commercial Center",
+		"shortName":"FSF Commercial Center"
+
+	},
+	"aEP_FSF_DefStation":{
+		"defaultName":"FSF System Defense Station",# used if name=null in addCustomEntity()
+		"nameInText":"FSF System Defense Station",
+		"shortName":"FSF System Defense Station"
+	},
+	"aEP_FSF_Relay":{
+		"defaultName":"FSF Relay", # used if name=null in addCustomEntity()
+		"nameInText":"FSF Relay",
+		"shortName":"FSF Relay"
+
+	},
+	"aEP_FSF_SpaceFactory":{
+		"defaultName":"FSF Hidden Factory", # used if name=null in addCustomEntity()
+		"nameInText":"FSF Hidden Factory",
+		"shortName":"FSF Hidden Factory"
+
+	},
+	# 必须hullspecId相同
+	"aEP_CruiseMissile":{
+		"defaultName":"S-1 Cruise Missile", # used if name=null in addCustomEntity()
+		"nameInText":"S-1 Cruise Missile",
+		"shortName":"S-1 CM"
+
+	},
+	# 必须hullspecId相同
+	"aEP_CruiseMissile2":{
+		"defaultName":"S-2 Cruise Missile", # used if name=null in addCustomEntity()
+		"nameInText":"S-2 Cruise Missile",
+		"shortName":"S-2 CM"
+	},
+	"aEP_IND_Piratestation":{
+		"defaultName":"the Dark's Flavor", # used if name=null in addCustomEntity()
+		"nameInText":"the Dark's Flavor",
+		"shortName":"the Dark's Flavor"
+	}
+
+	
+}

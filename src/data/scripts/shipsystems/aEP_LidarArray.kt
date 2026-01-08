@@ -11,6 +11,7 @@ import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import com.fs.starfarer.api.util.Misc
+import data.scripts.utils.aEP_DataTool.txt
 import java.awt.Color
 import java.util.*
 
@@ -289,7 +290,7 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
   override fun getStatusData(index: Int, state: ShipSystemStatsScript.State, effectLevel: Float): StatusData? {
     if (state == ShipSystemStatsScript.State.IDLE || state == ShipSystemStatsScript.State.COOLDOWN) {
       if (index == 3) {
-        return StatusData("weapon range +" + PASSIVE_RANGE_BONUS.toInt() + "%", false)
+        return StatusData( txt("aEP_LidarArray02") + "+" + PASSIVE_RANGE_BONUS.toInt() + "%", false)
       }
     }
     if (effectLevel <= 0f) return null
@@ -298,25 +299,25 @@ class aEP_LidarArray : BaseShipSystemScript(), WeaponRangeModifier {
     val mult = 1f + ROF_BONUS
     val bonusPercent = ((mult - 1f) * 100f).toInt().toFloat()
     if (index == 3) {
-      return StatusData("weapon range +" + RANGE_BONUS.toInt() + "%", false)
+      return StatusData(txt("aEP_LidarArray02") + "+" + RANGE_BONUS.toInt() + "%", false)
     }
     if (index == 2) {
-      return StatusData("rate of fire +" + bonusPercent.toInt() + "%", false)
+      return StatusData(txt("aEP_LidarArray03") + "+" + bonusPercent.toInt() + "%", false)
     }
     //		if (index == 1) {
 //			return new StatusData("ballistic flux use -" + (int) FLUX_REDUCTION + "%", false);
 //		}
     if (index == 1) {
-      return StatusData("weapon recoil -" + RECOIL_BONUS.toInt() + "%", false)
+      return StatusData(txt("aEP_LidarArray04") + "-" + RECOIL_BONUS.toInt() + "%", false)
     }
     return if (index == 0 && PROJECTILE_SPEED_BONUS > 0) {
-      StatusData("projectile speed +" + PROJECTILE_SPEED_BONUS.toInt() + "%", false)
+      StatusData(txt("aEP_LidarArray05") + "+" + PROJECTILE_SPEED_BONUS.toInt() + "%", false)
     } else null
   }
 
   override fun getDisplayNameOverride(state: ShipSystemStatsScript.State, effectLevel: Float): String? {
     return if (state == ShipSystemStatsScript.State.IDLE || state == ShipSystemStatsScript.State.COOLDOWN) {
-      "lidar array - passive"
+      txt("aEP_LidarArray01")
     } else null
   }
 

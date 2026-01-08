@@ -711,6 +711,8 @@ if __name__ == "__main__":
         # JSON/faction文件交换（生成临时文件 + 清理多余_EN/_CN）
         swap_json("mod_info.json","mod_info")
         swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
+        swap_json("data/config/factions/planets.json", "planets")
+        swap_json("data/config/factions/custom_entities.json", "custom_entities")
         swap_json("data/world/factions/aEP_FSF.faction", "aEP_FSF","faction")
         swap_json("data/world/factions/aEP_FSF_adv.faction", "aEP_FSF_adv","faction")
 

@@ -115,7 +115,7 @@ class aEP_FSF_DWR43 : SectorGeneratorPlugin {
     val FSF_SpaceFactory: SectorEntityToken = system.addCustomEntity(
       FACTORY_STATION_MARKET_ID,  // id
       // id
-      txt("aEP_custom_entity_names", "aEP_FSF_SpaceFactory"),  // name
+      null,  // name
       "aEP_FSF_SpaceFactory",  // type id in planets.json
       aEP_ID.FACTION_ID_FSF
     ) //faction id

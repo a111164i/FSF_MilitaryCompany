@@ -5269,7 +5269,7 @@ open class aEP_m_s_era :EveryFrame(){
           //文字提示
           Global.getCombatEngine().addFloatingText(
             point,
-            "Reactive Armor !", 10f,
+            w.spec.weaponName+" !", 10f,
             Color.magenta, target, 1f, 1f)
 
           //产生炮口烟，刷出弹丸，立刻引爆

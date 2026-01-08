@@ -9,14 +9,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 02&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字">
+      <change afterPath="$PROJECT_DIR$/data/config/custom_entities_EN.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/config/planets_EN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_FCL/flame2.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/aEP_FCL/flame2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/custom_entities.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/custom_entities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/planets.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/planets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HighSpeedManeuver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HighSpeedManeuver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Strafe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Strafe.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_LidarArray.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_LidarArray.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_Heng.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_Heng.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swap_CN_EN.py" beforeDir="false" afterPath="$PROJECT_DIR$/swap_CN_EN.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -391,15 +401,8 @@
       <workItem from="1767767731852" duration="598000" />
       <workItem from="1767768349269" duration="10884000" />
       <workItem from="1767779895028" duration="1126000" />
-      <workItem from="1767781081426" duration="5522000" />
-    </task>
-    <task id="LOCAL-00022" summary="4.8rc2">
-      <option name="closed" value="true" />
-      <created>1725203881190</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1725203881190</updated>
+      <workItem from="1767781081426" duration="5920000" />
+      <workItem from="1767877591292" duration="7375000" />
     </task>
     <task id="LOCAL-00023" summary="4.8rc3">
       <option name="closed" value="true" />
@@ -785,7 +788,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767780553826</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="//----------------------------------------------//&#10;5.0rc8&#10;修正了喷火器的特效，现在使用原版，会随着弹丸消失而消失">
+      <option name="closed" value="true" />
+      <created>1767788971841</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1767788971841</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -840,8 +851,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc2" />
-    <MESSAGE value="4.8rc3" />
     <MESSAGE value="4.8rc3 - 修复细流战术系统在装配页面生效" />
     <MESSAGE value="4.8rc4&#10;patch 1" />
     <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era" />
@@ -865,7 +874,9 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 08&#10;修复了漏掉的系统里的文本&#10;TODO:&#10;检查EN巡洋导弹报错的问题" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 09&#10;加入了2个测试战役的汉化&#10;加入了运油船战斗中减燃料的汉化&#10;检查EN巡洋导弹报错的问题(ass_MiscBattleCombatPlugin导致的)" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc8&#10;修正了喷火器的特效，现在使用原版，会随着弹丸消失而消失" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 02&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc8 02&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

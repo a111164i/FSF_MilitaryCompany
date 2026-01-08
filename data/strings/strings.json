@@ -35,6 +35,7 @@
 		"aEP_SystemGeneral02":"距离合适",
 		"aEP_SystemGeneral03":"距离过远: ",
 		"aEP_SystemGeneral04":"无效目标",
+		"aEP_SystemGeneral05":"发动概率: ",
 
 		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸大于自己的友方舰船加速时，本舰的最大速度{%s}，加速度{%s}",
 		"aEP_SpecialHull02": "零幅能加速的启用阈值{%s}",
@@ -134,6 +135,7 @@
 
 		"aEP_WeaponReset01":"武器射速",
 		"aEP_WeaponReset02":"护盾承受伤害",
+		"aEP_WeaponReset03":"缓冲区",
 
 		"aEP_FortressShieldStats01": "护盾承受伤害降低: %s",
 
@@ -155,6 +157,12 @@
 
 		"aEP_FighterProtector01":"战机承受伤害: ",
 		"aEP_FighterProtector02":"战机造成伤害: ",
+
+		"aEP_LidarArray01": "激光测距阵列 - 被动",
+		"aEP_LidarArray02": "武器射程: ",
+		"aEP_LidarArray03": "武器射速: ",
+		"aEP_LidarArray04": "武器后坐力: ",
+		"aEP_LidarArray05": "武器弹速: ",
 
 		#############################
 		"AWM01_title":"AWM01:搜集武器",
@@ -286,11 +294,7 @@
         "aEP_FSFOrbitalStationPluginBuildReason": "与FSF关系太低"
 
 	},
-	"aEP_custom_entity_names":{
-		"aEP_FSF_DefStation": "FSF 星系中心防御站",
-		"aEP_FSF_SaleStation": "FSF 商业站",
-		"aEP_FSF_SpaceFactory": "FSF 隐秘工厂"
-	},
+
 	"aEP_En":{
 
 		"not_module":"Can not be installed on ship modules",
@@ -322,10 +326,11 @@
 		"increase": "Increase ",
 		"target_fleet": "Target Fleet ",
 		#############################
-		"aEP_SystemGeneral01":"need a ship target",
-		"aEP_SystemGeneral02":"in range",
-		"aEP_SystemGeneral03":"out of range: ",
-		"aEP_SystemGeneral04":"invalid target",
+		"aEP_SystemGeneral01":"Need Ship Target",
+		"aEP_SystemGeneral02":"In Range",
+		"aEP_SystemGeneral03":"Out of Range: ",
+		"aEP_SystemGeneral04":"Invalid target",
+		"aEP_SystemGeneral05":"Active Chance: ",
 
 		"aEP_SpecialHull01": "When accelerating toward or rotating around a friendly ship with this hullmod and it is larger than your hullsize, this ship's max speed %s, acceleration %s",
 		"aEP_SpecialHull02": "Min flux level for zero flux boost to active %s",
@@ -425,6 +430,7 @@
 
 		"aEP_WeaponReset01":"Weapon RoF: ",
 		"aEP_WeaponReset02":"Shield damage taken: ",
+		"aEP_WeaponReset03":"Buffer",
 
 		"aEP_FortressShieldStats01": "Shield damage taken reduced by %s",
 
@@ -446,6 +452,13 @@
 
 		"aEP_FighterProtector01":"Fighter damage taken: ",
 		"aEP_FighterProtector02":"Fighter damage dealt: ",
+
+		"aEP_LidarArray01": "Lidar array - passive",
+		"aEP_LidarArray02": "Weapon range: ",
+		"aEP_LidarArray03": "Rate of fire: ",
+		"aEP_LidarArray04": "Weapon recoil: ",
+		"aEP_LidarArray05": "Projectile speed: ",
+
 
 		#############################
 		"AWM01_title":"AWM01: Search for weapons",
@@ -577,10 +590,5 @@
         "aEP_FSFOrbitalStationPluginBuildReason": "Relationship with FSF is too low"
 
     },
-	"aEP_EN_custom_entity_names":{
-		"aEP_FSF_DefStation": "FSF System Defense Station",
-		"aEP_FSF_SaleStation": "FSF Commercial Center",
-		"aEP_FSF_SpaceFactory": "FSF Hidden Site"
-	},
 
 }

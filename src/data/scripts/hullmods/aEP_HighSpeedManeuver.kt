@@ -156,7 +156,7 @@ class DodgeAttack(val ship: ShipAPI, val maxDodgeChance:Float, val maxDodgeChanc
       Global.getCombatEngine().maintainStatusForPlayerShip(ID,
         Global.getSettings().getSpriteName("aEP_ui","high_speed_maneuver"),
         Global.getSettings().getHullModSpec(ID).displayName,
-        String.format("Active Chance: %.0f",(dodgeChance*100f))+"%",
+        txt("aEP_SystemGeneral05") + String.format("%.0f",(dodgeChance*100f))+"%",
         false)
     }
 

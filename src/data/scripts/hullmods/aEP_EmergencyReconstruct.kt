@@ -160,7 +160,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
           ID,
           Global.getSettings().getSpriteName("aEP_ui","marker_dissipation"),
           Global.getSettings().getHullModSpec(ID).displayName,
-          String.format("Active Chance: %.0f", MathUtils.clamp(100f-failChance*100f,0f,100f) ) +" %",
+          txt("aEP_SystemGeneral05") + String.format("%.0f", MathUtils.clamp(100f-failChance*100f,0f,100f) ) +" %",
           false)
       }
 

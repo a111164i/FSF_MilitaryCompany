@@ -74,7 +74,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
     //创造地图实体
     SectorEntityToken FSF_DefStation = system.addCustomEntity("aEP_FSF_DefStation",// id
-      txt("aEP_custom_entity_names","aEP_FSF_DefStation"),// name
+      null,// name
       "aEP_FSF_DefStation",// type id in planets.json
       "aEP_FSF");//faction id
     //设置实体的运动轨道
@@ -105,7 +105,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
 
     SectorEntityToken FSF_SaleStation = system.addCustomEntity("aEP_FSF_SaleStation",// id
-      txt("aEP_custom_entity_names","aEP_FSF_SaleStation"),// name
+      null,// name
       "aEP_FSF_SaleStation",// type id in planets.json
       "aEP_FSF");//faction id
     FSF_SaleStation.setCircularOrbitPointingDown(FSF_HomePlanet, 0, 650, 45);//which to orbit, starting angle, radius, orbit days
@@ -138,7 +138,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
 
     SectorEntityToken FSF_Relay = system.addCustomEntity("aEP_FSF_Relay",// id
-      "FSF Relay",// name
+      null,// name
       "aEP_FSF_Relay",// type id in planets.json
       "aEP_FSF");//faction id
     //FSF_Relay.setCircularOrbitPointingDown(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
@@ -161,7 +161,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
     //加个星门，新东西
     SectorEntityToken gate = system.addCustomEntity("FSF_gate", // unique id
-            "Heng Gate", // name - if null, defaultName from custom_entities.json will be used
+            null, // name - if null, defaultName from custom_entities.json will be used
             "inactive_gate", // type of object, defined in custom_entities.json
             null); // faction
     gate.setCircularOrbit(FSF_HomeStar, 110, 3100f, 240);
@@ -280,7 +280,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
 
     SectorEntityToken FSF_Relay = system.addCustomEntity("aEP_FSF_Relay",// id
-            "FSF Relay",// name
+            null,// name
             "aEP_FSF_Relay",// type id in planets.json
             "aEP_FSF");//faction id
     FSF_Relay.setCircularOrbit(FSF_HomePlanet, 0, 2000f, 60);//which to orbit, starting angle, radius, orbit days
@@ -302,7 +302,7 @@ public class aEP_FSF_Heng implements SectorGeneratorPlugin {
 
     //加个星门，新东西
     SectorEntityToken gate = system.addCustomEntity("FSF_gate", // unique id
-            "Heng Gate", // name - if null, defaultName from custom_entities.json will be used
+            null, // name - if null, defaultName from custom_entities.json will be used
             "inactive_gate", // type of object, defined in custom_entities.json
             null); // faction
     gate.setCircularOrbit(FSF_HomeStar, 110, 3100f, 240);

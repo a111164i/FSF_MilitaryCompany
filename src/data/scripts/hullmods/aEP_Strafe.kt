@@ -148,7 +148,7 @@ class aEP_Strafe(): aEP_BaseHullMod(), AdvanceableListener {
         this.javaClass.simpleName+"1",  //key
         Global.getSettings().getHullModSpec(aEP_ReactiveArmor.ID).spriteName,  //sprite name,full, must be registed in setting first
         hullmodName,  //title
-        "Energy: "  + (glowLevel * 100f ).toInt() + "%",  //data
+        (""+ (glowLevel * 100f ).toInt() + "%"),  //data
         false)
 
       //维持扫射magicUI

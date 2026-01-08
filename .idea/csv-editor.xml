@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\mods\LunaLib\data\config\LunaTitleScreens.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\Lunalib\data\config\LunaSettings.csv">
           <value>
             <Attribute>
@@ -151,6 +158,13 @@
           </value>
         </entry>
         <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\procgen\age_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\procgen\condition_gen_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -332,7 +346,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\industries_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -382,6 +410,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\special_items_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

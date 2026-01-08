@@ -99,7 +99,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     if (Global.getCombatEngine().playerShip == ship) {
       MagicUI.drawHUDStatusBar(ship,
         bufferLvl, null,null, 0f,
-        ship.system.displayName, String.format("%.1f",bufferLvl*100f)+"%",true )
+        txt("aEP_WeaponReset03"), String.format("%.1f",bufferLvl*100f)+"%",true )
     }
 
 
@@ -314,7 +314,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
   override fun getInfoText(system: ShipSystemAPI, ship: ShipAPI): String {
     var toShow = ""
-    toShow += " Buffer: "+ storedSoftFlux.toInt()+ " / "+bufferSize.toInt()
+    toShow += txt("aEP_WeaponReset03") + ": "+ storedSoftFlux.toInt()+ " / "+bufferSize.toInt()
     return toShow
   }
 

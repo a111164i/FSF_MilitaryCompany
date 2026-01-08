@@ -15,9 +15,9 @@
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 	"aEP_FSF_SaleStation":{
-		"defaultName":"FSF Commercial Center",# used if name=null in addCustomEntity()
-		"nameInText":"FSF Commercial Center",
-		"shortName":"FSF Commercial Center",
+		"defaultName":"FSF 商业中心",# used if name=null in addCustomEntity()
+		"nameInText":"FSF 商业中心",
+		"shortName":"FSF 商业中心",
 		"defaultRadius":110,# used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_FSF_SaleStation",
 		"interactionImage":"graphics/illustrations/orbital.jpg",
@@ -38,9 +38,9 @@
 		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 	"aEP_FSF_DefStation":{
-		"defaultName":"FSF System Defense Station",# used if name=null in addCustomEntity()
-		"nameInText":"FSF System Defense Station",
-		"shortName":"FSF System Defense Station",
+		"defaultName":"FSF 星系中心防御站",# used if name=null in addCustomEntity()
+		"nameInText":"FSF 星系中心防御站",
+		"shortName":"FSF 星系中心防御站",
 		"defaultRadius":80,# used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_FSF_DefStation",
 		"interactionImage":"graphics/illustrations/orbital.jpg",
@@ -61,9 +61,9 @@
 		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 	"aEP_FSF_Relay":{
-		"defaultName":"FSF Relay", # used if name=null in addCustomEntity()
-		"nameInText":"FSF Relay",
-		"shortName":"FSF Relay",
+		"defaultName":"中继器", # used if name=null in addCustomEntity()
+		"nameInText":"中继器",
+		"shortName":"中继器",
 		"icon":"graphics/icons/relay.png",
 		"iconWidth":24,
 		"iconHeight":24,
@@ -77,9 +77,9 @@
 		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin"
 	},
 	"aEP_FSF_SpaceFactory":{
-		"defaultName":"FSF Hidden Factory", # used if name=null in addCustomEntity()
-		"nameInText":"FSF Hidden Factory",
-		"shortName":"FSF Hidden Factory",
+		"defaultName":"FSF 隐秘工厂", # used if name=null in addCustomEntity()
+		"nameInText":"FSF 隐秘工厂",
+		"shortName":"FSF 隐秘工厂",
 		"defaultRadius":150, # used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_SpaceFactory",
 		"interactionImage":"graphics/illustrations/coronal_tap.jpg",
@@ -102,11 +102,11 @@
 		"renderCircleIndicatorSelectionFlash":true,
 		#"pluginClass":"com.fs.starfarer.api.impl.campaign.BaseCustomEntityPlugin"
 	},
-	# 必须hullspecId相同
+	# id必须hullspecId相同
 	"aEP_CruiseMissile":{
-		"defaultName":"S-1 Cruise Missile", # used if name=null in addCustomEntity()
-		"nameInText":"S-1 Cruise Missile",
-		"shortName":"S-1 CM",
+		"defaultName":"S-1 巡洋导弹", # used if name=null in addCustomEntity()
+		"nameInText":"S-1 巡洋导弹",
+		"shortName":"S-1 巡洋导弹",
 		"defaultRadius":15,# used if radius<0 in addCustomEntity()
 		"icon":"graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
 		"iconWidth":24,
@@ -125,11 +125,11 @@
 		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
 		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
 	},
-	# 必须hullspecId相同
+	# id必须hullspecId相同
 	"aEP_CruiseMissile2":{
-		"defaultName":"S-2 Cruise Missile", # used if name=null in addCustomEntity()
-		"nameInText":"S-2 Cruise Missile",
-		"shortName":"S-2 CM",
+		"defaultName":"S-2 巡洋导弹", # used if name=null in addCustomEntity()
+		"nameInText":"S-2 巡洋导弹",
+		"shortName":"S-2 巡洋导弹",
 		"defaultRadius":15,# used if radius<0 in addCustomEntity()
 		"icon":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
 		"iconWidth":24,
@@ -149,7 +149,9 @@
 		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
 	},
 	"aEP_IND_Piratestation":{
-		"defaultName":"the Dark's Flavor", # used if name=null in addCustomEntity()
+		"defaultName":"暗瘾", # used if name=null in addCustomEntity()
+		"nameInText":"暗瘾",
+		"shortName":"暗瘾",
 		"defaultRadius":40, # used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_IND_Piratestation",
 		"interactionImage":"graphics/illustrations/orbital_construction.jpg",
