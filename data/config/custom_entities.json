@@ -1,176 +1,217 @@
 {
-	"aEP_base_campaign_objective":{
-		"defaultRadius":75, # used if radius<0 in addCustomEntity()
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":true,
-		"nameFontScale":1,
-		"nameAngle":0,
-		"nameColor":[70,200,255,255],
-		"nameShadowColor":[0,0,0,255],
-		"scaleNameWithZoom":false,
-		"scaleIconWithZoom":true,
-		"renderCircleIndicator":true,
-		"renderCircleIndicatorSelectionFlash":true,
-		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-	},
-	"aEP_FSF_SaleStation":{
-		"defaultName":"FSF 商业中心",# used if name=null in addCustomEntity()
-		"nameInText":"FSF 商业中心",
-		"shortName":"FSF 商业中心",
-		"defaultRadius":110,# used if radius<0 in addCustomEntity()
-		"customDescriptionId":"aEP_FSF_SaleStation",
-		"interactionImage":"graphics/illustrations/orbital.jpg",
-		"icon":"graphics/icons/station3.png",
-		"iconWidth":28,
-		"iconHeight":28,
-		"sprite":"graphics/stations/station_midline3.png",
-		"spriteWidth":120,
-		"spriteHeight":125,
-		"renderShadow":true,
-		"useLightColor":true,
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":true,
-		"scaleNameWithZoom":false,
-		"scaleIconWithZoom":true,
-		"tags":["station"],
-		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
-	},
-	"aEP_FSF_DefStation":{
-		"defaultName":"FSF 星系中心防御站",# used if name=null in addCustomEntity()
-		"nameInText":"FSF 星系中心防御站",
-		"shortName":"FSF 星系中心防御站",
-		"defaultRadius":80,# used if radius<0 in addCustomEntity()
-		"customDescriptionId":"aEP_FSF_DefStation",
-		"interactionImage":"graphics/illustrations/orbital.jpg",
-		"icon":"graphics/icons/station3.png",
-		"iconWidth":28,
-		"iconHeight":28,
-		"sprite":"graphics/stations/station_midline2.png",
-		"spriteWidth":110,
-		"spriteHeight":90,
-		"renderShadow":true,
-		"useLightColor":true,
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":true,
-		"scaleNameWithZoom":false,
-		"scaleIconWithZoom":true,
-		"tags":["station"],
-		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
-	},
-	"aEP_FSF_Relay":{
-		"defaultName":"中继器", # used if name=null in addCustomEntity()
-		"nameInText":"中继器",
-		"shortName":"中继器",
-		"icon":"graphics/icons/relay.png",
-		"iconWidth":24,
-		"iconHeight":24,
-		"sprite":"graphics/ships/com_relay.png",
-		"spriteWidth":89,
-		"spriteHeight":48,
-		"customDescriptionId":"aEP_FSF_Relay",
-		"interactionImage":"graphics/illustrations/comm_relay.jpg",
-		"tags":["comm_relay", "neutrino_high", "objective"],
-		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin"
-	},
-	"aEP_FSF_SpaceFactory":{
-		"defaultName":"FSF 隐秘工厂", # used if name=null in addCustomEntity()
-		"nameInText":"FSF 隐秘工厂",
-		"shortName":"FSF 隐秘工厂",
-		"defaultRadius":150, # used if radius<0 in addCustomEntity()
-		"customDescriptionId":"aEP_SpaceFactory",
-		"interactionImage":"graphics/illustrations/coronal_tap.jpg",
-		"icon":"graphics/icons/station3.png",
-		"iconWidth":32,
-		"iconHeight":32,
-		"sprite":"graphics/aEP_campaign/station3.png",
-		"spriteWidth":240,
-		"spriteHeight":250,
-		"renderShadow":true,
-		"useLightColor":true,
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":true,
-		"scaleNameWithZoom":false,
-		"scaleIconWithZoom":true,
-		"tags":["station", "neutrino_high", "protects_from_corona_in_battle", "not_random_mission_target"],
-		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"renderCircleIndicator":true,
-		"renderCircleIndicatorSelectionFlash":true,
-		#"pluginClass":"com.fs.starfarer.api.impl.campaign.BaseCustomEntityPlugin"
-	},
-	# id必须hullspecId相同
-	"aEP_CruiseMissile":{
-		"defaultName":"S-1 巡洋导弹", # used if name=null in addCustomEntity()
-		"nameInText":"S-1 巡洋导弹",
-		"shortName":"S-1 巡洋导弹",
-		"defaultRadius":15,# used if radius<0 in addCustomEntity()
-		"icon":"graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
-		"iconWidth":24,
-		"iconHeight":24,
-		"sprite":"graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
-		"spriteWidth":8,
-		"spriteHeight":30,
-		"renderShadow":false,
-		"useLightColor":true,
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":false,
-		"customDescriptionId":"aEP_FSF_CruiseMissile",
-		"interactionImage":"graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
-		"tags":["neutrino"],
-		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
-	},
-	# id必须hullspecId相同
-	"aEP_CruiseMissile2":{
-		"defaultName":"S-2 巡洋导弹", # used if name=null in addCustomEntity()
-		"nameInText":"S-2 巡洋导弹",
-		"shortName":"S-2 巡洋导弹",
-		"defaultRadius":15,# used if radius<0 in addCustomEntity()
-		"icon":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
-		"iconWidth":24,
-		"iconHeight":24,
-		"sprite":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
-		"spriteWidth":8,
-		"spriteHeight":30,
-		"renderShadow":false,
-		"useLightColor":true,
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":false,
-		"customDescriptionId":"aEP_FSF_CruiseMissile",
-		"interactionImage":"graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
-		"tags":["neutrino_high"],
-		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-		"pluginClass":"data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
-	},
-	"aEP_IND_Piratestation":{
-		"defaultName":"暗瘾", # used if name=null in addCustomEntity()
-		"nameInText":"暗瘾",
-		"shortName":"暗瘾",
-		"defaultRadius":40, # used if radius<0 in addCustomEntity()
-		"customDescriptionId":"aEP_IND_Piratestation",
-		"interactionImage":"graphics/illustrations/orbital_construction.jpg",
-		"icon":"graphics/icons/station0.png",
-		"iconWidth":20,
-		"iconHeight":20,
-		"sprite":"graphics/stations/station_side05.png",
-		"spriteWidth":45,
-		"spriteHeight":45,
-		"renderShadow":true,
-		"useLightColor":true,
-		"showInCampaign":true,
-		"showIconOnMap":true,
-		"showNameOnMap":false,
-		"scaleNameWithZoom":false,
-		"scaleIconWithZoom":true,
-		"tags":["neutrino_high","station"],
-		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
-	}
-
-	
+  "aEP_base_campaign_objective": {
+    "defaultRadius": 75,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": true,
+    "nameFontScale": 1,
+    "nameAngle": 0,
+    "nameColor": [
+      70,
+      200,
+      255,
+      255
+    ],
+    "nameShadowColor": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "scaleNameWithZoom": false,
+    "scaleIconWithZoom": true,
+    "renderCircleIndicator": true,
+    "renderCircleIndicatorSelectionFlash": true,
+    "layers": [
+      "STATIONS"
+    ]
+  },
+  "aEP_FSF_SaleStation": {
+    "defaultName": "FSF 商业中心",
+    "nameInText": "FSF 商业中心",
+    "shortName": "FSF 商业中心",
+    "defaultRadius": 110,
+    "customDescriptionId": "aEP_FSF_SaleStation",
+    "interactionImage": "graphics/illustrations/orbital.jpg",
+    "icon": "graphics/icons/station3.png",
+    "iconWidth": 28,
+    "iconHeight": 28,
+    "sprite": "graphics/stations/station_midline3.png",
+    "spriteWidth": 120,
+    "spriteHeight": 125,
+    "renderShadow": true,
+    "useLightColor": true,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": true,
+    "scaleNameWithZoom": false,
+    "scaleIconWithZoom": true,
+    "tags": [
+      "station"
+    ],
+    "layers": [
+      "STATIONS"
+    ]
+  },
+  "aEP_FSF_DefStation": {
+    "defaultName": "FSF 星系中心防御站",
+    "nameInText": "FSF 星系中心防御站",
+    "shortName": "FSF 星系中心防御站",
+    "defaultRadius": 80,
+    "customDescriptionId": "aEP_FSF_DefStation",
+    "interactionImage": "graphics/illustrations/orbital.jpg",
+    "icon": "graphics/icons/station3.png",
+    "iconWidth": 28,
+    "iconHeight": 28,
+    "sprite": "graphics/stations/station_midline2.png",
+    "spriteWidth": 110,
+    "spriteHeight": 90,
+    "renderShadow": true,
+    "useLightColor": true,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": true,
+    "scaleNameWithZoom": false,
+    "scaleIconWithZoom": true,
+    "tags": [
+      "station"
+    ],
+    "layers": [
+      "STATIONS"
+    ]
+  },
+  "aEP_FSF_Relay": {
+    "defaultName": "中继器",
+    "nameInText": "中继器",
+    "shortName": "中继器",
+    "icon": "graphics/icons/relay.png",
+    "iconWidth": 24,
+    "iconHeight": 24,
+    "sprite": "graphics/ships/com_relay.png",
+    "spriteWidth": 89,
+    "spriteHeight": 48,
+    "customDescriptionId": "aEP_FSF_Relay",
+    "interactionImage": "graphics/illustrations/comm_relay.jpg",
+    "tags": [
+      "comm_relay",
+      "neutrino_high",
+      "objective"
+    ],
+    "layers": [
+      "STATIONS"
+    ],
+    "pluginClass": "com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin"
+  },
+  "aEP_FSF_SpaceFactory": {
+    "defaultName": "FSF 隐秘工厂",
+    "nameInText": "FSF 隐秘工厂",
+    "shortName": "FSF 隐秘工厂",
+    "defaultRadius": 150,
+    "customDescriptionId": "aEP_SpaceFactory",
+    "interactionImage": "graphics/illustrations/coronal_tap.jpg",
+    "icon": "graphics/icons/station3.png",
+    "iconWidth": 32,
+    "iconHeight": 32,
+    "sprite": "graphics/aEP_campaign/station3.png",
+    "spriteWidth": 240,
+    "spriteHeight": 250,
+    "renderShadow": true,
+    "useLightColor": true,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": true,
+    "scaleNameWithZoom": false,
+    "scaleIconWithZoom": true,
+    "tags": [
+      "station",
+      "neutrino_high",
+      "protects_from_corona_in_battle",
+      "not_random_mission_target"
+    ],
+    "layers": [
+      "STATIONS"
+    ],
+    "renderCircleIndicator": true,
+    "renderCircleIndicatorSelectionFlash": true
+  },
+  "aEP_CruiseMissile": {
+    "defaultName": "S-1 巡洋导弹",
+    "nameInText": "S-1 巡洋导弹",
+    "shortName": "S-1 巡洋导弹",
+    "defaultRadius": 15,
+    "icon": "graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
+    "iconWidth": 24,
+    "iconHeight": 24,
+    "sprite": "graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
+    "spriteWidth": 8,
+    "spriteHeight": 30,
+    "renderShadow": false,
+    "useLightColor": true,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": false,
+    "customDescriptionId": "aEP_FSF_CruiseMissile",
+    "interactionImage": "graphics/weapons/aEP_CM_weapon/aEP_CM01.png",
+    "tags": [
+      "neutrino"
+    ],
+    "layers": [
+      "STATIONS"
+    ],
+    "pluginClass": "data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
+  },
+  "aEP_CruiseMissile2": {
+    "defaultName": "S-2 巡洋导弹",
+    "nameInText": "S-2 巡洋导弹",
+    "shortName": "S-2 巡洋导弹",
+    "defaultRadius": 15,
+    "icon": "graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
+    "iconWidth": 24,
+    "iconHeight": 24,
+    "sprite": "graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
+    "spriteWidth": 8,
+    "spriteHeight": 30,
+    "renderShadow": false,
+    "useLightColor": true,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": false,
+    "customDescriptionId": "aEP_FSF_CruiseMissile",
+    "interactionImage": "graphics/weapons/aEP_CM_weapon/aEP_CM02.png",
+    "tags": [
+      "neutrino_high"
+    ],
+    "layers": [
+      "STATIONS"
+    ],
+    "pluginClass": "data.scripts.campaign.entity.aEP_CruiseMissileEntityPlugin"
+  },
+  "aEP_IND_Piratestation": {
+    "defaultName": "暗瘾",
+    "nameInText": "暗瘾",
+    "shortName": "暗瘾",
+    "defaultRadius": 40,
+    "customDescriptionId": "aEP_IND_Piratestation",
+    "interactionImage": "graphics/illustrations/orbital_construction.jpg",
+    "icon": "graphics/icons/station0.png",
+    "iconWidth": 20,
+    "iconHeight": 20,
+    "sprite": "graphics/stations/station_side05.png",
+    "spriteWidth": 45,
+    "spriteHeight": 45,
+    "renderShadow": true,
+    "useLightColor": true,
+    "showInCampaign": true,
+    "showIconOnMap": true,
+    "showNameOnMap": false,
+    "scaleNameWithZoom": false,
+    "scaleIconWithZoom": true,
+    "tags": [
+      "neutrino_high",
+      "station"
+    ],
+    "layers": [
+      "STATIONS"
+    ]
+  }
 }

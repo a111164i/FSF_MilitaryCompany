@@ -1,42 +1,29 @@
 {
-	"aEP_FSF_Homestar":{
-		"name":"Brown Dwarf"
-	},
-	"aEP_FSF_Homeplanet":{
-		"name":"Frozen"
-
-	},
-	"aEP_FSF_Companyplanet":{
-		"name":"Barren"
-	},
-	
-	"aEP_IND_Homestar":{
-		"name":"Red Dwarf"
-
-	},
-  
-	"aEP_IND_Homeplanet":{
-		"name":"Frozen"
-
-	},
-	"aEP_IND_Pirateplanet":{
-		"name":"Barren"
-
-	},
-	"aEP_FSF_Earthstar":{
-		"name":"Blue Giant"
-
-	},
-	"aEP_FSF_Stationplanet":{
-		"name":"Radioactive-Desert"
-
-	},
-	"aEP_FSF_Earth":{
-		"name":"Eccentric-Terran"
-	}
+  "aEP_FSF_Homestar": {
+    "name": "Brown Dwarf"
+  },
+  "aEP_FSF_Homeplanet": {
+    "name": "Frozen"
+  },
+  "aEP_FSF_Companyplanet": {
+    "name": "Barren"
+  },
+  "aEP_IND_Homestar": {
+    "name": "Red Dwarf"
+  },
+  "aEP_IND_Homeplanet": {
+    "name": "Frozen"
+  },
+  "aEP_IND_Pirateplanet": {
+    "name": "Barren"
+  },
+  "aEP_FSF_Earthstar": {
+    "name": "Blue Giant"
+  },
+  "aEP_FSF_Stationplanet": {
+    "name": "Radioactive-Desert"
+  },
+  "aEP_FSF_Earth": {
+    "name": "Eccentric-Terran"
+  }
 }
-
-
-
-
-
