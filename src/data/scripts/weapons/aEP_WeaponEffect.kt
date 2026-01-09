@@ -5203,7 +5203,7 @@ open class aEP_m_s_era :EveryFrame(){
     const val KEY = "aEP_m_s_era"
     const val RANGE = 75f
     var DAMAGE_THRESHOLD = 600f
-    var ARMOR_THRESHOLD = 0.8f
+    var ARMOR_THRESHOLD = 1f
   }
 
   init {

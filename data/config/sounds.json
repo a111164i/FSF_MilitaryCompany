@@ -156,12 +156,12 @@
     {"file": "sounds/weapons/aEP_cru_pingding/main_gun1_fire.ogg", "pitch": 1.1, "volume": 0.8},
   ],
   "aEP_cru_pingding_main_gun2_charge":[
-    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_charge.ogg", "pitch": 1, "volume": 1},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_charge.ogg", "pitch": 1.6, "volume": 0.9},
   ],
   "aEP_cru_pingding_main_gun2_fire":[
-    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 1, "volume": 1},
-    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 0.9, "volume": 1},
-    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 1.1, "volume": 1},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 1, "volume": 1.2},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 0.9, "volume": 1.2},
+    {"file": "sounds/weapons/aEP_cru_pingding/main_gun2_fire.ogg", "pitch": 1.1, "volume": 1.2},
   ],
   "aEP_fga_xiliu_main_fire": [
     {"file": "sounds/weapons/aEP_fga_xiliu/main_fire.ogg", "pitch": 1, "volume": 1},

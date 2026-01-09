@@ -19,14 +19,12 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
 
   companion object{
     const val ID = "aEP_ShieldFloating"
-    const val MAX_SHUNT_PERCENT = 0f
     val SHIFT_COLOR = Color(155,25,255,205)
 
     //下降是持续的，如果希望6秒内打满缓冲区，触发满加成，应该写12
     //达到最大分流加成所需的波动值
-    private val MAX_THRESHOLD = HashMap<ShipAPI.HullSize, Float>()
+    private val MAX_THRESHOLD = HashMap<ShipAPI.HullSize, Float>().withDefault { 1500f }
     init {
-      MAX_THRESHOLD[ShipAPI.HullSize.FIGHTER] = 300f
       MAX_THRESHOLD[ShipAPI.HullSize.FRIGATE] = 600f
       MAX_THRESHOLD[ShipAPI.HullSize.DESTROYER] = 900f
       MAX_THRESHOLD[ShipAPI.HullSize.CRUISER] = 1500f
@@ -34,9 +32,8 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     }
 
     //波动值下降速度
-    private val DROP_SPEED = HashMap<ShipAPI.HullSize, Float>()
+    private val DROP_SPEED = HashMap<ShipAPI.HullSize, Float>().withDefault { 750f }
     init {
-      DROP_SPEED[ShipAPI.HullSize.FIGHTER] = 150f
       DROP_SPEED[ShipAPI.HullSize.FRIGATE] = 300f
       DROP_SPEED[ShipAPI.HullSize.DESTROYER] = 450f
       DROP_SPEED[ShipAPI.HullSize.CRUISER] = 750f
@@ -44,24 +41,21 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     }
 
     //最高波动值大小
-    private val CAP = HashMap<ShipAPI.HullSize, Float>()
+    private val CAP = HashMap<ShipAPI.HullSize, Float>().withDefault { 3000f }
     init {
-      CAP[ShipAPI.HullSize.FIGHTER] = 600f
       CAP[ShipAPI.HullSize.FRIGATE] = 1200f
       CAP[ShipAPI.HullSize.DESTROYER] = 1800f
       CAP[ShipAPI.HullSize.CRUISER] = 3000f
       CAP[ShipAPI.HullSize.CAPITAL_SHIP] = 4800f
     }
 
-    private val DISS_BONUS = HashMap<ShipAPI.HullSize, Float>()
+    private val SHIELD_DAMAGE_REDUCE_MULT = HashMap<ShipAPI.HullSize, Float>().withDefault { 0.6f }
     init {
-      DISS_BONUS[ShipAPI.HullSize.FIGHTER] = 200f
-      DISS_BONUS[ShipAPI.HullSize.FRIGATE] = 500f
-      DISS_BONUS[ShipAPI.HullSize.DESTROYER] = 750f
-      DISS_BONUS[ShipAPI.HullSize.CRUISER] = 900f
-      DISS_BONUS[ShipAPI.HullSize.CAPITAL_SHIP] = 1350f
+      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.FRIGATE] = 0.6f
+      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.DESTROYER] = 0.6f
+      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.CRUISER] = 0.6f
+      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.CAPITAL_SHIP] = 0.6f
     }
-
   }
 
   init {
@@ -115,8 +109,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     ))
     addPositivePara(tooltip, "aEP_ShieldFloating04", arrayOf(
       txt("aEP_ShieldFloating01"),
-      String.format("+%.0f", DISS_BONUS[hullSize]),
-      String.format("+%.0f", MAX_SHUNT_PERCENT) +"%"
+      String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT[hullSize]?.times(100f)) +"%",
     ))
 
     //列表展示关于波动值的数据
@@ -163,16 +156,19 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
 
   internal class ShieldDamageListener(val ship: ShipAPI, val max:Float, val threshold: Float, val dropSpeed:Float) : DamageListener, AdvanceableListener {
     private var accumlated = 0f
-    private val timer = IntervalUtil(0.25f,0.25f)
+    private val timer = IntervalUtil(0.2f,0.2f)
     private val shifter = ColorShifter(ship.shield.innerColor)
     private val ringShifter = ColorShifter(ship.shield.ringColor)
-    private val dissipationBonus = DISS_BONUS[ship.hullSpec.hullSize]?:300f
+    private val shield_reduce_mult = SHIELD_DAMAGE_REDUCE_MULT[ship.hullSpec.hullSize]?:0.6f
+
+
     var level = 0f
     override fun reportDamageApplied(source: Any?, target: CombatEntityAPI?, result: ApplyDamageResultAPI?) {
       //谨防有人中途取消护盾
       ship.shield?:return
 
       val actualDamageToShield = result?.damageToShields?:0f
+      //固定计算盾效为1.0
       accumlated += actualDamageToShield / (ship.shield.fluxPerPointOfDamage + 0.001f)
       accumlated = MathUtils.clamp(accumlated, 0f, max)
       level = accumlated/threshold
@@ -195,8 +191,11 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       if(timer.intervalElapsed()){
         level = accumlated/threshold
         level = MathUtils.clamp(level,0f,1f)
-        ship.mutableStats.hardFluxDissipationFraction.modifyFlat(ID, level * MAX_SHUNT_PERCENT/100f)
-        ship.mutableStats.fluxDissipation.modifyFlat(ID, level * dissipationBonus)
+        //ship.mutableStats.hardFluxDissipationFraction.modifyFlat(ID, level * MAX_SHUNT_PERCENT/100f)
+        //ship.mutableStats.fluxDissipation.modifyFlat(ID, level * dissipationBonus)
+
+        ship.mutableStats.shieldDamageTakenMult.modifyMult(ID, 1f - level * shield_reduce_mult)
+
         accumlated -= dropSpeed * timer.elapsed
         accumlated = MathUtils.clamp(accumlated, 0f, max)
       }
@@ -208,8 +207,8 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui", ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-            txt("aEP_ShieldFloating01") + ": "+String.format("%4.0f / %4.0f", accumlated, max) + ", " +
-            " "+txt("aEP_ShieldFloating05") + ": "+String.format("+%.0f", level*dissipationBonus),
+            String.format("%4.0f / %4.0f", accumlated, max) + ", " +
+            " "+txt("aEP_ShieldFloating05") + ": "+String.format("-%.0f",100f * level * shield_reduce_mult) +"%",
             false)
 
       }

@@ -73,10 +73,10 @@
 		"aEP_ShieldControlled02": "舰船所有实弹和能量武器的{%s}射程超过{%s}的部分会被扣除",
 
 		"aEP_ShieldFloating01": "波动值",
-		"aEP_ShieldFloating02": "当护盾承受伤害时会增加等同于伤害量的{%s}，之后随时间降低",
-		"aEP_ShieldFloating04": "如果{%s}开始积攒，最多使幅能耗散{%s}",
+		"aEP_ShieldFloating02": "每当护盾承受伤害时会增加等同于伤害量的{%s}，其随时间降低",
+		"aEP_ShieldFloating04": "如果{%s}开始积攒，最多使护盾承受伤害{%s}",
 		"aEP_ShieldFloating03": "获得最大加成所需",
-		"aEP_ShieldFloating05": "幅能耗散",
+		"aEP_ShieldFloating05": "护盾承受伤害",
 
 		"aEP_StrategyThruster01": "零幅能加速值{%s}，现在为{%s}",
 		"aEP_StrategyThruster02": "零幅能加速的启用阈值{%s}，现在为{%s}",
@@ -364,9 +364,9 @@
 
 		"aEP_ShieldFloating01": "Flow",
 		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, which decreases overtime.",
-		"aEP_ShieldFloating04": "If %s is accumulating, flux dissipation increases up to %s.",
+		"aEP_ShieldFloating04": "If %s is accumulating, shield damage taken reduces up to %s.",
 		"aEP_ShieldFloating03": "Needed for Full Bonus",
-		"aEP_ShieldFloating05": "Flux vent",
+		"aEP_ShieldFloating05": "Shield damage taken",
 
 		"aEP_StrategyThruster01": "Zero flux boost speed %s, currently %s",
 		"aEP_StrategyThruster02": "Min flux level for zero flux boost to active %s, currently %s",

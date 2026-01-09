@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\config\LunaSettings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\config\glib\no_arc_overload.csv">
           <value>
             <Attribute>
@@ -18,6 +25,13 @@
           </value>
         </entry>
         <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\lights\core_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="E:\Program Files\Starsector098\mods\LazyLib\data\config\version\version_files.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

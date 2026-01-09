@@ -75,10 +75,14 @@ open class aEP_BaseHullMod : BaseHullMod() {
 
     //如果检测到需要remove，这里开始执行
     if (shouldRemove) {
-      //如果本 mod 是 built-in的话，移除发生冲突的另一个，反之移除本 mod
       if (!ship.variant.nonBuiltInHullmods.contains(id)) {
+        //如果本 mod 是 built-in且自己和自己冲突（意味着移除原因是缺少前置mod，比如上升流改作为非fsf舰船，内置了爆反），什么都不做
+        if(conflictId == id) return
+        //如果本 mod 是 built-in而冲突的不是，移除发生冲突的那个
         removeHullmodWithWarning(ship.variant, conflictId, id)
+        return
       } else {
+        //如果本 mod 不是是 built-in的话，移除本mod
         removeHullmodWithWarning(ship.variant, id, conflictId)
       }
       return
@@ -117,7 +121,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
       return false
     }
 
-    //遍历必须安装的船插表，若任何一个未安装，返回false
+    //遍历必须安装的船插表，若任何一个未安装（如果自己是内置的，就不需要检查，上升流改内置了爆反装甲但是没有fsf插件），返回false
     var iterator: Iterator<*> = haveToBeWithMod.iterator()
     while (iterator.hasNext()) {
       if (!ship.variant.hasHullMod(iterator.next() as String?)) return false

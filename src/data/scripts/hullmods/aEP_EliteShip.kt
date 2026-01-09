@@ -25,12 +25,12 @@ class aEP_EliteShip : aEP_BaseHullMod() {
     const val INSV_ID = "aEP_InSv"
     const val HP_KEY = "aEP_EliteShipHpLastCheck"
 
-    const val SHIELD_DAMAGE_REDUCE_MULT = 0.3f
+    const val SHIELD_DAMAGE_REDUCE_MULT = 0.2f
     const val ARMOR_BONUS_FLAT = 200f
-    const val ARMOR_BONUS_PERCENT = 25f
+    const val ARMOR_BONUS_PERCENT = 2f
 
     const val HULL_BONUS_FLAT = 1000f
-    const val HULL_BONUS_PERCENT = 30f
+    const val HULL_BONUS_PERCENT = 25f
 
     const val PEAK_CR_DURATION_FLAT = 100f
     const val RR_DECREASE_REDUCE_MULT = 0f
@@ -78,8 +78,8 @@ class aEP_EliteShip : aEP_BaseHullMod() {
   init {
     haveToBeWithMod.add(aEP_SpecialHull.ID)
     notCompatibleList.add(HullMods.CONVERTED_HANGAR)
-    notCompatibleList.add(HullMods.HEAVYARMOR)
-    notCompatibleList.add(HullMods.HARDENED_SHIELDS)
+//    notCompatibleList.add(HullMods.HARDENED_SHIELDS)
+//    notCompatibleList.add(HullMods.HEAVYARMOR)
     notCompatibleList.add(aEP_Module.ID)
 
     banShipList.add("aEP_cru_hailiang3")

@@ -15,6 +15,8 @@ from pathlib import Path
 TEMP_FILES: Dict[str, str] = {}
 # 存储重命名任务，批量执行
 RENAME_TASKS: List[tuple] = []
+# 存储需要清理的_EN/_CN文件路径（统一批量清理）
+TO_CLEAN_SUFFIX_FILES: List[tuple] = []
 
 # 全局当前语言设置（由 data/config/settings.json 的 aEP_UseEnString 决定）
 USE_EN_SETTING_OLD: Union[bool, None] = None
@@ -290,10 +292,10 @@ def get_backup_dir() -> str:
     os.makedirs(_BACKUP_DIR, exist_ok=True)
     return _BACKUP_DIR
 
-# ========== 新增：通用后缀文件清理函数 ==========
-def clean_extra_suffix_files(base_dir: str, base_name: str, ext: str, use_en_setting: bool) -> None:
+# ========== 通用后缀文件清理函数（仅收集待清理文件，不立即执行） ==========
+def collect_clean_task(base_dir: str, base_name: str, ext: str, use_en_setting: bool) -> None:
     """
-    通用清理函数：清理多余的 _EN/_CN 后缀文件（所有模块复用同一套规则）
+    收集需要清理的_EN/_CN文件任务（不立即清理，统一批量执行）
     :param base_dir: 文件所在目录
     :param base_name: 文件基础名（不含后缀和_EN/_CN，如 "submarkets"）
     :param ext: 文件扩展名（带点，如 .csv、.json、.faction）
@@ -304,17 +306,30 @@ def clean_extra_suffix_files(base_dir: str, base_name: str, ext: str, use_en_set
     cn_file = os.path.join(base_dir, f"{base_name}_CN{ext}")
 
     # 统一清理规则：True保留_CN删_EN，False保留_EN删_CN
-    keep_file, delete_file = (cn_file, en_file) if use_en_setting else (en_file, cn_file)
+    delete_file = en_file if use_en_setting else cn_file
+    
+    # 收集待清理文件（去重）
+    if delete_file not in TO_CLEAN_SUFFIX_FILES and os.path.exists(delete_file):
+        TO_CLEAN_SUFFIX_FILES.append(delete_file)
 
-    # 执行清理（跳过要保留的文件，避免误删）
-    if os.path.exists(delete_file) and delete_file != keep_file:
+def batch_clean_extra_suffix_files() -> None:
+    """
+    批量执行_EN/_CN文件清理（所有替换/重命名完成后统一执行）
+    """
+    if not TO_CLEAN_SUFFIX_FILES:
+        print(f"ℹ️ 无需要清理的_EN/_CN后缀文件")
+        return
+    
+    print(f"\n=== 开始批量清理多余的_EN/_CN后缀文件 ===")
+    for delete_file in TO_CLEAN_SUFFIX_FILES:
         try:
             os.remove(delete_file)
             print(f"🗑️ 已清理多余后缀文件：{delete_file}")
         except Exception as e:
             print(f"⚠️ 清理多余后缀文件失败 {delete_file}：{e}")
-    else:
-        print(f"ℹ️ 无多余后缀文件需要清理：{delete_file}")
+    
+    # 清空待清理列表
+    TO_CLEAN_SUFFIX_FILES.clear()
 
 # -------------------------- CSV文件交换逻辑 --------------------------
 def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields: list) -> None:
@@ -322,7 +337,7 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     处理CSV文件交换（仅写入临时文件，不立即替换原文件）：
     1. 保留字段内的中文逗号
     2. 仅交换指定字段的值
-    3. 新增：处理完成后清理多余的_EN/_CN文件
+    3. 收集清理任务（不立即清理）
     """
     # 初始化数据存储
     dict_rows_now: List[Dict[str, str]] = []
@@ -454,8 +469,8 @@ def swap_file_csv(file_path: str, file_name_without_extension: str, swap_fields:
     except Exception as e:
         raise Exception(f"备份文件临时文件写入失败：{e}")
 
-    # ========== 新增：调用通用清理函数，清理CSV的多余_EN/_CN文件 ==========
-    clean_extra_suffix_files(script_dir, file_name_without_extension, file_ext, USE_EN_SETTING_NEW)
+    # ========== 修改：仅收集清理任务，不立即执行 ==========
+    collect_clean_task(script_dir, file_name_without_extension, file_ext, USE_EN_SETTING_NEW)
 
 # -------------------------- JSON文件交换逻辑 --------------------------
 def swap_json(file_path: str, file_name_without_extension: str, extension: str = None) -> None:
@@ -463,7 +478,7 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
     处理JSON/faction文件交换（仅写入临时文件，不立即替换原文件）：
     1. 保留字符串内的中文逗号
     2. 递归交换JSON内的对应值
-    3. 新增：处理完成后清理多余的_EN/_CN文件
+    3. 收集清理任务（不立即清理）
     """
     # 处理路径
     abs_file_path = get_abs_file_path(file_path)
@@ -549,8 +564,8 @@ def swap_json(file_path: str, file_name_without_extension: str, extension: str =
     except Exception as e:
         raise Exception(f"备份文件临时文件写入失败：{e}")
 
-    # ========== 新增：调用通用清理函数，清理JSON/faction的多余_EN/_CN文件 ==========
-    clean_extra_suffix_files(script_dir, file_name_without_extension, file_ext, USE_EN_SETTING_NEW)
+    # ========== 修改：仅收集清理任务，不立即执行 ==========
+    collect_clean_task(script_dir, file_name_without_extension, file_ext, USE_EN_SETTING_NEW)
 
 # -------------------------- 文件重命名逻辑 --------------------------
 def swap_name(file_path: str, file_name_with_ext: str) -> None:
@@ -588,9 +603,8 @@ def swap_name(file_path: str, file_name_with_ext: str) -> None:
             raise Exception(f"未找到后缀为XXX_CN的对应文件文件：{abs_file_path}")
 
 def batch_execute_rename() -> None:
-    """批量执行重命名任务（简化版+复用通用清理函数）
+    """批量执行重命名任务（简化版，移除内部清理逻辑）
     核心逻辑：原文件 ↔ 目标后缀文件
-    清理逻辑：复用通用函数，保证规则统一
     """
     for original_path, temp_path, swap_path in RENAME_TASKS:
         try:
@@ -611,14 +625,14 @@ def batch_execute_rename() -> None:
             else:
                 print(f"⚠️ 交换文件不存在，跳过替换：{swap_path}")
 
-            # ========== 复用通用清理函数，清理重命名后的多余文件 ==========
+            # ========== 移除：原有的清理逻辑，改为统一收集任务 ==========
             file_dir = os.path.dirname(original_path)
             base_name = os.path.splitext(os.path.basename(original_path))[0]
             ext = os.path.splitext(original_path)[1]
-            clean_extra_suffix_files(file_dir, base_name, ext, USE_EN_SETTING_NEW)
+            collect_clean_task(file_dir, base_name, ext, USE_EN_SETTING_NEW)
 
         except Exception as e:
-            print(f"⚠️ 重命名或清理失败 {original_path}：{e}")
+            print(f"⚠️ 重命名失败 {original_path}：{e}")
             raise  # 抛出异常终止执行
 
     # 清空重命名任务列表
@@ -679,7 +693,7 @@ if __name__ == "__main__":
         # ========== 第一步：批量处理所有文件，生成临时文件/收集重命名任务 ==========
         print("=== 开始处理所有文件，生成临时文件 ===")
 
-        # CSV文件交换（生成临时文件 + 清理多余_EN/_CN）
+        # CSV文件交换（生成临时文件 + 收集清理任务）
         swap_file_csv("data/campaign/submarkets.csv", "submarkets", ['name', 'desc'])
         swap_file_csv("data/campaign/rules.csv", "rules", ['script','text','options'])
         swap_file_csv("data/campaign/industries.csv", "industries", ['name','desc'])
@@ -708,7 +722,7 @@ if __name__ == "__main__":
         swap_name("data/missions/aEP_random_fleet_combat/descriptor.json", "descriptor.json")
         swap_name("data/missions/aEP_random_fleet_combat/mission_text.txt", "mission_text.txt")
 
-        # JSON/faction文件交换（生成临时文件 + 清理多余_EN/_CN）
+        # JSON/faction文件交换（生成临时文件 + 收集清理任务）
         swap_json("mod_info.json","mod_info")
         swap_json("data/config/modFiles/magicBounty_data.json", "magicBounty_data")
         swap_json("data/config/planets.json", "planets")
@@ -723,7 +737,7 @@ if __name__ == "__main__":
         print("\n=== 所有临时文件生成完成，开始批量替换原文件 ===")
         # 批量替换临时文件为原文件
         batch_replace_original_files()
-        # 批量执行重命名任务（含清理）
+        # 批量执行重命名任务
         batch_execute_rename()
 
         # 最后更新设置（在重命名后执行，以便基于最新文件后缀状态）
@@ -731,7 +745,10 @@ if __name__ == "__main__":
         # 将设置临时文件应用到磁盘
         batch_replace_original_files()
 
-        print("\n🎉 所有文件交换/重命名完成！")
+        # ========== 第三步：所有替换/重命名完成后，统一清理_EN/_CN文件 ==========
+        batch_clean_extra_suffix_files()
+
+        print("\n🎉 所有文件交换/重命名/清理完成！")
 
     except Exception as e:
         # 任意步骤失败，清理所有临时文件，终止操作

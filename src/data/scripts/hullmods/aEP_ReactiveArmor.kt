@@ -2,8 +2,10 @@ package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.DamageTakenModifier
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.util.Misc
 import data.scripts.utils.aEP_DataTool
 import data.scripts.weapons.aEP_m_s_era3
@@ -12,18 +14,29 @@ import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
 class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableListener {
+
   companion object{
     const val ID = "aEP_ReactiveArmor"
     const val DAMAGE_THRESHOLD = 600f
-    const val ARMOR_THRESHOLD = 0.8f
+    const val ARMOR_THRESHOLD = 1f
     const val REDUCE_MULT = 0.9f
-    private val MAX_TRIGGER: MutableMap<ShipAPI.HullSize, Float> = HashMap()
+    const val SMOD_MANEUVER_PUNISH = 0f
+
+    private val MAX_TRIGGER: MutableMap<ShipAPI.HullSize, Float> = HashMap<HullSize, Float>().withDefault { 8f }
     init {
       MAX_TRIGGER[ShipAPI.HullSize.FIGHTER] = 2f
-      MAX_TRIGGER[ShipAPI.HullSize.FRIGATE] = 6f
-      MAX_TRIGGER[ShipAPI.HullSize.DESTROYER] = 8f
-      MAX_TRIGGER[ShipAPI.HullSize.CRUISER] = 10f
-      MAX_TRIGGER[ShipAPI.HullSize.CAPITAL_SHIP] = 12f
+      MAX_TRIGGER[ShipAPI.HullSize.FRIGATE] = 5f
+      MAX_TRIGGER[ShipAPI.HullSize.DESTROYER] = 6f
+      MAX_TRIGGER[ShipAPI.HullSize.CRUISER] = 8f
+      MAX_TRIGGER[ShipAPI.HullSize.CAPITAL_SHIP] = 10f
+    }
+    private val SMOD_PUNISH: MutableMap<ShipAPI.HullSize, Float> = HashMap<HullSize, Float>().withDefault { 2f }
+    init {
+      SMOD_PUNISH[ShipAPI.HullSize.FIGHTER] = 1f
+      SMOD_PUNISH[ShipAPI.HullSize.FRIGATE] = 1f
+      SMOD_PUNISH[ShipAPI.HullSize.DESTROYER] = 1f
+      SMOD_PUNISH[ShipAPI.HullSize.CRUISER] = 2f
+      SMOD_PUNISH[ShipAPI.HullSize.CAPITAL_SHIP] = 2f
     }
 
     /**
@@ -33,7 +46,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
       var realDamage = damage.damage * damage.modifier.modifiedValue
       when(damage.type){
         DamageType.KINETIC -> realDamage *= 0.5f
-        DamageType.ENERGY -> realDamage *= 0.75f
+        DamageType.ENERGY -> realDamage *= 1f
         DamageType.FRAGMENTATION -> realDamage *= 0.35f
         else -> {}
       }
@@ -54,7 +67,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
 
       //以上的检测都通过了，说明需要修改伤害
       //damage.damage = damage.baseDamage * 0.1f
-      damage.modifier.modifyMult(ID,0.1f)
+      damage.modifier.modifyMult(ID,1f - REDUCE_MULT)
       return 1f
     }
 
@@ -64,13 +77,29 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     }
   }
 
+  init {
+    notCompatibleList.add(HullMods.HEAVYARMOR)
+    haveToBeWithMod.add(aEP_SpecialHull.ID)
+  }
+
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     if(!ship.hasListenerOfClass(aEP_ReactiveArmor::class.java)){
       val listener = aEP_ReactiveArmor()
       listener.ship = ship
-      listener.maxTrigger = (MAX_TRIGGER[ship.hullSpec.hullSize]?:10f).toInt()
+      var number = MAX_TRIGGER[ship.hullSpec.hullSize]?:8f
+      if(isSMod(ship)) {
+        number -= SMOD_PUNISH[ship.hullSpec.hullSize]?:1f
+      }
+      listener.maxTrigger = number.toInt()
       ship.addListener(listener)
     }
+  }
+
+  override fun applySmodEffectsAfterShipCreationImpl(ship: ShipAPI, stats: MutableShipStatsAPI, id: String) {
+    stats.getAcceleration().modifyMult(id, 1f - SMOD_MANEUVER_PUNISH * 0.01f)
+    stats.getDeceleration().modifyMult(id, 1f - SMOD_MANEUVER_PUNISH * 0.01f)
+    stats.getTurnAcceleration().modifyMult(id, 1f - SMOD_MANEUVER_PUNISH * 0.01f)
+    stats.getMaxTurnRate().modifyMult(id, 1f - SMOD_MANEUVER_PUNISH * 0.01f)
   }
 
   override fun getDescriptionParam(index: Int, hullSize: ShipAPI.HullSize, ship: ShipAPI?): String? {
@@ -80,6 +109,16 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     if (index == 1) return String.format("-%.0f", 90f) +"%"
     if (index == 2) return String.format("%.0f", MAX_TRIGGER[hullSize]?:10f)
     return null
+  }
+
+  override fun getSModDescriptionParam(index: Int, hullSize: HullSize?): String? {
+    //if (index == 0) return String.format("%.0f", SMOD_MANEUVER_PUNISH)+"%"
+    if (index == 0) return String.format("%.0f", SMOD_PUNISH[hullSize])
+    return null
+  }
+
+  override fun isSModEffectAPenalty(): Boolean {
+    return true
   }
 
   //以下都是listener的部分

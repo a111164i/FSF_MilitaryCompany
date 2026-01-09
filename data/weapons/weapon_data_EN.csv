@@ -30,7 +30,7 @@ Boiling Laser - Repeating,aEP_fga_xiliu_main2,FSF Manufacture,PD,Beam is divided
 Lidardish,aEP_fga_chichao_lidardish,,,,
 Laser Aim,aEP_fga_shuangshen2_lidardish,FSF Manufacture,Support, ,
 Fighter Pointer,aEP_fga_shuangshen_pointer,FSF Manufacture,Support,Guide the built-in fighter to the endpoint of this beam.,
-DF-2 Heavy ERA,aEP_m_s_era3,FSF Manufacture,PD,"When the hull around this weapon takes a damage that is greater than or equal to %s or %s times the ship's armor, the ERA triggers, consuming 1 ammo and reducing that damage by %s.",
+DF-2 Heavy ERA,aEP_m_s_era3,FSF Manufacture,PD,"",
 S-1 Payload,aEP_cruise_missile_shot,FSF Manufacture,,,
 S-2 Payload,aEP_cruise_missile_shot2,FSF Manufacture,,,
 Tesla Arc Emitter,aEP_des_yonglang_mk2_teslagun,FSF Private Conversion,Support,"When hitting ships, this weapon spawns %s shield-piercing EMP arcs every second. Each arc deals %s EN damage and %s EMP damage, in addition to reducing the target's maximum speed by %s.",
@@ -76,7 +76,7 @@ Disposal Flux Tube Pod,aEP_m_m_fluxtube,FSF Manufacture,Support,"When the flux l
 Nail Gun LRM,aEP_m_s_harpoon,FSF Manufacture,Anti-shield,"When hitting shields, it deals an extra %s kinetic damage in soft flux.",
 Nail Gun LRM System,aEP_m_l_harpoon,FSF Manufacture,Anti-shield,"When hitting shields, it deals an extra %s kinetic damage in soft flux.",
 Percussion Drill Bombardment LRM,aEP_m_s_cluster,FSF Manufacture,Anti-armor,,
-DF-1 ERA,aEP_m_s_era,FSF Manufacture,PD,"When the hull around this weapon takes a damage that is greater than or equal to %s or %s times the ship's armor, the ERA triggers, consuming 1 ammo and reducing that damage by %s.",This weapon can not be fired manually
+DF-1 ERA,aEP_m_s_era,FSF Manufacture,PD,"When the hull around this weapon takes a damage that >= %s or %s times the ship's armor, one ERA activates, mitigating that damage by %s.",This weapon can not be fired manually
 --Payload,aEP_m_s_era2,,,,
 Pushpin Magnet Bomb Cluster,aEP_m_s_magnetmine,FSF Manufacture,Anti-armor,"When its projectiles approach an enemy, it will split into %s magnet bombs, each one dealing %s HE damage.",
 Pushpin Magnet Bomb Cluster Pod,aEP_m_m_magnetmine,FSF Manufacture,Anti-armor,"When its projectiles approach an enemy, it will split into %s magnet bombs, each one dealing %s HE damage.",
