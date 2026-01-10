@@ -108,6 +108,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\mods\MagicLib\data\config\paintjobs\magic_weapon_paintjobs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\MagicLib\data\config\vayraBounties\unique_bounty_data.csv">
           <value>
             <Attribute>
@@ -444,7 +451,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\submarkets_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\characters\skills\skill_data_EN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

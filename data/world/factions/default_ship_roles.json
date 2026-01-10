@@ -9,7 +9,7 @@
     "aEP_fga_xiliu_Elite": 3,
     "aEP_fga_xiliu_Beam":3,
 
-    "aEP_fga_yonglang_Mixed": 3,
+    "aEP_fga_yonglang_Defense": 3,
     "aEP_fga_yonglang_Standard": 4,
 
     "aEP_fga_raoliu_Defense":4,
@@ -28,7 +28,7 @@
     "aEP_fga_wanliu_Elite": 6,
 
     "aEP_fga_yonglang_Standard": 6,
-    "aEP_fga_yonglang_Mixed": 4,
+    "aEP_fga_yonglang_Defense": 4,
 
     "aEP_fga_xiliu_mk2_Elite": 3,
     "aEP_fga_xiliu_mk2_Standard": 3,
@@ -113,11 +113,11 @@
   },
   "combatFreighterMedium": {
     "aEP_des_youjiyan_Standard": 5,
-    "aEP_des_youjiyan_Def": 5,
+    "aEP_des_youjiyan_Defense": 5,
   },
   "combatFreighterLarge": {
     "aEP_cap_shangshengliu_Standard": 5,
-    "aEP_cap_shangshengliu_Def": 5,
+    "aEP_cap_shangshengliu_Defense": 5,
   },
   "civilianRandom": {
   },

@@ -239,10 +239,10 @@
     }
   },
   "fleetTypeNames": {
-    "patrolSmall": "Patrol Squad",
-    "patrolMedium": "Front Platoon",
-    "patrolLarge": "Defense Battalion",
-    "inspectionFleet": "Inspection Team",
-    "taskForce": "Special Force"
+    "patrolSmall": "巡逻小队",
+    "patrolMedium": "作战舰队",
+    "patrolLarge": "主力舰队",
+    "inspectionFleet": "调查团",
+    "taskForce": "特种舰队"
   }
 }

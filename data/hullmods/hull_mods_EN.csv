@@ -6,10 +6,10 @@ Missile Platform,aEP_MissilePlatform,FSF Design,,"An integrated missile factory 
 This ship has a resource called %s which regenerates over time. Whenever a missile weapon is not full, this resource is consumed to produce ammo. The more costly the missile round, the greater the consumption.",,
 FCS Radar,aEP_BBAdjustRange,FSF Design,,"The wave radar provides half of the ship's targeting capability, with the other half being enhanced by this modification:
 
-Ballistic/energy weapon range %s",,
+Weapon range %s",,
 Limited Targeting System,aEP_LimitedTurret,FSF Design,,"An outdated but durable targeting system with mechanical computing, strong against any type of impact, whether physical or EMP.
 
-Ballistic/energy weapon range %s, durability %s, repair time in battle %s",,
+Weapon range %s, durability %s, repair time in battle %s",,
 Towline,aEP_Tugboat,FSF Design,,"The powerful engine of this ship can tow a slower, friendly fleet member, allowing it to travel at the same speed.",,
 Main Gun Swapper Hidden,aEP_PingdingMainSwapHidden,FSF Design,,,,
 Main Gun Swapper,aEP_PingdingMainSwap1,FSF Design,,Remove this hullmod to switch between different built-in weapons.,,
@@ -18,12 +18,12 @@ Open Field Hanger,aEP_OpenFieldHangar,FSF Design,,"The large open deck at the ce
 All non-built-in wings will be infinitely redeployed to %s, but they deal %s damage to enemy ships.",,
 Accelerated Gunnery,aEP_AcceleratedGunnery,FSF Design,,"The fine-tuned control chip accelerates all movements related to weapon cycling. Only ships pre-built with above-average steel can withstand its long-term side effects.
 
-Ballistic/energy weapon Rate of Fire and ammo regeneration speed are %s. Their flux produced per shot also %s.",,
+Weapon Rate of Fire and ammo regeneration speed are %s. Their flux produced per shot also %s.",,
 Cruise Missile Carrier,aEP_CruiseMissileCarrier,FSF Design,,A specialized cruise missile vessel allows you to load cruise missiles in the Intel page.,,
 Anchored Self Rotate,aEP_SelfRotate,FSF Design,,This module continuously rotates around its axis.,,
 Module Targeting Unit,aEP_ModuleTargeting,FSF Design,,"A simple but practical system for ship module targeting, heavily relying on the sensors of parent vessel makes common targeting modifications unavailable.
 
-Ballistic/energy weapon range %s",,
+Weapon range %s",,
 Attack Carrier,aEP_AttackCarrier,FSF Design,,"Built to send fighters directly to enemy ships means high lost rate. To compensate the deficit in fighter refit rate, this ship can shortly overload its fighter forge quickly replacing all lost. Can't overload twice in short time and generate soft flux during cooldown",,
 Strafe,aEP_Strafe,FSF Design,,"This ship slowly regenerates strafe energy. Whenever a large weapon on the ship fires, consume strafe energy to accelerate its remaining cooldown.
 
@@ -35,7 +35,7 @@ Pre-planted Explosive Reactive Armor,aEP_ReactiveArmor,FSF Design,Defenses,"Expl
 When the hull takes a damage that >= %s, one ERA activates, mitigating that damage by %s. The ship has a total of %s ERAs.",,"Reduces number of ERAs by %s"
 Composite Targeting System,aEP_TargetSystem,FSF Design,,"A composite targeting system combines laser, radio, and optic rangefinding technologies, providing range bonuses similar to capital ship level.
 
-Boosts ballistic/energy non-PD weapons range by %s and PD weapon range by %s. However, weapon range beyond %s is reduced by %s.",,
+Boosts non-PD weapons range by %s and PD weapon range by %s. However, weapon range beyond %s is reduced by %s.",,
 High Speed Maneuver,aEP_HighSpeedManeuver,FSF Design,,"The compact hull and high speed of this ship allow it to dodge attacks, but keep doing so burden the engine and will eventually fail unless let engine get some rest.",,
 Multi-turret Optimization,aEP_HLMultiTurret,FSF Design,,"Part of the weapon structure is built into the slots.
 
@@ -58,7 +58,7 @@ Controlled Shield,aEP_ShieldControlled,FSF Design,Shields,"The specialized shiel
 Floating Shield,aEP_ShieldFloating,FSF Design,Shields,"A specialized shield generator produces a liquid-like surface; the harder the impact, the more efficient it becomes.",,
 Hot Loader,aEP_HotLoader,FSF Design,Weapons,"The recoil recycling device designed by the company exploits potential space to expand the magazine, thereby boosting ammunition regeneration.
 
-Ballistic/energy weapons' ammo regeneration speed %s",,Ammo regen speed bonus changes to %s
+Weapons' ammo regeneration speed %s",,Ammo regen speed bonus changes to %s
 Vanguard Hull,aEP_VanguardHull,FSF Design,Defenses,"Improving the hull's hardness has been proven to offer little resistance against large anti-ship guns, but it significantly reduces damage from numerous smaller impacts.
 
 Each time the hull takes damage, there is a %s chance to reduce it by %s.",,"Trigger chance changes to %s, damage reduction changes to %s"

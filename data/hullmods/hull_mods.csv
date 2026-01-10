@@ -6,10 +6,10 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 舰船拥有一种叫{%s}的资源，其会随着时间自然回复。每当一个导弹武器弹药不满时，会消耗该资源为其生产弹药，单发越是昂贵的导弹消耗的越多。",,,graphics/aEP_hullmods/aEP_missile_platform.png,
 标兵武器校准雷达,aEP_BBAdjustRange,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_BBAdjustRange,"标兵级舰体中央的激光雷达以一种另辟蹊径的方式为这艘战舰提供的所需的射程，当然也不兼容常规的目标定位系统
 
-实弹/能量武器射程{%s}",,,graphics/hullmods/ecm_package.png,
+武器射程{%s}",,,graphics/hullmods/ecm_package.png,
 有限定位系统,aEP_LimitedTurret,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_LimitedTurret,"一种复古的分布式目标定位仪，大量使用机械计算器而不是电子系统，一是显著的提升了武器系统对冲击的抗性，二是允许船员使用手持工具修复其下线的大部分功能
 
-实弹/能量武器射程{%s}，所有武器的耐久{%s}，战斗中修复时间{%s}。不兼容常规的定位系统",,,graphics/aEP_hullmods/aEP_limited_turret.png,
+武器射程{%s}，所有武器的耐久{%s}，战斗中修复时间{%s}。不兼容常规的定位系统",,,graphics/aEP_hullmods/aEP_limited_turret.png,
 拖拽连接器,aEP_Tugboat,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Tugboat,本舰充足的动力足以拖动其他舰船，将舰队中宇宙航速最低的一艘舰船的最大速度提升至与本舰相同,,,graphics/aEP_hullmods/aEP_tug_ship.png,
 更换主炮-隐藏,aEP_PingdingMainSwapHidden,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_PingdingMainSwapHidden,,,,graphics/aEP_hullmods/aEP_flux_magazine.png,
 更换主炮,aEP_PingdingMainSwap1,0,FSF设计,,no_build_in,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_PingdingMainSwapHidden,移除这个插件以更换本舰船的内置武器,,,graphics/aEP_hullmods/aEP_flux_magazine.png,
@@ -18,12 +18,12 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 本舰非内置甲板上的战机联队会不限时的被额外部署到{%s}，但所它们对敌方舰船的伤害{%s}",,,graphics/aEP_hullmods/aEP_open_field.png,
 神速芯控,aEP_AcceleratedGunnery,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AcceleratedGunnery,"调整过的机控芯片加速了所有武器相关机械系统的工作频率，增加武器的射击速度。这种内置超载协议的机控芯片只有少数在建造时就使用更昂贵合金制造武器底座的舰船上才能长期稳定运行
 
-所有实弹/能量武器的射速与弹药回复速度{%s}，但它们产生的幅能{%s}",,,graphics/aEP_hullmods/aEP_accelerated_gunnery.png,
+所有武器的射速与弹药回复速度{%s}，但它们产生的幅能{%s}",,,graphics/aEP_hullmods/aEP_accelerated_gunnery.png,
 巡航导弹运载舰,aEP_CruiseMissileCarrier,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CruiseMissileCarrier,随时间装载货舱中的巡航导弹，完成装载后可以于战斗中发射,,,graphics/aEP_hullmods/aEP_CM_carrier.png,
 自旋模块,aEP_SelfRotate,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SelfRotate,本舰的模块将以一定速度绕母舰旋转,,,graphics/aEP_hullmods/aEP_self_rotate.png,
 模块定位,aEP_ModuleTargeting,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_ModuleTargeting,"并非使用星域中常见的模块化插件，而是量身定制的目标定位系统。借助母舰更大的空间使得模块能够获得超过自己舰体级别的射程，但同时也使得一些极端的改装无法进行
 
-本舰的实弹/能量武器射程{%s}",,,graphics/aEP_hullmods/aEP_small_target_core.png,
+本舰的武器射程{%s}",,,graphics/aEP_hullmods/aEP_small_target_core.png,
 进攻性母舰,aEP_AttackCarrier,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_AttackCarrier,将战机直接投送到敌舰附近也意味着更容易损失，为了避免战机整备率过早清空，本舰可以短暂超载战机锻炉快速补充损失。无法连续超载且冷却期间会产生幅能,,,graphics/aEP_hullmods/aEP_heavy_fighter_carrier.png,
 扫射,aEP_Strafe,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_Strafe,"本舰会随时间补充扫射能量，如果任何大槽武器处于冷却状态，就会消耗扫射能量抵消武器的冷却时间
 
@@ -32,11 +32,11 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 本舰的战术系统充能次数耗尽时，会立刻消耗{%s}的扫射能量补充一次系统充能。使用战术系统时，会从内置的导弹发射器发射数波干扰目标点防御的低威力导弹",,,graphics/aEP_hullmods/aEP_strafe.png,
 线列目标定位,aEP_TargetSystem,0,FSF设计,,,,,,TRUE,,4,5,9,12,data.scripts.hullmods.aEP_TargetSystem,"包含光学观瞄，无线电，激光测距等多项设备的复合定位系统，能在较小的舰体上实现主力舰级别的射击能力
 
-所有非PD的实弹/能量武器射程{%s}，PD武器射程{%s}，但是武器射程超过{%s}的部分会受到{%s}的降低",,,graphics/aEP_hullmods/aEP_target_system.png,
+所有非PD的武器射程{%s}，PD武器射程{%s}，但是武器射程超过{%s}的部分会受到{%s}的降低",,,graphics/aEP_hullmods/aEP_target_system.png,
 机动躲避,aEP_HighSpeedManeuver,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_HighSpeedManeuver,又快又小的舰体使得本舰可以使用机动躲避伤害，但连续躲避会增加引擎的负担直到无法继续规避，只有引擎得到一定的休息后才能恢复躲避能力,,,graphics/aEP_hullmods/aEP_high_speed_maneuver.png,
 多炮塔优化,aEP_HLMultiTurret,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MultiTurret,"本舰在设计之初就为了承受较多的槽位将一部分改装空间更高效的内置于舰体中
 
-小中大武器安装消耗装配点减少{%s/%s/%s}。",,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,
+小中大型的实弹/能量武器安装消耗装配点减少{%s/%s/%s}。",,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,
 近程追踪火控,aEP_CloseTargeting,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_CloseTargeting,"用于近距离射击小尺寸目标的火控系统，能帮助武器精确的锁定目标弱点部位
 
 本舰的PD武器射程{%s}，武器的后坐力与最大扩散{%s}",,,graphics/aEP_hullmods/aEP_close_targeting.png,

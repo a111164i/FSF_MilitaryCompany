@@ -1,5 +1,5 @@
 {
-    "displayName": "Mixed",
+    "displayName": "Defense",
     "fluxCapacitors": 7,
     "fluxVents": 7,
     "goalVariant": true,
@@ -10,7 +10,7 @@
     ],
     "permaMods": [],
     "sMods": [],
-    "variantId": "aEP_fga_yonglang_Mixed",
+    "variantId": "aEP_fga_yonglang_Defense",
     "weaponGroups": [
         {
             "autofire": true,

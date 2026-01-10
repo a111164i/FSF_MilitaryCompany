@@ -153,7 +153,7 @@
 		"aEP_CoordinatedCombat06": "战线渗透",
 		"aEP_CoordinatedCombat07": "协同作战",
 		"aEP_CoordinatedCombat08": "武器破甲力",
-		"aEP_CoordinatedCombat09": "战机的实弹/能量武器射速，最大速度，承受伤害",
+		"aEP_CoordinatedCombat09": "战机的武器射速，最大速度，承受伤害",
 
 		"aEP_FighterProtector01":"战机承受伤害: ",
 		"aEP_FighterProtector02":"战机造成伤害: ",
@@ -360,7 +360,7 @@
 
 		"aEP_ShieldControlled01": "For non-missile projectiles and beams that spawned outside %s su, shield damage taken %s",
 		"aEP_ShieldControlled03": "For missiles, shield damage taken %s",
-		"aEP_ShieldControlled02": "Ballistic/energy weapons %s range are limited to %s.",
+		"aEP_ShieldControlled02": "Weapons %s range are limited to %s.",
 
 		"aEP_ShieldFloating01": "Flow",
 		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, which decreases overtime.",
@@ -448,7 +448,7 @@
 		"aEP_CoordinatedCombat06": "Field Infiltrate",
 		"aEP_CoordinatedCombat07": "Coordinated Combat",
 		"aEP_CoordinatedCombat08": "Weapon hit strength",
-		"aEP_CoordinatedCombat09": "Fighter's ballistic/energy weapon RoF, max speed and damage taken",
+		"aEP_CoordinatedCombat09": "Fighter's weapon RoF, top speed and damage taken",
 
 		"aEP_FighterProtector01":"Fighter damage taken: ",
 		"aEP_FighterProtector02":"Fighter damage dealt: ",

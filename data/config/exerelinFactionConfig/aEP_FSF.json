@@ -51,10 +51,10 @@
 
 
     "startShipsSolo":[
-        ["aEP_fga_yonglang_Mixed"]
+        ["aEP_fga_yonglang_Standard"]
     ],
     "startShipsCombatSmall":[
-        ["aEP_fga_xiliu_Standard","aEP_fga_yonglang_Mixed","aEP_fga_raoliu_Standard"],
+        ["aEP_fga_xiliu_Standard","aEP_fga_yonglang_Defense","aEP_fga_raoliu_Standard"],
     ],
     "startShipsCarrierLarge":[
         ["aEP_des_shendu_Strike", "aEP_des_shendu_Standard", "aEP_fga_raoliu_Standard"],

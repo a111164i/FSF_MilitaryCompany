@@ -291,7 +291,6 @@ class aEP_VentMode: BaseShipSystemScript() {
 
   override fun isUsable(system: ShipSystemAPI, ship: ShipAPI): Boolean {
     val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
-    val hardFlux = ship.fluxTracker.hardFlux
     if(softFlux < SOFT_CONVERT_SPEED * MIN_SECOND_TO_USE) return false
 
     return true

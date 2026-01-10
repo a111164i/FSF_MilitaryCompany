@@ -272,26 +272,26 @@
   "ranks": {
     "ranks": {
       "factionLeader": {
-        "name": "Board Representative"
+        "name": "董事会代表"
       }
     },
     "posts": {
       "factionLeader": {
-        "name": "Board Representative"
+        "name": "代表"
       },
       "aEP_consultant": {
-        "name": "Business Manager"
+        "name": "经理"
       },
       "aEP_researcher": {
-        "name": "Program Director"
+        "name": "项目总监"
       }
     }
   },
   "fleetTypeNames": {
-    "patrolSmall": "Patrol Squad",
-    "patrolMedium": "Front Platoon",
-    "patrolLarge": "Defense Battalion",
-    "inspectionFleet": "Inspection Team",
-    "taskForce": "Special Force"
+    "patrolSmall": "巡逻小队",
+    "patrolMedium": "作战舰队",
+    "patrolLarge": "主力舰队",
+    "inspectionFleet": "调查团",
+    "taskForce": "特种舰队"
   }
 }

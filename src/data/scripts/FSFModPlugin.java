@@ -89,9 +89,9 @@ public class FSFModPlugin extends BaseModPlugin {
       aEP_Tool.Util.addDebugLog(this.getClass().getSimpleName()+" onApplicationLoad, mission filter initiation error");
     }
 
-    //以英文模式启动时，替换名称
-    if(Global.getSettings().getBoolean("aEP_UseEnString")) {
-      //updateLanguage();
+    //以中文模式启动时，自动翻译装配的名称，反正一共就standard attack defense等等几个
+    if(!Global.getSettings().getBoolean("aEP_UseEnString")) {
+      updateVariantNames();
     }
 
 
@@ -156,8 +156,49 @@ public class FSFModPlugin extends BaseModPlugin {
     }
 
   }
+
   public static void loadLightData(){
     LightData.readLightDataCSV("data/config/lights/FSF_light_data.csv");
 
+  }
+
+  public static void updateVariantNames(){
+    //更新装配的名称
+    for(String variantId : Global.getSettings().getAllVariantIds()){
+
+      ShipVariantAPI variant = Global.getSettings().getVariant(variantId);
+      String baseName = variant.getDisplayName().toLowerCase();
+      if(baseName.contains("standard")){
+        variant.setVariantDisplayName("标准");
+      } else if(baseName.contains("attack")){
+        variant.setVariantDisplayName("进攻");
+      } else if(baseName.contains("defense")){
+        variant.setVariantDisplayName("防御");
+      } else if(baseName.contains("assault")){
+        variant.setVariantDisplayName("突击");
+      } else if(baseName.contains("range")){
+        variant.setVariantDisplayName("远距离");
+      } else if(baseName.contains("super")){
+        variant.setVariantDisplayName("超装");
+      } else if(baseName.contains("elite")){
+        variant.setVariantDisplayName("精英");
+      } else if(baseName.contains("support")){
+        variant.setVariantDisplayName("支援");
+      } else if(baseName.contains("repair")){
+        variant.setVariantDisplayName("维修");
+      } else if(baseName.contains("siege")){
+        variant.setVariantDisplayName("攻城");
+      } else if(baseName.contains("bomb")){
+        variant.setVariantDisplayName("轰炸");
+      } else if(baseName.contains("strike")){
+        variant.setVariantDisplayName("重击");
+      } else if(baseName.contains("beam")){
+        variant.setVariantDisplayName("光束");
+      } else if(baseName.contains("mixed")){
+        variant.setVariantDisplayName("混合");
+      } else if(baseName.contains("burst")){
+        variant.setVariantDisplayName("爆发");
+      }
+    }
   }
 }

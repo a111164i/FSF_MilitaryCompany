@@ -20,7 +20,7 @@ class aEP_NCReloadScript : BaseShipSystemScript() {
 
 
   companion object {
-    const val RELOAD_RATE_ADD = 0.12f
+    const val RELOAD_RATE_ADD = 0.15f
     const val COOLDOWN_REDUCE = 15f
 
     const val GLOW_INTERVAL = 0.05f

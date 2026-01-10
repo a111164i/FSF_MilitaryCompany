@@ -14,7 +14,7 @@ import java.util.HashMap
 
 class aEP_FuelBurn: BaseShipSystemScript() {
   companion object{
-    const val MAX_SPEED_BONUS = 180f
+    const val MAX_SPEED_BONUS = 300f
     private val USAGE = HashMap<ShipAPI.HullSize, Float>()
     init {
       USAGE[ShipAPI.HullSize.FIGHTER] = 0f

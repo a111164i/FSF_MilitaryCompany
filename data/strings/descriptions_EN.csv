@@ -2,14 +2,14 @@ id,type,text1,text2,text3,text4,text5,notes
 ,,,,,,,
 ,,,,,,,
 ,,,,,,,
-aEP_VentMode,SHIP_SYSTEM,"Exposes venting mechanism to greatly increase soft flux dissipation and generate hard flux, also increase weapon rate of fire and ammo regeneration speed. Compromises hull integrity damage taken and the system will shut down if soft flux is too low",Offensive,,,,
-aEP_NCReload,SHIP_SYSTEM,"Generates soft flux to reduce remaining cooldown of all missile weapons, reloads the built-in Hydrothermal LRM, and recovers Forge Output.",Offensive,,,,
+aEP_VentMode,SHIP_SYSTEM,"Exposes venting mechanism to greatly increase soft flux dissipation and generate hard flux, also increase weapon rate of fire and ammo regeneration speed. Compromises hull integrity damage taken and the system will shut down if soft flux is too low",Offensive,,,"Increases hull integrity damage taken by {{50%}}, flux dissipation by {{2000}}. Weapon rate of fire and ammo regen speed are increased by {{30%}}",
+aEP_NCReload,SHIP_SYSTEM,"Generates soft flux to reduce remaining cooldown of all missile weapons, reloads the built-in Hydrothermal LRM, and recovers Forge Output.",Offensive,,,"Reduces missile weapon's cooldown by {{15}} seconds, recover {{15%}} of Forge Output",
 aEP_ComebackProgram,SHIP_SYSTEM,Recalls an FSF-designed Frigate and repair its armor and structure back to full. Both ships must have sufficient CR and it is not applicable to certain types of FSF Frigates.,Special,,,,
-aEP_BBLockOn,SHIP_SYSTEM,"The system continuously generates soft flux to lock target ship's weapon function, significantly increasing the target's weapon flux cost.",Offensive,,,,
+aEP_BBLockOn,SHIP_SYSTEM,"The system continuously generates soft flux to lock target ship's weapon function, significantly increasing the target's weapon flux cost.",Offensive,,,"Target's weapon flux cost is increased by {{200%}}",
 aEP_NBFiringJet,SHIP_SYSTEM,Activates the auxiliary thrusters to push the ship toward the direction of acceleration.,Movement,,,,
-aEP_FuelBurn,SHIP_SYSTEM,Engines start consuming fuel in fleet's cargo and generate flux to slowly but continuously raise the ship's top speed.,Movement,,,,
+aEP_FuelBurn,SHIP_SYSTEM,Engines start consuming fuel in fleet's cargo and generate flux to slowly but continuously raise the ship's top speed.,Movement,,,Slowly increases the ship's top speed by {{300}},
 aEP_DamperTanker,SHIP_SYSTEM,"Deploys folded armor, disables weapons and shield to gain additional effective armor value and damage reduction.",Defensive,,,,
-aEP_ManeuverThruster,SHIP_SYSTEM,"Provides a boost to top speed, along with a slight maneuverability boost.",Movement,,,,
+aEP_ManeuverThruster,SHIP_SYSTEM,"Provides a boost to top speed, along with a slight maneuverability boost.",Movement,,,"Increases the ship's top speed by {{250}}, turn rate by {{30}}",
 ,,,,,,,
 ,,,,,,,
 aEP_MaodianDroneLaunch,SHIP_SYSTEM,Send an active defence drone to the mouse location. The drone will intercept nearby projectiles and self-destructing after a certain period.,Special,,,,
@@ -34,21 +34,25 @@ aEP_GrenadeThrower,SHIP_SYSTEM,Fires a barrage of high-explosive bombs from the 
 ,,,,,,,
 aEP_Rupture,SHIP_SYSTEM,"Links its target with a gravity anchor. Pulling the target away from this ship will generate soft flux to the target and slow its speed, being too far will break the link",Special,,,,
 aEP_FortressShield,SHIP_SYSTEM,"Toggleable. When activated, massively reduces shield damage taken but generates hard flux and prevents the use of weapons.",Defensive,,,,
-aEP_LidarArray,SHIP_SYSTEM,"Enhances every non-beam weapons in ballistic/energy slots in range, rate of fire, accuracy, and projectile speed. Even when not activated, the system still provides a small range bonus to those weapons.",Offensive,,,,
+aEP_LidarArray,SHIP_SYSTEM,"Enhances every non-beam weapons in ballistic/energy slots in range, rate of fire, accuracy, and projectile speed. Even when not activated, the system still provides a small range bonus to all non-missile weapons.",Offensive,,,"While the system is active, hardpoint weapons receive {{85%}} increased range and {{200%}} increased rate of fire. Recoil is reduced by {{75%}}, and projectile speed is increased by {{50%}}.
+
+While the system is in passive mode, the range of all non-missile weapons is increased by {{20%}}.",
 aEP_CoordinatedCombat,SHIP_SYSTEM,"When activated, recalls and increases the shield radius and maximum arc of the 'Scout' Fighter to block incoming damage. Cooldown: 5 seconds.
 
 Guided Assault: When activated while holding key Num 1, increases the ship's weapon hit strength by a small fixed amount. Cooldown: 6 seconds.
 
-Decoy Trick: When activated while holding key Num 2, greatly reduces its 'Scout' Fighter's top speed, ballistic/energy weapon rate of fire, and damage taken. Cooldown: 6 seconds.
+Decoy Trick: When activated while holding key Num 2, greatly reduces its 'Scout' Fighter's top speed, weapon rate of fire, and damage taken. Cooldown: 6 seconds.
 
 Field Infiltrate: When activated while holding key Num 3, immediately swaps location with the 'Scout' Fighter. Cooldown: 1 second.",Special,"When activated, recall and increase the shield radius and maximum arc of its 'Scout' Fighter to block incoming damage. Cooldown: 5 seconds.
 
 Guided Assault: When activated by holding key Num 1, increase the ship's weapon hit strength by a small fixed amount. Cooldown: 6 seconds.
 
-Decoy Trick: When activated by holding key Num 2, greatly reduce its 'Scout' Fighter's top speed, ballistic/energy weapon rate of fire, and damage taken. Cooldown: 6 seconds.
+Decoy Trick: When activated by holding key Num 2, greatly reduce its 'Scout' Fighter's top speed, weapon rate of fire, and damage taken. Cooldown: 6 seconds.
 
 Field Infiltrate: When activated by holding key Num 3, immediately swap locations with its 'Scout' Fighter. Cooldown: 1 second.",Guided Assault | Decoy Trick | Field Infiltrate,,
-aEP_SwitchPowerMode,SHIP_SYSTEM,"Switches between high-output and rapid-fire modes of this ship's energy weapon, affecting their damage and rate of fire.",Special,,,"In high-output mode, energy weapons deal/cost {{50%}} more damage and flux, range increased by {{200}}, but fire {{100%}} slower.",
+aEP_SwitchPowerMode,SHIP_SYSTEM,"Switches between high-output and rapid-fire modes of this ship's energy weapon, affecting their damage and rate of fire.",Special,,,"In high-output mode, energy weapons deal/cost {{50%}} more damage and flux, range increased by {{200}}, but fire {{100%}} slower.
+
+In rapid-fire mode, enerrgy weapons deal {{25%}} less damage, cost {{50%}} less flux, but fire {{100%}} faster",
 aEP_RepulseMissileLaunch,SHIP_SYSTEM,"Provides bonus flux dissipation and ability to dissipate hard flux. this ship will continuously fires its built-in missiles until the flux is cleared or the system times out. If the ship is destroyed, the system will be forced to activate.",Defensive,,,,
 aEP_FlareLaunch,SHIP_SYSTEM,Fires different types of flares around the ship to distract enemy missile targeting.,Defensive,,,,
 ,,,,,,,
