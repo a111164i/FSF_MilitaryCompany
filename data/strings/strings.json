@@ -72,11 +72,7 @@
 		"aEP_ShieldControlled03": "对于导弹，护盾承受伤害{%s}",
 		"aEP_ShieldControlled02": "舰船所有实弹和能量武器的{%s}射程超过{%s}的部分会被扣除",
 
-		"aEP_ShieldFloating01": "波动值",
-		"aEP_ShieldFloating02": "每当护盾承受伤害时会增加等同于伤害量的{%s}，其随时间降低",
-		"aEP_ShieldFloating04": "如果{%s}开始积攒，最多使护盾承受伤害{%s}",
-		"aEP_ShieldFloating03": "获得最大加成所需",
-		"aEP_ShieldFloating05": "护盾承受伤害",
+		"aEP_ShieldFloating05": "护盾承受伤害: ",
 
 		"aEP_StrategyThruster01": "零幅能加速值{%s}，现在为{%s}",
 		"aEP_StrategyThruster02": "零幅能加速的启用阈值{%s}，现在为{%s}",
@@ -133,7 +129,7 @@
 		"aEP_SiegeMode03":"武器射程: %s",
 		"aEP_SiegeMode04":"机动被限制",
 
-		"aEP_WeaponReset01":"武器射速",
+		"aEP_WeaponReset01":"武器射速与弹药回复",
 		"aEP_WeaponReset02":"护盾承受伤害",
 		"aEP_WeaponReset03":"缓冲区",
 
@@ -362,11 +358,7 @@
 		"aEP_ShieldControlled03": "For missiles, shield damage taken %s",
 		"aEP_ShieldControlled02": "Weapons %s range are limited to %s.",
 
-		"aEP_ShieldFloating01": "Flow",
-		"aEP_ShieldFloating02": "Each time shield takes a damage, gain %s equal to the damage taken, which decreases overtime.",
-		"aEP_ShieldFloating04": "If %s is accumulating, shield damage taken reduces up to %s.",
-		"aEP_ShieldFloating03": "Needed for Full Bonus",
-		"aEP_ShieldFloating05": "Shield damage taken",
+		"aEP_ShieldFloating05": "Shield damage taken: ",
 
 		"aEP_StrategyThruster01": "Zero flux boost speed %s, currently %s",
 		"aEP_StrategyThruster02": "Min flux level for zero flux boost to active %s, currently %s",
@@ -374,7 +366,7 @@
 
 		"aEP_EliteShip01": "Shield damage taken %s",
 		"aEP_EliteShip02": "Armor %s",
-		"aEP_EliteShip06": "Hullpoint %s",
+		"aEP_EliteShip06": "Hull integrity %s",
 		"aEP_EliteShip05": "Max speed %s",
 		"aEP_EliteShip10": "Peak CR time %s",
 		"aEP_EliteShip07": "Each time this ship overloads or lost %s hullpoints, roll a %s between 0-100, if result >= %s, a drone is launched to generate a shield to protect this ship for a while, that shield has %s damage absorption",
@@ -428,7 +420,7 @@
 		"aEP_SiegeMode03":"Weapon range: %s",
 		"aEP_SiegeMode04":"Maneuver limited",
 
-		"aEP_WeaponReset01":"Weapon RoF: ",
+		"aEP_WeaponReset01":"Weapon RoF & ammo regen: ",
 		"aEP_WeaponReset02":"Shield damage taken: ",
 		"aEP_WeaponReset03":"Buffer",
 

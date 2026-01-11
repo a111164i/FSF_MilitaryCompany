@@ -16,6 +16,11 @@ import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
 
 class aEP_ApproachThrusterScript : BaseShipSystemScript() {
+  companion object {
+    const val MAX_SPEED_BONUS = 150f
+
+  }
+
   //这个控制一次充能可以加速多久
   var consumeTimer = IntervalUtil(3f, 3f)
   var activeCompensation = 0
@@ -124,7 +129,4 @@ class aEP_ApproachThrusterScript : BaseShipSystemScript() {
     }
   }
 
-  companion object {
-    const val MAX_SPEED_BONUS = 150f
-  }
 }

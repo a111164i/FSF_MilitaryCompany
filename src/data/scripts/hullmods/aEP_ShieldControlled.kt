@@ -39,7 +39,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
       mag[HullSize.CRUISER] = 1050f
       mag[HullSize.CAPITAL_SHIP] = 1150f
     }
-    private const val REDUCE_MULT = 0.6f
+    private const val REDUCE_MULT = 0.5f
 
     //如果距离小于这个数，也会提供减伤
     private const val MIN_DAMAGE_RANGE = 0f
@@ -55,7 +55,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     private const val COLOR_RECOVER_INTERVAL = 0.025f //by seconds
 
     //基础降低来自导弹的伤害
-    private const val BASE_DAMAGE_REDUCE_MULT = 0.20f //
+    private const val BASE_DAMAGE_REDUCE_MULT = 0.25f //
     const val ID = "aEP_ShieldControlled"
 
     fun shouldModRange(w: WeaponAPI): Boolean{
@@ -127,12 +127,11 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
   }
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
-    if (index == 0) return "" + mag[HullSize.FRIGATE]!!.toInt()
-    if (index == 1) return "" + mag[HullSize.DESTROYER]!!.toInt()
-    if (index == 2) return "" + mag[HullSize.CRUISER]!!.toInt()
-    if (index == 3) return "" + mag[HullSize.CAPITAL_SHIP]!!.toInt()
-    if (index == 4) return "" + (100f - REDUCE_MULT * 100f).toInt() + "%"
-    if (index == 5) return "" + (MAX_WEAPON_RANGE_CAP).toInt()
+    if (index == 0) return String.format("%.0f", mag[hullSize]?:1000f)
+    if (index == 1) return String.format("-%.0f", REDUCE_MULT*100f)+"%"
+    if (index == 2) return String.format("-%.0f", BASE_DAMAGE_REDUCE_MULT*100f)+"%"
+    if (index == 3) return String.format("%.0f", MAX_WEAPON_RANGE_CAP)
+
     return ""
   }
 
@@ -151,21 +150,6 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     val factionBrightColor = faction.brightUIColor
 
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, PARAGRAPH_PADDING_SMALL)
-
-    // 正面
-    addPositivePara(tooltip, "aEP_ShieldControlled01", arrayOf(
-      String.format("%.0f", mag[hullSize]?:1000f),
-      String.format("-%.0f", REDUCE_MULT*100f)+"%"
-    ))
-
-    addPositivePara(tooltip, "aEP_ShieldControlled03", arrayOf(
-      String.format("-%.0f", BASE_DAMAGE_REDUCE_MULT*100f)+"%"
-    ))
-
-    // 负面
-    addNegativePara(tooltip, "aEP_ShieldControlled02", arrayOf(
-      aEP_DataTool.txt("base"),
-      String.format("%.0f", MAX_WEAPON_RANGE_CAP)))
 
     //表格显示所有受到射程惩罚的武器
     //用表格显示总装填率的最大值，回复速度，最大消耗速度

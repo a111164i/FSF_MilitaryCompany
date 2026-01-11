@@ -9,31 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 05&#10;TODO">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 06&#10;TODO::&#10;战术系统描述修正-巡洋">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/campaign/sim_opponents_dev.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/sim_opponents_dev.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_Def.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_Def.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_mk2_Def.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_youjiyan_mk2_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Mixed.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Defense.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_test/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_test/MissionDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FuelBurn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FuelBurn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NCReloadScript.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NCReloadScript.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ApproachThrusterScript.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ApproachThrusterScript.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,12 +50,12 @@
     &quot;assignee&quot;: &quot;a111164i&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/a111164i/FSF_MilitaryCompany.git",
-    "accountId": "5d972223-fa2a-48d4-8460-3cf2747409b9"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/a111164i/FSF_MilitaryCompany.git&quot;,
+    &quot;accountId&quot;: &quot;5d972223-fa2a-48d4-8460-3cf2747409b9&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" root0="SKIP_INSPECTION" />
     <setting file="jar://$PROJECT_DIR$/../LazyLib/jars/LazyLib-Kotlin.jar!/kotlinx/coroutines/debug/internal/AgentPremain.class" root0="SKIP_INSPECTION" />
@@ -420,15 +411,10 @@
       <workItem from="1767983597973" duration="100000" />
       <workItem from="1767983717368" duration="139000" />
       <workItem from="1768023770921" duration="1533000" />
-      <workItem from="1768039755803" duration="6658000" />
-    </task>
-    <task id="LOCAL-00025" summary="4.8rc3">
-      <option name="closed" value="true" />
-      <created>1728196737057</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1728196737057</updated>
+      <workItem from="1768039755803" duration="7461000" />
+      <workItem from="1768047950019" duration="861000" />
+      <workItem from="1768117176691" duration="729000" />
+      <workItem from="1768139281622" duration="8059000" />
     </task>
     <task id="LOCAL-00026" summary="4.8rc3">
       <option name="closed" value="true" />
@@ -814,7 +800,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767983547038</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="//----------------------------------------------//&#10;5.0rc8 05&#10;修复了势力文件里漏掉的翻译&#10;加入了装配文件名称自动翻译&#10;战术系统描述修正-战列">
+      <option name="closed" value="true" />
+      <created>1768046816218</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1768046816218</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -869,7 +863,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era" />
     <MESSAGE value="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder" />
     <MESSAGE value="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell" />
     <MESSAGE value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
@@ -894,7 +887,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 02&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 03&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 04&#10;升级了交换语言py脚本，中途交换失败不会删除语言文件&#10;精英化不再锁强盾重甲,数值略微降低&#10;内置爆反插件放开,和重甲冲突&#10;分流护盾效果改为减伤而非加耗散" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc8 04&#10;升级了交换语言py脚本，中途交换失败不会删除语言文件&#10;精英化不再锁强盾重甲,数值略微降低&#10;内置爆反插件放开,和重甲冲突&#10;分流护盾效果改为减伤而非加耗散" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 05&#10;修复了势力文件里漏掉的翻译&#10;加入了装配文件名称自动翻译&#10;战术系统描述修正-战列" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc8 05&#10;修复了势力文件里漏掉的翻译&#10;加入了装配文件名称自动翻译&#10;战术系统描述修正-战列" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

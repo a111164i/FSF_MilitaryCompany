@@ -54,8 +54,12 @@ Elite Ship,aEP_EliteShip,FSF Design,Defenses,"This modification aimed to maximiz
 
 In addition to these standard improvements, a backup overload response system has been installed. This system includes a disposable drone that can deploy a ship-sized shield until the ship recovers.",,
 Emergency Reconstruct,aEP_EmergencyReconstruct,FSF Design,Defenses,"Inspired by an automated ship design, an entire set of scaffolding is placed into compressed phase space. Once the ship sustains lethal damage, it initiates an emergency reconstruction process to fully restore its hull points and armor.",,
-Controlled Shield,aEP_ShieldControlled,FSF Design,Shields,"The specialized shield generator cooperates with the targeting system to harden the shield just before impact. However, it is incapable of tracking projectiles fired at close range.",,
-Floating Shield,aEP_ShieldFloating,FSF Design,Shields,"A specialized shield generator produces a liquid-like surface; the harder the impact, the more efficient it becomes.",,
+Controlled Shield,aEP_ShieldControlled,FSF Design,Shields,"The specialized shield generator cooperates with the targeting system to harden the shield just before impact. However, it is incapable of tracking projectiles fired at close range.
+
+For non-missile projectiles and beams that spawned outside %s su, shield damage taken %s. For missiles, shield damage taken %s. Weapon's base range are limited to %s.",,
+Floating Shield,aEP_ShieldFloating,FSF Design,Shields,"A specialized shield generator produces a liquid-like surface; the harder the impact, the more efficient it becomes.
+
+For every %s flux raised due to shield absorbing damage, in the next %s seconds shield damage taken %s. This effect is stackable, to max of %s stacks",,
 Hot Loader,aEP_HotLoader,FSF Design,Weapons,"The recoil recycling device designed by the company exploits potential space to expand the magazine, thereby boosting ammunition regeneration.
 
 Weapons' ammo regeneration speed %s",,Ammo regen speed bonus changes to %s

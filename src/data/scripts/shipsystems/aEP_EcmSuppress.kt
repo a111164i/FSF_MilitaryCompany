@@ -20,7 +20,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
   companion object{
     const val ID = "aEP_EcmSuppress"
     const val SYSTEM_RANGE = 2000f
-    const val SYSTEM_TIME = 12f
+    const val SYSTEM_TIME = 15f
     val JITTER_COLOR = Color(71,90,175,40)
     val RING_COLOR = Color(71,90,175,125)
     val RING_COLOR2 = Color(71,190,175,125)
@@ -32,10 +32,10 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
       PUNISH_HULLSIZE[ShipAPI.HullSize.DEFAULT] = -3f
       PUNISH_HULLSIZE[ShipAPI.HullSize.FIGHTER] = -0f
 
-      PUNISH_HULLSIZE[ShipAPI.HullSize.FRIGATE] = -2f
-      PUNISH_HULLSIZE[ShipAPI.HullSize.DESTROYER] = -3f
-      PUNISH_HULLSIZE[ShipAPI.HullSize.CRUISER] = -4f
-      PUNISH_HULLSIZE[ShipAPI.HullSize.CAPITAL_SHIP] = -6f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.FRIGATE] = -3f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.DESTROYER] = -5f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.CRUISER] = -9f
+      PUNISH_HULLSIZE[ShipAPI.HullSize.CAPITAL_SHIP] = -12f
     }
 
   }

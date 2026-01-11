@@ -20,7 +20,7 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
 
   companion object{
     const val RECALL_RANGE = 1000f
-    const val DAMAGE_TAKEN_WHEN_SPEEDING = 0.1f
+    const val DAMAGE_TAKEN_WHEN_SPEEDING = 0.25f
     const val MAX_BUFF_TIME = 4f
     const val RECALL_TIME =1f
 

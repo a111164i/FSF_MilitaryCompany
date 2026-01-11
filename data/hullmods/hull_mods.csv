@@ -54,8 +54,12 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 预制反应装甲,aEP_ReactiveArmor,1,FSF设计,,"FSF, defensive",防御,15000,,,,8,15,20,40,data.scripts.hullmods.aEP_ReactiveArmor,"在装甲中内置爆炸反应模块，在遭到高伤害武器攻击时会被触发，大幅度减少本次伤害
 
 当船体受到>={%s}的伤害时被触发，本次伤害{%s}，限{%s}次",,,graphics/aEP_hullmods/aEP_reactive_armor.png,触发次数减少{%s}
-受控护盾,aEP_ShieldControlled,1,FSF设计,,"FSF, shields",护盾,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,特殊的护盾发生器会联动舰船的目标定位系统，捕捉一定距离外发射的弹丸和光束，在其击中护盾的前一刻硬化护盾，大幅度减少护盾承受的冲击,,,graphics/aEP_hullmods/aEP_controled_shield.png,
-分流护盾,aEP_ShieldFloating,1,FSF设计,,"FSF, shields",护盾,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,特殊的护盾发生器能生成一种近乎半流体的软化护盾，能将冲击传递到整个护盾上然后逐渐平息，这种波动反而可以短暂的强化护盾,,,graphics/aEP_hullmods/aEP_resist_shield.png,
+受控护盾,aEP_ShieldControlled,1,FSF设计,,"FSF, shields",护盾,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldControlled,"特殊的护盾发生器会联动舰船的目标定位系统，捕捉一定距离外发射的弹丸和光束，在其击中护盾的前一刻硬化护盾，大幅度减少护盾承受的冲击
+
+对于非导弹的弹丸和光束，如果其发射点和击中点之间的距离超过{%s}，护盾承受伤害{%s}。对于导弹，护盾承受伤害{%s}。舰船武器基础射程超过{%s}的部分会被扣除",,,graphics/aEP_hullmods/aEP_controled_shield.png,
+分流护盾,aEP_ShieldFloating,1,FSF设计,,"FSF, shields",护盾,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,"特殊的护盾发生器能生成一种近乎半流体的软化护盾，借助吸收冲击力暂时硬化，面对爆发性伤害尤为有效。
+
+护盾吸收伤害而产生的幅能每累计达到舰船容量的{%s}，在接下来的{%s}秒内护盾承受的伤害{%s}。该效果可叠加，最多{%s}层",,,graphics/aEP_hullmods/aEP_resist_shield.png,
 热填弹系统,aEP_HotLoader,1,FSF设计,,offensive,武器,20000,,TRUE,TRUE,8,12,18,25,data.scripts.hullmods.aEP_HotLoader,"FSF设计的先进填弹辅助设备，高效回收武器开火时的后座能量，能极大提升弹匣武器的持续输出能力
 
 本舰的实弹/能量武器弹药回复速度{%s}",,,graphics/aEP_hullmods/aEP_hot_loader.png,上述弹药回复速度加成变为{%s}

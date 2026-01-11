@@ -2,18 +2,12 @@ package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.listeners.*
 import com.fs.starfarer.api.impl.campaign.ids.HullMods
-import com.fs.starfarer.api.ui.Alignment
-import com.fs.starfarer.api.ui.TooltipMakerAPI
-import com.fs.starfarer.api.util.IntervalUtil
-import com.fs.starfarer.api.util.Misc
 import com.fs.starfarer.util.ColorShifter
 import data.scripts.utils.aEP_DataTool.txt
-import data.scripts.utils.aEP_ID
-import org.lazywizard.lazylib.MathUtils
 import java.awt.Color
-import java.util.HashMap
 
 class aEP_ShieldFloating : aEP_BaseHullMod() {
 
@@ -21,41 +15,12 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     const val ID = "aEP_ShieldFloating"
     val SHIFT_COLOR = Color(155,25,255,205)
 
-    //下降是持续的，如果希望6秒内打满缓冲区，触发满加成，应该写12
-    //达到最大分流加成所需的波动值
-    private val MAX_THRESHOLD = HashMap<ShipAPI.HullSize, Float>().withDefault { 1500f }
-    init {
-      MAX_THRESHOLD[ShipAPI.HullSize.FRIGATE] = 600f
-      MAX_THRESHOLD[ShipAPI.HullSize.DESTROYER] = 900f
-      MAX_THRESHOLD[ShipAPI.HullSize.CRUISER] = 1500f
-      MAX_THRESHOLD[ShipAPI.HullSize.CAPITAL_SHIP] = 2400f
-    }
 
-    //波动值下降速度
-    private val DROP_SPEED = HashMap<ShipAPI.HullSize, Float>().withDefault { 750f }
-    init {
-      DROP_SPEED[ShipAPI.HullSize.FRIGATE] = 300f
-      DROP_SPEED[ShipAPI.HullSize.DESTROYER] = 450f
-      DROP_SPEED[ShipAPI.HullSize.CRUISER] = 750f
-      DROP_SPEED[ShipAPI.HullSize.CAPITAL_SHIP] = 1200f
-    }
+    val SHIELD_LOSS_PER_STACK = 0.02f
+    val DAMAGE_NEGATION_PER_STACK = 0.04f
+    val PER_STACK_TIME = 1f
 
-    //最高波动值大小
-    private val CAP = HashMap<ShipAPI.HullSize, Float>().withDefault { 3000f }
-    init {
-      CAP[ShipAPI.HullSize.FRIGATE] = 1200f
-      CAP[ShipAPI.HullSize.DESTROYER] = 1800f
-      CAP[ShipAPI.HullSize.CRUISER] = 3000f
-      CAP[ShipAPI.HullSize.CAPITAL_SHIP] = 4800f
-    }
-
-    private val SHIELD_DAMAGE_REDUCE_MULT = HashMap<ShipAPI.HullSize, Float>().withDefault { 0.6f }
-    init {
-      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.FRIGATE] = 0.6f
-      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.DESTROYER] = 0.6f
-      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.CRUISER] = 0.6f
-      SHIELD_DAMAGE_REDUCE_MULT[ShipAPI.HullSize.CAPITAL_SHIP] = 0.6f
-    }
+    val MAX_STACKS = 20
   }
 
   init {
@@ -78,108 +43,56 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       return
     }
 
-
     if(!ship.hasListenerOfClass(ShieldDamageListener::class.java)){
-      val threshold = MAX_THRESHOLD[ship.hullSize]?: 2000f
-      val drop = DROP_SPEED[ship.hullSize]?:2000f
-      val max = CAP[ship.hullSize]?: 4000f
-      ship.addListener(ShieldDamageListener(ship, max, threshold, drop))
+      ship.addListener(ShieldDamageListener(ship))
       ship.setCustomData(ID,1f)
     }
   }
 
-  override fun addPostDescriptionSection(tooltip: TooltipMakerAPI, hullSize: ShipAPI.HullSize, ship: ShipAPI?, width: Float, isForModSpec: Boolean) {
+  override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
+    if (index == 0) return String.format("%.0f", SHIELD_LOSS_PER_STACK * 100f)+"%"
+    if (index == 1) return String.format("%.0f", PER_STACK_TIME)
+    if (index == 2) return String.format("-%.0f", DAMAGE_NEGATION_PER_STACK * 100f)+"%"
+    if (index == 3) return String.format("%.0f", MAX_STACKS.toFloat())
 
-    val faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF)
-    val highlight = Misc.getHighlightColor()
-    val negativeHighlight = Misc.getNegativeHighlightColor()
-
-    val grayColor = Misc.getGrayColor()
-    val txtColor = Misc.getTextColor()
-
-    val titleTextColor: Color = faction.color
-    val factionColor: Color = faction.baseUIColor
-    val factionDarkColor = faction.darkUIColor
-    val factionBrightColor = faction.brightUIColor
-
-    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
-    //正面
-    addPositivePara(tooltip, "aEP_ShieldFloating02", arrayOf(
-      txt("aEP_ShieldFloating01")
-    ))
-    addPositivePara(tooltip, "aEP_ShieldFloating04", arrayOf(
-      txt("aEP_ShieldFloating01"),
-      String.format("-%.0f", SHIELD_DAMAGE_REDUCE_MULT[hullSize]?.times(100f)) +"%",
-    ))
-
-    //列表展示关于波动值的数据
-    val col2W0 = width * 0.4f
-    //第一列显示的名称，尽可能可能的长
-    val col1W0 = (width - col2W0 - PARAGRAPH_PADDING_BIG)
-    tooltip.beginTable(
-      factionColor, factionDarkColor, factionBrightColor,
-      TEXT_HEIGHT_SMALL, true, true,
-      *arrayOf<Any>(
-        txt("aEP_ShieldFloating01"), col1W0,
-        "", col2W0)
-    )
-    tooltip.addRow(
-      Alignment.MID, highlight, txt("max"),
-      Alignment.MID, highlight, String.format("%.0f", CAP[hullSize]),
-    )
-    tooltip.addRow(
-      Alignment.MID, highlight,  txt("decrease")+txt("speed"),
-      Alignment.MID, negativeHighlight, String.format("-%.0f /s", DROP_SPEED[hullSize]),
-    )
-    tooltip.addRow(
-      Alignment.MID, highlight, txt("aEP_ShieldFloating03"),
-      Alignment.MID, highlight, String.format("%.0f", MAX_THRESHOLD[hullSize]),
-    )
-    tooltip.addTable("", 0, PARAGRAPH_PADDING_SMALL)
-
-
-
-    //显示不兼容插件
-    showIncompatible(tooltip)
-
-
-    //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor, Alignment.MID, 5f)
-    //val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
-
-
-    //tooltip.addImageWithText(5f)
-
-    //额外灰色说明
-    //tooltip.addPara(aEP_DataTool.txt("aEP_RapidDissipate02"), Color.gray, 5f)
-
+    return ""
   }
 
-  internal class ShieldDamageListener(val ship: ShipAPI, val max:Float, val threshold: Float, val dropSpeed:Float) : DamageListener, AdvanceableListener {
-    private var accumlated = 0f
-    private val timer = IntervalUtil(0.2f,0.2f)
+  internal class ShieldDamageListener(val ship: ShipAPI) : DamageListener, AdvanceableListener {
     private val shifter = ColorShifter(ship.shield.innerColor)
     private val ringShifter = ColorShifter(ship.shield.ringColor)
-    private val shield_reduce_mult = SHIELD_DAMAGE_REDUCE_MULT[ship.hullSpec.hullSize]?:0.6f
 
+    private var accumulator = 0f
+    val buffs = ArrayList<Float>();
 
-    var level = 0f
     override fun reportDamageApplied(source: Any?, target: CombatEntityAPI?, result: ApplyDamageResultAPI?) {
       //谨防有人中途取消护盾
       ship.shield?:return
 
-      val actualDamageToShield = result?.damageToShields?:0f
-      //固定计算盾效为1.0
-      accumlated += actualDamageToShield / (ship.shield.fluxPerPointOfDamage + 0.001f)
-      accumlated = MathUtils.clamp(accumlated, 0f, max)
-      level = accumlated/threshold
-      level = MathUtils.clamp(level,0f,1f)
+      //防止出现越叠高减伤，越难继续叠的情况。计算护盾伤害时抛开本mod自己减伤的影响
+      val currentDamageTakenFromThisMod = ship.mutableStats.shieldDamageTakenMult.getMultStatMod(ID)?.value?:1f
+      val actualDamageToShield = (result?.damageToShields?:0f) / currentDamageTakenFromThisMod
+      accumulator += actualDamageToShield
+
+      //每攒够一定护盾伤害，增加一层buff
+      val thres = (SHIELD_LOSS_PER_STACK * ship.fluxTracker.maxFlux).coerceAtLeast(0f)
+      while(accumulator > thres){
+        accumulator -= thres
+        buffs.add(PER_STACK_TIME) //每层buff持续2秒,可叠加,时间独立计算,放在队列末尾
+        if(buffs.size > MAX_STACKS + 1){
+          //防止堆积过多无用的buff,清理掉最早过期的那一层
+          buffs.removeAt(0)
+        }
+      }
+
     }
 
     override fun advance(amount: Float) {
       //谨防有人中途取消护盾
       ship.shield?:return
 
-      //to，durIn, durOut, shiftPercent
+      val stack = (buffs.size).coerceIn(0,MAX_STACKS)
+      val level = stack.toFloat()/MAX_STACKS.toFloat()
       shifter.shift(ID,SHIFT_COLOR,0.001f,0.25f,0.6f * level)
       ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.25f,0.6f * level)
       shifter.advance(amount)
@@ -187,30 +100,29 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       ship.shield.innerColor = shifter.curr
       ship.shield.ringColor = ringShifter.curr
 
-      timer.advance(amount)
-      if(timer.intervalElapsed()){
-        level = accumlated/threshold
-        level = MathUtils.clamp(level,0f,1f)
-        //ship.mutableStats.hardFluxDissipationFraction.modifyFlat(ID, level * MAX_SHUNT_PERCENT/100f)
-        //ship.mutableStats.fluxDissipation.modifyFlat(ID, level * dissipationBonus)
-
-        ship.mutableStats.shieldDamageTakenMult.modifyMult(ID, 1f - level * shield_reduce_mult)
-
-        accumlated -= dropSpeed * timer.elapsed
-        accumlated = MathUtils.clamp(accumlated, 0f, max)
-      }
-
-
       //维持玩家左下角的提示
       if (Global.getCombatEngine().playerShip == ship) {
         Global.getCombatEngine().maintainStatusForPlayerShip(
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui", ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-            String.format("%4.0f / %4.0f", accumlated, max) + ", " +
-            " "+txt("aEP_ShieldFloating05") + ": "+String.format("-%.0f",100f * level * shield_reduce_mult) +"%",
-            false)
+          txt("aEP_ShieldFloating05") +String.format("-%.0f",100f * stack * DAMAGE_NEGATION_PER_STACK) +"%",
+          false)
+      }
 
+      //根据层数增加减伤
+      ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - stack * DAMAGE_NEGATION_PER_STACK)
+
+      // 独立处理buff时间，该过期的过期
+      if (buffs.isEmpty()) return
+      // 从后向前遍历，安全地更新剩余时间并移除已过期的条目
+      for (i in buffs.size - 1 downTo 0) {
+        val remaining = (buffs[i] - amount).coerceAtLeast(0f)
+        if (remaining <= 0f) {
+          buffs.removeAt(i)
+        } else {
+          buffs[i] = remaining
+        }
       }
 
     }
