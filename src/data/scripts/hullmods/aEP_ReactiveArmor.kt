@@ -25,10 +25,10 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
     private val MAX_TRIGGER: MutableMap<ShipAPI.HullSize, Float> = HashMap<HullSize, Float>().withDefault { 8f }
     init {
       MAX_TRIGGER[ShipAPI.HullSize.FIGHTER] = 2f
-      MAX_TRIGGER[ShipAPI.HullSize.FRIGATE] = 5f
+      MAX_TRIGGER[ShipAPI.HullSize.FRIGATE] = 4f
       MAX_TRIGGER[ShipAPI.HullSize.DESTROYER] = 6f
       MAX_TRIGGER[ShipAPI.HullSize.CRUISER] = 8f
-      MAX_TRIGGER[ShipAPI.HullSize.CAPITAL_SHIP] = 10f
+      MAX_TRIGGER[ShipAPI.HullSize.CAPITAL_SHIP] = 9f
     }
     private val SMOD_PUNISH: MutableMap<ShipAPI.HullSize, Float> = HashMap<HullSize, Float>().withDefault { 2f }
     init {
@@ -83,6 +83,19 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
   }
 
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    if(!ship.hasListenerOfClass(aEP_ReactiveArmor::class.java)){
+      val listener = aEP_ReactiveArmor()
+      listener.ship = ship
+      var number = MAX_TRIGGER[ship.hullSpec.hullSize]?:8f
+      if(isSMod(ship)) {
+        number -= SMOD_PUNISH[ship.hullSpec.hullSize]?:1f
+      }
+      listener.maxTrigger = number.toInt()
+      ship.addListener(listener)
+    }
+  }
+
+  override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
     if(!ship.hasListenerOfClass(aEP_ReactiveArmor::class.java)){
       val listener = aEP_ReactiveArmor()
       listener.ship = ship
@@ -167,8 +180,7 @@ class aEP_ReactiveArmor(): aEP_BaseHullMod(), DamageTakenModifier, AdvanceableLi
 
       //文字提示
       Global.getCombatEngine().addFloatingText(
-        point,
-        "Reactive Armor !", 10f,
+        point, Global.getSettings().getHullModSpec(ID).displayName+" !", 10f,
         Color.magenta, ship, 1f, 1f)
 
       //增加触发次数

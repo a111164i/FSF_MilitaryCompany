@@ -1,7 +1,7 @@
 {
   "variantId": "aEP_ftr_bom_lancer",
   "hullId": "aEP_ftr_bom_lancer",
-  "displayName": "Bomber",
+  "displayName": "Assault Bomber",
   "goalVariant": true,
   "fluxCapacitors": 0,
   "fluxVents": 0,

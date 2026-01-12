@@ -27,12 +27,6 @@
     "ID_R5": "aEP_cap_neibo_indicator",
     "WS0013": "aEP_cap_neibo_fin_l",
     "WS0014": "aEP_cap_neibo_fin_r",
-    "WS0026": "aEP_m_s_era3",
-    "WS0027": "aEP_m_s_era3",
-    "WS0028": "aEP_m_s_era3",
-    "WS0029": "aEP_m_s_era3",
-    "WS0030": "aEP_m_s_era3",
-    "WS0031": "aEP_m_s_era3"
   },
   "weaponSlots": [
     {

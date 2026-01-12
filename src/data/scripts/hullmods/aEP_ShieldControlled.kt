@@ -55,7 +55,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     private const val COLOR_RECOVER_INTERVAL = 0.025f //by seconds
 
     //基础降低来自导弹的伤害
-    private const val BASE_DAMAGE_REDUCE_MULT = 0.25f //
+    private const val BASE_DAMAGE_REDUCE_MULT = 0.20f //
     const val ID = "aEP_ShieldControlled"
 
     fun shouldModRange(w: WeaponAPI): Boolean{
@@ -88,6 +88,13 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
    * @param id
    */
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    ship.mutableStats.missileShieldDamageTakenMult.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
+  }
+
+  /**
+   * 加入listener使用这个
+   */
+  override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
     if (ship.shield == null || ship.shield.type == ShieldAPI.ShieldType.NONE) {
       return
     }
@@ -98,8 +105,6 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
       aEP_CombatEffectPlugin.addEffect(c)
       ship.setCustomData(ID,1f)
     }
-
-    ship.mutableStats.missileShieldDamageTakenMult.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {

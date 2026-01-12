@@ -100,8 +100,8 @@ class aEP_TitanicKiller: aEP_BaseHullMod(), DamageDealtModifier {
   //------------------------------//
   //以下参数供listener使用
 
-  override fun applyEffectsAfterShipCreation(ship: ShipAPI?, id: String) {
-    if(ship?.hasListenerOfClass(aEP_TitanicKiller::class.java) == false){
+  override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
+    if(!ship.hasListenerOfClass(aEP_TitanicKiller::class.java)){
       ship.addListener(this)
     }
   }

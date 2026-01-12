@@ -8,6 +8,8 @@ import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.util.ColorShifter
 import data.scripts.utils.aEP_DataTool.txt
 import java.awt.Color
+import java.util.HashMap
+import kotlin.math.pow
 
 class aEP_ShieldFloating : aEP_BaseHullMod() {
 
@@ -15,8 +17,15 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     const val ID = "aEP_ShieldFloating"
     val SHIFT_COLOR = Color(155,25,255,205)
 
+    private val mag: MutableMap<HullSize, Float> = HashMap<HullSize, Float>().withDefault { 0.025f }
+    init {
+      mag[HullSize.FIGHTER] = 800f
+      mag[HullSize.FRIGATE] = 0.03f
+      mag[HullSize.DESTROYER] = 0.027f
+      mag[HullSize.CRUISER] = 0.025f
+      mag[HullSize.CAPITAL_SHIP] = 0.024f
+    }
 
-    val SHIELD_LOSS_PER_STACK = 0.02f
     val DAMAGE_NEGATION_PER_STACK = 0.04f
     val PER_STACK_TIME = 1f
 
@@ -36,9 +45,10 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     requireShield = true
   }
 
-
-  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
-
+  /**
+   * 加入listener用这个
+   */
+  override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
     if (ship.shield == null || ship.shield.type == ShieldAPI.ShieldType.NONE) {
       return
     }
@@ -50,10 +60,10 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
   }
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
-    if (index == 0) return String.format("%.0f", SHIELD_LOSS_PER_STACK * 100f)+"%"
+    if (index == 0) return String.format("%.1f", mag[hullSize]?.times(100f))+"%"
     if (index == 1) return String.format("%.0f", PER_STACK_TIME)
-    if (index == 2) return String.format("-%.0f", DAMAGE_NEGATION_PER_STACK * 100f)+"%"
-    if (index == 3) return String.format("%.0f", MAX_STACKS.toFloat())
+    if (index == 2) return String.format("%.0f", MAX_STACKS.toFloat())
+    if (index == 3) return String.format("-%.0f", MAX_STACKS*DAMAGE_NEGATION_PER_STACK * 100f)+"%"
 
     return ""
   }
@@ -75,7 +85,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       accumulator += actualDamageToShield
 
       //每攒够一定护盾伤害，增加一层buff
-      val thres = (SHIELD_LOSS_PER_STACK * ship.fluxTracker.maxFlux).coerceAtLeast(0f)
+      val thres = (mag[ship.hullSize]!! * ship.fluxTracker.maxFlux).coerceAtLeast(0f)
       while(accumulator > thres){
         accumulator -= thres
         buffs.add(PER_STACK_TIME) //每层buff持续2秒,可叠加,时间独立计算,放在队列末尾
@@ -101,17 +111,18 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
       ship.shield.ringColor = ringShifter.curr
 
       //维持玩家左下角的提示
+      val damageReduceMult = level.pow(2f) * MAX_STACKS * DAMAGE_NEGATION_PER_STACK
       if (Global.getCombatEngine().playerShip == ship) {
         Global.getCombatEngine().maintainStatusForPlayerShip(
           this.javaClass.simpleName+"1",  //key
           Global.getSettings().getSpriteName("aEP_ui", ID),  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
-          txt("aEP_ShieldFloating05") +String.format("-%.0f",100f * stack * DAMAGE_NEGATION_PER_STACK) +"%",
+          txt("aEP_ShieldFloating05") +String.format("-%.0f",100f * damageReduceMult) +"%",
           false)
       }
 
       //根据层数增加减伤
-      ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - stack * DAMAGE_NEGATION_PER_STACK)
+      ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - damageReduceMult)
 
       // 独立处理buff时间，该过期的过期
       if (buffs.isEmpty()) return

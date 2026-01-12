@@ -153,6 +153,7 @@
       "dedicated_targeting_core",
       "targetingunit",
       "fluxdistributor",
+      "pointdefenseai",
       "fluxcoil",
       "fluxbreakers",
       "stabilizedshieldemitter",

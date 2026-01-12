@@ -70,7 +70,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     this.ship = ship
   }
 
-  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+  override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
     if(!ship.hasListenerOfClass(aEP_EmergencyReconstruct::class.java)){
       val listenerClass = aEP_EmergencyReconstruct(ship)
       val dp =  ship.mutableStats.dynamic.getMod(Stats.DEPLOYMENT_POINTS_MOD).computeEffective(ship.hullSpec.suppliesToRecover)
@@ -153,7 +153,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
           ID,
           Global.getSettings().getSpriteName("aEP_ui","marker_dissipation"),
           Global.getSettings().getHullModSpec(ID).displayName,
-          String.format("Repairing: %.0f", reconstructTimer),
+          String.format("%.0f", reconstructTimer),
           false)
       }else{
         Global.getCombatEngine().maintainStatusForPlayerShip(
@@ -189,7 +189,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
         failChance.coerceAtLeast(0f).coerceAtMost(1f)
         onceWhenInRepair()
         if(reconstructTimer > 0f){
-          var txt = String.format("Reconstruct Test: %.0f",test)
+          var txt = String.format(txt("aEP_EmergencyReconstruct03")+": %.0f",test)
           txt += String.format(" (>= %.0f)",threshold)
           Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.green, ship, 1f,5f)
         }
@@ -197,7 +197,7 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
       }else{
         //失败测试
         onceWhenFailTest()
-        var txt = String.format("Reconstruct Test: %.0f",test)
+        var txt = String.format(txt("aEP_EmergencyReconstruct03")+": %.0f",test)
         txt += String.format(" (< %.0f)",threshold)
         Global.getCombatEngine().addFloatingText(ship.location, txt, 30f, Color.red, ship, 1f,5f)
 

@@ -7,6 +7,8 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
+import com.fs.starfarer.api.loading.FighterWingSpecAPI;
+import com.fs.starfarer.loading.specs.FighterWingSpec;
 import data.scripts.utils.aEP_Tool;
 import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
@@ -92,6 +94,7 @@ public class FSFModPlugin extends BaseModPlugin {
     //以中文模式启动时，自动翻译装配的名称，反正一共就standard attack defense等等几个
     if(!Global.getSettings().getBoolean("aEP_UseEnString")) {
       updateVariantNames();
+      updateWingRoleName();
     }
 
 
@@ -165,40 +168,99 @@ public class FSFModPlugin extends BaseModPlugin {
   public static void updateVariantNames(){
     //更新装配的名称
     for(String variantId : Global.getSettings().getAllVariantIds()){
-
+      if(!variantId.startsWith("aEP_")) continue; //跳过非本mod的装配
       ShipVariantAPI variant = Global.getSettings().getVariant(variantId);
       String baseName = variant.getDisplayName().toLowerCase();
-      if(baseName.contains("standard")){
-        variant.setVariantDisplayName("标准");
-      } else if(baseName.contains("attack")){
-        variant.setVariantDisplayName("进攻");
-      } else if(baseName.contains("defense")){
-        variant.setVariantDisplayName("防御");
-      } else if(baseName.contains("assault")){
-        variant.setVariantDisplayName("突击");
-      } else if(baseName.contains("range")){
-        variant.setVariantDisplayName("远距离");
-      } else if(baseName.contains("super")){
-        variant.setVariantDisplayName("超装");
-      } else if(baseName.contains("elite")){
-        variant.setVariantDisplayName("精英");
-      } else if(baseName.contains("support")){
-        variant.setVariantDisplayName("支援");
-      } else if(baseName.contains("repair")){
-        variant.setVariantDisplayName("维修");
-      } else if(baseName.contains("siege")){
-        variant.setVariantDisplayName("攻城");
-      } else if(baseName.contains("bomb")){
-        variant.setVariantDisplayName("轰炸");
-      } else if(baseName.contains("strike")){
-        variant.setVariantDisplayName("重击");
-      } else if(baseName.contains("beam")){
-        variant.setVariantDisplayName("光束");
-      } else if(baseName.contains("mixed")){
-        variant.setVariantDisplayName("混合");
-      } else if(baseName.contains("burst")){
-        variant.setVariantDisplayName("爆发");
+      //舰船名
+      if(!variant.isFighter()) {
+        if(baseName.contains("standard")){
+          variant.setVariantDisplayName("标准");
+        } else if(baseName.contains("attack")){
+          variant.setVariantDisplayName("进攻");
+        } else if(baseName.contains("defense")){
+          variant.setVariantDisplayName("防御");
+        } else if(baseName.contains("assault")){
+          variant.setVariantDisplayName("突击");
+        } else if(baseName.contains("range")){
+          variant.setVariantDisplayName("远距离");
+        } else if(baseName.contains("super")){
+          variant.setVariantDisplayName("超装");
+        } else if(baseName.contains("elite")){
+          variant.setVariantDisplayName("精英");
+        } else if(baseName.contains("support")){
+          variant.setVariantDisplayName("支援");
+        } else if(baseName.contains("repair")){
+          variant.setVariantDisplayName("维修");
+        } else if(baseName.contains("siege")){
+          variant.setVariantDisplayName("攻城");
+        } else if(baseName.contains("bomb")){
+          variant.setVariantDisplayName("轰炸");
+        } else if(baseName.contains("strike")){
+          variant.setVariantDisplayName("重击");
+        } else if(baseName.contains("beam")){
+          variant.setVariantDisplayName("光束");
+        } else if(baseName.contains("mixed")){
+          variant.setVariantDisplayName("混合");
+        } else if(baseName.contains("burst")){
+          variant.setVariantDisplayName("爆发");
+        } else if(baseName.contains("boardside")){
+          variant.setVariantDisplayName("侧弦");
+        } else if(baseName.contains("front")){
+          variant.setVariantDisplayName("前线");
+        }
       }
+      //战机名
+      else {
+        String postfix = baseName.endsWith("drone") ? "无人机" : "机";
+        String prefix = baseName.contains("light") ? "轻型" :
+                        baseName.contains("heavy") ? "重型" : "";
+        if(baseName.contains("support fighter")){
+          variant.setVariantDisplayName(prefix+"支援战斗"+postfix);
+        } else if(baseName.contains("assault fighter")){
+          variant.setVariantDisplayName(prefix+"攻击"+postfix);
+        } else if(baseName.contains("assault bomber")){
+          variant.setVariantDisplayName(prefix+"攻击轰炸"+postfix);
+        } else if(baseName.contains("interceptor")){
+          variant.setVariantDisplayName(prefix+"拦截"+postfix);
+        } else if(baseName.contains("bomber")){
+          variant.setVariantDisplayName(prefix+"轰炸"+postfix);
+        }else if(baseName.contains("support")){
+          variant.setVariantDisplayName(prefix+"支援"+postfix);
+        } else if(baseName.contains("utility")){
+          variant.setVariantDisplayName(prefix+"功能"+postfix);
+        } else if(baseName.contains("repair")){
+          variant.setVariantDisplayName(prefix+"维修"+postfix);
+        } else if(baseName.contains("fighter")){
+          variant.setVariantDisplayName(prefix+"战斗"+postfix);
+        } else if(baseName.contains("shield")){
+          variant.setVariantDisplayName(prefix+"组盾"+postfix);
+        }
+      }
+
+
     }
   }
+
+  public static void updateWingRoleName(){
+    for(FighterWingSpecAPI wingSpec : Global.getSettings().getAllFighterWingSpecs()){
+      if(!wingSpec.getId().startsWith("aEP_")) continue; //跳过非本mod的战机编队
+      String baseName = wingSpec.getRoleDesc().toLowerCase();
+      String postfix = baseName.endsWith("drone") ? "无人机" : "机";
+      String prefix = baseName.contains("light") ? "轻型" :
+              baseName.contains("heavy") ? "重型" : "";
+      if(baseName.contains("fighter")){
+        wingSpec.setRoleDesc(prefix+"战斗"+postfix);
+      } else if(baseName.contains("interceptor")){
+        wingSpec.setRoleDesc(prefix+"拦截"+postfix);
+      } else if(baseName.contains("bomber")){
+        wingSpec.setRoleDesc(prefix+"轰炸"+postfix);
+      } else if(baseName.contains("support")){
+        wingSpec.setRoleDesc(prefix+"支援"+postfix);
+      } else if(baseName.contains("utility")) {
+        wingSpec.setRoleDesc(prefix + "功能" + postfix);
+      }
+    }
+
+  }
+
 }

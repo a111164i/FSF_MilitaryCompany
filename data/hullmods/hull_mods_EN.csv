@@ -59,7 +59,7 @@ Controlled Shield,aEP_ShieldControlled,FSF Design,Shields,"The specialized shiel
 For non-missile projectiles and beams that spawned outside %s su, shield damage taken %s. For missiles, shield damage taken %s. Weapon's base range are limited to %s.",,
 Floating Shield,aEP_ShieldFloating,FSF Design,Shields,"A specialized shield generator produces a liquid-like surface; the harder the impact, the more efficient it becomes.
 
-For every %s flux raised due to shield absorbing damage, in the next %s seconds shield damage taken %s. This effect is stackable, to max of %s stacks",,
+For every %s flux raised due to shield absorbing damage, in the next %s seconds gains a small amount of shield damage reduction. This effect is stackable and damage reduction scales exponentially, to max of %s stacks where shield damage taken %s",,
 Hot Loader,aEP_HotLoader,FSF Design,Weapons,"The recoil recycling device designed by the company exploits potential space to expand the magazine, thereby boosting ammunition regeneration.
 
 Weapons' ammo regeneration speed %s",,Ammo regen speed bonus changes to %s

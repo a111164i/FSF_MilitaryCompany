@@ -63,7 +63,8 @@ open class aEP_BaseHullMod : BaseHullMod() {
     shouldRemove = false
     iterator = haveToBeWithMod.iterator()
     while (iterator.hasNext()) {
-      if (!ship.variant.hasHullMod(iterator.next())) {
+      //如果自己是内置的，就不需要检查，上升流改内置了爆反装甲但是没有fsf插件
+      if (!ship.variant.hasHullMod(iterator.next()) && !(ship.variant.nonBuiltInHullmods.contains(id))) {
         shouldRemove = true
       }
     }
@@ -102,6 +103,13 @@ open class aEP_BaseHullMod : BaseHullMod() {
       }
       addDebugLog("Error in hullmod: $id at applyEffectsAfterShipCreationImpl")
     }
+  }
+
+  /**
+   * 对于使用listener的船插，在这里写加入listener的部分，如果船插被内置，有可能战斗开始时listener未被加入
+   */
+  override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
+    super.applyEffectsAfterShipAddedToCombatEngine(ship, id)
   }
 
   override fun isApplicableToShip(ship: ShipAPI): Boolean {

@@ -12,6 +12,7 @@ import data.scripts.aEP_CombatEffectPlugin
 import data.scripts.utils.aEP_Combat
 import data.scripts.utils.aEP_Combat.Companion.getTargetCurrentAimed
 import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID
 import data.scripts.utils.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
@@ -153,7 +154,7 @@ class aEP_EliteShip : aEP_BaseHullMod() {
       val random = MathUtils.getRandomNumberInRange(0f,1f)
       val toPass = 1f - ship.mutableStats.dynamic.getStat(INSV_ID).modifiedValue
       if(random >= toPass){
-        Global.getCombatEngine().addFloatingText(ship.location, String.format("Protect Test: %.0f >= %.0f",random *100f,toPass*100f), 30f, Color.green, ship, 1f,5f)
+        Global.getCombatEngine().addFloatingText(ship.location, String.format(txt("aEP_EliteShip08")+": %.0f",random *100f,toPass*100f), 30f, Color.green, ship, 1f,5f)
 
         val variant = Global.getSettings().createEmptyVariant(DRONE_ID, Global.getSettings().getHullSpec(DRONE_ID))
         variant.addMod(aEP_ProjectileDenialShield.ID)
@@ -176,7 +177,7 @@ class aEP_EliteShip : aEP_BaseHullMod() {
         aEP_CombatEffectPlugin.addEffect(ProtectionDrone(time, drone, ship))
 
       }else{
-        Global.getCombatEngine().addFloatingText(ship.location, String.format("Protect Test: %.0f",random*100f ), 30f, Color.red, ship, 1f,5f)
+        Global.getCombatEngine().addFloatingText(ship.location, String.format(txt("aEP_EliteShip08")+": %.0f",random*100f ), 30f, Color.red, ship, 1f,5f)
 
       }
     }

@@ -276,6 +276,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\starsector-core\data\characters\personalities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\starsector-core\data\characters\skills\aptitude_data.csv">
           <value>
             <Attribute>

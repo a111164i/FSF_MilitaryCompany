@@ -210,8 +210,6 @@ aEP_m_s_era,turret,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/tr_norm
 aEP_m_s_era,hardpoint,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/hp_normal.png
 aEP_m_s_era2,turret,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/tr_normal.png
 aEP_m_s_era2,hardpoint,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/hp_normal.png
-aEP_m_s_era3,turret,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/tr_normal.png
-aEP_m_s_era3,hardpoint,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/hp_normal.png
 aEP_m_s_expander,turret,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_expander/tr_normal.png
 aEP_m_s_expander,hardpoint,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_expander/hp_normal.png
 aEP_m_s_fluxtube,turret,,1,normal,graphics/shaders/normal/weapons/aEP_missile_small_tr2_normal.png
@@ -248,7 +246,6 @@ aEP_m_s_breachdoor_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_
 aEP_m_s_cluster_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_cluster/s2_normal.png
 aEP_m_s_cluster_shot2,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_l_harpoon/bomblet_normal.png
 aEP_m_s_era_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/shot_normal.png
-aEP_m_s_era3_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_era/hvshot_normal.png
 aEP_m_s_expander_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_m_expander/proj_normal.png
 aEP_m_s_harpoon_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_l_harpoon/s_normal.png
 aEP_m_s_magnetmine_shot,missile,,1,normal,graphics/shaders/normal/weapons/aEP_m_s_magnetmine/proj_normal.png

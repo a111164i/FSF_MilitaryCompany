@@ -112,6 +112,8 @@
       "FSF"
     ],
     "hullMods": [
+      "ballistic_rangefinder",
+      "dedicated_targeting_core",
       "advancedshieldemitter",
       "turretgyros",
       "armoredweapons",
@@ -136,11 +138,11 @@
       "targetingunit",
       "recovery_shuttles",
       "fluxbreakers",
+      "pointdefenseai",
       "stabilizedshieldemitter",
       "surveying_equipment",
       "hiressensors",
       "efficiency_overhaul",
-      "ballistic_rangefinder"
     ]
   },
   "factionDoctrine": {

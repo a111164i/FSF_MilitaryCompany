@@ -245,7 +245,6 @@ aEP_m_s_breachdoor_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m
 aEP_m_s_cluster_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_s_cluster/s2_surface.png
 aEP_m_s_cluster_shot2,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_l_harpoon/bomblet_surface.png
 aEP_m_s_era_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_s_era/shot_surface.png
-aEP_m_s_era3_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_s_era/hvshot_surface.png
 aEP_m_s_expander_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_m_expander/proj_surface.png
 aEP_m_s_harpoon_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_l_harpoon/s_surface.png
 aEP_m_s_magnetmine_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_s_magnetmine/proj_surface.png

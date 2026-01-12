@@ -59,7 +59,7 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 对于非导弹的弹丸和光束，如果其发射点和击中点之间的距离超过{%s}，护盾承受伤害{%s}。对于导弹，护盾承受伤害{%s}。舰船武器基础射程超过{%s}的部分会被扣除",,,graphics/aEP_hullmods/aEP_controled_shield.png,
 分流护盾,aEP_ShieldFloating,1,FSF设计,,"FSF, shields",护盾,20000,,,,5,10,15,25,data.scripts.hullmods.aEP_ShieldFloating,"特殊的护盾发生器能生成一种近乎半流体的软化护盾，借助吸收冲击力暂时硬化，面对爆发性伤害尤为有效。
 
-护盾吸收伤害而产生的幅能每累计达到舰船容量的{%s}，在接下来的{%s}秒内护盾承受的伤害{%s}。该效果可叠加，最多{%s}层",,,graphics/aEP_hullmods/aEP_resist_shield.png,
+护盾吸收伤害而产生的幅能每累计达到舰船容量的{%s}，在接下来的{%s}秒内获得一层护盾承伤降低。该效果可叠加，护盾减伤随层数增加呈指数上升，最多叠加{%s}层，使护盾承伤{%s}",,,graphics/aEP_hullmods/aEP_resist_shield.png,
 热填弹系统,aEP_HotLoader,1,FSF设计,,offensive,武器,20000,,TRUE,TRUE,8,12,18,25,data.scripts.hullmods.aEP_HotLoader,"FSF设计的先进填弹辅助设备，高效回收武器开火时的后座能量，能极大提升弹匣武器的持续输出能力
 
 本舰的实弹/能量武器弹药回复速度{%s}",,,graphics/aEP_hullmods/aEP_hot_loader.png,上述弹药回复速度加成变为{%s}
