@@ -9,37 +9,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 07&#10;TODO::&#10;细化驱逐舰系统描述">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_duiliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_duiliu.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_neibo.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_neibo.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_requan.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_requan.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_bom_attacker.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_bom_attacker.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_bom_lancer.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_bom_lancer.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_supply.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_supply.variant" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_era.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_era.wpn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era3_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era3_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_raoliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_raoliu.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot2.proj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BaseHullMod.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BaseHullMod.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ReactiveArmor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ReactiveArmor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TitanicKiller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TitanicKiller.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TargetSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TargetSystem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DamperTanker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DamperTanker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -432,15 +419,11 @@
       <workItem from="1768117176691" duration="729000" />
       <workItem from="1768139281622" duration="9586000" />
       <workItem from="1768149022462" duration="103000" />
-      <workItem from="1768215888808" duration="7669000" />
-    </task>
-    <task id="LOCAL-00027" summary="4.8rc3 - 修复细流战术系统在装配页面生效">
-      <option name="closed" value="true" />
-      <created>1730371361907</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1730371361907</updated>
+      <workItem from="1768215888808" duration="8075000" />
+      <workItem from="1768224283543" duration="337000" />
+      <workItem from="1768227373898" duration="310000" />
+      <workItem from="1768302329119" duration="4167000" />
+      <workItem from="1768311172598" duration="2836000" />
     </task>
     <task id="LOCAL-00028" summary="4.8rc3 - 修复细流战术系统在装配页面生效">
       <option name="closed" value="true" />
@@ -826,7 +809,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768147440250</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述">
+      <option name="closed" value="true" />
+      <created>1768223898444</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1768223898444</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -881,7 +872,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell" />
     <MESSAGE value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
     <MESSAGE value="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
     <MESSAGE value="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配" />
@@ -906,13 +896,13 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 04&#10;升级了交换语言py脚本，中途交换失败不会删除语言文件&#10;精英化不再锁强盾重甲,数值略微降低&#10;内置爆反插件放开,和重甲冲突&#10;分流护盾效果改为减伤而非加耗散" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 05&#10;修复了势力文件里漏掉的翻译&#10;加入了装配文件名称自动翻译&#10;战术系统描述修正-战列" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 06&#10;分流护盾重做，机制使用buff机制&#10;战术系统描述修正-巡洋&#10;修正了2个护盾系统的描述，更简单，不用代码用原版" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc8 06&#10;分流护盾重做，机制使用buff机制&#10;战术系统描述修正-巡洋&#10;修正了2个护盾系统的描述，更简单，不用代码用原版" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="Remote">
         <watch expression="&#10;          //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离" />
-        <watch canBePaused="false" expression="" />
       </configuration>
     </watches-manager>
   </component>

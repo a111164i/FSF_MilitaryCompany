@@ -291,7 +291,7 @@ class DragBall(lifetime:Float,val target:ShipAPI, val ship: ShipAPI) : aEP_BaseC
       if (params.flickerRateMult < 0.3f) {
         params.flickerRateMult = 0.3f
       }
-      // movementDurMax 闪电向前移动的时间，太慢会导致闪电本身都消失了，还没有移动的目标。闪电本身的持续时间是跟着粗度来的，默认0.1f挺好的别动
+      // movementDurMax 闪电向前移动的时间，太慢会导致闪电本身都消失了，还没有移动到目标。闪电本身的持续时间是跟着粗度来的，默认0.1f挺好的别动
       params.movementDurMax = (0.05f + 0.05f * dist/2000f).coerceAtMost(0.15f)
       params.movementDurMin = params.movementDurMax
       val arc = Global.getCombatEngine().spawnEmpArc(

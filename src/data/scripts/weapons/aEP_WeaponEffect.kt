@@ -2,6 +2,7 @@ package data.scripts.weapons
 
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.combat.EmpArcEntityAPI.EmpArcParams
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI
 import com.fs.starfarer.api.combat.listeners.DamageDealtModifier
@@ -1332,25 +1333,55 @@ class aEP_cap_duiliu_main_shot : Effect(){
           if(blinkTracker.intervalElapsed()){
             //不要引用，复制一个值
             val to = Vector2f(entity.location)
+            val to2 = Vector2f(entity.location)
+            val to3 = Vector2f(entity.location)
             val picker = WeightedRandomPicker<Vector2f>(true)
             for(engine in target.engineController.shipEngines){
               picker.add(engine.location,1f)
             }
             to.set((picker.pick()?:entity.location) as Vector2f)
+            to2.set((picker.pick()?:entity.location) as Vector2f)
+
+            val arcPoint = renderLoc
+            val params = EmpArcParams()
+            params.segmentLengthMult = 8f
+            params.zigZagReductionFactor = 0.15f
+            params.brightSpotFullFraction = 0.5f
+            params.brightSpotFadeFraction = 0.5f
+            val dist: Float = Misc.getDistance(arcPoint, to)
+            params.flickerRateMult = 0.2f - dist / 200f
+            if (params.flickerRateMult < 0.1f) {
+              params.flickerRateMult = 0.1f
+            }
             val arc = Global.getCombatEngine().spawnEmpArcVisual(renderLoc,
-              entity, to,entity, 4f,
+              entity, to,entity, 6f,
               aEP_ID.EMP_ARC_COLOR_FRINGE, aEP_ID.EMP_ARC_COLOR_CORE)
             arc.setSingleFlickerMode(true)
             arc.setRenderGlowAtStart(false)
             arc.setRenderGlowAtEnd(true)
 
-            if(projectile.source != null){
+            val arc2 = Global.getCombatEngine().spawnEmpArcVisual(renderLoc,
+              entity, to2,entity, 6f,
+              aEP_ID.EMP_ARC_COLOR_FRINGE, aEP_ID.EMP_ARC_COLOR_CORE)
+            arc2.setSingleFlickerMode(true)
+            arc2.setRenderGlowAtStart(false)
+            arc2.setRenderGlowAtEnd(true)
+
+            val arc3 = Global.getCombatEngine().spawnEmpArcVisual(renderLoc,
+              entity, to3,entity, 6f,
+              aEP_ID.EMP_ARC_COLOR_FRINGE, aEP_ID.EMP_ARC_COLOR_CORE)
+            arc3.setSingleFlickerMode(true)
+            arc3.setRenderGlowAtStart(false)
+            arc3.setRenderGlowAtEnd(true)
+
+            if(projectile.source != null && projectile.weapon != null){
+
               val arc2 = Global.getCombatEngine().spawnEmpArcVisual(
                 projectile.weapon?.location?: projectile.source.location,
                 projectile.source,
-                renderLoc,entity, 4f,
+                renderLoc,entity, 8f,
                 aEP_ID.EMP_ARC_COLOR_FRINGE, aEP_ID.EMP_ARC_COLOR_CORE)
-              arc2.setSingleFlickerMode(true)
+              arc2.setSingleFlickerMode(false)
               arc2.setRenderGlowAtStart(true)
               arc2.setRenderGlowAtEnd(false)
             }
@@ -3422,11 +3453,12 @@ class DiscardSabot(lifeTime: Float, entity: CombatEntityAPI) : aEP_BaseCombatEff
   }
 }
 
+
 //DG-3巨型长管链炮
 class aEP_b_l_dg3_shot : Effect(){
   companion object{
     val EXPLOSION_COLOR = Color(250,25,25,254)
-    private var DAMAGE_PER_TRIGGER = 40f
+    private var DAMAGE_PER_TRIGGER = 50f
   }
 
   init {
@@ -3441,24 +3473,44 @@ class aEP_b_l_dg3_shot : Effect(){
   override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
     if(shieldHit) return
     if(target is ShipAPI){
-      val damage = computeDamageToShip(projectile?.source,target, null, DAMAGE_PER_TRIGGER, null,false)
-      val armorLevel = DefenseUtils.getArmorLevel(target,point)
-      if(armorLevel <= 0.05f){
-        //不能通过此种方式将hp减到负数或者0
-        if(target.hitpoints > damage + 1f) target.hitpoints -= damage
-        //跳红字代码伤害
-        engine.addFloatingDamageText(point,damage,EXPLOSION_COLOR,target,projectile?.source)
+      // 百分之50的概率触发一次扣血，这样特效能做夸张一点
+      if(getRandomNumberInRange(0f,1f) > 0.25f) return
 
-        //百分之25的概率触发一次爆炸特效，这样特效能做夸张一点
-        if(getRandomNumberInRange(0f,1f) > 0.25f) return
-        //红色爆炸特效
-        engine.addSmoothParticle(point, Misc.ZERO,160f,1f,0.5f,0.2f,Color.red)
-        var randomVel =
-          getRandomPointInCone(point,75f, angleAdd(projectile?.facing?:0f,-200f),angleAdd(projectile?.facing?:0f,160f))
-        randomVel = Vector2f(randomVel.x- (point?.x?:0f),randomVel.y-(point?.y?:0f))
-        engine.spawnExplosion(point, Vector2f(target.velocity.x + randomVel.x,target.velocity.y+ randomVel.y) , EXPLOSION_COLOR,120f,0.8f)
+      //计算各种伤害系数，这个伤害只是不受装甲减伤，依然受其他系数
+      val damage = computeDamageToShip(projectile?.source,target, null, DAMAGE_PER_TRIGGER, null,false, true)
+      // 检查命中点周围 3x3 格子是否全部为空装甲（基于多点采样）
+      if(!areSurroundingArmorCellsEmpty(target, point)) return
+
+      // 不能通过此种方式将hp减到负数或者0
+      if(target.hitpoints > damage + 1f) target.hitpoints -= damage
+      // 跳红字代码伤害
+      engine.addFloatingDamageText(point,damage,EXPLOSION_COLOR,target,projectile?.source)
+
+      // 红色爆炸特效
+      engine.addSmoothParticle(point, Misc.ZERO,160f,1f,0.5f,0.2f,Color.red)
+      var randomVel =
+        getRandomPointInCone(point,75f, angleAdd(projectile?.facing?:0f,-200f),angleAdd(projectile?.facing?:0f,160f))
+      randomVel = Vector2f(randomVel.x- (point.x?:0f),randomVel.y-(point.y?:0f))
+      engine.spawnExplosion(point, Vector2f(target.velocity.x + randomVel.x,target.velocity.y+ randomVel.y) , EXPLOSION_COLOR,120f,0.8f)
+    }
+  }
+
+  /**
+   * 使用周围 9 个采样点检测装甲强度，若所有采样点的装甲等级都 <= threshold 则认为 3x3 区域为空装甲。
+   * 采样间距优先尝试从 armorGrid.getCellSize() 获取，失败后回退到默认值 40f。
+   */
+  private fun areSurroundingArmorCellsEmpty(ship: ShipAPI, point: Vector2f, threshold: Float = 0.01f): Boolean {
+    val cellSize = ship.armorGrid?.cellSize?:40f
+
+    // 在中心点周围按格子间距做 3x3 采样（包含中心点）
+    for(ix in -1..1){
+      for(iy in -1..1){
+        val sample = Vector2f(point.x + ix * cellSize, point.y + iy * cellSize)
+        val armorLevel = DefenseUtils.getArmorLevel(ship, sample)
+        if(armorLevel > threshold) return false
       }
     }
+    return true
   }
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
@@ -3520,6 +3572,7 @@ class aEP_b_l_dg3_shot : Effect(){
 
   }
 }
+
 
 //aa40 zt125 转膛炮系列
 class aEP_b_m_k125_shot : Effect(){
@@ -5634,7 +5687,7 @@ class aEP_m_m_phasemine_shot : Effect(), AdvanceableListener{
 // 手动近炸引信，被最近的非战机激活
 open class ShipProximityTrigger(val missile: MissileAPI, val fuseRange:Float): aEP_BaseCombatEffect(0f,missile) {
 
-  val checkTimer = IntervalUtil(0.1f,0.15f)
+  val checkTimer = IntervalUtil(0.1f,0.1f)
 
   override fun advanceImpl(amount: Float) {
     checkTimer.advance(amount)
@@ -5644,7 +5697,7 @@ open class ShipProximityTrigger(val missile: MissileAPI, val fuseRange:Float): a
     if(closestShip != null){
       val dist = getDistanceSquared(closestShip, missile.location)
       if(dist <= fuseRange*fuseRange){
-        //用这个warp-around，对空雷有效，但对导弹也不起效
+        //用这个warp-around，对空雷有效，但对导弹不起效
         missile.flightTime = missile.maxFlightTime
         //不知道为啥，不起效
         //missile.explode()

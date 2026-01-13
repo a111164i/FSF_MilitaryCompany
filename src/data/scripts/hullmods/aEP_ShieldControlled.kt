@@ -17,6 +17,7 @@ import com.fs.starfarer.util.ColorShifter
 import data.scripts.utils.aEP_BaseCombatEffect
 import data.scripts.aEP_CombatEffectPlugin
 import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID
 import data.scripts.utils.aEP_Render
 import data.scripts.utils.aEP_Tool
@@ -173,8 +174,8 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
         factionColor, factionDarkColor, factionBrightColor,
         TEXT_HEIGHT_SMALL, true, true,
         *arrayOf<Any>(
-          "Weapon Spec", col1W0,
-          "Punish", col2W0)
+          txt("weapon_spec"), col1W0,
+          txt("punish"), col2W0)
       )
       for(spec in affectedWeaponList){
         val punish = spec.maxRange - MAX_WEAPON_RANGE_CAP

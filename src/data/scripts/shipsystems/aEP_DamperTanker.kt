@@ -131,7 +131,7 @@ class aEP_DamperTanker : BaseShipSystemScript() {
       val armorFlat = EFFECT_ARMOR_FLAT_BONUS
       val armorPercent = EFFECT_ARMOR_PERCENT_BONUS
       val toAdd = armorFlat + (ship?.hullSpec?.armorRating?:0f) * armorPercent
-      return StatusData(aEP_DataTool.txt("aEP_LADamper01") + "+"+(toAdd * effectLevel).toInt()+"%", false)
+      return StatusData(aEP_DataTool.txt("aEP_LADamper01") + "+"+(toAdd * effectLevel).toInt(), false)
     }
     return null
   }

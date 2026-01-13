@@ -27,7 +27,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
     }
 
     val DAMAGE_NEGATION_PER_STACK = 0.04f
-    val PER_STACK_TIME = 1f
+    val PER_STACK_TIME = 1.35f
 
     val MAX_STACKS = 20
   }
@@ -61,7 +61,7 @@ class aEP_ShieldFloating : aEP_BaseHullMod() {
 
   override fun getDescriptionParam(index: Int, hullSize: HullSize): String {
     if (index == 0) return String.format("%.1f", mag[hullSize]?.times(100f))+"%"
-    if (index == 1) return String.format("%.0f", PER_STACK_TIME)
+    if (index == 1) return String.format("%.1f", PER_STACK_TIME)
     if (index == 2) return String.format("%.0f", MAX_STACKS.toFloat())
     if (index == 3) return String.format("-%.0f", MAX_STACKS*DAMAGE_NEGATION_PER_STACK * 100f)+"%"
 

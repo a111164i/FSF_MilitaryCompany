@@ -98,7 +98,7 @@ class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{
         if(w.spec.id.equals(FIGHTER_WING_ID)){
           for(f in w.wingMembers){
             Global.getCombatEngine().applyDamage(
-              f,f.location, 4000f, DamageType.HIGH_EXPLOSIVE, 0f, true,true, f)
+              f,f.location, 999999f, DamageType.HIGH_EXPLOSIVE, 0f, true,true, f)
           }
         }
 

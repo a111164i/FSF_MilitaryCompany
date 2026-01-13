@@ -80,7 +80,7 @@ class aEP_MaoDianDroneAI:aEP_BaseShipAI {
       MagicRender.singleframe(sprite,
         ship.location,
         Vector2f(60f,60f),
-        45f, Misc.setAlpha(Color.yellow,120),true)
+        45f, Misc.setAlpha(Color.yellow,175),true)
 
       //速度够慢就开盾
       if(ship.velocity.x < 10 && ship.velocity.y < 10){

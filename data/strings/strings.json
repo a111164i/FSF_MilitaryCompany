@@ -29,6 +29,8 @@
 		"decrease": "降低",
 		"increase": "增加",
 		"target_fleet": "目标舰队",
+		"punish": "惩罚",
+		"weapon_spec": "武器型号",
 
 		#############################
 		"aEP_SystemGeneral01":"需要锁定目标",
@@ -36,6 +38,8 @@
 		"aEP_SystemGeneral03":"距离过远: ",
 		"aEP_SystemGeneral04":"无效目标",
 		"aEP_SystemGeneral05":"发动概率: ",
+
+
 
 		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸大于自己的友方舰船加速时，本舰的最大速度{%s}，加速度{%s}",
 		"aEP_SpecialHull02": "零幅能加速的启用阈值{%s}",
@@ -321,6 +325,9 @@
 		"decrease": "Decrease ",
 		"increase": "Increase ",
 		"target_fleet": "Target Fleet ",
+		"punish": "Punish ",
+		"weapon_spec": "Weapon Spec ",
+
 		#############################
 		"aEP_SystemGeneral01":"Need Ship Target",
 		"aEP_SystemGeneral02":"In Range",
