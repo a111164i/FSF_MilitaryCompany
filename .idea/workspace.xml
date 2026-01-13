@@ -9,24 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_raoliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_raoliu.ship" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TargetSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TargetSystem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DamperTanker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DamperTanker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -423,15 +414,8 @@
       <workItem from="1768224283543" duration="337000" />
       <workItem from="1768227373898" duration="310000" />
       <workItem from="1768302329119" duration="4167000" />
-      <workItem from="1768311172598" duration="2836000" />
-    </task>
-    <task id="LOCAL-00028" summary="4.8rc3 - 修复细流战术系统在装配页面生效">
-      <option name="closed" value="true" />
-      <created>1730371403388</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1730371403388</updated>
+      <workItem from="1768311172598" duration="3167000" />
+      <workItem from="1768314937643" duration="1003000" />
     </task>
     <task id="LOCAL-00029" summary="4.8rc4&#10;patch 1">
       <option name="closed" value="true" />
@@ -817,7 +801,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768223898444</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="//----------------------------------------------//&#10;//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样">
+      <option name="closed" value="true" />
+      <created>1768314380271</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1768314380271</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -872,7 +864,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc5&#10;p 2: fix butcher weapon_data translation" />
     <MESSAGE value="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
     <MESSAGE value="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配" />
     <MESSAGE value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
@@ -897,7 +888,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 05&#10;修复了势力文件里漏掉的翻译&#10;加入了装配文件名称自动翻译&#10;战术系统描述修正-战列" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 06&#10;分流护盾重做，机制使用buff机制&#10;战术系统描述修正-巡洋&#10;修正了2个护盾系统的描述，更简单，不用代码用原版" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述" />
+    <MESSAGE value="//----------------------------------------------//&#10;//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

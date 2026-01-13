@@ -12,7 +12,7 @@ aEP_ftr_sup_guardian2_wing,aEP_ftr_sup_guardian2,"no_drop, no_sell",10,0,0,20,CL
 ,#有蓝图的联队必须用_wing结尾，游戏内处理是endWith(_wing),#2-6，和op点无关，凑数的2，较弱的3，大部分4，余辉5，三叉戟6,,,#菜的3-5，主力6-7，三叉戟8,,,,,#进攻时在编队中的前后位置，越大越靠后,,,,#15-25,,,,,,,
 aEP_ftr_ut_repair_wing,aEP_ftr_ut_repair,"FSF_bp, rare_bp, support, support3, auto_fighter  ",1,1,4,10,BOX,4000,,,2,SUPPORT,Support Drone,8,7000,,,,,,
 aEP_ftr_ut_supply_wing,aEP_ftr_ut_supply,"FSF_bp, rare_bp, support, support3",2,1,4,12,BOX,4000,,,2,SUPPORT,Support,10,7000,,,,,,
-aEP_ftr_ut_shuishi_wing,aEP_ftr_ut_shuishi,"FSF_bp, rare_bp, support, support4, auto_fighter",2,1,5,12,BOX,4000,,,4,SUPPORT,Support Drone,13,10000,,,,,,
+aEP_ftr_ut_shuishi_wing,aEP_ftr_ut_shuishi,"FSF_bp, rare_bp, support, support4, auto_fighter",2,1,5,12,BOX,4000,,,4,SUPPORT,Support Drone,10,10000,,,,,,
 aEP_ftr_ftr_hvfighter_wing,aEP_ftr_ftr_hvfighter,"FSF_bp, rare_bp, fighter, fighter4",0,0.8,6,12,BOX,4000,500,-100,2,FIGHTER,Fighter,12,10000,,,,,,
 aEP_ftr_ftr_helicop_wing,aEP_ftr_ftr_helicop,"FSF_bp, rare_bp, fighter, fighter4",1,1,6,12,BOX,4000,800,,2,FIGHTER,Fighter,12,16000,,,,,,
 aEP_ftr_icp_gunship_wing,aEP_ftr_icp_gunship,"FSF_bp, rare_bp, interceptor, interceptor4     ",2,0.5,7,15,V,3000,,,2,INTERCEPTOR,Heavy Interceptor,20,15000,,,,,,

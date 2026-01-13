@@ -47,6 +47,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
     if (stats == null || stats.entity == null || stats.entity !is ShipAPI) return
     val ship = stats.entity as ShipAPI
     val amount = aEP_Tool.getAmount(ship)
+    val USE_ID = id + "_" + ship.id
 
     ship.setJitter(ID, JITTER_COLOR, effectLevel, 16, (10f+ship.collisionRadius*0.1f) * effectLevel)
 
@@ -58,14 +59,16 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
         if(e.isFighter) continue
         if(e.isStationModule) continue
 
-        //终结目前生效的ecmChange，放一个新的上去（刷新buff的时间）
         val dist = MathUtils.getDistance(e, ship.location)
 
-        if(e.customData.containsKey(ID)){
-          (e.customData[ID] as EcmChange).shouldEnd = true
+        //给敌人上debuff
+        //终结目前生效的ecmChange，放一个新的上去（刷新buff的时间）
+        if(e.customData.containsKey(USE_ID)){
+          (e.customData[USE_ID] as EcmChange).shouldEnd = true
         }
+
         val effect = EcmChange(e, PUNISH_HULLSIZE[e.hullSize]?:-2f, SYSTEM_TIME, dist/searchRange)
-        e.setCustomData(ID, effect)
+        e.setCustomData(USE_ID, effect)
         aEP_CombatEffectPlugin.addEffect(effect)
       }
 
@@ -74,6 +77,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
         self = ship.parentStation
       }
 
+      //给自己buff
       //终结目前生效的ecmChange，放一个新的上去（刷新buff的时间）
       if(self.customData.containsKey(ID)){
         (self.customData[ID] as EcmChange).shouldEnd = true
