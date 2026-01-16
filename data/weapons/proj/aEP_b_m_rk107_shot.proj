@@ -4,22 +4,22 @@
 	"spawnType":"BALLISTIC",
   "sprite":"graphics/weapons/aEP_b_m_rk107/proj.png",
   "glowSprite":"",
-	"fringeColor":[240,120,100,255], # 默认拖尾颜色
+	"fringeColor":[250,80,60,255], # 默认拖尾颜色
 	"coreColor":[255,255,255,255], # 弹体颜色
-  "glowColor":[175,140,50,255], # 发光的颜色
-  "glowRadius":10,
+  "glowColor":[225,25,25,225], # 发光的颜色
+  "glowRadius":20,
 	"hitGlowRadius":60,
   "size":[8,10],
   "center":[4,5],
-  "length":72.0,
+  "length":80.0,
   "width":6,
   "collisionRadius":50,
 	"collisionClass":"PROJECTILE_FF",
 	"collisionClassByFighter":"PROJECTILE_FIGHTER",
   "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  "explosionColor":[255,80,35,205],  # purely visual, will get a white additively blended core on top of this color
-  "explosionRadius":50, # purely visual
+  "explosionColor":[255,55,55,205],  # purely visual, will get a white additively blended core on top of this color
+  "explosionRadius":60, # purely visual
   "textureScrollSpeed":64.0,
   "pixelsPerTexel":5.0,
   "bulletSprite":"graphics/weapons/aEP_b_m_rk107/proj.png",
@@ -42,15 +42,15 @@
   "useHitGlowWhenDestroyed":true, # instead of the default explosion
  	"explosionSpec":{
  	  "duration":0.0001f,
-    "radius":40,
+    "radius":30,
     "coreRadius":15, # full damage within core radius - also equal to proximity fuse range
     "collisionClass":PROJECTILE_FF,
     "collisionClassByFighter":PROJECTILE_FIGHTER,
     "particleSizeMin":5.0,
     "particleSizeRange":5.0,
-    "particleDuration":1,
-    "particleCount":40,
-    "particleColor":[255,155,155,255],
+    "particleDuration":0.5,
+    "particleCount":2-,
+    "particleColor":[255,55,55,205],
     "sound":"explosion_flak"
   },
 

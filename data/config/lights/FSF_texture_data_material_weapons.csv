@@ -235,7 +235,7 @@ aEP_fga_xiliu_mk2_missile_shot,missile,,,material,graphics/shaders/material/weap
 aEP_ftr_bom_nuke_bomb_shot1,missile,,,material,graphics/shaders/material/weapons/aEP_fighters/aEP_nuke/proj00_material.png
 aEP_ftr_bom_nuke_bomb_shot2,missile,,,material,graphics/shaders/material/weapons/aEP_fighters/aEP_nuke/proj00_material.png
 aEP_ftr_ut_maodian_ads_shot,missile,,,material,graphics/shaders/material/weapons/aEP_m_l_harpoon/bomblet_material.png
-aEP_ftr_ut_shendu_mine_shot,missile,,,material,graphics/shaders/material/weapons/aEP_des_shendu/proj_material.png
+aEP_ftr_ftr_shendu_mine_shot,missile,,,material,graphics/shaders/material/weapons/aEP_des_shendu/proj_material.png
 aEP_m_l_blasthammer_shot,missile,,,material,graphics/shaders/material/weapons/aEP_m_l_blasthammer/missile_material.png
 aEP_m_l_harpoon_shot,missile,,,material,graphics/shaders/material/weapons/aEP_m_l_harpoon/m_material.png
 aEP_m_m_blasthammer_shot,missile,,,material,graphics/shaders/material/weapons/aEP_m_l_blasthammer/m_missile_material.png

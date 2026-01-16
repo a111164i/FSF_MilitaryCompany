@@ -1,5 +1,5 @@
 {
-	"id":"aEP_ftr_ut_shendu_mine",
+	"id":"aEP_ftr_ftr_shendu_mine",
 	"specClass":"projectile",
 	"type":"MISSILE",
 	"size":"SMALL",
@@ -24,7 +24,7 @@
 				 "blowbackLength":22.0,
 				 "blowbackSpread":15.0,
 				 "particleColor":[235,225,255,105]},	
-	"projectileSpecId":"aEP_ftr_ut_shendu_mine_shot",
+	"projectileSpecId":"aEP_ftr_ftr_shendu_mine_shot",
 	"fireSoundTwo":"",
 }
 

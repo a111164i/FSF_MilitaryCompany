@@ -21,10 +21,10 @@ import kotlin.math.pow
 class aEP_AntiPhaseDrone : BaseShipSystemScript() {
 
   companion object{
-    const val VARIANT_ID = "aEP_ftr_ut_shendu"
-    const val WING_SPEC_ID = "aEP_ftr_ut_shendu_wing"
+    const val VARIANT_ID = "aEP_ftr_ftr_shendu"
+    const val WING_SPEC_ID = "aEP_ftr_ftr_shendu_wing"
 
-    const val FIGHTER_LIFETIME = 24f
+    const val FIGHTER_LIFETIME = 20f
     const val MAX_DISTANCE = 9999f
   }
 

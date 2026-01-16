@@ -39,6 +39,8 @@ import data.scripts.hullmods.aEP_TwinFighter
 import data.scripts.shipsystems.aEP_WeaponReset
 import data.scripts.utils.aEP_ID
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
+import data.scripts.weapons.aEP_b_m_lighting_shot.Companion.BUFF_LIFETIME
+import data.scripts.weapons.aEP_b_m_lighting_shot.Companion.DAMAGE_TO_UPKEEP_INCREASE
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
@@ -49,8 +51,10 @@ import org.lazywizard.lazylib.MathUtils.*
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
+import org.lazywizard.lazylib.combat.DefenseType
 import org.lazywizard.lazylib.combat.DefenseUtils
 import org.lazywizard.lazylib.combat.WeaponUtils
+import org.lazywizard.lazylib.ext.clampLength
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
@@ -4446,7 +4450,7 @@ class aEP_b_m_lighting_shot : Effect(){
 }
 
 //深度遥控战机磁吸炸弹
-class aEP_ftr_ut_shendu_mine_shot : Effect(){
+class aEP_ftr_ftr_shendu_mine_shot : Effect(){
 
   override fun onFire(projectile: DamagingProjectileAPI, weapon: WeaponAPI, engine: CombatEngineAPI, weaponId: String) {
     projectile?:return
@@ -4612,56 +4616,82 @@ class aEP_des_yonglang_mk2_cover : EveryFrame(){
     }
   }
 }
+//爆炸长矛
 class aEP_m_s_bomblance : EveryFrame(){
+  companion object{
+    var BOOST_RANGE = 150f
+  }
 
+  init {
+    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
+    var i = 0
+    for(num in hlString.split("|")){
+      if(i == 0) BOOST_RANGE = num.toFloat()
+      i += 1
+    }
+  }
+
+  var didFire = false
   val checkTimer = IntervalUtil(0.01f,0.01f)
   override fun advance(amount: Float, engine: CombatEngineAPI, weapon: WeaponAPI) {
-    weapon.ship?:return
-
+    val sourceShip : ShipAPI? = weapon.ship
     //不会下线
     aEP_Tool.keepWeaponAlive(weapon)
 
+    //开火时给一个冲刺效果
+    if(weapon.chargeLevel > 0f && !didFire){
+      didFire = true
+      if(sourceShip != null && aEP_Tool.isShipTargetable(sourceShip,
+          true,
+          false,
+          true,
+          true,
+          true)){
+
+        if(sourceShip.isStationModule && sourceShip.parentStation != null){
+          //模块的话用母舰的位置和朝向
+          aEP_Combat.AddStandardDash(weapon.currAngle, 1f, BOOST_RANGE, sourceShip.parentStation)
+        }
+        else{
+          aEP_Combat.AddStandardDash(weapon.currAngle, 1f, BOOST_RANGE, sourceShip)
+        }
+
+      }
+    }
+    if(weapon.chargeLevel == 0f) didFire = false
+
     checkTimer.advance(amount)
     if(checkTimer.intervalElapsed()){
+      //本身处于相位时，不能戳人
+      if(sourceShip != null && sourceShip.collisionClass == CollisionClass.NONE) return
+
       val triggerPoint = weapon.getFirePoint(0)
       val startPoint = weapon.location
       //aEP_Tool.addDebugPoint(triggerPoint)
       val ships = Global.getCombatEngine().ships
       for (s in ships) {
-        if (!isEnemy(weapon.ship,s)) continue
-        if (!aEP_Tool.isShipTargetable(s,
-            false,
-            true,
-            true,
-            false,
-            false)) continue
+
+        if (!isEnemy(sourceShip, s)) continue
+        if (!aEP_Tool.isShipTargetable(
+            s, false, true,
+            true, false, false)) continue
 
         val distSq = getDistanceSquared(s.location, triggerPoint)
         val collRadSq = (s.collisionRadius).pow(2)
+
         //首先只有进入碰撞圈才需要计算
-        if (distSq <= collRadSq && weapon.ammo > 0f && weapon.cooldownRemaining <= 0f) {
+        if (distSq <= collRadSq && weapon.ammo > 0 && weapon.cooldownRemaining <= 0f) {
 
-          //是否会撞盾上
-          if(s.shield != null && s.shield.isOn){
-            val sToTrigPoint = VectorUtils.getAngle(s.location, triggerPoint)
-            val shieldRadSq = s.shield.radius * s.shield.radius
-            val angleDistToMidArc = getShortestRotation(sToTrigPoint, s.shield.facing).absoluteValue
-            if(distSq < shieldRadSq && angleDistToMidArc < s.shield.activeArc/2f){
-              weapon.setForceFireOneFrame(true)
-              return
-            }
-          }
-
-          //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离，防止碰撞圈虚高的情况
-          //每帧更新一次自己碰撞点的绝对坐标（如果不更新，显示的是相对坐标）
-          s.exactBounds?.update(s.location, s.facing)
-          val collision = CollisionUtils.getCollisionPoint(startPoint, triggerPoint, s)
-          //aEP_Tool.addDebugPoint(collision)
-          if(collision != null){
-            weapon.setForceFireOneFrame(true)
-            return
-          }
+          //检测碰撞类型,未命中就出去
+          val type = DefenseUtils.getDefenseAtPoint(s, triggerPoint)
+          if (type == DefenseType.PHASE_OR_MISS) return
+          type
+          //命中，选择刷弹丸，而不是用weapon.fire()，以免触发发射前摇时的推进效果
+          Global.getCombatEngine().spawnProjectile(sourceShip, weapon, aEP_m_s_bomblance::class.java.simpleName, triggerPoint, weapon.currAngle, null)
+          weapon.ammo = (weapon.ammo - 1).coerceAtLeast(0)
+          weapon.setRemainingCooldownTo(weapon.cooldown)
         }
+
       }
     }
 
@@ -4951,7 +4981,6 @@ class aEP_b_m_flak_shot : Effect(){
 
 }
 
-
 //反冲力炮 涌浪
 class aEP_fga_yonglang_main : EveryFrame(){
   companion object{
@@ -5211,24 +5240,24 @@ class aEP_b_m_rk107_shot : Effect(), DamageDealtModifier{
     val spec = DamagingExplosionSpec(0.0001f, 150f * sizeMult, 150f * sizeMult,
       0f,0f,
       CollisionClass.NONE, CollisionClass.NONE,
-      4f,4f,1.2f,10,
-      Color.white,
-      Color(255,255,235,125))
+      4f,4f,1f,10,
+      Color.red,
+      Color(255,205,205,55))
     spec.isUseDetailedExplosion = true
     spec.detailedExplosionFlashDuration = 0.2f
     spec.detailedExplosionFlashRadius = 200f * sizeMult
     spec.detailedExplosionRadius = 100f * sizeMult
-    spec.detailedExplosionFlashColorFringe = Color(255,255,205,75)
-    spec.detailedExplosionFlashColorCore = Color(255,255,235,125)
+    spec.detailedExplosionFlashColorFringe = Color(255,55,55,75)
+    spec.detailedExplosionFlashColorCore = Color(255,155,155,125)
     engine.spawnDamagingExplosion(spec,projectile.source, point)
 
     //向前缓慢移动的爆炸
     engine.spawnExplosion(
       point,
       Misc.ZERO,
-      Color(255,255,255,155),
+      Color(255,225,225,155),
       100f * sizeMult,
-      0.6f)
+      0.35f)
   }
 
   override fun modifyDamageDealt(param: Any?, target: CombatEntityAPI?, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
@@ -5440,7 +5469,7 @@ class aEP_m_s_magnetmine_shot : Effect(){
   }
 
   override fun onExplosion(explosion: DamagingProjectileAPI, originalProjectile: DamagingProjectileAPI, weaponId: String) {
-    val weaponId = aEP_ftr_ut_shendu_mine_shot::class.java.simpleName.replace("_shot","")
+    val weaponId = aEP_ftr_ftr_shendu_mine_shot::class.java.simpleName.replace("_shot","")
     val fakeWeapon = Global.getCombatEngine().createFakeWeapon(
       originalProjectile.source,
       weaponId)
@@ -5452,7 +5481,7 @@ class aEP_m_s_magnetmine_shot : Effect(){
         weaponId,
         explosion.location, getRandomNumberInRange(0f,360f),
         null) as MissileAPI
-      aEP_ftr_ut_shendu_mine_shot().onFire(mine, fakeWeapon, Global.getCombatEngine(), weaponId)
+      aEP_ftr_ftr_shendu_mine_shot().onFire(mine, fakeWeapon, Global.getCombatEngine(), weaponId)
       mine.velocity.set(initialVel)
       mine.damage.damage = DAMAGE
       mine.maxFlightTime = mine.maxFlightTime * getRandomNumberInRange(0.9f,1f)
@@ -5515,7 +5544,7 @@ class aEP_m_m_magnetmine_shot : Effect(){
   }
 
   override fun onExplosion(explosion: DamagingProjectileAPI, originalProjectile: DamagingProjectileAPI, weaponId: String) {
-    val weaponId = aEP_ftr_ut_shendu_mine_shot::class.java.simpleName.replace("_shot","")
+    val weaponId = aEP_ftr_ftr_shendu_mine_shot::class.java.simpleName.replace("_shot","")
     val fakeWeapon = Global.getCombatEngine().createFakeWeapon(
       originalProjectile.source,
       weaponId)
@@ -5527,7 +5556,7 @@ class aEP_m_m_magnetmine_shot : Effect(){
         weaponId,
         explosion.location, getRandomNumberInRange(0f,360f),
         null) as MissileAPI
-      aEP_ftr_ut_shendu_mine_shot().onFire(mine, fakeWeapon, Global.getCombatEngine(), weaponId)
+      aEP_ftr_ftr_shendu_mine_shot().onFire(mine, fakeWeapon, Global.getCombatEngine(), weaponId)
       mine.velocity.set(initialVel)
       mine.damage.damage = DAMAGE
       mine.maxFlightTime = mine.maxFlightTime * getRandomNumberInRange(0.9f,1f)

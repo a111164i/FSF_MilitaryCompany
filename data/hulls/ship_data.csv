@@ -68,7 +68,7 @@ name,id,designation,tech/manufacturer,,system id,fleet pts,supplies/rec,supplies
 助手,aEP_ftr_ut_supply,,FSF制造,,aEP_DroneBurst,,,,400,75,2250,,50,20,,240,480,480,180,360,35,NONE,,,,,,,1,1,,,,,,,,,,,,,,0,,,,
 分解,aEP_ftr_ut_decompose,,FSF制造,,aEP_DroneBurst,,,,400,25,500,,60,20,,150,250,200,200,200,20,FRONT,,360,0.25,0,,,0,0,,,,,,,,,,,,,,0,,,,
 锚点,aEP_ftr_ut_maodian,,FSF制造,,,,,,900,150,2000,,400,20,,600,1500,1500,600,1200,60,FRONT,,360,1,0,,,0,0,,,,,,,,,,,"HIDE_IN_CODEX, RENDER_ENGINES_BELOW_HULL                                      ",aEP_ProjectileDenialShield_1_5000,,0,,,,
-深度,aEP_ftr_ut_shendu,,FSF制造,,,,,,600,75,450,,100,20,,600,900,600,360,720,27,NONE,,,,,,,0,0,,,,,,,,,,,HIDE_IN_CODEX,,,0,,,,
+深潜,aEP_ftr_ftr_shendu,,FSF制造,,,,,,600,75,450,,100,20,,600,900,600,360,720,27,NONE,,,,,,,0,0,,,,,,,,,,,HIDE_IN_CODEX,,,0,,,,
 银哨,aEP_ftr_ut_shuishi,,FSF制造,,aEP_DroneTeleport,,,,300,75,600,,200,20,,600,1500,1500,600,1200,20,FRONT,,180,1,0,,,0,0,,,,,,,,,,,HIDE_IN_CODEX,"no_derelict, aEP_ProjectileDenialShield_1_400",,0,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

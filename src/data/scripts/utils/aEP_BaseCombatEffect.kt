@@ -157,11 +157,14 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
 }
 
+/**
+ * 只用于定时长的buff，默认最新加入的buff最晚结束
+ */
+
 open class aEP_BaseCombatEffectWithKey : aEP_BaseCombatEffect{
 
    var key = ""
 
-  constructor() : super()
   constructor(entity: CombatEntityAPI) : super(entity)
   constructor(lifeTime: Float, entity: CombatEntityAPI) : super(lifeTime, entity)
 
@@ -177,7 +180,8 @@ open class aEP_BaseCombatEffectWithKey : aEP_BaseCombatEffect{
   override fun readyToEnd() {
     readyToEndImpl()
     super.readyToEnd()
-    entity?.customData?.remove(key)
+    //结束时，如果自己是最新的一个buff，移除key，否则留给最新的buff移除
+    if(entity?.customData?.getOrDefault(key, "") == this) entity?.customData?.remove(key)
   }
 
   open fun readyToEndImpl(){

@@ -232,7 +232,7 @@ aEP_fga_xiliu_mk2_missile_shot,missile,,,surface,graphics/shaders/surface/weapon
 aEP_ftr_bom_nuke_bomb_shot1,missile,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_nuke/proj00_surface.png
 aEP_ftr_bom_nuke_bomb_shot2,missile,,,surface,graphics/shaders/surface/weapons/aEP_fighters/aEP_nuke/proj00_surface.png
 aEP_ftr_ut_maodian_ads_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_l_harpoon/bomblet_surface.png
-aEP_ftr_ut_shendu_mine_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_des_shendu/proj_surface.png
+aEP_ftr_ftr_shendu_mine_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_des_shendu/proj_surface.png
 aEP_m_l_blasthammer_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_l_blasthammer/missile_surface.png
 aEP_m_l_harpoon_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_l_harpoon/m_surface.png
 aEP_m_m_blasthammer_shot,missile,,,surface,graphics/shaders/surface/weapons/aEP_m_l_blasthammer/m_missile_surface.png

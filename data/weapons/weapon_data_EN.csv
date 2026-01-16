@@ -59,7 +59,7 @@ H-88 Anti-ship Gun,aEP_b_m_h88,FSF Manufacture,Anti-armor,,
 ,,,,,
 ,#大武器,,,,
 AA-40 Planetary Flak,aEP_b_l_aa40,FSF Manufacture,Anti-shield,,
-DG-3 Cyclone,aEP_b_l_dg3,FSF Manufacture,Finisher,"When hitting a hull where armor is completely stripped, has a 25% chance to remove target %s hull integrity.",
+DG-3 Cyclone,aEP_b_l_dg3,FSF Manufacture,Finisher,"When hitting a hull where armor is completely stripped, has a 1/4 chance to remove target %s hull integrity.",
 d100t-MBC,aEP_b_l_d100t,FSF Manufacture,Anti-shield,"When hitting hulls, the damage type converts to FRAG.",
 ,,,,,
 ,,,,,
@@ -81,7 +81,6 @@ DF-1 ERA,aEP_m_s_era,FSF Manufacture,PD,"When the hull around this weapon takes 
 Pushpin Magnet Bomb Cluster,aEP_m_s_magnetmine,FSF Manufacture,Anti-armor,"When its projectiles approach an enemy, it will split into %s magnet bombs, each one dealing %s HE damage.",
 Pushpin Magnet Bomb Cluster Pod,aEP_m_m_magnetmine,FSF Manufacture,Anti-armor,"When its projectiles approach an enemy, it will split into %s magnet bombs, each one dealing %s HE damage.",
 Tyre Spike Phase Mine,aEP_m_m_phasemine,FSF Manufacture,Anti-armor,"Those mines have extremely long lifetime and will remain in phase space with no collision until the fuse is armed.
-
 At most %s mines can coexist on the battlefield. That cap is lift by %s for every mine deployer mounted on a deployed ship.",
 --Triggered,aEP_m_m_phasemine2,,,,
 ,,,,,
@@ -100,19 +99,16 @@ Smoke Bomb - Fighter,aEP_ftr_sup_tank_flak,FSF Manufacture,PD,,
 Nuke Mine - Fighter,aEP_ftr_bom_nuke_bomb,FSF Manufacture,Anti-armor,,
 Burst Assault Cannon - Fighter,aEP_ftr_bom_attacker_gun,FSF Manufacture,Anti-armor,,
 Scrape Beam - Fighter,aEP_ftr_ut_decompose_beam,FSF Manufacture,Support,"When hitting hulks, it deals extra FRAG damage and recycles supplies. Those supplies are added to your cargo if the done made its way landing.",
-Magnet Bomb - Fighter,aEP_ftr_ut_shendu_mine,FSF Manufacture,Anti-armor,"The magnet bomb will be attracted to nearby enemy ships, including phased ships.",
-Anti-ship Laser - Fighter,aEP_ftr_ut_shendu_beam,FSF Manufacture,Anti-armor,,
+Magnet Bomb - Fighter,aEP_ftr_ftr_shendu_mine,FSF Manufacture,Anti-armor,"The magnet bomb will be attracted to nearby enemy ships, including phased ships.",
+Anti-ship Laser - Fighter,aEP_ftr_ftr_shendu_beam,FSF Manufacture,Anti-armor,,
 Anchor ADS System,aEP_ftr_ut_maodian_ads,FSF Manufacture,PD,"Its projectiles are considered missiles and can intercept other projectiles. When meeting a missile-piercing projectile, reducing its damage by %s.",
-Flux Absorber - Fighter,aEP_ftr_ut_supply_main,FSF Manufacture,Support,"When hitting a ship, transfer the target's flux to this ship as hard flux at a speed of %s. If the target is using a ship system that prevents dissipation, no transfer will occur.
-
-Works better with FSF ships.",
-Repair Beam - Fighter,aEP_ftr_ut_repair_beam,FSF Manufacture,Support,"When hitting a ship, repair its armor by %s + %s, up to %s of the maximum armor. Exceeded repair will restore hull integrity up to %s.
-
-Works better with FSF ships.",
+Flux Absorber - Fighter,aEP_ftr_ut_supply_main,FSF Manufacture,Support,"When hitting a ship, transfer the target's flux to this ship as hard flux at a speed of %s. If the target is using a ship system that prevents dissipation, no transfer will occur.",
+Repair Beam - Fighter,aEP_ftr_ut_repair_beam,FSF Manufacture,Support,"When hitting a ship, repair its armor by %s + %s, up to %s of the maximum armor. Exceeded repair will restore hull integrity up to %s.",
 ,,,,,
 ,,,,,
 Drake Flamethrower,aEP_e_s_flamer,FSF Private Conversion,Anti-armor,,
-Boom Lance,aEP_m_s_bomblance,FSF Private Conversion,Anti-armor,This weapon fires automatically if its tip touches a ship and will not go offline,
+Boom Lance,aEP_m_s_bomblance,FSF Private Conversion,Anti-armor,"This weapon fires automatically if its tip touches a ship and will not go offline.
+When fired manually, the ship will dash to the tip's direction for %s su.",
 Lightening Disturb Gun,aEP_b_m_lighting,FSF Advanced Weapon Program,Anti-shield,"When hitting shield, it applies a stackable debuff to the target: For the next %s seconds, increase the target's shield upkeep by %s.",
 Sea Roar Super-heavy Railway Cannon,aEP_b_l_railwaygun,FSF Advanced Weapon Program,Anti-armor,"When hitting a ship, if it overloads the target, the projectile will continue forward.",
 ,,,,,

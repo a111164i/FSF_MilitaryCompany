@@ -67,7 +67,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
           (e.customData[USE_ID] as EcmChange).shouldEnd = true
         }
 
-        val effect = EcmChange(e, PUNISH_HULLSIZE[e.hullSize]?:-2f, SYSTEM_TIME, dist/searchRange)
+        val effect = EcmChange(USE_ID, e, PUNISH_HULLSIZE[e.hullSize]?:-2f, SYSTEM_TIME, dist/searchRange)
         e.setCustomData(USE_ID, effect)
         aEP_CombatEffectPlugin.addEffect(effect)
       }
@@ -82,7 +82,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
       if(self.customData.containsKey(ID)){
         (self.customData[ID] as EcmChange).shouldEnd = true
       }
-      val effect = EcmChange(self, SELF_BONUS, SYSTEM_TIME, 0f)
+      val effect = EcmChange(ID, self, SELF_BONUS, SYSTEM_TIME, 0f)
       self.setCustomData(ID, effect)
       aEP_CombatEffectPlugin.addEffect(effect)
 
@@ -107,7 +107,7 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
     didOnce = false
   }
 
-  class EcmChange(val ship: ShipAPI, val ecmPoint: Float, lifetime:Float, var arcDelay : Float): aEP_BaseCombatEffect(lifetime, ship){
+  class EcmChange(val buffId: String, val ship: ShipAPI, val ecmPoint: Float, lifetime:Float, var arcDelay : Float): aEP_BaseCombatEffect(lifetime, ship){
     init {
       ship.mutableStats.dynamic.getMod(Stats.ELECTRONIC_WARFARE_FLAT).modifyFlat(ID, ecmPoint)
     }
@@ -132,12 +132,12 @@ class aEP_EcmSuppress: BaseShipSystemScript() {
       val fadingThreshold = 4f
       if(timeLeft < fadingThreshold){
         val level = timeLeft/fadingThreshold
-        ship.mutableStats.dynamic.getMod(Stats.ELECTRONIC_WARFARE_FLAT).modifyFlat(ID, ecmPoint * level)
+        ship.mutableStats.dynamic.getMod(Stats.ELECTRONIC_WARFARE_FLAT).modifyFlat(buffId, ecmPoint * level)
       }
     }
 
     override fun readyToEnd() {
-      ship.mutableStats.dynamic.getMod(Stats.ELECTRONIC_WARFARE_FLAT).unmodify(ID)
+      ship.mutableStats.dynamic.getMod(Stats.ELECTRONIC_WARFARE_FLAT).unmodify(buffId)
     }
   }
 }

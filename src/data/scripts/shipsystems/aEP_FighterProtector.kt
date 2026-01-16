@@ -28,7 +28,6 @@ class aEP_FighterProtector : BaseShipSystemScript() {
     private const val FULL_TIME = 7.5f
     private const val FADE_TIME = 0.5f
     private const val DAMPER_CLASS_KEY = "aEP_FighterProtector"
-    private const val ID = "aEP_FighterProtector"
 
 
     private const val DECO_WEAPON_ID = "aEP_cru_baojiao_piston"

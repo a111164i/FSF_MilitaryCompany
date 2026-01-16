@@ -22,7 +22,7 @@
   #	"maxFlightTime":3.0,
 
 	"explosionSpec":{
-		"duration":0.5f, # not visual
+		"duration":0.2f, # not visual
 		"radius":75,
 		"coreRadius":100, # full damage within core radius
 		"collisionClass":PROJECTILE_NO_FF,
@@ -39,10 +39,10 @@
 				"collisionClassByFighter":PROJECTILE_FIGHTER,
 				"particleSizeMin":4.0,
 				"particleSizeRange":4.0,
-				"particleDuration":0.6,
+				"particleDuration":0.5,
 				"particleCount":10,
-				"particleColor":[255,225,125,255],
-				"explosionColor":[230,230,230,255],
+				"particleColor":[255,225,125,205],
+				"explosionColor":[230,230,230,205],
 
 				"useDetailedExplosion":true,
 				"useDetailedExplosionColorAlpha":true,

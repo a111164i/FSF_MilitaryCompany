@@ -17,7 +17,9 @@
 	"interruptibleBurst":false,
 	"displayArcRadius":210,
 	"animationType":"NONE",
+	"autocharge":true,
 	"projectileSpecId":"aEP_m_s_bomblance_shot",
+	"fireSoundOne":"system_plasma_burn",
 	"fireSoundTwo":"reaper_fire",
 }
 

@@ -62,7 +62,7 @@ aEP_ftr_sup_tank,ship,,,surface,graphics/shaders/surface/fighters/sup_tank_surfa
 aEP_ftr_ut_decompose,ship,,,surface,graphics/shaders/surface/fighters/ut_decompose_surface.png
 aEP_ut_decoy,ship,,,surface,graphics/shaders/surface/fighters/ut_decoy_surface.png
 aEP_ftr_ut_repair,ship,,,surface,graphics/shaders/surface/fighters/ut_repair_surface.png
-aEP_ftr_ut_shendu,ship,,,surface,graphics/shaders/surface/fighters/ut_shendu_surface.png
+aEP_ftr_ftr_shendu,ship,,,surface,graphics/shaders/surface/fighters/ut_shendu_surface.png
 aEP_ftr_ut_shuishi,ship,,,surface,graphics/shaders/surface/fighters/ut_shuishi_surface.png
 aEP_ftr_ut_shuangshen3,ship,,,surface,graphics/shaders/surface/fighters/ut_shuangshen3_surface.png
 aEP_sta_base1,ship,,,surface,graphics/shaders/surface/stations/base_surface.png

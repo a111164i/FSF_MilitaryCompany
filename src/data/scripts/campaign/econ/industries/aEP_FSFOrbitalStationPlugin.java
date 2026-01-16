@@ -28,6 +28,7 @@ public class aEP_FSFOrbitalStationPlugin extends OrbitalStation
 
   @Override
   public boolean showWhenUnavailable() {
-    return false;
+    return true;
   }
+
 }

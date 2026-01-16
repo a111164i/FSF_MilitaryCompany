@@ -9,21 +9,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1 01&#10;TODO::&#10;细化驱逐和护卫的战术系统">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_shendu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_ftr_shendu.ship" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_shendu.variant" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_shendu_beam.wpn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_shendu_mine.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_ftr_shendu_mine.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_bomblance.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_bomblance.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_rk107_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_rk107_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_flak_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_flak_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ut_shendu_mine_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_shendu_mine_shot.proj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_AntiPhaseDrone.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_AntiPhaseDrone.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BBRadarEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BBRadarEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_E:/Program Files/Starsector098/starsector-core" value="2i9ZR7wWrAY1gPh7OZJCavG6e7S" />
+    </persistenceIdMap>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -150,8 +179,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.138" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
       </set>
     </attachedChunks>
   </component>
@@ -415,15 +444,15 @@
       <workItem from="1768227373898" duration="310000" />
       <workItem from="1768302329119" duration="4167000" />
       <workItem from="1768311172598" duration="3167000" />
-      <workItem from="1768314937643" duration="1003000" />
-    </task>
-    <task id="LOCAL-00029" summary="4.8rc4&#10;patch 1">
-      <option name="closed" value="true" />
-      <created>1731776056238</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1731776056238</updated>
+      <workItem from="1768314937643" duration="1268000" />
+      <workItem from="1768316232803" duration="106000" />
+      <workItem from="1768390996674" duration="2802000" />
+      <workItem from="1768403605552" duration="1115000" />
+      <workItem from="1768405506716" duration="258000" />
+      <workItem from="1768473028346" duration="2986000" />
+      <workItem from="1768482678133" duration="682000" />
+      <workItem from="1768484330300" duration="1235000" />
+      <workItem from="1768569289357" duration="13942000" />
     </task>
     <task id="LOCAL-00030" summary="4.8rc4&#10;patch 2: fixed name: df1-era">
       <option name="closed" value="true" />
@@ -809,7 +838,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768314380271</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="//----------------------------------------------//&#10;5.1rc1 01&#10;海量：&#10;火力模块幅能耗散500-&gt;600&#10;火力模块幅能容量4000-&gt;5000&#10;不同舰船战术系统降低敌方电子战效果可以相互叠加了（之前的刷新时间）&#10;&#10;银哨：&#10;单机整备时间13-&gt;10秒">
+      <option name="closed" value="true" />
+      <created>1768316097588</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1768316097589</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -864,7 +901,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc5&#10;p 2: fix butchered weapon_data translation" />
     <MESSAGE value="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配" />
     <MESSAGE value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
     <MESSAGE value="5.0rc2&#10;&#10;修正了使用getCollision之前没有updateBounds的问题，版本号更新到098" />
@@ -889,9 +925,23 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 06&#10;分流护盾重做，机制使用buff机制&#10;战术系统描述修正-巡洋&#10;修正了2个护盾系统的描述，更简单，不用代码用原版" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述" />
     <MESSAGE value="//----------------------------------------------//&#10;//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1 01&#10;海量：&#10;火力模块幅能耗散500-&gt;600&#10;火力模块幅能容量4000-&gt;5000&#10;不同舰船战术系统降低敌方电子战效果可以相互叠加了（之前的刷新时间）&#10;&#10;银哨：&#10;单机整备时间13-&gt;10秒" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1 01&#10;海量：&#10;火力模块幅能耗散500-&gt;600&#10;火力模块幅能容量4000-&gt;5000&#10;不同舰船战术系统降低敌方电子战效果可以相互叠加了（之前的刷新时间）&#10;&#10;银哨：&#10;单机整备时间13-&gt;10秒" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt</url>
+          <line>5583</line>
+          <properties class="data.scripts.weapons.ShowHitLocation" method="advanceImpl">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
         <watch expression="&#10;          //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离" />

@@ -12,17 +12,32 @@ import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
 import com.fs.starfarer.api.loading.WeaponSlotAPI
+import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
+import com.fs.starfarer.api.util.Range
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.ACC_MULT
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.MAX_SPEED_FLAT
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.MAX_TURN_RATE_FLAT
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.MAX_TURN_RATE_PERCENT
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.TURN_ACC_FLAT
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.TURN_ACC_PERCENT
+import data.scripts.shipsystems.aEP_NBFiringJet.Companion.WEAPON_TURN_RATE_PERCENT
 import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID.Companion.TELEPORT_JITTER_COLOR
+import data.scripts.utils.aEP_Tool.Util.speed2Velocity
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
+import org.lazywizard.lazylib.MathUtils.getDistanceSquared
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
+import org.lazywizard.lazylib.combat.DefenseType
+import org.lazywizard.lazylib.combat.DefenseUtils
+import org.lazywizard.lazylib.ext.clampLength
 import org.lazywizard.lazylib.ui.LazyFont
 import org.lwjgl.opengl.Display
 import org.lwjgl.opengl.GL11
@@ -1209,17 +1224,6 @@ class aEP_Tool {
       return Color(ori.red, ori.green, ori.blue, MathUtils.clamp((255f * newAlphaLevel).toInt(),0,255))
     }
 
-    fun getHitPoint(t: CombatEntityAPI, range: Float, facing: Float, point: Vector2f): Vector2f? {
-      var toReturn: Vector2f? = null
-      val checkPoint = getExtendedLocationFromPoint(point, facing, range)
-      if (t is ShipAPI) {
-        if (t.getShield() != null && t.getShield().isOn && t.getShield().isWithinArc(checkPoint) && MathUtils.getDistance(checkPoint, t.getLocation()) < t.getShield().radius) return checkPoint
-      }
-      t.exactBounds?.update(t.location, t.facing)
-      toReturn = CollisionUtils.getCollisionPoint(point, checkPoint, t)
-      return toReturn
-    }
-
 
     @JvmStatic
     fun getFighterReplaceRate(reduceAmount: Float, ship: ShipAPI): Float {
@@ -1774,7 +1778,13 @@ class aEP_Tool {
       return false
     }
 
-    fun isEnemy(self:CombatEntityAPI, target: CombatEntityAPI): Boolean{
+    /**
+     * @param self 自己的实体，如果不填，默认返回true
+     */
+    fun isEnemy(self:CombatEntityAPI?, target: CombatEntityAPI): Boolean{
+      //如果不填self，默认认为是敌人
+      self?: return true
+      val self = self
       //0 = player, 1 = enemy, 100 = neutral (used for ship hulks)
       //如果自己是绿圈，对方是红圈
       if(self.owner == 0){
@@ -2908,5 +2918,87 @@ class aEP_Combat{
       var fullTime = 0f
     }
   }
+
+  /**
+   * 将舰船推进一段距离，参考内波的系统，后来者会打断第一段，不可叠加
+   * */
+  class AddStandardDash(val toAngle: Float, val dashTime: Float, val dashRange: Float, val target: ShipAPI) : aEP_BaseCombatEffectWithKey(dashTime, target){
+    companion object{
+      const val DASH_ID = "aEP_StandardDash"
+    }
+
+    val afterImageTracker = IntervalUtil(0.1f,0.1f)
+
+    init {
+      //先移除老的，再把自己加入map
+      addOrRefreshEffect(target, DASH_ID,
+        {
+          old -> old.time = old.lifeTime
+        },
+        {
+
+        })
+      setKeyAndPutInData(DASH_ID)
+
+      //给初始加速
+      //先减速，去除惯性，再朝目标方向加速
+      target.velocity.scale(0.5f)
+       val toAddVel = speed2Velocity(toAngle, 2f * dashRange/dashTime)
+      target.velocity[target.velocity.x + toAddVel.x] = target.velocity.y + toAddVel.y
+
+      //加入effect
+      addEffect(this)
+    }
+
+
+    override fun advanceImpl(amount: Float) {
+      val stats = target.mutableStats
+      val id = key
+      val useLevel = 1f - (time/lifeTime)
+      val speedBoost = dashRange/dashTime.coerceAtLeast(0.1f)
+
+      //防止滥用
+      target.blockCommandForOneFrame(ShipCommand.VENT_FLUX)
+
+      //改变速度
+      stats.maxSpeed.modifyFlat(id, 2f * speedBoost * useLevel)
+      stats.acceleration.modifyFlat(id, speedBoost)
+      stats.deceleration.modifyFlat(id, speedBoost)
+      stats.turnAcceleration.modifyFlat(id, 20f)
+      stats.turnAcceleration.modifyPercent(id, 20f)
+      stats.maxTurnRate.modifyFlat(id, 10f)
+      stats.maxTurnRate.modifyPercent(id, 10f)
+
+      target.engineController.extendWidthFraction.shift(this,-1f,0.000001f,0f,1f)
+      target.engineController.extendGlowFraction.shift(this,-1f,0.000001f,0f,1f)
+
+      afterImageTracker.advance(amount)
+      if(afterImageTracker.intervalElapsed()) {
+        target.addAfterimage(
+          Color(255, 120, 120, 155),
+          0f, 0f,
+          -target.velocity.x, -target.velocity.y, 0f,
+          0f, 0.2f, 0.3f,
+          true, false, false
+        )
+      }
+
+    }
+
+    override fun readyToEndImpl() {
+      val stats = target.mutableStats
+      val id = key
+      stats.maxSpeed.unmodify(id)
+      stats.acceleration.unmodify(id)
+      stats.deceleration.unmodify(id)
+      stats.turnAcceleration.unmodify(id)
+      stats.maxTurnRate.unmodify(id)
+
+      target.velocity.clampLength(target.acceleration.coerceIn(0f,target.maxSpeed))
+    }
+
+
+  }
+
 
 }

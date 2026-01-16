@@ -1,6 +1,6 @@
 {
-  "variantId": "aEP_ftr_ut_shendu",
-  "hullId": "aEP_ftr_ut_shendu",
+  "variantId": "aEP_ftr_ftr_shendu",
+  "hullId": "aEP_ftr_ftr_shendu",
   "displayName": "Assault Fighter",
   "goalVariant": true,
   "fluxCapacitors": 0,
@@ -20,16 +20,16 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "BOMB_L": "aEP_ftr_ut_shendu_mine",
-        "BOMB_R": "aEP_ftr_ut_shendu_mine"
+        "BOMB_L": "aEP_ftr_ftr_shendu_mine",
+        "BOMB_R": "aEP_ftr_ftr_shendu_mine"
       }
     },
     {
 			"autofire": false,
 			"mode": "LINKED",
 			"weapons": {
-				"BEAM_L": "aEP_ftr_ut_shendu_beam",
-        "BEAM_R": "aEP_ftr_ut_shendu_beam"
+				"BEAM_L": "aEP_ftr_ftr_shendu_beam",
+        "BEAM_R": "aEP_ftr_ftr_shendu_beam"
 			}
     }
   ],
