@@ -39,8 +39,6 @@ import data.scripts.hullmods.aEP_TwinFighter
 import data.scripts.shipsystems.aEP_WeaponReset
 import data.scripts.utils.aEP_ID
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
-import data.scripts.weapons.aEP_b_m_lighting_shot.Companion.BUFF_LIFETIME
-import data.scripts.weapons.aEP_b_m_lighting_shot.Companion.DAMAGE_TO_UPKEEP_INCREASE
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
@@ -54,7 +52,6 @@ import org.lazywizard.lazylib.combat.CombatUtils
 import org.lazywizard.lazylib.combat.DefenseType
 import org.lazywizard.lazylib.combat.DefenseUtils
 import org.lazywizard.lazylib.combat.WeaponUtils
-import org.lazywizard.lazylib.ext.clampLength
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicAnim
@@ -3307,7 +3304,7 @@ class ScreenDark(lifeTime: Float):aEP_BaseCombatEffect(lifeTime){
 //d100t MBC
 class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
   companion object{
-    var DAMAGE_REDUCTION_HULL_HIT = 0.5f
+    var DAMAGE_MULT_HULL_HIT = 0.5f
     var PURE_ARMOR_DAMAGE = 90f
     private var TRIGGER_CHANCE = 100f
     private var PERCENT_PER_TRIGGER = 2f
@@ -3318,7 +3315,7 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
       var i = 0
       for(num in hlString.split("|")){
         if(i == 0) {
-          DAMAGE_REDUCTION_HULL_HIT = num.replace("%","").toFloat().div(100f)
+          DAMAGE_MULT_HULL_HIT = num.replace("%","").toFloat().div(100f)
         }
         if(i == 1) {
           PURE_ARMOR_DAMAGE = num.toFloat()
@@ -3403,7 +3400,7 @@ class aEP_b_l_d100t_shot : Effect(), DamageDealtModifier{
     if(!shieldHit){
       if(param is DamagingProjectileAPI && param.projectileSpecId?.equals(this.javaClass.simpleName) == true) {
         damage.type = DamageType.FRAGMENTATION
-        damage.damage = damage.baseDamage * (1f - DAMAGE_REDUCTION_HULL_HIT)
+        damage.damage = damage.baseDamage * DAMAGE_MULT_HULL_HIT
         return this.javaClass.simpleName
       }
     }

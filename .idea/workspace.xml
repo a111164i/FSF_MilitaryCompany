@@ -9,38 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1 01&#10;TODO::&#10;细化驱逐和护卫的战术系统">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-02&#10;&#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_shendu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_ftr_shendu.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_shendu.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_shendu_beam.wpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_shendu_mine.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_ftr_shendu_mine.wpn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_bomblance.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_bomblance.wpn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_rk107_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_rk107_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_flak_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_flak_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ut_shendu_mine_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_shendu_mine_shot.proj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_AntiPhaseDrone.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_AntiPhaseDrone.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BBRadarEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BBRadarEffect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
@@ -452,23 +426,9 @@
       <workItem from="1768473028346" duration="2986000" />
       <workItem from="1768482678133" duration="682000" />
       <workItem from="1768484330300" duration="1235000" />
-      <workItem from="1768569289357" duration="13942000" />
-    </task>
-    <task id="LOCAL-00030" summary="4.8rc4&#10;patch 2: fixed name: df1-era">
-      <option name="closed" value="true" />
-      <created>1732047440841</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1732047440841</updated>
-    </task>
-    <task id="LOCAL-00031" summary="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder">
-      <option name="closed" value="true" />
-      <created>1732047799577</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1732047799577</updated>
+      <workItem from="1768569289357" duration="14538000" />
+      <workItem from="1768588337351" duration="955000" />
+      <workItem from="1768622634975" duration="9937000" />
     </task>
     <task id="LOCAL-00032" summary="4.8rc4&#10;patch 2: fixed name: df1-era, nerf shielder">
       <option name="closed" value="true" />
@@ -846,7 +806,23 @@
       <option name="project" value="LOCAL" />
       <updated>1768316097589</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="//----------------------------------------------//&#10;5.1rc1-01&#10;修改了深度战机的id，变成ftr_ftr&#10;&#10;爆炸长矛:&#10;  加入了1秒的开火前摇，过程中会将舰船的向矛头推动约150距离，但无论是否戳中，都会消耗一颗备弹&#10;  射程300-&gt;400，杆长不变，只是辅助ai（因为杆长特性不吃距离加成，导致距离太近ai难以使用，略微增加了威胁距离）&#10;&#10;其他：&#10;  建造空间站即使好感没有达到要求，也会出现选项">
+      <option name="closed" value="true" />
+      <created>1768588204642</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1768588204642</updated>
+    </task>
+    <task id="LOCAL-00080" summary="//----------------------------------------------//&#10;5.1rc1-01&#10;修改了深度战机的id，变成ftr_ftr&#10;&#10;爆炸长矛:&#10;  加入了1秒的开火前摇，过程中会将舰船的向矛头推动约150距离，但无论是否戳中，都会消耗一颗备弹&#10;  射程300-&gt;400，杆长不变，只是辅助ai（因为杆长特性不吃距离加成，导致距离太近ai难以使用，略微增加了威胁距离）&#10;&#10;其他：&#10;  建造空间站即使好感没有达到要求，也会出现选项">
+      <option name="closed" value="true" />
+      <created>1768588778171</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1768588778171</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -901,8 +877,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配" />
-    <MESSAGE value="4.9&#10;平衡性：&#10;    涌浪级：&#10;      战术系统生成的锁链现在可以被击毁&#10;&#10;&#10;&#10;&#10;其他：&#10;    调整并简化了部分武器的击中特效伤害，去除了效果不大的词条，提升了基础数值&#10;    加入了FSF武器蓝图，现在在野外会随机掉落" />
     <MESSAGE value="5.0rc2&#10;&#10;修正了使用getCollision之前没有updateBounds的问题，版本号更新到098" />
     <MESSAGE value="5.0rc3&#10;&#10;修正了rc2中错误的版本号" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc3&#10;平衡性：&#10;  武器：&#10;    破门锥鱼雷：&#10;      弹体耐久800-&gt;625&#10;    图钉磁吸炸弹：&#10;      吸引力下调&#10;&#10;  插件：&#10;    热填弹系统：&#10;      被隐藏，为了存档兼容性问题先不删除，等重做&#10;    神速芯控：&#10;      常驻射速加成20%-&gt;25%&#10;      同时使能量/实弹武器幅能产出+5%&#10;      战术系统开启后加成不再翻倍（额外的射速加成被直接给到战术系统里，插件只提供常驻）&#10;&#10;  舰船：&#10;    温跃层级：&#10;      战术系统开启时获得25%的实弹/能量武器射速与弹药回复速度上升（抵消神速芯控改动的影响）&#10;    中流级：&#10;      装配点135-&gt;140&#10;    细流级：&#10;      内置主炮聚焦模式的电弧弹跳范围300-&gt;500，弹跳次数6-&gt;5&#10;      内置主炮的速射模式攻击特效被移除，dps350-&gt;375&#10;    涌浪级：&#10;      现在不再将敌舰链在重力矛上，而是自己身上&#10;&#10;  武器：&#10;    zt-125和aa40：&#10;      攻击特效被移除（极低概率只有2%，正常情况下增伤少到可以忽略，移除这种为了特效而特效的特效减少阅读量）&#10;    GP-80高射炮：&#10;      攻击特效被移除&#10;      装配点10-&gt;9&#10;      伤害150-&gt;300&#10;    K-9机载轻机枪:&#10;      射程450-&gt;400&#10;&#10;&#10;其他：&#10;    适配了0.98&#10;    修复了石珊瑚级中间大复合炮塔槽位被设定为挂载点的问题&#10;    略微下调了洋脊级战术系统的视觉特效&#10;    略微下调了离岸流级战术系统的视觉特效&#10;    在FSF星系中心防御站中增加了黑市&#10;    涌浪级的战术系统现在使用类似通灵塔系统的新版电弧" />
@@ -926,14 +900,16 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 07&#10;修复了漏掉的装配中文&#10;加入了战机的role中文（装配中文）&#10;修复了上升流改内置爆反插件不生效的问题（以及其他保护addListener的船插）&#10;将分流护盾改为指数生效&#10;加入了点防御ai进入fsf的插件库&#10;DF-1下调到1枚&#10;TODO::&#10;细化驱逐舰系统描述" />
     <MESSAGE value="//----------------------------------------------//&#10;//----------------------------------------------//&#10;5.0rc8 08&#10;平衡性：&#10;&#10;  舰船：&#10;    温跃层：&#10;      无光层多级加速器击中装甲后,如果目标比自己轻的则能降低其机动性&#10;    扰流：&#10;      移除了机动闪避&#10;&#10;  武器：&#10;    海啸重型轨道火炮:&#10;      伤害回调2000-&gt;1500(2000还是逆天了点)&#10;    DF-1爆炸反应装甲:&#10;      被弹2-&gt;1，装配点消耗2-&gt;1&#10;    DG-3巨型机炮：&#10;      伤害48-&gt;50,&#10;      特效48-&gt; 25%的概率造成100点结构移除&#10;      现在判定结构为空不只是需要落点的装甲格为空，而是落点为中心3x3的装甲格均为空&#10;    破胎水雷发射舱：&#10;      第二段速度200-&gt;300&#10;      第二段不再有触炸引信而是定时爆炸&#10;&#10;  舰载机：&#10;&#10;  插件:&#10;    精英化防御方案不再和强化护盾和重型装甲冲突&#10;    分流护盾重做，变成对抗爆发性伤害的插件&#10;    受控护盾减伤60%-&gt;50%&#10;    内置反应装甲插件现在变为可获得插件,但与重型装甲冲突&#10;&#10;其他：&#10;   调整了德雷克喷火器的特效，现在和原版一样，会在弹丸命中后消失(在射程超长的情况下减少粒子数量)&#10;   修复了上升流改的内置爆反装甲不生效的问题&#10;   修复了战机LPC名称不是中文的问题&#10;   修复了某些装配名称被漏翻的问题&#10;   将相位空雷的显示的血量调整和第二段一样" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1 01&#10;海量：&#10;火力模块幅能耗散500-&gt;600&#10;火力模块幅能容量4000-&gt;5000&#10;不同舰船战术系统降低敌方电子战效果可以相互叠加了（之前的刷新时间）&#10;&#10;银哨：&#10;单机整备时间13-&gt;10秒" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1 01&#10;海量：&#10;火力模块幅能耗散500-&gt;600&#10;火力模块幅能容量4000-&gt;5000&#10;不同舰船战术系统降低敌方电子战效果可以相互叠加了（之前的刷新时间）&#10;&#10;银哨：&#10;单机整备时间13-&gt;10秒" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-01&#10;修改了深度战机的id，变成ftr_ftr&#10;&#10;爆炸长矛:&#10;  加入了1秒的开火前摇，过程中会将舰船的向矛头推动约150距离，但无论是否戳中，都会消耗一颗备弹&#10;  射程300-&gt;400，杆长不变，只是辅助ai（因为杆长特性不吃距离加成，导致距离太近ai难以使用，略微增加了威胁距离）&#10;&#10;其他：&#10;  建造空间站即使好感没有达到要求，也会出现选项" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-02&#10;&#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-02&#10;&#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt</url>
-          <line>5583</line>
+          <line>5580</line>
           <properties class="data.scripts.weapons.ShowHitLocation" method="advanceImpl">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
