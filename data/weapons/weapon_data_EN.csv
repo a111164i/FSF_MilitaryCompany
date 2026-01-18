@@ -60,7 +60,7 @@ H-88 Anti-ship Gun,aEP_b_m_h88,FSF Manufacture,Anti-armor,,
 ,#大武器,,,,
 AA-40 Planetary Flak,aEP_b_l_aa40,FSF Manufacture,Anti-shield,,
 DG-3 Cyclone,aEP_b_l_dg3,FSF Manufacture,Finisher,"When hitting a hull where armor is completely stripped, has a 1/4 chance to remove target %s hull integrity.",
-d100t-MBC,aEP_b_l_d100t,FSF Manufacture,Anti-shield,"When hitting hulls, the damage converts to %s of FRAG damage.",
+d100t-MBC,aEP_b_l_d100t,FSF Manufacture,Anti-shield,"When hitting hulls, total damage converts to %s of FRAG damage.",
 ,,,,,
 ,,,,,
 ,#导弹武器,,,,
@@ -107,7 +107,7 @@ Repair Beam - Fighter,aEP_ftr_ut_repair_beam,FSF Manufacture,Support,"When hitti
 ,,,,,
 ,,,,,
 Drake Flamethrower,aEP_e_s_flamer,FSF Private Conversion,Anti-armor,,
-Boom Lance,aEP_m_s_bomblance,FSF Private Conversion,Anti-armor,"This weapon fires automatically if its tip touches a ship and will not go offline.
+Boom Lance,aEP_m_s_bomblance,FSF Private Conversion,Anti-armor,"Ammo detonates automatically when the tip touches a ship and the weapon will not go offline.
 When fired manually, the ship will dash to the tip's direction for %s su.",
 Lightening Disturb Gun,aEP_b_m_lighting,FSF Advanced Weapon Program,Anti-shield,"When hitting shield, it applies a stackable debuff to the target: For the next %s seconds, increase the target's shield upkeep by %s.",
 Sea Roar Super-heavy Railway Cannon,aEP_b_l_railwaygun,FSF Advanced Weapon Program,Anti-armor,"When hitting a ship, if it overloads the target, the projectile will continue forward.",
