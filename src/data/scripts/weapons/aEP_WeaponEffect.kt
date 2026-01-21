@@ -39,6 +39,8 @@ import data.scripts.hullmods.aEP_TwinFighter
 import data.scripts.shipsystems.aEP_WeaponReset
 import data.scripts.utils.aEP_ID
 import data.scripts.weapons.aEP_WeaponEffect.Companion.EXPLOSION_PROJ_ID_KEY
+import data.scripts.weapons.aEP_WeaponEffect.Companion.getFloat
+import data.scripts.weapons.aEP_WeaponEffect.Companion.parseWeaponConfigArrayWithShotSuffix
 import org.dark.shaders.distortion.DistortionShader
 import org.dark.shaders.distortion.WaveDistortion
 import org.dark.shaders.light.LightShader
@@ -70,9 +72,81 @@ import kotlin.math.*
  * */
 class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosionEffect, BeamEffectPluginWithReset, EveryFrameWeaponEffectPluginWithAdvanceAfter {
   companion object{
-    const val EXPLOSION_PROJ_ID_KEY = "aEP_projectileId"
-  }
+    const val EXPLOSION_PROJ_ID_KEY = "aEP_WeaponEffectExposionProjId"
 
+    /**
+     * 解析武器customPrimaryHL配置，返回长度为8的多类型数组（索引0-7）
+     * @param weaponId 武器ID（如"aEP_m_s_harpoon"，无需带_shot后缀）
+     * @param defaultValue 缺省值（支持Int/Float/String等任意类型，配置缺失时填充）
+     * @return 长度固定为8的Array<Any?>，索引0-7对应配置的第0-7段值，类型自动适配：
+     *         - 纯数字（无小数点）→ Int
+     *         - 带小数点的数字 → Float
+     *         - 非数字字符串 → String
+     *         - 配置缺失/解析失败 → defaultValue
+     */
+    fun parseWeaponConfig(weaponId: String, defaultValue: Any): Array<Any?> {
+      // 1. 初始化长度为8的数组，所有位置填充默认值
+      val resultArray = Array<Any?>(8) { defaultValue }
+
+      // 2. 读取武器配置（容错：武器配置不存在直接返回默认数组）
+      val weaponSpec = Global.getSettings().getWeaponSpec(weaponId) ?: return resultArray
+      val hlString = weaponSpec.customPrimaryHL ?: return resultArray
+
+      // 3. 按|分割配置字符串
+      val configSegments = hlString.split("|")
+
+      // 4. 遍历0-7索引，逐个解析配置值（智能类型转换）
+      for (index in 0..(configSegments.size-1).coerceAtMost(7)) {
+        // 取当前索引的配置段（空则跳过，保留默认值）
+        val segmentStr = configSegments.getOrNull(index)?.trim() ?: continue
+        if (segmentStr.isBlank()) continue
+
+        // 智能类型转换：只区分Float与String（数字都解析为Float）
+        val parsedValue: Any? = segmentStr.toFloatOrNull() ?: segmentStr
+
+        // 转换成功则替换数组值，失败则保留默认值
+        if (parsedValue != null) {
+          resultArray[index] = parsedValue
+        }
+      }
+
+      return resultArray
+    }
+
+    /**
+     * 重载方法：支持传入带_shot后缀的武器类名，自动去除后缀后解析
+     * @param weaponClassName 带_shot后缀的类名（如"aEP_m_s_harpoon_shot"）
+     * @param defaultValue 缺省值（支持任意类型）
+     * @return 长度固定为8的Array<Any?>
+     */
+    fun parseWeaponConfigArrayWithShotSuffix(weaponClassName: String, defaultValue: Any): Array<Any?> {
+      val weaponId = weaponClassName.replace("_shot", "")
+      val data = parseWeaponConfig(weaponId, defaultValue)
+      return data
+    }
+
+    // ======================== 便捷扩展方法（简化类型强转）========================
+    /**
+     * 从多类型数组中安全读取Int值（失败返回默认值）
+     */
+    fun Array<Any?>.getInt(index: Int, default: Int): Int {
+      return this.getOrNull(index) as? Int ?: default
+    }
+
+    /**
+     * 从多类型数组中安全读取Float值（失败返回默认值）
+     */
+    fun Array<Any?>.getFloat(index: Int, default: Float): Float {
+      return this.getOrNull(index) as? Float ?: default
+    }
+    /**
+     * 从多类型数组中安全读取String值（失败返回默认值）
+     */
+    fun Array<Any?>.getString(index: Int, default: String): String {
+      return this.getOrNull(index) as? String ?: default
+    }
+
+  }
 
   var effect: Effect? = null
   var everyFrame: EveryFrameWeaponEffectPlugin? = null
@@ -120,7 +194,6 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
     //要在爆炸中使用onHit一定要同时使用onExplosion，在onExplosion中将projectileId放入customData
     val projId = projectile.projectileSpecId?:""
     explosion.setCustomData(EXPLOSION_PROJ_ID_KEY, projId)
-
 
     effect?.onExplosion(explosion, projectile, weaponId)
   }
@@ -406,188 +479,158 @@ class SpawnProjDelayed(lifeTime: Float,val source:DamagingProjectileAPI, val spa
   }
 }
 
-//气钉枪导弹
-class aEP_m_s_harpoon_shot: Effect(){
-  companion object{
-    var DAMAGE = 400f
-    const val KEY = "aEP_m_s_harpoon_shot"
+//气钉枪导弹基础类
+abstract class aEP_HarpoonShotBase : Effect() {
 
+  companion object {
+    // 特效颜色
+    val HIT_COLOR = Color(165, 215, 255, 60)
+    val FRAG_COLOR = Color(230, 240, 255, 178)
+    val FRAG_GLOW_COLOR = Color(155, 175, 255, 50)
+    // 通用碎屑/云特效参数
+    private const val NEBULA_PARTICLE_NUM = 15
   }
 
-  init {
-    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
-    var i = 0
-    for(num in hlString.split("|")){
-      if(i == 0) DAMAGE = num.toFloat()
-      i += 1
-    }
-  }
+  protected abstract val scale: Float          // 特效缩放比例（小：0.75f，大：1f）
+  protected val key: String = this.javaClass.simpleName         // 类的id
+  protected val damage: Float by lazy {
+    val d = parseWeaponConfigArrayWithShotSuffix(key,0f).getFloat(0,100f)
+    d
+  } //对外部读取这种高消耗的可以用lazy init，第一次被调用时才初始化
 
-  override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
-    engine?:return
-    projectile?:return
-    point?:return
+  protected fun createHarpoonVfx(projectile: DamagingProjectileAPI, point: Vector2f) {
+    val facing = projectile.facing
+    val engine = Global.getCombatEngine()
 
-    aEP_m_l_harpoon_shot.createVfx(projectile, point, 0.75f)
+    // 云特效（通用逻辑）
+    if (engine.viewport.isNearViewport(point, 800f)) {
+      val minSize = 5f * scale
+      val maxSize = 40f * scale
+      val minDur = 0.2f
+      val maxDur = 0.8f
+      val arc = 0f
+      val scatter = 1f
+      val minVel = 200f * scale
+      val maxVel = 800f * scale
+      val endSizeMin = 5f * scale
+      val endSizeMax = 10f * scale
+      val spawnPoint = Vector2f(point)
 
-
-    if(shieldHit && target is ShipAPI){
-      //施加伤害，只造成软幅能
-      engine.applyDamage(
-        target,point, DAMAGE, DamageType.KINETIC, 0f, false,true, projectile.source)
-      //声音
-      Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_shield", 1f, 1f, point, Misc.ZERO)
-    }else{
-      //声音
-      Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_armor", 1f, 1f, point, Misc.ZERO)
-    }
-  }
-
-}
-class aEP_m_l_harpoon_shot : Effect(){
-  companion object{
-    //云的颜色
-    val HIT_COLOR = Color(165,215,255,60)
-    val FRAG_COLOR = Color(230,240,255,178)
-    val FRAG_GLOW_COLOR = Color(155,175,255,50)
-    var DAMAGE = 750f
-    const val KEY = "aEP_m_l_harpoon_shot"
-
-    fun createVfx(projectile:DamagingProjectileAPI, point: Vector2f, scale:Float){
-      val facing = projectile.facing
-      //云
-      if (Global.getCombatEngine().viewport.isNearViewport(point, 800f)) {
-        val numParticles = 15
-        val minSize = 5f * scale
-        val maxSize = 40f * scale
-        val pc: Color = HIT_COLOR
-        val minDur = 0.2f
-        val maxDur = 0.8f
-        val arc = 0f
-        val scatter = 1f
-        val minVel = 200f * scale
-        val maxVel = 800f * scale
-        val endSizeMin = 5f * scale
-        val endSizeMax = 10f * scale
-        val spawnPoint = Vector2f(point)
-        for (i in 0 until numParticles) {
-          var angleOffset = Math.random().toFloat()
-          if (angleOffset > 0.2f) {
-            angleOffset *= angleOffset
-          }
-          var speedMult = 1f - angleOffset
-          speedMult = 0.5f + speedMult * 0.5f
-          angleOffset *= sign((Math.random().toFloat() - 0.5f))
-          angleOffset *= arc / 2f
-          val theta = Math.toRadians((facing + angleOffset).toDouble()).toFloat()
-          val r = (Math.random() * Math.random() * scatter).toFloat()
-          val x = cos(theta.toDouble()).toFloat() * r
-          val y = sin(theta.toDouble()).toFloat() * r
-          val pLoc = Vector2f(spawnPoint.x + x, spawnPoint.y + y)
-          var speed = minVel + (maxVel - minVel) * Math.random().toFloat()
-          speed *= speedMult
-          val pVel = Misc.getUnitVectorAtDegreeAngle(Math.toDegrees(theta.toDouble()).toFloat())
-          pVel.scale(speed)
-          val pSize = minSize + (maxSize - minSize) * Math.random().toFloat()
-          val pDur = minDur + (maxDur - minDur) * Math.random().toFloat()
-          val endSize = endSizeMin + (endSizeMax - endSizeMin) * Math.random().toFloat()
-          Global.getCombatEngine().addNebulaParticle(pLoc, pVel, pSize, endSize, 0.1f, 0.5f, pDur, pc)
-        }
+      repeat(NEBULA_PARTICLE_NUM) {
+        var angleOffset = Math.random().toFloat()
+        if (angleOffset > 0.2f) angleOffset *= angleOffset
+        val speedMult = 0.5f + (1f - angleOffset) * 0.5f
+        angleOffset *= Math.signum(Math.random().toFloat() - 0.5f) * arc / 2f
+        val theta = Math.toRadians((facing + angleOffset).toDouble()).toFloat()
+        val r = (Math.random() * Math.random() * scatter).toFloat()
+        val x = Math.cos(theta.toDouble()).toFloat() * r
+        val y = Math.sin(theta.toDouble()).toFloat() * r
+        val pLoc = Vector2f(spawnPoint.x + x, spawnPoint.y + y)
+        val speed = minVel + (maxVel - minVel) * Math.random().toFloat() * speedMult
+        val pVel = Misc.getUnitVectorAtDegreeAngle(Math.toDegrees(theta.toDouble()).toFloat())
+        pVel.scale(speed)
+        val pSize = minSize + (maxSize - minSize) * Math.random().toFloat()
+        val pDur = minDur + (maxDur - minDur) * Math.random().toFloat()
+        val endSize = endSizeMin + (endSizeMax - endSizeMin) * Math.random().toFloat()
+        engine.addNebulaParticle(pLoc, pVel, pSize, endSize, 0.1f, 0.5f, pDur, HIT_COLOR)
       }
-      //碎屑
-      for(i in 0 until (48 * scale).toInt()){
-        val randomSize = getRandomNumberInRange(2f,4f)
-        val randomAngle = getRandomNumberInRange(-15f,15f) + facing
-        val randomVel = speed2Velocity(randomAngle,500f)
-        randomVel.scale(getRandomNumberInRange(0.25f,1f))
-        val ms = aEP_MovingSprite(
-          point, Vector2f(randomSize, randomSize), getRandomNumberInRange(0f, 360f),
-          "graphics/weapons/aEP_b_l_aa40/shell.png"
+    }
+
+    // 碎屑特效（通用逻辑）
+    repeat((48 * scale).toInt()) {
+      val randomSize = MathUtils.getRandomNumberInRange(2f, 4f)
+      val randomAngle = MathUtils.getRandomNumberInRange(-15f, 15f) + facing
+      val randomVel = aEP_Tool.speed2Velocity(randomAngle,500f)
+      randomVel.scale(MathUtils.getRandomNumberInRange(0.25f, 1f))
+
+      val ms = aEP_MovingSprite(
+        point, Vector2f(randomSize, randomSize), MathUtils.getRandomNumberInRange(0f, 360f),
+        aEP_ID.FX_AA40_FRAG_PATH
+      ).apply {
+        lifeTime = 1.2f + MathUtils.getRandomNumberInRange(0f, 0.6f)
+        fadeOut = 0.35f
+        color = FRAG_COLOR
+        setInitVel(randomVel)
+        stopSpeed = 0.925f
+      }
+      addEffect(ms)
+      // addEffect(Glow(ms, FRAG_GLOW_COLOR))
+    }
+
+    // 杆子特效（通用逻辑）
+    val test = MathUtils.getRandomNumberInRange(0, 100)
+    val spawnLoc = MathUtils.getPointOnCircumference(projectile.location, 0f, facing)
+    val randomVel = MathUtils.getRandomPointInCone(Misc.ZERO, 220f, facing - 15f, facing + 15f)
+    val baseAngle = facing - 90f
+    val randomRot = MathUtils.getRandomNumberInRange(-120f, 120f)
+    val lifeTime = MathUtils.getRandomNumberInRange(3f, 4f)
+
+    when {
+      test < 35 -> {
+        MagicRender.battlespace(
+          Global.getSettings().getSprite(aEP_ID.FX_HARPOON_FRAG00_PATH),
+          spawnLoc, randomVel, Vector2f(11f, 34f), Misc.ZERO,
+          baseAngle, randomRot, Color.white,
+          false, 0f, lifeTime, 0.5f
         )
-        ms.lifeTime = 1.2f + getRandomNumberInRange(0f,0.6f)
-        ms.fadeOut = 0.35f
-        ms.color = FRAG_COLOR
-        ms.setInitVel(randomVel)
-        ms.stopSpeed = 0.925f
-        addEffect(ms)
-        //addEffect(Glow(ms, FRAG_GLOW_COLOR))
       }
-      val test = getRandomNumberInRange(0,100)
-      if(test < 35){
-        //杆子
-        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty"),
-          getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
-          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-          Vector2f(11f,34f),
-          Misc.ZERO,
-          //magicRender的角度开始点比游戏多90
-          projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
-          Color.white,
-          false, 0f, getRandomNumberInRange(3f,4f), 0.5f)
-      }else if (test < 70){
-        //断杆上
-        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty2"),
-          getExtendedLocationFromPoint(projectile.location,projectile.facing,20f),
-          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-          Vector2f(11f,34f),
-          Misc.ZERO,
-          //magicRender的角度开始点比游戏多90
-          projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
-          Color(250, 250, 250, 250),
-          false, 0f, getRandomNumberInRange(3f,4f), 0.5f)
-        //断杆下
-        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty3"),
-          getExtendedLocationFromPoint(projectile.location,projectile.facing,-20f),
-          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-          Vector2f(11f,34f),
-          Misc.ZERO,
-          //magicRender的角度开始点比游戏多90
-          projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
-          Color.white,
-          false, 0f, getRandomNumberInRange(3f,4f), 0.5f)
-      }else{
-        //断杆上
-        MagicRender.battlespace(Global.getSettings().getSprite("aEP_FX","harpoon_empty4"),
-          getExtendedLocationFromPoint(projectile.location,projectile.facing,0f),
-          getRandomPointInCone(Misc.ZERO,220f, projectile.facing-15f, projectile.facing+15f),
-          Vector2f(11f,34f),
-          Misc.ZERO,
-          //magicRender的角度开始点比游戏多90
-          projectile.facing - 90f, getRandomNumberInRange(-120f,120f),
-          Color.white,
-          false, 0f, getRandomNumberInRange(3f,4f), 0.5f)
+      test < 70 -> {
+        // 断杆上
+        MagicRender.battlespace(
+          Global.getSettings().getSprite(aEP_ID.FX_HARPOON_FRAG01_PATH),
+          MathUtils.getPointOnCircumference(projectile.location, 20f, facing),
+          randomVel, Vector2f(11f, 34f), Misc.ZERO,
+          baseAngle, randomRot, Color(250, 250, 250, 250),
+          false, 0f, lifeTime, 0.5f
+        )
+        // 断杆下
+        MagicRender.battlespace(
+          Global.getSettings().getSprite(aEP_ID.FX_HARPOON_FRAG02_PATH),
+          MathUtils.getPointOnCircumference(projectile.location, -20f, facing),
+          randomVel, Vector2f(11f, 34f), Misc.ZERO,
+          baseAngle, randomRot, Color.white,
+          false, 0f, lifeTime, 0.5f
+        )
+      }
+      else -> {
+        MagicRender.battlespace(
+          Global.getSettings().getSprite(aEP_ID.FX_HARPOON_FRAG03_PATH),
+          spawnLoc, randomVel, Vector2f(11f, 34f), Misc.ZERO,
+          baseAngle, randomRot, Color.white,
+          false, 0f, lifeTime, 0.5f
+        )
       }
     }
   }
 
-  init {
-    val hlString = Global.getSettings().getWeaponSpec(this.javaClass.simpleName.toString().replace("_shot","")).customPrimaryHL
-    var i = 0
-    for(num in hlString.split("|")){
-      if(i == 0) DAMAGE = num.toFloat()
-      i += 1
+  override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f,
+    shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
+    // 统一空安全校验
+    engine ?: return
+    projectile ?: return
+    point ?: return
+
+    // 仅在视口内生成视觉特效（通用逻辑）
+    if (engine.viewport.isNearViewport(point, 800f)) {
+      createHarpoonVfx(projectile, point)
     }
-  }
 
-  override fun onHit(projectile: DamagingProjectileAPI, target: CombatEntityAPI, point: Vector2f, shieldHit: Boolean, damageResult: ApplyDamageResultAPI, engine: CombatEngineAPI, weaponId: String) {
-    engine?:return
-    projectile?:return
-    point?:return
-    createVfx(projectile, point, 1f)
-
-    if(shieldHit && target is ShipAPI){
-      //施加伤害，只造成软幅能
+    // 额外伤害施加+音效播放逻辑
+    if (shieldHit && target is ShipAPI) {
       engine.applyDamage(
-        target,point, DAMAGE, DamageType.KINETIC, 0f, false,true, projectile.source)
-      //声音
-      Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_shield", 1f, 1f, point, Misc.ZERO)
-    }else{
-      //声音
-      Global.getSoundPlayer().playSound("aEP_m_l_harpoon_hit_armor", 1f, 1f, point, Misc.ZERO)
+        target, point, damage, DamageType.KINETIC, 0f, false, true, projectile.source
+      )
+      Global.getSoundPlayer().playSound(aEP_ID.SOUND_HARPOON_HIT_SHIELD_ID, 1f, 1f, point, Misc.ZERO)
+    } else {
+      Global.getSoundPlayer().playSound(aEP_ID.SOUND_HARPOON_HIT_ARMOR_ID, 1f, 1f, point, Misc.ZERO)
     }
   }
-
 }
+//小气钉枪
+class aEP_m_s_harpoon_shot : aEP_HarpoonShotBase() { override val scale: Float = 0.75f}
+//大气钉枪
+class aEP_m_l_harpoon_shot : aEP_HarpoonShotBase() { override val scale: Float = 1f }
+
 class Glow(val ms: aEP_MovingSprite, val color : Color):aEP_BaseCombatEffect(){
   var size = 10f
   var minSize = 5f
@@ -5808,7 +5851,7 @@ class aEP_fga_xiliu_main : EveryFrame(), BeamEffectPluginWithReset, DamageDealtM
   fun onFire( weapon: WeaponAPI, engine: CombatEngineAPI){
     val firePoint = weapon.getFirePoint(0)
     val facing = weapon.currAngle
-    if (Global.getCombatEngine().viewport.isNearViewport(firePoint, 600f)) {
+    if (Global.getCombatEngine().viewport.isNearViewport(firePoint, 800f)) {
 
       val numParticles  = 20
       val minSize = 20f

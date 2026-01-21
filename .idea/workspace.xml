@@ -9,7 +9,487 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-03&#10;上升流改：&#10;  装甲1200-&gt;1100(装甲应该略低于征服者）&#10;  &#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-04&#10;&#10;优化了combatEffect和weaponEffect（可靠性待测试）">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/IntelliLang.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IntelliLang.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FSF_MilitaryCorporation_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/FSF_MilitaryCorporation_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ExerelinCore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ExerelinCore.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Graphics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Graphics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/LazyLib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/LazyLib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/LunaLib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/LunaLib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Magiclib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Magiclib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/core.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_texture_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_texture_csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/commodities.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/commodities_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/commodities_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/industries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/industries_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/industries_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/market_conditions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/market_conditions_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/procgen/planet_gen_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/procgen/planet_gen_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/rules.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/rules_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/rules_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/sim_opponents.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/special_items.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/special_items_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/special_items_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/starmap.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/starmap.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/campaign/submarkets_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/campaign/submarkets_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/characters/skills/aEP_SkillAnalyze.skill" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/aEP_SkillAnalyze.skill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/characters/skills/skill_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters/skills/skill_data_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/LunaSettings_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/LunaSettings_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/custom_entities.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/custom_entities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/custom_entities_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/custom_entities_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/exerelin/corvus_capitals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelin/corvus_capitals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/exerelin/customStarts.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelin/customStarts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/exerelin/groundBattleDefs.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelin/groundBattleDefs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/exerelinFactionConfig/mod_factions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelinFactionConfig/mod_factions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/hull_styles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/hull_styles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_light_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_light_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_light_data_e.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_light_data_e.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_light_data_m.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_light_data_m.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_ships.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/lights/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicBounty_data_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/modFiles/magicTrail_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/modFiles/magicTrail_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/planets.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/planets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/planets_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/planets_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/sounds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/title_screen_variants.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/title_screen_variants.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/vesperon_blueprints.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/vesperon_blueprints.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_nuanchi.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_nuanchi.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk2.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk2.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk3.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk3.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_baojiao.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_baojiao.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_hailiang.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_hailiang.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_pingding.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_pingding.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cru_shanhu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cru_shanhu.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_chongji.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_chongji.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_shuishi.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_shuishi.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_yangji.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_yangji.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan_mk2.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_youjiyan_mk2.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_des_yuanyang.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_des_yuanyang.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_chichao.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_chichao.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_wanliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_wanliu.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_xiliu.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_xiliu.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_xiliu_mk2.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_xiliu_mk2.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_fga_yonglang.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_fga_yonglang.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_bom_lancer.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_bom_lancer.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_maodian.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_maodian.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_repair.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_repair.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_shuishi.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_ftr_ut_shuishi.ship" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/wing_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/wing_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/descriptor_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_EN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_assassination/mission_text_EN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/descriptor_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_EN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_eliminate_mission/mission_text_EN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/descriptor_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_EN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_first_contact/mission_text_EN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/descriptor_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_EN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_planet_investigation/mission_text_EN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/descriptor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/descriptor_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/descriptor_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/mission_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/mission_text_EN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_random_fleet_combat/mission_text_EN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_test/descriptor.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_test/descriptor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_test/descriptor_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_test/descriptor_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_test/mission_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_test/mission_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/aEP_test/mission_text_EN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/aEP_test/mission_text_EN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/missions/mission_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/missions/mission_list.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/FrameBufferFragShader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/data/shaders/FrameBufferFragShader.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/FrameBufferVertShader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/data/shaders/FrameBufferVertShader.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/aEP_BlurFrag.frag" beforeDir="false" afterPath="$PROJECT_DIR$/data/shaders/aEP_BlurFrag.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/aEP_BlurVert.vert" beforeDir="false" afterPath="$PROJECT_DIR$/data/shaders/aEP_BlurVert.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_AntiPhaseDrone.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_AntiPhaseDrone.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_ApproachThruster.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_ApproachThruster.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_BBLockOn.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_BBLockOn.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_ComebackProgram.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_ComebackProgram.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_CoordinatedCombat.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_CoordinatedCombat.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DamperBomber.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DamperBomber.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DamperTanker.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DamperTanker.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DroneBurst.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DroneBurst.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DroneCanister.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DroneCanister.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DroneDash.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DroneDash.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DroneGuard.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DroneGuard.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_DroneTimeAlter.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_DroneTimeAlter.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_EcmSuppress.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_EcmSuppress.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_FighterLaunch.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_FighterLaunch.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_FighterProtector.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_FighterProtector.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_FlareLaunch.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_FlareLaunch.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_FortressShield.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_FortressShield.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_FuelBurn.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_FuelBurn.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_GrenadeThrower.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_GrenadeThrower.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_LidarArray.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_LidarArray.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_MainGunAttitude.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_MainGunAttitude.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_ManeuverThruster.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_ManeuverThruster.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_MaodianDroneLaunch.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_MaodianDroneLaunch.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_MineLayer.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_MineLayer.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_NBFiringJet.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_NBFiringJet.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_NCReload.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_NCReload.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_RQReload.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_RQReload.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_RecallDevice.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_RecallDevice.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_RepulseMissileLaunch.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_RepulseMissileLaunch.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_Rupture.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_Rupture.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_ShuishiDroneLaunch.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_ShuishiDroneLaunch.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_SiegeMode.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_SiegeMode.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_Skimmer.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_Skimmer.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_SwitchPowerMode.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_SwitchPowerMode.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_TravelDrive.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_TravelDrive.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_VectorThrust.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_VectorThrust.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_VentMode.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_VentMode.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_WeaponReset.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_WeaponReset.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/aEP_YJDefenseFlak.system" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/aEP_YJDefenseFlak.system" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/swap_variants.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/swap_variants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Assault.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_shangshengliu_mk3_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_pubu_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_taodong_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_taodong_Assault.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_bom_lancer.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_bom_lancer.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_repair.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_repair.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_shuishi.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/fighters/aEP_ftr_ut_shuishi.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/missions/aEP_brilliant_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/missions/aEP_brilliant_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/missions/aEP_lumen_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/missions/aEP_lumen_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/missions/aEP_nova_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/missions/aEP_nova_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier1_battery_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier1_battery_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier1_hanger1_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier1_hanger1_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier1_hanger2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier1_hanger2_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier2_hull1_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier2_hull1_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier2_hull1_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/stations/aEP_sta_tier2_hull1_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_blinker_green.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_blinker_green.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cap_duiliu_main.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_cap_duiliu_main.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cap_duiliu_main2.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_cap_duiliu_main2.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cru_pingding_lidardish.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_cru_pingding_lidardish.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_e_s_flamer.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_e_s_flamer.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_empty.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_empty.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_fga_shuangshen2_lidardish.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_fga_shuangshen2_lidardish.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ftr_shendu_mine.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_ftr_shendu_mine.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_sup_tank_flak.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_sup_tank_flak.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_decompose_beam.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_decompose_beam.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_repair_beam.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_repair_beam.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_supply_main.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ftr_ut_supply_main.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_m_phasemine2.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_m_phasemine2.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_bomblance.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_bomblance.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_flare.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_flare.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_flare2.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_flare2.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_m_s_flare3.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_m_s_flare3.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_ut_targeting_laser1.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_ut_targeting_laser1.wpn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_aa40_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_aa40_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_d100t_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_d100t_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_dg3_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_dg3_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_railwaygun_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_railwaygun_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_railwaygun_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_railwaygun_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_flak_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_flak_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_h88_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_h88_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_hv7_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_hv7_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_hv7_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_hv7_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_k125_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_k125_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_lighting_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_lighting_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_mb32_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_mb32_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_rk107_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_m_rk107_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_s_630_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_s_630_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_s_h37_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_s_h37_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_s_pom_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_s_pom_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_duiliu_main2_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_duiliu_main2_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_duiliu_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_duiliu_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_neibo_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_neibo_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_nuanchi_missile_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_nuanchi_missile_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_nuanchi_missile_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_nuanchi_missile_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_nuanchi_missile_shot3.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_nuanchi_missile_shot3.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_sta_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_sta_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main2_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main2_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main3_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main3_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_torpedo_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_torpedo_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pubu_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pubu_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_requan_missile_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_requan_missile_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cruise_missile_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cruise_missile_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cruise_missile_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cruise_missile_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_des_lianliu_grenade_thrower_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_des_lianliu_grenade_thrower_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_des_shendu_mk2_cruise_missile_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_des_shendu_mk2_cruise_missile_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_des_yangji_flak_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_des_yangji_flak_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_e_s_flamer_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_e_s_flamer_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_empty.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_empty.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_fga_xiliu_mk2_missile_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_fga_xiliu_mk2_missile_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_fga_yonglang_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_fga_yonglang_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_bom_attacker_gun_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_bom_attacker_gun_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_bom_nuke_bomb_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_bom_nuke_bomb_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_helicop_lmg_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_helicop_lmg_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_helicop_rocket_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_helicop_rocket_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_hvfighter_gun_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_hvfighter_gun_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_shendu_mine_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ftr_shendu_mine_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_guardian_gun_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_guardian_gun_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_guardian_gun_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_guardian_gun_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_shield_gun_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_shield_gun_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_flak_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_flak_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_sup_tank_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ut_maodian_ads_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ftr_ut_maodian_ads_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_l_blasthammer_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_l_blasthammer_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_l_harpoon_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_l_harpoon_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_blasthammer3_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_blasthammer3_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_blasthammer_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_blasthammer_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_fluxtube_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_fluxtube_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_magnetmine_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_magnetmine_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_m_phasemine_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_bomblance_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_bomblance_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_breachdoor_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_breachdoor_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_cluster_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_cluster_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_cluster_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_cluster_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era2_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era2_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era3_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era3_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_expander_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_expander_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_flare_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_flare_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_flare_shot2.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_flare_shot2.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_flare_shot3.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_flare_shot3.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_harpoon_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_harpoon_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_magnetmine_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_magnetmine_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_type28_cannon_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_type28_cannon_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_ut_missile_attacher_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_ut_missile_attacher_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_EN.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_EN.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_EN.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/aEP_FSF_adv_EN.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/independent.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/independent.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/luddic_path.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/luddic_path.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/pirates.faction" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/pirates.faction" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/weapons/StandardRemainder.txt" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/weapons/StandardRemainder.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_info_EN.json" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info_EN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AddOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AddOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AdvanceWeaponMission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_AdvanceWeaponMission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_CheckItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_CheckItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_CruiseMissileLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_CruiseMissileLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_HandInParts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_HandInParts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PickReward.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_PickReward.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_TrainMarine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_TrainMarine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_UpdateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fs/starfarer/api/impl/campaign/rulecmd/aEP_UpdateData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_MissionUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_MissionUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_assassination/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_assassination/MissionDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_eliminate_mission/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_eliminate_mission/MissionDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_first_contact/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_first_contact/MissionDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_planet_investigation/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_planet_investigation/MissionDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_random_fleet_combat/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_random_fleet_combat/MissionDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/missions/aEP_test/MissionDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/missions/aEP_test/MissionDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/aEP_CombatEffectPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/aEP_CombatEffectPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/aEP_RotateSlot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/aEP_RotateSlot.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_AutoFireAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_AutoFireAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_BaseShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_BaseShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_CruiseMissileAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_CruiseMissileAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneDecomposeAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneDecomposeAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneRepairShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShenduShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShenduShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShieldShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneShieldShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneSupplyShipAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_DroneSupplyShipAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_FluxTubeAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_FluxTubeAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MaoDianDroneAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MissileAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MissileAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MissileDoorBreach.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_MissileDoorBreach.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_SimpleMissileShipAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_SimpleMissileShipAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/aEP_TearingBeamAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/aEP_TearingBeamAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_AntiPhaseDroneAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_AntiPhaseDroneAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_BaseSystemAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_BaseSystemAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_ComebackProgramAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_ComebackProgramAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_CoordinatedCombatAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_CoordinatedCombatAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DamperTankerAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DamperTankerAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DecomposerFastBuildAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DecomposerFastBuildAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneBurstAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneBurstAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneDashAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneDashAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneGuardAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneGuardAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneTimeAlterAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_DroneTimeAlterAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_FighterLaunchAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_FighterLaunchAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_GrenadeThrowerAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_GrenadeThrowerAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_MainGunAttitudeAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_MainGunAttitudeAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_MaoDianDroneLaunchAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_MaoDianDroneLaunchAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_RepulseMissileLaunchAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_RepulseMissileLaunchAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_RequanReloadAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_RequanReloadAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_ShuishiDroneLaunchAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_ShuishiDroneLaunchAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_SiegeModeAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_SiegeModeAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_SwitchPowerModeAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_SwitchPowerModeAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_VentModeAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_VentModeAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_WeaponResetAI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/ai/shipsystemai/aEP_WeaponResetAI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/FSFCampaignPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/FSFCampaignPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/aEP_FSFRelayPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/aEP_FSFRelayPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/aEP_OpPageManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/aEP_OpPageManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_ExtinctiveVirus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_ExtinctiveVirus.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_MilitaryZone.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_MilitaryZone.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_SpaceFarm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_SpaceFarm.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_UndergroundStorage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/environment/aEP_UndergroundStorage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_AdvanceHqPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_AdvanceHqPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/econ/industries/aEP_FSFOrbitalStationPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/entity/aEP_CruiseMissileEntityPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/entity/aEP_CruiseMissileEntityPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM1Intel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM1Intel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM2Intel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM2Intel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM3Intel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM3Intel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM4Intel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM4Intel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_BaseMission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_BaseMission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_CruiseMissileLoadIntel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_CruiseMissileLoadIntel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/items/aEP_CruiseMissile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/items/aEP_CruiseMissile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/submarkets/aEP_FSFMarketPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/submarkets/aEP_FSFMarketPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_AcceleratedGunnery.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_AcceleratedGunnery.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_AttackCarrier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_AttackCarrier.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BBAdjustRange.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BBAdjustRange.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BaseHullMod.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BaseHullMod.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_CloseTargeting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_CloseTargeting.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_CruiseMissileCarrier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_CruiseMissileCarrier.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EmergencyReconstruct.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_FighterSpecial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HighSpeedManeuver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HighSpeedManeuver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HotLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HotLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_LimitedTurret.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_LimitedTurret.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MineField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MineField.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ModuleTargeting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ModuleTargeting.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MultiTurret.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MultiTurret.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_OpenFieldHangar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_PingdingMainSwapHidden.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_PingdingMainSwapHidden.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ReactiveArmor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ReactiveArmor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SelfRotate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SelfRotate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldControlled.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_ShieldFloating.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SpecialHull.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_SpecialHull.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Strafe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Strafe.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_StrategyThruster.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_StrategyThruster.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TargetSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TargetSystem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TitanicKiller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TitanicKiller.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Tugboat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_Tugboat.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_VanguardHull.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_VanguardHull.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_AntiPhaseDrone.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_AntiPhaseDrone.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ApproachThrusterScript.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ApproachThrusterScript.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_BBLockOn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_BBLockOn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ComebackProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ComebackProgram.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_CoordinatedCombat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_CoordinatedCombat.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DamperTanker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DamperTanker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneBurst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneBurst.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneDash.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneDash.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneGuard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneGuard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneTimeAlter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_DroneTimeAlter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_EcmSuppress.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FlareLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FlareLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FuelBurn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FuelBurn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_GrenadeThrower.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_GrenadeThrower.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_LidarArray.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_LidarArray.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MainGunAttitude.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MainGunAttitude.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ManeuverThruster.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ManeuverThruster.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MaodianDroneLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MineLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MineLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NBFiringJet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NBFiringJet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NCReloadScript.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_NCReloadScript.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RecallDevice.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RecallDevice.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RepulseMissileLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RepulseMissileLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RequanReload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_RequanReload.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Skimmer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Skimmer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SwitchPowerMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SwitchPowerMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VectorThrust.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VectorThrust.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_VentMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_YJDefenseFlak.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_YJDefenseFlak.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_system/FortressShieldStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_system/FortressShieldStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/skills/aEP_SkillAnalyze.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/skills/aEP_SkillAnalyze.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_AnchorStandardLight.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_AnchorStandardLight.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_AngleTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_AngleTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_AnimationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_AnimationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Blinker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Blinker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_ColorTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_ColorTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DataTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DataTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DecoGlowController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DecoGlowController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DecoMoveController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DecoMoveController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DecoRevoController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DecoRevoController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSmoke.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSmoke.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_SpreadRing.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_SpreadRing.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Sprite.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Sprite.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_StickOnHit.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_StickOnHit.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BBRadarEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BBRadarEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamAds.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamAds.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamFlux.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamFlux.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamRepair.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamRepair.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamScrape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamScrape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamTesla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_BeamTesla.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DecoAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DecoAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DefenseDroneHatchAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DefenseDroneHatchAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DuiliuMainGunEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_DuiliuMainGunEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_EmptyWeaponAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_EmptyWeaponAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_GlowDeco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_GlowDeco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_GlowerAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_GlowerAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_NeiBoMainAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_NeiBoMainAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_NiuArmorBurnerBeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_NiuArmorBurnerBeam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_NoWhenNotReadyAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_NoWhenNotReadyAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_RadarAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_RadarAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_RepairAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_RepairAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_ThrusterAnimation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_ThrusterAnimation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WavingAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WavingAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_gen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_gen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_DWR43.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_Heng.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_FSF_Heng.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_IND_Lamdor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/world/aEP_systems/aEP_IND_Lamdor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exerelin/campaign/customstart/aEP_EliteFrigateStart.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/exerelin/campaign/customstart/aEP_EliteFrigateStart.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/aEP_BloomMask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shaders/aEP_BloomMask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/aEP_BloomShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shaders/aEP_BloomShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swap_CN_EN.py" beforeDir="false" afterPath="$PROJECT_DIR$/swap_CN_EN.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,17 +575,17 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Program Files/Starsector098/mods/FSF_MilitaryCorporation&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/xy-peijincheng/Downloads/starsector/mods/FSF_MilitaryCompany-master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -143,14 +623,6 @@
       <item itemvalue="Batch.Run SS bat " />
       <item itemvalue="Remote JVM Debug.Remote SS Debugger" />
     </list>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -873,7 +1345,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="5.0rc3&#10;&#10;修正了rc2中错误的版本号" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc3&#10;平衡性：&#10;  武器：&#10;    破门锥鱼雷：&#10;      弹体耐久800-&gt;625&#10;    图钉磁吸炸弹：&#10;      吸引力下调&#10;&#10;  插件：&#10;    热填弹系统：&#10;      被隐藏，为了存档兼容性问题先不删除，等重做&#10;    神速芯控：&#10;      常驻射速加成20%-&gt;25%&#10;      同时使能量/实弹武器幅能产出+5%&#10;      战术系统开启后加成不再翻倍（额外的射速加成被直接给到战术系统里，插件只提供常驻）&#10;&#10;  舰船：&#10;    温跃层级：&#10;      战术系统开启时获得25%的实弹/能量武器射速与弹药回复速度上升（抵消神速芯控改动的影响）&#10;    中流级：&#10;      装配点135-&gt;140&#10;    细流级：&#10;      内置主炮聚焦模式的电弧弹跳范围300-&gt;500，弹跳次数6-&gt;5&#10;      内置主炮的速射模式攻击特效被移除，dps350-&gt;375&#10;    涌浪级：&#10;      现在不再将敌舰链在重力矛上，而是自己身上&#10;&#10;  武器：&#10;    zt-125和aa40：&#10;      攻击特效被移除（极低概率只有2%，正常情况下增伤少到可以忽略，移除这种为了特效而特效的特效减少阅读量）&#10;    GP-80高射炮：&#10;      攻击特效被移除&#10;      装配点10-&gt;9&#10;      伤害150-&gt;300&#10;    K-9机载轻机枪:&#10;      射程450-&gt;400&#10;&#10;&#10;其他：&#10;    适配了0.98&#10;    修复了石珊瑚级中间大复合炮塔槽位被设定为挂载点的问题&#10;    略微下调了洋脊级战术系统的视觉特效&#10;    略微下调了离岸流级战术系统的视觉特效&#10;    在FSF星系中心防御站中增加了黑市&#10;    涌浪级的战术系统现在使用类似通灵塔系统的新版电弧" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc4 01" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 01" />
@@ -898,19 +1369,25 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-01&#10;修改了深度战机的id，变成ftr_ftr&#10;&#10;爆炸长矛:&#10;  加入了1秒的开火前摇，过程中会将舰船的向矛头推动约150距离，但无论是否戳中，都会消耗一颗备弹&#10;  射程300-&gt;400，杆长不变，只是辅助ai（因为杆长特性不吃距离加成，导致距离太近ai难以使用，略微增加了威胁距离）&#10;&#10;其他：&#10;  建造空间站即使好感没有达到要求，也会出现选项" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-02&#10;&#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-02&#10;上升流改：&#10;  装甲1200-&gt;1100(装甲应该略低于征服者）&#10;  &#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-02&#10;上升流改：&#10;  装甲1200-&gt;1100(装甲应该略低于征服者）&#10;  &#10;d100t:&#10;  击中装甲转变为破片伤害的比例100%-&gt;80%，降低破甲力" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-04&#10;&#10;优化了combatEffect和weaponEffect（可靠性待测试）" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-04&#10;&#10;优化了combatEffect和weaponEffect（可靠性待测试）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt</url>
-          <line>5580</line>
-          <properties class="data.scripts.weapons.ShowHitLocation" method="advanceImpl">
+          <line>5624</line>
+          <properties class="data.scripts.weapons.ShowHitLocation">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt</url>
+          <line>123</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

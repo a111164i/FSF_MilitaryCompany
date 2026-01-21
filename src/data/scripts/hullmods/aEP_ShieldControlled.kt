@@ -84,7 +84,6 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
 
   /**
    * 使用这个
-   *
    * @param ship
    * @param id
    */
@@ -96,6 +95,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
    * 加入listener使用这个
    */
   override fun applyEffectsAfterShipAddedToCombatEngine(ship: ShipAPI, id: String) {
+
     if (ship.shield == null || ship.shield.type == ShieldAPI.ShieldType.NONE) {
       return
     }
@@ -103,7 +103,9 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
     if(!ship.customData.containsKey(ID)){
       val c = DamageTakenMult(ship, mag[ship.hullSize]?:1000f)
       ship.addListener(c)
-      aEP_CombatEffectPlugin.addEffect(c)
+      // render is handled by a separate effect object; logic is registered as a listener
+      val render = DamageTakenRenderEffect(ship, mag[ship.hullSize]?:1000f)
+      aEP_CombatEffectPlugin.addEffect(render)
       ship.setCustomData(ID,1f)
     }
   }
@@ -202,114 +204,124 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
 
   }
 
-  internal class DamageTakenMult(private val ship: ShipAPI, val rad: Float) : DamageTakenModifier, AdvanceableListener, WeaponBaseRangeModifier, aEP_BaseCombatEffect(0f, ship) {
-    private var timer = 0f
-    private var didChange = false
-    private val shifter = ColorShifter(ship.shield.innerColor)
-    private val ringShifter = ColorShifter(ship.shield.ringColor)
+  internal class DamageTakenMult(private val ship: ShipAPI, val rad: Float) : DamageTakenModifier, AdvanceableListener, WeaponBaseRangeModifier {
+     private var timer = 0f
+     private var didChange = false
+     private val shifter = ColorShifter(ship.shield.innerColor)
+     private val ringShifter = ColorShifter(ship.shield.ringColor)
 
-    val reduceRangeSq = rad * rad
-    val outerRangeSq = OUTER_RANGE * OUTER_RANGE
-    val minRangeSq = MIN_DAMAGE_RANGE * MIN_DAMAGE_RANGE
+     val reduceRangeSq = rad * rad
+     val outerRangeSq = OUTER_RANGE * OUTER_RANGE
+     val minRangeSq = MIN_DAMAGE_RANGE * MIN_DAMAGE_RANGE
 
+     // initialization for logic-only class; rendering is handled by DamageTakenRenderEffect
+
+     fun changeShield(distSq:Float, damage: DamageAPI, isBeam:Boolean) : Boolean{
+       var alpha = 0.6f
+       if(isBeam) alpha = 0.4f
+
+       if(distSq >= outerRangeSq){
+         damage.modifier.modifyMult(ID, 1f - OUTER_DAMAGE_REDUCE_MULT)
+         shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,alpha)
+         ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,alpha)
+         timer = COLOR_RECOVER_INTERVAL
+         didChange = true
+         return true
+       }
+
+       if (distSq >= reduceRangeSq || distSq < minRangeSq) {
+         damage.modifier.modifyMult(ID, 1f - REDUCE_MULT)
+         shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,alpha)
+         ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,alpha)
+         timer = COLOR_RECOVER_INTERVAL
+         didChange = true
+         return true
+       }
+       return false
+     }
+
+     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
+       //谨防有人中途取消护盾
+       ship.shield?:return null
+
+       param?: return null
+       //不对导弹减伤，不对来源于导弹弹丸减伤
+       if (param is DamagingProjectileAPI && param !is MissileAPI && !param.isFromMissile && shieldHit) {
+         val from = param.spawnLocation?:param.location
+         if (ship.isAlive) {
+           val distSq = Misc.getDistanceSq(from, point)
+           if(changeShield(distSq,damage, false)) return ID
+         }
+       }
+       if (param is BeamAPI && shieldHit ) {
+
+         //如果光束来源于dem，固定减伤
+         if(param.source?.hasTag(Tags.VARIANT_FX_DRONE) == true){
+           damage.modifier.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
+           return ID
+         }
+
+         val from = param.from
+         if (ship.isAlive) {
+           val distSq = Misc.getDistanceSq(from, point)
+           if(changeShield(distSq, damage,true)) return ID
+         }
+       }
+       return null
+     }
+
+     override fun advance(amount: Float) {
+       //谨防有人中途取消护盾
+       ship.shield?:return
+
+       shifter.advance(amount)
+       ringShifter.advance(amount)
+       ship.shield.innerColor = shifter.curr
+       ship.shield.ringColor = ringShifter.curr
+
+       timer -= amount
+       timer = MathUtils.clamp(timer,0f, COLOR_RECOVER_INTERVAL)
+       if (timer <= 0f && didChange) {
+         ship.mutableStats.shieldDamageTakenMult.unmodify(ID)
+         ship.mutableStats.shieldUpkeepMult.unmodify(ID)
+         didChange = false
+       }
+
+     }
+
+     override fun getWeaponBaseRangePercentMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
+       return 0f
+     }
+
+     override fun getWeaponBaseRangeMultMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
+       return 1f
+     }
+
+     override fun getWeaponBaseRangeFlatMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
+       weapon?:return 0f
+       if(!shouldModRange(weapon)) return 0f
+
+       val baseRange = weapon.spec?.maxRange ?: MAX_WEAPON_RANGE_CAP
+       if(baseRange > MAX_WEAPON_RANGE_CAP){
+         return MAX_WEAPON_RANGE_CAP-baseRange
+       }
+       return 0f
+     }
+   }
+
+  /**
+   * Rendering-only effect extracted from DamageTakenMult.
+   */
+  internal class DamageTakenRenderEffect(entity: CombatEntityAPI, private val rad: Float) : aEP_BaseCombatEffect(0f, entity) {
     init {
-      radius = rad + ship.collisionRadius
+      // radius used for rendering (match previous behaviour)
+      val collisionRadius = (entity as? ShipAPI)?.collisionRadius ?: 0f
+      radius = rad + collisionRadius
       layers = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
     }
 
-    fun changeShield(distSq:Float, damage: DamageAPI, isBeam:Boolean) : Boolean{
-      var alpha = 0.6f
-      if(isBeam) alpha = 0.4f
-
-      if(distSq >= outerRangeSq){
-        damage.modifier.modifyMult(ID, 1f - OUTER_DAMAGE_REDUCE_MULT)
-        shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,alpha)
-        ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,alpha)
-        timer = COLOR_RECOVER_INTERVAL
-        didChange = true
-        return true
-      }
-
-      if (distSq >= reduceRangeSq || distSq < minRangeSq) {
-        damage.modifier.modifyMult(ID, 1f - REDUCE_MULT)
-        shifter.shift( ID, SHIFT_COLOR,0.001f,0.1f,alpha)
-        ringShifter.shift(ID,SHIFT_COLOR,0.001f,0.1f,alpha)
-        timer = COLOR_RECOVER_INTERVAL
-        didChange = true
-        return true
-      }
-      return false
-    }
-
-    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
-      //谨防有人中途取消护盾
-      ship.shield?:return null
-
-      param?: return null
-      //不对导弹减伤，不对来源于导弹弹丸减伤
-      if (param is DamagingProjectileAPI && param !is MissileAPI && !param.isFromMissile && shieldHit) {
-        val from = param.spawnLocation?:param.location
-        if (ship.isAlive) {
-          val distSq = Misc.getDistanceSq(from, point)
-          if(changeShield(distSq,damage, false)) return ID
-        }
-      }
-      if (param is BeamAPI && shieldHit ) {
-
-        //如果光束来源于dem，固定减伤
-        if(param.source?.hasTag(Tags.VARIANT_FX_DRONE) == true){
-          damage.modifier.modifyMult(ID, 1f - BASE_DAMAGE_REDUCE_MULT)
-          return ID
-        }
-
-        val from = param.from
-        if (ship.isAlive) {
-          val distSq = Misc.getDistanceSq(from, point)
-          if(changeShield(distSq, damage,true)) return ID
-        }
-      }
-      return null
-    }
-
-    override fun advance(amount: Float) {
-      //谨防有人中途取消护盾
-      ship.shield?:return
-
-      shifter.advance(amount)
-      ringShifter.advance(amount)
-      ship.shield.innerColor = shifter.curr
-      ship.shield.ringColor = ringShifter.curr
-
-      timer -= amount
-      timer = MathUtils.clamp(timer,0f, COLOR_RECOVER_INTERVAL)
-      if (timer <= 0f && didChange) {
-        ship.mutableStats.shieldDamageTakenMult.unmodify(ID)
-        ship.mutableStats.shieldUpkeepMult.unmodify(ID)
-        didChange = false
-      }
-
-    }
-
-    override fun getWeaponBaseRangePercentMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
-      return 0f
-    }
-
-    override fun getWeaponBaseRangeMultMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
-      return 1f
-    }
-
-    override fun getWeaponBaseRangeFlatMod(ship: ShipAPI?, weapon: WeaponAPI?): Float {
-      weapon?:return 0f
-      if(!shouldModRange(weapon)) return 0f
-
-      val baseRange = weapon.spec?.maxRange ?: MAX_WEAPON_RANGE_CAP
-      if(baseRange > MAX_WEAPON_RANGE_CAP){
-        return MAX_WEAPON_RANGE_CAP-baseRange
-      }
-      return 0f
-    }
-
     override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
+      val ship = entity as? ShipAPI ?: return
 
       if(Global.getCombatEngine().playerShip == ship
         && ship.shield?.isOn == true &&  ship.ai == null){
@@ -323,9 +335,7 @@ class aEP_ShieldControlled internal constructor() : aEP_BaseHullMod() {
         val largeRad = (rad + ship.shield.radius)
         val smallRad = largeRad - width
 
-
         //画完全的圆
-        val numOfVertex = (rad/25f).toInt()
         val angleStep = 3f
         var angle = ship.shield.facing - ship.shield.activeArc/2f
         var drawnAngle = 0f

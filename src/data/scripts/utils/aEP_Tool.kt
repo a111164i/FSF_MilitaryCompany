@@ -2330,7 +2330,24 @@ class aEP_ID{
     val EMP_ARC_COLOR_CORE =  Color(255,175,255,255)
 
     val TELEPORT_JITTER_COLOR = RecallDeviceStats.JITTER_COLOR
+
+    //-------------------------------------------------//
+    // 武器特效贴图id，便于复用
+    const val FX_PREFIX = "aEP_FX"
+    const val FX_AA40_FRAG_PATH = "graphics/weapons/aEP_b_l_aa40/shell.png"
+
+    const val FX_HARPOON_FRAG00_PATH = "graphics/weapons/aEP_m_l_harpoon/large_empty.png"
+    const val FX_HARPOON_FRAG01_PATH = "graphics/weapons/aEP_m_l_harpoon/large_empty2.png"
+    const val FX_HARPOON_FRAG02_PATH = "graphics/weapons/aEP_m_l_harpoon/large_empty3.png"
+    const val FX_HARPOON_FRAG03_PATH = "graphics/weapons/aEP_m_l_harpoon/large_empty4.png"
+
+    //-------------------------------------------------//
+    // 武器音效id，便于复用
+    const val SOUND_HARPOON_HIT_SHIELD_ID = "aEP_m_l_harpoon_hit_shield"
+    const val SOUND_HARPOON_HIT_ARMOR_ID = "aEP_m_l_harpoon_hit_armor"
+
   }
+
 }
 
 class aEP_Render{

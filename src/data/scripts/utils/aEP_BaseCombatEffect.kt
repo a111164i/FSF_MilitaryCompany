@@ -1,6 +1,7 @@
 package data.scripts.utils
 
 import com.fs.starfarer.api.combat.*
+import com.fs.starfarer.api.util.Misc
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.util.*
@@ -25,10 +26,14 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   var shouldEnd = false;
   var layers: EnumSet<CombatEngineLayers> = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_LAYER)
 
-  //特效中心，如果拥有entity则默认为entity的位置，否则需要手动初始化
+  //视效中心，用于判断距离屏幕距离决定是否渲染，如果拥有entity则默认为entity的位置
+  //如果无entity，应该在advanceImpl里实时更新
   var loc = Vector2f(0f,0f)
-  //特效半径，特效中心距离窗口边缘距离大于特效半径时不再渲染
-  var radius:Float = 9999999999f
+
+  //视效半径，中心距离窗口边缘距离大于特效半径时不再渲染，不影响advance部分
+  //有时候最好的办法是距离太远直接不生产粒子。会长存在时间的粒子才用这个，不看不渲染
+  //大半径的需要调一下，留1200足矣
+  var radius:Float = 1200f
   var renderInShader = false
 
   constructor(){
@@ -58,6 +63,7 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
   /**
    * 等于下一帧强制结束，下一帧的advance不会触发
+   * 用radius来当magic number，正常情况下不会小于0，默认1200
    */
   override fun cleanup() {
     shouldEnd = true;
@@ -65,8 +71,10 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
   override fun isExpired(): Boolean {
     if(shouldEnd){
-      readyToEnd()
-      radius = -1f
+      if(radius >= 0f){
+        readyToEnd()
+        radius = -1f
+      }
       return true
     }
     return false
@@ -83,7 +91,8 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
     //若 entity不为空，则进行 entity检测，不过就直接结束
     var timeMult = 1f
     if(entity != null) {
-      loc.set(entity?.location?:Vector2f(0f,0f))
+      //先默认到entity的位置/地图中心，后面advanceImpl里面更新的真正位置
+      loc.set(entity?.location?: Misc.ZERO)
       if(aEP_Tool.isDead(entity as CombatEntityAPI)){
         shouldEnd = true
       }
@@ -94,12 +103,9 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
     }
 
     if(shouldEnd) return
-
-    time += amount * timeMult
-    if(lifeTime > 0f){
-      time = MathUtils.clamp(time,0f,lifeTime)
-    }
+    time = (time + amount * timeMult).coerceAtMost(lifeTime)
     advanceImpl(amount)
+
     if(time >= lifeTime && lifeTime > 0){
       shouldEnd = true
     }
@@ -144,10 +150,9 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
     if(entity != null){
       center.set(entity!!.location)
     }
-    val screenDist = radius * 1.1f
+    val screenDist = radius * 1f
     //aEP_Tool.addDebugLog(viewport.isNearViewport(center, screenDist).toString())
-    if(!viewport.isNearViewport(center,screenDist )) return
-    renderImpl(layer,viewport)
+    if(viewport.isNearViewport(center,screenDist )) renderImpl(layer,viewport)
   }
 
   open fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI){
