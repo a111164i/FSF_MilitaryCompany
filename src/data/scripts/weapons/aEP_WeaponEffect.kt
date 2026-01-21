@@ -79,10 +79,6 @@ class aEP_WeaponEffect : OnFireEffectPlugin, OnHitEffectPlugin, ProximityExplosi
      * @param weaponId 武器ID（如"aEP_m_s_harpoon"，无需带_shot后缀）
      * @param defaultValue 缺省值（支持Int/Float/String等任意类型，配置缺失时填充）
      * @return 长度固定为8的Array<Any?>，索引0-7对应配置的第0-7段值，类型自动适配：
-     *         - 纯数字（无小数点）→ Int
-     *         - 带小数点的数字 → Float
-     *         - 非数字字符串 → String
-     *         - 配置缺失/解析失败 → defaultValue
      */
     fun parseWeaponConfig(weaponId: String, defaultValue: Any): Array<Any?> {
       // 1. 初始化长度为8的数组，所有位置填充默认值
