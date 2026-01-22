@@ -23,7 +23,7 @@
       "$aEP_HvbKey_01": true
     },
     "trigger_playerRelationship_atLeast": {
-      "aEP_FSF": 0.8
+      "aEP_FSF": 0.7
     },
     "trigger_playerRelationship_atMost": {},
     "job_name": "电子亡灵",

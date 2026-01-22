@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.CargoAPI
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Tags.VARIANT_FX_DRONE
+import com.fs.starfarer.api.impl.combat.DisintegratorEffect
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
@@ -28,6 +29,7 @@ import data.scripts.shipsystems.aEP_NBFiringJet.Companion.WEAPON_TURN_RATE_PERCE
 import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID.Companion.TELEPORT_JITTER_COLOR
 import data.scripts.utils.aEP_Tool.Util.speed2Velocity
+import org.jetbrains.annotations.Nullable
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -1731,40 +1733,83 @@ class aEP_Tool {
       return d
     }
 
-    fun applyPureArmorDamage(weapon: WeaponAPI?, d: Float, target: ShipAPI, point: Vector2f) {
+
+    fun applyPureArmorDamage(weapon: WeaponAPI?, d: Float, target: ShipAPI, point: Vector2f, canDamageHull: Boolean = false){
       val engine = Global.getCombatEngine()
       val grid = target.armorGrid
       val cell = grid.getCellAtLocation(point) ?: return
       val gridWidth = grid.grid.size
       val gridHeight: Int = grid.grid[0].size
       var damageDealt = 0f
+      var hullDamage = 0f // 累计船体伤害
+
       for (i in -2..2) {
         for (j in -2..2) {
-          if ((i == 2 || i == -2) && (j == 2 || j == -2)) continue  // skip corners
+          if ((i == 2 || i == -2) && (j == 2 || j == -2)) continue  // 跳过角落
           val cx = cell[0] + i
           val cy = cell[1] + j
           if (cx < 0 || cx >= gridWidth || cy < 0 || cy >= gridHeight) continue
+
           var damMult = 1 / 30f
-          damMult = if (i == 0 && j == 0) {
-            1 / 15f
-          } else if (i <= 1 && i >= -1 && j <= 1 && j >= -1) { // S hits
-            1 / 15f
-          } else { // T hits
-            1 / 30f
+          damMult = when {
+            i == 0 && j == 0 -> 1 / 15f
+            i in -1..1 && j in -1..1 -> 1 / 15f // S hits
+            else -> 1 / 30f // T hits
           }
+
           val armorInCell = grid.getArmorValue(cx, cy)
           var damage = d * damMult
-          damage = Math.min(damage, armorInCell)
+          // 仅当允许打船体时，计算穿透护甲的船体伤害
+          if (canDamageHull && damage > armorInCell) {
+            hullDamage += damage - armorInCell
+          }
+          damage = min(damage, armorInCell)
           if (damage <= 0) continue
-          target.armorGrid.setArmorValue(cx, cy, Math.max(0f, armorInCell - damage))
+
+          target.armorGrid.setArmorValue(cx, cy, max(0f, armorInCell - damage))
           damageDealt += damage
         }
       }
+
+      // 护甲伤害浮字 + 同步护甲网格
       if (damageDealt > 0) {
         if (Misc.shouldShowDamageFloaty(weapon?.ship, target)) {
-          engine.addFloatingDamageText(point, damageDealt, Misc.FLOATY_ARMOR_DAMAGE_COLOR, target, weapon?.ship)
+          engine.addFloatingDamageText(point, damageDealt, 0f, Misc.FLOATY_ARMOR_DAMAGE_COLOR, target, weapon?.ship)
         }
         target.syncWithArmorGridState()
+      }
+
+      // 船体伤害处理（仅当允许打船体且船体伤害>1时执行）
+      if (hullDamage > 1f && canDamageHull) {
+        applyPureHullDamage(target, point, hullDamage, weapon)
+      }
+    }
+
+    /**
+     * 处理护甲穿透后的船体（结构）伤害
+     * @param target 受击舰船
+     * @param point 命中位置，用于决定在哪里施加击毁伤害，可为null
+     * @param hullDamage 要施加的船体伤害值
+     * @param weapon 造成伤害的武器，可为null
+     */
+    fun applyPureHullDamage(target: ShipAPI, point: Vector2f?, hullDamage: Float, weapon: WeaponAPI?) {
+      val engine = Global.getCombatEngine()
+      // 仅当船体伤害>1时执行（避免无意义的小额伤害）
+      if (hullDamage <= 1f) return
+      val point = Vector2f(point?: target.location)
+
+      val showHullDamage = min(hullDamage, target.hitpoints -1f).coerceAtLeast(0f)
+      if (showHullDamage > 0f) {
+        target.hitpoints -= showHullDamage
+        // 不可直接将结构设置为低于0，船会直接消失，学习原版，给一个100的斩杀伤害
+        if (target.hitpoints <= 1.1f && !isDead(target)) {
+          engine.applyDamage(target, point, 100f, DamageType.ENERGY, 0f, true, false, weapon?.ship, false)
+        }
+        // 船体伤害浮字（位置上移20f）
+        if (Misc.shouldShowDamageFloaty(weapon?.ship, target)) {
+          val p2 = Vector2f(point.x, point.y + 20f)
+          engine.addFloatingDamageText(p2, showHullDamage, 0f, Misc.FLOATY_HULL_DAMAGE_COLOR, target, weapon?.ship)
+        }
       }
     }
 
@@ -1831,7 +1876,7 @@ class aEP_Tool {
     }
 
     /**
-     * @param convertRate 单个格子每次loop的最大维修量，越低单次维修的越均匀，一般为5-10不会造成棋盘状装甲，不可为0
+     * @param convertRate 单个格子每次loop的最大维修量，越低单次维修的越均匀，一般为10不会造成棋盘状装甲，不可为0
      * @return 维修剩余百分比，0f代表完全用于维修，1f代表不需要维修，本次维修值完全溢出
      * */
     fun findToRepair(ship: ShipAPI, repairAmount: Float, armorMaxPercent: Float, hpMaxPercent: Float, maxRepairPerGrid: Float, convertRate: Float, sparkEvenNotRepairing: Boolean): Float{
