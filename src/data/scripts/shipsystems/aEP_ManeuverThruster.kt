@@ -8,10 +8,18 @@ import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript
 import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript
+import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
+import data.scripts.utils.aEP_AngleTracker
+import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.utils.aEP_DataTool
+import data.scripts.utils.aEP_ID.Companion.FX_THRUSTER_PATH
 import data.scripts.utils.aEP_Tool
+import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
+import org.lazywizard.lazylib.VectorUtils
 import org.lwjgl.util.vector.Vector2f
 import org.magiclib.util.MagicRender
+import sound.F
 import java.awt.Color
 
 class aEP_ManeuverThruster:  BaseShipSystemScript() {
@@ -19,61 +27,23 @@ class aEP_ManeuverThruster:  BaseShipSystemScript() {
   companion object{
     const val MAX_SPEED_FLAT_BONUS = 250f
     const val MAX_TURN_FLAT_BONUS = 30f
+    private const val EFFECT_KEY = "aEP_ManeuverThrusterEffect"
   }
 
-
-  val allEngineList = ArrayList<engineController>()
   var didRollBack = false
   override fun apply(stats: MutableShipStatsAPI?, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
-    //复制粘贴这行
     val ship = (stats?.entity?: return)as ShipAPI
-    val amount = aEP_Tool.getAmount(ship)
-    //初始化一次
-    if(allEngineList.isEmpty()){
-      //找到每个装饰槽位
-      for(slot in ship.hullSpec.allWeaponSlotsCopy){
-        if(!slot.isDecorative) continue
-        if(slot.id.startsWith("L") ||slot.id.startsWith("R") ){
-          val loc = slot.computePosition(ship)
-          var closestDistSq = Float.MAX_VALUE
-          var closestEngine : ShipEngineAPI? = null
-          //找到距离该槽位最近的引擎
-          for(e in ship.engineController.shipEngines){
-            val distSq = MathUtils.getDistanceSquared(loc,e.location)
-            if(distSq < closestDistSq){
-              closestDistSq = distSq
-              closestEngine = e
-            }
-          }
-          //找到了，加入list
-          if(closestEngine != null){
-            val clz = engineController(slot,ship,closestEngine)
-            if(slot.id.startsWith("R") ){
-              clz.isRight = true
-              clz.sprite = Global.getSettings().getSprite("aEP_FX","shangshengliu_mk3_thruster_r")
-            }
-            allEngineList.add(clz)
-          }
-        }
-      }
-    }
 
-    for(c in allEngineList){
-      c.advance(amount)
-      if(effectLevel > 0f){
-        ship.getEngineController().forceShowAccelerating()
-        c.toAngle = aEP_Tool.computeCurrentManeuveringDir(ship)
-      }else{
-        c.toAngle = ship.facing
+    val controller = ship.customData[EFFECT_KEY] as? ManeuverThrusterEffect
+      ?: ManeuverThrusterEffect(ship).also {
+        ship.setCustomData(EFFECT_KEY, it)
+        addEffect(it)
       }
 
-      c.render()
-    }
+    controller.systemActive = effectLevel > 0f
 
-
-    //修改数据
     if (state == ShipSystemStatsScript.State.OUT) {
-      stats.maxSpeed.unmodify(id) // to slow down ship to its regular top speed while powering drive down
+      stats.maxSpeed.unmodify(id)
       stats.maxTurnRate.unmodify(id)
     }
     else {
@@ -87,7 +57,6 @@ class aEP_ManeuverThruster:  BaseShipSystemScript() {
       stats.turnAcceleration.modifyFlat(id, MAX_TURN_FLAT_BONUS * 2f * effectLevel)
       stats.turnAcceleration.modifyPercent(id, 200f * effectLevel)
     }
-    //结束时修改回来
     if(effectLevel <= 0f && !didRollBack){
       didRollBack = true
       stats.maxSpeed.unmodify(id)
@@ -96,63 +65,131 @@ class aEP_ManeuverThruster:  BaseShipSystemScript() {
       stats.acceleration.unmodify(id)
       stats.deceleration.unmodify(id)
     }
-
-//    //修改引擎颜色
-//    if (stats.entity is ShipAPI) {
-//      val ship = stats.entity as ShipAPI
-//      ship.engineController.fadeToOtherColor(this, this.color, Color(0, 0, 0, 0), effectLevel, 0.67f)
-//      ship.engineController.extendFlame(this, 2.0f * effectLevel, 0.0f * effectLevel, 0.0f * effectLevel)
-//    }
   }
 
-  class engineController(val slot: WeaponSlotAPI, val ship:ShipAPI, val engine:ShipEngineAPI){
+  private class ManeuverThrusterEffect(val ship: ShipAPI) : aEP_BaseCombatEffect(0f, ship){
+    private val engines = ArrayList<EngineVisual>()
+    val arcOverrides = HashMap<String, Float>()
+    var systemActive = false
 
-    var isRight = false
-    var sprite = Global.getSettings().getSprite("aEP_FX","shangshengliu_mk3_thruster_l")
-
-    //curr是头朝向的绝对角度
-    var currAngle = ship.facing
-    var toAngle = ship.facing
-    var speed = 180f
-    //左右限制是相对角度
-    var maxLeft = 90f
-    var maxRight = -90f
-
-    fun advance(amount: Float){
-      val moveMost = speed*amount
-      var toMove = MathUtils.getShortestRotation(currAngle, toAngle)
-      //在右边的引擎，刚好180度旋转，不使用默认的左旋，而是右旋
-      if(isRight && toMove < -179f){
-        toMove = 180f
-      }else if(!isRight && toMove > 179f){
-        toMove = -180f
-      }
-      toMove = MathUtils.clamp(toMove,-moveMost, moveMost)
-      currAngle += toMove
-      currAngle = MathUtils.clamp(currAngle,ship.facing+maxLeft, ship.facing+maxRight)
-
-      val slotLoc = slot.computePosition(ship)
-      if(isRight){
-        val flameFacing = currAngle - ship.facing - 135f
-        //engine.location.set(aEP_Tool.getExtendedLocationFromPoint(slotLoc, flameFacing,100f))
-        engine.engineSlot.angle = flameFacing
-        ship.engineController.forceShowAccelerating()
-        if(!ship.engineController.isAccelerating){
-        }
-      }else{
-        val flameFacing = currAngle - ship.facing + 135f
-        //engine.location.set(aEP_Tool.getExtendedLocationFromPoint(slotLoc, flameFacing,100f))
-        engine.engineSlot.angle = flameFacing
-      }
-
+    init {
+      buildEngineList()
     }
 
-    fun render(){
+    fun getEngines(): List<EngineVisual> = engines
+
+    fun setArcOverride(slotId: String, arc: Float){
+      arcOverrides[slotId] = arc
+      engines.firstOrNull { it.slotId == slotId }?.updateArc(arc)
+    }
+
+    private fun buildEngineList(){
+      if(engines.isNotEmpty()) return
+      for(slot in ship.hullSpec.allWeaponSlotsCopy){
+        if(!slot.isDecorative) continue
+        val loc = slot.computePosition(ship)
+        var closest: ShipEngineAPI? = null
+        var closestDistSq = Float.MAX_VALUE
+        for(e in ship.engineController.shipEngines){
+          val distSq = MathUtils.getDistanceSquared(loc,e.location)
+          if(distSq < closestDistSq){
+            closestDistSq = distSq
+            closest = e
+          }
+        }
+        val engine = closest ?: continue
+        val visual = EngineVisual(
+          slot,
+          ship,
+          engine,
+          slot.angle,
+          180f, slot.arc)
+        engines.add(visual)
+      }
+    }
+
+    override fun advanceImpl(amount: Float) {
+      if(aEP_Tool.isDead(ship)){
+        shouldEnd = true
+        return
+      }
+
+      val (targetAngle, hasInput) = computeDesiredAngle()
+      val toAngle = if(hasInput) (targetAngle + 180f + 360f) % 360f else ship.facing
+      if(hasInput) ship.engineController.forceShowAccelerating()
+
+      engines.forEach { it.advance(amount, toAngle, hasInput) }
+    }
+
+    private fun computeDesiredAngle(): Pair<Float, Boolean> {
+      val ctrl = ship.engineController ?: return ship.facing to false
+      val facing = ship.facing
+
+      // combine strafe + accel/back
+      var x = 0f; var y = 0f
+      fun addDir(a: Float) {
+        x += FastTrig.cos(Math.toRadians(a.toDouble())).toFloat()
+        y += FastTrig.sin(Math.toRadians(a.toDouble())).toFloat()
+      }
+      if (ctrl.isStrafingLeft) addDir(facing + 90f)
+      if (ctrl.isStrafingRight) addDir(facing - 90f)
+      if (ctrl.isAccelerating) addDir(facing)
+      if (ctrl.isAcceleratingBackwards) addDir(facing + 180f)
+      if (ctrl.isTurningLeft) addDir(facing + 45f)
+      if (ctrl.isTurningRight) addDir(facing - 45f)
+
+      if (x == 0f && y == 0f) return ship.facing to false
+      return VectorUtils.getFacing(Vector2f(x, y)) to true
+    }
+    override fun readyToEnd() {
+      ship.customData.remove(EFFECT_KEY)
+    }
+  }
+
+  private class EngineVisual(
+
+    private val slot: WeaponSlotAPI,
+    private val ship: ShipAPI,
+    private val engine: ShipEngineAPI,
+    private val slotFacing: Float,
+    private val rotateSpeed : Float,
+    private val arc : Float
+  ){
+
+    private val sprite = Global.getSettings().getSprite(FX_THRUSTER_PATH)
+    val slotId: String = slot.id
+    private val angleData = aEP_AngleTracker(0f, 0f, rotateSpeed, arc/2, -arc/2)
+
+    fun updateArc(arc: Float){
+      angleData.max = arc/2f
+      angleData.min = -arc/2f
+    }
+
+    fun convertTargetAngleToSlotSpace(targetAngle: Float): Float{
+      // Use slot base angle (slotFacing + ship.facing) to pick the nearest direction within arc
+      val baseAbsAngle = (slotFacing + ship.facing) % 360f
+      var relativeAngle = MathUtils.getShortestRotation(baseAbsAngle, targetAngle)
+      relativeAngle = MathUtils.clamp(relativeAngle, -arc/2f, arc/2f)
+      return relativeAngle
+    }
+
+    fun getCurrentAbsoluteAngle(): Float{
+      return (angleData.curr + slotFacing + ship.facing)%360f
+    }
+
+    fun advance(amount: Float, targetAngle: Float, hasInput: Boolean){
+      angleData.to = convertTargetAngleToSlotSpace(targetAngle)
+      if(!hasInput) angleData.to = 0f
+      angleData.advance(amount)
+      val thrusterAbsAngle = getCurrentAbsoluteAngle()
+      // engineSlot.angle是相对角度
+      engine.engineSlot.angle = slotFacing + angleData.curr
+      //aEP_Tool.addDebugText(thrusterAbsAngle.toString(), engine.engineSlot.computePosition(ship.location, ship.facing))
       val loc = slot.computePosition(ship)
-      //渲染原图
+
       MagicRender.singleframe(sprite,loc,
         Vector2f(sprite.width,sprite.height),
-        currAngle - 90f,
+        (thrusterAbsAngle + 180f +90f)%360f,
         Color.white,
         false,CombatEngineLayers.BELOW_SHIPS_LAYER)
     }

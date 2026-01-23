@@ -173,7 +173,7 @@ class aEP_EliteShip : aEP_BaseHullMod() {
         drone.mutableStats.shieldUnfoldRateMult.modifyFlat(ID, 10f)
         drone.location.set(Vector2f(ship.location))
         Global.getCombatEngine().addEntity(drone)
-        aEP_CombatEffectPlugin.addEffect(aEP_Combat.RecallFighterJitter(0.2f,drone))
+        aEP_CombatEffectPlugin.addEffect(aEP_Combat.StandardRecallFighterJitter(0.2f,drone))
         aEP_CombatEffectPlugin.addEffect(ProtectionDrone(time, drone, ship))
 
       }else{
@@ -272,7 +272,7 @@ class aEP_EliteShip : aEP_BaseHullMod() {
       val jitterRangeBonus: Float = 5f + level * maxRangeBonus
       fighter.isJitterShields = false
       fighter.setJitter(
-        aEP_Combat.RecallFighterJitter.ID,
+        aEP_Combat.StandardRecallFighterJitter.ID,
         shieldColor,
         level * 0.25f + 0.75f, 24, 0f, jitterRangeBonus)
 

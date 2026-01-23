@@ -3,7 +3,6 @@
 	"specClass":"missile",
 	"missileType":"ROCKET",
 	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"sprite":"graphics/weapons/aEP_cru_pingding/torpedo.png",
 	"size":[15,41],
 	"center":[7,20.5],

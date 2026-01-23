@@ -117,7 +117,7 @@ class aEP_FighterProtector : BaseShipSystemScript() {
                 aEP_CombatEffectPlugin.addEffect(c)
 
                 //加一个抖动，表示开启系统
-                val jitter = aEP_Combat.AddJitterBlink(0.1f,0.2f, 0.2f,ftr)
+                val jitter = aEP_Combat.AddStandardJitterBlink(0.1f,0.2f, 0.2f,ftr)
                 jitter.color = JITTER_COLOR_BLINK
                 jitter.maxRange = 30f
                 jitter.maxRangePercent = 0.5f

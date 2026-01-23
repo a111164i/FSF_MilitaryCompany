@@ -21,7 +21,6 @@
 	#"size":[8,10],
   #"center":[4,5],
 	#"collisionRadius":60,
-  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
   "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"explosionColor":[0,0,0,0],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":0, # purely visual

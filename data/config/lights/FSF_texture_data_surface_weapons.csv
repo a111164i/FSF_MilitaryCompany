@@ -24,8 +24,6 @@ aEP_cap_shangshengliu_armor,turret,,,surface,graphics/shaders/surface/weapons/aE
 aEP_cap_shangshengliu_armor_dark,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu/armor_dark_surface.png
 aEP_cap_shangshengliu_bottom,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu/bottom_surface.png
 aEP_cap_shangshengliu_hull,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu/hull_surface.png
-aEP_cap_shangshengliu_mk3_thruster_l,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu_mk3/l_surface.png
-aEP_cap_shangshengliu_mk3_thruster_r,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu_mk3/r_surface.png
 aEP_cap_shangshengliu_top,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu/top_surface.png
 aEP_cap_shangshengliu_top_cover,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_shangshengliu/top_cover_surface.png
 aEP_cap_sta_main,turret,,,surface,graphics/shaders/surface/weapons/aEP_cap_sta/main_surface.png

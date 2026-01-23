@@ -19,7 +19,7 @@ name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u 
 电子战压制,aEP_EcmSuppress,1,,,,,,,4,0.01667,2,,1,13,,,,,,,,,,,,,graphics/icons/hullsys/interdictor_array.png,
 武器重振核心,aEP_WeaponReset,1,,,,,,,,,0.5,8,0.5,2,TRUE,,,,,,,,,,,,graphics/icons/hullsys/ammo_feeder.png,
 再刷新,aEP_RQReload,3850,,,,,,,,,1,,1,1,,TRUE,,,,,,,,TRUE,,,graphics/icons/hullsys/missile_racks.png,
-矢量机动,aEP_VectorThrust,,,,,,,,,,0.5,3,0.5,9,,,,,TRUE,,,,,,,,graphics/icons/hullsys/maneuvering_jets.png,
+矢量机动,aEP_VectorThrust,,,,,,,,,,0.5,2.5,0.5,9,,,,,TRUE,,,,,,,,graphics/icons/hullsys/maneuvering_jets.png,
 主炮姿态控制,aEP_MainGunAttitude,1,,,,,,,,,1.5,,1.5,1,TRUE,,,,,,,,,TRUE,,,graphics/icons/hullsys/lidar_barrage.png,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,

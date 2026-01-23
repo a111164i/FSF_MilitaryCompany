@@ -11,7 +11,6 @@
 	"glowRadius":35,
 
 	#"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
-  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
 
   "armingTime":0, # safe range count by time
   "noEngineGlowTime":0, # time spent after fired without the engine glow being rendered

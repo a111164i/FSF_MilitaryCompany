@@ -8,37 +8,24 @@ import com.fs.starfarer.api.campaign.CargoAPI
 import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.fleet.FleetMemberAPI
 import com.fs.starfarer.api.impl.campaign.ids.Tags.VARIANT_FX_DRONE
-import com.fs.starfarer.api.impl.combat.DisintegratorEffect
 import com.fs.starfarer.api.impl.combat.RecallDeviceStats
 import com.fs.starfarer.api.impl.combat.dem.DEMEffect
 import com.fs.starfarer.api.loading.ProjectileSpecAPI
 import com.fs.starfarer.api.loading.WeaponSlotAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import com.fs.starfarer.api.util.Range
 import com.fs.starfarer.combat.entities.BallisticProjectile
 import data.scripts.aEP_CombatEffectPlugin
 import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.ACC_MULT
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.MAX_SPEED_FLAT
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.MAX_TURN_RATE_FLAT
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.MAX_TURN_RATE_PERCENT
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.TURN_ACC_FLAT
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.TURN_ACC_PERCENT
-import data.scripts.shipsystems.aEP_NBFiringJet.Companion.WEAPON_TURN_RATE_PERCENT
 import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID.Companion.TELEPORT_JITTER_COLOR
 import data.scripts.utils.aEP_Tool.Util.speed2Velocity
-import org.jetbrains.annotations.Nullable
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
-import org.lazywizard.lazylib.MathUtils.getDistanceSquared
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
-import org.lazywizard.lazylib.combat.DefenseType
-import org.lazywizard.lazylib.combat.DefenseUtils
 import org.lazywizard.lazylib.ext.clampLength
 import org.lazywizard.lazylib.ui.LazyFont
 import org.lwjgl.opengl.Display
@@ -2386,6 +2373,8 @@ class aEP_ID{
     const val FX_HARPOON_FRAG02_PATH = "graphics/weapons/aEP_m_l_harpoon/large_empty3.png"
     const val FX_HARPOON_FRAG03_PATH = "graphics/weapons/aEP_m_l_harpoon/large_empty4.png"
 
+    const val FX_THRUSTER_PATH = "graphics/weapons/aEP_cap_shangshengliu_mk3/thruster.png"
+
     //-------------------------------------------------//
     // 武器音效id，便于复用
     const val SOUND_HARPOON_HIT_SHIELD_ID = "aEP_m_l_harpoon_hit_shield"
@@ -2410,7 +2399,7 @@ class aEP_Render{
       GL11.glMatrixMode(GL11.GL_PROJECTION)
       GL11.glPushMatrix()
 
-      //画纯色图不需要材质，打开材质就一定要绑定，就会导致画不出东西
+      //画纯色图不需要材质，打开材质就一定要绑定，否则会导致画不出东西
       GL11.glDisable(GL11.GL_TEXTURE_2D)
       //这里不做绑定
       //GL11.glBindTexture(GL11.GL_TEXTURE_2D, Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
@@ -2435,7 +2424,7 @@ class aEP_Render{
       //设置投影方式，x坐标变为窗口width，y坐标变为窗口height
       GL11.glOrtho(0.0, Display.getWidth().toDouble(), 0.0, Display.getHeight().toDouble(), -1.0, 1.0)
 
-      //画纯色图不需要材质，打开材质就一定要绑定，就会导致画不出东西
+      //画纯色图不需要材质，打开材质就一定要绑定，否则会导致画不出东西
       GL11.glDisable(GL11.GL_TEXTURE_2D)
       //这里不做绑定
       //GL11.glBindTexture(GL11.GL_TEXTURE_2D, Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
@@ -2467,7 +2456,6 @@ class aEP_Combat{
     }
   }
 
-
   /**
    * 一个单纯的计数类，加入时给key加1f，结束时给key减1f，用于各种防止不同舰船的同一系统使用在同一目标上
    * */
@@ -2488,9 +2476,9 @@ class aEP_Combat{
   }
 
   /**
-   * onRecall()可以自由修改，特效部分不需要飞机存在母舰
+   * 类原版的召回特效，会短暂的进入相位状态，onRecall()可以自由修改以适应各种召回需求
    * */
-  open class RecallFighterJitter: aEP_BaseCombatEffect{
+  open class StandardRecallFighterJitter: aEP_BaseCombatEffect{
     companion object{
       const val ID = "aEP_RecallFighter"
     }
@@ -2541,10 +2529,7 @@ class aEP_Combat{
         //不可以在这里removeEntity，会造成jitter异常，很怪
         //onRecall()
         shouldEnd = true
-
       }
-
-
     }
 
     open fun onRecall(){
@@ -2658,7 +2643,7 @@ class aEP_Combat{
     }
   }
 
-  open class AddJitterBlink(val up: Float, val full:Float, val down: Float, val ship:ShipAPI): aEP_BaseCombatEffect(up+full+down, ship){
+  open class AddStandardJitterBlink(val up: Float, val full:Float, val down: Float, val ship:ShipAPI): aEP_BaseCombatEffect(up+full+down, ship){
 
     init {
       aEP_CombatEffectPlugin.addEffect(this)
@@ -2691,7 +2676,6 @@ class aEP_Combat{
     }
 
   }
-
 
   /**
    * 在init里面包含将自己加入plugin的部分，使用只需要new。多个不同来源的减速效果取最大值
@@ -2796,34 +2780,44 @@ class aEP_Combat{
   }
 
   /**
-  * 减少目标对其他人造成的伤害
-  * */
-  class AddDamageReduction(lifeTime: Float, damageReduceMult: Float, val target: CombatEntityAPI) : aEP_BaseCombatEffect(target){
+   * 减少目标对其他人造成的伤害，可以作用于projectile/demDrone missile
+   * 每个entity单例
+   * */
+  class AddStandardDamageDealtDown(lifeTime: Float, damageReduceMult: Float, val target: CombatEntityAPI) : aEP_BaseCombatEffect(target){
     companion object{
       const val ID = "aEP_DamageReduce"
     }
 
     val allData = ArrayList<Data>()
 
+    //主要逻辑处理在init，初始化的时候进行
     init {
       if(target is ShipAPI || target is DamagingProjectileAPI) {
         val data = Data()
         data.fullTime = lifeTime
         data.damageReduceMult = damageReduceMult
 
-        //正在处于别的buff中
+        // 如果没有就new一个加入custom，有了就读取然后更新data
         if(target.customData.containsKey(ID)){
-          val manager = target.customData[ID] as AddDamageReduction
+          //当前有了，读取并更新，自己不加入effect
+          val manager = target.customData[ID] as AddStandardDamageDealtDown
           manager.allData.add(data)
-        }else{ //第一次被施加debuff
+        }else{
+          //当前目标没有，new一个再加入effect
           target.setCustomData(ID, this)
           allData.add(data)
-          aEP_CombatEffectPlugin.addEffect(this)
+          addEffect(this)
         }
       }
     }
 
     override fun advanceImpl(amount: Float) {
+
+      //一艘船只能同时存在一个manager，在init完成data的更新后，下一帧运行就结束
+      if(target.customData.containsKey(ID) && target.customData[ID] != this){
+        shouldEnd = true
+      }
+
       var maxReduceMult = 0f
 
       val expired = HashSet<Data>()
@@ -2851,14 +2845,15 @@ class aEP_Combat{
       if(target is DamagingProjectileAPI){
         target.damage.modifier.modifyMult(ID,1f - maxReduceMult)
       }
-      //对于dem，找到距离完全为0的fxdrone，施加减低伤害的buff
+      //对于dem，找到距离完全为0的fxdrone，对其施加减低伤害的buff
       if(target is MissileAPI){
         if(target.weapon != null && target.projectileSpec?.onFireEffect is DEMEffect){
           for(f in Global.getCombatEngine().ships){
             if(!f.variant.hasTag(VARIANT_FX_DRONE)) continue
             //距离完全为0
             if(MathUtils.getDistance(f.location, target.location) > 0.001f) continue
-            AddDamageReduction(0.1f, maxReduceMult , f)
+            //每帧加入一个持续amount*5f秒的减伤
+            AddStandardDamageDealtDown(amount*5f, maxReduceMult , f)
           }
         }
       }
@@ -2867,28 +2862,28 @@ class aEP_Combat{
         shouldEnd = true
       }
 
-      //一艘船只能同时存在一个manager类
-      if(target.customData.containsKey(ID) && target.customData[ID] != this){
-        shouldEnd = true
-      }
     }
 
     override fun readyToEnd() {
-      //修改数据
-      if(target is ShipAPI){
-        target.mutableStats.damageToFighters.unmodify(ID)
-        target.mutableStats.damageToFrigates.unmodify(ID)
-        target.mutableStats.damageToDestroyers.unmodify(ID)
-        target.mutableStats.damageToCruisers.unmodify(ID)
-        target.mutableStats.damageToCapital.unmodify(ID)
-      }
-      if(target is DamagingProjectileAPI){
-        target.damage.modifier.unmodify(ID)
+      //manager结束时，清空key和减伤。非manager就直接结束
+      if(target.customData.containsKey(ID)){
+        if( target.customData[ID] == this) {
+          target.customData.remove(ID)
+          //修改数据
+          if(target is ShipAPI){
+            target.mutableStats.damageToFighters.unmodify(ID)
+            target.mutableStats.damageToFrigates.unmodify(ID)
+            target.mutableStats.damageToDestroyers.unmodify(ID)
+            target.mutableStats.damageToCruisers.unmodify(ID)
+            target.mutableStats.damageToCapital.unmodify(ID)
+          }
+          if(target is DamagingProjectileAPI){
+            target.damage.modifier.unmodify(ID)
+          }
+        }else
+          return
       }
 
-      if(target.customData.containsKey(ID) && target.customData[ID] == this){
-        target.customData.remove(ID)
-      }
     }
 
     class Data{
@@ -3061,6 +3056,5 @@ class aEP_Combat{
 
 
   }
-
 
 }

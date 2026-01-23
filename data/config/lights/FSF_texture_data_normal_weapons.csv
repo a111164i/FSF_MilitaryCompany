@@ -24,8 +24,6 @@ aEP_cap_shangshengliu_armor,turret,,1,normal,graphics/shaders/normal/weapons/aEP
 aEP_cap_shangshengliu_armor_dark,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu/armor_dark_normal.png
 aEP_cap_shangshengliu_bottom,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu/bottom_normal.png
 aEP_cap_shangshengliu_hull,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu/hull_normal.png
-aEP_cap_shangshengliu_mk3_thruster_l,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu_mk3/l_normal.png
-aEP_cap_shangshengliu_mk3_thruster_r,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu_mk3/r_normal.png
 aEP_cap_shangshengliu_top,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu/top_normal.png
 aEP_cap_shangshengliu_top_cover,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_shangshengliu/top_cover_normal.png
 aEP_cap_sta_main,turret,,1,normal,graphics/shaders/normal/weapons/aEP_cap_sta/main_normal.png

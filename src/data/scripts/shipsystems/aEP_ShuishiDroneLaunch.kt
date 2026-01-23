@@ -263,7 +263,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     updateFighterList()
     if(currFighterList.size >= MAX_FIGHTER_AT_SAME){
       for(f in currFighterList){
-        if(f.customData?.containsKey(aEP_Combat.RecallFighterJitter.ID) != true){
+        if(f.customData?.containsKey(aEP_Combat.StandardRecallFighterJitter.ID) != true){
           val despawn = Despawn(f)
           aEP_CombatEffectPlugin.addEffect(despawn)
           break
@@ -341,7 +341,7 @@ class aEP_ShuishiDroneLaunch: BaseShipSystemScript() {
     currFighterList.removeAll(toRemoveList)
   }
 
-  inner class Despawn(val f:ShipAPI) : aEP_Combat.RecallFighterJitter(1f, f){
+  inner class Despawn(val f:ShipAPI) : aEP_Combat.StandardRecallFighterJitter(1f, f){
     override fun onRecall() {
       currFighterList.remove(f)
       Global.getCombatEngine().removeEntity(entity)

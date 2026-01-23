@@ -107,7 +107,7 @@ class aEP_CoordinatedCombat : BaseShipSystemScript(), EveryFrameCombatPlugin {
               c.lifeTime = ammoFeedTime
               aEP_CombatEffectPlugin.addEffect(c)
               //加一个抖动，表示激活系统
-              val jitter = aEP_Combat.AddJitterBlink(0.2f,ammoFeedTime-2f, 2f,ship)
+              val jitter = aEP_Combat.AddStandardJitterBlink(0.2f,ammoFeedTime-2f, 2f,ship)
               jitter.color = WEAPON_BOOST
               jitter.maxRange = 5f
               jitter.maxRangePercent = 0f
@@ -134,7 +134,7 @@ class aEP_CoordinatedCombat : BaseShipSystemScript(), EveryFrameCombatPlugin {
                 aEP_CombatEffectPlugin.addEffect(c)
 
                 //加一个抖动，表示激活系统
-                val jitter = aEP_Combat.AddJitterBlink(0.2f,droneDefenseTime-2f, 2f,ftr)
+                val jitter = aEP_Combat.AddStandardJitterBlink(0.2f,droneDefenseTime-2f, 2f,ftr)
                 jitter.color = DRONE_DECOY_COLOR
                 jitter.maxRange = 2f
                 jitter.maxRangePercent = 0f
@@ -199,7 +199,7 @@ class aEP_CoordinatedCombat : BaseShipSystemScript(), EveryFrameCombatPlugin {
             aEP_CombatEffectPlugin.addEffect(c)
           })
         //加一个抖动，表示激活系统
-        val jitter = aEP_Combat.AddJitterBlink(0.2f,shieldTime-2f,2f,ftr)
+        val jitter = aEP_Combat.AddStandardJitterBlink(0.2f,shieldTime-2f,2f,ftr)
         jitter.color = m.shield?.innerColor?: jitter.color
         jitter.maxRange = 5f
         jitter.jitterShield = false

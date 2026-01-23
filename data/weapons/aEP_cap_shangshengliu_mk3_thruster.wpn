@@ -1,5 +1,5 @@
 {
-  "id":"aEP_cap_shangshengliu_mk3_thruster_r",
+  "id":"aEP_cap_shangshengliu_mk3_thruster",
 	"specClass":"beam",
   "type":"DECORATIVE",
   "size":"SMALL",
@@ -7,8 +7,8 @@
 	"renderBelowAllWeapons":false,
   #"renderHints":["RENDER_ADDITIVE"],
   "everyFrameEffect":"data.scripts.weapons.aEP_DecoAnimation",
-  "turretSprite": "graphics/weapons/aEP_cap_shangshengliu_mk3/r.png",
-  "hardpointSprite": "graphics/weapons/aEP_cap_shangshengliu_mk3/r.png",
+  "turretSprite": "graphics/weapons/aEP_cap_shangshengliu_mk3/thruster.png",
+  "hardpointSprite": "graphics/weapons/aEP_cap_shangshengliu_mk3/thruster.png",
 	#"numFrames":2,
 	#"frameRate":1,
 	#"alwaysAnimate":"false",

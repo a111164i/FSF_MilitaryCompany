@@ -152,7 +152,9 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
     }
     val screenDist = radius * 1f
     //aEP_Tool.addDebugLog(viewport.isNearViewport(center, screenDist).toString())
-    if(viewport.isNearViewport(center,screenDist )) renderImpl(layer,viewport)
+    if(viewport.isNearViewport(center,screenDist )) {
+      renderImpl(layer,viewport)
+    }
   }
 
   open fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI){
@@ -172,7 +174,6 @@ open class aEP_BaseCombatEffectWithKey : aEP_BaseCombatEffect{
 
   constructor(entity: CombatEntityAPI) : super(entity)
   constructor(lifeTime: Float, entity: CombatEntityAPI) : super(lifeTime, entity)
-
   constructor(lifeTime: Float, entity: CombatEntityAPI, key: String) : super(lifeTime, entity){
     setKeyAndPutInData(key)
   }

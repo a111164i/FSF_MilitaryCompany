@@ -72,9 +72,7 @@ class aEP_MainGunAttitude : BaseShipSystemScript(), WeaponRangeModifier {
           w.setForceNoFireOneFrame(true)
         }
         //控制瞄准激光
-        //只有非手操才显示，手操不需要
-        if(Global.getCombatEngine().playerShip != ship)
-          aimLaser(ship, effectLevel, w)
+        aimLaser(ship, effectLevel, w)
       }
     }
 

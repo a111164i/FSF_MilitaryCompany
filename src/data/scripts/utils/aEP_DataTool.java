@@ -12,9 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class aEP_DataTool
-{
-  CombatEngineAPI engine;
+public class aEP_DataTool {
 
   public static String txt(String id) {
     if(Global.getSettings().getBoolean("aEP_UseEnString")) {
@@ -85,9 +83,7 @@ public class aEP_DataTool
     }
   }
 
-
-  public static class FloatDataRecorder
-  {
+  public static class FloatDataRecorder {
     private float lastFrameData;
     private float accumulatedData;
 
@@ -155,7 +151,6 @@ public class aEP_DataTool
     }
 
   }
-
 
 }
 

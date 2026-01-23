@@ -385,9 +385,9 @@ class aEP_TwinFighter : aEP_BaseHullMod(), AdvanceableListener{
       override fun advance(amount: Float) {
         //因为传送涉及到相位半透明等等一系列修改，所以jitter的实际上应该为m
         //把buff加给m，但是结束时传送ftr，途中把ftr整透明，因为ftr是盖在m上面的
-        if(!m!!.customData.containsKey(aEP_Combat.RecallFighterJitter.ID)){
+        if(!m!!.customData.containsKey(aEP_Combat.StandardRecallFighterJitter.ID)){
           val recallTime =  parent.mutableStats.dynamic.getStat(RECALL_SPEED_BONUS_ID).computeMultMod() * RECALL_TIME
-          val recall = object : aEP_Combat.RecallFighterJitter(recallTime, m!!){
+          val recall = object : aEP_Combat.StandardRecallFighterJitter(recallTime, m!!){
 
             override fun advanceImpl(amount: Float) {
               val effectLevel = time/lifeTime

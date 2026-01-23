@@ -54,19 +54,19 @@
         ["aEP_fga_yonglang_Standard"]
     ],
     "startShipsCombatSmall":[
-        ["aEP_fga_xiliu_Standard","aEP_fga_yonglang_Defense","aEP_fga_raoliu_Standard"],
+        ["aEP_fga_xiliu_Standard","aEP_fga_yonglang_Defense","aEP_fga_raoliu_Standard"]
     ],
     "startShipsCarrierLarge":[
-        ["aEP_des_shendu_Strike", "aEP_des_shendu_Standard", "aEP_fga_raoliu_Standard"],
+        ["aEP_des_shendu_Strike", "aEP_des_shendu_Standard", "aEP_fga_raoliu_Standard"]
     ],
 
 
     "startSpecialItems":[
-        [["FSF_openbp","FSF"]],
+        [["FSF_openbp","FSF"]]
     ],
 
     "defenceStations":[
-        {"ids":["aEP_station_tier1", "aEP_station_tier2", "aEP_station_tier3", "aEP_station_tier4"]},
+        {"ids":["aEP_station_tier1", "aEP_station_tier2", "aEP_station_tier3", "aEP_station_tier4"]}
     ],
 	
     "industrySeeds":[

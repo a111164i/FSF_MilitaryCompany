@@ -181,7 +181,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         fluxLastFrameHard = ship.fluxTracker.hardFlux
 
         //加一个抖动，表示开启系统
-        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.1f, 0.2f,ship)
+        val jitter = aEP_Combat.AddStandardJitterBlink(0.1f,0.1f, 0.2f,ship)
         jitter.color = aEP_CoordinatedCombat.WEAPON_BOOST
         jitter.maxRange = 10f
         jitter.maxRangePercent = 0f
@@ -193,7 +193,7 @@ class aEP_SiegeMode : BaseShipSystemScript() {
         didJitterDown = true
 
         //加一个抖动，表示关闭系统
-        val jitter = aEP_Combat.AddJitterBlink(0.1f,0.1f, 0.2f,ship)
+        val jitter = aEP_Combat.AddStandardJitterBlink(0.1f,0.1f, 0.2f,ship)
         jitter.color = aEP_CoordinatedCombat.WEAPON_BOOST
         jitter.maxRange = 10f
         jitter.maxRangePercent = 0f
