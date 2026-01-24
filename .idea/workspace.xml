@@ -9,60 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-06">
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_cap_decomposer_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_cap_duiliu_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_fga_chichao_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_fga_raoliu_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_fga_wanliu_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_fga_xiliu_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/variants/magicBounty01/aEP_fga_yonglang_Automated.variant" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/weapons/aEP_cap_shangshengliu_mk3_thruster.wpn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/weapons/aEP_cap_shangshengliu_mk3/thruster.png" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/exerelinFactionConfig/aEP_FSF.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_material_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_normal_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/lights/FSF_texture_data_surface_weapons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk3.ship" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/aEP_cap_shangshengliu_mk3.ship" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_cap_decomposer_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_cap_duiliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_fga_chichao_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_fga_raoliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_fga_wanliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_fga_xiliu_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/variants/missions/magicBounty01/aEP_fga_yonglang_Automated.variant" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cap_shangshengliu_mk3_thruster_l.wpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cap_shangshengliu_mk3_thruster_r.wpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_aa40_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_b_l_aa40_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_sta_main_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cap_sta_main_shot.proj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cru_pingding_lidardish.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_cru_pingding_lidardish.wpn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main2_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main2_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_torpedo_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_torpedo_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_m_s_era_shot.proj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data_EN.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_cap_shangshengliu_mk3/l.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/weapons/aEP_cap_shangshengliu_mk3/r.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM4Intel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_AWM4Intel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_EliteShip.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_TwinFighter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_CoordinatedCombat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_CoordinatedCombat.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_FighterProtector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MainGunAttitude.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_MainGunAttitude.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ManeuverThruster.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ManeuverThruster.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ShuishiDroneLaunch.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_SiegeMode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffect.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DataTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_DataTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,45 +84,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Run Starsector.executor": "Run",
-    "Application.StarfarerLauncher.executor": "Run",
-    "Batch.Run SS bat .executor": "Debug",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Remote JVM Debug.Remote SS Debugger.executor": "Debug",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/IdeaProjects/.gradle",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Run Starsector.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StarfarerLauncher.executor&quot;: &quot;Run&quot;,
+    &quot;Batch.Run SS bat .executor&quot;: &quot;Debug&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Remote JVM Debug.Remote SS Debugger.executor&quot;: &quot;Debug&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/IdeaProjects/.gradle&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\missions\aEP_test" />
@@ -204,6 +156,14 @@
       <item itemvalue="Batch.Run SS bat " />
       <item itemvalue="Remote JVM Debug.Remote SS Debugger" />
     </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -479,14 +439,8 @@
       <workItem from="1768733893167" duration="51000" />
       <workItem from="1768748401979" duration="1242000" />
       <workItem from="1769081992319" duration="10494000" />
-    </task>
-    <task id="LOCAL-00034" summary="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
-      <option name="closed" value="true" />
-      <created>1733330315183</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1733330315183</updated>
+      <workItem from="1769199158966" duration="317000" />
+      <workItem from="1769233528142" duration="1329000" />
     </task>
     <task id="LOCAL-00035" summary="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
       <option name="closed" value="true" />
@@ -872,7 +826,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768749372370</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化">
+      <option name="closed" value="true" />
+      <created>1769199346317</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1769199346317</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -927,7 +889,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 01" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 02" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 03&#10;把所有的aEP_ZERO换成了原版的Misc.ZERO" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 05&#10;修改了rules.csv，使用SetEnable简化了show2" />
@@ -952,7 +913,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-04&#10;&#10;优化了combatEffect和weaponEffect（可靠性待测试）" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-05&#10;&#10;使用了统一的applyPureHullDamage" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-06" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

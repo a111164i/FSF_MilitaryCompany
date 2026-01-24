@@ -3,7 +3,7 @@
 	"specClass":"missile",
 	"missileType":"PHASE_CHARGE",
   "collisionClass": "NONE",
-  "# collisionClassByFighter": "NONE",
+  #"collisionClassByFighter": "NONE",
   "length":80,
   "width":5,
   "textureScrollSpeed":64.0,
@@ -50,9 +50,9 @@
   "passThroughMissiles":true,
   "passThroughFighters":true,
   "passThroughFightersOnlyWhenDestroyed":true,
-  "renderTargetIndicator":true, # no target diamond in combat view, not targeted by flares
+  "renderTargetIndicator":false, # no target diamond in combat view, not targeted by flares
   "noCollisionWhileFading":true,
-  "useHitGlowWhenDestroyed":true, # instead of the default explosion
+  "useHitGlowWhenDestroyed":false, # instead of the default explosion
   "noDebrisWhenDestroyed": false,
   # 不是PHASE_MINE/PHASE_CHARGE不会读取这个behavior PROXIMITY_FUSE
   "behaviorSpec":{

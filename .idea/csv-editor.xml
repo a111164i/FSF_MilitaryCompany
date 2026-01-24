@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\lights\core_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\lights\core_texture_data.csv">
           <value>
             <Attribute>
@@ -123,6 +130,13 @@
           </value>
         </entry>
         <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="E:\Program Files\Starsector098\starsector-core\data\campaign\submarkets.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
