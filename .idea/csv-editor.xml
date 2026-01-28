@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\config\glib\no_arc_overload.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\GraphicsLib\data\lights\core_light_data.csv">
           <value>
             <Attribute>

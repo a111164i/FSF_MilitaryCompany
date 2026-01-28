@@ -16,7 +16,7 @@ import java.util.List;
 public class aEP_BaseShaderAPIImplement implements ShaderAPI
 {
   public static int program = 0;
-  public String shaderId = "aEP_BaseShaderAPIImplement";
+  public String shaderId = this.getClass().getSimpleName();
   boolean isEnabled = true;
   boolean isCombat = true;
   CombatEngineLayers layer = CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER;

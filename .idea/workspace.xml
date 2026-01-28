@@ -9,13 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏">
+      <change afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffectWithShader.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/aEP_cru_pingding_lidardish.wpn" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/aEP_cru_pingding_lidardish.wpn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main2_shot.proj" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/proj/aEP_cru_pingding_main2_shot.proj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +107,13 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/IdeaProjects/.gradle&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Program Files/Starsector098/mods/FSF_MilitaryCorporation/src/data/scripts/utils&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -125,11 +124,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\src\data\scripts\utils" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\missions\aEP_test" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\missions\aEP_random_fleet_combat" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\shipsystems" />
       <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\config\exerelin" />
-      <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\weapons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\variants\fighters" />
@@ -441,14 +440,12 @@
       <workItem from="1769081992319" duration="10494000" />
       <workItem from="1769199158966" duration="317000" />
       <workItem from="1769233528142" duration="1329000" />
-    </task>
-    <task id="LOCAL-00035" summary="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
-      <option name="closed" value="true" />
-      <created>1733397813829</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1733397813829</updated>
+      <workItem from="1769242097867" duration="40000" />
+      <workItem from="1769261781692" duration="1000" />
+      <workItem from="1769423923600" duration="613000" />
+      <workItem from="1769601825446" duration="1604000" />
+      <workItem from="1769606039790" duration="3523000" />
+      <workItem from="1769609777948" duration="3163000" />
     </task>
     <task id="LOCAL-00036" summary="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
       <option name="closed" value="true" />
@@ -834,7 +831,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769199346317</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏">
+      <option name="closed" value="true" />
+      <created>1769242119669</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1769242119669</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -889,7 +894,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 02" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 03&#10;把所有的aEP_ZERO换成了原版的Misc.ZERO" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 05&#10;修改了rules.csv，使用SetEnable简化了show2" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 06&#10;修复了wingMembers越界formation的问题" />
@@ -914,9 +918,19 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-05&#10;&#10;使用了统一的applyPureHullDamage" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
         <watch expression="&#10;          //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离" />

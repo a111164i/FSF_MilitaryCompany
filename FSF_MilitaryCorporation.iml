@@ -6,11 +6,19 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
-    <content url="file://$MODULE_DIR$/../GraphicsLib" />
+    <content url="file://$MODULE_DIR$/../GraphicsLib">
+      <sourceFolder url="file://$MODULE_DIR$/../GraphicsLib/org" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../LazyLib" />
-    <content url="file://$MODULE_DIR$/../LunaLib" />
-    <content url="file://$MODULE_DIR$/../MagicLib" />
-    <content url="file://$MODULE_DIR$/../../starsector-core" />
+    <content url="file://$MODULE_DIR$/../LunaLib">
+      <sourceFolder url="file://$MODULE_DIR$/../LunaLib/src" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../MagicLib">
+      <sourceFolder url="file://$MODULE_DIR$/../MagicLib/src" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../starsector-core">
+      <sourceFolder url="file://$MODULE_DIR$/../../starsector-core/com" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ExerelinCore" level="project" />
