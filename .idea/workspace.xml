@@ -9,12 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏">
-      <change afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_BaseCombatEffectWithShader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-06-3&#10;加入了aEP_BaseCombatEffectWithShader">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FSF_MilitaryCorporation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/FrameBufferFragShader.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/FrameBufferVertShader.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/aEP_BlurFrag.frag" beforeDir="false" afterPath="$PROJECT_DIR$/data/shaders/aEP_BlurFrag.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/shaders/aEP_BlurVert.vert" beforeDir="false" afterPath="$PROJECT_DIR$/data/shaders/aEP_BlurVert.vert" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +107,7 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Program Files/Starsector098/mods/FSF_MilitaryCorporation/src/data/scripts/utils&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Program Files/Starsector098/mods/FSF_MilitaryCorporation/data/shaders&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -124,11 +124,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\shaders" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\src\data\scripts\utils" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\missions\aEP_test" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\missions\aEP_random_fleet_combat" />
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\shipsystems" />
-      <recent name="F:\Starsector097\mods\FSF_MilitaryCorporation\data\config\exerelin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Program Files\Starsector098\mods\FSF_MilitaryCorporation\data\variants\fighters" />
@@ -445,15 +445,9 @@
       <workItem from="1769423923600" duration="613000" />
       <workItem from="1769601825446" duration="1604000" />
       <workItem from="1769606039790" duration="3523000" />
-      <workItem from="1769609777948" duration="3163000" />
-    </task>
-    <task id="LOCAL-00036" summary="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
-      <option name="closed" value="true" />
-      <created>1733397884007</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1733397884007</updated>
+      <workItem from="1769609777948" duration="3204000" />
+      <workItem from="1769940580309" duration="3022000" />
+      <workItem from="1769956496181" duration="447000" />
     </task>
     <task id="LOCAL-00037" summary="4.8rc5&#10;p 1: fix a clash in drone AI&#10;nerf system range of Swell">
       <option name="closed" value="true" />
@@ -839,7 +833,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769242119669</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="//----------------------------------------------//&#10;5.1rc1-06-3&#10;加入了aEP_BaseCombatEffectWithShader">
+      <option name="closed" value="true" />
+      <created>1769612989407</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1769612989407</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -894,7 +896,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 03&#10;把所有的aEP_ZERO换成了原版的Misc.ZERO" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 05&#10;修改了rules.csv，使用SetEnable简化了show2" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc5 06&#10;修复了wingMembers越界formation的问题" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到" />
@@ -919,18 +920,10 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06&#10;&#10;代码优化" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-06-2&#10;&#10;补漏" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06-3&#10;加入了aEP_BaseCombatEffectWithShader" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-06-3&#10;加入了aEP_BaseCombatEffectWithShader" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/shaders/aEP_BaseShaderAPIImplement.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
         <watch expression="&#10;          //如果矛头戳进了碰撞圈的内，检测实际碰撞点距离" />

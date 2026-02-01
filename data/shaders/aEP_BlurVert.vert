@@ -1,9 +1,27 @@
-#version 130 
+// 声明GLSL版本为140（对应OpenGL 3.1，比130更现代，兼容主流设备）
+#version 140
+
+// ========== 顶点着色器输入属性（替代原attribute关键字，140版本规范） ==========
+// position：顶点位置属性，vec4类型（x/y/z/w），由CPU端/顶点缓冲区传入
+// 存储顶点在裁剪空间的坐标（若未提前转换，需在CPU端完成MVP矩阵变换）
+in vec4 position;
+// texCoord：顶点纹理坐标属性，vec2类型（u/v），映射纹理到顶点的坐标信息
+in vec2 texCoord;
+
+// ========== 顶点着色器输出变量（替代原varying关键字，140版本规范） ==========
+// vTexCoord：输出到片段着色器的纹理坐标，光栅化阶段会自动线性插值
+// 片段着色器中需用"in vec2 vTexCoord;"接收该变量
+out vec2 vTexCoord;
+
+// 主函数（每个顶点执行一次，顶点着色器入口）
 void main()
 {
-	gl_Position = ftransform();
-	//gl_Position is a Built-in Variable which describe the relative location to viewport of this current pixel
-	//clamp to (-1,1)
-	//lower left is (-1,-1), upper right is (1,1)
-	gl_TexCoord[0] = gl_MultiTexCoord0;
+	// gl_Position：GLSL内置变量，必须赋值，存储顶点裁剪空间最终坐标
+	// 裁剪空间坐标范围：x/y/z∈[-1,1]，w为齐次坐标；(-1,-1)对应屏幕左下角，(1,1)对应右上角
+	// 直接赋值传入的position，说明顶点坐标已提前转换为裁剪空间（推荐做法）
+	gl_Position = position;
+
+	// 将顶点纹理坐标传递给片段着色器，光栅化时会根据顶点位置对vTexCoord插值
+	// 片段着色器通过该插值后的坐标，精准采样每个像素对应的纹理位置，为边缘衰减模糊提供基础
+	vTexCoord = texCoord;
 }
