@@ -2410,7 +2410,7 @@ class aEP_Render{
 
       //默认画纯色图不需要材质，打开材质就一定要绑定，否则会导致画不出东西
       GL11.glDisable(GL11.GL_TEXTURE_2D)
-      //如果需要材质，在外面打开
+      //如果需要材质，写在外面
       //GL11.glBindTexture(GL11.GL_TEXTURE_2D, Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
 
       GL11.glEnable(GL11.GL_BLEND)

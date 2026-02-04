@@ -1,6 +1,7 @@
 package data.scripts.utils
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.combat.CombatEngineAPI
 import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.ViewportAPI
 import com.fs.starfarer.api.util.IntervalUtil
@@ -22,7 +23,7 @@ class aEP_MovingSmoke// 将当前实例添加到活跃渲染列表
 
     // 使用弱引用列表，避免内存泄漏
     private val activeRenders = mutableListOf<WeakReference<aEP_MovingSmoke>>()
-    private var lastEngine: com.fs.starfarer.api.combat.CombatEngineAPI? = null
+    private var lastEngine: CombatEngineAPI? = null
 
     // 检测当前战斗引擎实例是否发生变化，如果变化就清理上一场战斗遗留的渲染对象（取巧了，但是有用）
     private fun syncEngine() {
@@ -35,9 +36,8 @@ class aEP_MovingSmoke// 将当前实例添加到活跃渲染列表
 
     // 批量渲染所有活跃的aEP_MovingSmoke
     private fun renderBatch(viewport: ViewportAPI) {
-      // 收集所有顶点数据（位置+颜色+纹理坐标，float数组）
+      // 1, 收集所有顶点数据（位置+颜色+纹理坐标，float数组）
       val vertexList = mutableListOf<Float>()
-
       for (smokeRef in activeRenders) {
         // 获取弱引用中的实际对象
         val smoke = smokeRef.get() ?: continue
@@ -52,9 +52,9 @@ class aEP_MovingSmoke// 将当前实例添加到活跃渲染列表
       // 无有效顶点数据时直接返回
       if (vertexList.isEmpty()) return
 
-      // 提交顶点数据到GPU，批量绘制
+      // 2, 提交顶点数据到GPU，批量绘制
       aEP_Render.openGL11CombatLayerRendering()
-      GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
+      GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE)
       renderUtils.bindTexture(Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
       renderUtils.submitVertices(vertexList.toFloatArray(), viewport)
       renderUtils.drawArrays(vertexList.size / 8, renderMode = GL_QUADS) // 每顶点8个float (x,y,r,g,b,a,u,v)
@@ -62,7 +62,6 @@ class aEP_MovingSmoke// 将当前实例添加到活跃渲染列表
     }
 
   }
-
 
   var velocity = Vector2f(0f, 0f)
   var angle = 0f
