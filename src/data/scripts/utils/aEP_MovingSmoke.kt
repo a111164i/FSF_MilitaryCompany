@@ -142,7 +142,6 @@ class aEP_MovingSmoke// 将当前实例添加到活跃渲染列表
   }
 
   override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
-    syncEngine()
     if(Global.getCombatEngine().combatUI == null) {
       activeRenders.clear()
       return

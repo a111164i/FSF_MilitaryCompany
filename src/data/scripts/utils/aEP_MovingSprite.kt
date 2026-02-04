@@ -10,8 +10,47 @@ import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
+import java.lang.ref.WeakReference
+import kotlin.math.abs
 
 open class aEP_MovingSprite : aEP_BaseCombatEffect{
+
+  // 全局共享现代渲染工具（避免重复创建VAO/VBO）
+  companion object {
+    private val renderUtils = aEP_Render.RenderUtils()
+    private val activeRenders = mutableListOf<WeakReference<aEP_MovingSprite>>()
+    private var lastEngine: com.fs.starfarer.api.combat.CombatEngineAPI? = null
+
+    private fun syncEngine() {
+      val engine = Global.getCombatEngine()
+      if (engine != lastEngine) {
+        activeRenders.clear()
+        lastEngine = engine
+      }
+    }
+
+    private fun renderBatch(viewport: ViewportAPI) {
+      if (activeRenders.isEmpty()) return
+
+      val vertexList = mutableListOf<Float>()
+      for (spriteRef in activeRenders) {
+        val sprite = spriteRef.get() ?: continue
+        if (viewport.isNearViewport(sprite.loc, sprite.radius + 600f)) {
+          vertexList.addAll(sprite.generateVertices())
+        }
+      }
+
+      if (vertexList.isEmpty()) return
+
+      aEP_Render.openGL11CombatLayerRendering()
+      GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
+      val textureId = (activeRenders.firstOrNull()?.get()?.spriteTexId) ?: 0
+      renderUtils.bindTexture(textureId)
+      renderUtils.submitVertices(vertexList.toFloatArray(), viewport)
+      renderUtils.drawArrays(vertexList.size / 8, renderMode = GL11.GL_QUADS)
+      aEP_Render.closeGL11()
+    }
+  }
 
   var velocity = Vector2f(0f, 0f)
   var angle = 0f
@@ -80,6 +119,12 @@ open class aEP_MovingSprite : aEP_BaseCombatEffect{
     this.color = color
   }
 
+  init {
+    // 将当前实例的弱引用添加到活跃渲染列表，如果是本场战斗第一次添加则同步引擎实例，移除上一层战斗遗留的粒子
+    syncEngine()
+    activeRenders.add(WeakReference(this))
+  }
+
   override fun advanceImpl(amount: Float) {
 
     //默认颜色是处于 full状态
@@ -113,8 +158,8 @@ open class aEP_MovingSprite : aEP_BaseCombatEffect{
     }
 
     angle = aEP_Tool.angleAdd(angle, angleSpeed * amount)
-    val sizeX = Math.abs(size.getX() + sizeChangeSpeed.getX() * amount)
-    val sizeY = Math.abs(size.getY() + sizeChangeSpeed.getY() * amount)
+    val sizeX = abs(size.getX() + sizeChangeSpeed.getX() * amount)
+    val sizeY = abs(size.getY() + sizeChangeSpeed.getY() * amount)
     size = Vector2f(sizeX,sizeY)
 
     //更新渲染范围
@@ -122,31 +167,66 @@ open class aEP_MovingSprite : aEP_BaseCombatEffect{
   }
 
   override fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI) {
-    //render会在 advance之前被调用
-    GL11.glEnable(GL11.GL_BLEND)
-    GL11.glEnable(GL11.GL_TEXTURE_2D)
-    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, spriteTexId)
+    if (Global.getCombatEngine().combatUI == null) {
+      activeRenders.clear()
+      return
+    }
 
-    //begin
-    GL11.glBegin(GL11.GL_QUADS)
-    val red = changingColor.red
-    val green = changingColor.green
-    val blue = changingColor.blue
-    val alpha = changingColor.alpha
+    val firstSprite = activeRenders.firstOrNull()?.get() ?: return
+    if (firstSprite == this) {
+      Companion.renderBatch(viewport)
+    }
+  }
 
-    GL11.glColor4ub(red.toByte(), green.toByte(), blue.toByte(), alpha.toByte())
-    GL11.glTexCoord2f(0f, 0f)
-    GL11.glVertex2f(point1Left.getX(), point1Left.getY())
-    GL11.glTexCoord2f(1f, 0f)
-    GL11.glVertex2f(point1Right.getX(), point1Right.getY())
-    GL11.glTexCoord2f(1f, 1f)
-    GL11.glVertex2f(point2Right.getX(), point2Right.getY())
-    GL11.glTexCoord2f(0f, 1f)
-    GL11.glVertex2f(point2Left.getX(), point2Left.getY())
+  override fun readyToEnd() {
+    activeRenders.removeAll { ref -> ref.get() == this }
+  }
 
-    //end
-    GL11.glEnd()
+  // 生成顶点数据（位置x,y + 颜色r,g,b,a + 纹理坐标u,v）
+  private fun generateVertices(): List<Float> {
+    val vertices = mutableListOf<Float>()
+    val red = changingColor.red / 255f
+    val green = changingColor.green / 255f
+    val blue = changingColor.blue / 255f
+    val alpha = changingColor.alpha / 255f
+
+    vertices.add(point1Left.x)
+    vertices.add(point1Left.y)
+    vertices.add(red)
+    vertices.add(green)
+    vertices.add(blue)
+    vertices.add(alpha)
+    vertices.add(0f)
+    vertices.add(0f)
+
+    vertices.add(point1Right.x)
+    vertices.add(point1Right.y)
+    vertices.add(red)
+    vertices.add(green)
+    vertices.add(blue)
+    vertices.add(alpha)
+    vertices.add(1f)
+    vertices.add(0f)
+
+    vertices.add(point2Right.x)
+    vertices.add(point2Right.y)
+    vertices.add(red)
+    vertices.add(green)
+    vertices.add(blue)
+    vertices.add(alpha)
+    vertices.add(1f)
+    vertices.add(1f)
+
+    vertices.add(point2Left.x)
+    vertices.add(point2Left.y)
+    vertices.add(red)
+    vertices.add(green)
+    vertices.add(blue)
+    vertices.add(alpha)
+    vertices.add(0f)
+    vertices.add(1f)
+
+    return vertices
   }
 
   open fun setInitVel(vel: Vector2f) {

@@ -9,10 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-07&#10;使用VBO批量渲染了烟雾特效，大幅降低了负担">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSmoke.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSmoke.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Sprite.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSprite.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -449,15 +451,7 @@
       <workItem from="1769957496356" duration="67000" />
       <workItem from="1770043721827" duration="192000" />
       <workItem from="1770202475521" duration="5167000" />
-      <workItem from="1770216321211" duration="5968000" />
-    </task>
-    <task id="LOCAL-00039" summary="4.8rc5&#10;p 2: fix butcher weapon_data translation">
-      <option name="closed" value="true" />
-      <created>1733421903199</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1733421903199</updated>
+      <workItem from="1770216321211" duration="6792000" />
     </task>
     <task id="LOCAL-00040" summary="4.8rc5&#10;p 2: fix butchered weapon_data translation">
       <option name="closed" value="true" />
@@ -843,7 +837,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770221810710</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend">
+      <option name="closed" value="true" />
+      <created>1770222572745</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1770222572745</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -898,7 +900,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc6 01&#10;修复了删掉lunalib以后读不出选项null的问题&#10;之前因为是老版本升上次去的，选项有缓存在save里一直没找到" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 07&#10;更新swap_CN_EN 终于好了" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 08&#10;修复了漏掉的系统里的文本&#10;TODO:&#10;检查EN巡洋导弹报错的问题" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 09&#10;加入了2个测试战役的汉化&#10;加入了运油船战斗中减燃料的汉化&#10;检查EN巡洋导弹报错的问题(ass_MiscBattleCombatPlugin导致的)" />
@@ -923,7 +924,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06-3&#10;加入了aEP_BaseCombatEffectWithShader" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-06-4&#10;更新了2个着色器" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07&#10;使用VBO批量渲染了烟雾特效，大幅降低了负担" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-07&#10;使用VBO批量渲染了烟雾特效，大幅降低了负担" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
