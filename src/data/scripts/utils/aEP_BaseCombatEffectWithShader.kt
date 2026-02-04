@@ -107,11 +107,11 @@ abstract class aEP_BaseCombatEffectWithShader : aEP_BaseCombatEffect() {
     }
 
     // 实例变量
-    protected var shaderId: String = ""
-    protected var program: Int = 0
-    protected var isShaderEnabled: Boolean = true
-    protected var vertShaderPath: String = ""
-    protected var fragShaderPath: String = ""
+    var shaderId: String = ""
+    var program: Int = 0
+    var isShaderEnabled: Boolean = true
+    private var vertShaderPath: String = ""
+    private var fragShaderPath: String = ""
 
     /**
      * 绑定shader到当前实例，并使用默认路径规则
@@ -123,11 +123,6 @@ abstract class aEP_BaseCombatEffectWithShader : aEP_BaseCombatEffect() {
         fragShaderPath = "data/shaders/${id}Frag.frag"
     }
 
-    /**
-     * 获取shader的唯一标识
-     * 用于缓存和识别不同的shader程序
-     */
-    open fun getShaderId(): String = shaderId
 
     /**
      * 获取shader文件路径
@@ -139,11 +134,10 @@ abstract class aEP_BaseCombatEffectWithShader : aEP_BaseCombatEffect() {
      * 初始化shader
      * 在构造函数或首次使用时调用
      */
-    protected fun initShader() {
+    fun initShader() {
         if (shaderId.isBlank()) return // shader未绑定，不初始化
         if (program > 0) return // 已经初始化过
 
-        shaderId = getShaderId()
         val (vertPath, fragPath) = getShaderPaths()
         program = getOrCreateProgram(shaderId, vertPath, fragPath)
     }
@@ -151,21 +145,9 @@ abstract class aEP_BaseCombatEffectWithShader : aEP_BaseCombatEffect() {
     /**
      * 检查shader是否已加载
      */
-    protected fun isShaderLoaded(): Boolean {
+    fun isShaderLoaded(): Boolean {
         return program > 0
     }
-
-    /**
-     * 启用/禁用shader
-     */
-    fun setShaderEnabled(enabled: Boolean) {
-        isShaderEnabled = enabled
-    }
-
-    /**
-     * 获取shader程序ID
-     */
-    fun getProgram(): Int = program
 
     /**
      * 重写render方法，封装shader渲染流程

@@ -73,6 +73,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="E:\Program Files\Starsector098\mods\MagicLib\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="E:\Program Files\Starsector098\mods\MagicLib\data\hullmods\hull_mods.csv">
           <value>
             <Attribute>

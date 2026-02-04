@@ -42,6 +42,15 @@ class aEP_CombatEffectPlugin : BaseEveryFrameCombatPlugin(), CombatLayeredRender
         Global.getLogger(javaClass).warn("$LOG_TAG ${effect.javaClass.simpleName}: Plugin not found in Custom Data")
       }
     }
+
+    /**
+     * 获取当前激活的特效列表（只读快照）
+     */
+    fun getActiveEffects(): List<aEP_BaseCombatEffect> {
+      val combatEngine = Global.getCombatEngine()
+      val plugin = combatEngine?.customData?.get(CUSTOM_DATA_KEY) as? aEP_CombatEffectPlugin
+      return plugin?.activeEffects?.toList() ?: emptyList()
+    }
   }
 
   // 空安全优化：移除lateinit，改用可空类型+默认值
@@ -56,6 +65,7 @@ class aEP_CombatEffectPlugin : BaseEveryFrameCombatPlugin(), CombatLayeredRender
 
   /**
    * 战斗引擎初始化时触发，完成插件注册和数据初始化
+   * 不一定先比advance执行，具体看alex注释
    * @param engine 战斗引擎实例
    */
   override fun init(engine: CombatEngineAPI) {

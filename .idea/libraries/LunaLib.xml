@@ -4,6 +4,9 @@
       <root url="jar://$PROJECT_DIR$/../LunaLib/jars/LunaLib.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../LunaLib/src" />
+      <root url="file://$PROJECT_DIR$/../LunaLib/src" />
+    </SOURCES>
   </library>
 </component>

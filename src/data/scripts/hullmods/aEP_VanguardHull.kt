@@ -23,20 +23,20 @@ class aEP_VanguardHull : aEP_BaseHullMod() {
     private val REDUCE_AMOUNT = HashMap<HullSize, Float>()
     init {
       REDUCE_AMOUNT[HullSize.FIGHTER] = 0f
-      REDUCE_AMOUNT[HullSize.FRIGATE] = 20f
-      REDUCE_AMOUNT[HullSize.DESTROYER] = 20f
-      REDUCE_AMOUNT[HullSize.CRUISER] = 20f
-      REDUCE_AMOUNT[HullSize.CAPITAL_SHIP] = 25f
+      REDUCE_AMOUNT[HullSize.FRIGATE] = 30f
+      REDUCE_AMOUNT[HullSize.DESTROYER] = 30f
+      REDUCE_AMOUNT[HullSize.CRUISER] = 30f
+      REDUCE_AMOUNT[HullSize.CAPITAL_SHIP] = 30f
     }
 
     const val SMOD_REDUCE_CHANCE = 0.40f
     private val SMOD_REDUCE_AMOUNT = HashMap<HullSize, Float>()
     init {
       SMOD_REDUCE_AMOUNT[HullSize.FIGHTER] = 0f
-      SMOD_REDUCE_AMOUNT[HullSize.FRIGATE] = 40f
-      SMOD_REDUCE_AMOUNT[HullSize.DESTROYER] = 40f
-      SMOD_REDUCE_AMOUNT[HullSize.CRUISER] = 40f
-      SMOD_REDUCE_AMOUNT[HullSize.CAPITAL_SHIP] = 45f
+      SMOD_REDUCE_AMOUNT[HullSize.FRIGATE] = 50f
+      SMOD_REDUCE_AMOUNT[HullSize.DESTROYER] = 50f
+      SMOD_REDUCE_AMOUNT[HullSize.CRUISER] = 50f
+      SMOD_REDUCE_AMOUNT[HullSize.CAPITAL_SHIP] = 50f
     }
     const val ID = "aEP_VanguardHull"
   }

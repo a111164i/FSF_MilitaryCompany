@@ -20,6 +20,7 @@ import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID.Companion.TELEPORT_JITTER_COLOR
 import data.scripts.utils.aEP_Tool.Util.speed2Velocity
+import org.dark.shaders.util.ShaderLib
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
 import org.lazywizard.lazylib.MathUtils
@@ -35,6 +36,14 @@ import org.magiclib.plugins.MagicRenderPlugin
 import org.magiclib.util.MagicRender
 import java.awt.Color
 import kotlin.math.*
+import org.lwjgl.opengl.GL11.*
+import org.lwjgl.opengl.GL15.*
+import org.lwjgl.opengl.GL20.*
+import org.lwjgl.opengl.GL30.*
+import java.nio.FloatBuffer
+import org.lwjgl.BufferUtils
+import org.lwjgl.opengl.GL13.GL_TEXTURE0
+import org.lwjgl.opengl.GL13.glActiveTexture
 
 class aEP_Tool {
 
@@ -629,7 +638,7 @@ class aEP_Tool {
     fun getTargetWidthAngleInDistance(from: Vector2f?, targetLocation: Vector2f?, targetRadius: Float): Float {
       return if (targetRadius >= MathUtils.getDistance(from, targetLocation)) {
         0f
-      //57.3 is to convert from rad to degrees
+        //57.3 is to convert from rad to degrees
       } else 2 * 57.3f * asin(
         (targetRadius
             / MathUtils.getDistance(from, targetLocation)).toDouble()
@@ -843,7 +852,7 @@ class aEP_Tool {
         if (landingStarted) {
           ship.abortLanding()
         }
-      //距离降落100内时，增加额外的机动性，准备平移到50内开始降落
+        //距离降落100内时，增加额外的机动性，准备平移到50内开始降落
       } else {
         ship.mutableStats.maxSpeed.modifyFlat(id, parentShip.maxSpeed + ship.maxSpeed)
         ship.mutableStats.acceleration.modifyFlat(id,parentShip.maxSpeed )
@@ -1155,7 +1164,7 @@ class aEP_Tool {
       vel.scale(amount)
 
 
-     entity.location.set(entity.location.x + vel.x, entity.location.y + vel.y)
+      entity.location.set(entity.location.x + vel.x, entity.location.y + vel.y)
 
     }
 
@@ -1385,7 +1394,7 @@ class aEP_Tool {
 
     fun isShipInFleet(shipId:String, fleet:CampaignFleetAPI): Boolean{
       for( v:FleetMemberAPI in fleet.membersWithFightersCopy){
-       val baseHullId = v.hullSpec.baseHullId
+        val baseHullId = v.hullSpec.baseHullId
         if(baseHullId.equals(shipId)){
           return true
         }
@@ -1837,11 +1846,11 @@ class aEP_Tool {
     }
 
     fun isShipTargetable(target: ShipAPI,
-                          canAimPhased:Boolean,
-                          canAimStation:Boolean,
-                          canAimModule:Boolean,
-                          canAimNoneCollision:Boolean,
-                          canAimFighter:Boolean): Boolean{
+                         canAimPhased:Boolean,
+                         canAimStation:Boolean,
+                         canAimModule:Boolean,
+                         canAimNoneCollision:Boolean,
+                         canAimFighter:Boolean): Boolean{
       if(target.isHulk || !target.isAlive || !Global.getCombatEngine().isEntityInPlay(target)) return false
       if(!target.isTargetable) return false
       if(target.hasTag(VARIANT_FX_DRONE)) return false
@@ -2189,19 +2198,19 @@ class aEP_Tool {
     }
 
     fun addExplosionParticleCloud(point: Vector2f, maxRad:Float, coreRad:Float, sizeMin:Float,  sizeMax:Float, num:Int, duration:Float, color: Color){
-     for ( i in 0 until num){
-       var speed = maxRad/(duration+0.1f)
-       val angle = MathUtils.getRandomNumberInRange(0f, 360f)
-       val loc = getExtendedLocationFromPoint(point,angle,coreRad * MathUtils.getRandomNumberInRange(0f,1f))
+      for ( i in 0 until num){
+        var speed = maxRad/(duration+0.1f)
+        val angle = MathUtils.getRandomNumberInRange(0f, 360f)
+        val loc = getExtendedLocationFromPoint(point,angle,coreRad * MathUtils.getRandomNumberInRange(0f,1f))
 
-       speed *= MathUtils.getRandomNumberInRange(0.25f,1.5f)
-       val vel = speed2Velocity(angle, speed)
+        speed *= MathUtils.getRandomNumberInRange(0.25f,1.5f)
+        val vel = speed2Velocity(angle, speed)
 
-       val size = MathUtils.getRandomNumberInRange(sizeMin, sizeMax)
-       val time = duration * MathUtils.getRandomNumberInRange(0.25f,1.5f)
-       addSmoothParticle(loc,vel,size,(color.alpha/255.1f),
-         0f,time * 0.25f,time * 0.75f ,color)
-     }
+        val size = MathUtils.getRandomNumberInRange(sizeMin, sizeMax)
+        val time = duration * MathUtils.getRandomNumberInRange(0.25f,1.5f)
+        addSmoothParticle(loc,vel,size,(color.alpha/255.1f),
+          0f,time * 0.25f,time * 0.75f ,color)
+      }
 
     }
 
@@ -2240,7 +2249,7 @@ class aEP_Tool {
 
     /**
      * 如果武器下线，把血量修到离满只差10滴血，下一帧让电脑自动修复
-    * */
+     * */
     fun keepWeaponAlive(w: WeaponAPI){
       if(w.isDisabled && w.currHealth < w.maxHealth-10f){
         w.currHealth = w.maxHealth-10f
@@ -2399,9 +2408,9 @@ class aEP_Render{
       GL11.glMatrixMode(GL11.GL_PROJECTION)
       GL11.glPushMatrix()
 
-      //画纯色图不需要材质，打开材质就一定要绑定，否则会导致画不出东西
+      //默认画纯色图不需要材质，打开材质就一定要绑定，否则会导致画不出东西
       GL11.glDisable(GL11.GL_TEXTURE_2D)
-      //这里不做绑定
+      //如果需要材质，在外面打开
       //GL11.glBindTexture(GL11.GL_TEXTURE_2D, Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
 
       GL11.glEnable(GL11.GL_BLEND)
@@ -2445,6 +2454,298 @@ class aEP_Render{
     }
 
   }
+
+  /**
+   * 现代OpenGL渲染工具类（支持位置+颜色+纹理坐标 + VBO自动扩容）
+   * 扩容策略：容量不足时翻倍分配，适配批量特效（SearchLight/PredictionStripe）
+   */
+  class RenderUtils {
+    // 顶点属性：位置(2f) + 颜色(4f) + 纹理坐标(2f) = 每顶点8个float
+    private val VERTEX_ATTR_SIZE = 8
+    private val POSITION_ATTR_INDEX = 0    // 位置属性索引
+    private val COLOR_ATTR_INDEX = 1       // 颜色属性索引
+    private val TEX_COORD_ATTR_INDEX = 2   // 纹理坐标属性索引
+
+    // 着色器程序ID、VAO/VBO ID
+    private var shaderProgram = 0
+    private var vaoId = 0
+    private var vboId = 0
+
+    // MVP矩阵Uniform位置（缓存起来避免重复查询）
+    private var mvpMatrixLocation = -1
+    // MVP矩阵缓冲区（复用避免频繁创建）
+    private val mvpMatrixBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
+
+
+    // 顶点数据缓冲区（动态扩容）
+    private lateinit var vertexBuffer: FloatBuffer
+    // 初始最大顶点数（首次分配），后续自动翻倍
+    private var currentMaxVertices = 1024
+    // 单次扩容倍数
+    private val EXPAND_MULTIPLIER = 2
+
+    init {
+      // 1. 初始化着色器程序
+      createShaderProgram()
+      // 2. 初始化VAO/VBO（基于初始容量）
+      initVAOAndVBO()
+      // 3. 获取MVP矩阵的uniform位置（缓存）
+      mvpMatrixLocation = glGetUniformLocation(shaderProgram, "mvpMatrix")
+    }
+
+    /**
+     * 创建着色器程序（位置+颜色+纹理采样，逻辑不变）
+     * 有需要可以重写
+     */
+    private fun createShaderProgram() {
+      // 顶点着色器（直接使用NDC坐标）
+      val vertexShaderSource = """
+        #version 120
+        attribute vec2 aPos;      // OpenGL NDC坐标（-1~1）
+        attribute vec4 aColor;
+        attribute vec2 aTexCoord;
+        
+        varying vec4 vColor;
+        varying vec2 vTexCoord;
+        
+        void main() {
+            gl_Position = vec4(aPos, 0.0, 1.0); // 直接使用转换后的NDC坐标
+            vColor = aColor;
+            vTexCoord = aTexCoord;
+        }
+      """.trimIndent()
+
+      // 片段着色器（OpenGL 2.1版本）
+      val fragmentShaderSource = """
+        #version 120
+        varying vec4 vColor;
+        varying vec2 vTexCoord;
+        
+        uniform sampler2D uTexture;
+        
+        void main() {
+            gl_FragColor = texture2D(uTexture, vTexCoord) * vColor;
+        }
+      """.trimIndent()
+
+      // 编译顶点着色器
+      val vertexShader = glCreateShader(GL_VERTEX_SHADER)
+      glShaderSource(vertexShader, vertexShaderSource)
+      glCompileShader(vertexShader)
+      checkShaderCompileError(vertexShader, "VERTEX")
+
+      // 编译片段着色器
+      val fragmentShader = glCreateShader(GL_FRAGMENT_SHADER)
+      glShaderSource(fragmentShader, fragmentShaderSource)
+      glCompileShader(fragmentShader)
+      checkShaderCompileError(fragmentShader, "FRAGMENT")
+
+      // 链接程序
+      shaderProgram = glCreateProgram()
+      glAttachShader(shaderProgram, vertexShader)
+      glAttachShader(shaderProgram, fragmentShader)
+      glLinkProgram(shaderProgram)
+      checkProgramLinkError(shaderProgram)
+
+      // 清理着色器资源
+      glDeleteShader(vertexShader)
+      glDeleteShader(fragmentShader)
+    }
+
+    /**
+     * 初始化VAO和VBO（基于当前最大顶点数）
+     */
+    private fun initVAOAndVBO() {
+      // 创建VAO
+      vaoId = glGenVertexArrays()
+      glBindVertexArray(vaoId)
+
+      // 创建VBO并分配初始显存
+      vboId = glGenBuffers()
+      glBindBuffer(GL_ARRAY_BUFFER, vboId)
+      // 计算初始显存大小：顶点数 × 属性数 × 4字节(float)
+      val initialBufferSize = (currentMaxVertices * VERTEX_ATTR_SIZE * 4).toLong()
+      vertexBuffer = BufferUtils.createFloatBuffer(currentMaxVertices * VERTEX_ATTR_SIZE)
+      glBufferData(GL_ARRAY_BUFFER, initialBufferSize, GL_DYNAMIC_DRAW)
+
+      // 配置位置属性
+      glVertexAttribPointer(
+        POSITION_ATTR_INDEX, 2, GL_FLOAT, false,
+        VERTEX_ATTR_SIZE * 4, 0
+      )
+      glEnableVertexAttribArray(POSITION_ATTR_INDEX)
+
+      // 配置颜色属性
+      glVertexAttribPointer(
+        COLOR_ATTR_INDEX, 4, GL_FLOAT, false,
+        VERTEX_ATTR_SIZE * 4, 2 * 4L
+      )
+      glEnableVertexAttribArray(COLOR_ATTR_INDEX)
+
+      // 配置纹理坐标属性
+      glVertexAttribPointer(
+        TEX_COORD_ATTR_INDEX, 2, GL_FLOAT, false,
+        VERTEX_ATTR_SIZE * 4, 6 * 4L
+      )
+      glEnableVertexAttribArray(TEX_COORD_ATTR_INDEX)
+
+      // 解绑绑定，避免误操作
+      glBindBuffer(GL_ARRAY_BUFFER, 0)
+      glBindVertexArray(0)
+    }
+
+    /**
+     * 提交顶点数据到GPU（使用ShaderLib自动转换世界坐标→UV/NDC坐标）
+     * @param vertices 顶点数组，格式：[x,y,r,g,b,a,u,v] × 顶点数（x/y为世界坐标）
+     * @param viewport 仅保留参数兼容，ShaderLib已内置视口逻辑
+     */
+    fun submitVertices(vertices: FloatArray, viewport: ViewportAPI) {
+      // 计算实际需要的顶点数
+      val requiredVertices = vertices.size / VERTEX_ATTR_SIZE
+      if (requiredVertices == 0) return
+
+      // 容量不足时执行扩容
+      if (requiredVertices > currentMaxVertices) {
+        expandBuffer(requiredVertices)
+      }
+
+      // 转换所有顶点的世界坐标为NDC坐标
+      val convertedVertices = FloatArray(vertices.size)
+      for (i in 0 until requiredVertices) {
+        val baseIdx = i * VERTEX_ATTR_SIZE
+        // 提取世界坐标并封装为Vector2f
+        val worldLocation = Vector2f(vertices[baseIdx], vertices[baseIdx + 1])
+        // 相对于屏幕左下角的坐标，单位依然是世界坐标
+        val screenCoord = Vector2f(worldLocation.x - viewport.llx, worldLocation.y - viewport.lly)
+        // 屏幕长宽，单位为世界坐标
+        val screenWidth = (viewport.center.x - viewport.llx) * 2f
+        val screenHeight = (viewport.center.y - viewport.lly) * 2f
+        // 相对于屏幕左下角的坐标，单位为UV坐标(0~1)
+        val uvCoord = Vector2f(screenCoord.x/screenWidth, screenCoord.y/screenHeight)
+        // 替换为UV->NDC坐标: (0~1) to (-1~1)
+        val ndcCoord = Vector2f(uvCoord.x *2f -1f, uvCoord.y *2f -1f)
+
+        convertedVertices[baseIdx] = ndcCoord.x
+        convertedVertices[baseIdx + 1] = ndcCoord.y
+
+        // 复制颜色和纹理坐标（无需转换）
+        for (j in 2 until VERTEX_ATTR_SIZE) {
+          convertedVertices[baseIdx + j] = vertices[baseIdx + j]
+        }
+      }
+
+      // 提交转换后的数据到VBO
+      glBindBuffer(GL_ARRAY_BUFFER, vboId)
+      vertexBuffer.clear()
+      vertexBuffer.put(convertedVertices)?.flip() // 切换为读模式
+      glBufferSubData(GL_ARRAY_BUFFER, 0L, vertexBuffer)
+      glBindBuffer(GL_ARRAY_BUFFER, 0)
+    }
+
+    /**
+     * 扩容VBO缓冲区
+     * @param requiredMin 最小所需顶点数
+     */
+    private fun expandBuffer(requiredMin: Int) {
+      // 计算新的最大顶点数：翻倍至超过最小需求
+      while (currentMaxVertices < requiredMin) {
+        currentMaxVertices *= EXPAND_MULTIPLIER
+      }
+
+      // 重新创建顶点缓冲区
+      vertexBuffer = BufferUtils.createFloatBuffer(currentMaxVertices * VERTEX_ATTR_SIZE)
+
+      // 重新分配VBO显存
+      glBindBuffer(GL_ARRAY_BUFFER, vboId)
+      val newBufferSize = (currentMaxVertices * VERTEX_ATTR_SIZE * 4).toLong()
+      glBufferData(GL_ARRAY_BUFFER, newBufferSize, GL_DYNAMIC_DRAW)
+      glBindBuffer(GL_ARRAY_BUFFER, 0)
+
+      // 日志（可选，调试用）
+      println("RenderUtils VBO扩容：当前最大顶点数=$currentMaxVertices，适配需求=$requiredMin")
+    }
+
+    /**
+     * 绑定纹理到着色器（渲染带纹理特效前必须调用）
+     */
+    fun bindTexture(textureId: Int) {
+      if (textureId == 0) return
+
+      glActiveTexture(GL_TEXTURE0)
+      glBindTexture(GL_TEXTURE_2D, textureId)
+
+      // 设置纹理采样器 uniform
+      val texLoc = glGetUniformLocation(shaderProgram, "uTexture")
+      glUseProgram(shaderProgram)
+      glUniform1i(texLoc, 0)
+      glUseProgram(0)
+    }
+
+    /**
+     * 批量绘制GL_QUAD_STRIP，应该每帧只被调用一次，一次性渲染所有同类的粒子
+     * @param vertexCount 实际绘制的顶点数
+     */
+    fun drawArrays(vertexCount: Int, renderMode:Int = GL_QUAD_STRIP) {
+      if (vertexCount <= 0) return
+
+      glUseProgram(shaderProgram)
+      glBindVertexArray(vaoId)
+      glDrawArrays(renderMode, 0, vertexCount)
+      // 解绑
+      glBindVertexArray(0)
+      glUseProgram(0)
+    }
+
+    /**
+     * 释放所有资源（模组卸载时调用）
+     */
+    fun cleanup() {
+      glDeleteVertexArrays(vaoId)
+      glDeleteBuffers(vboId)
+      glDeleteProgram(shaderProgram)
+      vertexBuffer.clear()
+    }
+
+    // ---------------------- 错误检查工具方法 ----------------------
+    // 检查着色器编译错误
+    private fun checkShaderCompileError(shader: Int, type: String) {
+      if (glGetShaderi(shader, GL_COMPILE_STATUS) == GL_FALSE) {
+        // 1. 创建缓冲区：获取日志长度
+        val lengthBuffer = BufferUtils.createIntBuffer(1)
+        glGetShaderInfoLog(shader, lengthBuffer, null)
+        val logLength = lengthBuffer.get(0)
+
+        // 2. 创建缓冲区：获取日志内容
+        val infoLogBuffer = BufferUtils.createByteBuffer(logLength)
+        glGetShaderInfoLog(shader, lengthBuffer, infoLogBuffer)
+
+        // 3. 转换为字符串
+        val errorLog = String(infoLogBuffer.array(), 0, logLength)
+        aEP_Tool.addDebugLog("${type}着色器编译失败：\n$errorLog")
+      }
+    }
+
+    // 检查程序链接错误
+    private fun checkProgramLinkError(program: Int) {
+      if (glGetProgrami(program, GL_LINK_STATUS) == GL_FALSE) {
+        // 1. 创建缓冲区：获取日志长度
+        val lengthBuffer = BufferUtils.createIntBuffer(1)
+        glGetProgramInfoLog(program, lengthBuffer, null)
+        val logLength = lengthBuffer.get(0)
+
+        // 2. 创建缓冲区：获取日志内容
+        val infoLogBuffer = BufferUtils.createByteBuffer(logLength)
+        glGetProgramInfoLog(program, lengthBuffer, infoLogBuffer)
+
+        // 3. 转换为字符串
+        val errorLog = String(infoLogBuffer.array(), 0, logLength)
+        aEP_Tool.addDebugLog("着色器程序链接失败：\n$errorLog")
+      }
+    }
+
+  }
+
+
 
 }
 
@@ -2990,7 +3291,7 @@ class aEP_Combat{
       //先移除老的，再把自己加入map
       addOrRefreshEffect(target, DASH_ID,
         {
-          old -> old.time = old.lifeTime
+            old -> old.time = old.lifeTime
         },
         {
 
@@ -3000,7 +3301,7 @@ class aEP_Combat{
       //给初始加速
       //先减速，去除惯性，再朝目标方向加速
       target.velocity.scale(0.5f)
-       val toAddVel = speed2Velocity(toAngle, 2f * dashRange/dashTime)
+      val toAddVel = speed2Velocity(toAngle, 2f * dashRange/dashTime)
       target.velocity[target.velocity.x + toAddVel.x] = target.velocity.y + toAddVel.y
 
       //加入effect
