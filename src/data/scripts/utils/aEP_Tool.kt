@@ -20,6 +20,7 @@ import data.scripts.aEP_CombatEffectPlugin.Mod.addEffect
 import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID.Companion.TELEPORT_JITTER_COLOR
 import data.scripts.utils.aEP_Tool.Util.speed2Velocity
+import data.scripts.world.aEP_systems.aEP_BaseEveryFrame
 import org.dark.shaders.util.ShaderLib
 import org.lazywizard.lazylib.CollisionUtils
 import org.lazywizard.lazylib.FastTrig
@@ -44,6 +45,10 @@ import java.nio.FloatBuffer
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL13.GL_TEXTURE0
 import org.lwjgl.opengl.GL13.glActiveTexture
+import org.lwjgl.opengl.GL31.GL_UNIFORM_BUFFER
+import org.lwjgl.opengl.GL31.glDrawArraysInstanced
+import kotlin.text.clear
+import kotlin.text.compareTo
 
 class aEP_Tool {
 
@@ -1600,8 +1605,7 @@ class aEP_Tool {
       }
     }
 
-    fun spawnSingleCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?){
-      val c = color?: Color(240,240,240)
+    fun spawnSingleCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, c:Color = Color(240,240,240)){
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
         Vector2f(0f,0f),
         radius,
@@ -2459,8 +2463,10 @@ class aEP_Render{
    * 现代OpenGL渲染工具类（支持位置+颜色+纹理坐标 + VBO自动扩容）
    * 扩容策略：容量不足时翻倍分配，适配批量特效（SearchLight/PredictionStripe）
    */
-  class RenderUtils {
+  class RenderUtils private constructor(){
+
     // 顶点属性：位置(2f) + 颜色(4f) + 纹理坐标(2f) = 每顶点8个float
+    // submit vertices的时候用到
     private val VERTEX_ATTR_SIZE = 8
     private val POSITION_ATTR_INDEX = 0    // 位置属性索引
     private val COLOR_ATTR_INDEX = 1       // 颜色属性索引
@@ -2471,85 +2477,52 @@ class aEP_Render{
     private var vaoId = 0
     private var vboId = 0
 
-    // MVP矩阵Uniform位置（缓存起来避免重复查询）
-    private var mvpMatrixLocation = -1
-    // MVP矩阵缓冲区（复用避免频繁创建）
-    private val mvpMatrixBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
-
+    // UBO 相关变量
+    private val UBO_BINDING_POINT = 0    // UBO 绑定点（需和着色器一致）
+    private lateinit var uboBuffer: FloatBuffer // UBO 数据缓冲区
+    private var currentUBOSize = 0       // 当前 UBO 大小（字节）
+    private var uboId = 0                // UBO 缓冲区 ID
 
     // 顶点数据缓冲区（动态扩容）
     private lateinit var vertexBuffer: FloatBuffer
     // 初始最大顶点数（首次分配），后续自动翻倍
-    private var currentMaxVertices = 1024
-    // 单次扩容倍数
-    private val EXPAND_MULTIPLIER = 2
+    private var currentMaxVertices = 4096
+    // 最大扩容倍数
+    private val MAX_EXPAND = currentMaxVertices * 8
 
     init {
-      // 1. 初始化着色器程序
-      createShaderProgram()
+
+      // 1. 初始化默认着色器程序
+      setShaderProgram()
       // 2. 初始化VAO/VBO（基于初始容量）
       initVAOAndVBO()
-      // 3. 获取MVP矩阵的uniform位置（缓存）
-      mvpMatrixLocation = glGetUniformLocation(shaderProgram, "mvpMatrix")
+
     }
 
-    /**
-     * 创建着色器程序（位置+颜色+纹理采样，逻辑不变）
-     * 有需要可以重写
-     */
-    private fun createShaderProgram() {
-      // 顶点着色器（直接使用NDC坐标）
-      val vertexShaderSource = """
-        #version 120
-        attribute vec2 aPos;      // OpenGL NDC坐标（-1~1）
-        attribute vec4 aColor;
-        attribute vec2 aTexCoord;
-        
-        varying vec4 vColor;
-        varying vec2 vTexCoord;
-        
-        void main() {
-            gl_Position = vec4(aPos, 0.0, 1.0); // 直接使用转换后的NDC坐标
-            vColor = aColor;
-            vTexCoord = aTexCoord;
+    // ---------------------- 静态实例管理逻辑（核心修改） ----------------------
+    companion object {
+      /**
+       * 获取RenderUtils实例（核心逻辑：复用插件缓存的老实例，无则新建）
+       * @return 复用的老实例 或 新建的实例
+       */
+      fun getRenderUtils(key: String = ""): RenderUtils {
+        // 1. 检查插件中是否有上一次战斗的RenderUtils实例
+        val className = key.ifEmpty { RenderUtils::class.java.name }
+        val oldInstance = aEP_CombatEffectPlugin.getRenderUtils(className) as? RenderUtils
+
+        // 2. 如果老实例存在且未销毁，直接返回复用
+        if (oldInstance != null ) {
+          aEP_Tool.addDebugLog("复用上一次战斗的实例: "+className)
+          return oldInstance
         }
-      """.trimIndent()
 
-      // 片段着色器（OpenGL 2.1版本）
-      val fragmentShaderSource = """
-        #version 120
-        varying vec4 vColor;
-        varying vec2 vTexCoord;
-        
-        uniform sampler2D uTexture;
-        
-        void main() {
-            gl_FragColor = texture2D(uTexture, vTexCoord) * vColor;
-        }
-      """.trimIndent()
-
-      // 编译顶点着色器
-      val vertexShader = glCreateShader(GL_VERTEX_SHADER)
-      glShaderSource(vertexShader, vertexShaderSource)
-      glCompileShader(vertexShader)
-      checkShaderCompileError(vertexShader, "VERTEX")
-
-      // 编译片段着色器
-      val fragmentShader = glCreateShader(GL_FRAGMENT_SHADER)
-      glShaderSource(fragmentShader, fragmentShaderSource)
-      glCompileShader(fragmentShader)
-      checkShaderCompileError(fragmentShader, "FRAGMENT")
-
-      // 链接程序
-      shaderProgram = glCreateProgram()
-      glAttachShader(shaderProgram, vertexShader)
-      glAttachShader(shaderProgram, fragmentShader)
-      glLinkProgram(shaderProgram)
-      checkProgramLinkError(shaderProgram)
-
-      // 清理着色器资源
-      glDeleteShader(vertexShader)
-      glDeleteShader(fragmentShader)
+        // 3. 无有效老实例，创建新实例并注册到插件
+        val newInstance = RenderUtils()
+        // 注册到插件
+        aEP_CombatEffectPlugin.addRenderUtils(className, newInstance)
+        aEP_Tool.addDebugLog("创建新实例并注册到插件: "+className)
+        return newInstance
+      }
     }
 
     /**
@@ -2568,21 +2541,21 @@ class aEP_Render{
       vertexBuffer = BufferUtils.createFloatBuffer(currentMaxVertices * VERTEX_ATTR_SIZE)
       glBufferData(GL_ARRAY_BUFFER, initialBufferSize, GL_DYNAMIC_DRAW)
 
-      // 配置位置属性
+      // 配置位置属性 2f
       glVertexAttribPointer(
         POSITION_ATTR_INDEX, 2, GL_FLOAT, false,
         VERTEX_ATTR_SIZE * 4, 0
       )
       glEnableVertexAttribArray(POSITION_ATTR_INDEX)
 
-      // 配置颜色属性
+      // 配置颜色属性 4f
       glVertexAttribPointer(
         COLOR_ATTR_INDEX, 4, GL_FLOAT, false,
         VERTEX_ATTR_SIZE * 4, 2 * 4L
       )
       glEnableVertexAttribArray(COLOR_ATTR_INDEX)
 
-      // 配置纹理坐标属性
+      // 配置纹理坐标属性 2f
       glVertexAttribPointer(
         TEX_COORD_ATTR_INDEX, 2, GL_FLOAT, false,
         VERTEX_ATTR_SIZE * 4, 6 * 4L
@@ -2593,6 +2566,92 @@ class aEP_Render{
       glBindBuffer(GL_ARRAY_BUFFER, 0)
       glBindVertexArray(0)
     }
+
+    /**
+     * 初始化UBO（实例化渲染专用，大量粒子时调用）
+     * 调用时机：创建RenderUtils后、首次使用实例化渲染前
+     */
+    fun initUBO() {
+      // 1. 创建 UBO
+      uboId = glGenBuffers()
+      glBindBuffer(GL_UNIFORM_BUFFER, uboId)
+
+      // 2. 初始分配 5000 个实例的空间（每个实例 8 个 float = 32 字节）
+      currentUBOSize = 5000 * 8 * 4 // 10000 × 32 字节 = 160KB
+      glBufferData(GL_UNIFORM_BUFFER, currentUBOSize.toLong(), GL_DYNAMIC_DRAW)
+
+      // 3. 绑定 UBO 到绑定点 0
+      glBindBufferBase(GL_UNIFORM_BUFFER, UBO_BINDING_POINT, uboId)
+
+      // 4. 初始化缓冲区
+      uboBuffer = BufferUtils.createFloatBuffer(10000 * 8)
+
+      glBindBuffer(GL_UNIFORM_BUFFER, 0)
+    }
+
+    /**
+     * 创建默认着色器程序，直接每帧更新VBO数据（不使用实例化渲染）
+     * 适合特效数量较少、每帧顶点数不大的情况，逻辑简单，兼容性好
+     * 位置属性传入前就要转换为NDC坐标
+     * 有需要可以重写，默认渲染方形贴图
+     */
+    fun setShaderProgram(
+      vertexShaderSource:String = """
+        #version 120
+        attribute vec2 aPos;      // OpenGL NDC坐标（-1~1）
+        attribute vec4 aColor;
+        attribute vec2 aTexCoord;
+        
+        varying vec4 vColor;
+        varying vec2 vTexCoord;
+        
+        void main() {
+            gl_Position = vec4(aPos, 0.0, 1.0); // 直接使用转换后的NDC坐标
+            vColor = aColor;
+            vTexCoord = aTexCoord;
+        }
+      """.trimIndent(),
+      fragmentShaderSource:String = """
+        #version 120
+        varying vec4 vColor;
+        varying vec2 vTexCoord;
+        
+        uniform sampler2D uTexture;
+        
+        void main() {
+            gl_FragColor = texture2D(uTexture, vTexCoord) * vColor;
+        }
+      """.trimIndent()
+    ) {
+      // 顶点着色器（直接使用NDC坐标）
+      // 片段着色器（OpenGL 2.1版本）
+
+
+      // 编译顶点着色器
+      val vertexShader = glCreateShader(GL_VERTEX_SHADER)
+      glShaderSource(vertexShader, vertexShaderSource)
+      glCompileShader(vertexShader)
+      checkShaderCompileError(vertexShader, "VERTEX")
+
+      // 编译片段着色器
+      val fragmentShader = glCreateShader(GL_FRAGMENT_SHADER)
+      glShaderSource(fragmentShader, fragmentShaderSource)
+      glCompileShader(fragmentShader)
+      checkShaderCompileError(fragmentShader, "FRAGMENT")
+
+      // 链接程序
+      shaderProgram = glCreateProgram()
+      glAttachShader(shaderProgram, vertexShader)
+      glAttachShader(shaderProgram, fragmentShader)
+
+      glLinkProgram(shaderProgram)
+      checkProgramLinkError(shaderProgram)
+
+      // 清理着色器资源
+      glDeleteShader(vertexShader)
+      glDeleteShader(fragmentShader)
+    }
+
 
     /**
      * 提交顶点数据到GPU（使用ShaderLib自动转换世界坐标→UV/NDC坐标）
@@ -2628,6 +2687,8 @@ class aEP_Render{
         convertedVertices[baseIdx] = ndcCoord.x
         convertedVertices[baseIdx + 1] = ndcCoord.y
 
+        //aEP_Tool.addDebugPoint(worldLocation)
+
         // 复制颜色和纹理坐标（无需转换）
         for (j in 2 until VERTEX_ATTR_SIZE) {
           convertedVertices[baseIdx + j] = vertices[baseIdx + j]
@@ -2643,13 +2704,61 @@ class aEP_Render{
     }
 
     /**
+     * 提交实例化渲染的顶点信息，只用提交一次，后续每帧更新UBO实例数据即可
+     * @param vertices 顶点格式：[x,y,r,g,b,a,u,v]（x/y为UDC）
+     */
+    fun submitVerticesNDC(vertices: FloatArray) {
+      // 计算实际需要的顶点数
+      val requiredVertices = vertices.size / VERTEX_ATTR_SIZE
+      if (requiredVertices == 0) return
+
+      // 容量不足时执行扩容
+      if (requiredVertices > currentMaxVertices) {
+        expandBuffer(requiredVertices)
+      }
+
+
+
+      // 提交数据到VBO
+      glBindBuffer(GL_ARRAY_BUFFER, vboId)
+      vertexBuffer.clear()
+      vertexBuffer.put(vertices).flip() // 切换为读模式
+      glBufferSubData(GL_ARRAY_BUFFER, 0L, vertexBuffer)
+      glBindBuffer(GL_ARRAY_BUFFER, 0)
+    }
+
+    /**
+     * 批量更新 UBO 中的实例数据
+     * @param instanceData 实例数据：[locX,locY,angle,size.x,size.y,r,g,b,a] × 实例数
+     */
+    fun updateInstanceUBO(instanceData: FloatArray, viewport: ViewportAPI) {
+      val requiredSize = instanceData.size * 4 // 字节数，1f=4byte
+      // 扩容 UBO（如需）
+      if (requiredSize > currentUBOSize) {
+        currentUBOSize = requiredSize * 2 // 翻倍扩容
+        glBindBuffer(GL_UNIFORM_BUFFER, uboId)
+        glBufferData(GL_UNIFORM_BUFFER, currentUBOSize.toLong(), GL_DYNAMIC_DRAW)
+        glBindBuffer(GL_UNIFORM_BUFFER, 0)
+        // 重新初始化缓冲区
+        uboBuffer = BufferUtils.createFloatBuffer(instanceData.size)
+      }
+
+      // 更新 UBO 数据
+      glBindBuffer(GL_UNIFORM_BUFFER, uboId)
+      uboBuffer.clear()
+      uboBuffer.put(instanceData).flip()
+      glBufferSubData(GL_UNIFORM_BUFFER, 0L, uboBuffer)
+      glBindBuffer(GL_UNIFORM_BUFFER, 0)
+    }
+
+    /**
      * 扩容VBO缓冲区
      * @param requiredMin 最小所需顶点数
      */
     private fun expandBuffer(requiredMin: Int) {
       // 计算新的最大顶点数：翻倍至超过最小需求
-      while (currentMaxVertices < requiredMin) {
-        currentMaxVertices *= EXPAND_MULTIPLIER
+      while (currentMaxVertices < requiredMin && currentMaxVertices <= MAX_EXPAND/2) {
+        currentMaxVertices *= 2
       }
 
       // 重新创建顶点缓冲区
@@ -2682,10 +2791,11 @@ class aEP_Render{
     }
 
     /**
-     * 批量绘制GL_QUAD_STRIP，应该每帧只被调用一次，一次性渲染所有同类的粒子
+     * 传统VBO渲染，每帧更新VBO后，批量绘制GL_QUAD_STRIP，画少量特效可以用cpu硬算顶点，每帧只调用一次
      * @param vertexCount 实际绘制的顶点数
+     * @param renderMode 渲染模式，默认GL_QUADS（四边形）
      */
-    fun drawArrays(vertexCount: Int, renderMode:Int = GL_QUAD_STRIP) {
+    fun drawArrays(vertexCount: Int, renderMode:Int = GL_QUADS) {
       if (vertexCount <= 0) return
 
       glUseProgram(shaderProgram)
@@ -2697,13 +2807,54 @@ class aEP_Render{
     }
 
     /**
-     * 释放所有资源（模组卸载时调用）
+     * 实例化渲染，每帧更新UBO后，批量绘制多个实例，，更复杂，大量粒子时使用，每帧只调用一次
+     * @param instanceCount 实际绘制的实例数（粒子数）
+     * @param baseVertexCount 单个实例的基础顶点数，默认4（四边形）
+     * @param renderMode 渲染模式，默认GL_QUADS（四边形）
      */
-    fun cleanup() {
+    fun drawInstances(
+      instanceCount: Int,
+      baseVertexCount: Int = 4,
+      renderMode: Int = GL_QUADS
+    ) {
+      // 校验参数
+      if (instanceCount <= 0 || baseVertexCount <= 0) return
+      if (shaderProgram == 0) {
+        aEP_Tool.addDebugLog("错误：请先调用setShaderProgram初始化着色器！")
+        return
+      }
+
+      // 实例化渲染核心流程
+      glUseProgram(shaderProgram)   // 使用着色器程序
+      glBindVertexArray(vaoId)      // 绑定VAO（基础顶点数据）
+      // 调用实例化绘制：基础顶点数=baseVertexCount，实例数=instanceCount
+      glDrawArraysInstanced(renderMode, 0, baseVertexCount, instanceCount)
+      // 解绑资源，避免误操作
+      glBindVertexArray(0)
+      glUseProgram(0)
+    }
+
+    /**
+     * 初始化等待复用
+     */
+    fun reset() {
+      if (::vertexBuffer.isInitialized) {
+        vertexBuffer.clear() // 清空数据，保留Buffer对象
+      }
+      if (::uboBuffer.isInitialized) {
+        uboBuffer.clear() // 清空数据，保留Buffer对象
+      }
+
+    }
+
+    /**
+     * 释放所有资源
+     */
+    fun destroy() {
+      reset()
       glDeleteVertexArrays(vaoId)
       glDeleteBuffers(vboId)
       glDeleteProgram(shaderProgram)
-      vertexBuffer.clear()
     }
 
     // ---------------------- 错误检查工具方法 ----------------------

@@ -3599,7 +3599,7 @@ class aEP_b_l_dg3_shot : Effect(){
 //aa40 zt125 转膛炮系列
 class aEP_b_m_k125_shot : Effect(){
   companion object{
-    val SMOKE_RING_COLOR =  Color(240,240,240,244)
+    val SMOKE_RING_COLOR =  Color(240,240,240,154)
     val SHELL_GLOW =   Color(255, 218, 188, 35)
 
     private var PERCENT_PER_TRIGGER = 0f

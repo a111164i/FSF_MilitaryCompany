@@ -17,7 +17,7 @@ open class aEP_MovingSprite : aEP_BaseCombatEffect{
 
   // 全局共享现代渲染工具（避免重复创建VAO/VBO）
   companion object {
-    private val renderUtils = aEP_Render.RenderUtils()
+    private val renderUtils = aEP_Render.RenderUtils.getRenderUtils()
     private val activeRenders = mutableListOf<WeakReference<aEP_MovingSprite>>()
     private var lastEngine: com.fs.starfarer.api.combat.CombatEngineAPI? = null
 
@@ -57,10 +57,8 @@ open class aEP_MovingSprite : aEP_BaseCombatEffect{
   var acceleration = Vector2f(0f, 0f)
   var angleSpeed= 0f
 
-
   val stopForceTimer = IntervalUtil(0.1f,0.1f)
   var stopSpeed = 1f
-
 
   /**
   *  百分比

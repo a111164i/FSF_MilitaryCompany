@@ -19,7 +19,7 @@ class aEP_MovingSmoke// 将当前实例添加到活跃渲染列表
 
   // 全局共享现代渲染工具（避免重复创建VAO/VBO）
   companion object {
-    private val renderUtils = aEP_Render.RenderUtils()
+    private val renderUtils = aEP_Render.RenderUtils.getRenderUtils()
 
     // 使用弱引用列表，避免内存泄漏
     private val activeRenders = mutableListOf<WeakReference<aEP_MovingSmoke>>()

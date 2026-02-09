@@ -3,9 +3,11 @@ package data.scripts
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import data.scripts.utils.aEP_BaseCombatEffect
+import data.scripts.utils.aEP_Render
 import data.scripts.utils.aEP_Tool
 import data.scripts.weapons.Glow
 import java.util.*
+import kotlin.collections.LinkedHashMap
 
 /**
  * 自由特效管理器，统一处理自定义特效的更新、渲染、生命周期管理
@@ -51,6 +53,21 @@ class aEP_CombatEffectPlugin : BaseEveryFrameCombatPlugin(), CombatLayeredRender
       val plugin = combatEngine?.customData?.get(CUSTOM_DATA_KEY) as? aEP_CombatEffectPlugin
       return plugin?.activeEffects?.toList() ?: emptyList()
     }
+
+    fun getRenderUtils(name: String): aEP_Render.RenderUtils? {
+      val combatEngine = Global.getCombatEngine()
+      val plugin = combatEngine?.customData?.get(CUSTOM_DATA_KEY) as? aEP_CombatEffectPlugin
+      return plugin?.renderUtils?.get(name)
+    }
+
+    /**
+     * @param name 用class的全称，必须要包含父类的包名
+     */
+    fun addRenderUtils(name: String, renderUtils: aEP_Render.RenderUtils) {
+      val combatEngine = Global.getCombatEngine()
+      val plugin = combatEngine?.customData?.get(CUSTOM_DATA_KEY) as? aEP_CombatEffectPlugin
+      plugin?.renderUtils?.put(name, renderUtils)
+    }
   }
 
   // 空安全优化：移除lateinit，改用可空类型+默认值
@@ -62,6 +79,7 @@ class aEP_CombatEffectPlugin : BaseEveryFrameCombatPlugin(), CombatLayeredRender
   // 集合优化：使用LinkedList的特性，提升遍历/移除效率
   private val activeEffects = LinkedList<aEP_BaseCombatEffect>()
   private val pendingAddEffects = LinkedList<aEP_BaseCombatEffect>()
+  private val renderUtils = LinkedHashMap<String,aEP_Render.RenderUtils>()
 
   /**
    * 战斗引擎初始化时触发，完成插件注册和数据初始化
@@ -168,9 +186,19 @@ class aEP_CombatEffectPlugin : BaseEveryFrameCombatPlugin(), CombatLayeredRender
       removePlugin(this@aEP_CombatEffectPlugin)
       customData.remove(CUSTOM_DATA_KEY)
     }
-    // 清空所有特效，强制结束生命周期
+    // 清空所有特效
+    for( activeEffect in activeEffects){
+      activeEffect.cleanup()
+    }
+    for( pendingAddEffect in activeEffects){
+      pendingAddEffect.cleanup()
+    }
     activeEffects.clear()
     pendingAddEffects.clear()
+    // reset全部的renderUtils
+    for ( r in renderUtils.values) {
+      r.reset()
+    }
     Global.getLogger(javaClass).info("$LOG_TAG Clean up...Done")
   }
 
