@@ -9,14 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend&#10;将aEP_MovingSprite也升级为批量渲染">
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="//----------------------------------------------//&#10;5.1rc1-07-3&#10;在renderUtils中加入了基础的实例化渲染功能">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/FSF_MilitaryCorporation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/aEP_CombatEffectPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/aEP_CombatEffectPlugin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSmoke.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSmoke.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSprite.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_MovingSprite.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/utils/aEP_Tool.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_Rupture.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +24,17 @@
     <persistenceIdMap>
       <entry key="_E:/Program Files/Starsector098/starsector-core" value="2i9ZR7wWrAY1gPh7OZJCavG6e7S" />
     </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedChatMode">
+    <option name="chatModeId" value="Agent" />
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="inline" value="GPT-5 mini" />
+      <entry key="edit-panel" value="GPT-5 mini" />
+      <entry key="chat-panel" value="Gemini 3 Pro (Preview)" />
+      <entry key="agent-panel" value="Gemini 3 Pro (Preview)" />
+    </selectedModels>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -161,8 +169,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -454,15 +462,10 @@
       <workItem from="1770043721827" duration="192000" />
       <workItem from="1770202475521" duration="5167000" />
       <workItem from="1770216321211" duration="6922000" />
-      <workItem from="1770637729179" duration="14061000" />
-    </task>
-    <task id="LOCAL-00041" summary="4.8rc5&#10;p 2: fix butchered weapon_data translation">
-      <option name="closed" value="true" />
-      <created>1733422881995</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1733422881995</updated>
+      <workItem from="1770637729179" duration="14193000" />
+      <workItem from="1770820707465" duration="9000" />
+      <workItem from="1773661065269" duration="210000" />
+      <workItem from="1773661361299" duration="838000" />
     </task>
     <task id="LOCAL-00042" summary="4.8rc5&#10;p 2: fix butchered weapon_data translation">
       <option name="closed" value="true" />
@@ -848,7 +851,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770223181339</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="//----------------------------------------------//&#10;5.1rc1-07-3&#10;在renderUtils中加入了基础的实例化渲染功能">
+      <option name="closed" value="true" />
+      <created>1770651986014</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1770651986014</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -903,7 +914,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 08&#10;修复了漏掉的系统里的文本&#10;TODO:&#10;检查EN巡洋导弹报错的问题" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 09&#10;加入了2个测试战役的汉化&#10;加入了运油船战斗中减燃料的汉化&#10;检查EN巡洋导弹报错的问题(ass_MiscBattleCombatPlugin导致的)" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8&#10;修正了喷火器的特效，现在使用原版，会随着弹丸消失而消失" />
@@ -928,7 +938,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07&#10;使用VBO批量渲染了烟雾特效，大幅降低了负担" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend&#10;将aEP_MovingSprite也升级为批量渲染" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend&#10;将aEP_MovingSprite也升级为批量渲染" />
+    <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-3&#10;在renderUtils中加入了基础的实例化渲染功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-07-3&#10;在renderUtils中加入了基础的实例化渲染功能" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

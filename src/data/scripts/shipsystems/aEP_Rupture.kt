@@ -44,7 +44,12 @@ class aEP_Rupture:  BaseShipSystemScript() {
     const val FREE_RANGE = 900f
     const val SYSTEM_RANGE = 600f
 
+    //每隔多少距离放一次电弧和加一次幅能
     const val TICK_DIST = 50f
+    //单帧数位移大于这个数就按这个数值，防止被召回等超远距离技能拉动导致单帧计算量太大
+    const val TICK_DIST_LIMIT = 1000f
+    //单帧因为位移产生的电弧数量不大于这个数，防止单帧生成过多电弧特效
+    const val TICK_ARC_LIMIT = 6f
 
     //每tick距离加多少幅能
     const val FLUX_PER_TICK = 150f
@@ -266,15 +271,21 @@ class DragBall(lifetime:Float,val target:ShipAPI, val ship: ShipAPI) : aEP_BaseC
     }
 
     if(dist2Entity > minDist){
-      cumulatedDist += (dist2Entity-minDist)
+      val distDiff = dist2Entity - minDist
+      cumulatedDist += distDiff.coerceAtMost(aEP_Rupture.TICK_DIST_LIMIT)
       minDist = dist2Entity
       moved = true
     }
     minDist = dist2Entity
 
     //灌幅能
+    var arcCount = 0
     while(cumulatedDist > TICK_DIST){
       cumulatedDist -= TICK_DIST
+
+      if(arcCount >= aEP_Rupture.TICK_ARC_LIMIT) continue
+      arcCount ++
+
       fac2Entity = VectorUtils.getAngle(ballLocation, target.location)
 
       val fluxLeft = (target.maxFlux - target.currFlux -1f).coerceAtLeast(0f)
