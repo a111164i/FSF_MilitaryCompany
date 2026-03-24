@@ -13,6 +13,7 @@ import data.scripts.utils.aEP_Tool;
 import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
 import data.scripts.campaign.FSFCampaignPlugin;
+import data.scripts.campaign.intel.FSFHostileActivityCrisisSetup;
 import data.scripts.world.aEP_gen;
 import exerelin.campaign.SectorManager;
 import org.dark.shaders.light.LightData;
@@ -119,6 +120,7 @@ public class FSFModPlugin extends BaseModPlugin {
     isNexerelinEnabled = Global.getSettings().getModManager().isModEnabled("nexerelin");
     isLunalibEnabled = Global.getSettings().getModManager().isModEnabled("lunalib");
 
+    ensureHostileActivityCrisisRegistered();
   }
 
   //create a sector
@@ -148,6 +150,8 @@ public class FSFModPlugin extends BaseModPlugin {
       sector.addScript(new FSFCampaignPlugin());
     }
 
+    ensureHostileActivityCrisisRegistered();
+
   }
 
   public void randomSpawn(){
@@ -157,6 +161,8 @@ public class FSFModPlugin extends BaseModPlugin {
     if (!sector.hasScript(FSFCampaignPlugin.class)) {
       sector.addScript(new FSFCampaignPlugin());
     }
+
+    ensureHostileActivityCrisisRegistered();
 
   }
 
@@ -261,6 +267,10 @@ public class FSFModPlugin extends BaseModPlugin {
       }
     }
 
+  }
+
+  private void ensureHostileActivityCrisisRegistered() {
+    FSFHostileActivityCrisisSetup.ensureRegistered();
   }
 
 }
