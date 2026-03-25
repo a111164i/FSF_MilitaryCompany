@@ -39,8 +39,6 @@
 		"aEP_SystemGeneral04":"无效目标",
 		"aEP_SystemGeneral05":"发动概率: ",
 
-
-
 		"aEP_SpecialHull01": "朝向或环绕附近一艘舰体尺寸大于自己的友方舰船加速时，本舰的最大速度{%s}，加速度{%s}",
 		"aEP_SpecialHull02": "零幅能加速的启用阈值{%s}",
 
@@ -165,6 +163,7 @@
 		"aEP_LidarArray05": "武器弹速: ",
 
 		#############################
+
 		"AWM01_title":"AWM01:搜集武器",
 		"AWM01_mission01":"你还需要找到{%s} {%s}",
 		"AWM01_mission02":"你已经找到了{%s}",
@@ -291,8 +290,10 @@
 		"aEP_SkillAnalyze01": "对操控者军官超过{%s}级（若其为舰队指挥官则为{%s}）的目标舰船，每高出一级则本舰对其的伤害增加{%s}，最高{%s}",
 
         #############################
-        "aEP_FSFOrbitalStationPluginBuildReason": "与FSF关系太低"
+        "aEP_FSFOrbitalStationPluginBuildReason": "与FSF关系太低",
 
+		#############################
+		"FSFHostileActivityFactor_desc" : "FSF"
 	},
 
 	"aEP_En":{
@@ -586,8 +587,10 @@
 		"aEP_SkillAnalyze01": "To target that its officer is above level %s (for fleet commander %s), for every level above you deal %s more damage, at maximum %s",
 
         #############################
-        "aEP_FSFOrbitalStationPluginBuildReason": "Relationship with FSF is too low"
+        "aEP_FSFOrbitalStationPluginBuildReason": "Relationship with FSF is too low",
 
-    },
+		#############################
+		"FSFHostileActivityFactor_desc" : "FSF"
+    }
 
 }

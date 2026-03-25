@@ -4,25 +4,25 @@ import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.StarSystemAPI
 import com.fs.starfarer.api.campaign.listeners.ColonyCrisesSetupListener
 import com.fs.starfarer.api.impl.campaign.ids.Factions
-import com.fs.starfarer.api.impl.campaign.intel.events.BaseEventIntel
+import com.fs.starfarer.api.impl.campaign.intel.events.*
 import com.fs.starfarer.api.impl.campaign.intel.events.BaseEventIntel.EventStageData
-import com.fs.starfarer.api.impl.campaign.intel.events.BaseFactorTooltip
-import com.fs.starfarer.api.impl.campaign.intel.events.BaseHostileActivityCause2
-import com.fs.starfarer.api.impl.campaign.intel.events.BaseHostileActivityFactor
-import com.fs.starfarer.api.impl.campaign.intel.events.HostileActivityEventIntel
 import com.fs.starfarer.api.impl.campaign.intel.events.HostileActivityEventIntel.HAERandomEventData
 import com.fs.starfarer.api.impl.campaign.intel.events.HostileActivityEventIntel.Stage
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI.TooltipCreator
 import com.fs.starfarer.api.util.Misc
+import data.scripts.utils.aEP_DataTool.txt
+import data.scripts.utils.aEP_ID.Companion.FACTION_ID_FSF_ADV
 import java.awt.Color
 
-private const val FACTION_ID = "aEP_FSF"
 
+/**
+ * 在modPlugin里面的onGameLoad方法里调用 ensureRegistered()
+ * 玩家建立殖民地到了该触发危机的时候，会自动被游戏调用 finishedAddingCrisisFactors，将cause和factor添加到HostileActivityEventIntel
+ */
 class FSFHostileActivityCrisisSetup : ColonyCrisesSetupListener {
 
-    // 这个回调会在所有默认的“殖民危机”因素都添加完后由 HostileActivityEventIntel 调用，
-    // 参数 intel 是正在构建的 HostileActivityEventIntel 实例，我们在这里注册 FSF 的因子和原因
+    // HostileActivityEventIntel 是单例，在这个tab中维护所有的Crisis的cause/factor，每次触发危机event时，只会触发一个event
     override fun finishedAddingCrisisFactors(intel: HostileActivityEventIntel) {
         val factor = FSFHostileActivityFactor(intel)
         val cause = FSFHostileActivityCause(intel)
@@ -30,8 +30,6 @@ class FSFHostileActivityCrisisSetup : ColonyCrisesSetupListener {
     }
 
     companion object {
-        // 这个方法由 FSFModPlugin 在 存档读取/开新档时时调用，确保监听器在listenerManager存在一个实例
-        // 保证在 HostileActivityEvent 更新进度条前捕捉到 finishedAddingCrisisFactors 回调
         @JvmStatic
         fun ensureRegistered() {
             val manager = Global.getSector().listenerManager
@@ -42,32 +40,57 @@ class FSFHostileActivityCrisisSetup : ColonyCrisesSetupListener {
     }
 }
 
+
+/**
+ *  Factor负责在提示栏显示 FSF Crisis 的描述、计算每月进度贡献、以及决定是否能触发随机危机（rollEvent/fireEvent）。
+ *  在 HostileActivityEvent 每次更新进度、进行威胁评估或滚动事件时，都会查找所有注册的 Factor。
+ *  因此要保证它只依赖 intel 和自身因子列表的状态，避免每帧重建。
+ */
 private class FSFHostileActivityFactor(intel: HostileActivityEventIntel) : BaseHostileActivityFactor(intel) {
 
-    // 这个 Factor 会在 HostileActivityEventIntel 构建过程中、由 finishedAddingCrisisFactors 注入。
-    // 它负责在提示栏显示 FSF 的描述、计算每月进度贡献、以及决定是否能触发随机危机（rollEvent/fireEvent）。
-    // 在 HostileActivityEvent 每次更新进度、进行威胁评估或滚动事件时，都会查找所有注册的 Factor。
-    // 因此要保证它只依赖 intel 和自身因子列表的状态，避免每帧重建。
-
     private val factionColor: Color
-        get() = Global.getSector().getFaction(FACTION_ID)?.baseUIColor ?: Misc.getHighlightColor()
+        get() = Global.getSector().getFaction(FACTION_ID_FSF_ADV)?.baseUIColor ?: Misc.getHighlightColor()
 
-    override fun getDesc(intel: BaseEventIntel) = "FSF outreach"
+
+    override fun getDesc(intel: BaseEventIntel) = txt("aEP_HAE_FSF_Event")
 
     override fun getDescColor(intel: BaseEventIntel): Color {
         return if (getProgress(intel) > 0) factionColor else Misc.getGrayColor()
     }
 
-    override fun getEventFrequency(intel: HostileActivityEventIntel, stage: EventStageData): Float {
-        return if (stage.id === Stage.HA_EVENT) 15f else 0f
+    override fun getProgressStr(intel: BaseEventIntel?): String {
+        val progression = getProgress(intel)
+        if(progression <= 0) return ""
+        else if(progression <= 35) return ""
+        else if(progression <= 75) return ""
+        return ""
     }
 
+
+    override fun getEventFrequency(intel: HostileActivityEventIntel, stage: EventStageData): Float {
+        return if (stage.id === Stage.HA_EVENT) 10f else 0f
+    }
+
+    /**
+     * HostileActivityEvent 在进入 HA_EVENT 阶段且满足触发条件时
+     * 会依次调用各 Factor 的 rollEvent 方法，上传需要被roll的事件
+     * 在data.custom里塞入必要数据，供后续传入 fireEvent 使用。
+     * 不一定被roll中，如果没roll中就不会调用 fireEvent
+     */
     override fun rollEvent(intel: HostileActivityEventIntel, stage: EventStageData) {
         val data = HAERandomEventData(this, stage)
         stage.rollData = data
+        // player sees a “potential crisis” intel update. No world effects occur here.
         intel.sendUpdateIfPlayerHasIntel(data, false)
     }
 
+    /**
+     * 在rollEvent中上传自己event的信息
+     * 如果没有被roll中，就不会被调用fireEvent
+     * 如果roll中了，就被调用fireEvent
+     * 并且stage.data中存着之前塞进HAERandomEventData.Custom的必要数据
+     * 如果成功触发事件返回true
+     */
     override fun fireEvent(intel: HostileActivityEventIntel, stage: EventStageData): Boolean {
         return false
     }
@@ -106,10 +129,14 @@ private class FSFHostileActivityFactor(intel: HostileActivityEventIntel) : BaseH
     }
 
     override fun getEventStageIcon(intel: HostileActivityEventIntel, stage: EventStageData): String? {
-        return Global.getSector().getFaction(FACTION_ID)?.crest
+        return Global.getSector().getFaction(FACTION_ID_FSF_ADV)?.crest
     }
 
     override fun getStageTooltipImpl(intel: HostileActivityEventIntel, stage: EventStageData): TooltipCreator? {
+       if(stage.id === Stage.HA_EVENT){
+           return getDefaultEventTooltip(
+               "FSF influence campaign", intel, stage)
+       }
         return getDefaultEventTooltip("FSF influence campaign", intel, stage)
     }
 

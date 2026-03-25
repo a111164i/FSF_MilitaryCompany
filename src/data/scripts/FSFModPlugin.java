@@ -8,7 +8,6 @@ import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
 import com.fs.starfarer.api.loading.FighterWingSpecAPI;
-import com.fs.starfarer.loading.specs.FighterWingSpec;
 import data.scripts.utils.aEP_Tool;
 import data.missions.aEP_MissionUtils;
 import data.scripts.ai.*;
@@ -120,7 +119,7 @@ public class FSFModPlugin extends BaseModPlugin {
     isNexerelinEnabled = Global.getSettings().getModManager().isModEnabled("nexerelin");
     isLunalibEnabled = Global.getSettings().getModManager().isModEnabled("lunalib");
 
-    ensureHostileActivityCrisisRegistered();
+    ensureRegistered();
   }
 
   //create a sector
@@ -150,7 +149,7 @@ public class FSFModPlugin extends BaseModPlugin {
       sector.addScript(new FSFCampaignPlugin());
     }
 
-    ensureHostileActivityCrisisRegistered();
+    ensureRegistered();
 
   }
 
@@ -162,7 +161,7 @@ public class FSFModPlugin extends BaseModPlugin {
       sector.addScript(new FSFCampaignPlugin());
     }
 
-    ensureHostileActivityCrisisRegistered();
+    ensureRegistered();
 
   }
 
@@ -251,9 +250,12 @@ public class FSFModPlugin extends BaseModPlugin {
     for(FighterWingSpecAPI wingSpec : Global.getSettings().getAllFighterWingSpecs()){
       if(!wingSpec.getId().startsWith("aEP_")) continue; //跳过非本mod的战机编队
       String baseName = wingSpec.getRoleDesc().toLowerCase();
-      String postfix = baseName.endsWith("drone") ? "无人机" : "机";
+
       String prefix = baseName.contains("light") ? "轻型" :
               baseName.contains("heavy") ? "重型" : "";
+
+      String postfix = baseName.endsWith("drone") ? "无人机" : "机";
+
       if(baseName.contains("fighter")){
         wingSpec.setRoleDesc(prefix+"战斗"+postfix);
       } else if(baseName.contains("interceptor")){
@@ -263,13 +265,16 @@ public class FSFModPlugin extends BaseModPlugin {
       } else if(baseName.contains("support")){
         wingSpec.setRoleDesc(prefix+"支援"+postfix);
       } else if(baseName.contains("utility")) {
-        wingSpec.setRoleDesc(prefix + "功能" + postfix);
+        wingSpec.setRoleDesc(prefix+"功能"+postfix);
       }
     }
 
   }
 
-  private void ensureHostileActivityCrisisRegistered() {
+  /**
+   * 确保生涯相关的监听器被加载
+   */
+  private void ensureRegistered() {
     FSFHostileActivityCrisisSetup.ensureRegistered();
   }
 
