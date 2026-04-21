@@ -52,7 +52,7 @@ private class FSFHostileActivityFactor(intel: HostileActivityEventIntel) : BaseH
         get() = Global.getSector().getFaction(FACTION_ID_FSF_ADV)?.baseUIColor ?: Misc.getHighlightColor()
 
 
-    override fun getDesc(intel: BaseEventIntel) = txt("aEP_HAE_FSF_Event")
+    override fun getDesc(intel: BaseEventIntel) = txt("FSFHostileActivityFactor_desc")
 
     override fun getDescColor(intel: BaseEventIntel): Color {
         return if (getProgress(intel) > 0) factionColor else Misc.getGrayColor()
@@ -82,6 +82,8 @@ private class FSFHostileActivityFactor(intel: HostileActivityEventIntel) : BaseH
         stage.rollData = data
         // player sees a “potential crisis” intel update. No world effects occur here.
         intel.sendUpdateIfPlayerHasIntel(data, false)
+
+        
     }
 
     /**

@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="5.1rc2&#10;加入了crisis的模板类，等待实现">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="5.1rc2-02&#10;为crisis模板类加入了注释">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/strings/strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/strings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/FSFModPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/FSFHostileActivityCrisis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_FSFHostileActivityCrisis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_FSFHostileActivityCrisis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_FSFHostileActivityCrisis.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -463,14 +461,6 @@
       <workItem from="1773661065269" duration="210000" />
       <workItem from="1773661361299" duration="838000" />
     </task>
-    <task id="LOCAL-00043" summary="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配">
-      <option name="closed" value="true" />
-      <created>1733848491542</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1733848491542</updated>
-    </task>
     <task id="LOCAL-00044" summary="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配">
       <option name="closed" value="true" />
       <created>1733848813270</created>
@@ -855,7 +845,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774346776462</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="5.1rc2-02&#10;为crisis模板类加入了注释">
+      <option name="closed" value="true" />
+      <created>1774429734815</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1774429734817</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -910,7 +908,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc8&#10;修正了喷火器的特效，现在使用原版，会随着弹丸消失而消失" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 02&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 03&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 04&#10;升级了交换语言py脚本，中途交换失败不会删除语言文件&#10;精英化不再锁强盾重甲,数值略微降低&#10;内置爆反插件放开,和重甲冲突&#10;分流护盾效果改为减伤而非加耗散" />
@@ -935,20 +932,12 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-3&#10;在renderUtils中加入了基础的实例化渲染功能" />
     <MESSAGE value="5.1rc2" />
     <MESSAGE value="5.1rc2&#10;加入了crisis的模板类，等待实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.1rc2&#10;加入了crisis的模板类，等待实现" />
+    <MESSAGE value="5.1rc2-02&#10;为crisis模板类加入了注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.1rc2-02&#10;为crisis模板类加入了注释" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/src/data/scripts/campaign/intel/aEP_FSFHostileActivityCrisis.kt</url>
-          <line>60</line>
-          <properties class="data.scripts.campaign.intel.FSFHostileActivityFactor" method="getProgressStr">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../../starsector-core/com/fs/starfarer/api/impl/campaign/intel/events/BaseHostileActivityFactor.java</url>
           <line>32</line>

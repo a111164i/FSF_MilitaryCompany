@@ -293,7 +293,7 @@
         "aEP_FSFOrbitalStationPluginBuildReason": "与FSF关系太低",
 
 		#############################
-		"FSFHostileActivityFactor_desc" : "FSF"
+		"FSFHostileActivityFactor_desc" : "FSF军事公司"
 	},
 
 	"aEP_En":{
@@ -590,7 +590,7 @@
         "aEP_FSFOrbitalStationPluginBuildReason": "Relationship with FSF is too low",
 
 		#############################
-		"FSFHostileActivityFactor_desc" : "FSF"
+		"FSFHostileActivityFactor_desc" : "FSF Military Corp."
     }
 
 }
