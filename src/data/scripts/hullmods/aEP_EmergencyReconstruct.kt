@@ -6,13 +6,14 @@ import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipCommand
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.HullDamageAboutToBeTakenListener
+import com.fs.starfarer.api.impl.campaign.ids.HullMods
 import com.fs.starfarer.api.impl.campaign.ids.Stats
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
-import data.scripts.utils.aEP_BaseCombatEffect
 import data.scripts.aEP_CombatEffectPlugin
+import data.scripts.utils.aEP_BaseCombatEffect
 import data.scripts.utils.aEP_DataTool.txt
 import data.scripts.utils.aEP_ID
 import data.scripts.utils.aEP_Tool
@@ -212,9 +213,10 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     didRepair = true
     ship.mutableStats.hullDamageTakenMult.modifyMult(ID, 0f)
     ship.mutableStats.armorDamageTakenMult.modifyMult(ID, 0f)
+    ship.mutableStats.engineDamageTakenMult.modifyMult(ID, 0f)
     ship.mutableStats.combatWeaponRepairTimeMult.modifyFlat(ID, Float.MAX_VALUE)
     ship.mutableStats.combatEngineRepairTimeMult.modifyFlat(ID, Float.MAX_VALUE)
-    ship.mutableStats.engineDamageTakenMult.modifyMult(ID, 0f)
+
 
     for(e in ship.engineController.shipEngines){
       if(!e.isDisabled){
@@ -245,10 +247,11 @@ open class aEP_EmergencyReconstruct() : aEP_BaseHullMod(), HullDamageAboutToBeTa
     ship.setJitterUnder(ID, aEP_Tool.REPAIR_COLOR2, level, 36, 8f+ship.collisionRadius*0.1f)
 
     //相位效果
+    val goPhase = true
     ship.extraAlphaMult = level * 0.5f + 0.5f
     ship.extraAlphaMult2 = level * 0.5f + 0.5f
     ship.setApplyExtraAlphaToEngines(true)
-    if(level >= 1f){
+    if(level >= 1f && goPhase){
       if(ship.phaseCloak != null && ship.phaseCloak.isActive) ship.phaseCloak.deactivate()
       if(ship.shield != null && ship.shield.isOn) ship.shield.toggleOff()
       ship.isPhased = true
