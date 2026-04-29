@@ -2,7 +2,6 @@
 package data.scripts.utils;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.combat.CombatEngineAPI;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.lazywizard.lazylib.MathUtils;
@@ -29,6 +28,19 @@ public class aEP_DataTool {
         return Global.getSettings().getString(category, id);
       }
     } catch (Exception e){
+      return "";
+    }
+  }
+
+  public static String txt(String category, String nestedKey, String leafKey) {
+    try {
+      String catKey = category;
+      if (Global.getSettings().getBoolean("aEP_UseEnString")) {
+        catKey = category.replace("aEP_", "aEP_EN_");
+      }
+      JSONObject root = Global.getSettings().loadJSON("data/strings/strings.json");
+      return root.getJSONObject(catKey).getJSONObject(nestedKey).getString(leafKey);
+    } catch (Exception e) {
       return "";
     }
   }

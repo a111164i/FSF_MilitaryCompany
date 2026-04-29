@@ -293,7 +293,12 @@
         "aEP_FSFOrbitalStationPluginBuildReason": "与FSF关系太低",
 
 		#############################
-		"FSFHostileActivityFactor_desc" : "FSF军事公司"
+		"FSFHostileActivityFactor_desc" : "FSF军事公司",
+
+		"aEP_FleetCommand":{
+			"effect1":"在指挥舰附近 %s 范围内，护航套件始终获得最大加成",
+			"effect2":"多个舰队指挥插件共享同一实例，每帧只执行一次全场搜索"
+		}
 	},
 
 	"aEP_En":{
@@ -400,9 +405,9 @@
 		"aEP_TwinFighter01": "In combat, using key %s to toggle whether let the fighter free attack or fixed at front",
 		"aEP_TwinFighter02": "When fixed at front, the fighter repairs itself at speed of %s per second",
 		"aEP_TwinFighter03": "When this ship is destroyed, the fighter will be destroyed too",
-
+		
 		"aEP_CloseTargeting01": "Damage to fighters %s",
-
+		
 		#############################
 		"aEP_VentMode01":"Flux dissipation +%s / Hard flux gen: %s",
 		"aEP_VentMode02":"Shield damage taken: %s",
@@ -590,7 +595,12 @@
         "aEP_FSFOrbitalStationPluginBuildReason": "Relationship with FSF is too low",
 
 		#############################
-		"FSFHostileActivityFactor_desc" : "FSF Military Corp."
+		"FSFHostileActivityFactor_desc" : "FSF Military Corp.",
+
+		"aEP_FleetCommand":{
+			"effect1":"Escort Package always receives maximum bonuses within %s of a command ship",
+			"effect2":"Multiple Fleet Command hullmods share a singleton instance, running only one fleet-wide scan per frame"
+		}
     }
 
 }

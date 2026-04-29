@@ -17,10 +17,12 @@
     "shieldRadius": 232.5,
     "viewOffset": 0,
     "builtInMods": [
-        "aEP_SpecialHull"
+        "aEP_SpecialHull",
+        "aEP_FleetCommand",
+        "operations_center"
     ],
     "builtInWings": [],
-    "builtInModules": null,
+    "builtInModules": [],
     "weaponSlots": [
         {
             "id": "WS 000",

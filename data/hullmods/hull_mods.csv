@@ -1,5 +1,5 @@
 name,id,tier,tech/manufacturer,rarity,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,,sprite,sModDesc
-,,,,,,,,,,,,,,,,,,,,
+#,舰船内置插件,,,,,,,,,,,,,,,,,,,
 FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_SpecialHull,一种对舰内重力生成器更高级的运用，预制在船壳中的引力机关允许其接受或者发送力场推动附近拥有相同插件的舰船，公司的舰船能在密集阵型中更迅速的穿行,,,graphics/aEP_hullmods/aEP_marker_dissipation.png,
 发射平台,aEP_MissilePlatform,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_MissilePlatform,"本舰内置的先进导弹工厂占据了原本用于储存导弹的空间，使其能以牺牲初始载弹量为代价，源源不断的生产高质量导弹。对所有安装在导弹槽位，复合槽位上的导弹武器生效。
 
@@ -44,9 +44,13 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 
 根据目标舰体级别，对于基础部署点超过一定水平的敌方舰船，每超过一定值，对其伤害{%s}，最多{%s}",,,graphics/aEP_hullmods/aEP_titanic_killer.png,
 双生战机,aEP_TwinFighter,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_TwinFighter,位于本舰前半部分的火力模块是一架独立的的舰载机，必要情况下可以出击与本舰协同攻击目标,,,graphics/aEP_hullmods/aEP_twin_fighter.png,
+舰队指挥,aEP_FleetCommand,0,FSF设计,,"",,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FleetCommand,"集成的舰队指挥系统，能够协调附近友军舰船的行动，增强护航套件的作战效能
+
+装有护航套件的舰船在指挥舰 %s 范围内始终获得最大加成",,,graphics/aEP_hullmods/aEP_fleet_command.png,
+,,0,FSF设计,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,,,
+#,通用插件,,,,,,,,,,#重甲8/15/20/40,#黄定位4/8/15/25,#扩展弹仓3/5/7/10,#强盾（标准）5/10/15/25,,,,,,
 精英化防御方案,aEP_EliteShip,2,FSF设计,,"FSF, no_build_in, req_spaceport, defensive",防御,25000,,,,1,1,1,1,data.scripts.hullmods.aEP_EliteShip,"有时一到两艘舰船的溃败会导致整个战线失守，此项改造以不计成本为指导最大化单舰防御能力，包含对舰船机械部件的全面维护，使用无人机修复所有舰内管道系统存在的细微泄露，并用更先进材料替换了战舰的主装甲带
 
 除了常规的属性增加，一种应急护盾系统也被安装到舰船中，在主系统过载的瞬间，发射一架无人机在数秒内撑起保护整个舰船的战舰级护盾并在之后烧毁",,,graphics/aEP_hullmods/aEP_elite_ship.png,
@@ -70,7 +74,7 @@ FSF舰体设计,aEP_SpecialHull,0,FSF设计,,,,,,TRUE,,0,0,0,0,data.scripts.hull
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
+#,隐藏舰船和战机的插件,,,,,,,,,,,,,,,,,,,
 Type28护盾发生器,aEP_Type28Shield,0,unknown,,,,,,TRUE,,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,一个逻辑计算错误的伽马核心为舰体加装了独立的护盾发生器模块，几乎等同于驱逐舰的体积的模块大小给予了其极好的护盾效率，作为代价拥有对等的维持消耗。此发射器模块无法安装任何插件,,,graphics/aEP_hullmods/aEP_HL_multi_turret.png,
 FSF模块,aEP_Module,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,,,,graphics/aEP_hullmods/aEP_self_rotate.png,
 锚点护盾,aEP_MaoDianShield,0,FSF设计,,,,,,TRUE,TRUE,0,0,0,0,data.scripts.hullmods.aEP_FighterSpecial,独特的护盾系统，展开会持续产生软幅能。但遭到攻击时，如果当前软幅能高于硬幅能，会优先将软幅能转化为硬幅能，而非产生硬幅能。,,,graphics/aEP_hullmods/aEP_vanguard_hull.png,
