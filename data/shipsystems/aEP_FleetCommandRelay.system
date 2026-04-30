@@ -1,0 +1,32 @@
+{
+  # 系统唯一ID，在 ship_systems.csv 和 variant 中引用
+  "id":"aEP_FleetCommandRelay",
+
+  # STAT_MOD 类型：在 active 期间会对 MutableShipStatsAPI 做临时修改
+  # 离开 active 时自动调用 unapply() 还原
+  "type":"STAT_MOD",
+
+  # 使用自定义AI脚本控制开火时机
+  "aiType":"CUSTOM",
+  "aiScript":"data.scripts.ai.shipsystemai.aEP_FleetCommandRelayAI",
+
+  # 每帧调用的主逻辑脚本
+  "statsScript":"data.scripts.shipsystems.aEP_FleetCommandRelay",
+
+  # 系统空闲(IDLE/COOLDOWN)时仍然调用 apply()，保证 LIDAR 武器初始化和状态重置
+  # 副作用：unapply() 永远不会被调用，所有状态管理必须在 apply() 中自行处理
+  "runScriptWhileIdle":true,
+
+  # 充能阶段结束时淡出激活音效
+  "fadeActivationSoundOnChargedown":true,
+
+  # 系统激活时播放的音效
+  "useSound":"system_entropy",
+
+  # 使用次数耗尽时播放的音效
+  "outOfUsesSound":"gun_out_of_ammo",
+
+  # AI提示（预留）
+  "aiHints":{
+  }
+}

@@ -23,6 +23,16 @@ class aEP_FleetCommand : BaseHullMod() {
 
     @JvmStatic
     var lastCheckTime: Float = -1f
+
+    @JvmStatic
+    fun applyFleetCommand(stats: MutableShipStatsAPI, id: String) {
+      stats.dynamic.getMod(STAT_KEY).modifyFlat(id, 1f)
+    }
+
+    @JvmStatic
+    fun unapplyFleetCommand(stats: MutableShipStatsAPI, id: String) {
+      stats.dynamic.getMod(STAT_KEY).unmodifyFlat(id)
+    }
   }
 
   private val escortPackage: EscortPackage by lazy {
@@ -42,7 +52,7 @@ class aEP_FleetCommand : BaseHullMod() {
   }
 
   override fun applyEffectsAfterShipCreation(ship: ShipAPI, id: String) {
-    ship.mutableStats.dynamic.getMod(STAT_KEY).modifyFlat(id, 1f)
+    applyFleetCommand(ship.mutableStats, id)
   }
 
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {

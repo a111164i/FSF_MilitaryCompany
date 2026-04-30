@@ -9,10 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="5.2rc1&#10;精调了ship_data.csv,为所有模块加入了MODULE hints">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="4740bd54-10da-4f60-8854-5f39776b797b" name="Changes" comment="5.2rc1-02&#10;加入了fleet command的插件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGENTS.md" beforeDir="false" afterPath="$PROJECT_DIR$/AGENTS.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -470,14 +468,6 @@
       <workItem from="1777185054645" duration="3879000" />
       <workItem from="1777212328215" duration="4114000" />
     </task>
-    <task id="LOCAL-00043" summary="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配">
-      <option name="closed" value="true" />
-      <created>1733848491542</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1733848491542</updated>
-    </task>
     <task id="LOCAL-00044" summary="4.8rc6&#10;修正了hvb不刷新和特殊星系跳跃点的问题，加入了新的li解装配">
       <option name="closed" value="true" />
       <created>1733848813270</created>
@@ -862,7 +852,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773662406665</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="5.2rc1-02">
+      <option name="closed" value="true" />
+      <created>1777441066588</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1777441066588</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -917,7 +915,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="//----------------------------------------------//&#10;5.0rc7 10&#10;修正了weapon_data，学习原版给特殊武器加入了no_standard_data标签&#10;使用原版自带的NO_MANUAL_FIRE给爆反和幅容管&#10;为107火箭炮增加了USE_LESS_VS_SHIELDS&#10;学习原版的碎片武器，加入了customAncillary描述栏&#10;修正了暖池的一个小槽武器朝向&#10;加强了温跃层的内置武器，电击引擎减速&#10;取消了爆炸长矛的开火前摇（本来是防误触用的，但自动使用也要读条太蠢了）" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8&#10;修正了喷火器的特效，现在使用原版，会随着弹丸消失而消失" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 02&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
     <MESSAGE value="//----------------------------------------------//&#10;5.0rc8 03&#10;修补了漏掉的英文翻译，褐潮的战术系统&#10;plannets_EN星体名字" />
@@ -942,7 +939,8 @@
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-2&#10;修改了烟雾的混合方式，变为Addictive blend：GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE) Addictive blend&#10;将aEP_MovingSprite也升级为批量渲染" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-07-3&#10;在renderUtils中加入了基础的实例化渲染功能" />
     <MESSAGE value="//----------------------------------------------//&#10;5.1rc1-08&#10;修复了涌浪被召回导致单帧位移过大生成太多电弧导致卡顿的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="//----------------------------------------------//&#10;5.1rc1-08&#10;修复了涌浪被召回导致单帧位移过大生成太多电弧导致卡顿的问题" />
+    <MESSAGE value="5.2rc1-02" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.2rc1-02" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

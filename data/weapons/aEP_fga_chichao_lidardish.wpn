@@ -8,6 +8,7 @@
   "turretSprite": "graphics/weapons/aEP_fga_chichao/lidar.png",
   "hardpointSprite": "graphics/weapons/aEP_fga_chichao/lidar.png",
   "showDamageWhenDecorative": true,
+  "convergeOnPoint":true,
   "glowColor": [
     100,
     100,
